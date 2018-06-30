@@ -55,6 +55,8 @@ best for learning new languages.
    Python 3.6.5
    ```
 
+   You can exit the virtual environment by typing `exit`.
+
 ## Day 1
 
 Learn the basics of Python with a pile of toy programs.
