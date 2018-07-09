@@ -14,3 +14,29 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+from datetime import date
+
+def get_month():
+    try:
+        arg_month = int(sys.argv[1])
+    except (IndexError, ValueError):
+        month = date.today().month
+    else:
+        month = arg_month
+    return month
+
+def get_year():
+    try:
+        arg_year = int(sys.argv[2])
+    except (IndexError, ValueError):
+        year = date.today().year
+    else:
+        year = arg_year
+    return year
+
+month = get_month()
+year = get_year()
+monthly_calendar = calendar.TextCalendar(calendar.SUNDAY)
+
+monthly_calendar.prmonth(year, month)
