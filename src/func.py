@@ -4,7 +4,7 @@
 num = input("Enter a number: ")
 
 # Print out "Even!" if the number is even. Otherwise print "Odd"
-if num % 0 == even
+if int(num) % 2 == 0:
 print ("Even")
-else
+else:
 print('Odd')
