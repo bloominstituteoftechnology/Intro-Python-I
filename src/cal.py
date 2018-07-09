@@ -1,3 +1,4 @@
+
 # Use the 'calendar' module to draw calendars to the console
 # https://docs.python.org/3.6/library/calendar.html
 #
@@ -14,3 +15,17 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+c = calendar.TextCalendar()
+
+year = int(sys.argv[2])
+month = int(sys.argv[1])
+
+
+if len(sys.argv) == 3:
+    print(c.formatmonth(year, month))
+
+        
+
+
