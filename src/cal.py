@@ -15,3 +15,8 @@
 
 import sys
 import calendar
+y = input('Give me a year (yyyy): ')
+m = input('Give me a month (mm): ')
+c = calendar.TextCalendar(calendar.SUNDAY)
+str = c.formatmonth(int(y), int(m))
+print (str)
