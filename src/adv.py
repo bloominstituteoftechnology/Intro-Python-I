@@ -1,5 +1,6 @@
 # Write a text adventure that allows the player to move from room to room by
 # typing "n", "w", "s", or "e" for north, west, south, and east.
+import textwrap
 
 # These are the existing rooms. Add more as you see fit.
 
@@ -55,13 +56,16 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
-
+class Player:
+    def __init__(self, name, location):
+        self.name = name
+        self.location = location
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+current_player = Player('mister-corn','outside')
 # Write a loop that:
 #
 # * Prints the current room name
@@ -72,3 +76,40 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# A bunch of functions/dicts
+system_text = {
+    'welcome': '''Welcome to adv.py!\nInput a cardinal direction (e.g. 'n', 's', 'e', 'w') to explore the world.\nQuit the game by inputting \'q\'\n''',
+    'key_error': '''\nIt seems you cannot go that way...\n(Remember, type in the cardinal direction you wish to move as a single lower-case letter. For example, type in 'n', 's', 'w', 'e'. Not all directions are valid. Read the description carefully to find out where you can go.)\n''',
+
+}
+
+def print_multilines(text):
+    textwrap_list = textwrap.wrap(text)
+    for line in textwrap_list:
+        print(line)
+    
+def print_location():
+    print(f'Location: {current_player.location}\n')
+    location_description = rooms[current_player.location]["description"]
+    print_multilines(location_description)
+
+def move():
+    try:
+        next_room = rooms[current_player.location][f'{player_input}_to']
+    except KeyError:
+        print(system_text['key_error'])
+        return 
+    current_player.location = next_room    
+
+# Game Start
+print(system_text['welcome'])
+print_location()
+player_input = input(">> ")
+
+while player_input != 'q':
+    move()
+    print_location()
+    player_input = input(">> ")
+
+exit(0)
