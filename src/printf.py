@@ -6,8 +6,8 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
-'%d %d %s' % (x, y, z)
+print('%d %f %s' % (x, y, z))
 
 # Use the 'format' string method to print the same thing
 
-'{} {}'.format(x, y, z)
+print('{} {} {}'.format(x, y, z))
