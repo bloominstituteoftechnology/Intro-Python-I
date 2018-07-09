@@ -15,10 +15,12 @@
 
 import sys
 import calendar
+import datetime
 
+current = datetime.datetime.now()
 cal = calendar.TextCalendar()
 
-year = int(input("Enter 4 Digit Year: "))
-month = int(input("Enter Month 1 - 12: "))
+year = input("Enter 4 Digit Year: ")
+month = input("Enter Month 1 - 12: ")
 
-print(cal.formatmonth(year, month))
+print(cal.formatmonth(int(year), int(month)))
