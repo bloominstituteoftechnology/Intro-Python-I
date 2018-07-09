@@ -8,6 +8,5 @@ def isEven(num):
         return True
     print('Odd!')    
     return False
-
 isEven(num)
 # Print out "Even!" if the number is even. Otherwise print "Odd"
