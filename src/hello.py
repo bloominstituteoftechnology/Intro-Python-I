@@ -1,2 +1,4 @@
-# Write Hello, world
-print("Hello, world")
+# Write Hello, worldp
+message = 'Hello, world'
+
+print(message)
