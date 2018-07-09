@@ -1,0 +1,16 @@
+{
+  "name": "freckle"
+, "description": "Node.js freckle api bindings"
+, "version": "0.0.1"
+, "author": "Tim Branyen <tim@tabdeveloper.com> (http://twitter.com/tbranyen)"
+, "main": "./lib/index.js"
+, "directories": {
+    "lib": "./lib"
+  }
+, "modules": {
+    "index": "./lib/index"
+  }
+, "engines": {
+    "node": "*"
+  }
+}
