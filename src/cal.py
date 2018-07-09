@@ -14,3 +14,14 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+def printCal(year, month):
+    # if !year && !month:
+    #     curYear = calendar.
+    #     curMonth = calendar.
+    
+    print(calendar.TextCalendar.formatmonth(2018,6,6))
+
+
+printCal(2018,6)
