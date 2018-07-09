@@ -1,5 +1,5 @@
 x = 5
-y = "7"
+y = int("7")
 
 # Write a print statement that combines x + y into the integer value 12
 print(x + y)
