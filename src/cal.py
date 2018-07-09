@@ -1,5 +1,6 @@
 # Use the 'calendar' module to draw calendars to the console
 # https://docs.python.org/3.6/library/calendar.html
+class calendar.Calendar(firstweekday=0)
 #
 # Use the sys module to look for command line arguments in the `argv` list
 # variable.
