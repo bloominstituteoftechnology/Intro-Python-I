@@ -14,3 +14,18 @@
 # docs for the calendar module closely.
 
 import sys
+from sys import argv
+import calendar
+from calendar import prmonth
+import datetime
+from datetime import date
+
+today = date.today()
+if len(argv) == 3:
+    print(prmonth(int(argv[1]), int(argv[2])))
+
+elif len(argv) == 1:
+    print(prmonth(today.year, today.month))
+
+else:
+    print('Please enter a month and a date!')
