@@ -16,4 +16,4 @@ print('x is %(x)i, y is %(y).2f, z is %(z)s' % {'x':x, 'y':y, 'z':z})
 
 print('x is {}, y is {:.2f}, z is {}'.format(x,y,z))
 
-print('x is {0}, y is {1:.2f}, z is {2}'.format(x,y,z))
+print('x is {0}, y is {1:.2f}, z is {2}, and Derrick says {2}'.format(x,y,z))
