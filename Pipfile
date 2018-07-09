@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 
 [dev-packages]
+"autopep8" = "*"
+black = "*"
 
 [requires]
 python_version = "3"
