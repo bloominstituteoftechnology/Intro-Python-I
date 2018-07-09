@@ -78,6 +78,8 @@ Suggested order for implementing the toy programs:
 * `cal` -- Experiment with module imports
 * `obj` -- Classes and objects
 
+# Initail Commit
+
 ## Day 2
 
 Put it together into a bigger toy program: a simple text adventure!
