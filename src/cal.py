@@ -14,3 +14,10 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+cal = calendar.TextCalendar(calendar.SUNDAY)
+
+str = cal.formatmonth(int(sys.argv[1]), int(sys.argv[2]), w=0, l=0)
+
+print(str)
