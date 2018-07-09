@@ -12,7 +12,8 @@ rooms = {
 
     "foyer": {
         "name": "Foyer",
-        "description": "Dim light filters in from the south. Dusty passages run north and east.",
+        "description": """Dim light filters in from the south. Dusty passages
+        run north and east.""",
         "n_to": "overlook",
         "s_to": "outside",
         "e_to": "narrow",
@@ -28,7 +29,8 @@ the distance, but there is no way across the chasm.""",
 
     "narrow": {
         "name": "Narrow Passage",
-        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
+        "description": """The narrow passage bends here from west to north. The
+        smell of gold permeates the air.""",
         "w_to": "foyer",
         "n_to": "treasure",
     },
@@ -54,13 +56,23 @@ earlier adventurers. The only exit is to the south.""",
     },
 """
 
-# Write a class to hold player information, e.g. what room they are in currently
+# Write a class to hold player information, e.g. what room they are in
+# currently
+
+
+class Player:
+    def __init__(self):
+        self.currentRoom = "outside"
+
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+pc = Player()
+
+game = True
 
 # Write a loop that:
 #
@@ -72,3 +84,21 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+while game:
+    cur = {key: value for key, value in rooms.items() if key == pc.currentRoom}
+    cur = next(iter(cur.values()))
+    print(f"\nCurrent Room: {cur['name']}\n")
+    print(cur["description"])
+    act = input("\nWhat do you do?\n\n")
+    if act == "q":
+        game = False
+        print("\nThank you for playing!")
+    elif act == "n" or act == "e" or act == "s" or act == "w":
+        if f"{act}_to" in cur:
+            pc.currentRoom = cur[f"{act}_to"]
+            print("\nYou move forward into the unknown...")
+        else:
+            print("""\nOuch!  You bumped into something.
+            Looks like you can't go that way.""")
+    else:
+        print("\nInvalid input")
