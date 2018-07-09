@@ -10,6 +10,6 @@ print('x is %2d, y is %2.5f, z is "%s"' % (x, y, z))
 
 # Use the 'format' string method to print the same thing
 
-formatString = 'x is {0}, y is {1}, z is "{2}" '.format(x,y,z)
+formatString = 'x is {}, y is {}, z is "{}"'
 
-print(formatString)
+print(formatString.format(x, y, z))
