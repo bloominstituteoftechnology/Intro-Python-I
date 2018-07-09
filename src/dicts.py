@@ -7,23 +7,26 @@
 # Make up three entries of various values.
 
 waypoints = [
-    dict1 = {
+    {
         "lat": 33,
         "long": 33,
-        "name": "waypoint_one"
+        "waypoint_name": "waypoint_one"
     },
-    dict2 = {
+    {
         "lat": 32,
         "long": 32,
-        "name": "waypoint_two"
+        "waypoint_name": "waypoint_two"
     },
-    dict3 = {
+    {
         "lat": 31,
         "long": 31,
-        "name": "waypoint_three"
+        "waypoint_name": "waypoint_three"
     }
 ]
 
-print(waypoints)
+# print(waypoints)
 
 # Write a loop that prints out all the field values for all the waypoints
+
+for name in waypoints:
+    print("The name of the waypoint is {0[waypoint_name]}.".format(name))
