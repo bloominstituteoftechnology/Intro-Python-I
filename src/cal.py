@@ -14,3 +14,11 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+cal = calendar.TextCalendar()
+
+year = int(input("Enter 4 Digit Year: "))
+month = int(input("Enter Month 1 - 12: "))
+
+print(cal.formatmonth(year, month))
