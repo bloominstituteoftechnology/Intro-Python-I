@@ -6,7 +6,18 @@
 #
 # Make up three entries of various values.
 
-waypoints = [
-]
+waypoints = {
+    "lat": 90,
+    "log": 15,
+    "name": "home"
+}
+
+w = [ 90, 15, "home" ]
 
 # Write a loop that prints out all the field values for all the waypoints
+
+for i in waypoints:
+    print(i)
+
+for i in w:
+    print(i)
