@@ -12,3 +12,9 @@ z = %s
 """ % (x, y, z))
 
 # Use the 'format' string method to print the same thing
+print("""
+.format():
+x = {2}
+y = {1}
+z = {0}
+""".format(z,y,x))
