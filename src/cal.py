@@ -12,21 +12,22 @@
 
 # Hint: this should be about 15 lines of code. No loops are required. Read the
 # docs for the calendar module closely.
-
 import sys
 import datetime
 import calendar
 
-cal = calendar.TextCalendar(firstweekday=6)
+
+
+cal = calendar.TextCalendar(calendar.SUNDAY)
 print(len(sys.argv))
 
-if len(sys.argv) > 2:
+if len(sys.argv) == 3:
     year = int(sys.argv[1])
     month = int(sys.argv[2])
 else:
+    date = datetime.datetime.now()
     year = date.year
     month = date.month
-    date = datetime.datetime.now()
-
-newCal = cal.formatmonth(month, year)
+  
+newCal = cal.formatmonth(year, month)
 print(newCal)
