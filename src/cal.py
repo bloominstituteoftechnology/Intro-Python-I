@@ -13,4 +13,9 @@
 # Hint: this should be about 15 lines of code. No loops are required. Read the
 # docs for the calendar module closely.
 
+import calendar
 import sys
+
+c = calendar.TextCalendar()
+print('\n %s\n' % (c))
+c.prmonth(2018, 7)
