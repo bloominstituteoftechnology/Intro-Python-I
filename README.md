@@ -67,14 +67,14 @@ NOTE: `adv.py` is for Day 2, so ignore it for today.
 
 Suggested order for implementing the toy programs:
 
-* `hello` -- Hello world
-* `bignum` -- Print some big numbers
-* `datatypes` -- Experiment with type conversion
-* `printf` -- Formatted print output
-* `lists` -- Python's version of arrays
+* `hello` -- Hello world X
+* `bignum` -- Print some big numbers X
+* `datatypes` -- Experiment with type conversion X
+* `printf` -- Formatted print output X
+* `lists` -- Python's version of arrays X
 * `comp` -- List comprehensions
 * `dicts` -- Dictionaries
-* `func` -- Functions
+* `func` -- Functions X
 * `cal` -- Experiment with module imports
 * `obj` -- Classes and objects
 
