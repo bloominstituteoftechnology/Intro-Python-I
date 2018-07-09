@@ -31,8 +31,5 @@ print(x)
 print(len(x))
 
 # Using a for loop, print all the element values multiplied by 1000
-x = [1,2,3,4,9,99,10]
-mult=1000
-for num in x
-	num = num * mult
-print num
+for num in x:
+	print(num * 1000)

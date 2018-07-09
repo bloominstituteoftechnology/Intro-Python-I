@@ -6,8 +6,8 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
-print("x is %d, y is %f, z is %s" % (x,y,z))
+print('x is %d, y is %f, z is "%s"' % (x,y,z))
 # Hooray python docs - https://docs.python.org/3/library/stdtypes.html#printf-style-string-formatting
 
 # Use the 'format' string method to print the same thing
-str.format("x is $x, y is $y, z is $z")
+print('x is {}, y is {:.2f}, z is "{}"'.format(x,y,z))
