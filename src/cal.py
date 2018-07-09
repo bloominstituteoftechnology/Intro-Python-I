@@ -15,13 +15,28 @@
 
 import sys
 import calendar
+import datetime
 
-def printCal(year, month):
-    # if !year && !month:
-    #     curYear = calendar.
-    #     curMonth = calendar.
+
+year = input("Enter year: ")
+month = input("Enter month: ")
+now = datetime.datetime.now()
+
+if not year and not month:
+    year = now.year
+    month = now.month
+elif not year:
+    year = now.year
+    month = int(month)
+elif not month:
+    month = now.month
+    year = int(year)
+else:
+    year = int(year)
+    month = int(month)
     
-    print(calendar.TextCalendar.formatmonth(2018,6,6))
+def printCal(year, month):
+    print(calendar.month(year,month))
 
 
-printCal(2018,6)
+printCal(year, month)
