@@ -15,7 +15,15 @@
 
 import calendar
 import sys
+import datetime
 
-month = input('Please enter the month:')
-year = int(input('Please enter the year:'))
+if len(sys.argv) > 2:
+	year = int(sys.argv[1])
+	month = int(sys.argv[2])
+else:
+	sys.exit(1)
 
+cal = calendar.TextCalendar(calendar.SUNDAY)
+
+calendar_string = cal.formatmonth(year, month)
+print(calendar_string)
