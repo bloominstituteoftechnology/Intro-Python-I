@@ -14,3 +14,32 @@
 # docs for the calendar module closely.
 
 import sys
+
+import calendar
+
+import datetime
+
+year = input('Enter Year: ')
+month = input('Enter Month: ')
+
+#def printMonth(year, month):
+ #   print(calendar.month(int(year), int(month)))
+
+#printMonth(year,month)
+
+textCalendar = calendar.TextCalendar(firstweekday=6)
+
+today = datetime.datetime.now()
+currentYear = today.year
+currentMonth = today.month
+
+if len(sys.argv) > 2:
+    printMonth = textCalendar.formatmonth(int(sys.argv[1]), int(sys.argv[2]))
+else:
+    printMonth = textCalendar.formatmonth(currentYear, currentMonth)
+
+
+
+#print(sys.argv[1])
+
+print(printMonth)
