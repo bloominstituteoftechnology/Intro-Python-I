@@ -27,6 +27,8 @@ class Geocache(Waypoint):
 	def __init__(self, name, difficulty, size, lat, lon):
 		super().__init__(name, lat, lon)
 		self.name = name
+		self.difficulty = difficulty
+		self.size = size
 
 	def myformat(self):
 		return '{}: difficulty {}, size {}, latitude {}, longitude {}'.format(self.name, self.difficulty, self.size, self.lat, self.lon)
@@ -39,13 +41,13 @@ waypoint = Waypoint('Catacombs', 41.70505, -121.51521)
 
 # Print it
 
-print(waypoint.myformat)
+print(waypoint.myformat())
 
 #
 # Without changing the following line, how can you make it print into something
 # more human-readable?
 
-w = waypoint.myformat
+w = waypoint.myformat()
 print(w)
 
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
