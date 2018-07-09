@@ -16,14 +16,14 @@
 import calendar
 import sys
 import datetime
+cal = calendar.TextCalendar(calendar.SUNDAY)
 
 if len(sys.argv) > 2:
 	year = int(sys.argv[1])
 	month = int(sys.argv[2])
 else:
-	sys.exit(1)
+	date = datetime.datetime.now()
+	year = date.year
+	month = date.month
 
-cal = calendar.TextCalendar(calendar.SUNDAY)
-
-calendar_string = cal.formatmonth(year, month)
-print(calendar_string)
+print(cal.formatmonth(month, year))	
