@@ -24,6 +24,4 @@ else:
   month=datetime.date.today().month
   year=datetime.date.today().year
 
-cal=calendar.monthcalendar(year, month)
-for week in cal:
-  print(week)
+cal=calendar.prmonth(year, month)
