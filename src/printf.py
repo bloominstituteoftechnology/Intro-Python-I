@@ -6,7 +6,7 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 # '%d %d %s' % (x, y, z)
-'%d' % (x)
-
+print('%d %04.2f %s' % (x, y, z))
 
 # Use the 'format' string method to print the same thing
+print('{} {:04.2f} {}'.format(x, y, z))
