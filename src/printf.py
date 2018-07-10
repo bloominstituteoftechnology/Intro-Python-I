@@ -11,4 +11,5 @@ z = "I like turtles!"
 
 print('x is %(x)i , y is %(y)1f , and z is %(z)s' %
 {"x": 10, "y" : 2.25, "z": "I like turtles!"})
-#'{} {} {}'.format(x,y,z)
+
+#print '{} {} {}'.format(x,y,z)

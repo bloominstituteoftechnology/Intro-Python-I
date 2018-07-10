@@ -55,6 +55,27 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Person:
+    def __init__ (self, startRoom)
+    self.currentRoom = startRoom
+
+    def whichWay(d, currentRoom):
+        key = k + "_to"
+        if key not in room:
+            print("You turned into a wall")
+            return currentRoom
+    
+        wasd = rooms[currentRoom][key]
+
+        return wasd
+
+p = Person('outside')
+
+quit = False
+
+while not quit:
+    
+
 
 #
 # Main
