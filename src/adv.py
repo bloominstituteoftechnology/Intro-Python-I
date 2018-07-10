@@ -54,7 +54,58 @@ earlier adventurers. The only exit is to the south.""",
     },
 """
 
+# This is the list of available items in the game
+items = {
+    {
+        "name": "Wooden Sword",
+        "description": "Basic weapon to attack against weak enemies",
+        "value": "10 HP"
+    },
+    {
+        "name": "Wooden Shield",
+        "description": "Basic shield to defend against enemies attacks",
+        "value": "20 HP"
+    },
+    {
+        "name": "Bronze Sword",
+        "description": "A better sword for attacking enemies",
+        "value": "20 HP"
+    },
+    {
+        "name": "Bronze Shield",
+        "description": "A more solid shield to defend against enemies",
+        "value": "40 HP"
+    },
+    {
+        "name": "Silver Sword",
+        "description": "A great sword for destroying enemies",
+        "value": "40 HP"
+    },
+    {
+        "name": "Silver Shield",
+        "description": "A great and sturdy shield to defend against enemies",
+        "value": "80 HP"
+    },
+    {
+        "name": "Excalibur",
+        "description": "THE ULTIMATE SWORD OF SWORDS FOR VANQUISHING FOOLS",
+        "value": "100 HP"
+    },
+    {
+    "name": "Golden Shield",
+        "description": "A ancient shield blessed by Zeus",
+        "value": "200 HP"
+    }
+}
+
 # Write a class to hold player information, e.g. what room they are in currently
+class Player:
+    """Will include playerName, currentRoom, playerInventory, and playerSkills"""
+    def __init__(self, playerName, currentRoom, playerInventory, playerSkills)
+        self.name = playerName
+        self.location = currentRoom
+        self.inventory = playerInventory
+        self.skills = playerSkills
 
 #
 # Main

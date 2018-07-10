@@ -14,3 +14,9 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+now = datetime.datetime.now()
+cal = calendar.TextCalendar()
+sys = sys.argv
