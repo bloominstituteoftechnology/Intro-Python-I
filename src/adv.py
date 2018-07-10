@@ -6,19 +6,28 @@ import textwrap
 # These are the existing rooms. Add more as you see fit.
 
 rooms = {
+    "menu": {
+        "name": "TXT ADV",
+        "description": """Welcome to TXT ADV! Commands are:
+north, south, east, west, and q to quit. Type north to begin!""",
+        "north_to": "outside"
+    },
+
     "outside": {
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
-        "n_to": "foyer",
+        "north_to": "foyer",
+        "south_to": "menu"
     },
 
     "foyer": {
         "name": "Foyer",
-        "description": "Dim light filters in from the south. Dusty passages run north and east.",
-        "n_to": "overlook",
-        "s_to": "outside",
-        "e_to": "narrow",
-        "w_to": "wide"
+        "description": """Dim light filters in from the south. 
+Dusty passages run north and east.""",
+        "north_to": "overlook",
+        "south_to": "outside",
+        "east_to": "narrow",
+        "west_to": "passage"
     },
 
     "overlook": {
@@ -26,14 +35,15 @@ rooms = {
         "description": """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
-        "s_to": "foyer",
+        "south_to": "foyer",
     },
 
     "narrow": {
         "name": "Narrow Passage",
-        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
-        "w_to": "foyer",
-        "n_to": "treasure",
+        "description": """The narrow passage bends here from west to north. 
+The smell of gold permeates the air.""", 
+        "west_to": "foyer",
+        "north_to": "treasure",
     },
 
     "treasure": {
@@ -41,13 +51,14 @@ the distance, but there is no way across the chasm.""",
         "description": """You've found the long-lost treasure
 chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
-        "s_to": "narrow",
+        "south_to": "narrow",
     },
-    "wide": {
-        "name": "Wide Passage",
-        "description": "A wider passage leads you west. You smell cookies",
-        "n_to": "trap",
-        "e_to": "foyer",
+    "passage": {
+        "name": "Mysterious Passage",
+        "description": """A passage beckons you west. You smell cookies coming 
+from a hut by the cliff to the north.""",
+        "north_to": "trap",
+        "east_to": "foyer",
     },
     "trap": {
         "name": "Trap Room",
@@ -61,10 +72,10 @@ and casts a spell on you, leaving you paralyzed.""",
     "room": {
         "name": "",
         "description": "",
-        "n_to": "",
-        "s_to": "",
-        "e_to": "",
-        "w_to": "",
+        "north_to": "",
+        "south_to": "",
+        "east_to": "",
+        "west_to": "",
     },
 """
 
@@ -89,7 +100,7 @@ def tryDirection(direction, currentRoom):
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player('outside')
+player = Player('menu')
 
 # Write a loop that:
 #
@@ -110,11 +121,11 @@ while not done:
     for line in textwrap.wrap(rooms[player.currentRoom]['description']):
         print(line)
 
-    command = input("\nWhere will you go?").strip().lower()
+    command = input("\nWhere will you go? ").strip().lower()
 
     if command == "q":
         done = True
-    elif command in ["n", "s", "e", "w"]:
+    elif command in ["north", "south", "east", "west"]:
         player.currentRoom = tryDirection(command, player.currentRoom)
     else:
         print("Unknown command {}".format(command))
