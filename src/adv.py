@@ -28,7 +28,7 @@ the distance, but there is no way across the chasm.""",
 
     "narrow": {
         "name": "Narrow Passage",
-        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
+        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.",
         "w_to": "foyer",
         "n_to": "treasure",
     },

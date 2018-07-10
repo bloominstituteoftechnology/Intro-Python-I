@@ -18,4 +18,4 @@ print("""
 x = {2}
 y = {1}
 z = {0}
-""".format(z,y,x))
+""".format(z, y, x))

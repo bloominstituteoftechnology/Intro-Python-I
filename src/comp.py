@@ -7,4 +7,3 @@ x = input("Enter comma-separated numbers: ").split(',')
 y = [i for i in x if int(i) % 2 == 0]
 
 print(y)
-
