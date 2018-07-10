@@ -6,7 +6,7 @@ def isEven(num):
     if int(num) % 2 == 0:
         print('Even!')
         return True
-    print('Odd!')    
+    print('Odd!')
     return False
 isEven(num)
 # Print out "Even!" if the number is even. Otherwise print "Odd"
