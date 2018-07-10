@@ -39,28 +39,17 @@ the distance, but there is no way across the chasm.""",
 chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
         "s_to": "narrow",
-    },
-
-}
-
-""" template room to copy into code
-    "room": {
-        "name": "",
-        "description": "",
-        "n_to": "",
-        "s_to": "",
-        "e_to": "",
-        "w_to": "",
-    },
-"""
-
-# Write a class to hold player information, e.g. what room they are in currently
-
+class userlocation:
+	def __init__(self, player, roomname):
+		self.player = player
+		self.roomname = roomname
 #
 # Main
 #
+        "description": "",
+#        new player object that is currently in the 'outside' room.
 
-# Make a new player object that is currently in the 'outside' room.
+newplayerobject = userlocation(User, Player1, outside)
 
 # Write a loop that:
 #
@@ -72,3 +61,5 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
