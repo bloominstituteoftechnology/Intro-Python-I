@@ -9,38 +9,64 @@ rooms = {
         "description": "North of you, the cave mouth beckons.",
         "n_to": "foyer",
     },
-
     "foyer": {
-        "name": "Foyer",
-        "description": "Dim light filters in from the south. Dusty passages run north and east.",
-        "n_to": "overlook",
-        "s_to": "outside",
-        "e_to": "narrow",
+        "name":
+        "Foyer",
+        "description":
+        "Dim light filters in from the south. Dusty passages run north and east.",
+        "n_to":
+        "overlook",
+        "s_to":
+        "outside",
+        "e_to":
+        "narrow",
     },
-
     "overlook": {
-        "name": "Grand Overlook",
-        "description": """A steep cliff appears before you, falling
+        "name":
+        "Grand Overlook",
+        "description":
+        """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
-        "s_to": "foyer",
+        "s_to":
+        "foyer",
     },
-
     "narrow": {
-        "name": "Narrow Passage",
-        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
-        "w_to": "foyer",
-        "n_to": "treasure",
+        "name":
+        "Narrow Passage",
+        "description":
+        "The narrow passage bends here from west to north. The smell of gold permeates the air.",
+        "w_to":
+        "foyer",
+        "n_to":
+        "treasure",
     },
-
+    "Knowledge room": {
+        "name": "LIBROS",
+        "description": "PUT SOMETHING IN YOUR HEAD, read NOW TO MOVE FORWARD",
+        "n_to": "",
+        "s_to": "",
+        "e_to": "",
+        "w_to": "",
+    },
     "treasure": {
-        "name": "Treasure Chamber",
-        "description": """You've found the long-lost treasure
+        "name":
+        "Treasure Chamber",
+        "description":
+        """You've found the long-lost treasure
 chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
-        "s_to": "narrow",
+        "s_to":
+        "narrow",
     },
-
+    "Room of DEATH": {
+        "name": "MUERTE",
+        "description": "ANSWER thy riddle and you may or may not pass:  ",
+        "n_to": "",
+        "s_to": "",
+        "e_to": "",
+        "w_to": "",
+    },
 }
 
 """ template room to copy into code
@@ -56,12 +82,16 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+class Player:
+    def __init__(self, name, first_room):
+        self.name = name
+        self.room = first_room
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+playerA = Player("playerA", rooms["outside"])
 # Write a loop that:
 #
 # * Prints the current room name

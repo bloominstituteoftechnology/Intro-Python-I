@@ -15,9 +15,33 @@
 
 # sys is a python library.
 import sys
+
 import datetime
+
 import calendar
 
 
-def weekday(month, day, year):
-    return datetime.date(month, day, year).weekday()
+today = datetime.datetime.today()
+c = calendar.TextCalendar(calendar.SUNDAY)
+
+year = input("Enter YEAR (yyyy): ")
+month = input("Enter Month (mm): ")
+cal_str = c.formatmonth(int(year), int(month))
+print(cal_str)
+
+""""
+if (len(argv) == 3):
+    print(cal.formatmonth(int(argv[1]), int(argv[2])))
+
+elif(len(argv) == 1):
+    print(prmonth(int(argv[2]), int(argv[1])))
+
+else:
+    print('Enter MONTH AND DATE')
+    print(cal.formatmonth(int(today.year), int(today.month)))
+"""
+
+
+
+#def weekday(month, day, year):
+#   return datetime.date(month, day, year).weekday()
