@@ -3,6 +3,8 @@
 
 # These are the existing rooms. Add more as you see fit.
 
+import textwrap
+
 rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
@@ -55,6 +57,20 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Player:
+    def __init__(self, startingRoom):
+        self.currentRoom = startingRoom
+
+def move(direction, currentRoom):
+    key = direction + '_to'
+
+    if key not in rooms[currentRoom]:
+        print("Can't go to there")
+        return currentRoom
+
+    destination = rooms[currentRoom][key]
+
+    return destination
 
 #
 # Main
@@ -72,3 +88,22 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+player1 = Player('outside')
+
+accomplished = False
+
+while not accomplished:
+    print("\n{}\n".format(rooms[player1.currentRoom]['name']))
+
+    for line in textwrap.wrap(rooms[player1.currentRoom]['description']):
+        print(line)
+
+        userMove = input("\nType a direction(n,s,e,w)> ").strip().lower()
+
+        if userMove == 'q':
+            accomplished = True
+        elif userMove in ["n", "s", "e", "w"]:
+            player1.currentRoom = move(userMove, player1.currentRoom)
+        else:
+            print("Can't go {}".format(userMove))
