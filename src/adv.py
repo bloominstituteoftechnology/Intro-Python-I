@@ -56,6 +56,8 @@ earlier adventurers. The only exit is to the south.""",
 
 ##This only works for windows
 from msvcrt import getch
+from msvcrt import kbhit
+
 
 import _thread
 import time
@@ -70,8 +72,8 @@ class Player:
     self.name = name
     self.room = room
   def __str__(self):
-    strMsg = "Player {} is in the room {} "
-    return strMsg.format(self.name, self.room["name"])
+    strMsg = "Player {}"
+    return strMsg.format(self.name)
 
 #
 # Main
@@ -79,7 +81,7 @@ class Player:
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = Player('Vlad', rooms["outside"])
+player = Player('Vlad', 'outside')
 
 # Write a loop that:
 #
@@ -92,12 +94,34 @@ player = Player('Vlad', rooms["outside"])
 #
 # If the user enters "q", quit the game.
 
+char = None
 
 def keypress():
     global char
     char = getch().decode('utf-8')
+    print('')
     return char
 
-
-while(keypress() != 'q'):
-  print(player)
+while(char != 'q'):
+  try:
+    # clear the keyboard buffer
+    while kbhit():
+      getch()
+    room = rooms[player.room]
+    print("%s you are in %s" % (player, room['name']))
+    print("%s" % (room['description']))
+    keypress()
+    if char == 'n':
+      player.room = room['n_to']
+    elif char == 'w':
+      player.room = room['w_to']
+    elif char == 's':
+      player.room = room['s_to']
+    elif char == 'e':
+      player.room = room['e_to']
+    elif char == 'q':
+      print('Goodbye!')
+    else:
+      print('Invalid key try: n, s, e or w')
+  except KeyError:
+    print("Oops!  That was no valid.  Try again...")
