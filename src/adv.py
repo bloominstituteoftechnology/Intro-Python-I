@@ -86,15 +86,17 @@ carddir = {
 }
 
 while True:
-#  key: value for key
 	print(newplayerobject.roomname['name'])
-	plyrinput = input('Enter a direction (n,s,e,w) or "q" to quit')
+	plyrinput = input('Enter a direction (n,s,e,w) or "q" to quit: ')
 	if plyrinput == 'q':
-		break
+		break 
+# section 4.4 in the python docs - this ends the loop
+
 #		myloop = false
 	if plyrinput not in carddir:
 		print('invalid input, please try again')
-	elif carddir[plyrinput] in newplayerobject.roomname.keys():
+		continue
+	if carddir[plyrinput] in newplayerobject.roomname.keys():
 		newplayerobject.roomname = rooms[newplayerobject.roomname[carddir[plyrinput]]]
 	else:
 		print('Ow! Quit walking into walls! Try a different direction.')
