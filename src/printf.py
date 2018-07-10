@@ -8,6 +8,6 @@ z = "I like turtles!"
 print('x is %s, y is %s, z is "%s"' % (x, y, z))
 
 # Use the 'format' string method to print the same thing
-print(f'x is {x}, y is {y}, z is "{z}"')
+print(f'x is {x}, y is {y}, z is {z!r}')
 
 print('x is {0}, y is {1}, z is "{2}"'.format(x,y,z))
