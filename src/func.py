@@ -2,5 +2,9 @@
 
 # Read a number from the keyboard
 num = input("Enter a number: ")
+if num % 2 == 0:
+    print('Even!')
+else:
+    print('Odd!')
 
 # Print out "Even!" if the number is even. Otherwise print "Odd"

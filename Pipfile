@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 
 [dev-packages]
+pylint = "*"
+pretty = "*"
 
 [requires]
 python_version = "3"
