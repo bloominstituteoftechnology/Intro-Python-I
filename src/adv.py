@@ -110,7 +110,7 @@ class Controller:
 
     def move_west(self):
         print("move west")
-        if(self.player.current_room["w_to"]):
+        if(self.player.current_room):
             if(self.rooms[self.player.current_room]["w_to"]):
                 self.player.set_current_room(self.rooms[self.player.current_room]["w_to"])
                 print("player current location: ", self.player.current_room)
@@ -154,22 +154,6 @@ class Room:
         self.e_to = e_to
         self.w_to = w_to
 
-class Board: 
-    def __init__(self, player, rooms_obj):
-        self.player = player
-        self.rooms = rooms_obj
-    
-    # the_player = player
-    # the_rooms = rooms
-    # newGame = Controller(the_player, the_rooms)
-    # newGame.start()
-        # self.rooms_obj["outside"] = rooms_obj["outside"]
-        # self.rooms_obj["foyer"] = rooms_obj["foyer"]
-        # self.rooms_obj["overlook"] = rooms_obj["overlook"]
-        # self.rooms_obj["narrow"] = rooms_obj["narrow"]
-        # self.rooms_obj["treasure"] = rooms_obj["treasure"]
-
-# xang_game = Board(xang, rooms)
 newGame = Controller(xang, rooms)
 newGame.start()
     
