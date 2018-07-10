@@ -26,6 +26,10 @@ class Geocache(Waypoint):
         self.difficulty = difficulty
         self.size = size
 
+    def __str__(self):
+        return '\n%s cache(size: %d, diff: %.1f) located at longitude: %.2f and latitude: %.2f\n' % (
+            self.name, self.size, self.difficulty,self.lat, self.lon)
+
 
 
 
