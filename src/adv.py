@@ -41,26 +41,31 @@ earlier adventurers. The only exit is to the south.""",
         "s_to": "narrow",
     },
 
+    "mirror": {
+        "name": "Mirror Room",
+        "description": "Covered head-to-toe in glass - A good place to reflect on your day.",
+        "n_to": "foyer",
+        "s_to": "overlook",
+    },
+
 }
 
-""" template room to copy into code
-    "room": {
-        "name": "",
-        "description": "",
-        "n_to": "",
-        "s_to": "",
-        "e_to": "",
-        "w_to": "",
-    },
-"""
+
+
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Player:
+    def __init__(self, player, currentRoom):
+        self.player = player
+        self.currentRoom = currentRoom
 
+        
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+newPlayer = Player("Player1", "outside")
 
 # Write a loop that:
 #
