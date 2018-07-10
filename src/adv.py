@@ -1,6 +1,8 @@
 # Write a text adventure that allows the player to move from room to room by
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
+import textwrap
+
 # These are the existing rooms. Add more as you see fit.
 
 rooms = {
@@ -16,6 +18,7 @@ rooms = {
         "n_to": "overlook",
         "s_to": "outside",
         "e_to": "narrow",
+        "w_to": "wide"
     },
 
     "overlook": {
@@ -40,6 +43,17 @@ chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
         "s_to": "narrow",
     },
+    "wide": {
+        "name": "Wide Passage",
+        "description": "A wider passage leads you west. You smell cookies",
+        "n_to": "trap",
+        "e_to": "foyer",
+    },
+    "trap": {
+        "name": "Trap Room",
+        "description": """IT'S A TRAP! A Witch that is baking cookies 
+and casts a spell on you, leaving you paralyzed.""",
+    }
 
 }
 
@@ -55,12 +69,27 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Player:
+    def __init__(self, startRoom):
+        self.currentRoom = startRoom
+
+def tryDirection(direction, currentRoom):
+    key = direction + "_to"
+
+    if key not in rooms[currentRoom]:
+            print("Forbidden")
+            return currentRoom
+
+    move = rooms[currentRoom][key]
+
+    return move
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player('outside')
 
 # Write a loop that:
 #
@@ -72,3 +101,20 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+done = False
+
+while not done:
+    print("\n{}\n".format(rooms[player.currentRoom]['name']))
+
+    for line in textwrap.wrap(rooms[player.currentRoom]['description']):
+        print(line)
+
+    command = input("\nWhere will you go?").strip().lower()
+
+    if command == "q":
+        done = True
+    elif command in ["n", "s", "e", "w"]:
+        player.currentRoom = tryDirection(command, player.currentRoom)
+    else:
+        print("Unknown command {}".format(command))
