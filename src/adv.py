@@ -14,6 +14,7 @@ rooms = {
 
     "foyer": {
         "name": "Foyer",
+        "items": "sboots",
         "description": "Dim light filters in from the south. Dusty passages run north and east.",
         "n_to": "overlook",
         "s_to": "outside",
@@ -134,8 +135,11 @@ newPlayer = Player("Sam", "outside", "")
 #def take(take, location, item):
 
 def take(item):
-    inventory.append(item)
+    actualItem = items[item]
+    inventory.append(actualItem)
     newPlayer.inv = inventory
+
+    print("\n{}\n".format(inventory))
 
 
 def directional(d, location):
@@ -167,7 +171,7 @@ while not done:
         newPlayer.location = directional(s, newPlayer.location)
 
     elif s == "inv":
-        print("\n{}\n".format(newPlayer.inv))
+        print(" \n{}\n \n".format(newPlayer.inv))
 
     elif s == "l":
         print("\n{}\n".format(rooms[newPlayer.location]['description']))
@@ -175,7 +179,10 @@ while not done:
     
     elif s == "take hatchet":
         take(rooms[newPlayer.location]['items'])
-        print("\n{}\n".format(newPlayer.inv))
+ 
+    elif s == "take snow boots":
+        take(rooms[newPlayer.location]['items'])
+        
     
     elif s == "help":
         print("Help \n Use n,s,e,w to navigate \n q to exit game \n type stats to see your stats \n type inv to see your inventory")
