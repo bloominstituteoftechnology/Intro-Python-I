@@ -55,12 +55,79 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Player:
+    # contructor
+    def __init__(self, location):
+        self.location = location
+
+    # set_location()
+    def set_location(self, location):
+        self.location = location
+
+    # move_north()
+    def move_north(self):
+        try:
+            north = self.location['n_to']
+            self.set_location(rooms.get(north))
+            
+            return '\n\n(N)orth'
+        except:
+            return f"There doesn't seem to be a passage to the north, try another direction."
+
+    # move_east()
+    def move_east(self):
+        try:
+            east = self.location['e_to']
+            self.set_location(rooms.get(east))
+            
+            return '\n\n(E)ast'
+        except:
+            return f"There doesn't seem to be a passage to the east, try another direction."
+
+    # move south
+    def move_south(self):
+        try:
+            south = self.location['s_to']
+            self.set_location(rooms.get(south))
+            
+            return '\n\n(E)ast'
+        except:
+            return f"There doesn't seem to be a passage to the south, try another direction."
+
+    def move_west(self):
+        try:
+            west = self.location['w_to']
+            self.set_location(rooms.get(west))
+            
+            return '\n\n(E)ast'
+        except:
+            return f"There doesn't seem to be a passage to the west, try another direction."
+
+    # display_direction()
+    def display_direction(self, rooms, direction):
+        # player moving north
+        if direction.lower() == 'n':
+            return self.move_north()
+
+        # player moving south
+        if direction.lower() == 's':
+            return self.move_south()
+
+        # player moving east
+        if direction.lower() == 'e':
+            return self.move_east()
+
+        # player moving west
+        if direction.lower() == 'w':
+            return self.move_west()
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+starting_room = rooms['outside']
+player = Player(starting_room)
 
 # Write a loop that:
 #
@@ -72,3 +139,15 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# print starting room description to user
+# starting room is `Outside`
+print(f"\n\n {player.location['description']}")
+
+# grab the users input
+user_input = input(f"\n\nYou may either (Q)uit or head (N)orth into the {player.location['n_to']}: ")
+
+while (user_input.lower() != 'q'):
+    print(player.display_direction(rooms, user_input))
+
+    user_input = input('\n\nWhere to?: ')
