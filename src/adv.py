@@ -89,5 +89,5 @@ def move(direction, currentRoom):
 #
 # If the user enters "q", quit the game.
 
-
+player1 = Player('outside')
 
