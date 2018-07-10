@@ -3,9 +3,11 @@
 # Read a number from the keyboard
 num = input("Enter a number: ")
 
-if(int(num) % 2) == 0:
+def isEven(num):
+  if(int(num) % 2) == 0:
     print("even")
-else:
+  else:
     print("odd")
 
+isEven(num)
 # Print out "Even!" if the number is even. Otherwise print "Odd"
