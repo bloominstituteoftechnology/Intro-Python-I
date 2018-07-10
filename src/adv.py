@@ -83,4 +83,5 @@ player = Player('Vlad', rooms["outside"])
 #
 # If the user enters "q", quit the game.
 
+
 print(player)
