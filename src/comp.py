@@ -4,13 +4,6 @@
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-def even(): 
-    y = []
-    for index in range(len(x)): 
-        if (int(x[index]) % 2 == 0): 
-            y.append(x[index])
-    
-    return y
+y = [even_odd for even_odd in x if int(even_odd) % 2 == 0]
 
-print(even())
-
+print(y)

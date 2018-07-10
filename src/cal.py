@@ -13,4 +13,15 @@
 # Hint: this should be about 15 lines of code. No loops are required. Read the
 # docs for the calendar module closely.
 
-import sys
+import calendar
+import datetime
+
+def cal(year, month): 
+    if (year and month): 
+        print(calendar.prmonth(int(year), int(month)))
+    else: 
+        now = datetime.datetime.now() 
+        print(calendar.prmonth(now.year, now.month))
+
+cal((input('Enter a year as yyyy: ')), (input('Enter a month as mm: ')))
+
