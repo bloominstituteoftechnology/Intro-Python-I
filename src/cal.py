@@ -14,3 +14,20 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+import time
+
+x = time.localtime()
+
+datetime.date
+if len(sys.argv) == 3:
+    calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+else:
+    calendar.prmonth(int(x[0]),int(x[1]))
+
+
+
+#print("the month is {0} and the year is {1}".format(year, month))
+#print("The length is:", len(sys.argv))
+#calendar.prmonth(int(year), int(month))
