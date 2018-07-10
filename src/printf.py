@@ -9,4 +9,4 @@ print("%i %.2f %s" %(x, y, z))
 
 # Use the 'format' string method to print the same thing
 
-print("{} {} {}").format(x, y, z)
+# print("{} {} {}").format(x, y, z)
