@@ -56,11 +56,17 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+class Player:
+  def __init__(self, position):
+    self.pos = rooms[position]
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+new_player = Player('outside')
 
 # Write a loop that:
 #
@@ -72,3 +78,28 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+directions = {
+  's': 's_to',
+  'n': 'n_to',
+  'e': 'e_to',
+  'w': 'w_to',
+}
+
+while True:
+  print("**************************")
+  print(new_player.pos['name'])
+  print(new_player.pos['description'])
+  move = input("Enter a direction (enter 'q' to quit)")
+  if move == 'q':
+    break
+  if move not in directions:
+    print("{} is not a valid direction. Please enter n, s, e, or w".format(
+      move
+    ))
+    continue
+  if directions[move] in new_player.pos.keys():
+    new_player.pos = rooms[new_player.pos[directions[move]]]
+  else:
+    print("Nothing to the {} of {}. Please enter a different direction or 'q' to quit".format(
+      move, new_player.pos['name']
+    ))
