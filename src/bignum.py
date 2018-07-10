@@ -3,7 +3,7 @@
 number = 65536
 power = 2
 
-print(number**power)
+print(power ** number)
 
 
 
