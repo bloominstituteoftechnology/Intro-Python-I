@@ -9,6 +9,8 @@ class LatLon:
 # constructor. It should inherit from LatLon.
 class Waypoint (LatLon):
     def __init__(self, name, lat, lon):
+        # LatLon.__init__(self, lat, lon) # legacy method
+        super().__init__(lat, lon) # new method
         self.name = name
 
 
@@ -16,6 +18,7 @@ class Waypoint (LatLon):
 # `size`, `lat`, and `lon` to the constructor. What should it inherit from?
 class Geocache (Waypoint):
     def __init__(self, name, difficulty, size, lat, lon):
+        super().__init__(name, lat, lon)
         self.difficulty = difficulty
         self.size = size
 
