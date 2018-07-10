@@ -56,11 +56,21 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+class Player:
+  def __init__(self, name, room):
+    self.name = name
+    self.room = room
+  def __str__(self):
+    strMsg = "Player {} is in the room {} "
+    return strMsg.format(self.name, self.room["name"])
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+player = Player('Vlad', rooms["outside"])
 
 # Write a loop that:
 #
@@ -72,3 +82,5 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+print(player)

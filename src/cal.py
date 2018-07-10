@@ -24,4 +24,4 @@ else:
   month=datetime.date.today().month
   year=datetime.date.today().year
 
-cal=calendar.prmonth(year, month)
+calendar.prmonth(year, month)
