@@ -56,11 +56,18 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+class Player:
+    def __init__(self, name, starting_room):
+        self.name = name
+        self.room = starting_room
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+player1 = Player('player1', rooms["outside"])
 
 # Write a loop that:
 #
@@ -68,6 +75,26 @@ earlier adventurers. The only exit is to the south.""",
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 #
+
+done = False
+while not done:
+    print(player1.room["name"])
+    print(player1.room["description"])
+
+    usr_in = input("What would you like to do?").strip().lower()
+
+    if usr_in == "q":
+        done = True
+    elif usr_in in ["n", "s", "w", "e"]:
+        try:
+            new_room = player1.room[usr_in + "_to"]
+            player1.room = rooms[new_room]
+        except KeyError:
+            print("Direction {} not allowed".format(usr_in))
+            continue
+    else:
+        print("Unknown command {}".format(usr_in))
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
