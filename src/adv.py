@@ -56,12 +56,18 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+
+class Player:
+    def __init__(self, startingLocation):
+        self.location = startingLocation
+
 #
 # Main
 #
 
-# Make a new player object that is currently in the 'outside' room.
 
+# Make a new player object that is currently in the 'outside' room.
+antonia = Player('outside')
 # Write a loop that:
 #
 # * Prints the current room name
@@ -72,3 +78,8 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+# STRECH
+#  1. Add more rooms
+#  2.

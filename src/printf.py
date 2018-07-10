@@ -8,7 +8,7 @@ z = "I like turtles!"
 print("""
 % :
 x = %d
-y = %f
+y = %.2f
 z = %s
 """ % (x, y, z))
 
@@ -19,3 +19,5 @@ x = {2}
 y = {1}
 z = {0}
 """.format(z, y, x))
+
+print(f'x is {x}, y is {y}, z is {z} ')
