@@ -3,6 +3,8 @@
 
 # These are the existing rooms. Add more as you see fit.
 
+import textwrap
+
 rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
@@ -56,17 +58,63 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+class Player:
+    def __init__(self, name, room):
+        self.name = name
+        self.room = room
+
+    def currentRoom(self):
+        print('This is the ' + self.room['name'])
+        print('You see that ' + self.room['description'])
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 
+thePlayer = Player({"name": 'Jareth'}, rooms['outside'])
+print('Greetings ' + thePlayer.name['name'] + '... Your adventure begins here...')
+thePlayer.currentRoom()
+
+
+moveOptions = {
+    "n": "n_to",
+    "e": "e_to",
+    "s": "s_to",
+    "w": "w_to"
+}
+
+playerMove = ''
+
+while playerMove != 'q':
+    playerMove = input("Enter (w)est, (e)ast, (n)orth, or (s)outh to move, or (q)uit")
+    print(thePlayer.currentRoom())
+
+    # if playerMove == 'q':
+    #     print("Thanks for playing!")
+    #     break
+
+    if (playerMove != 'q'):
+        moveAction = playerMove + '_to'
+    
+        try: 
+            thePlayer.room[moveAction]
+
+        except KeyError:
+            print("Hey, listen! The {} direction proved to be troublesome to traverse, maybe you should try a different one...")
+            print(thePlayer.room)
+
+        else:
+            thePlayer.room = rooms[thePlayer.room[moveAction]]
+            thePlayer.currentRoom
+    
+    else:
+        print('Thanks for playing, come back soon!')
+
 # Write a loop that:
 #
 # * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
