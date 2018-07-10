@@ -8,6 +8,7 @@ rooms = {
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
         "n_to": "foyer",
+        "w_to": "garage",
     },
 
     "foyer": {
@@ -16,6 +17,7 @@ rooms = {
         "n_to": "overlook",
         "s_to": "outside",
         "e_to": "narrow",
+        "w_to": "library"
     },
 
     "overlook": {
@@ -31,6 +33,7 @@ the distance, but there is no way across the chasm.""",
         "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
         "w_to": "foyer",
         "n_to": "treasure",
+        "s_to": "maproom",
     },
 
     "treasure": {
@@ -40,6 +43,24 @@ chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
         "s_to": "narrow",
     },
+
+    "maproom": {
+        "name": "Map Room",
+        "description": "This is the map room, where all the maps that were used to acquire the treasure room are located!",
+        "n_to": "narrow",
+    },
+    "library": {
+        "name": "Library",
+        "description": "This is where we study, so we can become enlightened individuals!",
+        "e_to": "foyer",
+        "s_to": 'garage',
+    },
+    "garage": {
+        "name": "Garage",
+        "description": "Where we have a 12 car garage, becase you know, we can. ;D",
+        "n_to": "library",
+        "e_to": "outside",
+    }
 
 }
 
