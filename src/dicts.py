@@ -7,9 +7,21 @@
 # Make up three entries of various values.
 
 waypoints = [
-    "lat:" "the latitude",
-    "lon:" "the longitude",
-    "name:" "the waypoint name"
+    {
+    "lat": "the latitude",
+    "lon": "the longitude",
+    "name": "the waypoint name"
+    },
+    {
+    "lat": "the latitude",
+    "lon": "the longitude",
+    "name": "the waypoint name"
+    },
+    {
+    "lat": "the latitude",
+    "lon": "the longitude",
+    "name": "the waypoint name"
+    }
 ]
 
 

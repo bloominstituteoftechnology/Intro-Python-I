@@ -40,10 +40,7 @@ chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
         "s_to": "narrow",
     },
-
-}
-
-""" template room to copy into code
+""" template room to copy into code """
     "room": {
         "name": "",
         "description": "",
@@ -52,9 +49,25 @@ earlier adventurers. The only exit is to the south.""",
         "e_to": "",
         "w_to": "",
     },
-"""
+}
+
+
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Freelancer:
+    def __init__(travel, destinations):
+        travel.places = destinations
+
+def firstClassFlights(f, places):
+
+    key = f + "_to"
+
+    if key not in rooms[places]:
+        print("Pick another flight")
+        return places
+        
+        locations = rooms[places][key]
+        return locations
 
 #
 # Main
