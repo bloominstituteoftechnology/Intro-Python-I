@@ -39,27 +39,68 @@ the distance, but there is no way across the chasm.""",
 chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
         "s_to": "narrow",
+ 		},
+
+}
+
+""" template room to copy into code
+		"room": {
+			"name": "",
+			"description": "",
+			"n_to": "",
+			"s_to": "",
+			"e_to": "",
+			"w_to": "",
+		},
+"""
+
+# Write a class to hold player information, e.g. what room they are in currently
+	
+
 class userlocation:
-	def __init__(self, player, roomname):
-		self.player = player
-		self.roomname = roomname
+	def __init__(self, roomname):
+		self.roomname = rooms[roomname]
 #
 # Main
 #
         "description": "",
 #        new player object that is currently in the 'outside' room.
 
-newplayerobject = userlocation(User, Player1, outside)
+newplayerobject = userlocation('outside')
 
-# Write a loop that:
+# Write loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
+# 
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
 
+carddir = {
+'n': 'n_to',
+'s': 's_to',
+'e': 'e_to',
+'w': 'w_to',
+}
 
+while myloop:
+#  key: value for key
+	print(newplayerobject.roomname['name'])
+	plyrinput = input('Enter a direction (n,s,e,w) or 'q' to quit')
+	if plyrinput = 'q':
+#		break
+		myloop = false
+	if plyrinput not in carddir:
+		print('invalid input, please try again')
+  elif carddir[plyrinput] in newplayerobject.roomname.keys():
+		newplayerobject.roomname = rooms[newplayerobject.roomname[carddir[plyrinput]]]
+
+	else:
+		print('Ow! Quit walking into walls! Try a different direction.')
+		
+
+		
+	
