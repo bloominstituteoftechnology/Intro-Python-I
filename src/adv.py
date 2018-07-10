@@ -7,14 +7,16 @@ rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
-        "objects": {},
+        "objects": [
+            "A rock"
+        ],
         "n_to": "foyer",
     },
 
     "foyer": {
         "name": "Foyer",
         "description": "Dim light filters in from the south. Dusty passages run north, east and west.",
-        "objects": {},
+        "objects": [],
         "n_to": "overlook",
         "s_to": "outside",
         "e_to": "narrow",
@@ -24,7 +26,7 @@ rooms = {
     "study": {
         "name": "Study",
         "description": "You come across a small room with book shelves on either wall and a desk to the west.",
-        "objects": {},
+        "objects": [],
         "e_to": "foyer",
         "w_to": "desk",
     },
@@ -32,9 +34,9 @@ rooms = {
      "desk": {
         "name": "Desk",
         "description": "You walk up to the desk. It has many drawers to search through. The surface is covered with old papers in writing you don't recognize.",
-        "objects": {
-            "key": "An old key"
-        },
+        "objects": [
+            "An old key"
+        ],
         "e_to": "study",
     },
 
@@ -43,14 +45,14 @@ rooms = {
         "description": """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
-        "objects": {},
+        "objects": [],
         "s_to": "foyer",
     },
 
     "narrow": {
         "name": "Narrow Passage",
         "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
-        "objects": {},
+        "objects": [],
         "w_to": "foyer",
         "n_to": "treasure",
     },
@@ -60,9 +62,9 @@ the distance, but there is no way across the chasm.""",
         "description": """You've found the long-lost treasure
 chamber. Sadly, it has already been pillaged by
 earlier adventurers. All that remains is a strange cup on the floor and a door to the east.""",
-        "objects": {
-            "cup": "Strange Cup from Treasure Chamber",
-        },
+        "objects": [
+            "Strange Cup from Treasure Chamber",
+        ],
         "s_to": "narrow",
         "e_to": "door",
     },
@@ -70,7 +72,7 @@ earlier adventurers. All that remains is a strange cup on the floor and a door t
     "door": {
         "name": "Treasure Door",
         "description": "You approach the very large, old door. You try to push it open with all your might, but it doesn't budge. You notice a key hole. Perhaps the door can be unlocked.",
-        "objects": {},
+        "objects": [],
         "w_to": "treasure",
     },
 
@@ -80,7 +82,7 @@ earlier adventurers. All that remains is a strange cup on the floor and a door t
     "room": {
         "name": "",
         "description": "",
-        "objects": {},
+        "objects": [],
         "n_to": "",
         "s_to": "",
         "e_to": "",
@@ -93,7 +95,7 @@ earlier adventurers. All that remains is a strange cup on the floor and a door t
 class Player:
     def __init__(self, room, inventory):
         self.room = room
-        self.inventory = {}
+        self.inventory = []
 
 #
 # Main
@@ -122,40 +124,51 @@ while game:
     print(f"\nCurrent Location: {currentRoom['name']}\n")
     print(currentRoom['description'])
     action = input("\nWhich way would you like to go?\n")
+
     if action == "q":
         game = False
         print("\nGame Over\n")
+
     elif action == "n":
         if "n_to" in currentRoom:
             p.room = currentRoom["n_to"]
             print("You move north...")
         else:
             print("Something blocks your path, you cannot go north. Try another direction")
+
     elif action == "s":
         if "s_to" in currentRoom:
             p.room = currentRoom["s_to"]
             print("You move south...")
         else:
             print("Something blocks your path, you cannot go south. Try another direction")
+
     elif action == "e":
         if "e_to" in currentRoom:
             p.room = currentRoom["e_to"]
             print("You move east...")
         else:
             print("Something blocks your path, you cannot go east. Try another direction")
+
     elif action == "w":
         if "w_to" in currentRoom:
             p.room = currentRoom["w_to"]
             print("You move west...")
         else:
             print("Something blocks your path, you cannot go west. Try another direction")
+
     elif action == "i":
         print(p.inventory)
+
     elif action == "search":
         if currentRoom["objects"] == {}:
             print("There are no discoverable items in this area")
         else:
-            print(currentRoom["objects"])
-            
+            print(currentRoom["objects"]) 
+
+    elif action == "pick up":
+        p.inventory.append(currentRoom["objects"])
+        print(p.inventory)
+
     else:
         print("Action does not exist. Press 'n' to go north, 's' to go south, 'e' to go east, 'w' to go west, or 'q' to quit the game")
