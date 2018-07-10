@@ -34,7 +34,7 @@ rooms0 = {
     },
     "level_up": {
         "name": "Grand Overlook",
-        "description": "You walk towards the flickering light to the north. As you step off the precipice, you realize that there is an impassable chasm as you fa",
+        "description": "You walk towards the flickering light to the north. As you step off the precipice, you realize that there is an impassable chasm as you fa1&8398#@0*5512*#a3@#587871%%*9@a8^9&^605!$7*93*$6663^307!!4^1@771@$627!1a6%@8%a3^^@$86472!1108383a5#%a%307!$#a88%84@a713@6^#&2%$",
         "level_up": True,
         "redirect": "outside",
     }
@@ -101,7 +101,7 @@ Remember, type in the cardinal direction SOUTH as a single lower-case letter 's'
     },
     "level_up": {
         "name": "Treasure Chamber",
-        "description": "You move south in an orderly manner. You're good at moving at cardinal directions, ar=-[>!:&?.*",
+        "description": "You move south in an orderly manner. You're good at moving at cardinal directions, but not so much at picking things up, or doin&6@6170@46#7532^!&62$$a!9334#^^2833109@8*a1a$98041a%970$0&%6@#64%5*!&3&7&a6*10@%1@2$^5^$6358a@9211!3843%183125524*&650546@@#@030",
         "level_up": True,
         "redirect": "outside",
     } 
