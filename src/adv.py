@@ -20,7 +20,7 @@ rooms = {
 
     "overlook": {
         "name": "Grand Overlook",
-        "description": """A steep cliff appears before you, falling
+        "description": """A steep cliff app ears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
         "s_to": "foyer",
@@ -55,19 +55,32 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class player:
+    def _init_(self, location):
+        self.location = location
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+newPlayer = player("outside") 
 # Write a loop that:
 #
 # * Prints the current room name
+#for player in room:
+  #  if player.location = location
+   # result = room
+    #print(room)
 # * Prints the current description (the textwrap module might be useful here).
+compass: {
+        "n_to": "n",
+        "s_to": "s",
+        "e_to": "e",
+        "w_to": "w",
+    }
 # * Waits for user input and decides what to do.
-#
+compass = int(input("enter direction"))
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
