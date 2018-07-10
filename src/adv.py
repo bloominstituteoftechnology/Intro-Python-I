@@ -22,8 +22,8 @@ rooms = {
     "overlook": {
         "name": "Grand Overlook",
         "description": """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""",
+        into the darkness. Ahead to the north, a light flickers in
+        the distance, but there is no way across the chasm.""",
         "s_to": "foyer",
     },
 
@@ -44,6 +44,28 @@ earlier adventurers. The only exit is to the south.""",
 
 }
 
+items = {
+    {
+        "name": "Cold Shot",
+        "type": "Firearm",
+        "basePower": 200
+    },
+    {
+        "name": "Baron Hammer",
+        "type": "Melee",
+        "basePower": 70
+    },
+    {
+        "name": "Sharp Stick",
+        "type": "Sword",
+        "basePower": 5
+    },
+    {
+        "name": "Infinity Bow",
+        "type": "Projectile",
+        "basePower": 9999
+    }
+}
 """ template room to copy into code
     "room": {
         "name": "",
@@ -55,10 +77,14 @@ earlier adventurers. The only exit is to the south.""",
     },
 """
 
+
 # Write a class to hold player information, e.g. what room they are in currently
-class Person:
-    def __init__ (self, startRoom)
+class Player:
+    def __init__ (self, startRoom, playerHolding, playerName, playerSkills)
     self.currentRoom = startRoom
+    self.inventory = playerHolding
+    self.name = playerName
+    self.skills = playerSkills
 
     def whichWay(d, currentRoom):
         key = k + "_to"
@@ -70,7 +96,7 @@ class Person:
 
         return wasd
 
-p = Person('outside')
+p = Player('outside')
 
 quit = False
 
