@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/Users/beej/.local/share/virtualenvs/djorg-beej-fCywqo0Z/bin/python"
-}
+    "python.pythonPath": "/home/adam/.local/share/virtualenvs/Intro-Python-lJZFmYDM/bin/python",
+    "python.linting.pylintEnabled": false
+  }

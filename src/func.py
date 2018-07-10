@@ -4,3 +4,12 @@
 num = input("Enter a number: ")
 
 # Print out "Even!" if the number is even. Otherwise print "Odd"
+def is_even(num):
+    num = int(num)
+    
+    if num % 2 == 0:
+        return print('Even!')
+    
+    return print('Odd')
+
+is_even(num)
