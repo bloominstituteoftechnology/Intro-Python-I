@@ -14,3 +14,18 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+textcal = calendar.TextCalendar(firstweekday=6)
+
+currentYear = datetime.datetime.now().year
+currentMonth = datetime.datetime.now().month
+
+#prints the month
+print ('\n')
+if len(sys.argv) == 3:
+    textcal.prmonth(int(sys.argv[1]), int(sys.argv[2]), w=0, l=0)
+else:
+    textcal.prmonth(currentYear, currentMonth, w=0, l=0)
+print ('\n')
