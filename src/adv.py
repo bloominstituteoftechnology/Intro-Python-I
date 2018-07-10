@@ -41,6 +41,7 @@ earlier adventurers. The only exit is to the south.""",
         "s_to": "narrow",
     },
 
+
 }
 
 """ template room to copy into code
@@ -59,8 +60,15 @@ earlier adventurers. The only exit is to the south.""",
 #
 # Main
 #
+class Main:
+    def __init__(self, player, room):
+        self.player = player
+        self.room = room
 
 # Make a new player object that is currently in the 'outside' room.
+newPlayer = Main()
+
+
 
 # Write a loop that:
 #
