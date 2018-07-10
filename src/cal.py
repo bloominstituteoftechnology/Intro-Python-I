@@ -18,6 +18,8 @@ import calendar
 
 cal = calendar.TextCalendar(firstweekday=6)
 string = cal.formatmonth(2018, 7)
+string2 = cal.formatyear(2018)
 print(len(sys.argv))
 print(string)
+print(string2)
 

@@ -35,3 +35,6 @@ elements = [1, 2, 3, 4, 9, 99, 10]
 
 for x in elements:
     print(x*1000)
+
+for i in range(10, 0, -1):
+    print(i)
