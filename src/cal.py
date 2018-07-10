@@ -13,4 +13,11 @@
 # Hint: this should be about 15 lines of code. No loops are required. Read the
 # docs for the calendar module closely.
 
+# sys is a python library.
 import sys
+import datetime
+import calendar
+
+
+def weekday(month, day, year):
+    return datetime.date(month, day, year).weekday()
