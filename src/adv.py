@@ -2,6 +2,7 @@
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
 # These are the existing rooms. Add more as you see fit.
+import textwrap
 
 rooms = {
     "outside": {
@@ -28,7 +29,7 @@ the distance, but there is no way across the chasm.""",
 
     "narrow": {
         "name": "Narrow Passage",
-        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
+        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.",
         "w_to": "foyer",
         "n_to": "treasure",
     },
@@ -55,12 +56,28 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Player:
+    def __init__(self, initRoom):
+        self.currentRoom = initRoom
+
+def direction(d, currentRoom):
+    key = d + "_to"
+
+    if key not in rooms[currentRoom]:
+        print("You can't go that way")
+        return currentRoom
+
+    dest = rooms[currentRoom][key]
+
+    return dest
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+p = Player('outside')
 
 # Write a loop that:
 #
@@ -72,3 +89,24 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+done = False
+
+while not done:
+    # Print the room name
+    print("\n{}\n".format(rooms[p.currentRoom]['name']))
+
+    # Print the room description
+    for line in textwrap.wrap(rooms[p.currentRoom]['description']):
+        print(line)
+
+    # User prompt
+    s = input("\n Enter n, s, e, w to play : ").strip().lower()
+
+    # Handle input
+    if s == "q":
+        done = True
+    elif s in ["n", "s", "w", "e"]:
+        p.currentRoom = direction(s, p.currentRoom)
+    else:
+        print("Unknown command {}".format(s))
