@@ -14,3 +14,27 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+# sys.argv[1] = 1
+# sys.argv[2] = 2011
+# month = input("Please enter the a month")
+# year = input("Please enter the year")
+month = sys.argv[1] 
+# print(month)
+year = sys.argv[2] 
+
+print(calendar.month(int(year), int(month)))
+
+  # print(datetime.datetime.now())
+# print(sys.copyright)
+# print(sys.platform)
+# print(sys.api_version)
+# print(sys.version)
+#print(sys.winver)
+
+# print("This is the name of the script: ", sys.argv[0])
+# print("Number of arguments: ", len(sys.argv))
+
+# print("The arguments are: " , str(sys.argv))
