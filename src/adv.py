@@ -7,8 +7,8 @@ import textwrap
 
 rooms = {
     "menu": {
-        "name": "TXT ADV",
-        "description": """Welcome to TXT ADV! Commands are:
+        "name": "TXT ADVNTR",
+        "description": """Welcome to TXT ADVNTR! Commands are:
 north, south, east, west, and q to quit. Type north to begin!""",
         "north_to": "outside"
     },
@@ -17,13 +17,19 @@ north, south, east, west, and q to quit. Type north to begin!""",
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
         "north_to": "foyer",
-        "south_to": "menu"
+    },
+
+    "shortcut": {
+        "name": "Secret Shortcut to the Forest Beyond",
+        "description": "You discover a secret path!",
+        "west_to": "deep_forest",
+        "east_to": "outside"
     },
 
     "foyer": {
         "name": "Foyer",
         "description": """Dim light filters in from the south. 
-Dusty passages run north and east.""",
+Dusty passages run north and east. You smell cookies to the west.""",
         "north_to": "overlook",
         "south_to": "outside",
         "east_to": "narrow",
@@ -53,19 +59,61 @@ chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
         "south_to": "narrow",
     },
+
     "passage": {
         "name": "Mysterious Passage",
         "description": """A passage beckons you west. You smell cookies coming 
-from a hut by the cliff to the north.""",
+from a hut by the cliff to the north. To the West lies a forest.""",
         "north_to": "trap",
         "east_to": "foyer",
+        "west_to": "forest"
     },
+
     "trap": {
         "name": "Trap Room",
         "description": """IT'S A TRAP! A Witch that is baking cookies 
 and casts a spell on you, leaving you paralyzed.""",
-    }
+    },
 
+    "forest": {
+        "name": "The Forest Beyond",
+        "description": """You enter a dark and dank forest, 
+will you venture further, or will you retreat?""",
+        "north_to": "clearing",
+        "south_to": "deep_forest",
+        "east_to": "passage",
+        "west_to": "stream",
+    },
+
+    "clearing": {
+        "name": "Clearing By The Cliff",
+        "description": """You come out of the trees to a clearing
+by the cliff. To the East, you smell cookies comming from a hut""",
+        "south_to": "forest",
+        "east_to": "trap",
+    },
+
+    "deep_forest": {
+        "name": "Deeper into the Forest Beyond",
+        "description": "You venture deeper.",
+        "north_to": "forest",
+        "east_to": "shortcut",
+        "west_to": "downstream",
+    },
+
+    "stream": {
+        "name": "The River Geraltia",
+        "description": "A river blocks the way west.",
+        "east_to": "forest",
+        "south_to": "downstream"
+    },
+
+    "downstream": {
+        "name": "Southern River Geraltia",
+        "description": "The river blocks the way west.",
+        "north_to": "stream",
+        "east_to": "deep_forest"
+    }
 }
 
 """ template room to copy into code
