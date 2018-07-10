@@ -59,16 +59,39 @@ earlier adventurers. The only exit is to the south.""",
 #
 # Main
 #
-
+class Main:
+    def __init__(self, player, room):
+        self.player = player
+        self.room = room
+    
+    def getRoom(self):
+        print('***********************************')
+        print('You are in: ' + self.room['name'])
+        print('This room is: ' + self.room['description'])
+        
+        
 # Make a new player object that is currently in the 'outside' room.
+playerA = Main({'name': 'Thuy'}, rooms['outside'])
+print('Welcome ' + playerA.player['name'] + '!')
+playerA.getRoom()
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+move = ''
+
+while move != 'q':
+    move = input(">>>>>>Your next move? w(west), s(south), n(north), e(east) or q(quit): ")
+    
+    if (move != 'q'):
+        moveKey = move + '_to'
+        
+        try:
+            playerA.room[moveKey]
+        except KeyError:
+            print('There is no way on that direction! Try again!')
+            print(playerA.room)
+        else:
+            playerA.room = rooms[playerA.room[moveKey]]
+            playerA.getRoom()
+    else:
+        print('See you later!')
+        
+    
