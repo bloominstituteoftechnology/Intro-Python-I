@@ -66,6 +66,29 @@ items = {
         "basePower": 9999
     }
 }
+
+skills = {
+    {
+        "name": "Water Binder",
+        "element": "Water" ,
+        "effectPower": 2,
+    },
+     {
+        "name": "One for All",
+        "element": "Normal",
+        "effectPower": 10,
+    },
+     {
+        "name": "Lighter then air",
+        "element": "Wind",
+        "effectPower": 1.5,
+    },
+     {
+        "name": "Fire and Ice",
+        "element": "Dual",
+        "effectPower": 5,
+    }
+}
 """ template room to copy into code
     "room": {
         "name": "",
