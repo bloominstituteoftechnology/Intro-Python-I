@@ -64,24 +64,28 @@ class Player:
     def set_location(self, location):
         self.location = location
 
-    def display_room_description(self):
+    def print_room_description(self):
+        print(f"""
+        {self.location['description']}
+        """)
+        
         try:
-            print(f"To the (N)orth you see a {rooms.get(self.location['n_to'])['name']}")
+            print(f"\n\nTo the (N)orth you see a {rooms.get(self.location['n_to'])['name']}")
         except:
             pass
 
         try:
-            print(f"To the (E)ast you see a {rooms.get(self.location['e_to'])['name']}")
+            print(f"\n\nTo the (E)ast you see a {rooms.get(self.location['e_to'])['name']}")
         except:
             pass
 
         try:
-            print(f"To the (S)outh you see a {rooms.get(self.location['s_to'])['name']}")
+            print(f"\n\nTo the (S)outh you see a {rooms.get(self.location['s_to'])['name']}")
         except:
             pass
 
         try:
-            print(f"To the (W)est you see a {rooms.get(self.location['w_to'])['name']}")
+            print(f"\n\nTo the (W)est you see a {rooms.get(self.location['w_to'])['name']}")
         except:
             pass
 
@@ -91,7 +95,7 @@ class Player:
             north = self.location['n_to']
             self.set_location(rooms.get(north))
             
-            return self.display_room_description()
+            return self.print_room_description()
         except:
             return f"There doesn't seem to be a passage to the north, try another direction."
 
@@ -101,7 +105,7 @@ class Player:
             east = self.location['e_to']
             self.set_location(rooms.get(east))
             
-            return self.display_room_description()
+            return self.print_room_description()
         except:
             return f"There doesn't seem to be a passage to the east, try another direction."
 
@@ -111,7 +115,7 @@ class Player:
             south = self.location['s_to']
             self.set_location(rooms.get(south))
             
-            return self.display_room_description()
+            return self.print_room_description()
         except:
             return f"There doesn't seem to be a passage to the south, try another direction."
 
@@ -121,7 +125,7 @@ class Player:
             west = self.location['w_to']
             self.set_location(rooms.get(west))
             
-            return self.display_room_description()
+            return self.print_room_description()
         except:
             return f"There doesn't seem to be a passage to the west, try another direction."
 
