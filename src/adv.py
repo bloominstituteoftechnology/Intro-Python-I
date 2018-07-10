@@ -56,11 +56,19 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+class Player:
+    def __init__(self, room):
+        self.room = room
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+p = Player("outside")
+
+game = True
 
 # Write a loop that:
 #
@@ -72,3 +80,39 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while game:
+    currentRoom = {key: value for key, value in rooms.items() if key == p.room}
+    currentRoom = next(iter(currentRoom.values()))
+    print(f"\nCurrent Location: {currentRoom['name']}\n")
+    print(currentRoom['description'])
+    action = input("\nWhich way would you like to go?\n")
+    if action == "q":
+        game = False
+        print("\nGame Over\n")
+    elif action == "n":
+        if "n_to" in currentRoom:
+            p.room = currentRoom["n_to"]
+            print("You move north...")
+        else:
+            print("Something blocks your path, you cannot go north. Try another direction")
+    elif action == "s":
+        if "s_to" in currentRoom:
+            p.room = currentRoom["s_to"]
+            print("You move south...")
+        else:
+            print("Something blocks your path, you cannot go south. Try another direction")
+    elif action == "e":
+        if "e_to" in currentRoom:
+            p.room = currentRoom["e_to"]
+            print("You move east...")
+        else:
+            print("Something blocks your path, you cannot go east. Try another direction")
+    elif action == "w":
+        if "w_to" in currentRoom:
+            p.room = currentRoom["w_to"]
+            print("You move west...")
+        else:
+            print("Something blocks your path, you cannot go west. Try another direction")
+    else:
+        print("Action does not exist. Press 'n' to go north, 's' to go south, 'e' to go east, 'w' to go west, or 'q' to quit the game")
