@@ -2,6 +2,7 @@
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
 # These are the existing rooms. Add more as you see fit.
+import textwrap
 
 rooms = {
     "outside": {
@@ -74,6 +75,10 @@ p = Person('outside')
 quit = False
 
 while not quit:
+    print("{}".format(rooms[p.currentRoom]['name']))
+
+    for desc in textwrap.wrap(rooms[p.currentRoom]['description']):
+        print(desc)
     
 
 
