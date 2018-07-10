@@ -11,11 +11,13 @@ def __str__(self):
 # constructor. It should inherit from LatLon.
 class Waypoint(LatLon):
     def __init__(self, name, lat, lon):
-        LatLon.__init__(self, lat, lon)
+        # LatLon.__init__(self, lat, lon) # historic way
+        super().__init__(lat, lon) # new way
         self.name = name
 
-def __str__(self):
-    return (self.__class__) + ": " + (self.__dict__)
+    def __str__(self):
+        return '\nThe %s are located at Longitudue: %.2f and Latitude: %.2f\n' % (self.name, self.lat, self.lon)
+
 
 # Make a class Geocache that can be passed parameters `name`, `difficulty`,
 # `size`, `lat`, and `lon` to the constructor. What should it inherit from?
@@ -28,14 +30,15 @@ class Geocache(Waypoint):
 def __str__(self):
     return (self.__class__) + ": " + (self.__dict__)
 # Make a new waypoint "Catacombs", 41.70505, -121.51521
-w = Waypoint("Catacombs", "41.70505", "-121.51521" )
+w = Waypoint("Catacombs", 41.70505, -121.51521 )
 # Print it
 #
 # Without changing the following line, how can you make it print into something
 # more human-readable?
-print(str(w))
+print(w)
 
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 
 # Print it--also make this print more nicely
-# print(g)
+
+print(g)

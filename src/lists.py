@@ -14,11 +14,13 @@ print(x)
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # [command here]
 x.extend(y)
+# could also do this --> x += y
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # [command here]
 x.remove(8)
+# or x.pop(<index>)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
