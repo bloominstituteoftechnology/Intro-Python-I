@@ -54,6 +54,15 @@ earlier adventurers. The only exit is to the south.""",
     },
 """
 
+##This only works for windows
+from msvcrt import getch
+
+import _thread
+import time
+
+
+
+
 # Write a class to hold player information, e.g. what room they are in currently
 
 class Player:
@@ -84,4 +93,11 @@ player = Player('Vlad', rooms["outside"])
 # If the user enters "q", quit the game.
 
 
-print(player)
+def keypress():
+    global char
+    char = getch().decode('utf-8')
+    return char
+
+
+while(keypress() != 'q'):
+  print(player)
