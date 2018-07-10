@@ -10,7 +10,7 @@ rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
-        'utils': ['rope'],
+        'utils': ['rope', 'another', 'bridge'],
         "n_to": "foyer",
     },
 
@@ -95,7 +95,16 @@ class Player:
 
     def takeUtil(self, index):
         # Room's utils is an List
-        newUtil = rooms[self.location][utils][index]
+        newUtil = rooms[self.location]['utils'][int(index)]
+        print('Picked up Util: ', newUtil)
+        # put it into the bag
+        self.bag.append(newUtil)
+        print('Player`s bag: ', self.bag)
+        # remove from the room
+        rooms[self.location]['utils'].remove(newUtil)
+        print('Room`s utils: ', rooms[self.location]['utils'])
+        time.sleep(5)
+
 
 #
 # Main
@@ -161,15 +170,28 @@ def printMessage():
            ))
     for i, util in enumerate(rooms[gertrudiz.location]['utils']):
         print('\t*', util, '*\tTo pick this type: ', i)
+    print('\n'
+          '\n'
+          'Utils in your room: '
+          )
+    for i, util in enumerate(gertrudiz.bag):
+        print(f'''\t{i + 1}''', '\t*', util, '*')
+
+
+validInput = {
+}
 
 
 def processInput(input):
-    '''Hanlde user input'''
+    '''Handle user input'''
     if input == 'q' or input == 'Q':
         gertrudiz.location = None
+
     if ['n', 's', 'e', 'w'].__contains__(input) and rooms[gertrudiz.location].__contains__(input + '_to'):
         gameStates['correctInput'] = True
         gertrudiz.location = rooms[gertrudiz.location][input + '_to']
+    elif input == '0':
+        gertrudiz.takeUtil(input)
     else:
         gameStates['correctInput'] = False
 
