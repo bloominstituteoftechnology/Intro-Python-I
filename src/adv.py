@@ -2,6 +2,7 @@
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
 # These are the existing rooms. Add more as you see fit.
+import textwrap
 
 rooms = {
     "outside": {
@@ -21,8 +22,8 @@ rooms = {
     "overlook": {
         "name": "Grand Overlook",
         "description": """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""",
+        into the darkness. Ahead to the north, a light flickers in
+        the distance, but there is no way across the chasm.""",
         "s_to": "foyer",
     },
 
@@ -43,6 +44,51 @@ earlier adventurers. The only exit is to the south.""",
 
 }
 
+items = {
+    {
+        "name": "Cold Shot",
+        "type": "Firearm",
+        "basePower": 200
+    },
+    {
+        "name": "Baron Hammer",
+        "type": "Melee",
+        "basePower": 70
+    },
+    {
+        "name": "Sharp Stick",
+        "type": "Sword",
+        "basePower": 5
+    },
+    {
+        "name": "Infinity Bow",
+        "type": "Projectile",
+        "basePower": 9999
+    }
+}
+
+skills = {
+    {
+        "name": "Water Binder",
+        "element": "Water" ,
+        "effectPower": 2,
+    },
+     {
+        "name": "One for All",
+        "element": "Normal",
+        "effectPower": 10,
+    },
+     {
+        "name": "Lighter then air",
+        "element": "Wind",
+        "effectPower": 1.5,
+    },
+     {
+        "name": "Fire and Ice",
+        "element": "Dual",
+        "effectPower": 5,
+    }
+}
 """ template room to copy into code
     "room": {
         "name": "",
@@ -54,7 +100,47 @@ earlier adventurers. The only exit is to the south.""",
     },
 """
 
+
 # Write a class to hold player information, e.g. what room they are in currently
+class Player:
+    def __init__ (self, startRoom, playerHolding, playerName, playerSkills)
+    self.currentRoom = startRoom
+    self.inventory = playerHolding
+    self.name = playerName
+    self.skills = playerSkills
+
+    def whichWay(d, currentRoom):
+        key = k + "_to"
+        if key not in room:
+            print("You turned into a wall")
+            return currentRoom
+    
+        wasd = rooms[currentRoom][key]
+
+        return wasd
+
+p = Player('outside')
+
+quit = False
+
+while not quit:
+    print("{}".format(rooms[p.currentRoom]['name']))
+
+    for desc in textwrap.wrap(rooms[p.currentRoom]['description']):
+        print(desc)
+
+    userInput = input("Type a Command").strip().lower()
+
+    if userInput == q:
+        quit = True
+    elif x in ["n", "s", "w", "e"]:
+        p.currentRoom = whichWay(x, p.currentRoom)
+    else:
+        print("Unknown command {}".format(x))
+        
+        
+    
+
 
 #
 # Main
