@@ -91,3 +91,19 @@ def move(direction, currentRoom):
 
 player1 = Player('outside')
 
+accomplished = False
+
+while not accomplished:
+    print("\n{}\n".format(rooms[player1.currentRoom]['name']))
+
+    for line in textwrap.wrap(rooms[player1.currentRoom]['description']):
+        print(line)
+
+        userMove = input("\nType a direction(n,s,e,w)> ").strip().lower()
+
+        if userMove == 'q':
+            accomplished = True
+        elif userMove in ["n", "s", "e", "w"]:
+            player1.currentRoom = move(userMove, player1.currentRoom)
+        else:
+            print("Can't go {}".format(userMove))
