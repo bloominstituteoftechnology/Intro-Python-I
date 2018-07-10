@@ -81,7 +81,7 @@ while not done:
     print(player1.room["name"])
     print(player1.room["description"])
 
-    usr_in = input("What would you like to do?")
+    usr_in = input("What would you like to do?").strip().lower()
 
     if usr_in == "q":
         done = True
@@ -90,7 +90,7 @@ while not done:
             new_room = player1.room[usr_in + "_to"]
             player1.room = rooms[new_room]
         except KeyError:
-            print("Direction not allowed")
+            print("Direction {} not allowed".format(usr_in))
             continue
     else:
         print("Unknown command {}".format(usr_in))
