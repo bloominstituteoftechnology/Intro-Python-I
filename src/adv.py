@@ -2,6 +2,7 @@
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
 # These are the existing rooms. Add more as you see fit.
+import textwrap
 
 rooms = {
     "outside": {
@@ -55,9 +56,8 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 class Player:
-    def __init__(self, player, currentRoom):
-        self.player = player
-        self.currentRoom = currentRoom
+    def __init__(self, currentRoom):
+        self.currentRoom = rooms[currentRoom]
 
         
 #
@@ -65,8 +65,37 @@ class Player:
 #
 
 # Make a new player object that is currently in the 'outside' room.
-newPlayer = Player("Player1", "outside")
+newPlayer = Player("outside")
 
+
+moves = {
+'n': 'n_to',
+'s': 's_to',
+'e': 'e_to',
+'w': 'w_to',
+}
+
+while True:
+    print(newPlayer.currentRoom["name"])
+
+    print(textwrap.fill(newPlayer.currentRoom["description"]))
+
+    userInput = input('What direction would you like to go next? n, s, e, w, or q to quite the game..')
+
+    if userInput not in moves:
+        print('The directions you have given do not exist. Please choose n, s, e, w, or q to quite the game..')
+        continue
+
+    if userInput == 'q':
+        break
+
+    if moves[userInput] in newPlayer.currentRoom.keys():
+        newPlayer.currentRoom = rooms[newPlayer.currentRoom[directions[userInput]]]
+
+    else:
+        print("That's not a valid direction! try again.")
+
+        
 # Write a loop that:
 #
 # * Prints the current room name
