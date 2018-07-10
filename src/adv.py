@@ -1,3 +1,6 @@
+import textwrap
+# import sys -> I used raise SystemExit to exit
+
 # Write a text adventure that allows the player to move from room to room by
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
@@ -56,11 +59,19 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+class Player:
+    def __init__(self, location):
+        self.location = location
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+Derrick = Player('outside')
+
+# print(rooms[Derrick.location]['name'])
 
 # Write a loop that:
 #
@@ -72,3 +83,17 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+direction = ''
+while direction != 'q':
+    print("You've now arrived at the " + rooms[Derrick.location]['name'] + '\n')
+
+    print(textwrap.fill(rooms[Derrick.location]['description'], 50) + '\n')
+    
+    direction = input('which direction do you wish to go?: ')
+
+    if direction == 'q':
+        print('Please Play Again!!!')
+        raise SystemExit
+
+    Derrick.location = rooms[Derrick.location][direction + '_to']
