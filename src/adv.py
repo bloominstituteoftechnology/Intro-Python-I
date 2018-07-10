@@ -98,26 +98,36 @@ Johnny = Player('outside')
 # If the user enters "q", quit the game.
 
 completed = False
+initialEntry = False
 
 while not completed:
-    # * Prints the current room name
-    print("\n" + rooms[Johnny.currentRoom]['name'] + "\n")
-    
-    # * Prints the current description (the textwrap module might be useful here).
-    for line in textwrap.wrap(rooms[Johnny.currentRoom]['description']):
-        print(line)
-    
-    print("\nContents of room: ")
-    for item in rooms[Johnny.currentRoom]['contents']:
-        print(item)
-        
 
-    attempt = input("\nChoose n, s, e or w for direction or i for inventory and q to quit: \n").lower()
+    while not initialEntry:
+        # * Prints the current room name
+        print("\n" + rooms[Johnny.currentRoom]['name'] + "\n")
+        
+        # * Prints the current description (the textwrap module might be useful here).
+        for line in textwrap.wrap(rooms[Johnny.currentRoom]['description']):
+            print(line)
+        
+        initialEntry = True
+        
+    attempt = input("\nChoose n, s, e or w for direction,\nc for contents of room, i for inventory and q to quit: \n").lower()
 
     if attempt == 'q':
         completed = True
     elif attempt in ['n', 's', 'e', 'w']:
         Johnny.currentRoom = movement(attempt, Johnny.currentRoom)
+        # * Prints the current room name
+        print("\n" + rooms[Johnny.currentRoom]['name'] + "\n")
+        
+        # * Prints the current description (the textwrap module might be useful here).
+        for line in textwrap.wrap(rooms[Johnny.currentRoom]['description']):
+            print(line)
+    elif attempt == 'c':
+        print("\nContents of room: ")
+        for item in rooms[Johnny.currentRoom]['contents']:
+            print(item)
     elif attempt == 'i':
         print("\nMy inventory contains: ")
         for item in Johnny.inventory:
