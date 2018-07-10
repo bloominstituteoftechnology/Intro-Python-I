@@ -60,12 +60,27 @@ class Player:
     def __init__(self, name, location):
         self.name = name
         self.location = location
+        self.freedom = 0
+    
+    def move(self, input):
+        try:
+            next_room = rooms[self.location][f'{input}_to']
+        except KeyError:
+            print(system_text['key_error'])
+            return 
+        self.location = next_room 
+
+    def print_location(self):
+        current_loc = rooms[self.location]
+        print(f'*-------*\nLocation: {current_loc["name"]}\n')
+        location_description = current_loc["description"]
+        print_multilines(location_description)
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-current_player = Player('mister-corn','outside')
+p1 = Player('mister-corn','outside')
 # Write a loop that:
 #
 # * Prints the current room name
@@ -79,37 +94,28 @@ current_player = Player('mister-corn','outside')
 
 # A bunch of functions/dicts
 system_text = {
-    'welcome': '''Welcome to adv.py!\nInput a cardinal direction (e.g. 'n', 's', 'e', 'w') to explore the world.\nQuit the game by inputting \'q\'\n''',
-    'key_error': '''\nIt seems you cannot go that way...\n(Remember, type in the cardinal direction you wish to move as a single lower-case letter. For example, type in 'n', 's', 'w', 'e'. Not all directions are valid. Read the description carefully to find out where you can go.)\n''',
-
+    'welcome': 
+    '''\nWelcome to adv.py!
+Input a cardinal direction (e.g. 'n', 's', 'e', 'w') to explore the world.
+Quit the game by inputting 'q'\n''',
+    'key_error': 
+    '''\nIt seems you cannot go that way...
+(Remember, type in the cardinal direction you wish to move as a single lower-case letter. For example, type in 'n', 's', 'w', 'e'. Not all directions are valid. Read the description carefully to find out where you can go.)\n'''
 }
 
 def print_multilines(text):
     textwrap_list = textwrap.wrap(text)
     for line in textwrap_list:
         print(line)
-    
-def print_location():
-    print(f'Location: {current_player.location}\n')
-    location_description = rooms[current_player.location]["description"]
-    print_multilines(location_description)
-
-def move():
-    try:
-        next_room = rooms[current_player.location][f'{player_input}_to']
-    except KeyError:
-        print(system_text['key_error'])
-        return 
-    current_player.location = next_room    
 
 # Game Start
 print(system_text['welcome'])
-print_location()
+p1.print_location()
 player_input = input(">> ")
 
 while player_input != 'q':
-    move()
-    print_location()
+    p1.move(player_input)
+    p1.print_location()
     player_input = input(">> ")
 
 exit(0)
