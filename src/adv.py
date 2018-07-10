@@ -1,3 +1,6 @@
+import re
+import os
+import time
 # Write a text adventure that allows the player to move from room to room by
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
@@ -67,7 +70,8 @@ class Player:
 
 
 # Make a new player object that is currently in the 'outside' room.
-antonia = Player('outside')
+gertrudiz = Player('outside')
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -79,7 +83,70 @@ antonia = Player('outside')
 #
 # If the user enters "q", quit the game.
 
+gameStates = {
+    'correctInput': True,
+    'allowedDirections': [],
+    'lastDirecton': 'input',
+}
+
+
+def printWrongInput():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(f'''
+
+ADVENTURE TO THE TREASURE.
+{'-'*20}
+
+Bad direction, please pick one of these: n = north, s = south, w = west, e = east
+'''
+          )
+
+    time.sleep(5)
+
+
+def printMessage():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(f'''
+    
+ADVENTURE TO THE TREASURE.
+{'-'*30}
+Current location: {rooms[gertrudiz.location]['name']}...
+
+{rooms[gertrudiz.location]['description']}
+'''
+          )
+
+    # print(gertrudiz.location)
+    # print(gameStates)
+
+
+def processInput(input):
+    if input == 'q' or input == 'Q':
+        gertrudiz.location = None
+    if ['n', 's', 'e', 'w'].__contains__(input) and rooms[gertrudiz.location].__contains__(input + '_to'):
+        gameStates['correctInput'] = True
+        gertrudiz.location = rooms[gertrudiz.location][input + '_to']
+    else:
+        gameStates['correctInput'] = False
+
+
+def game():
+    printMessage()
+
+    while gertrudiz.location:
+        newLocation = input(
+            '\nWhere to go? (n = north, s = south, w = west, e = east): ')
+
+        processInput(newLocation)
+
+        if not gameStates['correctInput']:
+            printWrongInput()
+
+        printMessage()
+
+
 
 # STRECH
 #  1. Add more rooms
 #  2.
+game()
