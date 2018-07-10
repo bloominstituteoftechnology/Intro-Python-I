@@ -1,3 +1,4 @@
+import sys
 x = 10
 y = 2.24552
 z = "I like turtles!"
@@ -6,5 +7,7 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
-
 # Use the 'format' string method to print the same thing
+print(x)
+print('{:7.3}'.format(y))
+print(z)

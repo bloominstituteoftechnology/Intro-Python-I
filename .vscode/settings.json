@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "/Users/beej/.local/share/virtualenvs/djorg-beej-fCywqo0Z/bin/python"
-}
+    "python.pythonPath": "/Users/beej/.local/share/virtualenvs/djorg-beej-fCywqo0Z/bin/python",
+    "python.linting.pylintEnabled": false,
+    "python.formatting.provider": "autopep8"
+  }

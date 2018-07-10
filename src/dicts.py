@@ -7,6 +7,23 @@
 # Make up three entries of various values.
 
 waypoints = [
+  {
+    "lat": "the latitude",
+    "lon": "the longitude",
+    "name": "the waypoint name"
+  },
+  {
+    "lat": "the latitude",
+    "lon": "the longitude",
+    "name": "the waypoint name"
+  },
+  {
+    "lat": "the latitude",
+    "lon": "the longitude",
+    "name": "the waypoint name"
+  }
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
+for key in waypoints:
+  print(key)
