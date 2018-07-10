@@ -53,14 +53,96 @@ earlier adventurers. The only exit is to the south.""",
         "w_to": "",
     },
 """
+current_room = 'outside'
 
 # Write a class to hold player information, e.g. what room they are in currently
+class player_information:
+    def __init__(self, room):
+        self.name = room[current_room]['name']
+        self.description = room[current_room]['description']
+
+location = player_information(rooms)
+print(location.name)
+print(location.description)
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = {
+    "description": location.name,
+    "location": location.description
+}
+
+
+while True:
+    choice = input('Chose your direction venturer: ')
+    # O U T S I D E   L O C A T I O N
+    if current_room == 'outside':
+        if choice in ('n'):
+            current_room = 'foyer'
+            location = player_information(rooms)
+            print("Current location: " + location.name +"\nYou see: " + location.description + "\n\n")
+        elif choice == 'q':
+            break
+        else:
+            print('you cannot go that way, please use w,s,n,e for directions or q for quit')
+    # F O Y E R
+    elif current_room == 'foyer':
+        if choice in ('n'):
+            current_room = 'overlook'
+            location = player_information(rooms)
+            print("Current location: " + location.name +"\nYou see: " + location.description + "\n\n")
+        elif choice == 's':
+            current_room = 'outside'
+            location = player_information(rooms)
+            print("Current location: " + location.name +"\nYou see: " + location.description + "\n\n")
+        elif choice == 'e':
+            current_room = 'narrow'
+            location = player_information(rooms)
+            print("Current location: " + location.name +"\nYou see: " + location.description + "\n\n")
+        elif choice == 'q':
+            break
+        else:
+            print('you cannot go that way, please use w,s,n,e or q for quit')
+    # O V E R L O O K
+    elif current_room == 'overlook':
+        if  choice == 's':
+            current_room = 'foyer'
+            location = player_information(rooms)
+            print("Current location: " + location.name +"\nYou see: " + location.description + "\n\n")
+        elif choice == 'q':
+            break
+        else:
+            print('you cannot go that way, please use w,s,n,e or q for quit')
+    # N A R R O W
+    elif current_room == 'narrow':
+        if choice in ('w'):
+            current_room = 'foyer'
+            location = player_information(rooms)
+            print("Current location: " + location.name +"\nYou see: " + location.description + "\n\n")
+        elif choice == 'n':
+            current_room = 'treasure'
+            location = player_information(rooms)
+            print("Current location: " + location.name +"\nYou see: \n\n" + location.description + "\n\n")
+        elif choice == 'q':
+            break
+        else:
+            print('you cannot go that way, please use w,s,n,e or q for quit')
+    # T R E A S U R E
+    elif current_room == 'treasure':
+        print('CONGRATULATION YOU FOUND THE TREASURE')
+        if choice in ('s'):
+            current_room = 'narrow'
+            location = player_information(rooms)
+            print("Current location: " + location.name +"\nYou see: " + location.description + "\n\n")
+        elif choice == 'q':
+            break
+        else:
+            print('you cannot go that way, please use w,s,n,e or q for quit')
+        
+
 
 # Write a loop that:
 #
