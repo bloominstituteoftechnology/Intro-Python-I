@@ -3,11 +3,29 @@
 
 # These are the existing rooms. Add more as you see fit.
 
+Mamooshka = "player 1"
+
+welcomeIntro = "Welcome to Bee's adventure land game.\nEnter if you dare..."
+print(welcome)
+
+roomChoice = ['outside', 'foyer', 'overlook', 'narrow', 'treasure]
+
+n = "north"
+w = "west"
+s = "south"
+e = "east"
+
+
 rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
         "n_to": "foyer",
+        #"n_if": "sword not in player"
+        #if player is in this room they can only move north
+        while path = "outside"
+        print(description)
+
     },
 
     "foyer": {
@@ -72,3 +90,9 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+"""    PERSONAL NOTES
+a single underscore ( _ ) in front of a variable name (prefix) is a hint that a variable is meant for internal use only.
+a double underscore ( __ ) causes the Python interpreter to rewrite the vaiable name in order to avoid naming conflicts in subclasses.
+"""
