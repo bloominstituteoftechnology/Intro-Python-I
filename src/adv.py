@@ -79,6 +79,17 @@ while not quit:
 
     for desc in textwrap.wrap(rooms[p.currentRoom]['description']):
         print(desc)
+
+    userInput = input("Type a Command").strip().lower()
+
+    if userInput == q:
+        quit = True
+    elif x in ["n", "s", "w", "e"]:
+        p.currentRoom = whichWay(x, p.currentRoom)
+    else:
+        print("Unknown command {}".format(x))
+        
+        
     
 
 
