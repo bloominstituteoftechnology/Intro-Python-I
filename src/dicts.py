@@ -7,6 +7,12 @@
 # Make up three entries of various values.
 
 waypoints = [
+    {'hometown': 'Rescue, CA'},
+    {'age': 42},
+    {'hobbies': 'smiling'}
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
+
+for i in waypoints:
+    print(i)
