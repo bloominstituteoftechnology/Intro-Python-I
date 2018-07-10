@@ -3,6 +3,8 @@
 
 # These are the existing rooms. Add more as you see fit.
 
+import textwrap
+
 rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
@@ -55,12 +57,22 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Player: 
+    """player information"""
+    def __init__(self, name, room):
+        self.name = name
+        self.room = rooms[room]
+
+    def __str__(self):
+        return "%s enter %s" % (self.name, self.room)
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+new_player = Player("The Wizard", "outside")
+print(new_player)
 
 # Write a loop that:
 #
@@ -72,3 +84,10 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+done = False
+
+while not done:
+    # * Prints the current room name
+    print()
