@@ -57,16 +57,15 @@ earlier adventurers. The only exit is to the south.""",
 # Write a class to hold player information, e.g. what room they are in currently
 	
 
-class userlocation:
+class Userlocation:
 	def __init__(self, roomname):
 		self.roomname = rooms[roomname]
 #
 # Main
 #
-        "description": "",
-#        new player object that is currently in the 'outside' room.
+# Make a new player object that is currently in the 'outside' room.
 
-newplayerobject = userlocation('outside')
+newplayerobject = Userlocation('outside')
 
 # Write loop that:
 #
@@ -86,18 +85,17 @@ carddir = {
 'w': 'w_to',
 }
 
-while myloop:
+while True:
 #  key: value for key
 	print(newplayerobject.roomname['name'])
-	plyrinput = input('Enter a direction (n,s,e,w) or 'q' to quit')
-	if plyrinput = 'q':
-#		break
-		myloop = false
+	plyrinput = input('Enter a direction (n,s,e,w) or "q" to quit')
+	if plyrinput == 'q':
+		break
+#		myloop = false
 	if plyrinput not in carddir:
 		print('invalid input, please try again')
-  elif carddir[plyrinput] in newplayerobject.roomname.keys():
+	elif carddir[plyrinput] in newplayerobject.roomname.keys():
 		newplayerobject.roomname = rooms[newplayerobject.roomname[carddir[plyrinput]]]
-
 	else:
 		print('Ow! Quit walking into walls! Try a different direction.')
 		
