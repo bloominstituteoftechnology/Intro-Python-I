@@ -1,7 +1,4 @@
-# Write a text adventure that allows the player to move from room to room by
-# typing "n", "w", "s", or "e" for north, west, south, and east.
-
-# These are the existing rooms. Add more as you see fit.
+import textwrap
 
 rooms = {
     "outside": {
@@ -55,13 +52,27 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class PlayerInfo:
+    def __init__(self, startRoom):
+        self.curRoom = startRoom
 
+def directionalInput(d, curRoom):
+    curLoc = d + "_to"
+
+    if curLoc not in rooms[curRoom]:
+        print("The door can't be opened from this side")
+        return curRoom
+    resultLocation = rooms[curRoom][curLoc]
+
+    return resultLocation
+
+    
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+pObject = PlayerInfo('outside')
 # Write a loop that:
 #
 # * Prints the current room name
@@ -72,3 +83,21 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+done= False
+while not done:
+
+    print("\n{}\n".format(rooms[pObject.curRoom]['name']))
+
+    for line in textwrap.wrap(rooms[pObject.curRoom]['description']):
+        print(line)
+
+    s = input("\nCommand> ").strip().lower()
+    if s == "q":
+        done = True
+
+    elif s in ["n", "s", "w", "e"]:
+        pObject.curRoom = directionalInput(s, pObject.curRoom)
+
+    else:
+        print("Unknown command {}".format(s))
