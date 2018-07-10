@@ -23,6 +23,9 @@ arg = sys.argv
 
 if (len(arg) == 3):
     print(cal.formatmonth(int(arg[2]), int(arg[1])))
+
+if (len(arg) == 2):
+    print(cal.pryear(int(arg[1])))
 # This reverses the order of args,
 # assuming that the user will enter month and then year.
 
