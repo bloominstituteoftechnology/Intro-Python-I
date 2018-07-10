@@ -86,19 +86,10 @@ def movement(move, currentRoom):
 
 Johnny = Player('outside')
 
-# Write a loop that:
-#
-
-
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
-
 completed = False
 initialEntry = False
+
+# Game Loop
 
 while not completed:
 
@@ -111,11 +102,13 @@ while not completed:
             print(line)
         
         initialEntry = True
-        
+    # * Waits for user input and decides what to do.   
     attempt = input("\nChoose n, s, e or w for direction,\nc for contents of room, i for inventory and q to quit: \n").lower()
-
+    
+    # If the user enters "q", quit the game.
     if attempt == 'q':
         completed = True
+    # If the user enters a cardinal direction, attempt to move to the room there.
     elif attempt in ['n', 's', 'e', 'w']:
         Johnny.currentRoom = movement(attempt, Johnny.currentRoom)
         # * Prints the current room name
@@ -132,5 +125,6 @@ while not completed:
         print("\nMy inventory contains: ")
         for item in Johnny.inventory:
             print(item)
+    # Print an error message if the movement isn't allowed. 
     else:
         print("\nYou have entered an invalid option.\n")
