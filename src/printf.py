@@ -6,5 +6,10 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
+print('x is %i, y is %.2f, z is %s' % (x , y, z))
+
+print('x is %(x)i, y is %(y).2f, z is %(z)s' % {'x':x, 'y':y, 'z':z})
+
 
 # Use the 'format' string method to print the same thing
+print('x is {}, y is {:.2f}, z is "{}"'.format(x, y, z))
