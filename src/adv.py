@@ -16,6 +16,7 @@ rooms = {
         "n_to": "overlook",
         "s_to": "outside",
         "e_to": "narrow",
+				"w_to": "library",
     },
 
     "overlook": {
@@ -41,6 +42,18 @@ earlier adventurers. The only exit is to the south.""",
         "s_to": "narrow",
  		},
 
+		"library": {
+				"name": "The Library",
+				"description": "The infamous library, where Colonel Mustard committed that nefarious murder with a candlestick.",  
+				"s_to": "the_pit",
+				"e_to": "foyer",
+		},
+
+		"the_pit": {
+				"name": "The Pit of Despair",
+				"description": "Don't even think about trying to escape.",
+				"n_to": "library",
+		}
 }
 
 """ template room to copy into code
@@ -120,8 +133,12 @@ while myloop:
 
 # I think I tried about 17 different variants of this before it worked.
 # If the plyrinput actually matches a cardinal direction (nsew) which also happens to be valid, then reassign the newplayerobject's roomname to the new room. 
+# In case I need to look it up again: http://www.pythonforbeginners.com/dictionary/how-to-use-dictionaries-in-python
+# https://hackernoon.com/python-basics-10-dictionaries-and-dictionary-methods-4e9efa70f5b9
 
 	else:
 		print('Ow! Quit walking into walls! Try a different direction.')
 
 # Otherwise, if the player enters a nsew direction but it is not valid according to the rooms object(dict?), then tell them to try again.
+# My friend from my previous section figured out a way to tell the user which other direction(s) might be valid. Maybe something to add later?
+
