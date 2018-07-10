@@ -19,11 +19,8 @@ import calendar
 
 import datetime
 
-year = input('Enter Year: ')
-month = input('Enter Month: ')
-
-#def printMonth(year, month):
- #   print(calendar.month(int(year), int(month)))
+# year = input('Enter Year: ')
+# month = input('Enter Month: ')
 
 #printMonth(year,month)
 
@@ -38,8 +35,5 @@ if len(sys.argv) > 2:
 else:
     printMonth = textCalendar.formatmonth(currentYear, currentMonth)
 
-
-
-#print(sys.argv[1])
 
 print(printMonth)
