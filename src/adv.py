@@ -64,13 +64,34 @@ class Player:
     def set_location(self, location):
         self.location = location
 
+    def display_room_description(self):
+        try:
+            print(f"To the (N)orth you see a {rooms.get(self.location['n_to'])['name']}")
+        except:
+            pass
+
+        try:
+            print(f"To the (E)ast you see a {rooms.get(self.location['e_to'])['name']}")
+        except:
+            pass
+
+        try:
+            print(f"To the (S)outh you see a {rooms.get(self.location['s_to'])['name']}")
+        except:
+            pass
+
+        try:
+            print(f"To the (W)est you see a {rooms.get(self.location['w_to'])['name']}")
+        except:
+            pass
+
     # move_north()
     def move_north(self):
         try:
             north = self.location['n_to']
             self.set_location(rooms.get(north))
             
-            return '\n\n(N)orth'
+            return self.display_room_description()
         except:
             return f"There doesn't seem to be a passage to the north, try another direction."
 
@@ -80,7 +101,7 @@ class Player:
             east = self.location['e_to']
             self.set_location(rooms.get(east))
             
-            return '\n\n(E)ast'
+            return self.display_room_description()
         except:
             return f"There doesn't seem to be a passage to the east, try another direction."
 
@@ -90,21 +111,22 @@ class Player:
             south = self.location['s_to']
             self.set_location(rooms.get(south))
             
-            return '\n\n(E)ast'
+            return self.display_room_description()
         except:
             return f"There doesn't seem to be a passage to the south, try another direction."
 
+    # move west
     def move_west(self):
         try:
             west = self.location['w_to']
             self.set_location(rooms.get(west))
             
-            return '\n\n(E)ast'
+            return self.display_room_description()
         except:
             return f"There doesn't seem to be a passage to the west, try another direction."
 
     # display_direction()
-    def display_direction(self, rooms, direction):
+    def handle_player_direction(self, rooms, direction):
         # player moving north
         if direction.lower() == 'n':
             return self.move_north()
@@ -148,6 +170,6 @@ print(f"\n\n {player.location['description']}")
 user_input = input(f"\n\nYou may either (Q)uit or head (N)orth into the {player.location['n_to']}: ")
 
 while (user_input.lower() != 'q'):
-    print(player.display_direction(rooms, user_input))
+    print(player.handle_player_direction(rooms, user_input))
 
     user_input = input('\n\nWhere to?: ')
