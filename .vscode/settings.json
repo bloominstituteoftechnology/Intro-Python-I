@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/Users/beej/.local/share/virtualenvs/djorg-beej-fCywqo0Z/bin/python"
+    "python.pythonPath": "C:\\Users\\Christopher\\Anaconda3\\python.exe",
+    "python.linting.enabled": true
 }

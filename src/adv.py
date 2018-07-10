@@ -3,6 +3,8 @@
 
 # These are the existing rooms. Add more as you see fit.
 
+import textwrap
+
 rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
@@ -56,15 +58,37 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+class Player:
+    def __init__(self, name, room):
+        self.name = name
+        self.room = rooms[room]
+
+    def __str__(self):
+        return '%s spawned in room %s' % (self.name, self.room)
+
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 
+thePlayer = Player("Player1", "outside")
+print(thePlayer)
+
+
+moveOptions = {
+    "n": "n_to",
+    "e": "e_to",
+    "s": "s_to",
+    "w": "w_to"
+}
 # Write a loop that:
 #
 # * Prints the current room name
+# while p1[self.room] != "Treasure Chamber":
+#     print(p1[self.room]["name"])
+#     print(p1[self.room]["description"])
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 #
