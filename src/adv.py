@@ -88,7 +88,16 @@ carddir = {
 'w': 'w_to',
 }
 
-while True:
+start = input('Enter "b" to begin the game, or any other key to exit: ')
+if start == 'b':
+	myloop = True 
+else:
+	myloop = False
+
+# Xang suggested that I make it so the player is not thrown directly into the game as soon as they run it, and can choose when to start.
+# but I think he thinks this is still not right because it doesn't encapsulate my loop?? I don't know. I trust his judgment on this as I don't really play games but I'm not sure how to fix it yet.
+
+while myloop:
 	print(newplayerobject.roomname['name'])
 	print(textwrap.fill(newplayerobject.roomname['description']))
 
@@ -96,17 +105,23 @@ while True:
 	
 	plyrinput = input('Enter a direction (n,s,e,w) or "q" to quit: ')
 	if plyrinput == 'q':
-		break 
+		break
+ 
 # section 4.4 in the python docs - this ends the loop
 
 	if plyrinput not in carddir:
 		print('invalid input, please try again')
 		continue
+
+# this allows the player to try again - before I put this in, the game would just end as soon as someone entered 'd' or something.
+	
 	if carddir[plyrinput] in newplayerobject.roomname.keys():
 		newplayerobject.roomname = rooms[newplayerobject.roomname[carddir[plyrinput]]]
+
+# I think I tried about 17 different variants of this before it worked.
+# If the plyrinput actually matches a cardinal direction (nsew) which also happens to be valid, then reassign the newplayerobject's roomname to the new room. 
+
 	else:
 		print('Ow! Quit walking into walls! Try a different direction.')
-		
 
-		
-	
+# Otherwise, if the player enters a nsew direction but it is not valid according to the rooms object(dict?), then tell them to try again.
