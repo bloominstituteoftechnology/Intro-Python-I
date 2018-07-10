@@ -27,3 +27,6 @@ waypoints = [
 # Write a loop that prints out all the field values for all the waypoints
 for place in waypoints:
     print(place['name'], place['lat'], place['lon'])
+
+for name in waypoints:
+    print("The name of the waypoint is {0[name]}.".format(name))

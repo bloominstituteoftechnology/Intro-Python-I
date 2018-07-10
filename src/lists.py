@@ -11,7 +11,7 @@ x.append(4)
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
-x.extend(y)
+x.extend(y) # x += y
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
@@ -29,3 +29,10 @@ print(len(x))
 # Using a for loop, print all the element values multiplied by 1000
 for all in x:
     print(all * 1000)
+
+# alternate 
+print([all * 1000 for all in x])
+
+#remove the zeros
+for all in range(10, 0, -1):
+    print(all)
