@@ -7,15 +7,35 @@ rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
+        "objects": {},
         "n_to": "foyer",
     },
 
     "foyer": {
         "name": "Foyer",
-        "description": "Dim light filters in from the south. Dusty passages run north and east.",
+        "description": "Dim light filters in from the south. Dusty passages run north, east and west.",
+        "objects": {},
         "n_to": "overlook",
         "s_to": "outside",
         "e_to": "narrow",
+        "w_to": "study",
+    },
+
+    "study": {
+        "name": "Study",
+        "description": "You come across a small room with book shelves on either wall and a desk to the west.",
+        "objects": {},
+        "e_to": "foyer",
+        "w_to": "desk",
+    },
+
+     "desk": {
+        "name": "Desk",
+        "description": "You walk up to the desk. It has many drawers to search through. The surface is covered with old papers in writing you don't recognize.",
+        "objects": {
+            "key": "An old key"
+        },
+        "e_to": "study",
     },
 
     "overlook": {
@@ -23,12 +43,14 @@ rooms = {
         "description": """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
+        "objects": {},
         "s_to": "foyer",
     },
 
     "narrow": {
         "name": "Narrow Passage",
         "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
+        "objects": {},
         "w_to": "foyer",
         "n_to": "treasure",
     },
@@ -36,9 +58,20 @@ the distance, but there is no way across the chasm.""",
     "treasure": {
         "name": "Treasure Chamber",
         "description": """You've found the long-lost treasure
-chamber. Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""",
+chamber. Sadly, it has already been pillaged by
+earlier adventurers. All that remains is a strange cup on the floor and a door to the east.""",
+        "objects": {
+            "cup": "Strange Cup from Treasure Chamber",
+        },
         "s_to": "narrow",
+        "e_to": "door",
+    },
+
+    "door": {
+        "name": "Treasure Door",
+        "description": "You approach the very large, old door. You try to push it open with all your might, but it doesn't budge. You notice a key hole. Perhaps the door can be unlocked.",
+        "objects": {},
+        "w_to": "treasure",
     },
 
 }
@@ -47,6 +80,7 @@ earlier adventurers. The only exit is to the south.""",
     "room": {
         "name": "",
         "description": "",
+        "objects": {},
         "n_to": "",
         "s_to": "",
         "e_to": "",
@@ -57,8 +91,9 @@ earlier adventurers. The only exit is to the south.""",
 # Write a class to hold player information, e.g. what room they are in currently
 
 class Player:
-    def __init__(self, room):
+    def __init__(self, room, inventory):
         self.room = room
+        self.inventory = {}
 
 #
 # Main
@@ -66,7 +101,7 @@ class Player:
 
 # Make a new player object that is currently in the 'outside' room.
 
-p = Player("outside")
+p = Player("outside", [])
 
 game = True
 
@@ -114,5 +149,13 @@ while game:
             print("You move west...")
         else:
             print("Something blocks your path, you cannot go west. Try another direction")
+    elif action == "i":
+        print(p.inventory)
+    elif action == "search":
+        if currentRoom["objects"] == {}:
+            print("There are no discoverable items in this area")
+        else:
+            print(currentRoom["objects"])
+            
     else:
         print("Action does not exist. Press 'n' to go north, 's' to go south, 'e' to go east, 'w' to go west, or 'q' to quit the game")
