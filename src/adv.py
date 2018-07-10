@@ -78,6 +78,9 @@ newplayerobject = Userlocation('outside')
 #
 # If the user enters "q", quit the game.
 
+import textwrap
+# Don't forget this part!
+
 carddir = {
 'n': 'n_to',
 's': 's_to',
@@ -87,12 +90,15 @@ carddir = {
 
 while True:
 	print(newplayerobject.roomname['name'])
+	print(textwrap.fill(newplayerobject.roomname['description']))
+
+# I really thought it ought to be textwrap(wrap) based on the docs but that ended up including the brackets. Good to know for future reference.
+	
 	plyrinput = input('Enter a direction (n,s,e,w) or "q" to quit: ')
 	if plyrinput == 'q':
 		break 
 # section 4.4 in the python docs - this ends the loop
 
-#		myloop = false
 	if plyrinput not in carddir:
 		print('invalid input, please try again')
 		continue
