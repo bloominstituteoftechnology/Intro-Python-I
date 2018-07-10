@@ -1,5 +1,5 @@
-# Write a text adventure that allows the player to move from room to room by
-# typing "n", "w", "s", or "e" for north, west, south, and east.
+# Write a text adventure game that allows the player to move from room to room by
+# typing "n", "w", "s", and "e" for north, west, south, and east respectively.
 
 # These are the existing rooms. Add more as you see fit.
 
@@ -56,18 +56,35 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+class Character:
+    def __init__(self, room):
+        self.room = room
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 
+class WhiteKnight(Character):
+    def __init__(self, character_type):
+        super().__init__("outside")
+        self.character_type = character_type
+
 # Write a loop that:
 #
 # * Prints the current room name
+
+for name in rooms:
+    print("The current room name is {0}".format(name))
+
 # * Prints the current description (the textwrap module might be useful here).
+
+    print("The current description is {0}.".format(name))
+
 # * Waits for user input and decides what to do.
 #
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
