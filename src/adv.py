@@ -61,11 +61,11 @@ earlier adventurers. The only exit is to the south.""",
 class Player:
     def __init__(self, name, room):
         self.name = name
-        self.room = rooms[room]
+        self.room = room
 
-    def __str__(self):
-        return '%s spawned in room %s' % (self.name, self.room)
-
+    def currentRoom(self):
+        print('This is the ' + self.room['name'])
+        print('You see that ' + self.room['description'])
 
 #
 # Main
@@ -73,8 +73,9 @@ class Player:
 
 # Make a new player object that is currently in the 'outside' room.
 
-thePlayer = Player("Player1", "outside")
-print(thePlayer)
+thePlayer = Player({"name": 'Jareth'}, rooms['outside'])
+print('Greetings ' + thePlayer.name['name'] + '... Your adventure begins here...')
+thePlayer.currentRoom()
 
 
 moveOptions = {
@@ -83,14 +84,37 @@ moveOptions = {
     "s": "s_to",
     "w": "w_to"
 }
+
+playerMove = ''
+
+while playerMove != 'q':
+    playerMove = input("Enter (w)est, (e)ast, (n)orth, or (s)outh to move, or (q)uit")
+    print(thePlayer.currentRoom())
+
+    # if playerMove == 'q':
+    #     print("Thanks for playing!")
+    #     break
+
+    if (playerMove != 'q'):
+        moveAction = playerMove + '_to'
+    
+        try: 
+            thePlayer.room[moveAction]
+
+        except KeyError:
+            print("Hey, listen! The {} direction proved to be troublesome to traverse, maybe you should try a different one...")
+            print(thePlayer.room)
+
+        else:
+            thePlayer.room = rooms[thePlayer.room[moveAction]]
+            thePlayer.currentRoom
+    
+    else:
+        print('Thanks for playing, come back soon!')
+
 # Write a loop that:
 #
 # * Prints the current room name
-# while p1[self.room] != "Treasure Chamber":
-#     print(p1[self.room]["name"])
-#     print(p1[self.room]["description"])
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
