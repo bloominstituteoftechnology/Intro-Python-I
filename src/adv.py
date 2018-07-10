@@ -68,7 +68,7 @@ class Player:
 #
 # Main
 #
-thuy = Player("ThuyName", rooms["outside"])
+april = Player("AprilName", rooms["outside"])
 # Make a new player object that is currently in the 'outside' room.
 april = Player("April", rooms["outside"])
 # Write a loop that:
@@ -78,7 +78,7 @@ april = Player("April", rooms["outside"])
 
 move = ''
 while move != 0:
-    print(thuy.room)
+    print(april.room)
     move = input("where do you to go? 1(west), 2(north), 3(south), 4(east), OR 0(quit):")
     moveKey = ''
     move = int (move)
@@ -93,12 +93,12 @@ while move != 0:
             moveKey = 'e_to'
 
         try:
-            thuy.room[moveKey]
+            april.room[moveKey]
         except KeyError:
             print("There is no way in that direction")
         else:
-            nextRoomName = thuy.room[moveKey]
-            thuy.room = rooms[nextRoomName]  #return "foryer":{---}
+            nextRoomName = april.room[moveKey]
+            april.room = rooms[nextRoomName]  #return "foryer":{---}
     else:
         print('See you later!')
 
