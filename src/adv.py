@@ -1,13 +1,4 @@
-""" template room to copy into code
-    "room": {
-        "name": "",
-        "description": "",
-        "n_to": "",
-        "s_to": "",
-        "e_to": "",
-        "w_to": "",
-    },
-"""
+from tkinter import Tk
 
 rooms = {
     "outside": {
@@ -49,17 +40,19 @@ earlier adventurers. The only exit is to the south.""",
 
 }
 
+class TextProcessor:
+    def print_title(self, title):
+        title_sep = ''.center(len(title), '-')
+        print('\n{}\n{}'.format(title, title_sep))
+
+    def print_description(self, description):
+        print('{}\n'.format(description))
+
 
 class GameObject:
     def __init__(self, play):
         self.play = play
-
-    def print_title(self, title):
-        title_sep = ''.center(len(title), '-')
-        print('\n{}\n{}'.format(title, title_sep))
-    
-    def print_description(self, description):
-        print('{}\n'.format(description))
+        self.TextProcessor = TextProcessor()
     
     def quit_game(self):
         self.play = False
@@ -90,9 +83,9 @@ class Player(GameObject):
             print("\nNot sure what you mean.")
     
     def look(self):
-        self.print_title(rooms[self.location]["name"])
-        self.print_description(rooms[self.location]["description"])
-        self.print_title("Available Directions")
+        self.TextProcessor.print_title(rooms[self.location]["name"])
+        self.TextProcessor.print_description(rooms[self.location]["description"])
+        self.TextProcessor.print_title("Available Directions")
 
     def move(self):
         direction = self.command + '_to'
