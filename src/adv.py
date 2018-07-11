@@ -86,11 +86,12 @@ compass: {
 while True:
     print("The current room you are in is the {}".format(newPlayer.location["name"]))
     print(newPlayer.location["description"])
-    command = int(input("What direction do you want to go? Enter n,s,e or w?"))
+    command = input("What direction do you want to go? Enter n,s,e or w?")
     if command in compass:
         if command in newPlayer:
             newPlayer = rooms[newPlayer[command]]
+
         else:
             print("whoops, wrong way")
     elif command.lower() in ("q"):
-        break
+        break 
