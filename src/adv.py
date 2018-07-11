@@ -2,8 +2,9 @@
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
 # These are the existing rooms. Add more as you see fit.
+import textwrap
 
-rooms = {
+rooms = { #dictionary
     "outside": {
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
@@ -55,13 +56,19 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
-class Person(object):
-    def __init__(self, username, firstName, lastName):
-        self.username = username
-        self.firstName = firstName
-        self.lastName = lastName
+class Person:
+    def __init__(self,startRoom):
+        self.location = startRoom
+        
+def tryDirection(direction, location):
+    key = "{}_to".format(direction)
+    if key not in rooms[location]:
+        print("\n##########You can't go that way!##########\n")
+        return location
+    destination = rooms[location][key]
+    return destination
+                
 
-        pass
 
 
 #
@@ -70,8 +77,22 @@ class Person(object):
 
 # Make a new player object that is currently in the 'outside' room.
 
+player = Person("outside")
+
 # Write a loop that:
-#
+
+# print(rooms["outside"]["description"])
+'''
+for room in rooms:
+    print(rooms[room]["name"],":", rooms[room]["description"])
+'''
+
+
+
+
+
+
+# input("Which direction do you want to go? Press s, w, n or e to move. q to quit...")
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
@@ -80,3 +101,41 @@ class Person(object):
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+done = False
+
+n = "n"
+s = "s"
+w = "w"
+e = "e"
+q = "q"
+h = "h"
+quit = "q"
+help = "h"
+
+
+moves = {
+    "n": "n_to",
+    "s": "s_to",
+    "e": "e_to",
+    "w": "w_to",
+    "q": "q"
+}
+print("\n************************************\n******* Welcome, adventurer! *******\n************************************")
+while not done:
+    
+    print("\n{}".format(rooms[player.location]["name"]+":"))
+    print("\n\"{}\"\n".format(rooms[player.location]["description"]))
+
+
+    direction = input("Which direction do you want to go? Press {}, {}, {}, or {} to move. {} or {} to quit...".format("n", "s", "e", "w", "q", "quit")).strip().lower()
+
+    if direction == "q":
+        done = True
+        print("\n***************************Thanks for playing!******************************\n")
+        
+    elif direction in moves:
+        player.location = tryDirection(direction, player.location)
+        continue
+    else: 
+        print("\n\n***** err: Unknown Command \"{}\" *****\n\nTry 'n', 'w', 'e', or 's' -- 'h' for help or 'q' to quit \n".format(direction))
