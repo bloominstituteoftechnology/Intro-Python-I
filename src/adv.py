@@ -27,7 +27,6 @@ Dusty passages run north and east.""",
         "n_to": "overlook",
         "s_to": "outside",
         "e_to": "narrow",
-        "q_to": "catSanctuary",
     },
 
     "overlook": {
@@ -37,7 +36,6 @@ into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
         "contents": [],
         "s_to": "foyer",
-        "q_to": "catSanctuary",
     },
 
     "narrow": {
@@ -46,8 +44,7 @@ the distance, but there is no way across the chasm.""",
 west to north. The smell of gold permeates the air.""",
         "contents": [],
         "w_to": "foyer",
-        "n_to": "treasure",
-        "q_to": "catSanctuary",
+        "n_to": "treasure"
     },
 
     "treasure": {
@@ -57,7 +54,6 @@ chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
         "contents": ["treasure"],
         "s_to": "narrow",
-        "q_to": "catSanctuary",
     },
     "catSanctuary": {
         "name": "Cat Sanctuary",
@@ -192,7 +188,8 @@ jgs~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             rooms['foyer']['w_to'] = "catSanctuary"
             rooms['foyer']['description'] = """A cat sanctuary?!
 Move to the west to investigate."""
-
+    elif text == "q":
+        quit = True
     elif text == "check bag":
         if player.inventory != []:
             print("""\nContents of your bag:\n
@@ -200,7 +197,7 @@ Move to the west to investigate."""
         else:
             print('Your pockets are empty')
 
-    elif text in ["n", "s", "w", "e", "q"]:
+    elif text in ["n", "s", "w", "e"]:
         player.currentRoom = direction(text, player.currentRoom)
 
     elif text not in ["n", "s", "w", "e", "q"]:
