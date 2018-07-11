@@ -82,7 +82,12 @@ utils = {
             'toUseWith': [],
     },
 '''
-
+gameStates = {
+    'aLive': True,
+    'correctInput': True,
+    'allowedDirections': [],
+    'lastDirecton': 'input',
+}
 # Write a class to hold player information, e.g. what room they are in currently
 
 
@@ -92,6 +97,9 @@ class Player:
         self.name = name
         self.bag = ['sleepingBag']
         self.holds = 'bottle'
+
+    def move(self, input):
+        self.location = rooms[self.location][input + '_to']
 
     def takeUtil(self, index):
         # Room's utils is an List
@@ -110,9 +118,43 @@ class Player:
 # Main
 #
 
+#
+# HELPERS
+#
+def debugPrint(text):
+    print('DEGUG PRINT', text)
+    time.sleep(1.5)
+
+
+def setValidInput():
+    '''DEFINE Valid input -> this dinamically updetes the valid inputs accordint to the room and user state.'''
+    # debugPrint('setValidInput')
+    global validInput
+    validInput = {
+        'q',
+        'i',
+    }
+
+    # INPUT TO MOVE AROUND ROOMS
+    cardinals = {"n_to": 'n',
+                 "s_to": 's',
+                 "e_to": 'e',
+                 "w_to": 'w', }
+    for direction in (direction for direction in rooms[player.location] if direction in cardinals):
+        # debugPrint(f'''Direction {direction}''')
+        validInput.add(cardinals[direction])
+
+    # INPUT TO PICKUP UTILS IN ROOMS
+    global numOfRoomUtils
+    numOfRoomUtils = len(rooms[player.location]['utils'])
+    for i in range(0, numOfRoomUtils):
+        validInput.add(str(i))
+    # debugPrint(validInput)
+
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player('player', 'outside')
+setValidInput()
 
 # Write a loop that:
 #
@@ -125,11 +167,22 @@ player = Player('player', 'outside')
 #
 # If the user enters "q", quit the game.
 
-gameStates = {
-    'correctInput': True,
-    'allowedDirections': [],
-    'lastDirecton': 'input',
-}
+
+def goodBy():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(('\n'
+           '\n'
+           'ADVENTURE TO THE TREASURE.'
+           '\n'
+           f'''{'-'*30}'''
+           '\n'
+           '\n'
+           'Good By. 🤡'
+           '\n'
+           '\n'
+           f'''{'-'*30}'''
+           '\n'
+           '\n'))
 
 
 def printWrongInput():
@@ -166,44 +219,47 @@ def printMessage():
            f'''{rooms[player.location]['description']}'''
            '\n'
            '\n'
-           'Utils in this room: '
-           ))
+           'Utils in this room: *\tTo pick this type:'))
     for i, util in enumerate(rooms[player.location]['utils']):
-        print('\t*', util, '*\tTo pick this type: ', i)
+        print('\t*', util, '*\t\t', i)
     print('\n'
           '\n'
-          'Utils in your room: '
+          'Utils in your bag: '
           )
     for i, util in enumerate(player.bag):
         print(f'''\t{i + 1}''', '\t*', util, '*')
 
 
 def printUtils():
-    print('Working')
-    time.sleep(1)
+    debugPrint('printUtils')
 
 
-validInput = {
-    'n',
-    's',
-    'e',
-    'w',
-    'i',
-}
+def quitGame():
+    gameStates['aLive'] = False
+    debugPrint(gameStates['aLive'])
+
+
+def handleInput(input):
+    gameStates['correctInput'] = True
+    # debugPrint('inside handleInput')
+    actions = {
+        'n': lambda input: player.move(input),
+        's': lambda input: player.move(input),
+        'e': lambda input: player.move(input),
+        'w': lambda input: player.move(input),
+        'q': lambda _: quitGame(),
+        # 'i': lambda _: something(),
+    }
+
+    actions[input](input)
 
 
 def processInput(input):
-    if input in validInput:
-        printUtils()
-
     '''Handle user input'''
-    if input == 'q' or input == 'Q':
-        player.location = None
-    elif ['n', 's', 'e', 'w'].__contains__(input) and rooms[player.location].__contains__(input + '_to'):
-        gameStates['correctInput'] = True
-        player.location = rooms[player.location][input + '_to']
-    elif input == '0':
-        player.takeUtil(input)
+    debugPrint(validInput)
+
+    if input in validInput:
+        handleInput(input)
     else:
         gameStates['correctInput'] = False
 
@@ -212,16 +268,19 @@ def game():
     '''Launch a new game'''
     printMessage()
 
-    while player.location:
+    while gameStates['aLive']:
         newLocation = input(
-            '\nWhere to go? (n = north, s = south, w = west, e = east): ')
+            '\nWhere to go? (n = north, s = south, w = west, e = east): ').strip().lower()
 
         processInput(newLocation)
 
         if not gameStates['correctInput']:
             printWrongInput()
 
-        printMessage()
+        if gameStates['aLive']:
+            printMessage()
+
+    goodBy()
 
 
 game()
