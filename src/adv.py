@@ -89,18 +89,18 @@ ways = directions.keys()
 
 while True:
 
-    direction = input("Enter your direction: ")
+    user_input = input("Enter your direction: ")
 
-    if direction in ways: 
-        if directions[direction] not in rooms[current_room].keys():
+    if user_input in ways: 
+        if directions[user_input] not in rooms[current_room].keys():
             print("there is nothing in that way")
-        elif rooms[current_room][directions[direction]]:
-            current_room = rooms[current_room][directions[direction]]
+        elif rooms[current_room][directions[user_input]]:
+            current_room = rooms[current_room][directions[user_input]]
             print(rooms[current_room]['name'])
             print(rooms[current_room]['description'])
         else:
             continue
-    elif direction == 'q':
+    elif user_input == 'q':
         print("good bye")
         break
     else:
