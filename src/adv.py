@@ -17,6 +17,7 @@ north, south, east, west, and q to quit. Type north to begin!""",
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
         "north_to": "foyer",
+        "west_to": "shortcut"
     },
 
     "shortcut": {
