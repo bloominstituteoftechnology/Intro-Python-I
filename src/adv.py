@@ -57,7 +57,7 @@ earlier adventurers. The only exit is to the south.""",
 # Write a class to hold player information, e.g. what room they are in currently
 class player:
     def _init_(self, location):
-        self.location = location
+        self.location = rooms[location]
 
 #
 # Main
@@ -68,20 +68,29 @@ newPlayer = player("outside")
 # Write a loop that:
 #
 # * Prints the current room name
-#for player in room:
-  #  if player.location = location
-   # result = room
-    #print(room)
 # * Prints the current description (the textwrap module might be useful here).
-compass: {
-        "n_to": "n",
-        "s_to": "s",
-        "e_to": "e",
-        "w_to": "w",
-    }
 # * Waits for user input and decides what to do.
-compass = int(input("enter direction"))
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+compass: {
+        "n": "n_to",
+        "s": "s_to",
+        "e": "e_to",
+        "w": "w_to",
+}
+
+
+
+while True:
+    print("The current room you are in is the {}".format(newPlayer.location["name"]))
+    print(newPlayer.location["description"])
+    command = int(input("What direction do you want to go? Enter n,s,e or w?"))
+    if command in compass:
+        if command in newPlayer:
+            newPlayer = rooms[newPlayer[command]]
+        else:
+            print("whoops, wrong way")
+    elif command.lower() in ("q"):
+        break
