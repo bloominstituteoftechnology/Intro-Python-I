@@ -126,7 +126,7 @@ d = input("Where do you want to go (w=west, n=north, s=south, e=east): ") # 'w'
 if d == "q":
     done = True
 elif d in ["n", "s", "w", "e"]:
-    newPlayer.curRoom = tryDirection(d, newPlayer.currRoom)
+    newPlayer.currRoom = directionMove(d, newPlayer.currRoom)
 else:
     print("Unknown command {}".format(d))
 
