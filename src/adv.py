@@ -2,12 +2,14 @@ rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
+        "items": ["lamp", "sword"],
         "n_to": "foyer",
     },
 
     "foyer": {
         "name": "Foyer",
         "description": "Dim light filters in from the south. Dusty passages run north and east.",
+        "items": [],
         "n_to": "overlook",
         "s_to": "outside",
         "e_to": "narrow",
@@ -18,12 +20,14 @@ rooms = {
         "description": """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
+        "items": [],
         "s_to": "foyer",
     },
 
     "narrow": {
         "name": "Narrow Passage",
         "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.",
+        "items": [],
         "w_to": "foyer",
         "n_to": "treasure",
     },
@@ -33,6 +37,7 @@ the distance, but there is no way across the chasm.""",
         "description": """You've found the long-lost treasure
 chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
+        "items": [],
         "s_to": "narrow",
     },
 
@@ -50,6 +55,10 @@ class TextUtilities:
     def print_error(self, message):
         message_wrapper = ''.center(len(message) + 4, '!')
         print('\n{1}\n! {0} !\n{1}'.format(message, message_wrapper))
+    
+    def print_list(self, list):
+        for item in list:
+            print('[{}]'.format(item))
 
     def print_list_of_dicts(self, list):
         for item in list:
@@ -64,6 +73,7 @@ class Player:
     
     def look(self, level):
         level[self.location].print_room_description()
+        level[self.location].print_room_items()
         level[self.location].print_available_directions()
 
     def move(self, command):
@@ -93,6 +103,14 @@ class Room:
     def print_room_description(self):
         self.text_util.print_title(self.room_obj["name"])
         self.text_util.print_description(self.room_obj["description"])
+    
+    def print_room_items(self):
+        items = self.room_obj["items"]
+        self.text_util.print_title("Items in Room")
+        if len(items) == 0:
+            print("<none>")
+        else:
+            self.text_util.print_list(items)
 
     def print_available_directions(self):
         self.text_util.print_title("Available Directions")
