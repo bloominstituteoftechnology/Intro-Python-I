@@ -77,8 +77,7 @@ class Player(GameObject):
             "s": self.move,
             "e": self.move,
             "w": self.move,
-            "q": self.quit_game,
-            "g": self.get_available_directions
+            "q": self.quit_game
         }
     
     def get_command(self):
