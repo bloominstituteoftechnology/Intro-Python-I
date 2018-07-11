@@ -51,7 +51,9 @@ earlier adventurers. The only exit is to the south.""",
         "s_to": "narrow",
     },
 
-""" template room to copy into code """
+}
+
+""" template room to copy into code 
     "room": {
         "name": "",
         "description": "",
@@ -60,8 +62,7 @@ earlier adventurers. The only exit is to the south.""",
         "e_to": "",
         "w_to": "",
     },
-
-}
+"""
 
 # Write a class to hold player information, e.g. what room they are in currently
 class PlayerInfo:
@@ -90,22 +91,45 @@ def directionMove(d, currRoom): #d='w' currRoom = 'outside'
 # Make a new player object that is currently in the 'outside' room.
 newPlayer = PlayerInfo('outside')
 
-print(newPlayer.currRoom)
+#     print(newPlayer.currRoom)
 # Write a loop that: 
 #
 # * Prints the current room name
-print(newPlayer.currRoom)
+#     print(newPlayer.currRoom)
 # * Prints the current description (the textwrap module might be useful here).
-rooms[newPlayer.currRoom]['description']
+#     rooms[newPlayer.currRoom]['description']
 # rooms['outside']['description']
 # * Waits for user input and decides what to do.
 #
-d = input("Where do you want to go (w=west, n=north, s=south, e=east): ") # 'w'
+ #     d = input("Where do you want to go (w=west, n=north, s=south, e=east): ") # 'w'
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-directionMove(d, newPlayer.currRoom) #  ('w', 'outside')
+#     directionMove(d, newPlayer.currRoom) #  ('w', 'outside')
+
+done = False
+
+## Write a loop that:
+while not done:
+# * Prints the current room name
+    print(newPlayer.currRoom)
+
+# * Prints the current description (the textwrap module might be useful here).
+rooms[newPlayer.currRoom]['description']
+
+# * Waits for user input and decides what to do.
+d = input("Where do you want to go (w=west, n=north, s=south, e=east): ") # 'w'
+
+
+# Handle input
+if d == "q":
+    done = True
+elif d in ["n", "s", "w", "e"]:
+    newPlayer.curRoom = tryDirection(d, newPlayer.currRoom)
+else:
+    print("Unknown command {}".format(d))
+
 
 """    PERSONAL NOTES
 a single underscore ( _ ) in front of a variable name (prefix) is a hint that a variable is meant for internal use only.
