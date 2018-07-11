@@ -70,18 +70,22 @@ class Player:
     def __init__(self, location):
         self.text_util = TextUtilities()
         self.location = location
+        self.inventory = []
     
     def look(self, level):
         level[self.location].print_room_description()
         level[self.location].print_room_items()
         level[self.location].print_available_directions()
 
-    def move(self, command):
+    def move(self, command, command_attr):
         direction = command + '_to'
         try:
             self.location = rooms[self.location][direction]
         except KeyError:
             self.text_util.print_error("Whoops, that's not a valid direction")
+    
+    def take(self, command, command_attr):
+        print("player takes an item")
 
 
 class Room:
@@ -123,11 +127,13 @@ class GameObject:
         self.player = Player("outside")
         self.level = self.build_level(rooms)
         self.command = ''
+        self.command_attr = ''
         self.commands = {
             "n": self.player.move,
             "s": self.player.move,
             "e": self.player.move,
             "w": self.player.move,
+            "take": self.player.take,
             "q": self.quit_game
         }
         self.play = True
@@ -145,17 +151,29 @@ class GameObject:
             self.player.look(self.level)
             self.get_command()
 
-    def quit_game(self, command):
+    def quit_game(self, command, command_attr):
         self.play = False
         self.text_util.print_description("\n*** Goodbye ***")
     
     def get_command(self):
-        self.command = input("\nWhat do you want to do? ")
+        self.parse_command(input("\nWhat do you want to do? "))
         self.process_command()
+
+    def parse_command(self, input):
+        player_input = input.lstrip().rstrip().lower().split()
+        if len(player_input) == 1:
+            self.command = player_input[0]
+            self.command_attr = ''
+        elif len(player_input) == 2:
+            self.command = player_input[0]
+            self.command_attr = player_input[1]
+        else:
+            self.command = ''
+            self.command_attr = ''
 
     def process_command(self):
         try:
-            self.commands[self.command](self.command)
+            self.commands[self.command](self.command, self.command_attr)
         except KeyError:
             self.text_util.print_error("Not sure what you mean")
 
