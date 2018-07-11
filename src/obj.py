@@ -13,6 +13,8 @@ class Waypoint(LatLon):
     def __init__(self, name, lat, lon):
         super().__init__(lat, lon)
         self.name = name
+    
+   
 
 
 

@@ -2,7 +2,7 @@
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
 # These are the existing rooms. Add more as you see fit.
-
+import random
 rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
@@ -58,13 +58,19 @@ earlier adventurers. The only exit is to the south.""",
 current_room = 'outside'
 # Write a class to hold player information, e.g. what room they are in currently
 class player_information:
-    def __init__(self, room):
+    def __init__(self, room, player):
         self.name = room[current_room]['name']
         self.description = room[current_room]['description']
+        self.player = player
+        self.health = 100
 
-venturer = player_information(rooms)
+    def take_damage(self, trap):
+        self.health = self.health - trap
+
+venturer = player_information(rooms, 'moises')
 
 
+print(venturer.health)
 #
 # Main
 #
@@ -96,8 +102,18 @@ while True:
             print("there is nothing in that way")
         elif rooms[current_room][directions[user_input]]:
             current_room = rooms[current_room][directions[user_input]]
-            print(rooms[current_room]['name'])
-            print(rooms[current_room]['description'])
+            print("========================================\n\n")
+            trap = random.randint(1,100)
+            if trap > 50:
+                venturer.take_damage(trap)
+                print("you walked into a trap and your new health is {}\n\n".format(venturer.health))
+            if venturer.health < 0:
+                print("Game Over you died")
+                break
+            else:
+                print("room: " + rooms[current_room]['name'] + "\n")
+                print("description: " + rooms[current_room]['description'] + "\n\n")
+                print("========================================")
         else:
             continue
     elif user_input == 'q':
