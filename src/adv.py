@@ -3,6 +3,8 @@
 
 # These are the existing rooms. Add more as you see fit.
 
+import textwrap
+
 rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
@@ -57,8 +59,21 @@ earlier adventurers. The only exit is to the south.""",
 # Write a class to hold player information, e.g. what room they are in currently
 
 class Character:
-    def __init__(self, room):
-        self.room = room
+    """ Holds information about the player. """
+    def __init__(self, start_room):
+        self.current_room = start_room
+
+def direction(d, current_room):
+    """ How a character moves. """
+    key = d + "_to"
+
+    if key not in rooms[current_room]:
+        print("You can't go that way.")
+        return current_room
+
+    destination = rooms[current_room][key]
+
+    return destination
 
 #
 # Main
@@ -66,21 +81,13 @@ class Character:
 
 # Make a new player object that is currently in the 'outside' room.
 
-class WhiteKnight(Character):
-    def __init__(self, character_type):
-        super().__init__("outside")
-        self.character_type = character_type
+c = Character('outside')
 
 # Write a loop that:
 #
 # * Prints the current room name
 
-for name in rooms:
-    print("The current room name is {0}".format(name))
-
 # * Prints the current description (the textwrap module might be useful here).
-
-    print("The current description is {0}.".format(name))
 
 # * Waits for user input and decides what to do.
 #
@@ -89,3 +96,24 @@ for name in rooms:
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+finished_with_game = False
+
+while not finished_with_game:
+    # Print name of current room.
+    print("\n{}\n".format(rooms[c.current_room]['name']))
+
+    # Print the description of the room.
+    for line in textwrap.wrap(rooms[c.current_room]['description']):
+        print(line)
+
+    # User prompt
+    s = input("\n<Command> ").strip().lower()
+
+    # Handle input
+    if s == "q":
+        finished_with_game = True
+    elif s in ["n", "s", "w", "e"]:
+        c.current_room = direction(s, c.current_room)
+    else:
+        print("Unknown command {}".format(s))
