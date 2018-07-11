@@ -14,3 +14,13 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+
+year = int(input("enter year:"))
+month = int(input("enter month:"))
+
+print(calendar.month(year, month))
+
+# no stretch yet
+
