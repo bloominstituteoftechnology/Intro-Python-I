@@ -1,8 +1,18 @@
+import textwrap
+
 # Write a text adventure that allows the player to move from room to room by
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
 # These are the existing rooms. Add more as you see fit.
+"""
+Mamooshka = "player 1"
 
+welcomeIntro = "Welcome to Bee's adventure land game.\nEnter if you dare..."
+east"
+"""
+
+# rooms['outside]
+# rooms['outside']['description']
 rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
@@ -41,9 +51,7 @@ earlier adventurers. The only exit is to the south.""",
         "s_to": "narrow",
     },
 
-}
-
-""" template room to copy into code
+""" template room to copy into code """
     "room": {
         "name": "",
         "description": "",
@@ -52,23 +60,54 @@ earlier adventurers. The only exit is to the south.""",
         "e_to": "",
         "w_to": "",
     },
-"""
+
+}
 
 # Write a class to hold player information, e.g. what room they are in currently
+class PlayerInfo:
+    #i__nit__ is like a constructor
+    # self is like this in JS
+    def __init__(self, roomNow):
+        self.currRoom = roomNow
+
+def directionMove(d, currRoom): #d='w' currRoom = 'outside'
+
+    key = d + "_to" # print(key) => "w_to"
+
+    if key not in rooms[currRoom]: #rooms['outside'] => {-------}
+        print("Move not allowed.\nPick another direction.")
+        return currRoom
+
+    location = rooms[currRoom] [key] # rooms['foyer']['n_to']
+    return location #'overlook'
+
+    
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+newPlayer = PlayerInfo('outside')
 
-# Write a loop that:
+print(newPlayer.currRoom)
+# Write a loop that: 
 #
 # * Prints the current room name
+print(newPlayer.currRoom)
 # * Prints the current description (the textwrap module might be useful here).
+rooms[newPlayer.currRoom]['description']
+# rooms['outside']['description']
 # * Waits for user input and decides what to do.
 #
+d = input("Where do you want to go (w=west, n=north, s=south, e=east): ") # 'w'
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+directionMove(d, newPlayer.currRoom) #  ('w', 'outside')
+
+"""    PERSONAL NOTES
+a single underscore ( _ ) in front of a variable name (prefix) is a hint that a variable is meant for internal use only.
+a double underscore ( __ ) causes the Python interpreter to rewrite the vaiable name in order to avoid naming conflicts in subclasses.
+"""
