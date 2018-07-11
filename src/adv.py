@@ -113,7 +113,13 @@ class Player:
         print('Room`s utils: ', rooms[self.location]['utils'])
         # time.sleep(5)
 
-    def dropUtil(self, index)
+    def dropUtil(self):
+        debugPrint('Drop utils')
+        index = input(
+            'Which Util do you want to drop?\n(type the number): ')
+        tool = self.bag[int(index) - 1]
+        self.bag.remove(tool)
+        rooms[self.location]['utils'].append(tool)
 
 
 #
@@ -133,8 +139,9 @@ def setValidInput():
     # debugPrint('setValidInput')
     global validInput
     validInput = {
-        'q',
-        'i',
+        'q',  # Exit game
+        'i',  # Show player's bag content and commands
+        'd',  # Drop utils into room
     }
 
     # INPUT TO MOVE AROUND ROOMS
@@ -251,7 +258,7 @@ def handleInput(input):
         'w': lambda input: player.move(input),
         'q': lambda _: quitGame(),
         'i': lambda _: None,
-        'd': lambda input: player.drop(input),
+        'd': lambda _: player.dropUtil(),
     }
     if input.isdigit():
         player.takeUtil(int(input))
@@ -274,6 +281,7 @@ def game():
     printMessage()
 
     while gameStates['aLive']:
+        setValidInput()
         newLocation = input(
             '\nWhere to go? (n = north, s = south, w = west, e = east): ').strip().lower()
 
