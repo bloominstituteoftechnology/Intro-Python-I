@@ -12,6 +12,7 @@ rooms = {
         "description": "North of you, the cave mouth beckons.",
         'utils': ['rope', 'another', 'bridge'],
         "n_to": "foyer",
+        "e_to": 'DEATH'
     },
 
     "foyer": {
@@ -21,6 +22,7 @@ rooms = {
         "n_to": "overlook",
         "s_to": "outside",
         "e_to": "narrow",
+        "w_to": "DEATH"
     },
 
     "overlook": {
@@ -30,6 +32,7 @@ rooms = {
                         "the distance, but there is no way across the chasm."),
         'utils': [],
         "s_to": "foyer",
+        "n_to": 'DEATH'
     },
 
     "narrow": {
@@ -97,9 +100,15 @@ class Player:
         self.name = name
         self.bag = ['sleepingBag']
         self.holds = 'bottle'
+        self.lives = 3
 
     def move(self, input):
-        self.location = rooms[self.location][input + '_to']
+        if rooms[self.location][input + '_to'] == 'DEATH':
+            self.location = 'outside'
+            self.lives -= 1
+        else:
+            self.location = rooms[self.location][input + '_to']
+        debugPrint(self.lives)
 
     def takeUtil(self, index):
         # Room's utils is an List
@@ -115,11 +124,28 @@ class Player:
 
     def dropUtil(self):
         debugPrint('Drop utils')
+
+        print('\n'
+              '\n'
+              'Utils in your bag: '
+              )
+        for i, util in enumerate(self.bag):
+            print(f'''\t{i + 1}''', '\t*', util, '*')
+
         index = input(
-            'Which Util do you want to drop?\n(type the number): ')
+            '\n\nWhich Util do you want to drop?\n(type the number): ')
         tool = self.bag[int(index) - 1]
         self.bag.remove(tool)
         rooms[self.location]['utils'].append(tool)
+
+    def showBag(self):
+        print('\n'
+              '\n'
+              'Utils in your bag: '
+              )
+        for i, util in enumerate(self.bag):
+            print(f'''\t{i + 1}''', '\t*', util, '*')
+        input('\n\nPress any key to continue')
 
 
 #
@@ -129,6 +155,7 @@ class Player:
 #
 # HELPERS
 #
+
 def debugPrint(text):
     print('DEGUG PRINT', text)
     time.sleep(1.5)
@@ -212,6 +239,15 @@ def printWrongInput():
     time.sleep(2)
 
 
+def printUtilsInRoom():
+    print('\n'
+          '\n'
+          'Utils in this room: *\tTo pick this type:'
+          )
+    for i, util in enumerate(rooms[player.location]['utils']):
+        print('\t*', util, '*\t\t', i)
+
+
 def printMessage():
     '''Prints game state and details'''
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -226,21 +262,8 @@ def printMessage():
            '\n'
            '\n'
            f'''{rooms[player.location]['description']}'''
-           '\n'
-           '\n'
-           'Utils in this room: *\tTo pick this type:'))
-    for i, util in enumerate(rooms[player.location]['utils']):
-        print('\t*', util, '*\t\t', i)
-    print('\n'
-          '\n'
-          'Utils in your bag: '
-          )
-    for i, util in enumerate(player.bag):
-        print(f'''\t{i + 1}''', '\t*', util, '*')
-
-
-def printUtils():
-    debugPrint('printUtils')
+           ))
+    printUtilsInRoom()
 
 
 def quitGame():
@@ -257,7 +280,7 @@ def handleInput(input):
         'e': lambda input: player.move(input),
         'w': lambda input: player.move(input),
         'q': lambda _: quitGame(),
-        'i': lambda _: None,
+        'i': lambda _: player.showBag(),
         'd': lambda _: player.dropUtil(),
     }
     if input.isdigit():
@@ -268,7 +291,7 @@ def handleInput(input):
 
 def processInput(input):
     '''Handle user input'''
-    debugPrint(validInput)
+    debugPrint(f'''Valid inputs: {validInput}''')
 
     if input in validInput:
         handleInput(input)
@@ -280,8 +303,9 @@ def game():
     '''Launch a new game'''
     printMessage()
 
-    while gameStates['aLive']:
+    while gameStates['aLive'] and player.lives:
         setValidInput()
+
         newLocation = input(
             '\nWhere to go? (n = north, s = south, w = west, e = east): ').strip().lower()
 
