@@ -1,3 +1,7 @@
+
+import time
+import textwrap
+
 # Write a text adventure that allows the player to move from room to room by
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
@@ -54,13 +58,32 @@ earlier adventurers. The only exit is to the south.""",
     },
 """
 
+# print("testing")
+# time.sleep(2) #sleep for 2 second
+# print("test finished")
+
 # Write a class to hold player information, e.g. what room they are in currently
+
+class Player:
+    def __init__(self, startRoom):
+        self.curRoom = startRoom
+
+def choosePath(d, curRoom):
+    path = d + "_to"
+    if path not in rooms[curRoom]:
+        print("You can't go that way")
+        return curRoom
+
+    dest = rooms[curRoom][path]
+
+    return dest
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+p = Player('outside')
 
 # Write a loop that:
 #
@@ -72,3 +95,24 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+done = False
+
+while not done:
+    # Print the room name
+    print("\n{}\n".format(rooms[p.curRoom]['name']))
+
+    # Print the room description
+    for line in textwrap.wrap(rooms[p.curRoom]['description']):
+        print(line)
+
+    # User prompt
+    s = input("\nCommand> ").strip().lower()
+
+    # Handle input
+    if s == "q":
+        done = True
+    elif s in ["n", "s", "w", "e"]:
+        p.curRoom = choosePath(s, p.curRoom)
+    else:
+        print("Unknown command {}".format(s))
