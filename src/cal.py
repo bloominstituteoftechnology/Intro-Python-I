@@ -1,5 +1,6 @@
 # Use the 'calendar' module to draw calendars to the console
 # https://docs.python.org/3.6/library/calendar.html
+
 #
 # Use the sys module to look for command line arguments in the `argv` list
 # variable.
@@ -13,4 +14,11 @@
 # Hint: this should be about 15 lines of code. No loops are required. Read the
 # docs for the calendar module closely.
 
+
 import sys
+import calendar
+y = input('Give me a year (yyyy): ')
+m = input('Give me a month (mm): ')
+c = calendar.TextCalendar(calendar.SUNDAY)
+str = c.formatmonth(int(y), int(m))
+print (str)

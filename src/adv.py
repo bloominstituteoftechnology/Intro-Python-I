@@ -55,15 +55,53 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Player:
+    def __init__(self, player, room):
+        self.player = player
+        self.room = room
 
+
+        # thuy = Player:
+    # def __init__(self, player, room):
+    #     self.player = player
+    #     self.room = room
 #
 # Main
 #
-
+april = Player("AprilName", rooms["outside"])
 # Make a new player object that is currently in the 'outside' room.
-
+april = Player("April", rooms["outside"])
 # Write a loop that:
-#
+# print(thuy.room["n_to"])
+# print(rooms[""])
+
+
+move = ''
+while move != 0:
+    print(april.room)
+    move = input("where do you to go? 1(west), 2(north), 3(south), 4(east), OR 0(quit):")
+    moveKey = ''
+    move = int (move)
+    if (move != 0):
+        if (move == 1):
+          moveKey = 'w_to'
+        elif (move == 2):
+            moveKey = 'n_to'
+        elif (move == 3):
+            moveKey = 's_to'
+        else:
+            moveKey = 'e_to'
+
+        try:
+            april.room[moveKey]
+        except KeyError:
+            print("There is no way in that direction")
+        else:
+            nextRoomName = april.room[moveKey]
+            april.room = rooms[nextRoomName]  #return "foryer":{---}
+    else:
+        print('See you later!')
+
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
