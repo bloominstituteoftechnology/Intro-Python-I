@@ -92,7 +92,7 @@ while game:
     if act == "q":
         game = False
         print("\nThank you for playing!")
-    elif act == "n" or act == "e" or act == "s" or act == "w":
+    elif act in ["n", "e", "s", "w"]:
         if f"{act}_to" in cur:
             pc.currentRoom = cur[f"{act}_to"]
             print("\nYou move forward into the unknown...")
