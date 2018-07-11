@@ -1,7 +1,10 @@
 # Write a text adventure that allows the player to move from room to room by
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
+
 # These are the existing rooms. Add more as you see fit.
+
+import textwrap
 
 rooms = {
     "outside": {
@@ -55,20 +58,57 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Player:
+    def __init__(self, roomStart):
+        self.currentRoom = roomStart 
+        self.hp = 10
+
+        # TODO inventory, name, hp, abilities, etc. 
+    
+    def moveTo(self, room):
+        self.currentRoom = room 
 
 #
 # Main
-#
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player('outside')
 
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
-#
 # If the user enters "q", quit the game.
+
+done = False 
+
+while not done: 
+    curRoomID = player.currentRoom
+
+    print("\n{}\n".format(rooms[curRoomID]['name']))
+    # print("\n{}\n".format(rooms[curRoomID]['description']))
+
+    print("\n".join(textwrap.wrap(rooms[curRoomID]['description'])))
+
+    s = input("Command> ").strip().lower()
+
+    if s == 'q':    #similar to: if (s == 'q') 
+        done = True 
+
+    elif s in ["n", "w", "s", "e" ]:
+        key = f'{s}_to'
+
+        if key in rooms[curRoomID]:
+            player.moveTo(rooms[curRoomID][key])
+
+        else: 
+            print("Sorry you can't go that way")
+    
+    else: 
+        print(f'Unknown command "{s}"')
+
+if s == "q":
+    done = True
