@@ -13,14 +13,13 @@ print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # [command here]
-x.append(y[0])
-x.append(y[1])
-x.append(y[2])
+x.extend(y)
+
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # [command here]
-del x[4]
+x.remove(4)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
