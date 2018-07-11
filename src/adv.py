@@ -62,20 +62,9 @@ class Player:
         self.text_util = TextUtilities()
         self.location = location
     
-    def get_available_directions(self):
-        available_directions = []
-        for attr in rooms[self.location]:
-            if attr.endswith("_to"):
-                direction = attr.replace("_to", "")
-                room = rooms[self.location][attr]
-                available_directions.append({direction:room})
-        return available_directions
-    
-    def look(self):
-        self.text_util.print_title(rooms[self.location]["name"])
-        self.text_util.print_description(rooms[self.location]["description"])
-        self.text_util.print_title("Available Directions")
-        self.text_util.print_list_of_dicts(self.get_available_directions())
+    def look(self, level):
+        level[self.location].print_room_description()
+        level[self.location].print_available_directions()
 
     def move(self, command):
         direction = command + '_to'
@@ -85,11 +74,36 @@ class Player:
             self.text_util.print_error("Whoops, that's not a valid direction")
 
 
-class GameObject:
-    def __init__(self):
-        self.player = Player("outside")
+class Room:
+    def __init__(self, id, room):
         self.text_util = TextUtilities()
-        self.play = True
+        self.id = id
+        self.room_obj = room
+        self.directions = self.get_available_directions()
+
+    def get_available_directions(self):
+        available_directions = []
+        for attr in self.room_obj:
+            if attr.endswith("_to"):
+                direction = attr.replace("_to", "")
+                room = self.room_obj[attr]
+                available_directions.append({direction: room})
+        return available_directions
+
+    def print_room_description(self):
+        self.text_util.print_title(self.room_obj["name"])
+        self.text_util.print_description(self.room_obj["description"])
+
+    def print_available_directions(self):
+        self.text_util.print_title("Available Directions")
+        self.text_util.print_list_of_dicts(self.directions)
+
+
+class GameObject:
+    def __init__(self, rooms):
+        self.text_util = TextUtilities()
+        self.player = Player("outside")
+        self.level = self.build_level(rooms)
         self.command = ''
         self.commands = {
             "n": self.player.move,
@@ -98,12 +112,19 @@ class GameObject:
             "w": self.player.move,
             "q": self.quit_game
         }
+        self.play = True
         self.start_game()
+
+    def build_level(self, rooms):
+        level = {}
+        for room in rooms:
+            level[room] = Room(room, rooms[room])
+        return level
 
     def start_game(self):
         self.text_util.print_description("\n*** And so our story begins... ***")
         while self.play:
-            self.player.look()
+            self.player.look(self.level)
             self.get_command()
 
     def quit_game(self, command):
@@ -120,4 +141,4 @@ class GameObject:
         except KeyError:
             self.text_util.print_error("Not sure what you mean")
 
-game = GameObject()
+game = GameObject(rooms)
