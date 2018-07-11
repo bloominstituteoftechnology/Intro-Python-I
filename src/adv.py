@@ -40,7 +40,7 @@ earlier adventurers. The only exit is to the south.""",
 
 }
 
-class TextProcessor:
+class TextUtilities:
     def print_title(self, title):
         title_sep = ''.center(len(title), '-')
         print('\n{}\n{}'.format(title, title_sep))
@@ -52,7 +52,7 @@ class TextProcessor:
 class GameObject:
     def __init__(self, play):
         self.play = play
-        self.TextProcessor = TextProcessor()
+        self.Text = TextUtilities()
     
     def quit_game(self):
         self.play = False
@@ -83,9 +83,9 @@ class Player(GameObject):
             print("\nNot sure what you mean.")
     
     def look(self):
-        self.TextProcessor.print_title(rooms[self.location]["name"])
-        self.TextProcessor.print_description(rooms[self.location]["description"])
-        self.TextProcessor.print_title("Available Directions")
+        self.Text.print_title(rooms[self.location]["name"])
+        self.Text.print_description(rooms[self.location]["description"])
+        self.Text.print_title("Available Directions")
 
     def move(self):
         direction = self.command + '_to'
