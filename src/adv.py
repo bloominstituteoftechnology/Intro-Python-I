@@ -1,7 +1,9 @@
-# Write a text adventure that allows the player to move from room to room by
-# typing "n", "w", "s", or "e" for north, west, south, and east.
+# Write a text adventure game that allows the player to move from room to room by
+# typing "n", "w", "s", and "e" for north, west, south, and east respectively.
 
 # These are the existing rooms. Add more as you see fit.
+
+import textwrap
 
 rooms = {
     "outside": {
@@ -56,19 +58,62 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+class Character:
+    """ Holds information about the player. """
+    def __init__(self, start_room):
+        self.current_room = start_room
+
+def direction(d, current_room):
+    """ How a character moves. """
+    key = d + "_to"
+
+    if key not in rooms[current_room]:
+        print("You can't go that way.")
+        return current_room
+
+    destination = rooms[current_room][key]
+
+    return destination
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 
+c = Character('outside')
+
 # Write a loop that:
 #
 # * Prints the current room name
+
 # * Prints the current description (the textwrap module might be useful here).
+
 # * Waits for user input and decides what to do.
 #
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+finished_with_game = False
+
+while not finished_with_game:
+    # Print name of current room.
+    print("\n{}\n".format(rooms[c.current_room]['name']))
+
+    # Print the description of the room.
+    for line in textwrap.wrap(rooms[c.current_room]['description']):
+        print(line)
+
+    # User prompt
+    s = input("\n<Command> ").strip().lower()
+
+    # Handle input
+    if s == "q":
+        finished_with_game = True
+    elif s in ["n", "s", "w", "e"]:
+        c.current_room = direction(s, c.current_room)
+    else:
+        print("Unknown command {}".format(s))
