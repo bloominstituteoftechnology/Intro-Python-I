@@ -103,7 +103,7 @@ class Player:
         # remove from the room
         rooms[self.location]['utils'].remove(newUtil)
         print('Room`s utils: ', rooms[self.location]['utils'])
-        time.sleep(5)
+        # time.sleep(5)
 
 
 #
@@ -112,7 +112,7 @@ class Player:
 
 
 # Make a new player object that is currently in the 'outside' room.
-gertrudiz = Player('gertrudiz', 'outside')
+player = Player('player', 'outside')
 
 # Write a loop that:
 #
@@ -147,7 +147,7 @@ def printWrongInput():
           '''Bad direction,\nPlease, pick one of these: n=north, s=south, w=west, e=east'''
           )
 
-    time.sleep(5)
+    # time.sleep(5)
 
 
 def printMessage():
@@ -160,38 +160,50 @@ def printMessage():
            f'''{'-'*30}'''
            '\n'
            '\n'
-           f'''Current location: {rooms[gertrudiz.location]['name']}...'''
+           f'''Current location: {rooms[player.location]['name']}...'''
            '\n'
            '\n'
-           f'''{rooms[gertrudiz.location]['description']}'''
+           f'''{rooms[player.location]['description']}'''
            '\n'
            '\n'
            'Utils in this room: '
            ))
-    for i, util in enumerate(rooms[gertrudiz.location]['utils']):
+    for i, util in enumerate(rooms[player.location]['utils']):
         print('\t*', util, '*\tTo pick this type: ', i)
     print('\n'
           '\n'
           'Utils in your room: '
           )
-    for i, util in enumerate(gertrudiz.bag):
+    for i, util in enumerate(player.bag):
         print(f'''\t{i + 1}''', '\t*', util, '*')
 
 
+def printUtils():
+    print('Working')
+    time.sleep(1)
+
+
 validInput = {
+    'n',
+    's',
+    'e',
+    'w',
+    'i',
 }
 
 
 def processInput(input):
+    if input in validInput:
+        printUtils()
+
     '''Handle user input'''
     if input == 'q' or input == 'Q':
-        gertrudiz.location = None
-
-    if ['n', 's', 'e', 'w'].__contains__(input) and rooms[gertrudiz.location].__contains__(input + '_to'):
+        player.location = None
+    elif ['n', 's', 'e', 'w'].__contains__(input) and rooms[player.location].__contains__(input + '_to'):
         gameStates['correctInput'] = True
-        gertrudiz.location = rooms[gertrudiz.location][input + '_to']
+        player.location = rooms[player.location][input + '_to']
     elif input == '0':
-        gertrudiz.takeUtil(input)
+        player.takeUtil(input)
     else:
         gameStates['correctInput'] = False
 
@@ -200,7 +212,7 @@ def game():
     '''Launch a new game'''
     printMessage()
 
-    while gertrudiz.location:
+    while player.location:
         newLocation = input(
             '\nWhere to go? (n = north, s = south, w = west, e = east): ')
 
