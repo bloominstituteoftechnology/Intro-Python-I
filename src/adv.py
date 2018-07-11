@@ -2,16 +2,19 @@
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
 # These are the existing rooms. Add more as you see fit.
+import textwrap
 
 rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
+        "items": "hatchet",
         "description": "North of you, the cave mouth beckons.",
         "n_to": "foyer",
     },
 
     "foyer": {
         "name": "Foyer",
+        "items": "snow boots",
         "description": "Dim light filters in from the south. Dusty passages run north and east.",
         "n_to": "overlook",
         "s_to": "outside",
@@ -28,17 +31,48 @@ the distance, but there is no way across the chasm.""",
 
     "narrow": {
         "name": "Narrow Passage",
-        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
+        "description": """The narrow passage bends here from west to north. 
+The smell of gold permeates the air.""", 
         "w_to": "foyer",
         "n_to": "treasure",
     },
 
     "treasure": {
         "name": "Treasure Chamber",
+        "items": "hatchet",
         "description": """You've found the long-lost treasure
-chamber. Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""",
+chamber. Sadly, it has already been completely emptied, by earlier adventurers
+except for a hatchet on the floor. 
+There is an exit east across a trecherous rope bridge,
+or you could go south back the way you came.
+""",
         "s_to": "narrow",
+        "e_to": "rbridge"
+    },
+    "rbridge": {
+        "name": "Rope Bridge",
+        "description": """There are two exits from the end of the bridge, one to the north which leads 
+        to a grove of some kind, and one to the west which is partially covered in snow.
+        """,
+        "n_to": "grove",
+        "e_to": "snowyexit",
+        "w_to": "narrow",
+    },
+    "grove": {
+        "name": "Secluded Grove",
+        "description": """A Secluded Grove, duh. There is no exit here, nothing to see,
+go back the way you came 
+""",
+        "s_to": "rbridge",
+    },
+    "snowyexit": {
+        "name": "Snowy Exit",
+        "description": """ You knock some of the snow out of the way to get a better view.
+        It looks as if this exit opens up to the side of a mountain,
+        there is a small ledge but you do not have the correct footwear to proceed. Maybe there
+        is a room somewhere that has what you are looking for.
+        """,
+        "e_to": "rbridge",
     },
 
 }
@@ -54,7 +88,30 @@ earlier adventurers. The only exit is to the south.""",
     },
 """
 
+items = {
+    "hatchet": {
+        "name": "Rusty Hatchet",
+        "description": "A rusted piece of sharpened metal, can hardly be called a sword",
+        "str": 1,
+        "weight": 1
+    },
+    "snow boots": {
+        "name": "Snow Boots",
+        "description": "A pair of boots made for traversing snowy conditions",
+        "weight": 1,
+    }
+}
+
+inventory = []
+
 # Write a class to hold player information, e.g. what room they are in currently
+class Player:
+    def __init__(self, name, startLocation, inv):
+        self.name = name
+        self.location = startLocation
+        self.inv = inv
+   
+    
 
 #
 # Main
@@ -72,3 +129,65 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+newPlayer = Player("Sam", "outside", "")
+
+#def take(take, location, item):
+
+def take(item):
+    actualItem = items[item]
+    inventory.append(actualItem)
+    newPlayer.inv = inventory
+
+   
+    print("\n You pick up a {}\n".format(item))
+
+
+def directional(d, location):
+   
+    key = d + "_to"
+
+    if key not in rooms[location]:
+        print("You bump into a wall, try another direction")
+        return location
+
+    destination = rooms[location][key]
+
+    return destination
+
+done = False
+
+while not done:
+    print("\n{}\n".format(rooms[newPlayer.location]['name']))
+
+    for l in textwrap.wrap(rooms[newPlayer.location]['description']):
+        print(l)
+
+    s = input(">> ").strip().lower()
+
+    if s == "q":
+        done = True
+    
+    elif s in ["n", "s", "e", "w"]:
+        newPlayer.location = directional(s, newPlayer.location)
+
+    elif s == "inv":
+        for name in inventory:
+            print(" \n{0[name]}\n ".format(name))
+
+    elif s == "l":
+        print("\n{}\n".format(rooms[newPlayer.location]['description']))
+
+    
+    elif s == "take {}".format(rooms[newPlayer.location]['items']):
+        take(rooms[newPlayer.location]['items'])
+ 
+    #elif s == "take snow boots":
+      #  take(rooms[newPlayer.location]['items'])
+        
+    
+    elif s == "help":
+        print("Help \n Use n,s,e,w to navigate \n q to exit game \n type stats to see your stats \n type inv to see your inventory")
+
+    else:
+        print("Incorrect input {}".format(s))
