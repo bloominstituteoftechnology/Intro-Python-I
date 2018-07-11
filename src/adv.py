@@ -47,6 +47,10 @@ class TextUtilities:
 
     def print_description(self, description):
         print('{}\n'.format(description))
+    
+    def print_error(self, message):
+        message_wrapper = ''.center(len(message) + 4, '!')
+        print('\n{1}\n! {0} !\n{1}'.format(message, message_wrapper))
 
 
 class GameObject:
@@ -80,7 +84,7 @@ class Player(GameObject):
         try:
             self.commands[self.command]()
         except KeyError:
-            print("\nNot sure what you mean.")
+            self.Text.print_error("Not sure what you mean")
     
     def look(self):
         self.Text.print_title(rooms[self.location]["name"])
@@ -92,7 +96,7 @@ class Player(GameObject):
         try:
             self.location = rooms[self.location][direction]
         except KeyError:
-            print("\nWhoops! That's not a valid direction.")
+            self.Text.print_error("Whoops, that's not a valid direction")
 
 
 def game_loop():
