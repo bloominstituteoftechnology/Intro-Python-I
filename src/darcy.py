@@ -18,7 +18,7 @@ places = {
         "f_to": "drawing_room",
         "b_to": "outside",
     },
-    
+    ''
     "drawing_room": {
         "name": "In the Drawing Room",
         "description": "You couldn't wait for the servant to call Lizzy so you enter the drawing room to search for her. As you rehearsed your proposal rapidly inside your head, you meet Lizzy behind the door, almost bumping into her. Your presence startled her so much that she dropped the book on the floor. 'Mr. Darcy!' she exclaimed. 'Miss Bennet,' you reply. Both of you then plunged into an abyss of silence and awkwardness, your prepared speech wiped clean from your head.",
