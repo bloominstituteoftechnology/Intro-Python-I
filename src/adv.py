@@ -8,8 +8,10 @@ import textwrap
 rooms = {
     "menu": {
         "name": "TXT ADVNTR",
-        "description": """Welcome to TXT ADVNTR! Commands are:
-north, south, east, west, and q to quit. Type north to begin!""",
+        "description": 
+            """
+            Welcome to TXT ADVNTR! Commands are: north, south, east, west, and q to quit. Type north to begin!
+            """,
         "north_to": "outside"
     },
 
