@@ -52,6 +52,10 @@ class TextUtilities:
         message_wrapper = ''.center(len(message) + 4, '!')
         print('\n{1}\n! {0} !\n{1}'.format(message, message_wrapper))
 
+    def print_list_of_dicts(self, list):
+        for item in list:
+            for key, val in item.items():
+                print('[{}] {}'.format(key, val))
 
 class GameObject:
     def __init__(self, play):
@@ -73,7 +77,8 @@ class Player(GameObject):
             "s": self.move,
             "e": self.move,
             "w": self.move,
-            "q": self.quit_game
+            "q": self.quit_game,
+            "g": self.get_available_directions
         }
     
     def get_command(self):
@@ -86,10 +91,20 @@ class Player(GameObject):
         except KeyError:
             self.Text.print_error("Not sure what you mean")
     
+    def get_available_directions(self):
+        available_directions = []
+        for attr in rooms[self.location]:
+            if attr.endswith("_to"):
+                direction = attr.replace("_to", "")
+                room = rooms[self.location][attr]
+                available_directions.append({direction:room})
+        return available_directions
+    
     def look(self):
         self.Text.print_title(rooms[self.location]["name"])
         self.Text.print_description(rooms[self.location]["description"])
         self.Text.print_title("Available Directions")
+        self.Text.print_list_of_dicts(self.get_available_directions())
 
     def move(self):
         direction = self.command + '_to'
