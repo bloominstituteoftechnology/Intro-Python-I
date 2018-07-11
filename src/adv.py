@@ -113,6 +113,8 @@ class Player:
         print('Room`s utils: ', rooms[self.location]['utils'])
         # time.sleep(5)
 
+    def dropUtil(self, index)
+
 
 #
 # Main
@@ -200,7 +202,7 @@ def printWrongInput():
           '''Bad direction,\nPlease, pick one of these: n=north, s=south, w=west, e=east'''
           )
 
-    # time.sleep(5)
+    time.sleep(2)
 
 
 def printMessage():
@@ -248,10 +250,13 @@ def handleInput(input):
         'e': lambda input: player.move(input),
         'w': lambda input: player.move(input),
         'q': lambda _: quitGame(),
-        # 'i': lambda _: something(),
+        'i': lambda _: None,
+        'd': lambda input: player.drop(input),
     }
-
-    actions[input](input)
+    if input.isdigit():
+        player.takeUtil(int(input))
+    else:
+        actions[input](input)
 
 
 def processInput(input):
