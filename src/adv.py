@@ -3,6 +3,8 @@
 
 # These are the existing rooms. Add more as you see fit.
 
+import textwrap
+
 rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
@@ -55,12 +57,32 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Player: 
+    """player information"""
+    def __init__(self, startRoom):
+        self.curRoom = startRoom
+        
+def controller(d, curRoom):
+
+    key = d + "_to"
+
+    if key not in rooms[curRoom]:
+        print("Unauthorized. Type 'n', 'e', 's' or 'w' for direction.")
+        return curRoom
+
+    direction = room[curRoom][key]
+
+    return direction
+    
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+character = Player("The Wizard", "outside")
+
 
 # Write a loop that:
 #
@@ -72,3 +94,21 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+done = False
+
+while not done:
+    print("\n{}\n".format(room[character.curRoom]['name']))
+
+    for line in textwrap.wrap(room[character.curRoom]['description']):
+        print(line)
+
+    s = input("\nCommand> ").strip().lower()
+
+    if s == "q":
+        done = True
+    elif s in ["n", "s", "w", "e"]:
+        character.curRoom = controller(s, character.curRoom)
+    else:
+        print("Incorrect command {}".format(s))
+
