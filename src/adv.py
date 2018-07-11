@@ -85,8 +85,7 @@ game = True
 #
 # If the user enters "q", quit the game.
 while game:
-    cur = {key: value for key, value in rooms.items() if key == pc.currentRoom}
-    cur = next(iter(cur.values()))
+    cur = rooms[pc.currentRoom]
     print(f"\nCurrent Room: {cur['name']}\n")
     print(cur["description"])
     act = input("\nWhat do you do?\n\n")
