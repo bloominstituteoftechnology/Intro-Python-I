@@ -40,7 +40,9 @@ chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
         "s_to": "narrow",
     },
-""" template room to copy into code """
+}
+
+""" template room to copy into code 
     "room": {
         "name": "",
         "description": "",
@@ -49,24 +51,24 @@ earlier adventurers. The only exit is to the south.""",
         "e_to": "",
         "w_to": "",
     },
-}
+    """
 
 
 
 # Write a class to hold player information, e.g. what room they are in currently
 class Freelancer:
-    def __init__(travel, destinations):
-        travel.places = destinations
+    def __init__(self, travel):
+        self.travel = travel
 
-def firstClassFlights(f, places):
+def firstClassFlights(f, travel):
 
     key = f + "_to"
 
-    if key not in rooms[places]:
+    if key not in rooms[travel]:
         print("Pick another flight")
-        return places
+        return travel
         
-        locations = rooms[places][key]
+        locations = rooms[travel][key]
         return locations
 
 #
@@ -74,6 +76,8 @@ def firstClassFlights(f, places):
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+p = Freelancer("outside")
 
 # Write a loop that:
 #
@@ -85,3 +89,17 @@ def firstClassFlights(f, places):
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+done = false
+
+while not done:
+    print("\n{}\n".format(rooms[p.travel]['name']))
+    for line in textwrap.wrap(rooms[p.travel]['description']):
+        print(line)
+        s = input("\nCommand> ").strip().lower()
+        if s == "q":
+            done = true
+        elif s in ["n", "s", "w", "e"]:
+            p.travel = tryDirection(s, p.travel)
+        else:
+            print("try another flight {}".format(s))
