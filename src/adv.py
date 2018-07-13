@@ -125,10 +125,10 @@ print("\n************************************\n******* Welcome, adventurer! ****
 while not done:
     
     print("\n{}".format(rooms[player.location]["name"]+":"))
-    print("\n\"{}\"\n".format(rooms[player.location]["description"]))
+    print(textwrap.fill("\n\"{}\"\n".format(rooms[player.location]["description"])))
 
 
-    direction = input("Which direction do you want to go? Press {}, {}, {}, or {} to move. {} or {} to quit...".format("n", "s", "e", "w", "q", "quit")).strip().lower()
+    direction = input("\nWhich direction do you want to go?\n".strip().lower())
 
     if direction == "q":
         done = True
