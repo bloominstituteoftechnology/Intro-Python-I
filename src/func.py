@@ -1,4 +1,8 @@
-Write a function is_even that will return true if the passed in number is even.
+# Write a function is_even that will return true if the passed in number is even.
+
+num = input("Enter a number: ")
+
+
 def even_odd(num):
     ans1 = "Even!"
     ans2 = "Odd!"

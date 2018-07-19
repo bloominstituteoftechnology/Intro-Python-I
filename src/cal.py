@@ -12,27 +12,68 @@
 
 # Hint: this should be about 15 lines of code. No loops are required. Read the
 # docs for the calendar module closely.
+from os import name, system
 
 import sys
 
-# Python program to display calendar of
-# given month of the year
-
-# import module
 import calendar
+import time
 
-yy = 2017
-mm = 11
+# define our clear function
+def clear():
+    print("\n" * 100)
+    # # for windows
+    # if name == "nt":
+    #     _ = system("cls")
 
-# display the calendar
-print(calendar.month(yy, mm))
-# Python program to display calendar of
-# given year
+    # # for mac and linux(here, os.name is 'posix')
+    # # The clear command also works for Windows if they are using PS
+    # else:
+    #     _ = system("clear")
 
-# import module
-import calendar
 
-yy = 2017
+prompt1 = input("Please Select Monthly or Yearly Calendar \n: ")
+time.sleep(2)
+clear()
 
-# display the calendar
-print(calendar.calendar(yy))
+
+def calendar_question(prompt1):
+    res1 = f"{prompt1} isn't a valid answer :( \n Try again!"
+    res2 = "Okay you want a Yearly? \n Coming right up!"
+    res3 = "Okay you want a Monthly? \n Coming right up!"
+    if prompt1 == str("y"):
+        print(res2)
+        calendar_maker(prompt1)
+        time.sleep(2)
+        clear()
+    elif prompt1 == str("m"):
+        print(res3)
+        calendar_maker(prompt1)
+        time.sleep(2)
+        clear()
+    else:
+        print(res1)
+        time.sleep(2)
+        clear()
+
+
+year = input("Please enter a 4 digit year \n: ")
+month = input("Please enter a 2 digit month \n:")
+
+
+def calendar_maker(prompt1):
+    year = input("Please enter a 4 digit year \n: ")
+    month = input("Please enter a 2 digit month \n:")
+    if prompt1 == str("y"):
+        print(year)
+        print(calendar.calendar(year))
+        time.sleep(10)
+        clear()
+        exit()
+    else:
+        print(year)
+        print(month)
+        print(calendar.month(year, month))
+        time.sleep(10)
+        clear()
+        exit()
