@@ -8,7 +8,7 @@ import os
 # Print out the command line arguments in sys.argv, one per line:
 # map(print, sys.argv)
 for line in sys.argv:
-    print(line + '\n')
+    print(line)
 
 # Print out the plaform from sys:
 print(sys.platform)
