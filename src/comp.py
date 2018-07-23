@@ -16,7 +16,7 @@ print(y)
 
 a = ["foo", "bar", "baz"]
 
-y = []
+y = [w.upper() for w in a]
 
 print(y)
 
@@ -26,7 +26,7 @@ print(y)
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-y = []
+y = [s for s in x]
 
 print(y)
 
