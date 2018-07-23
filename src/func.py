@@ -1,6 +1,13 @@
 # Write a function is_even that will return true if the passed in number is even.
-
+def is_even(num):
+    if int(num) % 2 == 0:
+        return True 
+    else:
+        return False
+  
 # Read a number from the keyboard
-num = input("Enter a number: ")
+while True: #made it an infinite loop :)
+    num = input("Enter a number: ")
 
-# Print out "Even!" if the number is even. Otherwise print "Odd"
+# Print out "Even!" if the number is even. Otherwise print "Odd"      
+    print(is_even(num))
