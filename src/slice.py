@@ -12,7 +12,7 @@ print("last 3 elements are {0}".format(a[-3:]))
 print("2 middle elements are {0}".format(a[2:4]))
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
-print()
+print("all elements except the first one are {0}".format(a[1:]))
 
 # Output every element except the last one: [2, 4, 1, 7, 9]
 print()
