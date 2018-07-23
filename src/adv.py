@@ -3,6 +3,7 @@
 
 # These are the existing rooms. Add more as you see fit.
 import random
+
 rooms = {
     "outside": {
         "name": "Outside Cave Entrance",
@@ -95,7 +96,7 @@ ways = directions.keys()
 
 while True:
 
-    user_input = input("Enter your direction: ")
+    user_input = input("Enter your direction: ").strip().lower()
 
     if user_input in ways: 
         if directions[user_input] not in rooms[current_room].keys():
@@ -117,7 +118,7 @@ while True:
         else:
             continue
     elif user_input == 'q':
-        print("good bye")
+        print("good bye" + venturer.player)
         break
     else:
         print("use 'w', 'e', 's', 'n' keys to navigate your character, or use 'q' to quit from the game")
