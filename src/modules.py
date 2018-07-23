@@ -25,11 +25,13 @@ print("python version: %d.%d.%d" % (major, minor, micro))
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
 # Print the current process ID
-print()
+currentProcessID = os.getpid()
+print(currentProcessID)
 
 # Print the current working directory (cwd):
-print()
+currentWorkingDirectory = os.getcwd()
+print(currentWorkingDirectory)
 
 # Print your login name
-print()
-
+loginName = os.getlogin()
+print(loginName)
