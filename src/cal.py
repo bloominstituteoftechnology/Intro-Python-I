@@ -13,4 +13,9 @@
 # Hint: this should be about 15 lines of code. No loops are required. Read the
 # docs for the calendar module closely.
 
-import sys
+from sys import argv
+import calendar
+
+script, month, year = argv
+
+calendar.prmonth(int(year), int(month), w=0, l=0)
