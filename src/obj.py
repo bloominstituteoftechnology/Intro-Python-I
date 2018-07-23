@@ -25,6 +25,9 @@ class Geocache(Waypoint):
 
 # Make a new waypoint "Catacombs", 41.70505, -121.51521
 
+catacombs_wp = Waypoint(41.70505, -121.51521, 'Catacombs')
+w = ['{}: {}'.format(k, v) for k, v in catacombs_wp.__dict__.items()]
+
 # w = ['{}: {}\n'.format(key, value) for key, value in w]
 
 # Print it
