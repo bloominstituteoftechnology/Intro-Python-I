@@ -14,3 +14,14 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+# for arg in sys.argv:
+#   print(arg)
+
+# print(len(sys.argv))
+
+newCalendar = calendar.TextCalendar()
+
+print("\n", newCalendar.formatmonth(int(sys.argv[2]), int(sys.argv[1]))
+)
