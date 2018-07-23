@@ -23,7 +23,8 @@ print(y)
 # Use a list comprehension to create a list containing only the _even_ elements
 # the user entered into list x.
 
-x = input("Enter comma-separated numbers: ").split(',')
+x = input("Enter comma-separated numbers: ")
+# .split(',') <-- told this was a typo and to remove from line above
 
 # What do you need between the square brackets to make it work?
 y = []
