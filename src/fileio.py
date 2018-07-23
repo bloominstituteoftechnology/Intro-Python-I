@@ -16,3 +16,4 @@ Line 2 --- test
 Line 3 --- text
 """)
 # Close the file
+file.close()
