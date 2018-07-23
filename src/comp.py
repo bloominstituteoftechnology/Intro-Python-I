@@ -26,7 +26,7 @@ print("list with uppercase version of els in a {0}".format(y))
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-y = []
+y = [int(n) for n in x if int(n) % 2 == 0]
 
-print(y)
+print("list containing even els {0}".format(y))
 
