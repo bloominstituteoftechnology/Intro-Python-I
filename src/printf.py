@@ -8,3 +8,4 @@ z = "I like turtles!"
 
 
 # Use the 'format' string method to print the same thing
+print("x is {0}, y is {1}, z is {2}".format(x, y, z))
