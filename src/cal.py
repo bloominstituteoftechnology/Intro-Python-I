@@ -14,3 +14,18 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+myCal = calendar.TextCalendar()
+
+today = datetime.datetime.now()
+
+lines = sys.argv
+
+if len(lines) > 2:
+    myCal.prmonth(int(lines[1]),int(lines[2]))
+elif len(lines) > 1:
+    myCal.pryear(int(lines[1]))
+else:
+    myCal.prmonth(today.year, today.month)
