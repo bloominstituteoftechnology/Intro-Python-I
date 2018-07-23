@@ -16,6 +16,7 @@ f = open("bar.txt")
 # f.write("World")
 # f.write("It's me, Beyonce")
 
+
 print(f.read())
 
 # Close the file
