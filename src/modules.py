@@ -11,12 +11,15 @@ for arg in sys.argv:
 	print(arg);
 
 # Print out the plaform from sys:
-print()
+print("platform on this machine is", sys.platform)
 
 # Print out the Python version from sys:
-print()
-
-
+print("current Python version is", sys.version_info)
+print("major part of Python version number is", sys.version_info.major)
+print("minor part of Python version number is", sys.version_info.minor)
+print("micro part of Python version number is", sys.version_info.micro)
+print("releaselevel part of Python version number is", sys.version_info.releaselevel)
+print("serial part of Python version number is", sys.version_info.serial)
 
 # Module "os"
 #
