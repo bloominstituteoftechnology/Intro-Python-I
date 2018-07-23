@@ -7,23 +7,24 @@
 # Make up three entries of various values.
 
 waypoints = [
-    {
-        "lat": 43,
-        "lon": -121,
-        "name": "a place"
-    }, 
-    {
-        "lat": 41,
-        "lon": -123,
-        "name": "another place"
-    }, 
-    {
-        "lat": 43,
-        "lon": -122,
-        "name": "a third place"
-    }
+    {"lat": 43, "lon": -121, "name": "a place"},
+    {"lat": 41, "lon": -123, "name": "another place"},
+    {"lat": 43, "lon": -122, "name": "a third place"},
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
+for each in waypoints:
+    print("name", each["name"])
+    print("lat", each["lat"])
+    print("lon", each["lon"])
+    print("")
 
 # Add a new waypoint to the list
+
+waypoints.append({"lat": 124, "lon": -463, "name": "fourth place"})
+
+for each in waypoints:
+    print("name", each["name"])
+    print("lat", each["lat"])
+    print("lon", each["lon"])
+    print("")
