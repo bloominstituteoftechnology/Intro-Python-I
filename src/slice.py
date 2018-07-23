@@ -15,11 +15,11 @@ print("2 middle elements are {0}".format(a[2:4]))
 print("all elements except the first one are {0}".format(a[1:]))
 
 # Output every element except the last one: [2, 4, 1, 7, 9]
-print()
+print("all elements except the last one are {0}".format(a[:len(a) - 1]))
 
 # For string s...
 
 s = "Hello, world!"
 
 # Output just the 8th-12th characters: "world"
-print()
+print("the 8th-12th chars are {0}".format(s[7:12]))
