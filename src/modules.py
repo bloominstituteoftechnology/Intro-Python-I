@@ -1,5 +1,6 @@
 import sys
 import os
+import getpass
 
 # Module "sys"
 #
@@ -9,10 +10,10 @@ import os
 
 
 # Print out the plaform from sys:
-print()
+print("\nPlatform:\n", sys.platform)
 
 # Print out the Python version from sys:
-print()
+print("\nPython Version:\n", sys.version)
 
 
 
@@ -21,11 +22,12 @@ print()
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
 # Print the current process ID
-print()
+print("\nCurrent Process ID:\n", os.getpid())
 
 # Print the current working directory (cwd):
-print()
+print("\nCurrent Working Directory:\n", os.getcwd())
 
 # Print your login name
-print()
+print("\nLogin name:\n", getpass.getuser()) # Preferred method to get login name from getpass module
+print("\nLogin name:\n", os.getlogin()) 
 
