@@ -7,12 +7,14 @@ import os
 
 # Print out the command line arguments in sys.argv, one per line:
 
+for arg in sys.argv:
+    print(arg)
 
 # Print out the plaform from sys:
-print()
+print("Platform:", sys.platform)
 
 # Print out the Python version from sys:
-print()
+print("Python version:", sys.version_info)
 
 
 
@@ -21,11 +23,11 @@ print()
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
 # Print the current process ID
-print()
+print("Process id:", os.getpid())
 
 # Print the current working directory (cwd):
-print()
+print("Directory:", os.getcwd())
 
 # Print your login name
-print()
+print("User:", os.getlogin())
 
