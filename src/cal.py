@@ -14,3 +14,15 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+# Strip off first element of argv
+args = sys.argv[1:]
+
+# Make sure that arg count is what we expect
+if len(args) != 2:
+  raise ValueError('Expected month and year as inputs')
+
+# Create text calander and print it to console
+cal = calendar.TextCalendar()
+cal.prmonth(int(args[1]), int(args[0]))
