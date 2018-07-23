@@ -13,4 +13,8 @@ def say_words(word1, word2):
 
 say_words("Hello ,", "world")
 
-#method 4
+#method 4 - array or python list w/ join method
+s = ''
+greeting_list = ["Hello", ", ", "world"]
+
+print(s.join(greeting_list))
