@@ -72,8 +72,8 @@ Suggested order for implementing the toy programs:
 * `datatypes` -- Experiment with type conversion `complete`
 * `modules` -- Learn to import from modules
 * `printf` -- Formatted print output `complete`
-* `lists` -- Python's version of arrays 
-* `slice` -- Accessing parts of lists
+* `lists` -- Python's version of arrays `complete`
+* `slice` -- Accessing parts of lists `complete`
 * `comp` -- List comprehensions
 * `dicts` -- Dictionaries
 * `func` -- Functions
