@@ -7,7 +7,8 @@ import getpass
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
 
 # Print out the command line arguments in sys.argv, one per line:
-
+for argv in sys.argv:
+    print(argv)
 
 # Print out the plaform from sys:
 print("\nPlatform:\n", sys.platform)
