@@ -6,7 +6,7 @@ print("second element is {0}".format(a[1]))
 print("second to last element is {0}".format(a[-2]))
 
 # Output the last three elements in the array: [7, 9, 6]
-print()
+print("last 3 elements are {0}".format(a[-3:]))
 
 # Output the two middle elements in the array: [1, 7]
 print()
