@@ -34,7 +34,7 @@ print("os release:", os.uname().release)
 print("os version:", os.uname().version)
 print("hardware identifier:", os.uname().machine)
 # Print the current process ID
-print()
+print(os.getpid())
 
 # Print the current working directory (cwd):
 print()
