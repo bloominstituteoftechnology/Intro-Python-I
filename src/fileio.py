@@ -1,12 +1,24 @@
 # Use open to open file "foo.txt" for reading
 
-# Print all the lines in the file
+file = open('foo.txt', 'r')
 
+# Print all the lines in the file
+for line in file:
+  print(line)
 # Close the file
+
+file.close()
 
 
 # Use open to open file "bar.txt" for writing
 
+file = open('bar.txt', 'w')
+
 # Use the write() method to write three lines to the file
+file.write('Do you bite your thumb at us, sir?\n')
+file.write('I do bite my thumb, sir.\n')
+file.write('Do you bite your thumb at us, sir?\n')
+
+file.close()
 
 # Close the file
