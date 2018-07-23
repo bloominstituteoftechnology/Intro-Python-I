@@ -1,6 +1,10 @@
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
 y = []
+i = 1
+while (i < 6):
+    y.append(i)
+    i = i + 1
 
 print (y)
 
