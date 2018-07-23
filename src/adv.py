@@ -90,10 +90,10 @@ while True:
     if userInput in directions:
         # move exists
         key = '{}_to'.format(userInput)
-        player1 = Player(rooms[player1.currentRoom].get(key))
+        if rooms[player1.currentRoom].get(key):
+            player1 = Player(rooms[player1.currentRoom].get(key))
+        else:
+            print('you cannot move there')
+# If the user enters "q", quit the game.
     elif userInput == 'q':
         break
-    else:
-        print('you cannot move there')
-
-# If the user enters "q", quit the game.
