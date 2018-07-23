@@ -2,6 +2,7 @@
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
 # These are the existing rooms. Add more as you see fit.
+import random
 
 rooms = {
     "outside": {
@@ -54,13 +55,93 @@ earlier adventurers. The only exit is to the south.""",
     },
 """
 
-# Write a class to hold player information, e.g. what room they are in currently
 
+current_room = 'outside'
+# Write a class to hold player information, e.g. what room they are in currently
+class player_information:
+    def __init__(self, room, player):
+        self.name = room[current_room]['name']
+        self.description = room[current_room]['description']
+        self.player = player
+        self.health = 100
+
+    def take_damage(self, trap):
+        self.health = self.health - trap
+
+venturer = player_information(rooms, 'Csaba')
+
+
+print(venturer.health)
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+
+class Player:
+    def __init__(self, position):
+        self.position = rooms[position]
+
+venturer = Player('outside')
+directions = {
+    's': 's_to',
+    'n': 'n_to',
+    'e': 'e_to',
+    'w': 'w_to'
+}
+
+
+ways = directions.keys()
+
+while True:
+
+    user_input = input("Enter your direction: ").strip().lower()
+
+    if user_input in ways: 
+        if directions[user_input] not in rooms[current_room].keys():
+            print("there is nothing in that way")
+        elif rooms[current_room][directions[user_input]]:
+            current_room = rooms[current_room][directions[user_input]]
+            print("========================================\n\n")
+            trap = random.randint(1,100)
+            if trap > 50:
+                venturer.take_damage(trap)
+                print("you walked into a trap and your new health is {}\n\n".format(venturer.health))
+            if venturer.health < 0:
+                print("Game Over you died")
+                break
+            else:
+                print("room: " + rooms[current_room]['name'] + "\n")
+                print("description: " + rooms[current_room]['description'] + "\n\n")
+                print("========================================")
+        else:
+            continue
+    elif user_input == 'q':
+        print("good bye" + venturer.player)
+        break
+    else:
+        print("use 'w', 'e', 's', 'n' keys to navigate your character, or use 'q' to quit from the game")
+
+
+
+
+
+# while True:
+#     print(venturer.name)
+#     print(venturer.description)
+
+#     move = input("Choose your direction venturer: ")
+#     if move == 'q':
+#         break
+#     elif move in directions:
+#         if directions[move] in venturer.position.keys():
+#             venturer = rooms[venturer.position[directions[move]]]
+#         else:
+#             print("There is nothing in that direction, choose something else")
+#     else:
+#         print("Use 'w' 'e' 's' 'n' to chose directions, and 'q' to quit game")
+
 
 # Write a loop that:
 #
