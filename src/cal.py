@@ -14,3 +14,18 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+length = len(sys.argv)
+
+c = calendar.TextCalendar()
+if length == 2:
+    year = int(sys.argv[1])
+    print("Year:", year)
+elif length == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+    print("Month:",month, "Year:", year)
+else:
+    print("What calendar BoYo")
+    sys.exit(1)
