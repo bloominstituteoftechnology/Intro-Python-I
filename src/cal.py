@@ -21,7 +21,7 @@ theYear = None
 theMonth = None
 
 x = calendar.TextCalendar(firstweekday=0)
-y = datetime.datetime.now()
+now = datetime.datetime.now()
 lengthOfArguments = len(sys.argv)
 
 # def dump(obj):
@@ -33,10 +33,10 @@ lengthOfArguments = len(sys.argv)
 if lengthOfArguments == 3:
     theYear = int(sys.argv[1])
     theMonth = int(sys.argv[2])
-    x.prmonth(theYear, theMonth, w=0, l=0)
 elif lengthOfArguments == 1:
-    print('\n')
-    theYear = y.year
-    theMonth = y.month
-    x.prmonth(theYear, theMonth, w=0, l=0)
-    print('\n')
+    theYear = now.year
+    theMonth = now.month
+
+print('\n')
+x.prmonth(theYear, theMonth, w=0, l=0)
+print('\n')
