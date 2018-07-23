@@ -70,11 +70,14 @@ Suggested order for implementing the toy programs:
 * `hello` -- Hello world
 * `bignum` -- Print some big numbers
 * `datatypes` -- Experiment with type conversion
+* `modules` -- Learn to import from modules
 * `printf` -- Formatted print output
 * `lists` -- Python's version of arrays
+* `slice` -- Accessing parts of lists
 * `comp` -- List comprehensions
 * `dicts` -- Dictionaries
 * `func` -- Functions
+* `fileio` -- Read and write from files
 * `cal` -- Experiment with module imports
 * `obj` -- Classes and objects
 
