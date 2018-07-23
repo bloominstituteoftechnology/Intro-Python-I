@@ -10,7 +10,7 @@ class LatLon:
 # constructor. It should inherit from LatLon.
 class Waypoint:
 	def __init__(self, name, lat, lon):
-		super().__init__(lat, lon)
+		super().__init__()
 		self.name = name
 
 # Make a class Geocache that can be passed parameters `name`, `difficulty`,
@@ -21,14 +21,14 @@ class Geocache:
 		self.difficulty = difficulty
 		self.size = size
 # Make a new waypoint "Catacombs", 41.70505, -121.51521
-
+catacombs = Waypoint("Catacombs", 41.70505, -121.51521)
 # Print it
 #
 # Without changing the following line, how can you make it print into something
 # more human-readable?
-print(w)
+print(catacombs)
 
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 
 # Print it--also make this print more nicely
-print(g)
+# print(g)
