@@ -1,6 +1,6 @@
 import sys
 import os
-
+import getpass
 # Module "sys"
 #
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
@@ -40,5 +40,6 @@ print(os.getpid())
 print(os.getcwd())
 
 # Print your login name
-print()
+print(os.getlogin()) # name of the user logged in on the controlling terminal of the process
+print(getpass.getuser()) # checks the environment variables LOGNAME, USER, LNAME and USERNAME
 
