@@ -6,4 +6,5 @@ print(x + int(y))
 print(type(x + int(y)))
 
 # Write a print statement that combines x + y into the string value 57
-print(x + y)
+print(str(x) + y)
+print(type(str(x) + y))
