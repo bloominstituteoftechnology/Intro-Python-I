@@ -9,10 +9,10 @@ import os
 
 
 # Print out the plaform from sys:
-print()
+print(sys.argv)
 
 # Print out the Python version from sys:
-print()
+print(sys.argv)
 
 
 
