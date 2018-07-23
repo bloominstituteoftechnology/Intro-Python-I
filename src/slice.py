@@ -9,7 +9,7 @@ print("second to last element is {0}".format(a[-2]))
 print("last 3 elements are {0}".format(a[-3:]))
 
 # Output the two middle elements in the array: [1, 7]
-print()
+print("2 middle elements are {0}".format(a[2:4]))
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
 print()
