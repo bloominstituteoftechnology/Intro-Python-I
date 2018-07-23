@@ -15,7 +15,22 @@ waypoints = [
     {
         'lat': 200,
         'lon': 100,
-        'name': 'Teh Bawse!'
+        'name': 'Teh Bawse!'git 
+    },
+    {
+        "lat": 43,
+        "lon": -121,
+        "name": "a place"
+    }, 
+    {
+        "lat": 41,
+        "lon": -123,
+        "name": "another place"
+    }, 
+    {
+        "lat": 43,
+        "lon": -122,
+        "name": "a third place"
     }
 ]
 
@@ -24,3 +39,5 @@ for i in waypoints:
     print('-------------------')
     for j in i:
         print(j, ':', i[j])
+
+# Add a new waypoint to the list
