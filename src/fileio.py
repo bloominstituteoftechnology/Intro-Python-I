@@ -1,4 +1,3 @@
-import io
 # Use open to open file "foo.txt" for reading
 with open('foo.txt', mode='r', newline = '\n') as file:
 	lines = file.read()
@@ -7,8 +6,15 @@ print(lines)
 # Close the file
 # the with keyword closes file after successful write
 
-# Use open to open file "bar.txt" for writing
+text1 = 'first line'
+text2 = 'second line'
+text3 = 'third line'
 
-# Use the write() method to write three lines to the file
+# Use open to open file "bar.txt" for writing
+with open('bar.txt', mode='w', newline='\n') as file:
+	# Use the write() method to write three lines to the file
+	file.write("{0}\n".format(text1))
+	file.write("{0}\n".format(text2))
+	file.write("{0}\n".format(text3))
 
 # Close the file
