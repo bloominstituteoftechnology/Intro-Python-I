@@ -71,8 +71,8 @@ Suggested order for implementing the toy programs:
 * `bignum` -- Print some big numbers `complete`
 * `datatypes` -- Experiment with type conversion `complete`
 * `modules` -- Learn to import from modules
-* `printf` -- Formatted print output
-* `lists` -- Python's version of arrays
+* `printf` -- Formatted print output `complete`
+* `lists` -- Python's version of arrays 
 * `slice` -- Accessing parts of lists
 * `comp` -- List comprehensions
 * `dicts` -- Dictionaries
