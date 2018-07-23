@@ -37,7 +37,7 @@ print("hardware identifier:", os.uname().machine)
 print(os.getpid())
 
 # Print the current working directory (cwd):
-print()
+print(os.getcwd())
 
 # Print your login name
 print()
