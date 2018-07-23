@@ -28,3 +28,10 @@ waypoints = [
 for waypoint in waypoints:
   print("for waypoint {0}, the latitude is {1}, and the longitude is {2}".format(waypoint['name'], waypoint['lat'], waypoint['lon']))
 # Add a new waypoint to the list
+waypoints.append({
+  "lat": 50,
+  "lon": -150,
+  "name": "a fourth place"
+})
+
+print(waypoints)
