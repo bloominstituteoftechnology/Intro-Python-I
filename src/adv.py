@@ -1,3 +1,4 @@
+import textwrap
 # Write a text adventure that allows the player to move from room to room by
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
@@ -28,7 +29,7 @@ the distance, but there is no way across the chasm.""",
 
     "narrow": {
         "name": "Narrow Passage",
-        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
+        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.",
         "w_to": "foyer",
         "n_to": "treasure",
     },
@@ -56,19 +57,43 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+
+class Player:
+    def __init__(self, currentRoom, ):
+        self.currentRoom = currentRoom
+
 #
 # Main
 #
 
-# Make a new player object that is currently in the 'outside' room.
 
+# directions
+cardDirs = ("n", "s", "e", "w")
+directions = set(cardDirs)
+
+# Make a new player object that is currently in the 'outside' room.
+player1 = Player('outside')
 # Write a loop that:
 #
-# * Prints the current room name
+while True:
+    curRoom = rooms[player1.currentRoom]
+    # * Prints the current room name
+    print(curRoom.get('name'))
 # * Prints the current description (the textwrap module might be useful here).
+    print(curRoom.get('description'))
 # * Waits for user input and decides what to do.
+    userInput = input('What would you like to do? ')
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
+    if userInput in directions:
+        # move exists
+        key = '{}_to'.format(userInput)
+        player1 = Player(rooms[player1.currentRoom].get(key))
+    elif userInput == 'q':
+        break
+    else:
+        print('you cannot move there')
+
 # If the user enters "q", quit the game.
