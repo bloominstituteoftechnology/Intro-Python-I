@@ -5,6 +5,9 @@ class LatLon:
   def __init__(self, lat, lon):
     self.lat = lat
     self.lon = lon
+
+  def get_info(self):
+    return ['{}: {}'.format(k, v) for k, v in self.__dict__.items()]
         
 # Make a class Waypoint that can be passed parameters `name`, `lat`, and `lon` to the
 # constructor. It should inherit from LatLon.
@@ -26,9 +29,7 @@ class Geocache(Waypoint):
 # Make a new waypoint "Catacombs", 41.70505, -121.51521
 
 catacombs_wp = Waypoint(41.70505, -121.51521, 'Catacombs')
-w = ['{}: {}'.format(k, v) for k, v in catacombs_wp.__dict__.items()]
-
-# w = ['{}: {}\n'.format(key, value) for key, value in w]
+w = catacombs_wp.get_info()
 
 # Print it
 #
@@ -37,6 +38,9 @@ w = ['{}: {}'.format(k, v) for k, v in catacombs_wp.__dict__.items()]
 print(w)
 
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
+
+newberry_gc = Geocache(44.052137, -121.41556, 'Newberry Views', 1.5, 2)
+g = newberry_gc.get_info()
 
 # Print it--also make this print more nicely
 print(g)
