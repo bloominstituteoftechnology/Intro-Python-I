@@ -52,9 +52,37 @@ player = Player('Kevin', 'outside')
 #
 # If the user enters "q", quit the game.
 
-# while (player.room_name != 'treasure')
-print("\n" + "Room: \n" + player.room_name + "\n" + "\nRoom Description: \n" + room[player.room_name].description + "\n")
-direction = input("Enter North, East, South, or West or q to Quit: ")
+while (player.room_name != 'treasure'):
+    print("\n" + "Room Name: \n" + room[player.room_name].name + "\n" + "\nRoom Description: \n" + room[player.room_name].description + "\n")
+    instruction = input("Enter North, East, South, or West or q to Quit: \n")
+    if (instruction == "q"):
+        break
+    if (instruction == "North"):
+        try:
+            key = [k for k, v in room.items() if v == room[player.room_name].n_to]
+            player.room_name = ''.join(key)
+        except AttributeError:
+            print("\nThis movement is not allowed!")
+    if (instruction == "East"):
+        try:
+            key = [k for k, v in room.items() if v == room[player.room_name].e_to]
+            player.room_name = ''.join(key)
+        except AttributeError:
+            print("\nThis movement is not allowed!")
+    if (instruction == "South"):
+        try:
+            key = [k for k, v in room.items() if v == room[player.room_name].s_to]
+            player.room_name = ''.join(key)
+        except AttributeError:
+            print("\nThis movement is not allowed!")
+    if (instruction == "West"):
+        try:
+            key = [k for k, v in room.items() if v == room[player.room_name].w_to]
+            player.room_name = ''.join(key)
+        except AttributeError:
+            print("\nThis movement is not allowed!")
+
+print("\n" + "Room Name: \n" + room[player.room_name].name + "\n" + "\nRoom Description: \n" + room[player.room_name].description + "\n")
     
     
 
