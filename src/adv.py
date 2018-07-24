@@ -56,8 +56,9 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 class Player_Info:
-    def __init__(self, room):
-        self.name = room['name']
+    def __init__(self, name, room):
+        self.name = name
+        self.room = room['name']
         self.description = room['description']
 
 #
@@ -65,6 +66,7 @@ class Player_Info:
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player_one = Player_Info("Player One", rooms['outside'])
 
 # Write a loop that:
 #
