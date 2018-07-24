@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -38,6 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +52,27 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+def dircheck(attr):
+    if(hasattr(player.room, attr)):
+        player.room = getattr(player.room, attr)
+    else:
+        print("\nInaccessible direction, try again\n")
+
+while True:
+    print(player.room.name)
+    print(textwrap.fill(player.room.desc, 50))
+    cmd = input("Enter a direction (q to quit):")
+    if cmd == "q":
+        break
+    elif cmd == "n":
+        dircheck("n_to")
+    elif cmd == "e":
+        dircheck("e_to")
+    elif cmd == "s":
+        dircheck("s_to")
+    elif cmd == "w":
+        dircheck("w_to")
+    else:
+        print("\nInvalid direction, try again\n")
+
