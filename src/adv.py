@@ -16,7 +16,9 @@ rooms = {
 
     "foyer": {
         "name": "Foyer",
-        "description": "Dim light filters in from the south. Dusty passages run north and east.",
+        "description": """Dim light filters in from the south. Dusty passages run north and east.
+You find a potion and a parchment which says 'Drink this to fight foul monsters but beware. Your urge to kill grows with every strike' """,
+        "items": ['torch', 'potion', 'parchment']
         "n": "overlook",
         "s": "outside",
         "e": "narrow",
@@ -25,9 +27,10 @@ rooms = {
 
     "overlook": {
         "name": "Grand Overlook",
-        "description": """A steep cliff appears before you, falling
+        "description": """You find the ancient hero's statue and find his sword locked in its scabbard. Beyond,a steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
+        "items": ["hero's sword"]
         "s": "foyer",
     },
 
@@ -41,8 +44,9 @@ the distance, but there is no way across the chasm.""",
     "treasure": {
         "name": "Treasure Chamber",
         "description": """You've found the long-lost treasure
-chamber. Sadly, it has already been completely emptied by
+chamber. Sadly, all but a brass key have been taken by
 earlier adventurers. The only exit is to the south.""",
+        "items": ["brass key"],
         "s": "narrow",
     },
 
@@ -64,8 +68,9 @@ At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.
 
     "armory": {
         "name": "Armory",
-        "description": """You find a small armory filled with rusted weapons and some tools. At the far end lies a chest but it's locked.
-You find an encryption on the chest lid: 'The ancient hero offers his sword but only to those he deems worthy' """,
+        "description": """You find a small armory filled with rusted weapons and some tools. At the far end lies a locked chest
+and a blackened shield. You find an encryption on the chest lid: 'The ancient hero offers his sword but only to those he deems worthy' """,
+        "items": ["blackened shield"]
         "e": "foyer"
     }
 
