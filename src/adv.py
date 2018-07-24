@@ -11,7 +11,8 @@ rooms = {
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
         "n": "foyer",
-        "e": "bridge"
+        "e": "bridge",
+        "i": "show inventory"
     },
 
     "foyer": {
@@ -22,7 +23,8 @@ You find a potion and a parchment which says 'Drink this to fight foul monsters 
         "n": "overlook",
         "s": "outside",
         "e": "narrow",
-        "w": "armory"
+        "w": "armory",
+        "i": "show inventory"
     },
 
     "overlook": {
@@ -32,6 +34,7 @@ into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
         "items": ["hero's sword"],
         "s": "foyer",
+        "i": "show inventory"
     },
 
     "narrow": {
@@ -39,7 +42,8 @@ the distance, but there is no way across the chasm.""",
         "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
         "w": "foyer",
         "n": "treasure",
-        "s": "cathedral"
+        "s": "cathedral",
+        "i": "show inventory"
     },
 
     "treasure": {
@@ -49,6 +53,7 @@ chamber. Sadly, all but a brass key have been taken by
 earlier adventurers. The only exit is to the south.""",
         "items": ["brass key"],
         "s": "narrow",
+        "i": "show inventory"
     },
 
     "bridge": {
@@ -57,7 +62,8 @@ earlier adventurers. The only exit is to the south.""",
 On the other side you see a red dragon sleeping in the sunlight. It guards the entrance to an ancient cathedral""",
         "w": "outside",
         "n": "cathedral",
-        "e": "outside"
+        "e": "outside",
+        "i": "show inventory"
     },
 
     "cathedral": {
@@ -65,7 +71,8 @@ On the other side you see a red dragon sleeping in the sunlight. It guards the e
         "description": """Broken pews, torn tapestries, and skeletons of past adventurers are all that remain inside.
 At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.""",
         "n": "narrow",
-        "s": "bridge"
+        "s": "bridge",
+        "i": "show inventory"
     },
 
     "armory": {
@@ -73,7 +80,8 @@ At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.
         "description": """You find a small armory filled with rusted weapons and some tools. At the far end lies a locked chest
 and a blackened shield. You find an encryption on the chest lid: 'The ancient hero offers his sword but only to those he deems worthy' """,
         "items": ["blackened shield"],
-        "e": "foyer"
+        "e": "foyer",
+        "i": "show inventory"
     }
 
 }
@@ -93,6 +101,7 @@ and a blackened shield. You find an encryption on the chest lid: 'The ancient he
 class Player:
     def __init__(self,room):
         self.room = room
+        self.inventory = []
 #
 # Main
 #
