@@ -15,15 +15,14 @@
 
 import sys
 import calendar
-import datetime
+from datetime import datetime
 
-month = datetime.datetime.now().month
-year = datetime.datetime.now().year
+month = datetime.now().month
+year = datetime.now().year
 
-if len(sys.argv) == 3:
+if len(sys.argv) is 3:
   month = int(sys.argv[1])
   year = int(sys.argv[2])
-
 
 calendar.setfirstweekday(calendar.SUNDAY)
 

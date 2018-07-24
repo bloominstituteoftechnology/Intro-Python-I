@@ -10,7 +10,7 @@ room = {
 
     'overlook': Room("Grand Overlook", "A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."),
 
-    'narrow':   Room("Narrow Passage", "The narrow passage bends here from west to north. The smell of gold permeates the air."),
+    'narrow': Room("Narrow Passage", "The narrow passage bends here from west to north. The smell of gold permeates the air."),
 
     'treasure': Room("Treasure Chamber", "You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."),
 }
@@ -27,9 +27,6 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
 
 # Make a new player object that is currently in the 'outside' room.
 
@@ -47,27 +44,22 @@ player = Player("phantomflynn", room["outside"])
 # If the user enters "q", quit the game.
 
 while True:
-    print("Current room: ", player.currentRoom.name)
-    print("Description: ", player.description)
+   print("\nCurrent room: ", player.currentRoom)
+   print("Description: ", player.description)
 
-    direction = input("Enter a direction (n, s, e, w): ")
+   direction = input("Enter a direction (n, s, e, w): ")
 
-    if direction is "q": break
+   if direction is "q": break
 
-    options = {
-        "n": player.currentRoom.n_to,
-        "s": player.currentRoom.s_to,
-        "e": player.currentRoom.e_to,
-        "w": player.currentRoom.w_to
-    }
+   options = {
+      "n": player.currentRoom.n_to,
+      "s": player.currentRoom.s_to,
+      "e": player.currentRoom.e_to,
+      "w": player.currentRoom.w_to
+   }
 
-    userChoice = options[direction]
+   userChoice = options[direction]
 
-    
-    if userChoice is None:
-        print("There is no door to go to in that direction.")
+   if userChoice is None: print("There is no door to go to in that direction.")
 
-    else:
-        player.setCurrentRoom(userChoice)
-
-    print()
+   else: player.setCurrentRoom(userChoice)
