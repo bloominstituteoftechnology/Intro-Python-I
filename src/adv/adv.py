@@ -20,7 +20,10 @@ to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers.The only exit is to the south. """),
+
+    'dunegon': Room("Dungeon Hell", """You are in the worst place in the world and
+    should be careful where you step!!! """ ),
 }
 
 
@@ -30,10 +33,13 @@ room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
+room['foyer'].w_to = room['dungeon']
+room['dungeon'].e_to = room['foyer']
 room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
 
 #
 # Main
