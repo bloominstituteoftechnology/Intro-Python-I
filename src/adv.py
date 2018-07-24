@@ -28,7 +28,7 @@ the distance, but there is no way across the chasm.""",
 
     "narrow": {
         "name": "Narrow Passage",
-        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
+        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.",
         "w_to": "foyer",
         "n_to": "treasure",
     },
@@ -56,11 +56,19 @@ earlier adventurers. The only exit is to the south.""",
 
 # Write a class to hold player information, e.g. what room they are in currently
 
+
+class Player:
+    def __init__(self, room=rooms["outside"]):
+        self.room = room
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+
+player1 = Player()
 
 # Write a loop that:
 #
@@ -72,3 +80,41 @@ earlier adventurers. The only exit is to the south.""",
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+playing = True
+
+while(playing is True):
+    print(player1.room)
+    direction = input("Enter a direction (n/w/e/s): ")
+    if direction+"_to" == "n_to":
+        # print("n_to")
+        for room in rooms:
+            # print(room)
+            # print(rooms[room])
+            if room == player1.room['n_to']:
+                player1.room = rooms[room]
+                break
+    elif direction+"_to" == "w_to":
+        # print("w_to")
+        for room in rooms:
+            if room == player1.room['w_to']:
+                player1.room = rooms[room]
+                break
+    elif direction+"_to" == "s_to":
+        # print("s_to")
+        for room in rooms:
+            if room == player1.room['s_to']:
+                player1.room = rooms[room]
+                break
+    elif direction+"_to" == "e_to":
+        # print("e_to")
+        for room in rooms:
+            if room == player1.room['e_to']:
+                player1.room = rooms[room]
+                break
+    elif direction == "q":
+        print("Game Ogre")
+        playing = False
+    else:
+        print("Invalid input")
+        break
