@@ -55,13 +55,15 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
-
+class Player:
+    def __init__(self,room):
+      self.room = room
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+new_player = Player(rooms.outside)
 # Write a loop that:
 #
 # * Prints the current room name
