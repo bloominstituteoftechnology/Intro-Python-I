@@ -82,10 +82,17 @@ while not quit:
     print("current room: {0}".format(new_player.room["name"]))
     print(textwrap.fill(new_player.room["description"]))
     move_to_room = input("Where will you go next?")
-    print("player moves to ${0}".format(move_to_room))
+    print("player wants to move {0}".format(move_to_room))
 
     # validate player input - is the next room a neighbor to the current one?
-
+    if move_to_room in new_player.room:
+        new_room = new_player.room[move_to_room]
+        print("player chose to move in {0} direction to the {1} room".format(move_to_room, new_room))
+        # update player instance with the new room
+        new_player.room = rooms[new_room]
+    else:
+        # player enters an invalid direction
+        print("Please enter a valid direction: n_to, e_to, s_to, or w_to")
     if move_to_room == "q":
         quit = True
 
