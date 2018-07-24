@@ -26,5 +26,5 @@ else:
     month = int(sys.argv[1])
     year = int(sys.argv[2])
 
-calendar = calendar.TextCalendar(firstweekday=0)
+calendar = calendar.TextCalendar(firstweekday=-1)
 print(calendar.formatmonth(year, month))
