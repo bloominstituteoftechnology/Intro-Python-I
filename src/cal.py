@@ -14,3 +14,18 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+length = len(sys.argv)
+if length == 2:
+    year = int(sys.argv[1])
+elif length == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+else:
+    print("please enter a month and year (python3 cal.py 12 1990)")
+calendar = calendar.TextCalendar()
+
+if length ==3:
+    calendar.prmonth(year, month)
+else:
+    calendar.pryear(year)
