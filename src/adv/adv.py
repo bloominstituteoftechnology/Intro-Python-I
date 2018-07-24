@@ -75,4 +75,3 @@ while True:
         dircheck("w_to")
     else:
         print("\nInvalid direction, try again\n")
-
