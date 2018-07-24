@@ -67,13 +67,13 @@ NOTE: `adv/` is for Day 2, so ignore it for today.
 
 Suggested order for implementing the toy programs:
 
-* `hello` -- Hello world
-* `bignum` -- Print some big numbers
-* `datatypes` -- Experiment with type conversion
+* `hello` -- Hello world `complete`
+* `bignum` -- Print some big numbers `complete`
+* `datatypes` -- Experiment with type conversion `complete`
 * `modules` -- Learn to import from modules
-* `printf` -- Formatted print output
-* `lists` -- Python's version of arrays
-* `slice` -- Accessing parts of lists
+* `printf` -- Formatted print output `complete`
+* `lists` -- Python's version of arrays `complete`
+* `slice` -- Accessing parts of lists `complete`
 * `comp` -- List comprehensions
 * `dicts` -- Dictionaries
 * `func` -- Functions
