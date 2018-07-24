@@ -19,16 +19,3 @@ class Player:
     #     os.system('cls' if os.name == 'nt' else 'clear')
     #     print('\nPick a different option, You cannot go that way...')
     #     sleep(5)
-    try:
-        if getattr(self.location, cardinal):
-            # move towards it --->
-            self.location = self.location.__dict__[cardinal]
-    except AttributeError:
-        if direction == 'q':
-            os.system('cls' if os.name == 'nt' else 'clear')
-            print('Thank you for playing..')
-            sleep(1)
-            os._exit(0)
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print('\nPick a different option, You cannot go that way...')
-        sleep(3)
