@@ -49,13 +49,13 @@ room['pugs'].e_to = room['dungeon']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-system("clear")
+system("clear") # clears console before you start your game (be sure to add os import system)
 
-player_name = input("Enter a player name: ")
+player_name = input("Enter a player name: ") # Welcomes player by asking them for their name
 
 player = Player(player_name, room['outside'])
 
-print("\nWelcome, %s!" % (player.playerName))
+print("\nWelcome, %s!" % (player.playerName)) # Welcomes player by name they entered above
 
 # Write a loop that:
 #
