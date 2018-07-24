@@ -7,10 +7,20 @@ class Player:
 
     def move(self, direction):
         if direction == 'n':
+            if not self.current_room.n_to:
+                return False
             self.current_room = self.current_room.n_to
         elif direction == 'e':
+            if not self.current_room.e_to:
+                return False
             self.current_room = self.current_room.e_to
         elif direction == 's':
+            if not self.current_room.s_to:
+                return False
             self.current_room = self.current_room.s_to
         elif direction == 'w':
+            if not self.current_room.w_to:
+                return False
             self.current_room = self.current_room.w_to
+
+        return True
