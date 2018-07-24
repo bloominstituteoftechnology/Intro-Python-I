@@ -94,8 +94,7 @@ This is in `src/adv/`. Check it out!
 
 * Follow the instructions `adv.py`.
 
-* Figure out what all those `.pyc` files are that appear after you successfully
-  run the program.
+* Figure out what all those `.pyc` files are that appear after you successfully run the program.
 
 Stretch goals:
 
