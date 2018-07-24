@@ -14,3 +14,9 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+cal = calendar.Calendar()
+
+month = 1
+year = 2018
+print(cal.itermonthdates(year, month))
