@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -38,14 +40,46 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player1 = Player(room['outside'])
+GamePlaying = True
 
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+while GamePlaying == True:
+	# print("\n%s\n\n%s" % (player1.location.name, player1.location.desc))
+	desc = textwrap.wrap(player1.location.desc)
+
+	print("\n****************************************")
+	print("\n%s\n" % player1.location.name)
+	for line in desc:
+		print(line)
+	print("\n****************************************")
+
+	direction = input("\nEnter direction: ").lower()
+
+	# If the user enters a cardinal direction, attempt to move to the room there.
+	# Print an error message if the movement isn't allowed.
+	options = ['n', 's', 'e', 'w']
+	getRoom = [
+		player1.location.n_to,
+		player1.location.s_to,
+		player1.location.e_to,
+		player1.location.w_to
+	]
+
+	if len(direction) == 1 and direction in options:
+		if getRoom[options.index(direction)] != None:
+			print("\nYou move to the %c" % direction)
+			player1.location = getRoom[options.index(direction)]
+		else:
+			print("\nInvalid: There's nothing that direction")
+	elif direction == 'q':
+		print("\nQuitting the game...")
+		GamePlaying = False
+	else:
+		print("\nERROR: You can only move n, s, e, or w.")
+
+	# If the user enters "q", quit the game.
