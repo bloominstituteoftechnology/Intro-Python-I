@@ -6,10 +6,12 @@ import sys
 # These are the existing rooms. Add more as you see fit.
 
 rooms = {
-    "outside": {
+    "outside": 
+    {
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
         "n": "foyer",
+        "e": "bridge"
     },
 
     "foyer": {
@@ -18,6 +20,7 @@ rooms = {
         "n": "overlook",
         "s": "outside",
         "e": "narrow",
+        "w": "armory"
     },
 
     "overlook": {
@@ -42,6 +45,29 @@ chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
         "s": "narrow",
     },
+
+    "bridge": {
+        "name": "Bridge",
+        "description": """Rough winds blow acoss a lonely bridge. The smell of dragon fire and brimstone is heavy here.
+On the other side you see a red dragon sleeping in the sunlight. It guards the entrance to an ancient cathedral""",
+        "w": "outside",
+        "n": "cathedral"
+    },
+
+    "cathedral": {
+        "name": "Cathedral",
+        "description": """Broken pews, torn tapestries, and skeletons of past adventurers are all that remain inside.
+At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.""",
+        "n": "narrow",
+        "s": "bridge"
+    },
+
+    "armory": {
+        "name": "Armory",
+        "description": """You find a small armory filled with rusted weapons and some tools. At the far end lies a chest but it's locked.
+You find an encryption on the chest lid: 'The ancient hero offers his sword but only to those he deems worthy' """,
+        "e": "foyer"
+    }
 
 }
 
