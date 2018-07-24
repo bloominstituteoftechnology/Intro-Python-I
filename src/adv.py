@@ -12,7 +12,8 @@ rooms = {
         "description": "North of you, the cave mouth beckons.",
         "n": "foyer",
         "e": "bridge",
-        "i": "show inventory"
+        "i": "show inventory",
+        "t": "take item"
     },
 
     "foyer": {
@@ -45,7 +46,8 @@ the distance, but there is no way across the chasm.""",
         "w": "foyer",
         "n": "treasure",
         "s": "cathedral",
-        "i": "show inventory"
+        "i": "show inventory",
+        "t": "take item"
     },
 
     "treasure": {
@@ -66,7 +68,8 @@ On the other side you see a red dragon sleeping in the sunlight. It guards the e
         "w": "outside",
         "n": "cathedral",
         "e": "outside",
-        "i": "show inventory"
+        "i": "show inventory",
+        "t": "take item"
     },
 
     "cathedral": {
@@ -75,7 +78,8 @@ On the other side you see a red dragon sleeping in the sunlight. It guards the e
 At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.""",
         "n": "narrow",
         "s": "bridge",
-        "i": "show inventory"
+        "i": "show inventory",
+        "t": "take item"
     },
 
     "armory": {
@@ -126,7 +130,7 @@ new_player = Player(rooms["outside"])
 quit = False # describes game state
 
 while not quit:
-    print("current room: {0}".format(new_player.room["name"]))
+    print(new_player.room["name"])
     print(textwrap.fill(new_player.room["description"]))
 
     # show items in room when player walks in"items"]
@@ -138,11 +142,23 @@ while not quit:
         quit = True
         sys.exit(1)
 
-    # validate player input - is the next room a neighbor to the current one?
+    # validate player input
     if player_input in new_player.room:
         if player_input == "i":
             # show player inventory
             print("Player Inventory: {0}".format(new_player.inventory))
+        elif player_input == "t":
+            if "items" in new_player.room:
+                # player takes an item
+                chosen_item = input("What item will you take?")
+                chosen_item = chosen_item.lower()
+                print("Player chose to take the {0}".format(chosen_item))
+                # remove item from room
+                new_player.room["items"].remove(chosen_item)
+                # add item to player inventory
+                new_player.inventory.append(chosen_item)
+            else:
+                print("There are no items in this room")
         else:
             new_room = new_player.room[player_input]
             # update player instance with the new room
