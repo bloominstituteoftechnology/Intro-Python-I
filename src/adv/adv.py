@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -31,6 +32,7 @@ earlier adventurers. The only exit is to the south.""",
 
 
 # Link rooms together
+# Player movement direction: N, W, S ,E
 
 room["outside"].n_to = room["foyer"]
 room["foyer"].s_to = room["outside"]
@@ -60,5 +62,27 @@ player = Player(room["outside"])
 #
 # If the user enters "q", quit the game.
 
-print("Current room: {}".format(player.currentRoom.name))
-print("Description: {}".format(player.currentRoom.descript))
+def searchDirect(currentRoom, direction):
+    search = direction + "_to"
+    if hasattr(currentRoom, search):
+        return getattr(currentRoom, search)
+    else:
+        print("Invalid path")
+        return currentRoom
+
+playerExit = False
+
+while playerExit != True:
+    print("Current room: {}".format(player.currentRoom.name))
+    for line in textwrap.wrap(player.currentRoom.descript):
+        print(line)
+
+    # convert to lowercase
+    userInput = input("Player>").strip().lower()
+
+    if userInput == "q":
+        playerExit = True
+    elif userInput in {'n', 'w', 's', 'e'}:
+        player.currentRoom = searchDirect(player.currentRoom, userInput)
+    else:
+        print('Invalid command.')
