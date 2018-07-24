@@ -136,9 +136,13 @@ while not quit:
 
     # validate player input - is the next room a neighbor to the current one?
     if player_input in new_player.room:
-        new_room = new_player.room[player_input]
-        # update player instance with the new room
-        new_player.room = rooms[new_room]
+        if player_input == "i":
+            # show player inventory
+            print("Player Inventory: {0}".format(new_player.inventory))
+        else:
+            new_room = new_player.room[player_input]
+            # update player instance with the new room
+            new_player.room = rooms[new_room]
     else:
         # player enters an invalid direction
         print("Please enter a valid direction: n_to, e_to, s_to, or w_to")
