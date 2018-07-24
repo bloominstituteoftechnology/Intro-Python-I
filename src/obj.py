@@ -17,7 +17,7 @@ class Geocache(Waypoint):
     def __init__(self,name,difficulty,size,lat,lon):
             self.difficulty = difficulty
             self.size = size
-            Waypoint.__init__(self,name,lat,lon)
+            super().__init__(name,lat,lon)
 
 # Make a new waypoint "Catacombs", 41.70505, -121.51521
 catacombs = Waypoint("Catacombs", 41.70505, -121.51521)
@@ -30,6 +30,6 @@ print(w)
 
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 geocache = Geocache("Newberry Views", 1.5, 2, 44.052137, -121.41556)
-g = ' '.join(['\nName',geocache.name, '\nDifficulty:',str(geocache.difficulty), '\nSize:',str(geocache.size), '\nLat:',str(catacombs.lat), '\nLon:',str(catacombs.lon),'\n'])
+g = ' '.join(['\nName:',geocache.name, '\nDifficulty:',str(geocache.difficulty), '\nSize:',str(geocache.size), '\nLat:',str(catacombs.lat), '\nLon:',str(catacombs.lon),'\n'])
 # Print it--also make this print more nicely
 print(g)

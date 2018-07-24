@@ -17,8 +17,14 @@
 - [ ] `cal` -- Experiment with module imports
 - [ ] `obj` -- Classes and objects
 
-## Day (2)
-- [ ] `adv.py` a simple text adventure!
+## Day (2) A simple text adventure!
+- [ ] Put the Room class in room.py based on what you see in `adv.py`.
+- [ ] Put the Player class in `player.py`.
+- [ ] Follow the instructions `adv.py`.
+- [ ] Figure out what all those `.pyc` files are.
+* A *.pyc file is created for imported modules, and they are placed in the same directory containing the .py file. But a *.pyc file is never created for the main script for your program.
+
+## Day 2 Stretch
 - [ ] Add more rooms.
 - [ ] Add things to the game that can be found in rooms, e.g. sword, lamp.
     * The room can keep a list of things found within it.
