@@ -1,3 +1,4 @@
+import textwrap
 # Write a text adventure that allows the player to move from room to room by
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
@@ -57,13 +58,13 @@ earlier adventurers. The only exit is to the south.""",
 # Write a class to hold player information, e.g. what room they are in currently
 class Player:
     def __init__(self,room):
-      self.room = room
+        self.room = room
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-new_player = Player(rooms.outside)
+new_player = Player(rooms["outside"])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -74,3 +75,20 @@ new_player = Player(rooms.outside)
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+quit = False # describes game state
+
+while not quit:
+    print("current room: {0}".format(new_player.room["name"]))
+    print(textwrap.fill(new_player.room["description"]))
+    move_to_room = input("Where will you go next?")
+    print("player moves to ${0}".format(move_to_room))
+
+    # validate player input - is the next room a neighbor to the current one?
+
+    if move_to_room == "q":
+        quit = True
+
+
+
+
