@@ -1,4 +1,5 @@
 import textwrap
+import sys
 # Write a text adventure that allows the player to move from room to room by
 # typing "n", "w", "s", or "e" for north, west, south, and east.
 
@@ -82,8 +83,10 @@ while not quit:
     print("current room: {0}".format(new_player.room["name"]))
     print(textwrap.fill(new_player.room["description"]))
     move_to_room = input("Where will you go next?")
+    if move_to_room == "q":
+        quit = True
+        sys.exit(1)
     print("player wants to move {0}".format(move_to_room))
-
     # validate player input - is the next room a neighbor to the current one?
     if move_to_room in new_player.room:
         new_room = new_player.room[move_to_room]
@@ -93,8 +96,7 @@ while not quit:
     else:
         # player enters an invalid direction
         print("Please enter a valid direction: n_to, e_to, s_to, or w_to")
-    if move_to_room == "q":
-        quit = True
+
 
 
 
