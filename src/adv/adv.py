@@ -1,4 +1,8 @@
+import os
+from time import sleep
+from textwrap import wrap
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,13 +42,24 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player('Yasin', room['outside'])
+direction = None
 # Write a loop that:
 #
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
+while (True):
+
+    # * Prints the current room name
+    # * Prints the current description (the textwrap module might be useful here).
+    # * Waits for user input and decides what to do.
+
+    print(
+        '\n You are currently here:', '\n'.join(
+            wrap(player.location.name, width=10)),
+        '\n Description:', '\n'.join(wrap(player.location.description, width=50)))
+    direction = input(
+        '\nWhich way would you like to go?\n(N, E, S, W) or (Q to quit) pick one:').lower()
+    player.move_to(direction)
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
