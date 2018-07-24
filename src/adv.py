@@ -55,6 +55,10 @@ earlier adventurers. The only exit is to the south.""",
 """
 
 # Write a class to hold player information, e.g. what room they are in currently
+class Player_Info:
+    def __init__(self, room):
+        self.name = room['name']
+        self.description = room['description']
 
 #
 # Main
