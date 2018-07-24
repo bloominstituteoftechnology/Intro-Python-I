@@ -13,7 +13,8 @@ rooms = {
         "n": "foyer",
         "e": "bridge",
         "i": "show inventory",
-        "t": "take item"
+        "t": "take item",
+        "d": "drop item"
     },
 
     "foyer": {
@@ -26,7 +27,8 @@ You find a potion and a parchment which says 'Drink this to fight foul monsters 
         "e": "narrow",
         "w": "armory",
         "i": "show inventory",
-        "t": "take item"
+        "t": "take item",
+        "d": "drop item"
     },
 
     "overlook": {
@@ -37,7 +39,8 @@ the distance, but there is no way across the chasm.""",
         "items": ["hero's sword"],
         "s": "foyer",
         "i": "show inventory",
-        "t": "take item"
+        "t": "take item",
+        "d": "drop item"
     },
 
     "narrow": {
@@ -47,7 +50,8 @@ the distance, but there is no way across the chasm.""",
         "n": "treasure",
         "s": "cathedral",
         "i": "show inventory",
-        "t": "take item"
+        "t": "take item",
+        "d": "drop item"
     },
 
     "treasure": {
@@ -58,7 +62,8 @@ earlier adventurers. The only exit is to the south.""",
         "items": ["brass key"],
         "s": "narrow",
         "i": "show inventory",
-        "t": "take item"
+        "t": "take item",
+        "d": "drop item"
     },
 
     "bridge": {
@@ -69,7 +74,8 @@ On the other side you see a red dragon sleeping in the sunlight. It guards the e
         "n": "cathedral",
         "e": "outside",
         "i": "show inventory",
-        "t": "take item"
+        "t": "take item",
+        "d": "drop item"
     },
 
     "cathedral": {
@@ -79,7 +85,8 @@ At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.
         "n": "narrow",
         "s": "bridge",
         "i": "show inventory",
-        "t": "take item"
+        "t": "take item",
+        "d": "drop item"
     },
 
     "armory": {
@@ -89,7 +96,8 @@ and a blackened shield. You find an encryption on the chest lid: 'The ancient he
         "items": ["blackened shield"],
         "e": "foyer",
         "i": "show inventory",
-        "t": "take item"
+        "t": "take item",
+        "d": "drop item"
     }
 
 }
