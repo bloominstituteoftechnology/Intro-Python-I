@@ -10,4 +10,4 @@ print("x is %d, y is %.2f, z is %s" % (x, y, z))
 
 
 # Use the 'format' string method to print the same thing
-print('x is {0}, y is {1:.3}, z is {2:}'.format(x, y, z))
+print('x is {}, y is {.3}, z is {}'.format(x, y, z))
