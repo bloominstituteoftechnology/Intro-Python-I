@@ -1,3 +1,4 @@
+from os import system
 from room import Room
 from player import Player
 import textwrap
@@ -48,7 +49,13 @@ room['pugs'].e_to = room['dungeon']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
+system("clear")
+
+player_name = input("Enter a player name: ")
+
+player = Player(player_name, room['outside'])
+
+print("\nWelcome, %s!" % (player.playerName))
 
 # Write a loop that:
 #
