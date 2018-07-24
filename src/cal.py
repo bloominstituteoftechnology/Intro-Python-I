@@ -14,3 +14,12 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+print("\nUsage: filename year month\n")
+
+month = int(sys.argv[2])
+year = int(sys.argv[1])
+
+c = calendar.TextCalendar(firstweekday=6)
+c.prmonth(year, month)
