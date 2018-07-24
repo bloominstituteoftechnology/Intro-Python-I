@@ -1,3 +1,4 @@
+from os import system
 from room import Room
 from player import Player
 
@@ -30,7 +31,13 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = Player("phantomflynn", room["outside"])
+system("cls")
+
+player_name = input("Enter a player name: ")
+
+player = Player(player_name, room["outside"])
+
+print("\nWelcome, %s!" % (player.playerName))
 
 # Write a loop that:
 #
@@ -44,12 +51,15 @@ player = Player("phantomflynn", room["outside"])
 # If the user enters "q", quit the game.
 
 while True:
-   print("\nCurrent room: ", player.currentRoom)
+   print()
+   print("Current room: ", player.currentRoom.name)
    print("Description: ", player.description)
 
    direction = input("Enter a direction (n, s, e, w): ")
 
-   if direction is "q": break
+   if direction is "q":
+      print("\nThanks for playing!")
+      break
 
    options = {
       "n": player.currentRoom.n_to,

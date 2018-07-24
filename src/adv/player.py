@@ -3,9 +3,9 @@
 class Player:
   def __init__(self, playerName, currentRoom):
     self.playerName = playerName
-    self.currentRoom = currentRoom.name
+    self.currentRoom = currentRoom
     self.description = currentRoom.description
 
   def setCurrentRoom(self, newRoom):
-    self.currentRoom = newRoom.name
+    self.currentRoom = newRoom
     self.description = newRoom.description

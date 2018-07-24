@@ -8,3 +8,6 @@ class Room:
     self.s_to = None
     self.w_to = None
     self.e_to = None
+
+  def __repr__(self):
+    return "%s" % (self.name)
