@@ -13,13 +13,13 @@ rooms = {
     "foyer": {
         "name": "Foyer",
         "description": "Dim light filters in from the south. Dusty passages run north and east.",
-        "n_to": "overlook",
+        "n_to": "JavaScript",
         "s_to": "outside",
         "e_to": "narrow",
     },
 
-    "overlook": {
-        "name": "Grand Overlook",
+    "JavaScript": {
+        "name": "Grand JavaScript",
         "description": """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",

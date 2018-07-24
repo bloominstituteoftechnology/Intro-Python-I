@@ -4,13 +4,12 @@ from player import Player
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'beginning':  Room("area before the Lambda Entrance",
+                       "Before you, presented in majesty, lies the Computer Science Academy of Lambda School. Regardless of your reason, you have sought it out and now it presents you with unimaginable opportunities. Head north to fulfill your destiny."),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+    'entrance':    Room("beginning of Lambda School", """The entrance is neither luxurious nor exactly plain. Everything is merely functional, either it works or it doesn't, with no flair of extravagance in sight. Speaking of functions, you adjust your glasses as programmatical statements begin to swarm around you, coalescing into the form of a human man. The figure strikes an almost familiar smile as he proffers his hand. Motioning, he seems to want you to follow him north, deeper into the academy. 'If you wish to gain more knowledge and power, follow me. Otherwise, this is your one and only chance to leave this place and perhaps return another day. However, continuing now will force you to follow this path no matter where it leads.' He stops, affording you time to decide. Go north, or return south?"""),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
+    'JavaScript': Room("Grand JavaScript", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
@@ -25,12 +24,12 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
+room['beginning'].n_to = room['entrance']
+room['entrance'].s_to = room['beginning']
+room['entrance'].n_to = room['JavaScript']
+room['entrance'].e_to = room['narrow']
+room['JavaScript'].s_to = room['entrance']
+room['narrow'].w_to = room['entrance']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
@@ -39,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player_1 = Player("Leon", room['outside'])
+player_1 = Player("Leon", room['beginning'])
 
 # Write a loop that:
 #
@@ -51,22 +50,29 @@ player_1 = Player("Leon", room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-raw_input = None
+choice = None
 
-while input != 'q':
+while choice != 'q':
     print(player_1)
     print(player_1.currentRoom.description)
 
-    raw_input = input("Choose direction('n', 'e', 'w', 's'):")
+    choice = input("Choose direction('n', 'e', 'w', 's'):")
 
-    if raw_input is "n":
-        player_1.currentRoom = player_1.currentRoom.n_to
+    directions = {
+        "n": player_1.currentRoom.n_to,
+        "e": player_1.currentRoom.e_to,
+        "s": player_1.currentRoom.s_to,
+        "w": player_1.currentRoom.w_to
+    }
 
-    if raw_input is "e":
-        player_1.currentRoom = player_1.currentRoom.e_to
+    next_room = directions.get(choice, None)
 
-    if raw_input is "s":
-        player_1.currentRoom = player_1.currentRoom.s_to
-
-    if raw_input is "w":
-        player_1.currentRoom = player_1.currentRoom.w_to
+    if next_room:
+        player_1.currentRoom = next_room
+    else:
+        if choice in ['n', 'e', 's', 'w']:
+            print("You cannot go that way")
+        elif choice is "q":
+            print("Goodbye")
+        else:
+            "You must enter a direction or 'q' to quit"
