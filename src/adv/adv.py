@@ -1,6 +1,5 @@
 from room import Room
 from player import Player
-import textwrap
 
 # Declare all the rooms
 
@@ -52,4 +51,11 @@ player = Player('Kevin', 'outside')
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# while (player.room_name != 'treasure')
+print("\n" + "Room: \n" + player.room_name + "\n" + "\nRoom Description: \n" + room[player.room_name].description + "\n")
+direction = input("Enter North, East, South, or West or q to Quit: ")
+    
+    
+
 
