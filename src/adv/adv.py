@@ -55,9 +55,6 @@ character = Player(currentLocation)
 
 playing = True
 print('Loading...')
-print('Loading...')
-print('Loading...')
-print('Loading...')
 print('Now Playing: \'Room Explorer.txt\'')
 print('You will be starting out outside. In order to move around type in (n)orth (s)outh (e)ast or (w)est')
 print('When you are done exploring, type q to exit')
