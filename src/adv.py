@@ -167,6 +167,16 @@ while not quit:
                 new_player.inventory.append(chosen_item)
             else:
                 print("There are no items in this room")
+        elif player_input == "d":
+            if len(new_player.inventory) > 0:
+                # drop an item from player inventory
+                drop_item = input("What item will you drop? You cannot recover dropped items")
+                drop_item = drop_item.lower()
+                print("Player dropped the {0}".format(drop_item))
+                new_player.inventory.remove(drop_item)
+            else:
+                # no items to drop
+                print("You don't have anything to drop")
         else:
             new_room = new_player.room[player_input]
             # update player instance with the new room
