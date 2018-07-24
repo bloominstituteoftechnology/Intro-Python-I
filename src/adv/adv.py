@@ -48,11 +48,24 @@ jacob = Player('outside')
 playing = True;
 while(playing):
 # * Prints the current room name
-print("")
+    print(jacob.current)
+    wrappedText = textwrap.TextWrapper(width=40)
+    wordList = wrappedText.wrap(text=jacob.current.description)
+
+for line in wordList:
+    print(line)
+
+
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 #
+playerInput = input("What direction will you choose young hero?\n path choices: n, s, e, w,\n the choice is yours decide a path.")
 # If the user enters a cardinal direction, attempt to move to the room there.
+if playerInput = "q":
+    playing = false=
+
+elif playerInput in ["n","s","w","e"]:
+    
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
