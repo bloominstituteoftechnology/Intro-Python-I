@@ -51,3 +51,21 @@ player = Player('Devon', room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while(True):
+  room = player.current_room
+  print('\n{}:\n{}\n'.format(room.name, room.description))
+
+  player_input = input('> ').split()
+
+  if 'move' in player_input:
+    keyword_idx = player_input.index('move')
+    player.move(player_input[keyword_idx + 1])
+  elif: 'options' in player_input:
+    print('Current options are as follows:\n move [direction] ')
+  elif 'q' in player_input:
+    break
+  else:
+    print('\nInvalid input.\n')
+
+  print('-' * 50)
