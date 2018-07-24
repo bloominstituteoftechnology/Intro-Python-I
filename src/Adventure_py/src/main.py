@@ -2,6 +2,8 @@ from os import system
 from player import Player
 from location import Location
 from item import Item, Weapon
+from door import Door
+
 
 # todo Add a way to win.
 # todo implement door's and keys
@@ -10,6 +12,8 @@ from item import Item, Weapon
 # create items
 lantern = Item(name="lantern", description="a gas powered lantern, looks old.", value=2)
 sword = Weapon(name="Short Sword", description="a single handed sword, it looks like it has seen battle.", dps=25, value=100)
+key = Item(name="key", description="a blue key, i wonder if it fits in any of these doors.", value=10)
+door = Door(key=key, status=False)
 
 # create locations.
 loc_one = Location(name="Outside Cave Entrance", description="North of you, \n\tthe cave mouth beckons")
@@ -22,7 +26,7 @@ loc_three = Location(
     the distance, but there is no way across the chasm."""
 )
 loc_four = Location(name="Narrow Passage", description="The narrow passage bends here from west to north. \n\tThe smell of \
-gold permeates the air.")
+gold permeates the air.", door=door)
 loc_five = Location(
     name="Treasure Chamber",
     description="You've found the long-lost treasure chamber."
@@ -33,6 +37,8 @@ loc_five = Location(
 # add items to locations
 sub_room.items[1] = lantern
 loc_three.items[1] = sword
+loc_three.items[2] = key
+
 
 # connect locations
 loc_one.north = loc_two
@@ -94,43 +100,96 @@ def main():
             p.show_inventory()
         elif x == "p":
             clear()
-            p.pick_up(int(input("index of item: ")), int(input("index of your bag: ")))
+            p.pick_up(int(input(str(loc.items) + "\nindex of item: ")), int(input(str(p.inventory) + "\nindex of your bag: ")))
         elif x == "d":
             clear()
             p.show_inventory()
             p.drop_item(int(input("which item would you like to drop? ")))
         elif x == "1":
-            if p.can_move():
-                if loc.north:
-                    clear()
-                    loc = loc.north
-                    print(loc)
+            if loc.north:
+                if loc.north.door:
+                    if loc.north.door.is_locked:
+                        print("door is locked, would you like to try and unlock it?")
+                        if input("y - yes\nn - no\n") == "y":
+                            clear()
+                            p.show_inventory()
+                            loc.north.door.unlock(p.inventory[int(input("which slot is your key in? "))])
+                    else:
+                        if p.can_move():
+                            clear()
+                            loc = loc.north
+                            print(loc)
                 else:
+                    if p.can_move():
+                        clear()
+                        loc = loc.north
+                        print(loc)
+            else:
                     print("cant go there.")
         elif x == "2":
-            if p.can_move():
-                if loc.south:
-                    clear()
-                    loc = loc.south
-                    print(loc)
+            if loc.south:
+                if loc.south.door:
+                    if loc.south.door.is_locked:
+                        print("door is locked, would you like to try and unlock it?")
+                        if input("y - yes\nn - no\n") == "y" == "y":
+                            clear()
+                            p.show_inventory()
+                            loc.south.door.unlock(p.inventory[int(input("which slot is your key in? "))])
+                    else:
+                        if p.can_move():
+                            clear()
+                            loc = loc.south
+                            print(loc)
                 else:
-                    print("cant go there.")
+                    if p.can_move():
+                        clear()
+                        loc = loc.south
+                        print(loc)
+            else:
+                print("cant go there.")
         elif x == "3":
-            if p.can_move():
-                if loc.east:
-                    clear()
-                    loc = loc.east
-                    print(loc)
+            if loc.east:
+                if loc.east.door:
+                    if loc.east.door.is_locked:
+                        print("door is locked, would you like to try and unlock it?")
+                        if input("y - yes\nn - no\n") == "y" == "y":
+                            clear()
+                            p.show_inventory()
+                            loc.east.door.unlock(p.inventory[int(input("which slot is your key in? "))])
+                    else:
+                        if p.can_move():
+                            clear()
+                            loc = loc.east
+                            print(loc)
                 else:
-                    print("cant go there.")
+                    if p.can_move():
+                        clear()
+                        loc = loc.east
+                        print(loc)
+            else:
+                print("cant go there.")
+
         elif x == "4":
-            if p.can_move():
-                if loc.west:
-                    clear()
-                    loc = loc.west
-                    print(loc)
+            if loc.west:
+                if loc.west.door:
+                    if loc.west.door.is_locked:
+                        print("door is locked, would you like to try and unlock it?")
+                        if input("y - yes\nn - no\n") == "y" == "y":
+                            clear()
+                            p.show_inventory()
+                            loc.west.door.unlock(p.inventory[int(input("which slot is your key in? "))])
+                    else:
+                        if p.can_move():
+                            clear()
+                            loc = loc.west
+                            print(loc)
                 else:
-                    print("cant go there.")
+                    if p.can_move():
+                        clear()
+                        loc = loc.west
+                        print(loc)
+            else:
+                print("cant go there.")
 
         elif x == "5":
             clear()

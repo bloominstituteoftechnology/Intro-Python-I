@@ -27,6 +27,8 @@ class Player(object):
     def wait(self):
         if self.fatigue > 0:
             self.fatigue -= 10
+        else:
+            print("player is fully rested.")
 
     def check_map(self):
         print("North: " + (self.location.north.name if self.location.north else "Nothing.") +
@@ -41,7 +43,6 @@ class Player(object):
         if self.location.items[loc_index] and (len(self.inventory) >= bag_index > 0):
             self.inventory[bag_index] = self.location.items[loc_index]
             del self.location.items[loc_index]
-            self.show_inventory()
         else:
             print("invalid object or spot in your bag.")
 
