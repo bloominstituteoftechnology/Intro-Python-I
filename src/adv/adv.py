@@ -67,19 +67,22 @@ def searchDirect(currentRoom, direction):
     if hasattr(currentRoom, search):
         return getattr(currentRoom, search)
     else:
-        print("Invalid path")
+        print('\n' + 'Invalid path. Try different direction.')
         return currentRoom
 
 playerExit = False
 
 while playerExit != True:
-    print("Current room: {}".format(player.currentRoom.name))
+    # print current room and description
+    print("\nCurrent room: {}".format(player.currentRoom.name))
     for line in textwrap.wrap(player.currentRoom.descript):
         print(line)
 
+    # take user input
     # convert to lowercase
-    userInput = input("Player>").strip().lower()
+    userInput = input("Player> ").strip().lower()
 
+    # quit, search direction, or give error
     if userInput == "q":
         playerExit = True
     elif userInput in {'n', 'w', 's', 'e'}:
