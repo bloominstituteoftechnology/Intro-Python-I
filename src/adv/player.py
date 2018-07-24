@@ -5,6 +5,7 @@ class Player:
   def __init__(self, name, current_room):
     self.name = name
     self.current_room = current_room
+    self.inventory = {}
 
   def move(self, direction):
     room = self.current_room
@@ -26,11 +27,10 @@ class Player:
       if hasattr(room, move_to):
         # Move rooms and print description
         self.current_room = getattr(room, move_to)
-        print('{}:\n{}\n'.format(room.name, room.description))
       else:
         print('I\'m sorry, it looks like the {} has no path leading {}\n'.format(room.name, direction))
     else:
-      print('It appears as though you have input an invalid direction.\n')
+      print('\nInvalid direction.\n')
 
     
     
