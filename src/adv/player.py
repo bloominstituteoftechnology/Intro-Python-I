@@ -6,25 +6,31 @@ class Player:
     self.name = name
     self.current_room = current_room
 
-  def move(direction):
-    if direction == 'north' or direction == 'n':
-      if hasattr(self.current_room, 'n_to'):
-        self.current_room = self.current_room.n_to
+  def move(self, direction):
+    room = self.current_room
 
-    elif direction == 'east' or direction == 'e':
-      if hasattr(self.current_room, 'e_to'):
-        self.current_room = self.current_room.e_to
+    # Account for variation
+    valid_directions = [ 'north', 'east', 'south', 'west' ]
+    abr_directions = { 'n': 'north', 'e': 'east', 's': 'south', 'w': 'west' }
 
-    elif direction == 'south' or direction == 's':
-      if hasattr(self.current_room, 's_to'):
-        self.current_room = self.current_room.s_to
+    # Transfer direction to full name if abreviated
+    if direction in abr_directions.keys():
+      direction = abr_directions[direction]
+
+    # Check if direction is valid
+    if direction in valid_directions:
+      # Make string to call room attribute with getattr()
+      move_to = '{}_to'.format(direction[0])
       
-    elif direction == 'west' or direction == 'w':
-      if hasattr(self.current_room, 'w_to'):
-        self.current_room = self.current_room.w_to
-
+      # Check if room has a path to the requested direction
+      if hasattr(room, move_to):
+        # Move rooms and print description
+        self.current_room = getattr(room, move_to)
+        print('{}:\n{}\n'.format(room.name, room.description))
+      else:
+        print('I\'m sorry, it looks like the {} has no path leading {}\n'.format(room.name, direction))
     else:
-      print('I\'m sorry, it looks like there is no path in that direction.')
+      print('It appears as though you have input an invalid direction.\n')
+
     
-    print(self.current_room.description)
     
