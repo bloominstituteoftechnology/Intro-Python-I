@@ -14,7 +14,7 @@ file.close()
 anotherFile = open("bar.txt", mode="w")
 
 # Use the write() method to write three lines to the file
-anotherFile.writelines("Hey,\n How's it going?,\n Fine")
+anotherFile.writelines("Hey,\nHow's it going?,\nFine")
 
 # Close the file
 anotherFile.close()
