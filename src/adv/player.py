@@ -10,6 +10,6 @@ class Player:
         return f"{self.player} is in the {self.room}"
 
 
-test = Player("Bob", "kitchen")
+# test = Player("Bob", "kitchen")
 
-print(test.printPlayer())
+# print(test.printPlayer())
