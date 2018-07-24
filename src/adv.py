@@ -128,16 +128,15 @@ while not quit:
     # show items in room when player walks in"items"]
     if "items" in new_player.room:
         print("Items: {0}".format(new_player.room["items"]))
-    move_to_room = input("Where will you go next?")
-    if move_to_room == "q":
+    player_input = input("Where will you go next?")
+    # quit game
+    if player_input == "q":
         quit = True
         sys.exit(1)
-    print("player wants to move {0}".format(move_to_room))
 
     # validate player input - is the next room a neighbor to the current one?
-    if move_to_room in new_player.room:
-        new_room = new_player.room[move_to_room]
-        print("player chose to move in {0} direction to the {1} room".format(move_to_room, new_room))
+    if player_input in new_player.room:
+        new_room = new_player.room[player_input]
         # update player instance with the new room
         new_player.room = rooms[new_room]
     else:
