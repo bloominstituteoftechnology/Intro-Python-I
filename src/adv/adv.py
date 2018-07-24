@@ -1,6 +1,6 @@
 from room import Room
 from playerInfo import player
-
+import os
 # Declare all the rooms
 
 room = {
@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-new_player = Player('outside')
+player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -51,22 +51,38 @@ new_player = Player('outside')
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-directions = {
-    's':'s_to',
-    'n':'n_to',
-    'e': 'e_to',
-    'w': 'w_to'
-}
-
+direction = None
+os.system("cls")
 while True:
-    print(new_player.pos['name'], ' is in ', new_player.pos['description'])
-    move = input('Enter a direction or q to quit ')
-    if move == 'q':
+    flag = 0
+    print(player.room)
+
+    # switch statement... kind of
+    direction = input("Where would you like to go? ")
+    if direction == "north":
+        if player.room.n_to:
+            os.system("cls")
+            choice = player.room.n_to
+            flag = 1
+    if direction == "south":
+        if player.room.s_to:
+            os.system("cls")
+            choice = player.room.s_to
+            flag = 1
+    if direction == "east":
+        if player.room.e_to:
+            os.system("cls")
+            choice = player.room.e_to
+            flag = 1
+    if direction == "west":
+        if player.room.w_to:
+            choice = player.room.w_to
+            flag = 1
+    if direction == "exit":
+        os.system("cls")
         break
-    if move != 's' and move != 'n' and move != 'e' and move != 'w':
-        print("{} is not a valid entry, please enter n, s, e, or w".format(move))
-        continue
-    if directions[move] in new_player.pos.keys():
-        new_player.pos = rooms[new_player.pos[directions[move]]]
-    else:
-        print('Nothing to the {} of {}. Please enter a different direction or "q" to quit'.format(move, new_player.pos['name']))
+    if flag == 0:
+        os.system("cls")
+        print("You shall not pass!\n")
+    if flag == 1:
+        player.room = choice
