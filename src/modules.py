@@ -17,7 +17,8 @@ for each in sys.argv:
     print(each)
 
 # Print out the Python version from sys:
-print()
+# sys.argv.append("python --version")
+print(sys.version)
 
 
 
