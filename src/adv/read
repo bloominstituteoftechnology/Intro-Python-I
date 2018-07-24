@@ -1,0 +1,11 @@
+Put it together into a bigger toy program: a simple text adventure!
+
+
+    Put the Room class in room.py based on what you see in adv.py.
+
+    Put the Player class in player.py.
+
+    Follow the instructions adv.py.
+
+    Figure out what all those .pyc files are that appear after you
+    successfully run the program
