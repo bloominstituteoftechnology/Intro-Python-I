@@ -18,7 +18,7 @@ rooms = {
         "name": "Foyer",
         "description": """Dim light filters in from the south. Dusty passages run north and east.
 You find a potion and a parchment which says 'Drink this to fight foul monsters but beware. Your urge to kill grows with every strike' """,
-        "items": ['torch', 'potion', 'parchment']
+        "items": ['torch', 'potion', 'parchment'],
         "n": "overlook",
         "s": "outside",
         "e": "narrow",
@@ -30,7 +30,7 @@ You find a potion and a parchment which says 'Drink this to fight foul monsters 
         "description": """You find the ancient hero's statue and find his sword locked in its scabbard. Beyond,a steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
-        "items": ["hero's sword"]
+        "items": ["hero's sword"],
         "s": "foyer",
     },
 
@@ -39,6 +39,7 @@ the distance, but there is no way across the chasm.""",
         "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
         "w": "foyer",
         "n": "treasure",
+        "s": "cathedral"
     },
 
     "treasure": {
@@ -55,7 +56,8 @@ earlier adventurers. The only exit is to the south.""",
         "description": """Rough winds blow acoss a lonely bridge. The smell of dragon fire and brimstone is heavy here.
 On the other side you see a red dragon sleeping in the sunlight. It guards the entrance to an ancient cathedral""",
         "w": "outside",
-        "n": "cathedral"
+        "n": "cathedral",
+        "e": "outside"
     },
 
     "cathedral": {
@@ -70,7 +72,7 @@ At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.
         "name": "Armory",
         "description": """You find a small armory filled with rusted weapons and some tools. At the far end lies a locked chest
 and a blackened shield. You find an encryption on the chest lid: 'The ancient hero offers his sword but only to those he deems worthy' """,
-        "items": ["blackened shield"]
+        "items": ["blackened shield"],
         "e": "foyer"
     }
 
@@ -113,11 +115,16 @@ quit = False # describes game state
 while not quit:
     print("current room: {0}".format(new_player.room["name"]))
     print(textwrap.fill(new_player.room["description"]))
+
+    # show items in room when player walks in"items"]
+    if "items" in new_player.room:
+        print("Items: {0}".format(new_player.room["items"]))
     move_to_room = input("Where will you go next?")
     if move_to_room == "q":
         quit = True
         sys.exit(1)
     print("player wants to move {0}".format(move_to_room))
+
     # validate player input - is the next room a neighbor to the current one?
     if move_to_room in new_player.room:
         new_room = new_player.room[move_to_room]
