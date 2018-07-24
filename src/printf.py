@@ -6,9 +6,9 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 # print('%x is', x, '%y is', y, '%z is', z)
-print('y is %f, and z is %s' %(y, z))
+print('x is %d, y is %f, and z is %s' %(x, y, z))
 # Use the 'format' string method to print the same thing
 # print('x is', x, 'y is', y, 'z is', z)
 string_concat = 'x is, ' + str(x) +' and y is ' + str(y) + ' z is ' + z
 # print(string_concat)
-print('x is {}, y is {}, z is {}'.format(x, y, z))
+print('x is {}, y is {}, and z is {}'.format(x, y, z))
