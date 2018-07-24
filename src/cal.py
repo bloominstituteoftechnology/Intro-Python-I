@@ -13,5 +13,14 @@
 # Hint: this should be about 15 lines of code. No loops are required. Read the
 # docs for the calendar module closely.
 
-import sys, calendar
+import sys
+import calendar
+import datetime
 
+c = calendar.TextCalendar(calendar.SUNDAY)
+
+if len(sys.argv) == 3:
+    c.prmonth(*list(map(int, sys.argv[1:])))
+else:
+    d = datetime.date.today()
+    c.prmonth(d.year, d.month)

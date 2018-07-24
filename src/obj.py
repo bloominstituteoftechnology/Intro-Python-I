@@ -44,7 +44,9 @@ w = Waypoint("Catacombs", 41.70505, -121.51521)
 print(w)
 
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
+
 print("")
+
 g = Geocache("Newberry Views", 1.5, 2, 44.052137, -121.41556)
 
 # Print it--also make this print more nicely
