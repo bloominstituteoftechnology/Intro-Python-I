@@ -14,3 +14,15 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+# #sets the order of days
+# c = calendar.TextCalendar(calendar.SUNDAY)
+# #sets the date of the calender printed
+# str = c.formatmonth(2018, 7)
+
+# print(str)
+if len (sys.argv) == 3:
+  month = int(sys.argv[1])
+  year = int(sys.argv[2])
+  print(calendar.prmonth(year, month))
