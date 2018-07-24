@@ -24,7 +24,8 @@ You find a potion and a parchment which says 'Drink this to fight foul monsters 
         "s": "outside",
         "e": "narrow",
         "w": "armory",
-        "i": "show inventory"
+        "i": "show inventory",
+        "t": "take item"
     },
 
     "overlook": {
@@ -34,7 +35,8 @@ into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
         "items": ["hero's sword"],
         "s": "foyer",
-        "i": "show inventory"
+        "i": "show inventory",
+        "t": "take item"
     },
 
     "narrow": {
@@ -53,7 +55,8 @@ chamber. Sadly, all but a brass key have been taken by
 earlier adventurers. The only exit is to the south.""",
         "items": ["brass key"],
         "s": "narrow",
-        "i": "show inventory"
+        "i": "show inventory",
+        "t": "take item"
     },
 
     "bridge": {
@@ -81,7 +84,8 @@ At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.
 and a blackened shield. You find an encryption on the chest lid: 'The ancient hero offers his sword but only to those he deems worthy' """,
         "items": ["blackened shield"],
         "e": "foyer",
-        "i": "show inventory"
+        "i": "show inventory",
+        "t": "take item"
     }
 
 }
