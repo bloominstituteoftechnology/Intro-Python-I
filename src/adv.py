@@ -75,7 +75,8 @@ On the other side you see a red dragon sleeping in the sunlight. It guards the e
         "e": "outside",
         "i": "show inventory",
         "t": "take item",
-        "d": "drop item"
+        "d": "drop item",
+        "s": "slay dragon"
     },
 
     "cathedral": {
@@ -177,13 +178,32 @@ while not quit:
             else:
                 # no items to drop
                 print("You don't have anything to drop")
+        elif player_input == "s" and new_player.room["name"] == "Bridge":
+            slay_dragon = input("Are you sure you want to fight the dragon?")
+            slay_dragon = slay_dragon.lower()
+            if slay_dragon == 'y' or slay_dragon == 'yes':
+                print("Player wakes up dragon!!")
+                # player can slay dragon with potion alone
+                if ("potion" in new_player.inventory):
+                    print("Player drinks potion and slays dragon with one punch!")
+                    sys.exit(1) # player wins
+                # player needs heroes sword and shield to slay dragon without potion
+                if ("hero's sword" in new_player.inventory) and ("blackened shield" in new_player.inventory):
+                    print("Player blocks dragon fire with the blackened shield and slays dragon with the hero's sword! You Win!")
+                    sys.exit(1) # player wins
+                else:
+                    # player will lose without the right items
+                    print("Player is devoured by dragon! Game Over!")
+                    sys.exit(1)
+            else:
+                print("Player avoids fighting the dragon.")
         else:
             new_room = new_player.room[player_input]
             # update player instance with the new room
             new_player.room = rooms[new_room]
     else:
         # player enters an invalid direction
-        print("Please enter a valid direction: n_to, e_to, s_to, or w_to")
+        print("Please enter a valid direction: n, e, s, w, t, d")
 
 
 
