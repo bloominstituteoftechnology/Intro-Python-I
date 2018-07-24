@@ -155,7 +155,7 @@ while not quit:
     if player_input in new_player.room:
         if player_input == "i":
             # show player inventory
-            print("Player Inventory: {0}".format(new_player.inventory))
+            print("You Inventory: {0}".format(new_player.inventory))
         elif player_input == "t":
             if "items" in new_player.room:
                 # player takes an item
@@ -163,11 +163,11 @@ while not quit:
                 chosen_item = chosen_item.lower()
                 # player must have key to take hero's sword
                 if (chosen_item == "hero's sword") and ("brass key" in new_player.inventory):
-                    print("Player unlocks hero's sword from statue")
+                    print("You unlocks hero's sword from statue")
                     new_player.room["items"].remove(chosen_item)
                     new_player.inventory.append("hero's sword")
                 elif chosen_item != "hero's sword":
-                    print("Player chose to take the {0}".format(chosen_item))
+                    print("You chose to take the {0}".format(chosen_item))
                     # remove item from room
                     new_player.room["items"].remove(chosen_item)
                     # add item to player inventory
@@ -181,7 +181,7 @@ while not quit:
                 # drop an item from player inventory
                 drop_item = input("What item will you drop? You cannot recover dropped items")
                 drop_item = drop_item.lower()
-                print("Player dropped the {0}".format(drop_item))
+                print("You dropped the {0}".format(drop_item))
                 new_player.inventory.remove(drop_item)
             else:
                 # no items to drop
@@ -190,18 +190,18 @@ while not quit:
             slay_dragon = input("Are you sure you want to fight the dragon?")
             slay_dragon = slay_dragon.lower()
             if slay_dragon == 'y' or slay_dragon == 'yes':
-                print("Player wakes up dragon!!")
+                print("You wake up dragon!!")
                 # player can slay dragon with potion alone
                 if ("potion" in new_player.inventory):
-                    print("Player drinks potion and slays dragon with one punch!")
+                    print("You drink the potion and slay dragon with one punch!")
                     sys.exit(1) # player wins
                 # player needs heroes sword and shield to slay dragon without potion
                 if ("hero's sword" in new_player.inventory) and ("blackened shield" in new_player.inventory):
-                    print("Player blocks dragon fire with the blackened shield and slays dragon with the hero's sword! You Win!")
+                    print("You block the dragon fire with the blackened shield and slay dragon with the hero's sword! You Win!")
                     sys.exit(1) # player wins
                 else:
                     # player will lose without the right items
-                    print("Player is devoured by dragon! Game Over!")
+                    print("You are devoured by the dragon! Game Over!")
                     sys.exit(1)
             else:
                 print("Player avoids fighting the dragon.")
