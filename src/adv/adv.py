@@ -21,6 +21,12 @@ to north. The smell of gold permeates the air."""),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
+
+    'dungeon': Room("The Dungeon", """You've entered the dark, smelly dungeon of doom!
+now you are cursed for 10 million years and forever the
+caregiver for these smelly pugs. Exit to the east."""),
+
+    'pugs': Room("Pugs Dungeon", """You've awoken the beasts!"""),
 }
 
 
@@ -34,6 +40,8 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+room['dungeon'].w_to = room['pugs']
+room['pugs'].e_to = room['dungeon']
 
 #
 # Main
