@@ -15,11 +15,19 @@
 
 import sys
 import calendar
+import datetime
+from datetime import date
+import time
+
 
 print("\nUsage: filename year month\n")
 
-month = int(sys.argv[2])
-year = int(sys.argv[1])
+if len(sys.argv) == 3:
+    month = int(sys.argv[2])
+    year = int(sys.argv[1])
 
-c = calendar.TextCalendar(firstweekday=6)
-c.prmonth(year, month)
+    c = calendar.TextCalendar(firstweekday=6)
+    c.prmonth(year, month)
+else:
+    print("halp")
+
