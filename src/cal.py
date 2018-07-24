@@ -14,3 +14,14 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+
+print ("The calender  : ")
+c = calendar.TextCalendar(0)
+b = c.formatmonth(int(sys.argv[2]), int(sys.argv[1]))
+print (b)
+
+print(sys.argv[2])
+print(calendar.firstweekday())
+print(calendar.isleap(int(sys.argv[2])))

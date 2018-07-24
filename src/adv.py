@@ -28,7 +28,7 @@ the distance, but there is no way across the chasm.""",
 
     "narrow": {
         "name": "Narrow Passage",
-        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
+        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.",
         "w_to": "foyer",
         "n_to": "treasure",
     },
@@ -58,12 +58,24 @@ earlier adventurers. The only exit is to the south.""",
 
 #
 # Main
-#
 
+
+class Info:
+
+    def __init__(self, name, room):
+        self.room = room
+        self.name = name
+
+
+newPlayer = Info('john', rooms['outside'])
+#
+print('palyer room ==> :', list(newPlayer.room.values()))
 # Make a new player object that is currently in the 'outside' room.
-
+rooms = list(rooms)
+print('rooms', rooms)
 # Write a loop that:
-#
+# for room in rooms:
+#     print(f'room name {room}')
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
