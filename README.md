@@ -63,7 +63,7 @@ Learn the basics of Python with a pile of toy programs.
 
 Take a look in the `src/` directory.
 
-NOTE: `adv.py` is for Day 2, so ignore it for today.
+NOTE: `adv/` is for Day 2, so ignore it for today.
 
 Suggested order for implementing the toy programs:
 
@@ -77,6 +77,7 @@ Suggested order for implementing the toy programs:
 * `comp` -- List comprehensions
 * `dicts` -- Dictionaries
 * `func` -- Functions
+* `args` -- Arguments and Keyword Arguments
 * `fileio` -- Read and write from files
 * `cal` -- Experiment with module imports
 * `obj` -- Classes and objects
@@ -85,7 +86,16 @@ Suggested order for implementing the toy programs:
 
 Put it together into a bigger toy program: a simple text adventure!
 
-This is in `src/adv.py`. Check it out!
+This is in `src/adv/`. Check it out!
+
+* Put the Room class in room.py based on what you see in `adv.py`.
+
+* Put the Player class in `player.py`.
+
+* Follow the instructions `adv.py`.
+
+* Figure out what all those `.pyc` files are that appear after you successfully
+  run the program.
 
 Stretch goals:
 
