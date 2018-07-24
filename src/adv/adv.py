@@ -72,4 +72,8 @@ while True:
 
    if userChoice is None: print("There is no door to go to in that direction.")
 
+<<<<<<< HEAD
    else: player.setCurrentRoom(userChoice)
+=======
+    print()
+>>>>>>> 0ab68d6bc3a3d95fde8b9dc6c86efe2fa46f8f91
