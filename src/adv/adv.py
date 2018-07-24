@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+import os
 
 # Declare all the rooms
 
@@ -36,11 +38,19 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-
+print(room['outside'].s_to)
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player('Mark', room['outside'])
+direction = None
 # Write a loop that:
-#
+while(True):
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    print(
+        '\n Your are currently here:', player.location.name,
+        '\n Description:', player.location.description)
+    direction = input('\nWhich way would you like to go?\n(N, E, S, W) pick one:').lower()
+    player.move_to(direction)
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
