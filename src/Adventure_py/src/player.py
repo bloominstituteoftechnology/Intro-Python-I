@@ -14,7 +14,7 @@ class Player(object):
         self.inventory = {i: None for i in range(1, size + 1)}
 
     def __str__(self):
-        return "My name is " + self.name + "\n" + "Health: " + str(self.health) + "\n" + "Fatigue: " + str(self.fatigue)
+        return "Name: " + self.name + "\n" + "Health: " + str(self.health) + "\n" + "Fatigue: " + str(self.fatigue)
 
     def can_move(self):
         if self.fatigue < 100:
@@ -49,7 +49,7 @@ class Player(object):
         if self.inventory[bag_index]:
             if self.location.items.keys():
                 self.location.items[len(self.location.items.keys()) + 1] = self.inventory[bag_index]
-                print("you have dropped" + self.inventory[bag_index])
+                print("you have dropped" + self.inventory[bag_index].name)
                 self.inventory[bag_index] = None
             else:
                 self.location.items[1] = self.inventory[bag_index]

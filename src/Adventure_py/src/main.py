@@ -3,13 +3,13 @@ from player import Player
 from location import Location
 from item import Item, Weapon
 
-# todo Add more rooms.
 # todo Add a way to win.
 # todo implement door's and keys
 # todo Come up with more stretch goals! Scoring? Monsters?
 
 # create items
-lantern = Item(name="lantern", description="a gas powered lantern, looks old.", value=23)
+lantern = Item(name="lantern", description="a gas powered lantern, looks old.", value=2)
+sword = Weapon(name="Short Sword", description="a single handed sword, it looks like it has seen battle.", dps=25, value=100)
 
 # create locations.
 loc_one = Location(name="Outside Cave Entrance", description="North of you, \n\tthe cave mouth beckons")
@@ -32,6 +32,7 @@ loc_five = Location(
 
 # add items to locations
 sub_room.items[1] = lantern
+loc_three.items[1] = sword
 
 # connect locations
 loc_one.north = loc_two
@@ -75,6 +76,10 @@ def main():
     print(loc)
     while True:
         p.location = loc
+        if p.location == loc_five:
+            clear()
+            print("\n\t\tCongrats! you have reached the end of the game.\nPlayer Stats \n" + str(p) + "\nInventory: " + str(p.inventory) + "\n")
+            break
         x = input("enter your command: ")
         if x == "q":
             break
