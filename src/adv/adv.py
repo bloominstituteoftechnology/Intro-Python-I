@@ -52,3 +52,26 @@ player = Player(room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+def dircheck(attr):
+    if(hasattr(player.room, attr)):
+        player.room = getattr(player.room, attr)
+    else:
+        print("\nYou Shall Not Pass\n")
+
+while True:
+    print(player.room.name)
+    print(textwrap.fill(player.room.description, 50))
+    cmd = input("Which Direction Would You Like To Go? (q for quit):")
+    if cmd == "q": # q = quit
+        break
+    elif cmd == "n": # n = North
+        dircheck("n_to")
+    elif cmd == "e": # e = East
+        dircheck("e_to")
+    elif cmd == "s": # s = South
+        dircheck("s_to")
+    elif cmd == "w": # w = West
+        dircheck("w_to")
+    else:
+        print("\nWrong Way - Try Again\n")
