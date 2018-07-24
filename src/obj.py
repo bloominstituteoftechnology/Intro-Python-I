@@ -30,7 +30,7 @@ class Geocache(Waypoint):
 
 new_waypoint = Waypoint("Catacombs",  41.70505, -121.51521)
 
-wp = new_waypoint.data()
+w = new_waypoint.data()
 
 # Print it
 #
@@ -41,4 +41,4 @@ print(w)
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 
 # Print it--also make this print more nicely
-print(g)
+# print(g)
