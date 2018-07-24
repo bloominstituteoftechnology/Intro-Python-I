@@ -161,11 +161,19 @@ while not quit:
                 # player takes an item
                 chosen_item = input("What item will you take?")
                 chosen_item = chosen_item.lower()
-                print("Player chose to take the {0}".format(chosen_item))
-                # remove item from room
-                new_player.room["items"].remove(chosen_item)
-                # add item to player inventory
-                new_player.inventory.append(chosen_item)
+                # player must have key to take hero's sword
+                if (chosen_item == "hero's sword") and ("brass key" in new_player.inventory):
+                    print("Player unlocks hero's sword from statue")
+                    new_player.room["items"].remove(chosen_item)
+                    new_player.inventory.append("hero's sword")
+                elif chosen_item != "hero's sword":
+                    print("Player chose to take the {0}".format(chosen_item))
+                    # remove item from room
+                    new_player.room["items"].remove(chosen_item)
+                    # add item to player inventory
+                    new_player.inventory.append(chosen_item)
+                else:
+                    print("You need the key to unlock the hero's sword")
             else:
                 print("There are no items in this room")
         elif player_input == "d":
