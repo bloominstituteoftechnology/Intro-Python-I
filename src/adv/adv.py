@@ -1,4 +1,6 @@
 import os
+from time import sleep
+from textwrap  import wrap
 from room import Room
 from player import Player 
 # Declare all the rooms
@@ -28,8 +30,8 @@ room['treasure'].s_to = room['narrow']
 
 #
 # Main
-#
-print(room['outside'].s_to)
+# DEBUGGING
+# print(room['outside'].s_to)
 # Make a new player object that is currently in the 'outside' room.
 player = Player('Jackee', room['outside'])
 direction = None
@@ -37,15 +39,18 @@ direction = None
 while(True):
     #print current room name
     #debug 
-    os.system('cls' if os.name == 'nt' else 'clear')
-   
-    print(
-        '\n You are currently here:', player.location.name,
-        '\n Description:', player.location.description)
-    direction = input('\nWhich way would you like to go?\n(N, E, S, W) pick one:').lower()
-    player.move_to(direction)
     
-#
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(
+        '\n You are currently here:','\n'.join(wrap(player.location.name, width=10)),
+        '\n Description:', '\n'.join(wrap(player.location.description, width=50))) 
+    direction = input('\nWhich way would you like to go?\n(N, E, S, W) or (Q to quit) pick one:').lower()
+    player.move_to(direction)
+
+
+# * A *.pyc file is created for imported modules, and they are placed in the same directory containing the .py file. 
+# However... no .pyc file is created for the main script for your program. In other words... 
+# if you call "python myscript.py" on the command line, there will be no .pyc file for myscript.py.
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
