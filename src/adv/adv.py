@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -21,7 +22,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -39,13 +39,39 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+name = input('Enter your name Traveler: ')
+
+defaultRoom = 'outside'
+
+# this creates the player
+player1 = Player(name,defaultRoom)
+
+
+ #currentRoom = Room(name, room[currentRoom.description])
+
+print("Welcome " + player1.name)
+print("You are currently in " + player1.room)
+#print(currentRoom.description)
+print(room[name][description])
+
+#print('You are currently in the ' + room['outside'])
+
 # Write a loop that:
 #
 # * Prints the current room name
+print(currentRoom.name)
+
 # * Prints the current description (the textwrap module might be useful here).
+print(currentRoom.description)
 # * Waits for user input and decides what to do.
+direction = input('Please enter the direction you would like to go: ')
 #
-# If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
+if direction == 'north':
+    currentRoom.name = 'foyer'
+
+if direction == 'q':
+    exit()
+
 #
 # If the user enters "q", quit the game.
