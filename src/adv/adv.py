@@ -8,8 +8,17 @@ room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons", []),
 
+    'bridge': Room("Bridge", """Rough winds blow acoss a lonely bridge. The smell of dragon fire and brimstone is heavy here.
+On the other side you see a red dragon sleeping in the sunlight. It guards the entrance to an ancient cathedral"""),
+
+    'cathedral': Room("Cathedral", """Broken pews, torn tapestries, and skeletons of past adventurers are all that remain inside.
+At the end, sunlight illuminates the lady's chapel. You see a crack in the wall."""),
+
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", []),
+
+    'armory': Room("Armory", """You find a small armory filled with rusted weapons and some tools. At the far end lies a locked chest
+and a blackened shield. You find an encryption on the chest lid: 'The ancient hero offers his sword but only to those he deems worthy'"""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
