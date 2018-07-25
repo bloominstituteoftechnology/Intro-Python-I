@@ -54,13 +54,10 @@ newPlayer = Player("Bob", room["outside"], [])
 newInput = None
 
 while newInput != "q":
-    print(newPlayer)
     print(newPlayer.room.summary)
     print(f"Items in room: {newPlayer.room.items}")
-    print(f"Player inventory: {newPlayer.inventory}")
 
-    newInput = input("Give a one letter direction (NESW): \n")
-
+    newInput = input("Give a one letter direction (NESW): \n \n \n")
 
     newInput = newInput.split(" ")
 
@@ -76,13 +73,16 @@ while newInput != "q":
 
         if newInput[0] is "w" or newInput[0] is "W":
             newPlayer.room = newPlayer.room.w_to
+        
+        if newInput[0] is "i" or newInput[0] is "inventory" or newInput[0] is "I" or newInput[0] is "Inventory":
+            print(f"Player inventory: {newPlayer.inventory}")
 
     if len(newInput) >= 2:
-        if newInput[0] == "get" or newInput[0] == "take":
+        if newInput[0] == "get" or newInput[0] == "take" or newInput[0] is "Get" or newInput[0] is "Take":
             newPlayer.inventory.append(newInput[1])
             newPlayer.room.items.remove(newInput[1])
 
-        if newInput[0] == "drop" or newInput[0] == "remove":
+        if newInput[0] == "drop" or newInput[0] == "remove" or newInput[0] is "Drop" or newInput[0] is "Remove":
             newPlayer.inventory.remove(newInput[1])
             newPlayer.room.items.append(newInput[1])
             
