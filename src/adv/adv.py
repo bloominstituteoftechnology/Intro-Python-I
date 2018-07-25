@@ -99,14 +99,20 @@ while not done:
             print("Unknown command {}".format(s))
     elif len(s) == 2:
         if s[0] in ["get", "take", "pickup"]:
-            # item = player.curRoom.findItem(s[1])
-            item = findItemInRoom(s[1])
+            item = player.curRoom.findItem(s[1])
 
             if item is None:
                 print("Item not found")
             else:
                 player.addItem(item)
                 player.curRoom.removeItem(item.name)
+        elif s[0] in ['drop', 'use']:
+            item = player.findItem(s[1])
 
-def findItemInRoom(name):
-    return player.curRoom.findItem(name)
+            if item is None:
+                print("Item not found")
+            else:
+                player.removeItem(item.name)
+                player.curRoom.addItem(item)
+
+
