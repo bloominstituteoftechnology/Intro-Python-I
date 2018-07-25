@@ -70,6 +70,7 @@ player = Player("Justin", room['outside'])
 # If the user enters "q", quit the game.
 
 move_inputs = ["n", "e", "s", "w"] # valid inputs to advance game
+item_inputs = ["get", "take", "drop", "i"] # valid item interactions
 
 quit = False # describes overall game state
 
