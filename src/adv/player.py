@@ -2,9 +2,10 @@
 # currently.
 
 class Player:
-  def __init__(self, playerName, startRoom):
-    self.name = playerName
-    self.room = startRoom
+    def __init__(self, playerName, startRoom):
+        self.room = startRoom
+        self.name = playerName
+        self.inventory = {}
 
-
-
+    # def pickUpItem(self, item)
+    #   self.item
