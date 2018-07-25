@@ -4,6 +4,7 @@ from textwrap import wrap
 
 from room import Room
 from player import Player
+from minimap import MiniMap
 
 # Declare all the rooms
 
@@ -42,6 +43,7 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 # { name: 'Moises', location: SOME OBJECT REFERENCE }
 player = Player('Moises', room['outside'])
+minimap = MiniMap('MM')
 
 while(True):
     # Clear the console so it is more immersive    
@@ -50,6 +52,8 @@ while(True):
     print(
         '\nYou are located at:','\n'.join(wrap(player.location.name, width=50)),
         '\nDescription:', '\n'.join(wrap(player.location.description, width=50)),
-        '\n\nItems at this location:', '\n'.join(wrap(', '.join(player.location.inventory), width=50)))
+        '\n\nItems at this location:', '\n'.join(wrap(', '.join(player.location.inventory), width=50)),
+        # '\n\n\tMini Map\n', '\n'.join(wrap('\n'.join(''.join(minimap.map)), width=50))
+        )
     direction = input("\nIn what direction do you wish to proceed\n(N,E,W,S) or (Q: for quitting) pick one: ").lower()
     player.move_to(direction)
