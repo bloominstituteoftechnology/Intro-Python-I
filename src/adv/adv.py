@@ -87,7 +87,7 @@ while (player.room_name != 'exit'):
     else:
         print("\nThis is not a direction! Go \"North\", \"East\", \"South\", \"West\" or \"q\" to Quit")
 
-print("\nYou are out of the cave and empty handied!\n")
+print("\nYou are out of the cave and empty handed!\n")
     
     
 
