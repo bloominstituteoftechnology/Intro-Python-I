@@ -1,8 +1,9 @@
-from room import Room
+from room import Room  # importing room object
 from player import Player
 
 # Declare all the rooms
 
+#dictionary called room
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
@@ -24,8 +25,8 @@ earlier adventurers. The only exit is to the south."""),
 
 
 # Link rooms together
-
-room['outside'].n_to = room['foyer']
+#
+room['outside'].n_to = room['foyer'] #north_to connector pointing to foyer
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
@@ -40,67 +41,35 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-new_player = Player('outside')
-
+new_player = Player("Endor", room['outside'])
 
 # Write a loop that:
+
 # * Prints the current room name
+
 # * Prints the current description (the textwrap module might be useful here).
+
 # * Waits for user input and decides what to do.
 
-for key,value in room.iteritems():
-   # print(value, key)
-   if key == new_player.location:
-       print("YOUR CURRENT LOCATION: " + value.name)
-
 # If the user enters a cardinal direction, attempt to move to the room there.
-North = "n_to"
-South = "s_to"
-East = "e_to"
-West = "w_to"
-
-print("\nPlease enter North to move north, South to move south East to move east, West to move west... ")
-
-
-direction_input = 'hey'
-while direction_input != 'q':
-    direction_input = raw_input(
-    "Please enter directions: e east, w west, n north, s south, to quit q \n")
-
-    direction_input = str(direction_input) + '_to'
-# print(direction_input)
-    new_direction = "start"
-    if direction_input == "n_to":
-        try:
-            new_direction = room[str(new_player.location)].n_to
-        except AttributeError, message:
-            print "FAIL FAIL:", message
-            exit(1)
-        # break
-    elif direction_input == "s_to":
-        try:
-            new_direction = room[str(new_player.location)].s_to
-        except AttributeError, message:
-            print "FAIL FAIL:", message
-            exit(1)
-        # break
-    elif direction_input == "e_to":
-        try:
-            new_direction = room[str(new_player.location)].e_to
-        except AttributeError, message:
-            print "FAIL FAIL:", message
-            exit(1)
-        # break
-    else:
-        try:
-            new_direction = room[str(new_player.location)].w_to
-        except AttributeError, message:
-            print "FAIL FAIL:", message
-            exit(1)
-    new_player = Player(new_direction.name)
-    print(new_direction.name)
-    print(new_player.location)
-
-
 
 # If the user enters "q", quit the game.
+
+done = False
+
+while not done:
+    current_room = new_player.room
+    print(f'{current_room.name}\n{current_room.description}')
+    
+    command = input("Command> ").strip().lower()
+
+    if command == 'q' or command == 'quit' or command == 'exit':
+        done == True
+
+    elif command in ["s", "n", "e", "w"]:
+        dirAttr = command + "_to"
+
+        if hasattr(current_room, dirAttr):
+            new_player.room = getattr(current_room, dirAttr)
+        else:
+            print("You can't go that way\n")
