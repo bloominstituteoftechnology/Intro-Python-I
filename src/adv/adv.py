@@ -56,6 +56,8 @@ done = False
 while not done:
     currentRoom = player.room
     
+    # prettyDescription = textwrap.fill(currentRoom.description)
+
     print(f'{currentRoom.name}\n{currentRoom.description}')
 
     command = input('Command> ').strip().lower()
@@ -69,8 +71,8 @@ while not done:
         if hasattr(currentRoom, directionAttribute):
             player.room = getattr(currentRoom, directionAttribute)
             
-            else:
-                print("Can't go that way.")
-
         else:
-            print('I do not understand.')
+            print("Can't go that way.")
+
+    else:
+        print('I do not understand.')
