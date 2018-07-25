@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -33,14 +33,92 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
 
-# Make a new player object that is currently in the 'outside' room.
+newPlayer = Player('john', 'outside')
+
 
 # Write a loop that:
-#
+while True:
+    print(' ====> game is here...........')
+
+    c = input('please type the cardial direction where u need to Go:')
+
+    cardial = ['n', 'e', 'w', 's']
+    if c.lower() not in cardial:
+        print('there is no such direction...')
+        continue
+
+    if c:
+        if c.lower() == 'n':
+            c = "n_to"
+
+        elif c.lower() == 's':
+            c = "s_to"
+
+        elif c.lower() == 'e':
+            c = "e_to"
+
+        elif c.lower() == 'w':
+            c = "w_to"
+        elif c == "q":
+            break
+
+    if hasattr(room[newPlayer.room], c) == False:
+        print('====> there is no such direction...')
+        continue
+
+    nextRoom = getattr(room[newPlayer.room], c)
+
+    if(nextRoom == None):
+        print('====> there is no room here ')
+        continue
+
+    if(nextRoom != None):
+        print('great job you are  in new room ====>:', nextRoom.name)
+        print(f"....{nextRoom.description}...")
+    ################################################################
+
+    ##################################################################
+    while(True):
+        print('keep going .....')
+        d = input('please type the 2nd  cardial direction where u need to Go:')
+
+        bill = ['n', 'e', 'w', 's']
+        if d.lower() not in bill:
+            print('there is no such direction...')
+            continue
+        if d:
+            if d.lower() == 'n':
+                d = "n_to"
+
+            elif d.lower() == 's':
+                d = "s_to"
+
+            elif d.lower() == 'e':
+                d = "e_to"
+
+            elif d.lower() == 'w':
+                d = "w_to"
+
+        if hasattr(nextRoom, d) == False:
+            print('=====> there is no such direction...')
+            continue
+
+        roomAfter = getattr(nextRoom, d)
+
+        if(roomAfter == None):
+            print('====> there is no room here ...')
+            continue
+
+        if(roomAfter != None):
+            print('## GREAT JOB ##  you are  in new room ====>:', roomAfter.name)
+            print(f"....{roomAfter.description}...")
+
+        nextRoom = roomAfter
+
+
+# break
+
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
