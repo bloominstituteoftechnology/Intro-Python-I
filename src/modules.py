@@ -28,4 +28,3 @@ print(os.getpid())
 print(os.getcwd())
 
 # Print your login name
-print(getpass.getuser())
