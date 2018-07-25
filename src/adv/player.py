@@ -7,6 +7,13 @@ class Player():
     def __init__(self, name, location):
         self.name = name
         self.location = location
+        self.inventory = []
+
+    def pick_up(self, item,):
+        """Pick an object, put in inventory, set its owner."""
+        self.inventory.append(item)
+        item.owner = self
+        self.location.inventory.remove(item)
 
     def move_to(self, direction):
         cardinal = direction + '_to'
