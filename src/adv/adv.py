@@ -52,15 +52,22 @@ new_player = Player("yasin", room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-# quit = False
 
-# while not quit:
-#    print("current room: {0}".format(new_player.room["name"]))
-#   print(textwrap.fill(new_player.room["description"]))
-#  move_to_room = input("Where will you go next?")
-# print("player moves to ${0}".format(move_to_room))
+done - False
 
-# validate player input - is the next room a neighbor to the current one?
+while not done:
+    curRoom = player.room
+    print(f'{curRoom.name}\n{curRoom.description}')
 
-# if move_to_room == "q":
-# #   quit = True
+    command = input("Command>").strip().lower()
+
+    if command == 'q' or command == 'quit' or command == 'exit':
+        done = True
+
+        elif command in ["s", "n", "e", "w"]:
+            dirAttr = command + "_to"
+
+            if hasattr(curRoom, dirAttr):
+                print("OK")
+                else:
+                    print("NO K")
