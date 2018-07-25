@@ -115,6 +115,8 @@ while not quit:
 			current.items.remove(noun)
 			# add item to player inventory
 			player.inventory.append(noun)
+		elif noun not in current.items:
+			print("That item isn't in this room")
 		else:
 			print("You can't do that with an item!")
 	else:
