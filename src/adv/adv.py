@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 # Declare all the rooms
 
+
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
@@ -42,54 +43,68 @@ new_player = Player('outside')
 # Write a loop that:
 #
 # * Prints the current room name
-print('current room: ', new_player.room_location)
 for key, value in room.iteritems():
-    print(value, key)
+    # print(value, key)
     if key == new_player.room_location:
-        print(value.room_name)
-        print(value.room_story)
-testVar = 2
+        print 'Current Room: ', value.room_name
+        print 'Description: ', value.room_story
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 direction_input = 'hey'
 while direction_input != 'q':
     direction_input = raw_input(
-    "Please enter directions: e east, w west, n north, s south, to quit q \n")
+    "\n\n\n Please enter directions: e east, w west, n north, s south, to quit q \n\n\n\n\n \n")
     if direction_input == "q":
         exit(1)
     direction_input = str(direction_input) + '_to'
 # print(direction_input)
+    clear = "\n" * 100
     new_direction = "start"
     if direction_input == "n_to":
         try:
             new_direction = room[(new_player.room_location)].n_to
         except AttributeError, message:
+            new_direction = "fail"
             print "FAIL FAIL:", message
-            exit(1)
+            # exit(1)
         # break
     elif direction_input == "s_to":
         try:
             new_direction = room[(new_player.room_location)].s_to
         except AttributeError, message:
+            new_direction = "fail"
             print "FAIL FAIL:", message
-            exit(1)
+            # exit(1)
         # break
     elif direction_input == "e_to":
         try:
             new_direction = room[(new_player.room_location)].e_to
         except AttributeError, message:
+            new_direction = "fail"
             print "FAIL FAIL:", message
-            exit(1)
+            # exit(1)
         # break
     else:
         try:
             new_direction = room[(new_player.room_location)].w_to
         except AttributeError, message:
+            new_direction = "fail"
             print "FAIL FAIL:", message
-            exit(1)
-    new_player = Player(new_direction.room_name)
-    print(new_direction.room_name)
-    print(new_player.room_location)
+            # exit(1)
+    # print(new_direction.room_name)
+    if new_direction == "fail":
+        print "\n \n           Direction ", direction_input, "IS INVALID, try a different direction \n \n"
+    else:
+        for key, value in room.iteritems():
+            if value.room_name == new_direction.room_name:
+                new_player = Player(key)
+            if key == new_player.room_location:
+                print clear
+                print "Success, Direction IS VALID \n\n\n\n\n\n \n"
+                print 'Current Room: ', value.room_name
+                print 'Description: ', value.room_story
+                # break
+    # print(new_player.room_location)
         # break
 
 # exec("%s = %d" % (direction_input,2))
