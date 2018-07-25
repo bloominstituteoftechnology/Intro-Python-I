@@ -88,12 +88,12 @@ while not quit:
 	player_input = input("Command: ").strip().lower()
 	# separate player commands into verb + noun
 	parsed = player_input.split(" ")
-	printf("PARSED PLAYER COMMAND: {0}".format(parsed))
+	print("PARSED PLAYER COMMAND: {0}".format(parsed))
 	# player quits/exits game
 	if (player_input == "q") or (player_input == "quit"):
 		quit = True
 	# player continues the game - moves to another room
-	elif parsed.length == 1:
+	elif len(parsed) == 1:
 		# player moves in a new direction
 		if player_input in move_inputs:
 			dirAttr = player_input + "_to"
@@ -103,7 +103,7 @@ while not quit:
 			else:
 				print("You can't go that way!")
 	# player continues the game - interacts with items
-	elif parsed.length == 2:
+	elif len(parsed) == 2:
 		verb = parsed[0] # action player takes with an item
 		noun = parsed[1] # item itself
 
