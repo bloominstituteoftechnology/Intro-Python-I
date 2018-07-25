@@ -53,19 +53,37 @@ player = Player('Devon', room['outside'])
 # If the user enters "q", quit the game.
 
 while(True):
-  room = player.current_room
-  print('\n{}:\n{}\n'.format(room.name, room.description))
+  print('\n{}:\n{}\n'.format(player.room.name, player.room.description))
 
   player_input = input('> ').split()
+  
+  # One word inputs (ex: look, north, e, inventory, help, quit)
+  if len(player_input) == 1:
+    command = player_input[0]
 
-  if 'move' in player_input:
-    keyword_idx = player_input.index('move')
-    player.move(player_input[keyword_idx + 1])
-  elif 'options' in player_input:
-    print('Current options are as follows:\n move [direction] ')
-  elif 'q' in player_input:
-    break
-  else:
-    print('\nInvalid input.\n')
+    if command == 'help' or command == 'options':
+      print('\nYou can enter one or two word commands.\n' + 
+            'Your options are as follows:\n' +
+            'look - allows you to examine the room that you are currently in\n' +
+            'move [direction] - input direction(north, east...) or first letter of direction to move\n' +
+            'inventory - check\'s what you have on your person\n' +
+            'quit - ends the game\n')
+    elif command == 'look':
+      print('\nYou look around\n')
+    elif command == 'quit' or command == 'q':
+      print('\nOk see ya later! Hope you had fun :)\n')
+      break
+    else:
+      print('\nInvalid single command input\n')
+
+  # Two word inputs (ex: move north, use torch)
+  elif len(player_input) == 2:
+    verb = player_input[0]
+    noun = player_input[1]
+
+    if verb == 'move':
+      player.move(noun)
+    else:
+      print('\nInvalid two command input.\n')
 
   print('-' * 50)
