@@ -70,7 +70,9 @@ while (player.room != 'exit'):
     system("clear")
     if (instruction == "q"):
         break
-    elif (choice):
+    elif (new_room):
+        if (player.room.name == "Treasure Chamber"):
+            break
         player.room = new_room
     elif (instruction in ["North", "East", "South", "West"]):
         print("Nowhere to go\n")
