@@ -2,12 +2,8 @@
 # currently.
 
 class player:
-	def __init__(self, playerName, currentRoom):
+	def __init__(self, playerName, curRoom):
 		self.name = playerName
-		self.currentRoom = currentRoom
+		self.room = curRoom
 
-	def __str__(self):
-  		return '{} is in the {}'.format(self.playerName, self.currentRoom)
-
-myPlayer = player()
 

@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -39,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player("Stan", room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -50,29 +51,28 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-selection = None
+done = False
 
-while selection != 'q':
-    print(player_1)
-    print(player_1.currentRoom.description)
+while not done:
+  	curRoom = player.room
 
-    selection = input("Choose direction('n', 'e', 'w', 's'):")
+	prettyDesc = textwrap.fill(curRoom.description)
 
-    directions = {
-        "n": player_1.currentRoom.n_to,
-        "e": player_1.currentRoom.e_to,
-        "s": player_1.currentRoom.s_to,
-        "w": player_1.currentRoom.w_to
-    }
+	print(f'{curRoom.name}\n{prettyDesc}')
 
-    next_room = directions.get(selection, None)
+	command = input("Command > ").strip().lower()
 
-    if next_room:
-        player_1.currentRoom = next_room
-    else:
-        if selection in ['n', 'e', 's', 'w']:
-            print("You cannot go that way")
-        elif selection is "q":
-            print("Goodbye")
-        else:
-            "You must enter a direction or 'q' to quit"
+	if command == 'q' or command == 'quit' or command == 'exit':
+  		done = True
+
+	elif command in ["s", "n", "e", "w"]:
+  		dirAttr = command + "_to"
+
+		if hasattr(curRrom, dirAttr):
+  			player.room = getattr(curRoom, dirAttr)
+
+		else:
+  			print("You can't go that way.")
+
+	else:
+  		print("I don't understand that.")
