@@ -14,4 +14,4 @@ class Player():
         self.inventory = []
     
     def toInventory(self, item):
-        inventory.append(item)
+        self.inventory.append(item)

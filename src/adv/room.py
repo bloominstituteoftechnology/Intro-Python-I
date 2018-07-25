@@ -18,3 +18,17 @@ class Room():
 
     def addItem(self, item):
         self.Items.append(item)
+
+    def searchItems(self, item_name):
+        for item in self.Items:
+            if item.name == item_name:
+                return item
+            else:
+                return None
+    
+    def removeItem(self, item_name):
+        for item in self.Items:
+            if (item.name == item_name):
+                self.Items.remove(item)
+            else:
+                return None
