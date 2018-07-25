@@ -42,7 +42,7 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 system("clear")
 name = input("Enter your name:\n")
-player = Player(name, 'outside')
+player = Player(name, room['outside'])
 
 # Write a loop that:
 #
@@ -54,48 +54,28 @@ player = Player(name, 'outside')
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
 system("clear")
-while (player.room_name != 'exit'):
-    print(player.name + " is at the\n" + room[player.room_name].name + ": " + room[player.room_name].description + "\n")
+while (player.room != 'exit'):
+    print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
     instruction = input("Enter North, East, South, or West or q to Quit:\n")
+    direction = {
+        "North": player.room.n_to,
+        "East": player.room.e_to,
+        "South": player.room.s_to,
+        "West": player.room.w_to
+    }
+
+    choice = direction.get(instruction, None)
+    system("clear")
     if (instruction == "q"):
         break
-    elif (instruction == "North"):
-        system("clear")
-        try:
-            key = [k for k, v in room.items() if v == room[player.room_name].n_to]
-            player.room_name = ''.join(key)
-        except AttributeError:
-            print("This movement is not allowed!\n")
-    elif (instruction == "East"):
-        system("clear")
-        try:
-            key = [k for k, v in room.items() if v == room[player.room_name].e_to]
-            player.room_name = ''.join(key)
-        except AttributeError:
-            print("This movement is not allowed!\n")
-    elif (instruction == "South"):
-        system("clear")
-        if (player.room_name == "treasure"):
-            break
-        try:
-            key = [k for k, v in room.items() if v == room[player.room_name].s_to]
-            player.room_name = ''.join(key)
-        except AttributeError:
-            print("This movement is not allowed!\n")
-    elif (instruction == "West"):
-        system("clear")
-        try:
-            key = [k for k, v in room.items() if v == room[player.room_name].w_to]
-            player.room_name = ''.join(key)
-        except AttributeError:
-            print("This movement is not allowed!\n")
+    elif (choice):
+        player.room = choice
+    elif (instruction in ["North", "East", "South", "West"]):
+        print("Nowhere to go\n")
     else:
-        system("clear")
         print("This is not a direction! Go \"North\", \"East\", \"South\", \"West\" or \"q\" to Quit\n")
+
 system("clear")
 print("You are out of the cave and empty handed!\n")
-    
-    
-
-
