@@ -5,8 +5,8 @@ import textwrap
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside':  Room("Outside Cave Entrance", 
+                     "To the East you see a bus stop! North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -21,12 +21,16 @@ to north. The smell of gold permeates the air."""),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
-}
 
+    'bus stop': Room("bus stop", """You're now waiting at the bus stop, too bad 
+there isnt another bus coming until next month! You might as well head back west and explore these rooms!""")
+}
 
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
+room['outside'].e_to = room['bus stop']
+room['bus stop'].w_to = room['outside']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
@@ -34,6 +38,7 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
 
 #
 # Main
