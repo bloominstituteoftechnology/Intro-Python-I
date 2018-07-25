@@ -93,6 +93,6 @@ while True:
 
    userChoice = options[direction]
 
-   if userChoice is None: print("There is no door to go to in that direction.")
+   if userChoice is None: print("\nThere is no door to go to in that direction.")
 
    else: player.setCurrentRoom(userChoice)
