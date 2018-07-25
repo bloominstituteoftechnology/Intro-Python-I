@@ -1,3 +1,4 @@
+from player import Player
 from room import Room
 
 # Declare all the rooms
@@ -45,10 +46,10 @@ new_player = Player('outside')
 #
 # * Prints the current room name
 while True:
-    curRoom = rooms[player1.currentRoom]
-    print(curRoom.get('name'))
+    currRoom = rooms[player1.currRoom]
+    print(currRoom.get('name'))
 # * Prints the current description (the textwrap module might be useful here).
-    print(curRoom.get('description'))
+    print(currRoom.get('description')).
 # * Waits for user input and decides what to do.
     userInput = input('What do you want to do? ')
 #
@@ -57,11 +58,12 @@ while True:
     if userInput in directions:
         # move exists
         key = '{}_to'.format(userInput)
-        if rooms[player1.currentRoom].get(key):
-            player1 = Player(rooms[player1.currentRoom].get(key))
+        if rooms[player1.currRoom].get(key):
+            player1 = Player(rooms[player1.currRoom].get(key))
         else:
             print('you cannot move there')
 #
 # If the user enters "q", quit the game.
     elif userInput == 'q':
         break
+        
