@@ -47,16 +47,18 @@ player1 = Player(room['outside'])
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-dead_end = False
+
 while(True):
     print(player1.current_room.name)
     print(player1.current_room.description)
-    if (dead_end):
-        print("You've reached a dead end!!!")
+
     user_input = input("Enter direction to go ")
+
     if user_input == 'q':
         break;
-    dead_end = player1.move(user_input)
+
+    print()
+    player1.move(user_input)
     # import pdb; pdb.set_trace()
 
 

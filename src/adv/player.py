@@ -6,21 +6,11 @@ class Player:
         self.current_room = current_room
 
     def move(self, direction):
-        if direction == 'n':
-            if not self.current_room.n_to:
-                return True
-            self.current_room = self.current_room.n_to
-        elif direction == 'e':
-            if not self.current_room.e_to:
-                return True
-            self.current_room = self.current_room.e_to
-        elif direction == 's':
-            if not self.current_room.s_to:
-                return True
-            self.current_room = self.current_room.s_to
-        elif direction == 'w':
-            if not self.current_room.w_to:
-                return True
-            self.current_room = self.current_room.w_to
-
-        return False
+        if hasattr(self.current_room, f'{direction}_to'):
+            next_room = getattr(self.current_room, f'{direction}_to')
+            if not next_room:
+                print("You've reached a dead end!!!\n")
+            else:
+                self.current_room = next_room
+        else:
+            print("I don't understand that command\n")
