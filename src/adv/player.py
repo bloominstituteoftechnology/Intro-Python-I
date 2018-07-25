@@ -21,14 +21,14 @@ class Player:
     # Check if direction is valid
     if direction in valid_directions:
       # Make string to call room attribute with getattr()
-      move_to = '{}_to'.format(direction[0])
+      move_to = f'{direction[0]}_to'
       
       # Check if room has a path to the requested direction
       if hasattr(room, move_to):
         # Move rooms and print description
         self.current_room = getattr(room, move_to)
       else:
-        print('I\'m sorry, it looks like the {} has no path leading {}\n'.format(room.name, direction))
+        print(f'I\'m sorry, it looks like the {room.name} has no path leading {direction}\n')
     else:
       print('\nInvalid direction.\n')
 
