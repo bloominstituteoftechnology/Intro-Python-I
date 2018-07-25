@@ -66,12 +66,12 @@ while (player.room != 'exit'):
         "West": player.room.w_to
     }
 
-    choice = direction.get(instruction, None)
+    new_room = direction.get(instruction, None)
     system("clear")
     if (instruction == "q"):
         break
     elif (choice):
-        player.room = choice
+        player.room = new_room
     elif (instruction in ["North", "East", "South", "West"]):
         print("Nowhere to go\n")
     else:
