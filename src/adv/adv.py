@@ -67,7 +67,7 @@ def saveGame(player):
         roomData += "];"
     saveFile.write("%s" % roomData)
     saveFile.close()
-    print("Game saved")
+    print("Game saved.")
 
 
 def loadGame(playerName):
@@ -78,10 +78,10 @@ def loadGame(playerName):
     roomData = lines[2].strip(';').split(';')
     loadFile.close()
     for index, room in enumerate(rooms.items()):
-        print(index)
+        # print(index)
         rooms[room[0]].items = eval(roomData[index])
-    print("startingRoom: %s\ninventoryData: %s\nroomData: %s\n" %
-          (startingRoom, inventoryData, roomData))
+    # print("startingRoom: %s\ninventoryData: %s\nroomData: %s\n" %
+    #       (startingRoom, inventoryData, roomData))
     return Player(playerName, rooms[startingRoom], eval(inventoryData))
 
 
@@ -93,7 +93,7 @@ elif newGame == "l" or newGame == "load" or newGame == "load game":
     playerName = input("Enter the character name you want to load: ")
     loadData = loadGame(playerName)
     player = loadData
-    print("Character %s loaded" % playerName)
+    print("Character %s loaded." % playerName)
 else:
     print("Restart the program and choose whether to load or start a new game.")
     exit()
@@ -115,14 +115,17 @@ print("\n" + rooms[startingRoom].description)
 
 while(playing is True):
     curRoom = player.room
-    command = input("Enter a command: ").strip().lower()
+    playerInput = input("Enter a command: ").strip().lower().split()
+    command = playerInput[0]
+    playerInput.append("")
+    secondCommand = playerInput[1]
     if command == "q" or command == "quit":
-        print("Game Ogre")
+        print("You have exited the game.")
         saveGame(player)
         playing = False
         break
     elif command == "help":
-        print('Type n/s/e/w to move in a direction.\nType "i" or "inventory" to check your inventory.\nType "look" or "search" to look around for items.\nType "q" or "quit" to quit and save.\nType "save" to save the game without quitting.')
+        print('Type n/s/e/w to move in a direction.\nType "i" or "inventory" to check your inventory.\nType "look" or "search" to look around for items.\nType "t" or "take" and the name of the item you want to take to pick up an item.\nType "d" or "drop" and the name of the item in your inventory that you want to drop.\nType "q" or "quit" to quit and save.\nType "save" to save the game without quitting.')
     elif command == "save":
         saveGame(player)
     elif command in ["s", "n", "e", "w"]:
@@ -136,10 +139,29 @@ while(playing is True):
         print("You scan your surroundings.")
         for i in curRoom.items:
             print("You find %s." % i.description)
+        if len(curRoom.items) == 0:
+            print("You find nothing of note.")
     elif command == "i" or command == "inventory":
         print("You check your inventory.")
         for i in player.inventory:
             print("You have %s." % i.description)
+    elif command == "t" or command == "take":
+        item = next((i for i in curRoom.items if i.name == secondCommand), None)
+        if item != None:
+            player.inventory.append(item)
+            curRoom.items.remove(item)
+            print("You picked up a %s." % item.name)
+        else:
+            print("There isn't any of that item that you can pick up.")
+    elif command == "d" or command == "drop":
+        item = next(
+            (i for i in player.inventory if i.name == secondCommand), None)
+        if item != None:
+            player.inventory.remove(item)
+            curRoom.items.append(item)
+            print("You dropped a %s." % item.name)
+        else:
+            print("You don't have that object.")
     else:
         print("You entered an invalid command.")
-        print('Type n/s/e/w to move in a direction.\nType "i" or "inventory" to check your inventory.\nType "look" or "search" to look around for items.\nType "q" or "quit" to quit and save.\nType "save" to save the game without quitting.')
+        print('Type n/s/e/w to move in a direction.\nType "i" or "inventory" to check your inventory.\nType "look" or "search" to look around for items.\nType "t" or "take" and the name of the item you want to take to pick up an item.\nType "d" or "drop" and the name of the item in your inventory that you want to drop.\nType "q" or "quit" to quit and save.\nType "save" to save the game without quitting.')
