@@ -110,8 +110,11 @@ while not quit:
 		verb = parsed[0] # action player takes with an item
 		noun = parsed[1] # item itself
 
-		if verb in item_inputs:
-			print("Player {0} an item".format(parsed[0]))
+		if verb in item_inputs and noun in current.items:
+			# remove item from room
+			current.items.remove(noun)
+			# add item to player inventory
+			player.inventory.append(noun)
 		else:
 			print("You can't do that with an item!")
 	else:
