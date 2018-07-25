@@ -1,5 +1,7 @@
 from room import Room
-
+from player import Player
+import textwrap
+import sys
 # Declare all the rooms
 
 room = {
@@ -38,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player("Justin", room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +51,31 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+quit = False # describes overall game state
+
+while not quit:
+	current = player.room
+	description = textwrap.fill(current.description)
+	# show player the room they are in
+	print("{0}\n{1}".format(current.name, description))
+	# take player commands and remove formatting
+	player_input = input("Command: ").strip().lower()
+	# player quits/exits game
+	if (player_input == "q") or (player_input == "quit"):
+		quit = True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
