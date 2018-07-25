@@ -46,7 +46,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-# system("clear")
+system("clear")
 name = input("Enter your name:\n")
 player = Player(name, room['outside'])
 
@@ -89,7 +89,7 @@ while (player.room != 'exit'):
         elif (instruction in ["North", "East", "South", "West"]):
             print("Nowhere to go\n")
         else:
-            print("Invalid. Enter: North | East | South | West | Take Item | Drop Item | Quit\n")
+            print("Invalid Command. Enter: North | East | South | West | Take Item | Drop Item | Quit\n")
 
 system("clear")
 print("You are out of the cave and empty handed!\n")
