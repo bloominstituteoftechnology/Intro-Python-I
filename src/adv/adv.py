@@ -9,25 +9,19 @@ room = {
     "outside": Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
     "foyer": Room(
         "Foyer",
-        """Dim light filters in from the south. Dusty
-passages run north and east.""",
+        """Dim light filters in from the south. Dusty passages run north and east.""",
     ),
     "overlook": Room(
         "Grand Overlook",
-        """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""",
+        """A steep cliff appears before you, falling into the darkness.Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
     ),
     "narrow": Room(
         "Narrow Passage",
-        """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""",
+        """The narrow passage bends here from west to north. The smell of gold permeates the air.""",
     ),
     "treasure": Room(
         "Treasure Chamber",
-        """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""",
+        """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.""",
     ),
 }
 
@@ -59,23 +53,32 @@ p1 = Player("Player One", room["outside"])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-while True:
-    print("\n{}".format(p1.current_room.name))
-    print("   {}".format(p1.current_room.description))
+done = False
+
+while not done:
+    room_name = p1.current_room.name
+    wrapped_desc = textwrap.fill(p1.current_room.description)
+
+    print("\n{}".format(room_name))
+    print("{}".format(wrapped_desc))
 
     user_input = input("> ")
 
+    if user_input in ["n", "e", "s", "w"]:
+        dirAttr = user_input + "_to"
 
-    if user_input == "q":
+        if hasattr(p1.current_room, dirAttr):
+            p1.current_room = getattr(p1.current_room, dirAttr)
+        else:
+            print("Can't go that way.")
+
+    elif user_input == "q":
         print("GG")
-        break
-    if user_input == "help":
+        done = True
+
+    elif user_input == "help":
         helper = "\nCOMMANDS:\nn - north\ne - east\ns - south\nw - west\nq - quit"
         print(helper)
+
     else:
-        print("\n - Enter a command or type help - ")
-        
-
-
-#print(p1.current_room.description)
-#print("HP: {}".format(p1.hp))
+        print("\n - Enter a valid command or type help - ")
