@@ -1,5 +1,7 @@
 from room import Room
 from player import Player
+from item import Item
+import textwrap
 
 # Declare all the rooms
 
@@ -11,7 +13,7 @@ room = {
 
     'JavaScript': Room("Grand JavaScript", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm. Cursing into the vast empty darkness, you hear a robotic voice echo nearby "I am PatrickBot, my love you." Your confusion grows unabatedly as another voice responds, "So, you finally made it." Your eyes attempt to scan the darkness but to no avail. "Up here." The voice was now above you. Glancing up you see a speaker with a single light. """),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
@@ -53,8 +55,11 @@ player_1 = Player("Leon", room['beginning'])
 choice = None
 
 while choice != 'q':
+    currentRoom = player_1.currentRoom
+    prettyDesc = textwrap.fill(player_1.currentRoom.description)
+
     print(player_1)
-    print(player_1.currentRoom.description)
+    print(prettyDesc)
 
     choice = input("Choose direction('n', 'e', 'w', 's'):")
 
