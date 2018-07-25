@@ -4,3 +4,7 @@
 class Player:
     def __init__(self, startRoom):
         self.curRoom = startRoom
+        self.items = []
+
+    def addItem(self, item):
+         self.items.append(item)

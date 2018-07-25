@@ -28,8 +28,14 @@ earlier adventurers. The only exit is to the south."""),
 
 # create items
 item1 = Item("coins", "Shiny coins")
+item2 = Item("coins 2", "Shiny coins 2")
+item3 = Item("coins 3", "Shiny coins 3")
 room['outside'].addItem(item1)
+room['outside'].addItem(item2)
+room['outside'].addItem(item3)
 
+item4 = Item('dog', 'black')
+room['foyer'].addItem(item4)
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -72,12 +78,26 @@ while not done:
         for i in player.curRoom.items:
             print("     " + str(i.name))
 
-    s = input("\nCommand> ").strip().lower()
+    s = input("\nCommand> ").strip().lower().split()
 
-    if s == "q":
-        done = True
-    elif s in ["n", "s", "w", "e"]:
-        player.curRoom = direction(s, player.curRoom)
-    else:
-        print("Unknown command {}".format(s))
+    if len(s) > 2 or len(s) < 1:
+        print("Cannot use command")
+
+    if len(s) == 1:
+        if s[0] == "q":
+            done = True
+        elif s[0] in ["n", "s", "w", "e"]:
+            player.curRoom = direction(s[0], player.curRoom)
+        else:
+            print("Unknown command {}".format(s))
+    elif len(s) == 2:
+        if s[0] in ["get", "take", "pickup"]:
+            item = player.curRoom.findItem(s[1])
+
+            if item is None:
+                print("Item not found")
+            else:
+                player.addItem(item)
+                player.curRoom.removeItem(item.name)
+
 
