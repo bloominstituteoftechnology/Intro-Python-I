@@ -23,6 +23,9 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+# Adding items to the room
+room['outside'].addItem('Sword', 'Shiny')
+room['outside'].addItem('Sword', 'Shiny')
 
 # Link rooms together
 
@@ -54,10 +57,14 @@ player = Player(name, room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+#
+# Add functionality to the main loop that prints out all the items that are
+# visible to the player when they are in that room.
 
 system("clear")
 while (player.room != 'exit'):
     print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
+    print("The item(s) in the room: " + str(player.room.Items))
     instruction = input("Enter North, East, South, or West or q to Quit:\n")
     direction = {
         "North": player.room.n_to,
