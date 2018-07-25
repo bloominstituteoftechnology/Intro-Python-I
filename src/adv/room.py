@@ -6,10 +6,19 @@ class Room:
     def __init__(self, name, description):
         self.name = name
         self.description = description
-        # self.n_to = None
-        # self.s_to = None
-        # self.e_to = None
-        # self.w_to = None
 
-    # def __str__(self):
-    #     return "You are currently " + self.name + '\n\n' + self.description + '\n'
+        self.items = []
+
+    def addItem(self, item):
+        self.items.append(item)
+
+    def removeItem(self, name):
+
+        item = self.findItem(name)
+        self.items.remove(item)
+
+    def findItem(self, name):
+        for item in self.items:
+            if item.name == name:
+                return item
+        return None
