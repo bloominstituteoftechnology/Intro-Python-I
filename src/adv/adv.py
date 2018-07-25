@@ -1,6 +1,7 @@
 from os import system
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 rooms = {
@@ -33,6 +34,17 @@ narrow   = Room(rooms["narrow"]["name"], rooms["narrow"]["description"])
 treasure = Room(rooms["treasure"]["name"], rooms["treasure"]["description"])
 
 
+# Declare any items
+items = {
+    "mirror": {
+        "name": "Mirror",
+        "description": "Check out that reflection"
+    }
+}
+
+mirror = Item(items["mirror"]["name"], items["mirror"]["description"])
+
+
 # Link rooms together
 
 outside.n_to = foyer
@@ -47,6 +59,11 @@ narrow.w_to = foyer
 narrow.n_to = treasure
 
 treasure.s_to = narrow
+
+
+# Add items to rooms
+
+outside.addItem(mirror)
 
 
 # Make a new player object that is currently in the 'outside' room.
@@ -70,6 +87,14 @@ print("\nWelcome, %s!" % (player.playerName))
 #
 # If the user enters "q", quit the game.
 
+def handleItems(list):
+   if len(list) is 0:
+      print("\tNone")
+   else:
+      for item in list:
+         print("\t%s - %s" % (item.name, item.description))
+
+
 while True:
    if player.currentRoom.name is "Treasure Chamber":
       print("\n\nCongratulations, %s! \n\nYou reached Treasure Chamber!\n" % (player.playerName))
@@ -77,8 +102,11 @@ while True:
 
    print("\nCurrent room: ", player.currentRoom.name)
    print("Description: ", player.description)
+   print("Items:")
+    
+   handleItems(player.currentRoom.items)
 
-   direction = input("Enter a direction (n, s, e, w): ")
+   direction = input("\nEnter a direction (n, s, e, w): ")
 
    if direction is "q":
       print("\nThanks for playing!")
