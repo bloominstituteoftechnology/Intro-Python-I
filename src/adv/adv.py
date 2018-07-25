@@ -1,7 +1,7 @@
 from os import system
 from room import Room
 from player import Player
-import textwrap
+import textwrap # or from textwrap import fill
 
 # Declare all the rooms
 
@@ -90,3 +90,31 @@ while True:
         dircheck("w_to")
     else:
         print("\nWrong Way - Try Again\n")
+
+
+# Instructor Solve------------------------------------
+# done = False
+
+# while not done:
+#     curRoom = player.room
+
+#     prettyDesc = textwrap.fill(curRoom.description)
+
+#     print(f'{curRoom.name}\n{prettyDesc}')
+
+#     command = input("Command> ").strip().lower()
+
+#     if command == 'q' or command == 'quit' or command == 'exit':
+#         done = True
+
+#     elif command in ["s", "n", "e", "w"]:
+#         dirAttr = command + "_to"
+
+#         if hasattr(curRoom, dirAttr):
+#             player.room = getattr(curRoom, dirAttr)
+
+#         else:
+#             print("You can't go that way.")
+
+#     else:
+#         print("I don't understand that!")
