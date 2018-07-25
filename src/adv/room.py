@@ -24,5 +24,4 @@ class Room:
     for item in self.items:
       if item.name.lower() == itemName.lower():
         return item
-
     return None

@@ -39,10 +39,15 @@ items = {
     "mirror": {
         "name": "Mirror",
         "description": "Check out that reflection"
+    },
+    "flashlight": {
+       "name": "Flashlight",
+       "description": "A weathered flashlight"
     }
 }
 
-mirror = Item(items["mirror"]["name"], items["mirror"]["description"])
+mirror     = Item(items["mirror"]["name"], items["mirror"]["description"])
+flashlight = Item(items["flashlight"]["name"], items["flashlight"]["description"])
 
 
 # Link rooms together
@@ -64,6 +69,8 @@ treasure.s_to = narrow
 # Add items to rooms
 
 outside.addItem(mirror)
+
+foyer.addItem(flashlight)
 
 
 # Make a new player object that is currently in the 'outside' room.
@@ -127,24 +134,25 @@ def parseCommand(command):
          print("\nItem is not available in this room.\nPlease choose a valid item.")
 
       else:
-         if action == "get": player.getItem(availableItem)
-         if action == "drop": player.dropItem(availableItem)
+         if action == "get": 
+            player.getItem(availableItem)
+            print("\nYou picked up: ", itemName)
+         if action == "drop": 
+            player.dropItem(availableItem)
+            print("\nYou removed %s from your inventory." % (itemName))
+
 
 while True:
    if player.currentRoom.name is "Treasure Chamber":
       print("\n\nCongratulations, %s! \n\nYou reached Treasure Chamber!\n" % (player.playerName))
       break
 
-   print("\nCurrent room: ", player.currentRoom.name)
+   print("\nYou enter the %s\n" % (player.currentRoom.name))
    print("Description: ", player.currentRoom.description)
     
    printItems()
 
    command = input("\nCommand> ")
-
-   if command is "q":
-      print("\nThanks for playing!")
-      break
 
    directions = {
       "n": player.currentRoom.n_to,
@@ -154,11 +162,16 @@ while True:
    }
 
    if len(command) is 1:
-      userChoice = directions[command]
-      if userChoice is None: 
-         print("\nThere is no door to go to in that direction.")
-      else: 
-         player.setCurrentRoom(userChoice)
+      if command is "q":
+         print("\nThanks for playing!")
+         break
+      
+      elif command in directions:
+         userChoice = directions[command]
+         if userChoice is None: 
+            print("\nThere is no door to go to in that direction.")
+         else: 
+            player.setCurrentRoom(userChoice)
 
    else:
       parseCommand(command)

@@ -21,5 +21,4 @@ class Player:
     for item in self.inventory:
       if item.name.lower() == itemName.lower():
         return item
-
     return None
