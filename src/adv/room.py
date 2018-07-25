@@ -15,6 +15,14 @@ class Room:
 
   def removeItem(self, item):
     self.items.remove(item)
+    return item
 
   def getItems(self):
     return self.items
+
+  def itemAvailability(self, itemName):
+    for item in self.items:
+      if item.name is itemName:
+        return item
+
+    return False

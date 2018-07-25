@@ -70,6 +70,10 @@ outside.addItem(mirror)
 
 system("cls" or "clear")
 
+print("Controls:")
+print("   ~  Directions: n, s, e, w")
+print("   ~  Actions: [get, drop] item\n")
+
 username = input("Enter a player name: ")
 
 player = Player(username, outside)
@@ -87,12 +91,25 @@ print("\nWelcome, %s!" % (player.playerName))
 #
 # If the user enters "q", quit the game.
 
-def handleItems(list):
-   if len(list) is 0:
-      print("\tNone")
+def printItems():
+   playerInventory = player.inventory
+   availableItems  = player.currentRoom.items
+
+   print("Items:")
+
+   if len(availableItems) is 0:
+      print("   None")
    else:
-      for item in list:
-         print("\t%s - %s" % (item.name, item.description))
+      for item in availableItems:
+         print("   %s - %s" % (item.name, item.description))
+
+   print("Inventory:")
+
+   if len(playerInventory) is 0:
+      print("   None")
+   else:
+      for item in playerInventory:
+         print("   %s - %s" % (item.name, item.description))
 
 
 while True:
@@ -101,26 +118,45 @@ while True:
       break
 
    print("\nCurrent room: ", player.currentRoom.name)
-   print("Description: ", player.description)
-   print("Items:")
+   print("Description: ", player.currentRoom.description)
     
-   handleItems(player.currentRoom.items)
+   printItems()
 
-   direction = input("\nEnter a direction (n, s, e, w): ")
+   command = input("\nCommand> ")
 
-   if direction is "q":
+   if command is "q":
       print("\nThanks for playing!")
       break
 
-   options = {
+   directions = {
       "n": player.currentRoom.n_to,
       "s": player.currentRoom.s_to,
       "e": player.currentRoom.e_to,
-      "w": player.currentRoom.w_to
+      "w": player.currentRoom.w_to,
    }
 
-   userChoice = options[direction]
+   if len(command) is 1:
+      userChoice = directions[command]
+      if userChoice is None: 
+         print("\nThere is no door to go to in that direction.")
+      else: 
+         player.setCurrentRoom(userChoice)
 
-   if userChoice is None: print("\nThere is no door to go to in that direction.")
+   else:
+      commandParse = command.split(" ")
+      action = commandParse[0]
+      itemName = commandParse[1]
 
-   else: player.setCurrentRoom(userChoice)
+      if action not in ["get", "drop", "use"]:
+         print("\nPlease use a valid action. [get, drop, use]")
+
+      else:
+         actualItem = player.currentRoom.itemAvailability(itemName)
+         available = True
+
+         if actualItem is not available:
+            print("\nItem is not available in this room.\nPlease choose a valid item.")
+         elif action is "get": 
+            player.getItem(actualItem)
+         elif action is "drop":
+            player.dropItem(actualItem)
