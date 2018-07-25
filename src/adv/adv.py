@@ -61,6 +61,11 @@ while not quit:
 	description = textwrap.fill(current.description)
 	# show player the room they are in
 	print("{0}\n{1}".format(current.name, description))
+	# show player all items available in current room
+	if len(current.items) > 0:
+		print("Items: {0}".format(player.room.items))
+	else:
+		print("There are no items in this room")
 	# take player commands and remove formatting
 	player_input = input("Command: ").strip().lower()
 	# player quits/exits game
