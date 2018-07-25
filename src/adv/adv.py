@@ -41,6 +41,10 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player("Stan", room['outside'])
+
+# Create space for inventory in memory
+inventory = []
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -76,3 +80,6 @@ while not done:
 
 	else:
   		print("I don't understand that.")
+
+def addToInventory(item):
+	inventory.append(item)
