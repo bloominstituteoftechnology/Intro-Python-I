@@ -90,16 +90,16 @@ while not quit:
 	parsed = player_input.split(" ")
 	print("PARSED PLAYER COMMAND: {0}".format(parsed))
 	# player quits/exits game
-	if (player_input == "q") or (player_input == "quit"):
+	if (parsed[0] == "q") or (parsed[0] == "quit"):
 		quit = True
-	if parser[0] == "i":
+	if parsed[0] == "i":
 		# show player inventory
 		print("You have the following items: {0}".format(player.inventory)) 
 	# player continues the game - moves to another room
 	elif len(parsed) == 1:
 		# player moves in a new direction
-		if player_input in move_inputs:
-			dirAttr = player_input + "_to"
+		if parsed[0] in move_inputs:
+			dirAttr = parsed[0] + "_to"
 			# check if move input is valid
 			if hasattr(current, dirAttr):
 				player.room = getattr(current, dirAttr) # update player's location
@@ -111,7 +111,7 @@ while not quit:
 		noun = parsed[1] # item itself
 
 		if verb in item_inputs:
-			print("Player {0} an item".format(player_input[0]))
+			print("Player {0} an item".format(parsed[0]))
 		else:
 			print("You can't do that with an item!")
 	else:
