@@ -73,3 +73,6 @@ while not done:
             new_player.room = getattr(current_room, dirAttr)
         else:
             print("You can't go that way\n")
+
+    else:
+        print("I dont understand that command!")
