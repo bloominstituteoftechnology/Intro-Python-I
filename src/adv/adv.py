@@ -35,6 +35,7 @@ treasure = Room(rooms["treasure"]["name"], rooms["treasure"]["description"])
 
 
 # Declare any items
+
 items = {
     "mirror": {
         "name": "Mirror",
@@ -86,7 +87,7 @@ system("cls" or "clear")
 
 print("Controls:")
 print("   ~  Directions: n, s, e, w")
-print("   ~  Actions: [get, drop] item\n")
+print("   ~  Actions: [get, drop, use] item\n")
 
 username = input("Enter a player name: ")
 
@@ -147,11 +148,24 @@ def parseCommand(command):
          if action == "drop": 
             player.dropItem(availableItem)
             print("\nYou removed %s from your inventory." % (itemName))
+         if action == "use":
+            system("cls" or "clear")
+            print("\n\n\n\nYou insert the key and unlock the chest.")
+            print("\nYou win!")
+            print("\nGame over.\n")
+
+
+def handleTreasure():
+   print("\n\nCongratulations, %s! \n\nYou reached Treasure Chamber!" % (player.playerName))
+   print("\n\nA treasure chest glows in the far corner.\n\n")
+   print("The chest appears to be locked.\n\n")
+   action = input("Action: ")
+   parseCommand(action)
 
 
 while True:
    if player.currentRoom.name is "Treasure Chamber":
-      print("\n\nCongratulations, %s! \n\nYou reached Treasure Chamber!\n" % (player.playerName))
+      handleTreasure()
       break
 
    print("\nYou enter the %s\n" % (player.currentRoom.name))
