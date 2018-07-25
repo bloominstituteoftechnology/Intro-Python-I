@@ -61,7 +61,7 @@ while(True):
   if 'move' in player_input:
     keyword_idx = player_input.index('move')
     player.move(player_input[keyword_idx + 1])
-  elif: 'options' in player_input:
+  elif 'options' in player_input:
     print('Current options are as follows:\n move [direction] ')
   elif 'q' in player_input:
     break
