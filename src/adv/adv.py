@@ -20,15 +20,15 @@ rooms = {
 
 # Link rooms together
 
-rooms['outside'].n_to = rooms['foyer']
-rooms['foyer'].s_to = rooms['outside']
-rooms['foyer'].n_to = rooms['overlook']
-rooms['foyer'].e_to = rooms['narrow']
-rooms['overlook'].s_to = rooms['foyer']
-rooms['overlook'].n_to = rooms['chasm']
-rooms['narrow'].w_to = rooms['foyer']
-rooms['narrow'].n_to = rooms['treasure']
-rooms['treasure'].s_to = rooms['narrow']
+rooms['outside'].n_to = 'foyer'
+rooms['foyer'].s_to = 'outside'
+rooms['foyer'].n_to = 'overlook'
+rooms['foyer'].e_to = 'narrow'
+rooms['overlook'].s_to = 'foyer'
+rooms['overlook'].n_to = 'chasm'
+rooms['narrow'].w_to = 'foyer'
+rooms['narrow'].n_to = 'treasure'
+rooms['treasure'].s_to = 'narrow'
 
 #
 # Main
@@ -45,7 +45,7 @@ def tryDirection(direction, currentRoom):
         return currentRoom
     print("Destination:")
     print(destination)
-    return getattr(destination, 'name')
+    return destination
 
 # Make a new player object that is currently in the 'outside' room.
 player=Player('outside')
