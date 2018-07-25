@@ -15,7 +15,7 @@
 
 import sys
 import calendar
-import datatime
+import datetime
 
 current = datetime.datetime.now()
 cal = calendar.TextCalendar()
