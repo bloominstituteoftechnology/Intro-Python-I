@@ -26,6 +26,20 @@ class Player:
     def pick_up(self, item):  # player picks this up
         self.inventory.append(item)
 
+    def inspect(self, item):
+        if len(self.inventory) > 0:
+            itemIndex = -1
+            for index, inv_item in enumerate(self.inventory):
+                if inv_item.item_name == item:
+                    itemIndex = index
+            if itemIndex > -1:
+                descript = self.inventory[itemIndex].item_description
+                return descript
+            else:
+                return False
+        else:
+            return False
+
     def print_inv(self):
         if len(self.inventory) == 0:
             return "Empty"
