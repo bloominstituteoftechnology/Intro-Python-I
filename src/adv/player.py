@@ -5,6 +5,13 @@
 class Player:
     def __init__(self, room):
         self.room = room
+        self.items = []
 
     def position(self):
         return self.room
+
+    def addItem(self, item):
+        self.items.append(item)
+
+    def removeItem(self, item):
+        return self.items.remove(item)

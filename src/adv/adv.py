@@ -1,12 +1,13 @@
 from room import Room
 from player import Player
+from item import Item
 import os
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("outside the Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mouth beckons"),
 
     'foyer':    Room("in the Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -23,9 +24,68 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+item = {
+    'treasure': Item("Hidden Treasure", "Looks like the previous adventurers missed this!"),
+    'rock': Item("Blunt Rock", "It's not very sharp..."),
+}
+
+flag = 0
+
+
+def singleChoice(noun):
+    if noun == "north":
+        if player.room.n_to:
+            player.room = player.room.n_to
+            return 1
+    if noun == "south":
+        if player.room.s_to:
+            player.room = player.room.s_to
+            return 1
+    if noun == "east":
+        if player.room.e_to:
+            player.room = player.room.e_to
+            return 1
+    if noun == "west":
+        if player.room.w_to:
+            player.room = player.room.w_to
+            return 1
+    if (noun == 'i') or (noun == 'inventory'):
+        if len(player.items) > 0:
+            print("You're currently holding")
+            for item in player.items:
+                print(item)
+        else:
+            print("You aren't holding anything")
+        print("\n")
+        return 1
+    if noun == "look":
+        if len(player.room.items) == 1:
+            print("There's only a ", player.room.items[0])
+        if len(player.room.items) > 1:
+            print("There appear to be ")
+            for item in player.room.items:
+                print(item)
+        if len(player.room.items) < 1:
+            print("You don't see anything.")
+        print('\n')
+        return 1
+    if noun == "q":
+        return 2
+
+
+def doubleChoice(verb, noun, item):
+    if (verb == "get") or (verb == "take") or (verb == "pickup"):
+        print(player.room.pickup(player, item[noun]))
+        return 1
+    if (verb == "go") or (verb == "proceed"):
+        return singleChoice(noun)
+    if verb == "look":
+        return singleChoice(verb)
+    if (verb == 'drop') or (verb == 'leave'):
+        print(player.room.drop(player, item[noun]))
+
 
 # Link rooms together
-
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -34,6 +94,11 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+# Place items
+
+room['treasure'].items.append(item['treasure'])
+room['outside'].items.append(item['rock'])
 
 #
 # Main
@@ -52,38 +117,31 @@ player = Player(room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-direction = None
+
+# item = Item("Blunt Rock", "It's not very sharp...")
+# # item = room['treasure'].items[0]
+
+# print(room['treasure'].pickup(player, item))
+
+# print(player.items)
+# print(room['treasure'].items)
+
+# switch statement... kind of
+
 os.system("cls")
 while True:
     flag = 0
     print(player.room)
-
-    # switch statement... kind of
-    direction = input("Where would you like to go? ")
-    if direction == "north":
-        if player.room.n_to:
-            os.system("cls")
-            choice = player.room.n_to
-            flag = 1
-    if direction == "south":
-        if player.room.s_to:
-            os.system("cls")
-            choice = player.room.s_to
-            flag = 1
-    if direction == "east":
-        if player.room.e_to:
-            os.system("cls")
-            choice = player.room.e_to
-            flag = 1
-    if direction == "west":
-        if player.room.w_to:
-            choice = player.room.w_to
-            flag = 1
-    if direction == "exit":
-        os.system("cls")
-        break
+    choice = input("What do you do? ")
+    choice = choice.split(' ')
+    os.system("cls")
+    if len(choice) == 1:
+        flag = singleChoice(choice[0])
+    if len(choice) == 2:
+        flag = doubleChoice(choice[0], choice[1], item)
     if flag == 0:
         os.system("cls")
-        print("You shall not pass!\n")
-    if flag == 1:
-        player.room = choice
+        print(choice)
+        print("You can't do that.\n")
+    if flag == 2:
+        break
