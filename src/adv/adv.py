@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -38,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player("Natalie", room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +51,29 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+done = False
+
+while not done: 
+    curRoom = player.room
+
+    prettyDesc = textwrap.fill(curRoom.desription)
+
+    print(f'{curRoom.name}\n{curRoom.description}')
+
+    command = input("Command> ").strip().lower() #takes off white space and returns lowercase
+
+    if command == 'q' or command == 'quit' or command == 'exit':
+        done = True
+
+    elif command in ["s", "n", "e", "w"]:
+        dirAttr = command + "_to"
+
+        if hasattr(curRoom, dirattr): 
+          player.room = getattr(curRoom, dirAttr)
+
+        else: 
+            print("You can't go that way.")
+        
+    else: 
+        print("I don't understand that command.")
