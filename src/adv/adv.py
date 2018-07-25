@@ -24,10 +24,10 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 
     'dungeon': Room("The Dungeon", """You've entered the dark, smelly dungeon of doom!
-now you are cursed for 10 million years and forever the
+Now you are cursed for 10 million years and forever the
 caregiver for these smelly pugs. Exit to the east."""),
 
-    'pugs': Room("Pugs Dungeon", """You've awoken the beasts!"""),
+    'pugcave': Room("Pugs Cave", """You've awoken the beasts... RUN for your lives to the only exit north!"""),
 }
 
 
@@ -41,8 +41,10 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
-room['dungeon'].w_to = room['pugs']
-room['pugs'].e_to = room['dungeon']
+room['dungeon'].e_to = room['narrow']
+room['narrow'].s_to = room['dungeon']
+room['pugcave'].n_to = room['treasure']
+room['treasure'].s_to = room['pugcave']
 
 #
 # Main
