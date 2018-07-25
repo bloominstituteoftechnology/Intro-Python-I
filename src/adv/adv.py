@@ -40,31 +40,51 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-jacob = Player('outside');
+player = Player("Jacob", room['outside']);
 
 
 # Write a loop that:
 #
 playing = True;
 while(playing):
+    underline = "__________________________________________________________________________________"
 # * Prints the current room name
-    print(jacob.current);
-    wrappedText = textwrap.TextWrapper(width=40);
-    wordList = wrappedText.wrap(text=jacob.current.description);
+    curRoom = player.current
+    prettyDescription = textwrap.fill(curRoom.description)
 
-for line in wordList:
-    print(line);
+    print('\n  {}:\n{}\n{}\n'.format(curRoom.name, underline, prettyDescription))
+
+    command = input("Command>").strip().lower()
+
+    if command =='q' or command =='quit' or command == 'exit':
+     playing = False
+
+    elif command in ["s","n","e","w"]:
+     dirAttr = command + "_to"
+
+    if hasattr(curRoom,dirAttr):
+     player.current = getattr(curRoom,dirAttr)
+    else:
+     print("\n You cannot choose that path.\n")
 
 
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-playerInput = input("What direction will you choose young hero?\n path choices: n, s, e, w,\n the choice is yours decide a path.")
-# If the user enters a cardinal direction, attempt to move to the room there.
-if playerInput = "q":
-    playing = False;
 
-elif playerInput in ["n","s","w","e"]:
+#     wrappedText = textwrap.TextWrapper(width=40);
+#     wordList = wrappedText.wrap(text=jacob.current.description);
+
+# for line in wordList:
+#     print(line);
+
+
+# # * Prints the current description (the textwrap module might be useful here).
+# # * Waits for user input and decides what to do.
+# #
+# playerInput = input("What direction will you choose young hero?\n path choices: n, s, e, w,\n the choice is yours decide a path.")
+# # If the user enters a cardinal direction, attempt to move to the room there.
+# if playerInput = "q":
+#     playing = False;
+
+# elif playerInput in ["n","s","w","e"]:
     
 # Print an error message if the movement isn't allowed.
 #
