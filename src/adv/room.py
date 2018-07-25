@@ -3,13 +3,17 @@
 
 class Room:
     def __init__(self, roomName, description):
-       self.roomName = roomName
+       self.name = roomName
        self.description = description
+       self.n_to = None
+       self.s_to = None
+       self.e_to = None
+       self.w_to = None
 
-    # Method to print roomName and description 
-    def roomDetails(self):
-        return 'The {} is {}'.format(self.roomName, self.description)
+#     # Method to print roomName and description 
+#     def roomDetails(self):
+#         return 'The {} is {}'.format(self.roomName, self.description)
 
-room_1 = Room('Bathroom', 'Blue')
+# room_1 = Room('Bathroom', 'Blue')
 
-print(room_1.roomDetails())
+# print(room_1.roomDetails())

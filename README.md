@@ -74,7 +74,7 @@ Suggested order for implementing the toy programs:
 * `printf` -- Formatted print output `complete`
 * `lists` -- Python's version of arrays `complete`
 * `slice` -- Accessing parts of lists `complete`
-* `comp` -- List comprehensions
+* `comp` -- List comprehensions `complete`
 * `dicts` -- Dictionaries
 * `func` -- Functions
 * `fileio` -- Read and write from files
