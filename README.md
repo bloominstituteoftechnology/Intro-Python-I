@@ -77,6 +77,7 @@ Suggested order for implementing the toy programs:
 * `comp` -- List comprehensions
 * `dicts` -- Dictionaries
 * `func` -- Functions
+* `args` -- Arguments and Keyword Arguments
 * `fileio` -- Read and write from files
 * `cal` -- Experiment with module imports
 * `obj` -- Classes and objects
