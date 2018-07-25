@@ -1,6 +1,7 @@
 from room import Room
-from playerInfo import player
-import os
+from player import Player
+from item import Item
+import textwrap
 # Declare all the rooms
 
 room = {
@@ -51,38 +52,28 @@ player = Player(room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-direction = None
-os.system("cls")
-while True:
-    flag = 0
-    print(player.room)
+done = False
 
-    # switch statement... kind of
-    direction = input("Where would you like to go? ")
-    if direction == "north":
-        if player.room.n_to:
-            os.system("cls")
-            choice = player.room.n_to
-            flag = 1
-    if direction == "south":
-        if player.room.s_to:
-            os.system("cls")
-            choice = player.room.s_to
-            flag = 1
-    if direction == "east":
-        if player.room.e_to:
-            os.system("cls")
-            choice = player.room.e_to
-            flag = 1
-    if direction == "west":
-        if player.room.w_to:
-            choice = player.room.w_to
-            flag = 1
-    if direction == "exit":
-        os.system("cls")
-        break
-    if flag == 0:
-        os.system("cls")
-        print("You shall not pass!\n")
-    if flag == 1:
-        player.room = choice
+while not done:
+    curRoom = player.room
+
+    prettyDesc = textwrap.fill(curRoom.description)
+
+    print(f'{curRoom.name}\n{prettyDesc}\n{curRoom.item}')
+
+    command = input("Command> ").strip().lower()
+
+    if command == 'q' or command == 'quit' or command == 'exit':
+        done = True
+
+    elif command in ["s", "n", "e", "w"]:
+        dirAttr = command + "_to"
+
+        if hasattr(curRoom, dirAttr):
+            player.room = getattr(curRoom, dirAttr)
+
+        else:
+            print("You can't go that way.")
+
+    else:
+        print("I don't understand that!")
