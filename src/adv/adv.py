@@ -2,6 +2,7 @@ import textwrap
 
 from player import Player
 from room import Room
+from item import Item
 
 # Declare all the rooms
 
@@ -24,6 +25,10 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+
+# create items
+item1 = Item("coins", "Shiny coins")
+room['outside'].items.append(item1)
 
 # Link rooms together
 
@@ -61,6 +66,11 @@ while not done:
 
     for line in textwrap.wrap(player.curRoom.description):
         print(line)
+
+    if len(player.curRoom.items) > 0:
+        print("\nYou see:")
+        for i in player.curRoom.items:
+            print("     " + str(i.name))
 
     s = input("\nCommand> ").strip().lower()
 
