@@ -64,6 +64,11 @@ player = Player(room['outside'])
 
 print(player.curRoom.name)
 
+
+def findItemInRoom(name):
+    return player.curRoom.findItem(name)
+
+
 done = False
 
 while not done:
@@ -88,11 +93,14 @@ while not done:
             done = True
         elif s[0] in ["n", "s", "w", "e"]:
             player.curRoom = direction(s[0], player.curRoom)
+        elif s[0] in ["i", "inv", "inventory"]:
+            player.printInventory()
         else:
             print("Unknown command {}".format(s))
     elif len(s) == 2:
         if s[0] in ["get", "take", "pickup"]:
-            item = player.curRoom.findItem(s[1])
+            # item = player.curRoom.findItem(s[1])
+            item = findItemInRoom(s[1])
 
             if item is None:
                 print("Item not found")
@@ -100,4 +108,5 @@ while not done:
                 player.addItem(item)
                 player.curRoom.removeItem(item.name)
 
-
+def findItemInRoom(name):
+    return player.curRoom.findItem(name)

@@ -19,3 +19,12 @@ class Player:
             if item.name == name:
                 return item
         return None
+
+    def printInventory(self):
+
+        if len(self.items) > 0:
+            print("Inventory:\n")
+            for item in self.items:
+                print("name: ", item.name, "description: ", item.description)
+        else:
+            print("You have no items in inventory")
