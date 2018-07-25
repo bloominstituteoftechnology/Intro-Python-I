@@ -40,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-new_player = Player("yasin", room['outside'])
+player = Player("yasin", room['outside'])
 
 # Write a loop that:
 #
@@ -53,7 +53,7 @@ new_player = Player("yasin", room['outside'])
 #
 # If the user enters "q", quit the game.
 
-done - False
+done = False
 
 while not done:
     curRoom = player.room
@@ -64,10 +64,13 @@ while not done:
     if command == 'q' or command == 'quit' or command == 'exit':
         done = True
 
-        elif command in ["s", "n", "e", "w"]:
-            dirAttr = command + "_to"
+    elif command in ["s", "n", "e", "w"]:
+        dirAttr = command + "_to"
 
-            if hasattr(curRoom, dirAttr):
-                print("OK")
-                else:
-                    print("NO K")
+        if hasattr(curRoom, dirAttr):
+               player.room = getattr(curRoom, dirAttr)
+        else:
+                    print("you cant go that way homei")
+
+    else:
+         print("i dont recognize that, what set you claiming? ")
