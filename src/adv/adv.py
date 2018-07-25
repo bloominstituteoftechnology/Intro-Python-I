@@ -1,30 +1,119 @@
 from room import Room
 from player import Player
+from item import Item
 # Declare all the rooms
+
+
+
+weapons = {
+    'outside':  Item([
+        {
+            "Sword": "Strongest steal alloy, killer blade"
+        },
+        {
+            "Machete": "Regular blade, killer knife"
+        },
+        {
+            "Machete": "Regular blade, killer knife"
+        }
+    ], [
+        {
+            "Sword": "Strongest steal alloy, killer blade"
+        },
+        {
+            "Machete": "Regular blade, killer knife"
+        },
+        {
+            "Machete": "Regular blade, killer knife"
+        }
+    ]),
+
+    'foyer':    Item([
+        {
+            "Knife": "Strongest steal alloy, killer blade"
+        },
+        {
+            "Gun": "Regular blade, killer knife"
+        }
+    ], [
+        {
+            "Knife": "Strongest steal alloy, killer blade"
+        },
+        {
+            "Gun": "Regular blade, killer knife"
+        }
+    ]),
+
+    'overlook': Item([
+        {
+            "Wand": "Strongest steal alloy, killer blade"
+        },
+        {
+            "Machete": "Regular blade, killer knife"
+        }
+    ], [
+        {
+            "Knife": "Strongest steal alloy, killer blade"
+        },
+        {
+            "Gun": "Regular blade, killer knife"
+        }
+    ]),
+
+    'narrow':   Item([
+        {
+            "Sword": "Strongest steal alloy, killer blade"
+        },
+        {
+            "Machete": "Regular blade, killer knife"
+        }
+    ], [
+        {
+            "Sword": "Strongest steal alloy, killer blade"
+        },
+        {
+            "Machete": "Regular blade, killer knife"
+        }
+    ]),
+
+    'treasure': Item([
+        {
+            "Sword": "Strongest steal alloy, killer blade"
+        },
+        {
+            "Machete": "Regular blade, killer knife"
+        }
+    ], [
+        {
+            "Sword": "Strongest steal alloy, killer blade"
+        },
+        {
+            "Machete": "Regular blade, killer knife"
+        }
+    ]),
+}
 
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", weapons['outside'], weapons['outside']),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", weapons['foyer'], weapons['foyer']),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", weapons['overlook'], weapons['overlook']),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", weapons['narrow'], weapons['narrow']),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", weapons['treasure'], weapons['treasure']),
 }
-
-
 # Link rooms together
-
+room['outside'].append = weapons['outside']
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -48,6 +137,13 @@ for key, value in room.iteritems():
     if key == new_player.room_location:
         print 'Current Room: ', value.room_name
         print 'Description: ', value.room_story
+        for each in value.name_item.name_item:
+            for key,value in each.iteritems():
+                print "     Weapon choice:", key
+                print "         Weapon description:", value
+                print "\n"
+            # print(each)
+        # print 'Description of Item', value.description_item
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 direction_input = 'hey'
@@ -102,7 +198,11 @@ while direction_input != 'q':
                 print clear
                 print "Success, Direction IS VALID \n\n\n\n\n\n \n"
                 print 'Current Room: ', value.room_name
-                print 'Description: ', value.room_story
+                for each in value.name_item.name_item:
+                    for key,value in each.iteritems():
+                        print "     Weapon choice:", key
+                        print "         Weapon description:", value
+                        print "\n"
                 # break
     # print(new_player.room_location)
         # break
