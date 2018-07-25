@@ -3,3 +3,4 @@
 class Player:
     def __init__(self, start):
         self.currentArea = start
+        self.item = []

@@ -1,8 +1,12 @@
 from room import Room
 from player import Player
+from item import Item
 import textwrap
 
 # Declare all the rooms
+item = {
+    'torch' : Item(name = "Torch", description = "Ahh Light"),
+}
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -20,8 +24,13 @@ to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south. """),
 }
+
+t = Item("Torch", "And Let There Be Light")
+h = Item("Poo", "I don't know why you would pick this up")
+room['outside'].item.append(h)
+
 
 
 # Link rooms together
@@ -41,6 +50,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(room['outside'])
+player.item.append(t)
 
 # Write a loop that:
 def cardDirection(self, currentArea):
@@ -56,16 +66,32 @@ while over is False:
     print("\n{}\n".format(player.currentArea.name))
     for each in textwrap.wrap(player.currentArea.description):
         print(each)
+    print("Items in Area: " + str(player.currentArea.item))
     u = input("\nWhich Direction?\n")
-    if u == "q":
-        print("Quitter")
-        over = True
+   
     if player.currentArea is room['treasure']:
         print("You return home dejected")
         over = True
+    elif len(u) > 2:
+        if u == "take item":
+            if not player.currentArea.item:
+                print("You grasp air....")
+            else:
+                print("You picked up an item " + str(player.currentArea.item))
+                player.item.append(player.currentArea.item)
+                player.currentArea.item = []
+        elif u == "take": print("What did you mean to take? item? Use two words")
+        elif u == 'inventory': print("Player Held Items: " + str(player.item))
+        else: print("Commands: n,s,w,e | take item | q | quit")
     elif u in ["n", "s", "e", "w"]:
         player.currentArea = cardDirection(u, player.currentArea)
-    else: print("Bad Command use the cardinal directions first letter without CAPS")
+    elif u == 'i':
+        print("Player Held Items: " + str(player.item))
+    elif u == "q":
+        print("Quitter")
+        over = True
+    elif u == "t": print("Did you mean take? If so take what? item? Use two words")
+    else: print("Commands: n,s,w,e | take item | q | quit")
 
 
 
