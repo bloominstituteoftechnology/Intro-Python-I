@@ -4,12 +4,10 @@
 class Player:
   def __init__(self, name, current_room):
     self.name = name
-    self.current_room = current_room
-    self.inventory = {}
+    self.room = current_room
+    self.inventory = []
 
   def move(self, direction):
-    room = self.current_room
-
     # Account for variation
     valid_directions = [ 'north', 'east', 'south', 'west' ]
     abr_directions = { 'n': 'north', 'e': 'east', 's': 'south', 'w': 'west' }
@@ -24,11 +22,11 @@ class Player:
       move_to = f'{direction[0]}_to'
       
       # Check if room has a path to the requested direction
-      if hasattr(room, move_to):
+      if hasattr(self.room, move_to):
         # Move rooms and print description
-        self.current_room = getattr(room, move_to)
+        self.room = getattr(self.room, move_to)
       else:
-        print(f'I\'m sorry, it looks like the {room.name} has no path leading {direction}\n')
+        print(f'I\'m sorry, it looks like the {self.room.name} has no path leading {direction}\n')
     else:
       print('\nInvalid direction.\n')
 
