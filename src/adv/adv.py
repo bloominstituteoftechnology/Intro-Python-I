@@ -1,7 +1,9 @@
 from room import Room
 from player import Player
 from item import Item
+
 import textwrap
+import sys
 
 # Declare all the rooms
 
@@ -9,7 +11,13 @@ room = {
     "outside": Room(
         "Outside Cave Entrance",
         "North of you, the cave mount beckons",
-        [Item("Map", "Looks like a map for the cave. It looks heavily faded."), Item("BrokenSword", "The tip of the sword is broken. It can probably still slay some beasts.")],
+        [
+            Item("Map", "Looks like a map for the cave. It looks heavily faded."),
+            Item(
+                "BrokenSword",
+                "The tip of the sword is broken. It can probably still slay some beasts.",
+            ),
+        ],
     ),
     "foyer": Room(
         "Foyer",
@@ -58,7 +66,7 @@ room["treasure"].s_to = room["narrow"]
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = Player(room["outside"])
+player = Player(room["outside"], [])
 
 # Write a loop that:
 #
@@ -94,22 +102,58 @@ while playerExit != True:
     userInput = input("Player> ").strip().lower()
 
     # quit, search direction, or give error
-    if userInput == "q" or userInput == "exit" or userInput == "quit":
+    if userInput == "q" or userInput == "quit" or userInput == "exit":
         print("\nFarewell, adventurer.\n")
         playerExit = True
+
     # shows all available actions
     elif userInput == "action" or userInput == "actions" or userInput == "help":
         print("\navailable actions: n, w, s, e, get, item")
+
     # direction
     elif userInput in {"n", "w", "s", "e"}:
         player.currentRoom = searchDirect(player.currentRoom, userInput)
+
     # list all items
     elif userInput == "item" or userInput == "items":
         if len(player.currentRoom.itemList) != 0:
             for eachItem in player.currentRoom.itemList:
-                print('\nitem:', eachItem.name)
+                print("\nitem:", eachItem.name)
                 print(eachItem.descript)
         else:
             print("\nNo items found.")
+
+    # adding item
+    elif "add" in userInput:
+        # flag for item of interest
+        itemFound = False
+
+        # slice user input.
+        parsed = userInput.split(" ")
+
+        if len(parsed) >= 2:
+            # check to see if there's any item
+            if len(player.currentRoom.itemList) != 0:
+
+                # iterate each item
+                for eachItem in player.currentRoom.itemList:
+
+                    # item is found
+                    if parsed[1] == eachItem.name.lower():
+                        # add item to player inventory and remove from room
+                        player.inventory.append(eachItem)
+                        player.currentRoom.itemList.remove(eachItem)
+
+                        # set flage to true
+                        itemFound = True
+                        break
+        else:
+            print('to add item, type "add [item]"')
+
+        if itemFound == True:
+            print("'{}' added to inventory".format(parsed[1]))
+        else:
+            print("\nItems not found.")
+
     else:
         print("Invalid command.")
