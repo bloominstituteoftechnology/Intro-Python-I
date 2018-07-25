@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from os import system
+from item import Item
 
 # Declare all the rooms
 
@@ -23,9 +24,11 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-# Adding items to the room
-room['outside'].addItem('Sword', 'Shiny')
-room['outside'].addItem('Sword', 'Shiny')
+# Create Item
+sword = Item('Sword', 'Shiny')
+
+# Adding Items to a Room
+room['outside'].addItem(sword)
 
 # Link rooms together
 

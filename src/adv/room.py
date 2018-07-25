@@ -6,8 +6,6 @@
 # The `Room` class should be extended with a `list` that holds the `Item`
 # that are currently in that room.
 
-from item import Item
-
 class Room():
     def __init__(self, name, description):
         self.name = name
@@ -18,5 +16,5 @@ class Room():
         self.w_to = None
         self.Items = []
 
-    def addItem(self, item_name, item_description):
-        self.Items.append(Item(item_name, item_description))
+    def addItem(self, item):
+        self.Items.append(item)
