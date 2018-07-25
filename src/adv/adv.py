@@ -69,7 +69,7 @@ while (player.room != 'exit'):
     print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
     print("The item(s) in the room: " + str(player.room.Items) + "\n")
 
-    instruction = input("Enter: North | East | South | West | Take Item | Drop Item | Quit:\n")
+    instruction = input("Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Quit:\n")
     direction = {
         "North": player.room.n_to,
         "East": player.room.e_to,
@@ -77,9 +77,9 @@ while (player.room != 'exit'):
         "West": player.room.w_to
     }
 
+    system("clear")
     if (len(instruction.split()) == 1):
         new_room = direction.get(instruction, None)
-        system("clear")
         if (instruction == "Quit"):
             break
         elif (new_room):
@@ -89,7 +89,18 @@ while (player.room != 'exit'):
         elif (instruction in ["North", "East", "South", "West"]):
             print("Nowhere to go\n")
         else:
-            print("Invalid Command. Enter: North | East | South | West | Take Item | Drop Item | Quit\n")
+            print("Invalid Command. Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Quit\n")
+    else:
+        verb, target = [x for x in instruction.split()]
+        if (verb == "Take"):
+            if (player.room.searchItems(target)):
+                player.toInventory(target)
+                player.room.removeItem(target)
+                print(player.name + " takes the " + target + "\n")
+            else: 
+                print(target + " is not available\n")
+        if (verb == "Drop"):
+            print("Bye\n")
 
 system("clear")
 print("You are out of the cave and empty handed!\n")
