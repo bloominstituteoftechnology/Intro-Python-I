@@ -21,7 +21,7 @@ to north. The smell of gold permeates the air.""", [Item("Amulet", "The chain is
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [Item("Cloth bag", "A simple bag made of woven fibers")]),
+earlier adventurers. The only exit is to the south.""", [Item("Chainmail", "Slightly rusty and scarred, this armor is nevertheless still servicable")]),
 }
 
 
@@ -55,18 +55,46 @@ player = Player(room['outside'])
 # If the user enters "q", quit the game.
 
 def dircheck(attr):
-    if(hasattr(player.room, attr)):
+    if hasattr(player.room, attr):
         player.room = getattr(player.room, attr)
     else:
-        print("\nInaccessible direction, try again\n")
+        print("\nInaccessible direction, try again")
 
 while True:
-    print(player.room.name)
+    print("\n* " + player.room.name + " *")
     print(textwrap.fill(player.room.desc, 50))
-    cmd = input("Enter a direction (q to quit):")
-    if cmd == "q":
-        break
-    elif cmd in ["n", "e", "s", "w"]:
-        dircheck(cmd + "_to")
+    print("Items: " + (",".join([item.name for item in player.room.items]) or "None") + "\n")
+    cmd = input("Enter a command: ").strip().lower()
+    cmds = cmd.split(" ")
+    if len(cmds) == 1:
+        if cmd == "q" or cmd == "quit":
+            break
+        elif cmd in ["n", "e", "s", "w"]:
+            dircheck(cmd + "_to")
+        elif cmd == "i" or cmd == "inventory":
+            print("\nInventory:\n" + "\n".join([item.name + " - " + item.desc for item in player.inventory]))
+        else:
+            print("\nInvalid command, try again")
+    elif len(cmds) == 2:
+        verb = cmds[0]
+        obj = cmds[1]
+        if verb == "get" or verb == "take":
+            if obj in [item.name.lower() for item in player.room.items]:
+                for i, o in enumerate(player.room.items):
+                    if o.name.lower() == obj:
+                        player.inventory.append(o)
+                        del player.room.items[i]
+                        break
+            else:
+                print("\nObject not found in room")
+        elif verb == "drop":
+            if obj in [item.name.lower() for item in player.inventory]:
+                for i, o in enumerate(player.inventory):
+                    if o.name.lower() == obj:
+                        player.room.items.append(o)
+                        del player.inventory[i]
+                        break
+            else:
+                print("\nObject not found in inventory")
     else:
-        print("\nInvalid direction, try again\n")
+        print("\nInvalid command, try again")
