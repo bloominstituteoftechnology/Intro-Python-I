@@ -1,4 +1,4 @@
-from os import system
+from os import system # for system clear on game play
 from room import Room
 from player import Player
 from item import Item
@@ -8,7 +8,7 @@ import textwrap # or from textwrap import fill
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", [Item("Lantern", "A Lantern to light your way")]),
 
     'foyer':    Room("\nFoyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -22,13 +22,13 @@ to north and south. The smell of gold permeates the air."""),
 
     'treasure': Room("\nTreasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south, but you smell something from the North."""),
+earlier adventurers. The only exit is to the south, but you smell something from the North.""", [Item("Shield", "A shield made of sturdy steel")])),
     # Rm I added on for fun
     'dungeon': Room("\nThe Dungeon", """You've entered the dark, smelly dungeon of doom!
 Now you are cursed for 10 million years and forever the
-caregiver for these smelly pugs. Exit to the east."""),
+caregiver for these smelly pugs. Exit to the east.""", [Item("Satchel", "A satchel made of pig skin to carry your loot")])),
     # Rm I added on for fun
-    'pugcave': Room("\nPugs Cave", """Oh No!!! You've awoken the pug beasts... RUN for your lives to the only exit north!"""),
+    'pugcave': Room("\nPugs Cave", """Oh No!!! You've awoken the pug beasts... RUN for your lives to the only exit north!""", [Item("Fang", "A smelly pug fang for goodluck")])),
 }
 
 
