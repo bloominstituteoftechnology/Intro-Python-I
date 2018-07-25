@@ -10,8 +10,16 @@ class Player:
     self.currentRoom = newRoom
 
   def getItem(self, item):
-    newItem = self.currentRoom.removeItem(item)
-    self.inventory.append(newItem)
+    self.currentRoom.removeItem(item)
+    self.inventory.append(item)
 
   def dropItem(self, item):
-    pass
+    self.inventory.remove(item)
+    self.currentRoom.addItem(item)
+
+  def locateInventory(self, itemName):
+    for item in self.inventory:
+      if item.name.lower() == itemName.lower():
+        return item
+
+    return None

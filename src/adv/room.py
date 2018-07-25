@@ -22,7 +22,7 @@ class Room:
 
   def itemAvailability(self, itemName):
     for item in self.items:
-      if item.name is itemName:
+      if item.name.lower() == itemName.lower():
         return item
 
-    return False
+    return None

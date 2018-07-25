@@ -109,8 +109,26 @@ def printItems():
       print("   None")
    else:
       for item in playerInventory:
-         print("   %s - %s" % (item.name, item.description))
+         print("   %s - %s" % (item.name, item.description))    
 
+
+def parseCommand(command):
+   commandParse = command.split(" ")
+   action = commandParse[0]
+   itemName = commandParse[1]
+
+   if action not in ["get", "drop", "use"]:
+      print("\nPlease use a valid action. [get, drop, use]")
+
+   else:
+      availableItem = player.currentRoom.itemAvailability(itemName) or player.locateInventory(itemName)
+
+      if availableItem is None:
+         print("\nItem is not available in this room.\nPlease choose a valid item.")
+
+      else:
+         if action == "get": player.getItem(availableItem)
+         if action == "drop": player.dropItem(availableItem)
 
 while True:
    if player.currentRoom.name is "Treasure Chamber":
@@ -143,20 +161,4 @@ while True:
          player.setCurrentRoom(userChoice)
 
    else:
-      commandParse = command.split(" ")
-      action = commandParse[0]
-      itemName = commandParse[1]
-
-      if action not in ["get", "drop", "use"]:
-         print("\nPlease use a valid action. [get, drop, use]")
-
-      else:
-         actualItem = player.currentRoom.itemAvailability(itemName)
-         available = True
-
-         if actualItem is not available:
-            print("\nItem is not available in this room.\nPlease choose a valid item.")
-         elif action is "get": 
-            player.getItem(actualItem)
-         elif action is "drop":
-            player.dropItem(actualItem)
+      parseCommand(command)
