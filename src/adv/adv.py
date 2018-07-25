@@ -5,21 +5,21 @@ from player import Player
 
 rooms = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", 'outside'),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", 'foyer'),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", 'overlook'),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", 'narrow'),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", 'treasure'),
 }
 
 
@@ -40,8 +40,35 @@ rooms['treasure'].s_to = rooms['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-startingRoom = rooms['outside']
-player1 = Player(startingRoom)
+startingRoom = 'outside'
+
+
+def saveGame(player):
+    saveFile = open("saves/%s.txt" % player.name, "w+")
+    saveFile.write("%s" % player.room.key)
+    saveFile.close()
+    print("Game saved")
+
+
+def loadGame(player):
+    loadFile = open("saves/%s.txt" % player, "r")
+    startingRoom = loadFile.read()
+    loadFile.close()
+    return startingRoom
+
+
+newGame = input("Newgame or Loadgame (n/l): ").lower()
+if newGame == "n" or newGame == "new" or newGame == "new game":
+    playerName = input("Enter your player name: ")
+    player = Player(playerName, rooms[startingRoom])
+elif newGame == "l" or newGame == "load" or newGame == "load game":
+    playerName = input("Enter the character name you want to load: ")
+    startingRoom = loadGame(playerName)
+    player = Player(playerName, rooms[startingRoom])
+    print("Character %s loaded" % playerName)
+else:
+    print("Restart the program and choose whether to load or start a new game.")
+    exit()
 
 # Write a loop that:
 #
@@ -56,38 +83,26 @@ player1 = Player(startingRoom)
 
 playing = True
 
+print("\n" + rooms[startingRoom].description)
+
 while(playing is True):
-    print(player1.room)
-    direction = input("Enter a direction (n/w/e/s): ")
-    if direction+"_to" == "n_to":
-        # print("n_to")
-        for room in rooms:
-            # print(room)
-            # print(rooms[room])
-            if room == player1.room['n_to']:
-                player1.room = rooms[room]
-                break
-    elif direction+"_to" == "w_to":
-        # print("w_to")
-        for room in rooms:
-            if room == player1.room['w_to']:
-                player1.room = rooms[room]
-                break
-    elif direction+"_to" == "s_to":
-        # print("s_to")
-        for room in rooms:
-            if room == player1.room['s_to']:
-                player1.room = rooms[room]
-                break
-    elif direction+"_to" == "e_to":
-        # print("e_to")
-        for room in rooms:
-            if room == player1.room['e_to']:
-                player1.room = rooms[room]
-                break
-    elif direction == "q":
+    curRoom = player.room
+    command = input("Enter a direction (n/w/e/s): ").strip().lower()
+    if command == "q" or command == "quit":
         print("Game Ogre")
+        saveGame(player)
         playing = False
-    else:
-        print("Invalid input")
         break
+    elif command == "help":
+        print('Type n/s/e/w to move in a direction. Type "q" or "quit" to quit and save. Type "save" to save the game without quitting.')
+    elif command == "save":
+        saveGame(player)
+    elif command in ["s", "n", "e", "w"]:
+        dirAttr = command + "_to"
+        if hasattr(curRoom, dirAttr):
+            player.room = getattr(curRoom, dirAttr)
+            print("\n" + player.room.description)
+        else:
+            print("You can't go that way.")
+    else:
+        print("I don't understand that!")
