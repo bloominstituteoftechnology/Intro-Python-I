@@ -4,7 +4,7 @@ from player import Player
 # Declare all the rooms
 
 rooms = {
-    'outside': Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    'outside': Room("Outside Cave Entrance", "North of you, the cave mouth beckons"),
 
     'foyer': Room("Foyer", "Dim light filters in from the south. Dusty passages run north and east."),
 
@@ -37,14 +37,18 @@ rooms['treasure'].s_to = rooms['narrow']
 # Check to see if the user can move in a direction
 def tryDirection(direction, currentRoom):
     key = direction + "_to"
-    if key not in rooms[currentRoom]:
+    print("current roooooom")
+    print(currentRoom)
+    destination = getattr(rooms[currentRoom], key)
+    if destination == None:
         print("You can't go that way!")
         return currentRoom
-    destination = rooms[currentRoom][key]
-    return destination
+    print("Destination:")
+    print(destination)
+    return getattr(destination, 'name')
 
 # Make a new player object that is currently in the 'outside' room.
-player=Player(rooms['outside'])
+player=Player('outside')
 
 # Write a loop that:
 # * Prints the current room name
@@ -58,16 +62,20 @@ player=Player(rooms['outside'])
 done = False
 
 while not done:
-    print("\n{}\n".format(rooms[player.currentRoom]['name']))
-    print("\n{}\n".format(rooms[player.currentRoom]['description']))
+    currentRoom = getattr(player, 'currentRoom')
+    print("curent room:")
+    print(currentRoom, )
+    print("\n{}\n".format(getattr(rooms[currentRoom], 'name')))
+    print("\n{}\n".format(getattr(rooms[currentRoom], 'description')))
     command = input("\n> ").strip().lower()
-    if (command == 'q' or 'quit'):
+    if (command == 'q') or (command == 'quit'):
         done = True
-    elif (command == 'h' or 'help'):
-        print("LIST OF COMMANDS:")
-        for command in commands:
-            print(command, "\t", commands[command])
+    #elif (command == 'h' or 'help'):
+        #print("LIST OF COMMANDS:")
+        #for command in commands:
+            #print(command, "\t", commands[command])
     elif command in ['n', 's', 'e', 'w']:
-        player.currentRoom = tryDirection(command, player.currentRoom)
+        destination = tryDirection(command, currentRoom)
+        setattr(player, 'currentRoom', destination)
     else:
         print("Unknown command {}".format(command))
