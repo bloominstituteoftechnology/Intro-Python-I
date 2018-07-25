@@ -10,4 +10,4 @@ class Item:
         return self.name
 
     def inspect(self):
-        return self.name + ':' + self.description
+        return self.name + ': ' + self.description + '\n'

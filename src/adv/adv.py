@@ -27,9 +27,25 @@ earlier adventurers. The only exit is to the south."""),
 item = {
     'treasure': Item("Hidden Treasure", "Looks like the previous adventurers missed this!"),
     'rock': Item("Blunt Rock", "It's not very sharp..."),
+    'sword': Item("Iron Sword", "More sharp than a rock!"),
 }
 
-flag = 0
+
+# Link rooms together
+room['outside'].n_to = room['foyer']
+room['foyer'].s_to = room['outside']
+room['foyer'].n_to = room['overlook']
+room['foyer'].e_to = room['narrow']
+room['overlook'].s_to = room['foyer']
+room['narrow'].w_to = room['foyer']
+room['narrow'].n_to = room['treasure']
+room['treasure'].s_to = room['narrow']
+
+# Place items
+
+room['treasure'].items.append(item['treasure'])
+room['outside'].items.append(item['rock'])
+room['foyer'].items.append(item['sword'])
 
 
 def singleChoice(noun):
@@ -71,6 +87,7 @@ def singleChoice(noun):
         return 1
     if noun == "q":
         return 2
+    return 0
 
 
 def doubleChoice(verb, noun, item):
@@ -83,26 +100,16 @@ def doubleChoice(verb, noun, item):
         return singleChoice(verb)
     if (verb == 'drop') or (verb == 'leave'):
         print(player.room.drop(player, item[noun]))
-
-
-# Link rooms together
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
-
-# Place items
-
-room['treasure'].items.append(item['treasure'])
-room['outside'].items.append(item['rock'])
+        return 1
+    if (verb == 'inspect') or (verb == 'analyze'):
+        print(item[noun].inspect())
+        return 1
+    return 0
 
 #
 # Main
 #
+
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(room['outside'])
@@ -140,8 +147,6 @@ while True:
     if len(choice) == 2:
         flag = doubleChoice(choice[0], choice[1], item)
     if flag == 0:
-        os.system("cls")
-        print(choice)
         print("You can't do that.\n")
     if flag == 2:
         break
