@@ -40,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player("Jacob", room['outside'],[]);
+player = Player("Jacob", room['outside'],[],16);
 print(player)
 
 # Write a loop that:
@@ -48,26 +48,43 @@ print(player)
 playing = True;
 while(playing):
     #width = os.get_terminal_size() 
-    underline = "_" * 90
+    underline = " <"+ ("-" * 70) + ">"
 
 # * Prints the current room name
     curRoom = player.current
     prettyDescription = textwrap.fill(curRoom.description)
     #prettyDescription = prettyDescription.center(40," ")
-    print('\n\t\t\tYou are in the {}.\n{}\n\n{}\n\nLoot:\n{}\n\nBag:\n{}\n{}\n'.format(curRoom.name, underline, prettyDescription,curRoom.items,player.inventory,underline))
+    print('\n\t\tYou are in the {}.\n{}\n\n{}\n\nLoot:\n{}\n\nBag:\n{}\n{}\n'.format(curRoom.name, underline, prettyDescription,curRoom.items,player.inventory,underline))
+    loot =  input("would you like to take an item?\n(yes/no)").strip().lower()
+    if loot == "yes" or loot =="y":
+        if len(player.inventory) < 4:
+            print("what would you like to loot:\n{}".format
+            (curRoom.items))
+            removed = curRoom.items.pop(curRoom.items.index(input("pick:").strip().lower()))
 
-    command = input("Command>").strip().lower()
 
-    if command =='q' or command =='quit' or command == 'exit':
-     playing = False
+            #removed = curRoom.items.remove(grab)
+            print("You added {} to your bag".format(removed))
+            player.inventory.append(removed)
+        elif len(player.inventory) >=player.bagSize:
+          
+             print("Bag is full!")
 
-    elif command in ["s","n","e","w"]:
-     dirAttr = command + "_to"
+    elif loot =='q' or loot == 'quit' or loot =='exit' or loot == 'stop':
+             playing = False 
+    elif loot == "no" or loot =="n": 
+        command = input("Enter a direction:\n N, S, W, E, ").strip().lower()
 
-    if hasattr(curRoom,dirAttr):
-     player.current = getattr(curRoom,dirAttr)
-    else:
-     print("\n You cannot choose that path.\n")
+        if command =='q' or command =='quit' or command == 'exit':
+            playing = False
+
+        elif command in ["s","n","e","w"]:
+            dirAttr = command + "_to"
+
+        if hasattr(curRoom,dirAttr):
+             player.current = getattr(curRoom,dirAttr)
+        else:
+             print("\n You cannot choose that path.\n")
 
 
 
