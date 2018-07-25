@@ -59,7 +59,15 @@ best for learning new languages.
 
 ## Day 1
 
-Learn the basics of Python with a pile of toy programs.
+### Goals
+
+* Learn the basic syntax and structure of Python
+
+### Summary
+
+* Implement a number of tiny Python programs that demonstrate Python syntax.
+
+### Instructions
 
 Take a look in the `src/` directory.
 
@@ -84,7 +92,18 @@ Suggested order for implementing the toy programs:
 
 ## Day 2
 
-Put it together into a bigger toy program: a simple text adventure!
+### Goals
+
+* Solidify the Python basics
+
+
+### Summary
+
+* Implement a basic text adventure game
+* Add classes for rooms and the player
+* Add a simple parser that reads user input and performs actions
+
+### Instructions
 
 This is in `src/adv/`. Check it out!
 
@@ -98,6 +117,21 @@ This is in `src/adv/`. Check it out!
   run the program.
 
 ## Day 3
+
+### Goals
+
+* Prepare for more OOP techniques
+* Practice classes and lists
+
+### Summary
+
+* Add items to the game that the user can carry around
+* Make rooms able to hold multiple items
+* Make the player able to carry multiple items
+* Add two-word commands to the parser
+* Add the `get` and `drop` commands to the parser
+
+### Instructions
 
 * Add an `Item` class in a file `item.py`.
 
@@ -156,6 +190,23 @@ This is in `src/adv/`. Check it out!
 
 ## Day 4
 
+### Goals
+
+* Practice inheritance
+* Practice method overriding
+* Be able to call superclass methods
+* Implement a callback/event structure
+
+### Summary
+
+* Add scoring
+* Subclass items into treasures
+* Subclass items into light sources
+* Add methods to notify items when they are picked up or dropped
+* Add light and darkness to the game
+
+### Instructions
+
 * Add a `score` to your `Player` class. Set it to 0.
 
 * Add a single word command, `score`, that the user can type in to see their
@@ -211,11 +262,32 @@ This is in `src/adv/`. Check it out!
 
 ## Stretch Goals
 
+In arbitrary order:
+
 * Add more rooms.
 
 * Add more items to the game.
 
 * Add a way to win.
+
+* Add more to the parser.
+
+  * Remember the last `Item` mentioned and substitute that if the user types
+    "it" later, e.g.
+
+    ```
+    take sword
+    drop it
+    ```
+
+  * Add `Item`s with adjectives, like "rusty sword" and "silver sword".
+
+    * Modify the parser to handle commands like "take rusty sword" as well as
+      "take sword".
+
+      * If the user is in a room that contains both the rusty sword _and_ silver
+        sword, and they type "take sword", the parser should say, "I don't know
+        which you mean: rusty sword or silver sword."
 
 * Modify the code that calls `on_take` to check the return value. If `on_take`
   returns `False`, then don't continue picking up the object. (I.e. prevent the
@@ -233,4 +305,4 @@ This is in `src/adv/`. Check it out!
 * Similar to the `on_take` return value modification, above, have `on_attack`
   prevent the attack from succeeding unless the user possesses a `sword` item.
 
-* Come up with more stretch goals! Scoring? Monsters?
+* Come up with more stretch goals! The sky's the limit!
