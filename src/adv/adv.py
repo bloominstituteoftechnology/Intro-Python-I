@@ -36,12 +36,20 @@ earlier adventurers. The only exit is to the south.""", ["key"]),
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
+room['outside'].e_to = room['bridge']
+room['bridge'].w_to = room['outside']
+room['bridge'].n_to = room['cathedral']
+room['cathedral'].s_to = room['bridge']
+room['cathedral'].n_to = room['narrow']
+room['armory'].e_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
+room['foyer'].w_to = room['armory']
 room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
+room['narrow'].s_to = room['cathedral']
 room['treasure'].s_to = room['narrow']
 
 #
