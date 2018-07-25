@@ -43,9 +43,14 @@ items = {
     "flashlight": {
        "name": "Flashlight",
        "description": "A weathered flashlight"
+    },
+    "key": {
+       "name": "Key",
+       "description": "This could open something"
     }
 }
 
+key        = Item(items["key"]["name"], items["key"]["description"])
 mirror     = Item(items["mirror"]["name"], items["mirror"]["description"])
 flashlight = Item(items["flashlight"]["name"], items["flashlight"]["description"])
 
@@ -71,6 +76,8 @@ treasure.s_to = narrow
 outside.addItem(mirror)
 
 foyer.addItem(flashlight)
+
+narrow.addItem(key)
 
 
 # Make a new player object that is currently in the 'outside' room.
