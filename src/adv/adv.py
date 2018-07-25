@@ -40,14 +40,12 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-# Make a new player object that is currently in the 'outside' room.
 def direction(d, curRoom):
 
     attrib = d + '_to'
     if hasattr(curRoom, attrib):
         return getattr(curRoom, attrib)
 
-    # Otherwise print an error and stay in the same room
     print("You can't go that way")
     return curRoom
 
