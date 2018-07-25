@@ -2,9 +2,10 @@
 # currently.
 
 class Player:
-    def __init__(self, player, room):
+    def __init__(self, player, room, inventory):
         self.player = player
         self.room = room
+        self.inventory = inventory
 
     def printPlayer(self):
         return f"{self.player} is in the {self.room}"
