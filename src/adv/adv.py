@@ -77,6 +77,9 @@ def loadGame(playerName):
     inventoryData = lines[1]
     roomData = lines[2].strip(';').split(';')
     loadFile.close()
+    for index, room in enumerate(rooms.items()):
+        print(index)
+        rooms[room[0]].items = eval(roomData[index])
     print("startingRoom: %s\ninventoryData: %s\nroomData: %s\n" %
           (startingRoom, inventoryData, roomData))
     return Player(playerName, rooms[startingRoom], eval(inventoryData))
