@@ -55,33 +55,31 @@ def saveGame(player):
     saveFile.write("%s" % player.room.key)
     inventoryData = "//["
     for i in player.inventory:
-        inventoryData += "items[%s]," % i.name
-        # saveFile.write(",%s" % i.name)
+        inventoryData += "items['%s']," % i.name
     inventoryData += "]"
     saveFile.write("%s" % inventoryData)
     saveFile.write("//")
-    roomData = "{"
+    roomData = ""
     for key, room in rooms.items():
-        roomData += "%s:[" % key
+        roomData += "["
         for item in room.items:
-            roomData += "items[%s]," % item.name
-            # saveFile.write("%s," % item.name)
-        roomData += "],"
-    roomData += "}"
+            roomData += "items['%s']," % item.name
+        roomData += "];"
     saveFile.write("%s" % roomData)
     saveFile.close()
     print("Game saved")
 
 
-def loadGame(player):
-    loadFile = open("saves/%s.txt" % player, "r")
-    startingRoom = loadFile.read().split("//")[0]
-    inventoryData = loadFile.read().split("//")[1].split(",")
-    # lines = loadFile.read().split(',')
-    roomData = loadFile.read().split("//")[2].split(",")
+def loadGame(playerName):
+    loadFile = open("saves/%s.txt" % playerName, "r")
+    lines = loadFile.read().split('//')
+    startingRoom = lines[0]
+    inventoryData = lines[1]
+    roomData = lines[2].strip(';').split(';')
     loadFile.close()
-    # startingRoom = playerStatus[0]
-    return startingRoom
+    print("startingRoom: %s\ninventoryData: %s\nroomData: %s\n" %
+          (startingRoom, inventoryData, roomData))
+    return Player(playerName, rooms[startingRoom], eval(inventoryData))
 
 
 newGame = input("Newgame or Loadgame (n/l): ").lower()
@@ -90,8 +88,8 @@ if newGame == "n" or newGame == "new" or newGame == "new game":
     player = Player(playerName, rooms[startingRoom], [items['book']])
 elif newGame == "l" or newGame == "load" or newGame == "load game":
     playerName = input("Enter the character name you want to load: ")
-    startingRoom = loadGame(playerName)
-    player = Player(playerName, rooms[startingRoom])
+    loadData = loadGame(playerName)
+    player = loadData
     print("Character %s loaded" % playerName)
 else:
     print("Restart the program and choose whether to load or start a new game.")
