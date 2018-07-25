@@ -52,6 +52,8 @@ player = Player("Justin", room['outside'])
 #
 # If the user enters "q", quit the game.
 
+move_inputs = ["n", "e", "s", "w"] # valid inputs to advance game
+
 quit = False # describes overall game state
 
 while not quit:
@@ -64,6 +66,17 @@ while not quit:
 	# player quits/exits game
 	if (player_input == "q") or (player_input == "quit"):
 		quit = True
+	# player moves in a new direction
+	elif player_input in move_inputs:
+		dirAttr = player_input + "_to"
+		# check if move input is valid
+		if hasattr(current, dirAttr):
+			player.room = getattr(current, dirAttr) # update player's location
+		else:
+			print("You can't go that way!")
+	# player inputs an unknown command
+	else:
+		print("That doesn't mean anything!")
 
 
 
