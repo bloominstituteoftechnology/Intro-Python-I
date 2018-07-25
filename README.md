@@ -96,23 +96,140 @@ This is in `src/adv/`. Check it out!
 * Figure out what all those `.pyc` files are that appear after you successfully
   run the program.
 
-Stretch goals:
+## Day 3
+
+* Add an `Item` class in a file `item.py`.
+
+  * This will be the _base class_ for specialized item types to be declared
+    later.
+
+  * The item should have `name` and `description` attributes.
+
+     * Hint: the name should be one word for ease in parsing later.
+
+* Add capability to add items to rooms.
+
+  * The `Room` class should be extended with a `list` that holds the `Item`s
+    that are currently in that room.
+
+  * Add functionality to the main loop that prints out all the items that are
+    visible to the player when they are in that room.
+
+* Add capability to add `Item`s to the player's inventory. The inventory can
+  also be a `list` of items "in" the player, similar to how `Item`s can be in a
+  `Room`.
+
+* Add a new type of sentence the parser can understand: two words.
+
+  * Until now, the parser could just understand one sentence form:
+
+     `verb`
+
+    such as "n" or "q".
+
+  * But now we want to add the form:
+
+    `verb` `object`
+
+    such as "take coins" or "drop sword".
+
+  * Split the entered command and see if it has 1 or 2 words in it to determine
+    if it's the first or second form.
+
+* Implement support for the verb `get` followed by an `Item` name. This will be
+  used to pick up `Item`s.
+
+  * If the user enters `get` or `take` followed by an `Item` name, look at the
+    contents of the current `Room` to see if the item is there.
+
+     * If it is there, remove it from the `Room` contents, and add it to the
+       `Player` contents.
+
+     * If it's not there, print an error message telling the user so.
+
+* Implement support for the verb `drop` followed by an `Item` name. This is the
+  opposite of `get`/`take`.
+
+* Add the `i` and `inventory` commands that both show a list of items currently
+  carried by the player.
+
+## Day 4
+
+* Add a `score` to your `Player` class. Set it to 0.
+
+* Add a single word command, `score`, that the user can type in to see their
+  current score.
+
+* Add a subclass to `Item` called `Treasure`.
+
+  * The `Treasure` constructor should accept a name, description, and value.
+
+* During world creation, add three `Treasure`s to convenient `Room`s.
+
+* Add an `on_take` method to `Item`. 
+
+  * Call this method when the `Item` is picked up by the player.
+
+  * The `Item` can use this to run additional code when it is picked up.
+
+* Override `on_take` in `Treasure` so that the player gets the value of the
+  `Treasure` added to their `score` attribute _but only the first time the
+  treasure is picked up_.
+  
+  * If the treasure is dropped and picked up again later, the player should
+    _not_ have the value added to their score again.
+
+* Add an `on_drop` method to `Item`. Implement it similar to `on_take`.
+
+* Add a subclass to `Item` called `LightSource`.
+
+* During world creation, add a `lamp` `LightSource` to a convenient `Room`.
+
+* Override `on_drop` in `LightSource` that tells the player "It's not wise to
+  drop your source of light!" if the player drops it. (But still lets them drop
+  it.)
+
+* Add an attribute to `Room` called `is_light` that is `True` if the `Room` is
+  naturally illuminated, or `False` if a `LightSource` is required to see what
+  is in the room.
+
+* Modify the main loop to test if there is light in the `Room` (i.e. if
+  `is_light` is `True` **or** there is a `LightSource` item in the `Room`'s
+  contents **or** if there is a `LightSource` item in the `Player`'s contents).
+
+  * If there is light in the room, display name, description, and contents as
+    normal.
+
+  * If there isn't, print out "It's pitch black!" instead.
+
+  * Hint: `isinstance` might help you figure out if there's a `LightSource`
+    among all the nearby `Item`s.
+
+* Modify the `get`/`take` code to print "Good luck finding that in the dark!" if
+  the user tries to pick up an `Item` in the dark.
+
+## Stretch Goals
 
 * Add more rooms.
 
-* Add things to the game that can be found in rooms, e.g. sword, lamp.
-  The room can keep a list of things found within it.
-
-* Show a listing of the things in room when the player walks into it.
-
-* Add functionality to allow the user to `take sword`, that will move it
-  out of the room and into a list on the player called `inventory`.
-
-* Add the `i` command to show what is in the player's inventory.
-
-* Add functionality to allow the user to `drop sword`, that will move it
-  out of the player's inventory into the current room the player is in.
+* Add more items to the game.
 
 * Add a way to win.
+
+* Modify the code that calls `on_take` to check the return value. If `on_take`
+  returns `False`, then don't continue picking up the object. (I.e. prevent the
+  user from picking it up.)
+
+  * This enables you to add logic to `on_take` to code things like "don't allow
+    the user to pick up the dirt unless they're holding the shovel.
+
+* Add monsters.
+
+* Add the `attack` verb that allows you to specify a monster to attack.
+
+* Add an `on_attack` method to the monster class.
+
+* Similar to the `on_take` return value modification, above, have `on_attack`
+  prevent the attack from succeeding unless the user possesses a `sword` item.
 
 * Come up with more stretch goals! Scoring? Monsters?
