@@ -5,21 +5,21 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", ["Flashlight"]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", ["Coins", "Sword"]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", ["Rope"]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", ["Gold", "Golden knife"]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", ["Treasure box", "Gold", "Diamonds"]),
 }
 
 
@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-newPlayer = Player("Bob", room["outside"])
+newPlayer = Player("Bob", room["outside"], [])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -56,18 +56,33 @@ newInput = None
 while newInput != "q":
     print(newPlayer)
     print(newPlayer.room.summary)
+    print(f"Items in room: {newPlayer.room.items}")
+    print(f"Player inventory: {newPlayer.inventory}")
 
-    newInput = input("Give a one letter direction (NESW): ")
+    newInput = input("Give a one letter direction (NESW): \n")
 
-    if newInput is "n" or newInput is "N":
-        newPlayer.room = newPlayer.room.n_to
 
-    if newInput is "e" or newInput is "E":
-        newPlayer.room = newPlayer.room.e_to
+    newInput = newInput.split(" ")
 
-    if newInput is "s" or newInput is "S":
-        newPlayer.room = newPlayer.room.s_to
+    if len(newInput) < 2:
 
-    if newInput is "w" or newInput is "W":
-        newPlayer.room = newPlayer.room.w_to
-    
+        if newInput[0] is "n" or newInput[0] is "N":
+            newPlayer.room = newPlayer.room.n_to
+        if newInput[0] is "e" or newInput[0] is "E":
+            newPlayer.room = newPlayer.room.e_to
+
+        if newInput[0] is "s" or newInput[0] is "S":
+            newPlayer.room = newPlayer.room.s_to
+
+        if newInput[0] is "w" or newInput[0] is "W":
+            newPlayer.room = newPlayer.room.w_to
+
+    if len(newInput) >= 2:
+        if newInput[0] == "get" or newInput[0] == "take":
+            newPlayer.inventory.append(newInput[1])
+            newPlayer.room.items.remove(newInput[1])
+
+        if newInput[0] == "drop" or newInput[0] == "remove":
+            newPlayer.inventory.remove(newInput[1])
+            newPlayer.room.items.append(newInput[1])
+            
