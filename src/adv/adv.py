@@ -1,26 +1,26 @@
 import textwrap
-
+import os
 from room import Room
 from player import Player
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",["stick","rock","flint","apple"]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""",["cloak","hat","rock"]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""",["rock","potion","binoculars"]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""",["shield","sword","water","candle"]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""",["gold","wand","bow","beef","grog"]),
 }
 
 
@@ -40,19 +40,21 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player("Jacob", room['outside']);
-
+player = Player("Jacob", room['outside'],[]);
+print(player)
 
 # Write a loop that:
 #
 playing = True;
 while(playing):
-    underline = "__________________________________________________________________________________"
+    #width = os.get_terminal_size() 
+    underline = "_" * 90
+
 # * Prints the current room name
     curRoom = player.current
     prettyDescription = textwrap.fill(curRoom.description)
-
-    print('\n  {}:\n{}\n{}\n'.format(curRoom.name, underline, prettyDescription))
+    #prettyDescription = prettyDescription.center(40," ")
+    print('\n\t\t\tYou are in the {}.\n{}\n\n{}\n\nLoot:\n{}\n\nBag:\n{}\n{}\n'.format(curRoom.name, underline, prettyDescription,curRoom.items,player.inventory,underline))
 
     command = input("Command>").strip().lower()
 
