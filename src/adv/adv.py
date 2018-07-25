@@ -65,13 +65,7 @@ while True:
     cmd = input("Enter a direction (q to quit):")
     if cmd == "q":
         break
-    elif cmd == "n":
-        dircheck("n_to")
-    elif cmd == "e":
-        dircheck("e_to")
-    elif cmd == "s":
-        dircheck("s_to")
-    elif cmd == "w":
-        dircheck("w_to")
+    elif cmd in ["n", "e", "s", "w"]:
+        dircheck(cmd + "_to")
     else:
         print("\nInvalid direction, try again\n")
