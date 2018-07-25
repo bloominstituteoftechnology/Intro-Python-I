@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -38,6 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+new_player = Player("yasin", room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +52,15 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+quit = False
+
+while not quit:
+    print("current room: {0}".format(new_player.room["name"]))
+    print(textwrap.fill(new_player.room["description"]))
+    move_to_room = input("Where will you go next?")
+    print("player moves to ${0}".format(move_to_room))
+
+    # validate player input - is the next room a neighbor to the current one?
+
+    if move_to_room == "q":
+        quit = True
