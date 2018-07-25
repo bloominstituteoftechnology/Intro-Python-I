@@ -97,6 +97,7 @@ This is in `src/adv/`. Check it out!
 
 * Figure out what all those `.pyc` files are that appear after you successfully
   run the program.
+   * A *.pyc file is created for imported modules, and they are placed in the same directory containing the .py file. However... no .pyc file is created for the main script for your program. In other words... if you call "python myscript.py" on the command line, there will be no .pyc file for myscript.py.
 
 Stretch goals:
 
