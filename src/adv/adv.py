@@ -1,14 +1,15 @@
 from room import Room
 from player import Player
+from item import Item
 import textwrap
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", [Item("Sword", "A rusty sword")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""",[Item("Shield", "A sturdy shield")]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -19,7 +20,7 @@ to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", [Item("Treasure", "A candy")]),
 }
 
 
@@ -58,21 +59,53 @@ gameEnd = False
 while not gameEnd:
     currentRoom = player.room
     prettyDesc = textwrap.fill(currentRoom.desc)
+    itemDesc = textwrap.fill(",".join([item.name for item in player.room.items]))
     print(f'{currentRoom.name}\n{prettyDesc}')
+    print("Items: " + f'{itemDesc}\n')
 
     command = input("Command> ").strip().lower()
+    cmds = command.split(" ")
 
-    if command == 'q' or command == 'quit' or command == 'exit':
-        gameEnd = True
+    if len(cmds) == 1:
 
-    elif command in ["s", "n", "w", "e"]:
-        direction = command + "_to"
+        if command == 'q' or command == 'quit' or command == 'exit':
+            gameEnd = True
 
-        if hasattr(currentRoom, direction):
-            player.room = getattr(currentRoom, direction)
+        elif command in ["s", "n", "w", "e"]:
+            direction = command + "_to"
 
+            if hasattr(currentRoom, direction):
+                player.room = getattr(currentRoom, direction)
+
+            else:
+                print("There is nothing there")
+        elif command == "i" or command == "inventory":
+            print("\nInventory:\n" + "\n".join([item.name + " - " + item.desc for item in player.inventory + "\n"]))
+            
         else:
-            print("There is nothing there")
-        
+            print("Wrong command")
+    elif len(cmds) == 2:
+        verb = cmds[0]
+        obj = cmds[1]
+        if verb == "get" or verb == "take":
+            if obj in [item.name.lower() for item in player.room.items]:
+                for i, o in enumerate(player.room.items):
+                    if o.name.lower() == obj:
+                        player.inventory.append(o)
+                        print("\nPicked up %s\n" %(o.name))
+                        del player.room.items[i]
+                        break
+            else:
+                print("\nNo such object in the room")
+        elif verb == "drop":
+            if obj in [item.name.lower() for item in player.inventory]:
+                for i, o in enumerate(player.inventory):
+                    if o.name.lower() == obj:
+                        player.room.items.append(o)
+                        del player.inventory[i]
+                        print("\nDropped %s\n" %(o.name))
+                        break
+            else:
+                print("\nNo such object in the inventory")
     else:
-        print("Wrong command")
+        print("\nWrong command end")
