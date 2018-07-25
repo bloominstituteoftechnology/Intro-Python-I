@@ -71,6 +71,10 @@ print("\nWelcome, %s!" % (player.playerName))
 # If the user enters "q", quit the game.
 
 while True:
+   if player.currentRoom.name is "Treasure Chamber":
+      print("\n\nCongratulations, %s! \n\nYou reached Treasure Chamber!\n" % (player.playerName))
+      break
+
    print("\nCurrent room: ", player.currentRoom.name)
    print("Description: ", player.description)
 
