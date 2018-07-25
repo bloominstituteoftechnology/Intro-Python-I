@@ -70,7 +70,7 @@ player = Player("Justin", room['outside'])
 # If the user enters "q", quit the game.
 
 move_inputs = ["n", "e", "s", "w"] # valid inputs to advance game
-item_inputs = ["get", "take", "drop", "i"] # valid item interactions
+item_inputs = ["get", "take", "drop"] # valid item interactions
 
 quit = False # describes overall game state
 
@@ -92,6 +92,9 @@ while not quit:
 	# player quits/exits game
 	if (player_input == "q") or (player_input == "quit"):
 		quit = True
+	if parser[0] == "i":
+		# show player inventory
+		print("You have the following items: {0}".format(player.inventory)) 
 	# player continues the game - moves to another room
 	elif len(parsed) == 1:
 		# player moves in a new direction
@@ -107,8 +110,8 @@ while not quit:
 		verb = parsed[0] # action player takes with an item
 		noun = parsed[1] # item itself
 
-		if player_input[0] in item_inputs:
-			print("Player {0} an item".format(player_input[0]))			
+		if verb in item_inputs:
+			print("Player {0} an item".format(player_input[0]))
 		else:
 			print("You can't do that with an item!")
 	else:
