@@ -1,16 +1,5 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
-from item import Item
-
-item = {
-    'tree':   Item("tree", "Just a tree"),
-    'knife':  Item('knife', 'A very sharp knife'),
-    'pig':    Item('pig', 'A wild boar'),
-    'pen':    Item('pen', 'A foutain pen'),
-    'gold':   Item('gold', '10 bars of gold'),
-    'eggs':   Item('eggs', 'a dozen eggs'),
-    'spoon':  Item('spoon', 'A golden spoon'),
-}
 
 class Player:
     def __init__(self, current_room):
@@ -47,15 +36,20 @@ class Player:
 
     def get(self, item_name):
         if item_name in [i.name for i in self.current_room.items]:
-            self.current_room.items = [i for i in self.current_room.items if i.name != item_name]
-            self.inventory.append(item[item_name])
+            # get index of item we're getting
+            index = next((i for i, item in enumerate(self.current_room.items) if item.name == item_name), -1)
+
+            gotten_item = self.current_room.items.pop(index);
+            self.inventory.append(gotten_item)
         else:
             print(f'Error! {item_name} is not present in this room')
 
     def drop(self, item_name):
         if item_name in [i.name for i in self.inventory]:
-            self.inventory = [i for i in self.inventory if i.name != item_name]
-            self.current_room.items.append(item[item_name])
+            # get index of item we're dropping
+            index = next((i for i, item in enumerate(self.inventory) if item.name == item_name), -1)
+            dropped_item = self.inventory.pop(index);
+            self.current_room.items.append(dropped_item)
         else:
             print(f'Error! You do not have {item_name} to drop')
 
