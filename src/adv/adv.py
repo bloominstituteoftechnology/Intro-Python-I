@@ -9,10 +9,10 @@ room = {
                      "North of you, the cave mount beckons", []),
 
     'bridge': Room("Bridge", """Rough winds blow acoss a lonely bridge. The smell of dragon fire and brimstone is heavy here.
-On the other side you see a red dragon sleeping in the sunlight. It guards the entrance to an ancient cathedral"""),
+On the other side you see a red dragon sleeping in the sunlight. It guards the entrance to an ancient cathedral""", []),
 
     'cathedral': Room("Cathedral", """Broken pews, torn tapestries, and skeletons of past adventurers are all that remain inside.
-At the end, sunlight illuminates the lady's chapel. You see a crack in the wall."""),
+At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.""", []),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", ["torch", "potion", "parchment"]),
