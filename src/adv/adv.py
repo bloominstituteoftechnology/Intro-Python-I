@@ -111,10 +111,16 @@ while not quit:
 		noun = parsed[1] # item itself
 
 		if verb in item_inputs and noun in current.items:
-			# remove item from room
-			current.items.remove(noun)
-			# add item to player inventory
-			player.inventory.append(noun)
+			if verb == "get" or verb == "take":
+				# remove item from room
+				current.items.remove(noun)
+				# add item to player inventory
+				player.inventory.append(noun)
+			elif verb == "drop" and noun in player.inventory:
+				# remove item from player inventory
+				player.inventory.remove(noun)
+			else:
+				print("That item isn't in your inventory")
 		elif noun not in current.items:
 			print("That item isn't in this room")
 		else:
