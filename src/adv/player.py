@@ -2,13 +2,9 @@
 # currently.
 
 class Player:
-  def __init__(self, room)
-   self.room = room
-
-  def playerLocation(self):
-    return "You are at {}!".format(self.name)
-
-  def playerMove(self):
+  def __init__(self, playerName, startRoom):
+    self.name = playerName
+    self.room = startRoom
 
 
-playerCharacter = Player("outside")
+
