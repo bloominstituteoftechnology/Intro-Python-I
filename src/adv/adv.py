@@ -1,6 +1,8 @@
 from room import Room
 from player import Player
 
+import textwrap
+
 # Declare all the rooms
 
 room = {
@@ -28,7 +30,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
     ),
 }
-
 
 # Link rooms together
 
@@ -58,7 +59,23 @@ p1 = Player("Player One", room["outside"])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-while p1.hp > 0:
-    print("\n{}\n - {}".format(p1.room.name, p1.room.description))
+while True:
+    print("\n{}".format(p1.current_room.name))
+    print("   {}".format(p1.current_room.description))
 
-print(p1.hp)
+    user_input = input("> ")
+
+
+    if user_input == "q":
+        print("GG")
+        break
+    if user_input == "help":
+        helper = "\nCOMMANDS:\nn - north\ne - east\ns - south\nw - west\nq - quit"
+        print(helper)
+    else:
+        print("\n - Enter a command or type help - ")
+        
+
+
+#print(p1.current_room.description)
+#print("HP: {}".format(p1.hp))

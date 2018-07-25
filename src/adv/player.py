@@ -1,8 +1,10 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 class Player:
-    def __init__(self, name, room):
+    def __init__(self, name, current_room):
         self.name = name
-        self.room = room['name']
-        self.description = room['description']
+        self.current_room = current_room
         self.hp = 100
+
+    def move(self, direction):
+        self
