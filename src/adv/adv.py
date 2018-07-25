@@ -40,7 +40,9 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-new_player = Player('outside')
+player_name = input("Enter a player name: ")
+player = Player(player_name, room['outside'])
+print("\nWelcome, %s!" % (player.playerName))
 
 # Write a loop that:
 #
@@ -49,7 +51,7 @@ while True:
     currRoom = rooms[player1.currRoom]
     print(currRoom.get('name'))
 # * Prints the current description (the textwrap module might be useful here).
-    print(currRoom.get('description')).
+    print(currRoom.get('description'))
 # * Waits for user input and decides what to do.
     userInput = input('What do you want to do? ')
 #
@@ -66,4 +68,3 @@ while True:
 # If the user enters "q", quit the game.
     elif userInput == 'q':
         break
-        
