@@ -6,3 +6,6 @@ class Room:
         self.description = description
 
         self.items = []
+
+    def addItem(self, item):
+        self.items.append(item)

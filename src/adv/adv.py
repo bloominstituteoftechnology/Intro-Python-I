@@ -28,7 +28,7 @@ earlier adventurers. The only exit is to the south."""),
 
 # create items
 item1 = Item("coins", "Shiny coins")
-room['outside'].items.append(item1)
+room['outside'].addItem(item1)
 
 # Link rooms together
 
