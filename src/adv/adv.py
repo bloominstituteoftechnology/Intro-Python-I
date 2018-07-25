@@ -6,28 +6,36 @@ import textwrap
 # Declare all the rooms
 
 room = {
-    "outside": Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    "outside": Room(
+        "Outside Cave Entrance",
+        "North of you, the cave mount beckons",
+        [Item("Map", "Looks like a map for the cave. It looks heavily faded."), Item("BrokenSword", "The tip of the sword is broken. It can probably still slay some beasts.")],
+    ),
     "foyer": Room(
         "Foyer",
         """Dim light filters in from the south. Dusty
 passages run north and east.""",
+        [],
     ),
     "overlook": Room(
         "Grand Overlook",
         """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
+        [],
     ),
     "narrow": Room(
         "Narrow Passage",
         """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""",
+        [],
     ),
     "treasure": Room(
         "Treasure Chamber",
         """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
+        [],
     ),
 }
 
@@ -63,13 +71,15 @@ player = Player(room["outside"])
 #
 # If the user enters "q", quit the game.
 
+
 def searchDirect(currentRoom, direction):
     search = direction + "_to"
     if hasattr(currentRoom, search):
         return getattr(currentRoom, search)
     else:
-        print('\n' + 'Invalid path. Try different direction.')
+        print("\n" + "Invalid path. Try different direction.")
         return currentRoom
+
 
 playerExit = False
 
@@ -84,9 +94,22 @@ while playerExit != True:
     userInput = input("Player> ").strip().lower()
 
     # quit, search direction, or give error
-    if userInput == "q":
+    if userInput == "q" or userInput == "exit" or userInput == "quit":
+        print("\nFarewell, adventurer.\n")
         playerExit = True
-    elif userInput in {'n', 'w', 's', 'e'}:
+    # shows all available actions
+    elif userInput == "action" or userInput == "actions" or userInput == "help":
+        print("\navailable actions: n, w, s, e, get, item")
+    # direction
+    elif userInput in {"n", "w", "s", "e"}:
         player.currentRoom = searchDirect(player.currentRoom, userInput)
+    # list all items
+    elif userInput == "item" or userInput == "items":
+        if len(player.currentRoom.itemList) != 0:
+            for eachItem in player.currentRoom.itemList:
+                print('\nitem:', eachItem.name)
+                print(eachItem.descript)
+        else:
+            print("\nNo items found.")
     else:
-        print('Invalid command.')
+        print("Invalid command.")
