@@ -1,7 +1,5 @@
 from room import Room
-import cmd
-import textwrap
-
+from player import Player
 
 # Declare all the rooms
 
@@ -12,7 +10,7 @@ room = {
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
+    'overlook': Room("Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
@@ -42,7 +40,6 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-
 # Write a loop that:
 #
 # * Prints the current room name
@@ -53,15 +50,29 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+selection = None
 
-print 'You are at a cave entryway.'
-print 'North of you, the cave mount beckons.'
-print 'What do you want to do? The entryway is to the North. (Use N, S, E, or W to move.)'
-entry == raw_input('> ')
+while selection != 'q':
+    print(player_1)
+    print(player_1.currentRoom.description)
 
-if entry == 'N,'
+    selection = input("Choose direction('n', 'e', 'w', 's'):")
 
+    directions = {
+        "n": player_1.currentRoom.n_to,
+        "e": player_1.currentRoom.e_to,
+        "s": player_1.currentRoom.s_to,
+        "w": player_1.currentRoom.w_to
+    }
 
-def main_screen_selections():
-    option = input("> ")
-    if option.lower() == ()
+    next_room = directions.get(selection, None)
+
+    if next_room:
+        player_1.currentRoom = next_room
+    else:
+        if selection in ['n', 'e', 's', 'w']:
+            print("You cannot go that way")
+        elif selection is "q":
+            print("Goodbye")
+        else:
+            "You must enter a direction or 'q' to quit"

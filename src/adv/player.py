@@ -2,11 +2,12 @@
 # currently.
 
 class player:
-	def __init__(self):
-		self.name = ''
-		self.hp = 0
-		self.mp = 0
-		self.status_effects = []
-		self.room = 'outside'
+	def __init__(self, playerName, currentRoom):
+		self.name = playerName
+		self.currentRoom = currentRoom
+
+	def __str__(self):
+  		return '{} is in the {}'.format(self.playerName, self.currentRoom)
+
 myPlayer = player()
 
