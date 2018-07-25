@@ -4,12 +4,11 @@ class Door(object):
         self.key = key
         self.status = status
 
-    def unlock(self, key):
-        if key == self.key and not self.status:
-            self.status = True
-            print("you unlock the door.")
-
     @property
     def is_locked(self):
         return not self.status
 
+    def unlock(self, key):
+        if key == self.key and not self.status:
+            self.status = True
+            print("you unlock the door.")

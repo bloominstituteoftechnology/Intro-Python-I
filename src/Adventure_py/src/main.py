@@ -1,4 +1,5 @@
 from os import system
+import platform
 from player import Player
 from location import Location
 from item import Item, Weapon
@@ -54,37 +55,37 @@ loc_five.south = loc_four
 
 
 def clear():
-    _ = system('clear')
+    if platform.system() == 'Linux':
+        _ = system('clear')
+    elif platform.system() == 'Windows':
+        _ = system('cls')
+
 
 
 def command():
     print("""
-                    Commands:
-                        q - quit
-                        m - check map
-                        h - get a list of commands
-                        i - check inventory
-                        p - pick up an item
-                        d - drop item
-                        1 - move north
-                        2 - move south
-                        3 - move east
-                        4 - move west
-                        5 - rest
+                        Commands:
+q - quit                m - check map          h - get a list of commands
+i - check inventory     p - pick up an item    d - drop item
+
+1 - move north          2 - move south         3 - move east
+4 - move west           5 - rest
             """)
 
 
 def main():
     loc = loc_one
     p = Player(input("Enter your characters name \n"))
+    clear()
     print("player created " + str(p.name))
     command()
     print(loc)
     while True:
         p.location = loc
         if p.location == loc_five:
+            input("press enter to coninue.")
             clear()
-            print("\n\t\tCongrats! you have reached the end of the game.\nPlayer Stats \n" + str(p) + "\nInventory: " + str(p.inventory) + "\n")
+            print("\n\t\tyou left the dungeon depressed and broke, Congratulations!.\nPlayer Stats \n" + str(p) + "\nInventory: " + str(p.inventory) + "\n")
             break
         x = input("enter your command: ")
         if x == "q":
@@ -168,7 +169,6 @@ def main():
                         print(loc)
             else:
                 print("cant go there.")
-
         elif x == "4":
             if loc.west:
                 if loc.west.door:
@@ -190,7 +190,6 @@ def main():
                         print(loc)
             else:
                 print("cant go there.")
-
         elif x == "5":
             clear()
             p.wait()

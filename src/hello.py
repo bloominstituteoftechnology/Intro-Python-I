@@ -1,2 +1,7 @@
 # Write Hello, world
-print("Hello, world")
+import dis
+
+def hello():
+    print("Hello, world")
+
+dis.dis(hello)

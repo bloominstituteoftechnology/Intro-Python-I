@@ -9,8 +9,13 @@ class Location(object):
         self.east = east
         self.west = west
 
+    @property
+    def is_valid_room(self):
+        if
+
     def __str__(self):
-        return "you are at " + self.name + "\n\t" + self.description + "\n\nyou find these items in the room: \n\t" + str(self.items)
+        return "you are at " + self.name + "\n\t" + self.description + \
+               "\n\nyou find these items in the room: \n\t" + str(self.items)
 
 
 if __name__ == "__main__":
