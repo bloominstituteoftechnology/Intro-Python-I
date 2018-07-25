@@ -49,19 +49,19 @@ room['foyer'].items.append(item['sword'])
 
 
 def singleChoice(noun):
-    if noun == "north":
+    if (noun == "north") or (noun == "n"):
         if player.room.n_to:
             player.room = player.room.n_to
             return 1
-    if noun == "south":
+    if (noun == "south") or (noun == "s"):
         if player.room.s_to:
             player.room = player.room.s_to
             return 1
-    if noun == "east":
+    if (noun == "east") or (noun == "e"):
         if player.room.e_to:
             player.room = player.room.e_to
             return 1
-    if noun == "west":
+    if (noun == "west") or (noun == "w"):
         if player.room.w_to:
             player.room = player.room.w_to
             return 1
