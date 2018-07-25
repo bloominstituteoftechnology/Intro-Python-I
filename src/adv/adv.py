@@ -91,7 +91,8 @@ while not done:
 
     if(nextRoom != None):
         print('## GREAT JOB ##  you are  in new room ====>:', nextRoom.name)
-        print(f"....{nextRoom.description}...\nitem ==>:{nextRoom.items.name}\nitemdesc==>:{nextRoom.items.description}")
+        print(
+            f"....{nextRoom.description}...\nitem ==>:{nextRoom.items.name}\nitemdesc==>:{nextRoom.items.description}")
 
     print('\n\n==> Ok ok ok since you made it up to here, we want you to pic an item:')
     pick = False
@@ -115,6 +116,7 @@ while not done:
                     if join == i:
                         getattr(newPlayer, 'items').append(
                             nextRoom.items.description[joinedItems.index(i)])
+                        del(nextRoom.items.description[joinedItems.index(i)])
                         pick = True
 
             else:
@@ -125,6 +127,7 @@ while not done:
             continue
 
         print('newpaler items are: ==>', getattr(newPlayer, 'items'))
+        print('what left in the room is : ==>', nextRoom.items.description)
 
     ################################################################
 
@@ -133,7 +136,7 @@ while not done:
         print('keep going .....')
         d = input('please type the 2nd  cardial direction where u need to Go:')
 
-        if c == "q":
+        if d == "q":
             break
 
         bill = ['n', 'e', 'w', 's']
@@ -166,7 +169,8 @@ while not done:
 
         if(roomAfter != None):
             print('## GREAT JOB ##  you are  in new room ====>:', roomAfter.name)
-            print(f"....{roomAfter.description}...\nitem ==>:{roomAfter.items.name}\nitemdesc==>:{roomAfter.items.description}")
+            print(
+                f"....{roomAfter.description}...\nitem ==>:{roomAfter.items.name}\nitemdesc==>:{roomAfter.items.description}")
 
         print('\n\n==> Ok ok ok since you made it up to here, we want you to pic an item:')
         pick = False
@@ -178,21 +182,36 @@ while not done:
             joinedItems = [i.replace(" ", "")
                            for i in roomAfter.items.description]
 
-            if join != None:
-                for i in joinedItems:
-                    if join == i:
-                        getattr(newPlayer, 'items').append(
-                            roomAfter.items.description[joinedItems.index(i)])
-                        pick = True
-            else:
+            if len(spl) <= 1:
+                print('!!! sorry you have to enter the item name as well')
+                continue
+            if spl[1] == '':
+                print('!!!! item name can`t be whitespace')
                 continue
 
-            print('newpaler items==>', getattr(newPlayer, 'items'))
+            if spl[0] == 'pick':
+                if join != None:
+                    for i in joinedItems:
+                        if join == i:
+                            getattr(newPlayer, 'items').append(
+                                roomAfter.items.description[joinedItems.index(i)])
+                            del(roomAfter.items.description[joinedItems.index(
+                                i)])
+                            pick = True
 
-        nextRoom = roomAfter
+                else:
+                    continue
 
+            else:
+                print(' !!!! sorry wrong verb....')
+                continue
 
-# break
+            print('newpaler items are: ==>', getattr(newPlayer, 'items'))
+            print('what left in the room is : ==>',
+                  roomAfter.items.description)
+            nextRoom = roomAfter
+
+    # break
 
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
