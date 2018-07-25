@@ -45,8 +45,32 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+# Add a new type of sentence the parser can understand: two words.
+#
+# Until now, the parser could just understand one sentence form:
+#
+# `verb`
+#
+# such as "n" or "q".
+#
+# But now we want to add the form:
+#
+# `verb` `object`
+#
+# such as "take coins" or "drop sword".
+#
+# Split the entered command and see if it has 1 or 2 words in it to determine
+# if it's the first or second form.
+try:
+    verb, target = [x for x in input('Enter a command: ').split()]
+    print('What do you want to do:', verb)
+    print('What is it?', target)
+except ValueError:
+    print('Eh')
+
+
 # Make a new player object that is currently in the 'outside' room.
-system("clear")
+# system("clear")
 name = input("Enter your name:\n")
 player = Player(name, room['outside'])
 
