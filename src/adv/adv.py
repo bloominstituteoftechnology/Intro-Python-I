@@ -1,6 +1,7 @@
 from os import system
 from room import Room
 from player import Player
+from item import Item
 import textwrap # or from textwrap import fill
 
 # Declare all the rooms
@@ -9,25 +10,25 @@ room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
+    'foyer':    Room("\nFoyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
+    'overlook': Room("\nGrand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+    'narrow':   Room("\nNarrow Passage", """The narrow passage bends here from west
+to north and south. The smell of gold permeates the air."""),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
+    'treasure': Room("\nTreasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
-
-    'dungeon': Room("The Dungeon", """You've entered the dark, smelly dungeon of doom!
+earlier adventurers. The only exit is to the south, but you smell something from the North."""),
+    # Rm I added on for fun
+    'dungeon': Room("\nThe Dungeon", """You've entered the dark, smelly dungeon of doom!
 Now you are cursed for 10 million years and forever the
 caregiver for these smelly pugs. Exit to the east."""),
-
-    'pugcave': Room("Pugs Cave", """You've awoken the beasts... RUN for your lives to the only exit north!"""),
+    # Rm I added on for fun
+    'pugcave': Room("\nPugs Cave", """Oh No!!! You've awoken the pug beasts... RUN for your lives to the only exit north!"""),
 }
 
 
@@ -44,7 +45,7 @@ room['treasure'].s_to = room['narrow']
 room['dungeon'].e_to = room['narrow']
 room['narrow'].s_to = room['dungeon']
 room['pugcave'].n_to = room['treasure']
-room['treasure'].s_to = room['pugcave']
+room['treasure'].n_to = room['pugcave']
 
 #
 # Main
@@ -79,17 +80,19 @@ def dircheck(attr):
 while True:
     print(player.room.name)
     print(textwrap.fill(player.room.description, 50))
-    cmd = input("Which Direction Would You Like To Go? (q for quit):")
-    if cmd == "q": # q = quit
+    cmd = input("\nWhich Direction Would You Like To Go? \n(n, s, e, w or q to quit):")
+    if cmd == "q": # Q = quit
         break
-    elif cmd == "n": # n = North
-        dircheck("n_to")
-    elif cmd == "e": # e = East
-        dircheck("e_to")
-    elif cmd == "s": # s = South
-        dircheck("s_to")
-    elif cmd == "w": # w = West
-        dircheck("w_to")
+    elif cmd in ["n", "e", "s", "w"]:
+        dircheck(cmd + "_to")
+    # elif cmd == "N": # N = North
+    #     dircheck("n_to")
+    # elif cmd == "E": # E = East
+    #     dircheck("e_to")
+    # elif cmd == "S": # S = South
+    #     dircheck("s_to")
+    # elif cmd == "W": # W = West
+    #     dircheck("w_to")
     else:
         print("\nWrong Way - Try Again\n")
 
