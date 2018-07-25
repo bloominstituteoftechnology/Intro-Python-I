@@ -45,30 +45,6 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-# Add a new type of sentence the parser can understand: two words.
-#
-# Until now, the parser could just understand one sentence form:
-#
-# `verb`
-#
-# such as "n" or "q".
-#
-# But now we want to add the form:
-#
-# `verb` `object`
-#
-# such as "take coins" or "drop sword".
-#
-# Split the entered command and see if it has 1 or 2 words in it to determine
-# if it's the first or second form.
-try:
-    verb, target = [x for x in input('Enter a command: ').split()]
-    print('What do you want to do:', verb)
-    print('What is it?', target)
-except ValueError:
-    print('Eh')
-
-
 # Make a new player object that is currently in the 'outside' room.
 # system("clear")
 name = input("Enter your name:\n")
@@ -91,8 +67,9 @@ player = Player(name, room['outside'])
 system("clear")
 while (player.room != 'exit'):
     print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
-    print("The item(s) in the room: " + str(player.room.Items))
-    instruction = input("Enter North, East, South, or West or q to Quit:\n")
+    print("The item(s) in the room: " + str(player.room.Items) + "\n")
+
+    instruction = input("Enter: North | East | South | West | Take Item | Drop Item | Quit:\n")
     direction = {
         "North": player.room.n_to,
         "East": player.room.e_to,
@@ -100,18 +77,19 @@ while (player.room != 'exit'):
         "West": player.room.w_to
     }
 
-    new_room = direction.get(instruction, None)
-    system("clear")
-    if (instruction == "q"):
-        break
-    elif (new_room):
-        if (player.room.name == "Treasure Chamber"):
+    if (len(instruction.split()) == 1):
+        new_room = direction.get(instruction, None)
+        system("clear")
+        if (instruction == "Quit"):
             break
-        player.room = new_room
-    elif (instruction in ["North", "East", "South", "West"]):
-        print("Nowhere to go\n")
-    else:
-        print("This is not a direction! Go \"North\", \"East\", \"South\", \"West\" or \"q\" to Quit\n")
+        elif (new_room):
+            if (player.room.name == "Treasure Chamber"):
+                break
+            player.room = new_room
+        elif (instruction in ["North", "East", "South", "West"]):
+            print("Nowhere to go\n")
+        else:
+            print("Invalid. Enter: North | East | South | West | Take Item | Drop Item | Quit\n")
 
 system("clear")
 print("You are out of the cave and empty handed!\n")
