@@ -1,7 +1,7 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 class Player:
-   def __init__(self, playerName, startRoom):
+    def __init__(self, playerName, startRoom):
         self.room = startRoom
         self.name = playerName
 
@@ -12,3 +12,9 @@ class Player:
 
     def removeItem(self, item):
         self.items.remove(item)
+
+    def findItem(self, name):
+        for item in self.items:
+            if item.name == name:
+                return item
+            return None

@@ -11,4 +11,11 @@ class Room:
         self.items.append(item)
 
     def removeItem(self, item):
+        item = self.findItem(name)
         self.items.remove(item)
+
+    def findItem(self, name):
+        for item in self.items:
+            if item.name == name:
+                return item
+            return None

@@ -40,8 +40,17 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
-
+item = Item('sword', 'silver sword')
+item2 = Item('cat', 'fuzzy cat')
+item3 = Item('dog', 'big dog')
+item4 = Item('knife', 'sharp knife')
+item5 = Item('nerf gun', 'blue nerf gun')
+player = Player('Tylar', room['outside'])
+room['outside'].addItem(item)
+room['foyer'].addItem(item2)
+room['overlook'].addItem(item3)
+room['narrow'].addItem(item4)
+room['treasure'].addItem(item5)
 # Write a loop that:
 #
 # * Prints the current room name
@@ -59,9 +68,17 @@ while not done:
 
     prettyDesc = textwrap.fill(curRoom.description)
 
-    print(f'{curRoom.name}\n{prettyDesc}\n{curRoom.item}')
+    print(f'{curRoom.name}\n{prettyDesc}')
 
-    command = input("Command> ").strip().lower()
+    if len(player.room.items) > 0:
+        for i in player.room.items:
+            print(i.name, i.description)
+
+    command = input("Command> ").strip().lower().split()
+
+    if len(command) >2 or len(command) < 1:
+        print('Cannot use command')
+        
 
     if command == 'q' or command == 'quit' or command == 'exit':
         done = True
