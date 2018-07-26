@@ -6,21 +6,21 @@ from item import Item, Treasure
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [Item("flashlight", "light up dar areas")]),
+                     "North of you, the cave mount beckons", [Item("flashlight")], False, 0),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [Treasure("sword", "fight enemies", "500 crowns")]),
+passages run north and east.""", [Treasure("sword", 100)], False, 0),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [Item("rope", "rope for climing or tying")]),
+the distance, but there is no way across the chasm.""", [Item("rope")], False, 0),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", [Treasure("Diamonds", "Valuable assets", "50 million crowns")]),
+to north. The smell of gold permeates the air.""", [Treasure("Diamonds", 5200)], False, 0),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [Treasure("Gold", "Valuable assets", "200 million crowns")]),
+earlier adventurers. The only exit is to the south.""", [Treasure("Gold", 645000)], False, 0),
 }
 
 
@@ -90,10 +90,34 @@ while newInput != "q":
 
     if len(newInput) >= 2:
         if newInput[0] == "get" or newInput[0] == "take":
-            newPlayer.inventory.append(newInput[1])
-            newPlayer.room.items.remove(newInput[1])
+
+            if len(newPlayer.room.items) != 0:
+
+# ASK ABOUT THIS BEHAVIOR AND HOW IT COULD BE IMPROVED IN A MORE PROFESSIONAL MANNER
+                for item in newPlayer.room.items:
+
+                    try:
+                        if not item.value: 
+                            print('we broke')
+                            break
+                    except AttributeError:
+                        newPlayer.inventory.append(item.name)
+                        newPlayer.room.items.remove(item)
+                        print('we reached an error')
+                        continue
+                        
+                        print("still going")
+
+                    if item.name == newInput[1] and item.value and newPlayer.room.treasureScored == False:
+                        print('here')
+                        newPlayer.room.treasureScored = True
+                        newPlayer.score += item.value
+                        newPlayer.inventory.append(item.name)
+                        newPlayer.room.items.remove(item)
+                    else: continue
+
 
         if newInput[0] == "drop" or newInput[0] == "remove":
             newPlayer.inventory.remove(newInput[1])
-            newPlayer.room.items.append(newInput[1])
+            newPlayer.room.items.append(Item(newInput[1]))
             

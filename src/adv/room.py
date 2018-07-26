@@ -2,7 +2,7 @@
 # description attributes.
 
 class Room:
-    def __init__(self, roomName, summary, items):
+    def __init__(self, roomName, summary, items, treasureScored, index):
         self.roomName = roomName
         self.summary = summary
         self.n_to = None
@@ -10,6 +10,8 @@ class Room:
         self.w_to = None
         self.e_to = None
         self.items = items
+        self.treasureScored = treasureScored
+        self.index = index
 
 
     def printRoom(self):
@@ -18,7 +20,6 @@ class Room:
     def printItems(self):
         return f"The room has these items: {self.items}"
 
-    
 # test = Room("Kitchen", "is for cooking food", ["Sword", "Staff", "Knife"])
 
 # print(test.printRoom())

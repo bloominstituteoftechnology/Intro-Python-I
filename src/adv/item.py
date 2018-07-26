@@ -1,16 +1,19 @@
 class Item:
-    def __init__(self, name, description):
-        self.name = name
-        self.description = description
-    
-    def printItem(self):
-        return f"{self.name} has {self.description}"
+    def __init__(self, name):
+        self.name = name    
+
+    def on_take(self):
+        pass
 
 class Treasure(Item):
-    def __init__(self, name, description, value):
-        super().__init__(name, description)
+    def __init__(self, name, value):
+        self.value = value
+        super().__init__(name)
+
+    def on_take(self):
+        return self.value
 
 
-# test = Item("Sword", "500 physical damage and 200 magicka")
+# test = Treasure("Sword", "500 physical damage and 200 magicka", 500)
 
-# print(test.printItem())
+# print(test.on_take())
