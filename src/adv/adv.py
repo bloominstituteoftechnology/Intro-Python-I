@@ -139,8 +139,9 @@ while (player.room != 'exit'):
         if (verb == "Take"):
             if (player.room.searchItems(target)):
                 player.toInventory(Items[target])
-                if (type(Items[target]) is Treasure):
+                if (type(Items[target]) is Treasure and Items[target].dropped == False):
                     player.score += int(Items[target].on_take())
+                    Items[target].dropped = True
                     print('Player Score: ' + str(player.score) + '\n')
                 player.room.removeItem(target)
                 print(player.name + " takes the " + target + "\n")

@@ -11,7 +11,6 @@ class Item:
     def __init__(self, name, description):
         self.name = name
         self.description = description
-        self.dropped = False
     
     def __repr__(self):
         return self.name
@@ -25,6 +24,7 @@ class Treasure(Item):
         self.name = name
         self.description = description
         self.value = value
+        self.dropped = False
 
     def on_take(self):
         return self.value
