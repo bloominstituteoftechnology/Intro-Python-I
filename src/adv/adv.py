@@ -120,10 +120,9 @@ while userInput != "q":
         if(i.name == userInput[1]):
           player.items.remove(i)
           player.current.items.append(i)
+          i.on_drop()
           found = True
       if not found:
         print('you do not have that item')
-      else:
-        print('you dropped ' + userInput[1])
     else:
       print("Invalid Command")
