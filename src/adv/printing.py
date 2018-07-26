@@ -13,7 +13,7 @@ def turn(player):
     if player.room.items:    
         item_text = tabulate(
             "\nYou see the following in this room:\n",
-            *list(map(str, player.room.items)))
+            *format_items(player.room.items))
 
         print(item_text)
 
@@ -21,12 +21,11 @@ def inventory(player):
     if player.items:
         inventory_text = tabulate(
             f"{player} is carrying:\n",
-            *map(str, player.items))
+            *format_items(player.items))
     else:
         inventory_text = f"{player} is not carrying anything."
 
     prompt(inventory_text)
-
 
 def help():
     help_text = tabulate(
@@ -62,14 +61,17 @@ def item(item):
 def clear():
     os.system('cls' or 'clear')
 
-def pause():
-    input("\nPress Enter to continue...")
+def pause(string):
+    return input(f"\n{string}")
 
-def prompt(message):
+def prompt(message, prompt_message="Press Enter to continue..."):
     clear()
     print(message)
-    pause()
+    return pause(prompt_message)
 
 def tabulate(*lines, bullet="-"):
     join_string = f"\n  {bullet} "
     return join_string.join(lines)
+
+def format_items(items):
+    return [f"A {item}" for item in items]
