@@ -1,32 +1,28 @@
+from os import system
 from room import Room
 from player import Player
-from items import Item
+from item import Item
 import textwrap
 from textwrap import fill
 
-# Declare all the rooms
-
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", "You don't find anything of significance here."),
+                     "North of you, the cave mount beckons", []),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", "You found a Short Sword! Take Item? (Yes/No) "),
+passages run north and east.""", ['sword']),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", "You found a Shield! Take Item? (Yes/No)"),
+the distance, but there is no way across the chasm.""", ['shield']),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", "You found a strange coin... Take Item? (Yes/No)"),
+to north. The smell of gold permeates the air.""", ['coin']),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", "You found a note that reads, 'You're too late fool!'")
+earlier adventurers. The only exit is to the south.""", ['note'])
 }
-
-
-# Link rooms together
 
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
@@ -37,46 +33,87 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
-
-# Make a new player object that is currently in the 'outside' room.
 player = Player(input("Enter your name: "), room['outside'], [])
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
 
-done = False
+system("clear")
 
-while not done:
-    curRoom = player.room
-    roomDesc = textwrap.fill(curRoom.description)
-    foundItem = curRoom.item
+play = input("Hello, " + str(player.name) + "! I hope you're ready to go look for some treaure!\n\nHere's how you play:\n\nIf you want to move just type 'n' to go north, 's' for south, 'e' for east, and 'w' for west.\nTo pick up an item, type 'take (item name)'.\nTo drop an item, type 'drop (item name)'.\nTo check your inventory, type 'i'.\nIf you want to quit, type 'q'.\nAre you ready to play? (Yes/No)\n>>> ")
 
-    print("Hello, " + str(player.name))
+notPlaying = False
+if play == 'No' or play == 'no' or play == 'n' or play == 'N' or play == 'NO':
     
-    print("\n{}\n{}\n\n{}\n".format(curRoom.name, roomDesc, foundItem))
+    notPlaying = True
+    print("\nOk, see you later!\n")
+    system("clear")
 
-    command = input("What do you want to do? >>> ").strip().lower()
+elif play == 'Yes' or play == 'yes' or play == 'y' or play == 'Y':
 
-    if command == 'q' or command == 'quit' or command == 'exit':
-        done = True
+    system("clear")
+    print("Awesome, let's find that treasure!...\n")
     
-    elif command in ["s", "n", "e", "w"]:
-        dirAttr = command + "_to"
 
-        if hasattr(curRoom, dirAttr):
-            player.room = getattr(curRoom, dirAttr)
-        else:
-            print("That way is blocked")
-    
-    else:
-        print("I'm not sure what you mean...")
+    done = False
+    while not done:
+
+        curRoom = player.room
+        roomDesc = textwrap.fill(curRoom.description)
+        foundItem = curRoom.item
+
+        print("{}\n{}\n\n{}\n".format(curRoom.name, roomDesc, foundItem))
+
+        command = input("What do you want to do?\n>>> ").strip().lower().split()
+        system("clear")
+
+        if len(command) == 1:
+
+            if command[0] == 'q' or command[0] == 'quit' or command[0] == 'exit':
+                
+                done = True
+                print("\nQuitter!\n")
+
+            elif command[0] == 'i':
+
+                if len(player.inventory) == 0:
+                   
+                    print("You're inventory is empty.")
+
+                else:
+                   
+                    print("This is what is in your inventory:\n" + player.inventory)
+            
+            elif command[0] in ["s", "n", "e", "w"]:
+
+                dirAttr = command[0] + "_to"
+
+                if hasattr(curRoom, dirAttr):
+
+                    player.room = getattr(curRoom, dirAttr)
+
+                else:
+
+                    print("That way is blocked")
+            
+            else:
+
+                print("Why don't you try that again...")
+
+        elif len(command) == 2:
+
+            if command[0] == 'take':
+
+                curRoom.item.remove(command[1])
+                player.inventory.append(command[1])
+
+                print("Congrats, you picked up the item! Check your inventory to see your items.")
+            
+            elif command[0] == 'drop':
+
+                player.inventory.remove(command[1])
+                curRoom.item.append(command[1])
+
+                print("You dropped an item.")
+
+            else:
+                
+                print("There are no items to do this...keep moving.")
+            
