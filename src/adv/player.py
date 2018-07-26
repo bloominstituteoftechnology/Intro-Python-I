@@ -7,6 +7,4 @@ class Player:
     self.health = 100
     self.strength = 1
     self.capacity = 25
-    self.inventory = [
-      {'item': 'knife', 'weight': 1}
-    ]
+    self.inventory = []
