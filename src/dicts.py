@@ -26,4 +26,17 @@ waypoints = [
 
 # Write a loop that prints out all the field values for all the waypoints
 
+def loopDict(givenDict):
+    for item in givenDict:
+        for key in item:
+            print(key, item[key])
+
 # Add a new waypoint to the list
+
+waypoints.append({
+    "lat": 40,
+    "lon": -120,
+    "name": "final destination"
+})
+
+loopDict(waypoints)
