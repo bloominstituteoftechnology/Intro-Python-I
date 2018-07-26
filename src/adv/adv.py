@@ -94,6 +94,7 @@ while not quit:
 	# separate player commands into verb + noun
 	parsed = player_input.split(" ")
 
+	# Single Word Command Input Parsing
 	if len(parsed) == 1:
 		if parsed[0] in general_inputs:
 			# player quits/exits game
@@ -102,8 +103,7 @@ while not quit:
 			# show player inventory
 			if parsed[0] == "i":
 				print("You have the following items: {0}".format(player.inventory)) 
-
-		if parsed[0] in move_inputs:
+		elif parsed[0] in move_inputs:
 			dirAttr = parsed[0] + "_to"
 			# check if move input is valid
 			if hasattr(current, dirAttr):
@@ -111,28 +111,30 @@ while not quit:
 			else:
 				# invalid room change
 				print("You can't go that way!")
-
 		else:
 			# unknown single command
 			print("That command doesn't make sense!")
-	# player continues the game - interacts with items
+
+	# Two Word Command Input Parsing
 	elif len(parsed) == 2:
 		verb = parsed[0] # action player takes with an item
-		noun = parsed[1] # item itself
+		noun = parsed[1] # noun itself
 
-		if verb in item_inputs and noun in current.items:
+		if verb in item_inputs:
 			if verb == "get" or verb == "take":
-				# remove item from room
-				current.items.remove(noun)
-				# add item to player inventory
-				player.inventory.append(noun)
-			elif verb == "drop" and noun in player.inventory:
-				# remove item from player inventory
-				player.inventory.remove(noun)
-			else:
-				print("That item isn't in your inventory")
-		elif noun not in current.items:
-			print("That item isn't in this room")
+				for index, item in enumerate(current.items):
+					if item.name == noun:
+						# remove item from room
+						current.items.remove(current.items[index])
+						# add item to player inventory
+						player.inventory.append(item)
+			if verb == "drop":
+				for index, item in enumerate(player.inventory):
+					if item.name == noun:
+						# remove item from player inventory
+						player.inventory.remove(player.inventory[index])
+						# add item to room
+						current.items.append(item)
 		else:
 			print("You can't do that with an item!")
 	else:
