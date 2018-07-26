@@ -17,15 +17,23 @@ class Player:
     def get_item(self, item_name):
         return [item for item in self.items if item.name == item_name][0]
 
-    def take_item_from_room(self, item_name, room):
-        item = room.take_item(item_name)
-        item.on_take(self)
+    def remove_item(self, item):
+        self.items.remove(item)
+
+    def add_item(self, item):
         self.items.append(item)
 
-    def drop_item_in_room(self, item_name, room):
+    def take_item(self, item_name):
+        item = self.room.get_item(item_name)
+        if item.on_take(self):
+            self.room.remove_item(item)
+            self.add_item(item)
+
+    def drop_item(self, item_name):
         item = self.get_item(item_name)
-        self.items.remove(item)
-        self.room.put_item(item)
+        if item.on_drop(self):
+            self.remove_item(item)
+            self.room.add_item(item)
 
     def can_see(self):
         return self.room.is_illuminated() or self.has_light_source()
