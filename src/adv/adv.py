@@ -28,9 +28,13 @@ earlier adventurers. The only exit is to the south. """),
 }
 
 t = LightSource("Torch", "And Let There Be Light")
-h = Treasure("Poo", "I don't know why you would pick this up", 100)
+h = Treasure("Human Poo", "I don't know why you would pick this up", 100)
+f = Treasure("Tiger Poo", "I don't know why you would pick this up", 100)
+j = Treasure("Bat Poo", "I don't know why you would pick this up", 100)
 room['outside'].item.append(t)
 room['foyer'].item.append(h)
+room['narrow'].item.append(f)
+room['overlook'].item.append(j)
 
 
 
