@@ -1,14 +1,16 @@
 # importing room file into adv
 from room import Room
 # import player file into adv
-from player import Player 
+from player import Player
+#import item file into adv
+from item import Item
 
 # Declare all the rooms
 # an object called room holding a location string, and an instance of room
 # each one has a value of a room object. imported above.
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mouth beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -38,6 +40,25 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+#add items to the rooms
+#overlook room, lets append a new item to the contains list
+
+#outside
+room['outside'].contains.append(Item("wooden stick", "its but a tree branch."))
+room['outside'].contains.append(Item("box of matches", "maybe theres a fire place inside."))
+#foyer
+room['foyer'].contains.append(Item("bowl of grapes", "need a snack?"))
+room['foyer'].contains.append(Item("bronze dagger", "letter opener, or stabby thing?"))
+#overlook
+room['overlook'].contains.append(Item("coin pouch", "A small leather pouch of silver coins. Good, but we're looking for bigger treasure."))
+room['overlook'].contains.append(Item("letter", "a letter, but not to us."))
+room['overlook'].contains.append(Item("leather bound book", "Seems to be a journal. Maybe the land owners."))
+#narrow
+room['narrow'].contains.append(Item("lantern", "oil lantern, has some light left. do I have matches?"))
+room['narrow'].contains.append(Item("Single gold coin", "A single coin, its spanish, we must be going the right way.."))
+#treasure
+room['treasure'].contains.append(Item("dusty note", "It reads: your next adventure is coming soon..))
 
 #
 # Main
@@ -74,6 +95,15 @@ while not done:
     #room is what startRoom is set as. 
     #self.room = startRoom
     print(f'{current_room.name}\n{current_room.description}\n')
+
+    #print room contents
+    if len(current_room.contains) > 0:
+        print(f'{main_player.name} also sees:')
+        #iterate through the contents in the current room
+        #print them all out
+        for i in current_room.contains:
+            print("  " + i.name)
+        print()
 
 #ask for user input
 #this is going to take all the white space off
