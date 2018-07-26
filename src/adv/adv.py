@@ -28,7 +28,6 @@ room = {
 }
 
 # Link rooms together
-
 room["outside"].n_to = room["foyer"]
 room["foyer"].s_to = room["outside"]
 room["foyer"].n_to = room["overlook"]
@@ -65,18 +64,20 @@ while not done:
     wrapped_desc = textwrap.fill(p1.current_room.description)
     visible_item = p1.current_room.items
 
+    # Print room name and description
     print("\n{}".format(room_name))
     print("{}".format(wrapped_desc))
 
+    # Print items in room if any
     if len(p1.current_room.items) > 0:
         print("\nYou also find: ")
         for i in p1.current_room.items:
             print(i.description)
 
-    # print("You find a {}".format(visible_item))
-
+    # User input
     user_input = input("> ")
 
+    # Directions
     if user_input in ["n", "e", "s", "w"]:
         dirAttr = user_input + "_to"
 
@@ -85,13 +86,16 @@ while not done:
         else:
             print("Can't go that way.")
 
+    # Quit
     elif user_input == "q":
         print("GG")
         done = True
 
+    # Help - show commands
     elif user_input == "help":
         helper = "\nCOMMANDS:\nn - north\ne - east\ns - south\nw - west\nq - quit"
         print(helper)
 
+    # Invalid input
     else:
         print("\n - Enter a valid command or type help - ")
