@@ -5,21 +5,21 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", ["Flashlight"]),
+                     "North of you, the cave mount beckons", ["flashlight"]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ["Coins", "Sword"]),
+passages run north and east.""", ["coins", "sword"]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", ["Rope"]),
+the distance, but there is no way across the chasm.""", ["rope"]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ["Gold", "Golden knife"]),
+to north. The smell of gold permeates the air.""", ["gold", "golden knife"]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", ["Treasure box", "Gold", "Diamonds"]),
+earlier adventurers. The only exit is to the south.""", ["treasure box", "gold", "diamonds"]),
 }
 
 
@@ -58,31 +58,35 @@ while newInput != "q":
     print(f"Items in room: {newPlayer.room.items}")
 
     newInput = input("Give a one letter direction (NESW): \n \n \n")
-
+    newInput = newInput.lower()
     newInput = newInput.split(" ")
 
     if len(newInput) < 2:
+        print(newInput)
 
-        if newInput[0] is "n" or newInput[0] is "N":
+        if newInput[0] == "n":
             newPlayer.room = newPlayer.room.n_to
-        if newInput[0] is "e" or newInput[0] is "E":
+        if newInput[0] == "e":
             newPlayer.room = newPlayer.room.e_to
 
-        if newInput[0] is "s" or newInput[0] is "S":
+        if newInput[0] == "s":
             newPlayer.room = newPlayer.room.s_to
 
-        if newInput[0] is "w" or newInput[0] is "W":
+        if newInput[0] == "w":
             newPlayer.room = newPlayer.room.w_to
         
-        if newInput[0] is "i" or newInput[0] is "inventory" or newInput[0] is "I" or newInput[0] is "Inventory":
+        if newInput[0] == "i" or newInput[0] == "inventory":
             print(f"Player inventory: {newPlayer.inventory}")
 
+        if newInput[0] == "score":
+            print(f"Player score:  {newPlayer.score}")
+
     if len(newInput) >= 2:
-        if newInput[0] == "get" or newInput[0] == "take" or newInput[0] is "Get" or newInput[0] is "Take":
+        if newInput[0] == "get" or newInput[0] == "take":
             newPlayer.inventory.append(newInput[1])
             newPlayer.room.items.remove(newInput[1])
 
-        if newInput[0] == "drop" or newInput[0] == "remove" or newInput[0] is "Drop" or newInput[0] is "Remove":
+        if newInput[0] == "drop" or newInput[0] == "remove":
             newPlayer.inventory.remove(newInput[1])
             newPlayer.room.items.append(newInput[1])
             
