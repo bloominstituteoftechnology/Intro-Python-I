@@ -29,4 +29,4 @@ class Treasure(Item):
 
 class LightSource(Item):
     def __init__(self, name, description):
-        Item.__init(self, name, description)
+        Item.__init__(self, name, description)

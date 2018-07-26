@@ -31,7 +31,7 @@ Items = {
     "Sword" : Item('Sword', 'Shiny'),
     "BronzeCoin" : Treasure('BronzeCoin', 'Bronze', '5'),
     "SilverCoin" : Treasure('SilverCoin', 'Silver', '10'),
-    "GoldCoin" : Treasure('GoldCoin', 'Gold', '20')
+    "GoldCoin" : Treasure('GoldCoin', 'Gold', '20'),
     "Lamp" : LightSource('Lamp', 'Illuminator')
 }
 
@@ -156,6 +156,8 @@ while (player.room != 'exit'):
                 print(target + " is not available\n")
         elif (verb == "Drop"):
             if (player.searchInventory(target)):
+                if (target == "Lamp"):
+                    print("It's not wise to drop your source of light!\n")
                 player.removeItem(target)
                 print("You dropped the " + target + "\n")
                 if (type(Items[target]) is Treasure):

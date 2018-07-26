@@ -29,5 +29,4 @@ class Room():
         for item in self.items:
             if (item.name == item_name):
                 self.items.remove(item)
-            else:
-                return None
+        return None

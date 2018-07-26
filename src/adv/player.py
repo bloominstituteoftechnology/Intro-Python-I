@@ -25,5 +25,4 @@ class Player():
         for item in self.inventory:
             if (item.name == item_name):
                 self.inventory.remove(item)
-            else:
-                return None
+        return None
