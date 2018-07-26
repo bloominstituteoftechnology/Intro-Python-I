@@ -7,8 +7,7 @@ import textwrap
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
-
+                     "North of you, the cave mount beckons", [Item("Map", "Map is faded but still readable"), Item("Sword", "Rusted sword that could still be used to fight enemies")]),
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
@@ -41,10 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player("Stan", room['outside'])
-
-# Create space for inventory in memory
-inventory = []
+player = Player("Stan", room['outside'], [])
 
 # Write a loop that:
 #
@@ -59,28 +55,35 @@ inventory = []
 done = False
 
 while not done:
-  	curRoom = player.room
-
+	curRoom = player.room
+	
 	prettyDesc = textwrap.fill(curRoom.description)
-
-	print(f'{curRoom.name}\n{prettyDesc}')
+	
+	print(f'{curRoom.name}\n{prettyDesc}\n{curRoom.itemList}')
 
 	command = input("Command > ").strip().lower()
 
 	if command == 'q' or command == 'quit' or command == 'exit':
-  		done = True
+		done = True
 
 	elif command in ["s", "n", "e", "w"]:
-  		dirAttr = command + "_to"
+		dirAttr = command + "_to"
 
-		if hasattr(curRrom, dirAttr):
-  			player.room = getattr(curRoom, dirAttr)
+		if hasattr(curRoom, dirAttr):
+			player.room = getattr(curRoom, dirAttr)
 
 		else:
   			print("You can't go that way.")
 
-	else:
-  		print("I don't understand that.")
+	elif command in ['m']:
+		for i in range (len(player.inventory)):
+  			if player.inventory[i].name == 'map':
+  				  player.check_map()
+		print("there is no map!")
 
-def addToInventory(item):
-	inventory.append(item)
+	elif command == 'p':
+  		player.addToInventory(input("What item do you want? "))
+  					  
+	else:
+		print("I don't understand that.")
+
