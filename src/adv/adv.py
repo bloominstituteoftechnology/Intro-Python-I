@@ -37,11 +37,14 @@ narrow.addItem(key)
 
 
 # Make a new player object that is currently in the 'outside' room.
+score = 0
 
 def print_user_controls():
+   global score
    print("\n ~ Directions: move [n, s, e, w]")
    print(" ~ Actions: [get, drop, use] item")
    print(" ~ Quit: q or quit\n")
+   print("Score: %d\n" % score)
 
 
 system("cls" or "clear")
@@ -63,7 +66,7 @@ def printItems():
 
    handleRoomChange(player.currentRoom)
 
-   print("Items in the room:")
+   print("Items in this room:")
 
    if len(availableItems) is 0:
       print("   None")
@@ -122,6 +125,7 @@ def parser(command):
 
       if availableItem is None:
          print("\nItem is not available in this room.\nPlease choose a valid item.")
+
       else:
          commands[action](availableItem)
 
@@ -134,6 +138,7 @@ def unlock_treasure(item):
 
    if item.name is not "Key":
       print("You cannot use this item here.")
+
    else:
       system("cls" or "clear")
       print("\n\n\n\nYou insert the key and unlock the chest.")
@@ -159,6 +164,7 @@ game_over = False
 while game_over is not True:
    system("cls" or "clear")
 
+   print_user_controls()
    printItems()
 
    command = input("\nCommand> ")
