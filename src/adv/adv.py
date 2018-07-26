@@ -82,16 +82,58 @@ while not done:
 
     command = input("\nCommand> ").strip().lower()
 
-    if command == 'q' or command == 'quit' or command == 'exit':
-        done = True
+    command = command.split(' ')
+    if len(command) == 1:
+    
+        if command[0] == 'q' or command[0] == 'quit' or command[0] == 'exit':
+            done = True
 
-    elif command in ["s", "n", "e", "w"]:
-        dirAttr = command + "_to"
+        elif command[0] in ["s", "n", "e", "w"]:
+            dirAttr = command[0] + "_to"
 
-        if hasattr(curRoom, dirAttr):
-               player.room = getattr(curRoom, dirAttr)
+            if hasattr(curRoom, dirAttr):
+                player.room = getattr(curRoom, dirAttr)
+
+            else:
+                print("You can't go that way.")
+
+        elif command[0] in ["i", "inventory"]:
+            if len(player.contents) > 0:
+                print("\nYou're currently carrying:")
+                for i in player.contents:
+                    print("   " + i.description)
+            else:
+                print("\nYou're not carrying anything.")
+
         else:
-                    print("you cant go that way homie")
+            print("I don't understand that!")
+
+    elif len(command) == 2:
+
+        verb, obj = command
+
+        if verb in ['get', 'take']:
+            candidates = [item for item in curRoom.contents if item.name == obj]
+
+            if len(candidates) == 0:
+                print("You don't see that here.")
+
+            else:
+                player.contents.append(candidates[0])
+                curRoom.contents.remove(candidates[0])
+
+        elif verb == 'drop':
+            candidates = [item for item in player.contents if item.name == obj]
+
+            if len(candidates) == 0:
+                print("You're not carrying that.")
+
+            else:
+                player.contents.remove(candidates[0])
+                curRoom.contents.append(candidates[0])
+
+        else:
+            print("I don't understand that!")
 
     else:
-         print("i dont recognize that, what set you claiming? ")
+        print("I don't understand that!")
