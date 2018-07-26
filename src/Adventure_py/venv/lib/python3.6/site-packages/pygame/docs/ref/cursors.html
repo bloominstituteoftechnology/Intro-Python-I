@@ -1,0 +1,246 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pygame.cursors &#8212; Pygame v1.9.4.dev0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygame.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/pygame.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pygame.display" href="display.html" />
+    <link rel="prev" title="pygame.Color" href="color.html" /> 
+  </head><body>  
+
+    <div class="document">
+
+  <div class="header">
+    <table>
+      <tr>
+	<td class="logo">
+	  <a href="https://www.pygame.org/">
+	    <img src="../_static/pygame_tiny.png"/>
+	  </a>
+	  <h5>pygame documentation</h5>
+	</td>
+	<td class="pagelinks">
+	  <p class="top">
+	    <a href="https://www.pygame.org/">Pygame Home</a> ||
+	    <a href="../index.html">Help Contents</a> ||
+	    <a href="../genindex.html">Reference Index</a>
+	  </p>
+	  <p class="bottom">
+	    <a href="color.html">Color</a> | 
+	    <a href="cursors.html">cursors</a> | 
+	    <a href="display.html">display</a> | 
+	    <a href="draw.html">draw</a> | 
+	    <a href="event.html">event</a> | 
+	    <a href="font.html">font</a> | 
+	    <a href="image.html">image</a> | 
+	    <a href="joystick.html">joystick</a> | 
+	    <a href="key.html">key</a> | 
+	    <a href="locals.html">locals</a> | 
+	    <a href="mask.html">mask</a> | 
+	    <a href="mixer.html">mixer</a> | 
+	    <a href="mouse.html">mouse</a> | 
+	    <a href="rect.html">Rect</a> | 
+	    <a href="surface.html">Surface</a> | 
+	    <a href="sprite.html">sprite</a> | 
+	    <a href="time.html">time</a> | 
+	    <a href="transform.html">transform</a> | 
+	    <a href="bufferproxy.html">BufferProxy</a> | 
+	    <a href="freetype.html">freetype</a> | 
+	    <a href="gfxdraw.html">gfxdraw</a> | 
+	    <a href="midi.html">midi</a> | 
+	    <a href="overlay.html">Overlay</a> | 
+	    <a href="pixelarray.html">PixelArray</a> | 
+	    <a href="pixelcopy.html">pixelcopy</a> | 
+	    <a href="sndarray.html">sndarray</a> | 
+	    <a href="surfarray.html">surfarray</a> | 
+	    <a href="camera.html">camera</a> | 
+	    <a href="cdrom.html">cdrom</a> | 
+	    <a href="examples.html">examples</a> | 
+	    <a href="math.html">math</a> | 
+	    <a href="music.html">music</a> | 
+	    <a href="pygame.html">pygame</a> | 
+	    <a href="scrap.html">scrap</a> | 
+	    <a href="tests.html">tests</a> | 
+	    <a href="pygame.html#module-pygame.version">version</a>
+	  </p>
+	</td>
+      </tr>
+    </table>
+  </div>
+
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+<div class="section" id="module-pygame.cursors">
+<span id="pygame-cursors"></span><dl class="definition module">
+<dt class="title module">
+<code class="docutils literal notranslate"><span class="pre">pygame.cursors</span></code></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">pygame module for cursor resources</span></div>
+</div>
+<table border="1" class="toc docutils">
+<colgroup>
+<col width="31%" />
+<col width="1%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="toc reference external" href="cursors.html#pygame.cursors.compile">pygame.cursors.compile</a></td>
+<td>—</td>
+<td>create binary cursor data from simple strings</td>
+</tr>
+<tr class="row-even"><td><a class="toc reference external" href="cursors.html#pygame.cursors.load_xbm">pygame.cursors.load_xbm</a></td>
+<td>—</td>
+<td>load cursor data from an XBM file</td>
+</tr>
+</tbody>
+</table>
+<p>Pygame offers control over the system hardware cursor. Pygame only supports
+black and white cursors for the system. You control the cursor with functions
+inside <a class="tooltip reference internal" href="mouse.html#module-pygame.mouse" title=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pygame.mouse</span></code><span class="tooltip-content">pygame module to work with the mouse</span></a>.</p>
+<p>This cursors module contains functions for loading and decoding various
+cursor formats. These allow you to easily store your cursors in external files
+or directly as encoded python strings.</p>
+<p>The module includes several standard cursors. The <code class="docutils literal notranslate"><span class="pre">pygame.mouse.set_cursor()</span></code>
+function takes several arguments. All those arguments have been stored in a
+single tuple you can call like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">set_cursor</span><span class="p">(</span><span class="o">*</span><span class="n">pygame</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">arrow</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This module also contains a few cursors as formatted strings. You'll need to
+pass these to <code class="docutils literal notranslate"><span class="pre">pygame.cursors.compile()</span></code> function before you can use them.
+The example call would look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cursor</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">textmarker_strings</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">set_cursor</span><span class="p">(</span><span class="o">*</span><span class="n">cursor</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following variables are cursor bitmaps that can be used as cursor:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">pygame.cursors.arrow</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">pygame.cursors.diamond</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">pygame.cursors.broken_x</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">pygame.cursors.tri_left</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">pygame.cursors.tri_right</span></code></li>
+</ul>
+</div></blockquote>
+<p>The following strings can be converted into cursor bitmaps with
+<code class="docutils literal notranslate"><span class="pre">pygame.cursors.compile()</span></code> :</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">pygame.cursors.thickarrow_strings</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">pygame.cursors.sizer_x_strings</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">pygame.cursors.sizer_y_strings</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">pygame.cursors.sizer_xy_strings</span></code></li>
+</ul>
+</div></blockquote>
+<dl class="definition function">
+<dt class="title" id="pygame.cursors.compile">
+<code class="descclassname">pygame.cursors.</code><code class="descname">compile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.cursors.compile" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">create binary cursor data from simple strings</span></div>
+<div class="line"><span class="signature">compile(strings, black='X', white='.', xor='o') -&gt; data, mask</span></div>
+</div>
+<p>A sequence of strings can be used to create binary cursor data for the
+system cursor. The return values are the same format needed by
+<code class="docutils literal notranslate"><span class="pre">pygame.mouse.set_cursor()</span></code>.</p>
+<p>If you are creating your own cursor strings, you can use any value represent
+the black and white pixels. Some system allow you to set a special toggle
+color for the system color, this is also called the xor color. If the system
+does not support xor cursors, that color will simply be black.</p>
+<p>The width of the strings must all be equal and be divisible by 8. An example
+set of cursor strings looks like this</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">thickarrow_strings</span> <span class="o">=</span> <span class="p">(</span>               <span class="c1">#sized 24x24</span>
+  <span class="s2">&quot;XX                      &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XXX                     &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XXXX                    &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XX.XX                   &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XX..XX                  &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XX...XX                 &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XX....XX                &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XX.....XX               &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XX......XX              &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XX.......XX             &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XX........XX            &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XX........XXX           &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XX......XXXXX           &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XX.XXX..XX              &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XXXX XX..XX             &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;XX   XX..XX             &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;     XX..XX             &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;      XX..XX            &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;      XX..XX            &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;       XXXX             &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;       XX               &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;                        &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;                        &quot;</span><span class="p">,</span>
+  <span class="s2">&quot;                        &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="definition function">
+<dt class="title" id="pygame.cursors.load_xbm">
+<code class="descclassname">pygame.cursors.</code><code class="descname">load_xbm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.cursors.load_xbm" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">load cursor data from an XBM file</span></div>
+<div class="line"><span class="signature">load_xbm(cursorfile) -&gt; cursor_args</span></div>
+<div class="line"><span class="signature">load_xbm(cursorfile, maskfile) -&gt; cursor_args</span></div>
+</div>
+<p>This loads cursors for a simple subset of <code class="docutils literal notranslate"><span class="pre">XBM</span></code> files. <code class="docutils literal notranslate"><span class="pre">XBM</span></code> files are
+traditionally used to store cursors on UNIX systems, they are an ASCII
+format used to represent simple images.</p>
+<p>Sometimes the black and white color values will be split into two separate
+<code class="docutils literal notranslate"><span class="pre">XBM</span></code> files. You can pass a second maskfile argument to load the two
+images into a single cursor.</p>
+<p>The cursorfile and maskfile arguments can either be filenames or file-like
+object with the readlines method.</p>
+<p>The return value cursor_args can be passed directly to the
+<code class="docutils literal notranslate"><span class="pre">pygame.mouse.set_cursor()</span></code> function.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="display.html" title="pygame.display"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="color.html" title="pygame.Color"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Pygame v1.9.4.dev0 documentation</a> &#187;</li>
+    <script type="text/javascript" src="../_static/jquery.plugin.docscomments.js"></script>
+
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2011, Pygame Developers.
+    </div>
+  </body>
+</html>
