@@ -57,21 +57,23 @@ name = input("Enter your name:\n")
 player = Player(name, room['outside'])
 
 # Game Features:
-    # - Display current room, room description, room items
+    # 1. Display current room, room description, room items
 
-    # - Takes an input as an instruction
+    # 2. Takes an input as an instruction
 
-    # - Travels through rooms using cardinal directions (North, East, South, West)
+    # 3. Travels through rooms using cardinal directions (North, East, South, West)
 
-    # - Quits the game (Quit)
+    # 4. Quits the game (Quit)
 
-    # - Take items from the room or drop items from the inventory (Take Item(Name) | Drop Item(Name))
+    # 5. Take items from the room or drop items from the inventory (Take Item(Name) | Drop Item(Name))
 
-    # - Checks the inventory (Inventory)
+    # 6. Checks the inventory (Inventory)
 
-    # - Display end game message
+    # 7. Display end game message
+
 system("clear")
 while (player.room != 'exit'):
+
     # - Display current room, room description, room items
 
     print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
@@ -130,7 +132,7 @@ while (player.room != 'exit'):
                 player.removeItem(target)
                 print(player.name + " drops the " + target + "\n")
             else:
-                print(target + " is not in your inventory")
+                print(target + " is not in your inventory\n")
 
 # - Display end game message
 
