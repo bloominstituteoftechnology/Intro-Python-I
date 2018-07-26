@@ -61,8 +61,8 @@ room['treasure'].addItem(item5)
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-def direction(d, curRoom):
-    dirAttr = d + "_to"
+def direction(command, curRoom):
+    dirAttr = command + "_to"
     if hasattr(curRoom, dirAttr):
         player.room = getattr(curRoom, dirAttr)
     else:
@@ -78,7 +78,7 @@ def directionCommand():
     if inputCommand[0] == 'q' or inputCommand[0] == 'quit' or inputCommand[0] == 'exit':
         done = True
     elif inputCommand[0] in dirCommands:
-        player.curRoom = direction(inputCommand[0], player.curRoom)
+        player.curRoom = direction(inputCommand[0], player.room)
     elif inputCommand[0] in ['i', 'inv', 'inventory']:
         player.printInventory()
     elif inputCommand[0] == 'score':
@@ -102,11 +102,11 @@ def startGame():
 
     prettyDesc = textwrap.fill(curRoom.description)
 
-    print(f'{curRoom.name}\n{prettyDesc}')
+    print(f'\n{curRoom.name}\n{prettyDesc}')
 
-    if len(player.curRoom.items) > 0:
+    if len(player.room.items) > 0:
         print('\nYou see:')
-        for i in player.curRoom.items:
+        for i in player.room.items:
             print('  ' + str(i.name))
 
 
