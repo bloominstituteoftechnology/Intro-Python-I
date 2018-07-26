@@ -22,21 +22,21 @@ items = {
 
 rooms = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", 'outside', [copy(items['lamp']), copy(items['sword']), copy(items['shield'])]),
+                     "North of you, the cave mount beckons", 'outside', [copy(items['sword']), copy(items['shield'])]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", 'foyer'),
+passages run north and east.""", 'foyer', [copy(items['lamp'])]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""", 'overlook'),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", 'narrow'),
+to north. The smell of gold permeates the air.""", 'narrow', [], False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", 'treasure', [copy(items['coins']), copy(items['coins']), copy(items['coins'])]),
+earlier adventurers. The only exit is to the south.""", 'treasure', [copy(items['coins']), copy(items['coins']), copy(items['coins'])], False),
 }
 
 # Link rooms together
@@ -151,7 +151,21 @@ else:
 playing = True
 helpString = 'Type n/s/e/w to move in a direction.\nType "i" or "inventory" to check your inventory.\nType "look" or "search" to look around for items.\nType "t", "take", "g" or "get" and the name of the item you want to take to pick up an item.\nType "d" or "drop" and the name of the item in your inventory that you want to drop.\nType "score" to see your score.\nType "q" or "quit" to quit and save.\nType "save" to save the game without quitting.'
 
-print("\n" + player.room.description)
+
+def can_see(player, look=False):
+    if player.room.is_light is True or next((i for i in player.room.items if isinstance(i, LightSource)), None) or next((i for i in player.inventory if isinstance(i, LightSource)), None):
+        if look == False:
+            print("\n" + player.room.description)
+        return True
+    else:
+        if look == False:
+            print("\nIt's too dark for you to see.")
+        else:
+            print("It's too dark for you to see.")
+        return False
+
+
+can_see(player)
 
 while(playing is True):
     curRoom = player.room
@@ -174,15 +188,16 @@ while(playing is True):
         dirAttr = command + "_to"
         if hasattr(curRoom, dirAttr):
             player.room = getattr(curRoom, dirAttr)
-            print("\n" + player.room.description)
+            can_see(player)
         else:
             print("You can't go that way.")
     elif command == "look" or command == "search":
-        print("You scan your surroundings.")
-        for i in curRoom.items:
-            print("You find %s." % i.description)
-        if len(curRoom.items) == 0:
-            print("You find nothing of note.")
+        if can_see(player, True):
+            print("You scan your surroundings.")
+            for i in curRoom.items:
+                print("You find %s." % i.description)
+            if len(curRoom.items) == 0:
+                print("You find nothing of note.")
     elif command == "i" or command == "inventory":
         print("You check your inventory.")
         for i in player.inventory:
