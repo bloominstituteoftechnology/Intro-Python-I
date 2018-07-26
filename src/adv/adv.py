@@ -8,7 +8,7 @@ from item import Item, Treasure, LightSource
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", False),
+                     "North of you, the cave mount beckons", True),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", False),
@@ -86,9 +86,16 @@ system("clear")
 while (player.room != 'exit'):
 
     # - Display current room, room description, room items
+    natural_room = [room[x] for x in ['outside', 'foyer', 'overlook', 'narrow', 'treasure'] if room[x].is_Light]
+    illuminated_room = [room[x] for x in ['outside', 'foyer', 'overlook', 'narrow', 'treasure']
+        if [item for item in room[x].items if type(item) is LightSource] 
+    ]
 
-    print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
-    print("The item(s) in the " + player.room.name + ": " + str(player.room.items) + "\n")
+    if (player.room in natural_room or player.room in illuminated_room or [item for item in player.inventory if type(item) is LightSource]):
+        print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
+        print("The item(s) in the " + player.room.name + ": " + str(player.room.items) + "\n")
+    else:
+        print("It's pitch black!\n")
 
     # - Takes an input as an instruction
 
