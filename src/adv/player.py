@@ -53,5 +53,9 @@ It slides into the slot with relative ease and the wall opens up,
 revealing a hidden room.''')
     self.room.w_to = room['workshop']
 
+
+# Make a new player that is currently in the 'outside' room.
+
+player = Player('Devon', room['overlook'])
     
     
