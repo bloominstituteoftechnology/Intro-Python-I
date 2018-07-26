@@ -82,6 +82,7 @@ while not done:
     
     #set quit command
     if command == 'q' or command == 'quit' or command == 'exit':
+        print('Your quest will continue some day. Thanks for playing!')
         done = True
         # these are our movement options
     elif command in ["n", "s", "e", "w"]:
@@ -95,3 +96,6 @@ while not done:
         else:
             #if it does not, you cant go that way 
             print("you cant go that way")
+
+    else:
+            print("Invalid command. Move with n, s, e, w")
