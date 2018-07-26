@@ -29,6 +29,22 @@ class Player:
         print(f'I\'m sorry, it looks like the {self.room.name} has no path leading {direction}\n')
     else:
       print('\nInvalid direction.\n')
+    
+  def take(self, item):
+    if item in self.room.items:
+      self.room.items.remove(item)
+      self.inventory.append(item)
+    else:
+      print('\nItem invalid\n')
+
+  def use(self, item):
+    from adv import room
+
+    if item.name == 'lever' and self.room.name == 'Foyer' and self.room.inspected == True:
+      print('''You insert the lever into the gap of the wall.
+It slides into the slot with relative ease and the wall opens up,
+revealing a hidden room.''')
+    self.room.w_to = room['workshop']
 
     
     
