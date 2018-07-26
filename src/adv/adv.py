@@ -93,8 +93,8 @@ while True:
         elif cmd == "i" or cmd == "inventory":
             print("\nInventory:\n" + "\n".join([item.name + " - " + item.description for item in player.inventory]))
 
-        # elif cmd == "score":
-        #     print(f"Your Score: {player.score}")
+        elif cmd == "score":
+            print("\nCurrent Score:\n" "%d" % player.score)
 
         else:
             print("\nSorry, Wrong Command - Try Again") 
