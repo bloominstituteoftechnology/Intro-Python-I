@@ -133,6 +133,7 @@ while (player.room != 'exit'):
     # Two Word Commands
     
     # - Take items from the room or drop items from the inventory (Take Item(Name) | Drop Item(Name))
+    # - Add score accordingly
 
     elif (len(instruction.split()) == 2):
         verb, target = [x for x in instruction.split()]
@@ -148,14 +149,17 @@ while (player.room != 'exit'):
                 print(player.name + " takes the " + target + "\n")
             else: 
                 print(target + " is not available\n")
-        if (verb == "Drop"):
+        elif (verb == "Drop"):
             if (player.searchInventory(target)):
-                player.room.addItem(Items[target])
                 player.removeItem(target)
+                if (type(Items[target]) is Treasure):
+                    player.score -= int(Items[target].on_drop())
+                    print(player.name + '\'s score decreases by: ' + str(Items[target].value) + '\n')
+                    print('Your score is now: ' + str(player.score) + '\n')
+                player.room.addItem(Items[target])
                 print(player.name + " drops the " + target + "\n")
             else:
                 print(target + " is not in your inventory\n")
-    
     else:
         print("Invalid Command. Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Score | Quit:\n")
 
