@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -41,37 +42,45 @@ room['treasure'].s_to = room['narrow']
 
 name = input('Enter your name Traveler: ')
 
-defaultRoom = 'outside'
-
 # this creates the player
-player1 = Player(name,defaultRoom)
-
-
- #currentRoom = Room(name, room[currentRoom.description])
+player1 = Player(name, room['outside'])
 
 print("Welcome " + player1.name)
-print("You are currently in " + player1.room)
-#print(currentRoom.description)
-print(room[name][description])
 
-#print('You are currently in the ' + room['outside'])
+done = False
+while not done:
+    currentRoom = player1.room
+
+    print("You are currently in " + currentRoom.name)
+    print(currentRoom.description)
+    direction = input('Please enter the direction you would like to go: ').strip().lower()
+
+    if direction == 'q' or direction == 'quit' or direction == 'exit:
+        done = True
+    elif direction in ['s', 'n', 'e', 'w']:
+        dirAttr = direction + '_to'
+
+        if hasattr(currentRoom, dirAttr):
+            player1.room = getattr(currentRoom,dirAttr)
+        else: 
+            print('That is not a valid direction')
+    else: 
+        print('I do not understand that')
 
 # Write a loop that:
 #
 # * Prints the current room name
-print(currentRoom.name)
 
 # * Prints the current description (the textwrap module might be useful here).
-print(currentRoom.description)
+#print(currentRoom.description)
 # * Waits for user input and decides what to do.
-direction = input('Please enter the direction you would like to go: ')
 #
 # Print an error message if the movement isn't allowed.
-if direction == 'north':
-    currentRoom.name = 'foyer'
+# if direction == 'north':
+#     currentRoom.name = 'foyer'
 
-if direction == 'q':
-    exit()
+# if direction == 'q':
+#     exit()
 
 #
 # If the user enters "q", quit the game.
