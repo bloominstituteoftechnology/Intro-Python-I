@@ -1,0 +1,57 @@
+Classes of game and inheritance
+
+LivingBeing (room, name, type, inventory, hp)
+  > Humanoid (equip_slots) [move, attack, examine, use, pickup, drop, equip]
+    > Player
+    > NPC
+    > Monster
+  > Non-humanoid [move, attack]
+    > Animal
+    > Monster
+  > Plant
+ 
+InanimateObject
+  > Item (name, description)
+    > Consumable [expend]
+      > Food
+      > Potion
+      > Poison
+      > Craft Material
+    > Equippable
+      > Armor (protection)
+      > Weapon (power)   
+      > Accessory (effect)
+      > Magic Item (charges)
+    > Container (capacity{current, max}, inventory) [isFull]
+      > Equippable <Multi Inheritance>
+        > Backpack
+        > Satchel
+        > Pouch
+      > Chest
+      > Barrel
+      > Compartment
+      > Furniture
+    
+
+Room (name, description, )
+
+Actions of Player
+  ?? Make state machine like a regex parser for longer commands ???
+
+  One word -
+    - [direction] : moves in direction
+    - 'examine' : default to examine current room in detail
+    - 'help' or 'h' : displays all input option
+    - 'quit' or 'q' : quits game session
+
+  Two word -
+    - 'move' or 'go' [direction] : moves in direction
+    - 'examine' [item] : examines item if on person or in room
+    - 'use' [item] : uses item if on person or in room
+    - 'equip' [item] : equips item if on persom or in room
+    - 'attack' [target] : attacks with equipped weapon
+    - 'pickup' [item] : picks up item
+    - 'drop' [item] : drops item
+    - 'destroy' [item] : destroys item if able
+
+
