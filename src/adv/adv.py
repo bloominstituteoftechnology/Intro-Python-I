@@ -1,12 +1,12 @@
 from room import Room
 from player import Player
-from item import Item, Treasure
+from item import LightSource, Treasure
 import textwrap
 
 # Declare all the rooms
-item = {
-    'torch' : Item(name = "Torch", description = "Ahh Light"),
-}
+# item = {
+#     'torch' : Item(name = "Torch", description = "Ahh Light"),
+# }
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -27,9 +27,10 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south. """),
 }
 
-t = Item("Torch", "And Let There Be Light")
+t = LightSource("Torch", "And Let There Be Light")
 h = Treasure("Poo", "I don't know why you would pick this up", 100)
-room['outside'].item.append(h)
+room['outside'].item.append(t)
+room['foyer'].item.append(h)
 
 
 
@@ -78,17 +79,21 @@ while over is False:
                 print("You grasp air....")
             else:
                 print("You picked up an item " + str(player.currentArea.item))
-                player.currentArea.item[0].on_take(player)
+                player.currentArea.item[-1].on_take(player)
                 player.item.append(player.currentArea.item)
                 player.currentArea.item = []
         elif u == "drop item":
-            player.currentArea.item.append(player.item[-1])
+            # player.currentArea.item.append(player.item[-1])
             player.item.pop()
+            print("Item lost forever why did you drop it?")
         elif u == "take": print("What did you mean to take? item? Use two words")
         elif u == 'inventory': print("Player Held Items: " + str(player.item))
         else: print("Commands: n,s,w,e | take item | q | quit")
     elif u in ["n", "s", "e", "w"]:
         player.currentArea = cardDirection(u, player.currentArea)
+    elif player.item[0] != t:
+        print("Dont leave the torch next time")
+        over = True  
     elif u == 'i':
         print("Player Held Items: " + str(player.item))
         print("Player Score: " + str(player.score))
