@@ -135,6 +135,7 @@ while not quit:
 			if verb == "drop":
 				for index, item in enumerate(player.inventory):
 					if item.name == noun:
+						item.on_drop(player, item.name)
 						# remove item from player inventory
 						player.inventory.remove(player.inventory[index])
 						# add item to room

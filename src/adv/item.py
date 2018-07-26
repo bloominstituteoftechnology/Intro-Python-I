@@ -14,11 +14,11 @@ class Item:
 	def on_take(self, entity, item_name):
 		# called when player picks up an item
 		# Item uses this to run more code when picked up
-		return "{0} picked up the {1} and put in in their inventory". format(entity.name, item_name)
+		print("{0} picked up the {1} and put in in their inventory".format(entity.name, self.name))
 
 	def on_drop(self, entity, item_name):
 		# called when player drops an item
-		return "{0} dropped the {1} in the {2}".format(entity.name, item_name, entity.room.name)
+		print("{0} dropped the {1} in the {2}".format(entity.name, self.name, entity.room.name))
 
 class Treasure(Item):
 	def __init__(self, name, description, value):
@@ -30,4 +30,4 @@ class Treasure(Item):
 		# occurs on first pick up only
 		entity.score += self.value
 		self.value = 0
-		return "{0} picked up the {1}, a rare treasure.".format(entity.name, treasure_name) 
+		print("{0} picked up the {1}, a rare treasure.".format(entity.name, self.name) )
