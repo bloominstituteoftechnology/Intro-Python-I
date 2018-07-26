@@ -98,6 +98,11 @@ drop_keyword = ["drop", "remove"]
 
 while playerExit != True:
 
+    # Check if room was discovered before
+    if player.currentRoom.newRoom == True:
+        player.score += 1
+        player.currentRoom.newRoom = False
+
     # print current room and description
     print("\nCurrent room: {}".format(player.currentRoom.name))
     for line in textwrap.wrap(player.currentRoom.descript):
@@ -117,6 +122,10 @@ while playerExit != True:
     elif userInput in {"q", "quit", "exit"}:
         print("\nFarewell, adventurer.\n")
         playerExit = True
+
+    # show score
+    elif userInput == "score":
+        print('current score:', player.score)
 
     # shows all available actions
     elif userInput == "action" or userInput == "actions" or userInput == "help":
