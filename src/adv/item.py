@@ -1,5 +1,5 @@
-class item:
-	def __init__(self, itemName, description, curRoom):
-  		self.name = itemName
-		self.room = curRoom
+class Item:
+	def __init__(self, name, description, location):
+  	self.name = name
+		self.location = location
 		self.description = description
