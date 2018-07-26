@@ -1,8 +1,6 @@
-# Write a class to hold player information, e.g. what room they are in
-# currently.
-
 class Player:
-    def __init__(self, startRoom):
+    def __init__(self, startRoom, name):
+        self.name = name
         self.currentRoom = startRoom
         self.inventory = []
         self.hp = 100
