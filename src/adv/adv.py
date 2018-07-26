@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -24,7 +25,7 @@ earlier adventurers. The only exit is to the south."""),
 
 
 # Link rooms together
-
+room['outside'].items.append(Item('lantern','gives light'))
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -47,36 +48,76 @@ player = Player(room['outside'])
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 #
-# If the user enters a cardinal direction, attempt to move to the room there.
+# If the user enters a cardinal userInput, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
 
-direction = ""
-while direction != "q":
+userInput = ""
+while userInput != "q":
   print("\n")
   print(player.current.description)
-  direction = input("Direction? (q to quit) ")
+  userInput = input("Direction? (q to quit) ").split(' ')
   print("\n")
-  if direction == "north":
-    if player.current.n_to != None:
-      player.current = player.current.n_to
+
+  if(len(userInput) == 1):
+    userInput = userInput[0]
+    if userInput == "north":
+      if player.current.n_to != None:
+        player.current = player.current.n_to
+      else:
+        print("Invalid Move")
+    elif userInput == "east":
+      if player.current.e_to != None:
+        player.current = player.current.e_to
+      else:
+        print("Invalid Move")
+    elif userInput == "south":
+      if player.current.s_to != None:
+        player.current = player.current.s_to
+      else:
+        print("Invalid Move")
+    elif userInput == "west":
+      if player.current.w_to != None:
+        player.current = player.current.w_to
+      else:
+        print("Invalid Move")
+    elif userInput == 'i' or userInput == 'inventory':
+      if(len(player.items) == 0):
+        print("you currently have no items")
+      else:
+        for i in player.items:
+          print('\n ' + i.name + ': ' + i.description)
+    elif userInput == 'items':
+      if(len(player.current.items) == 0):
+        print('this room has no items')
+      else:
+        for i in player.current.items:
+          print('\n ' + i.name + ': ' + i.description)
+    elif userInput != 'q':
+      print("Invalid Command")
+  else:
+    if userInput[0] == 'get' or userInput[0] == 'take':
+      found = False
+      for i in player.current.items:
+        if(i.name == userInput[1]):
+          player.current.items.remove(i)
+          player.items.append(i)
+          found = True
+      if not found:
+        print('that item is not here')
+      else:
+        print('you picked up ' + userInput[1])
+    elif userInput[0] == 'drop':
+      found = False
+      for i in player.items:
+        if(i.name == userInput[1]):
+          player.items.remove(i)
+          player.current.items.append(i)
+          found = True
+      if not found:
+        print('you do not have that item')
+      else:
+        print('you dropped ' + userInput[1])
     else:
-      print("Invalid Move")
-  elif direction == "east":
-    if player.current.e_to != None:
-      player.current = player.current.e_to
-    else:
-      print("Invalid Move")
-  elif direction == "south":
-    if player.current.s_to != None:
-      player.current = player.current.s_to
-    else:
-      print("Invalid Move")
-  elif direction == "west":
-    if player.current.w_to != None:
-      player.current = player.current.w_to
-    else:
-      print("Invalid Move")
-  elif direction != 'q':
-    print("Invalid direction")
+      print("Invalid Command")
