@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -39,6 +41,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+player = Player(room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +52,31 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+def tryDirection(d, currentRoom):
+    attrib = d + '_to'
+
+    if hasattr(currentRoom, attrib):
+        # If so, return its value (the next room)
+        return getattr(currentRoom, attrib)
+
+    print("You can't go that way")
+
+    return currentRoom
+
+x = False
+
+while not x:
+    print("\n{}\n".format(player.currentRoom.name))
+
+    for line in textwrap.wrap(player.currentRoom.description):
+        print(line)
+
+    s = input("\nCommand> ").strip().lower()
+
+    if s == "q":
+        x = True
+    elif s in ["n", "s", "w", "e"]:
+        player.currentRoom = tryDirection(s, player.currentRoom)
+    else:
+        print("Unknown command {}".format(s))

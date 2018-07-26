@@ -14,3 +14,9 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+if len(sys.argv) == 3:
+    print(calendar.TextCalendar().prmonth(int(sys.argv[2]), int(sys.argv[1])))
+elif len(sys.argv) == 1:
+    print('Usage: cal.py month year')
