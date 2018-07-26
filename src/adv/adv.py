@@ -153,14 +153,12 @@ while (player.room != 'exit'):
     # - Add score accordingly
 
     elif (len(instruction.split()) == 2):
-        
         verb, target = [x for x in instruction.split()]
-        
-        if (illuminated):
-            if (verb == "Take"):
+        if (verb == "Take"):
+            if (illuminated):
                 if (player.room.searchItems(target)):
                     player.toInventory(Items[target])
-                    print("You took the " + target + "\n")
+                    print("You took the " + target + '\n')
                     if (type(Items[target]) is Treasure and Items[target].dropped == False):
                         player.score += int(Items[target].on_take())
                         Items[target].dropped = True
@@ -169,21 +167,21 @@ while (player.room != 'exit'):
                     player.room.removeItem(target)
                 else: 
                     print(target + " is not available\n")
-            elif (verb == "Drop"):
-                if (player.searchInventory(target)):
-                    if (target == "Lamp"):
-                        print("It's not wise to drop your source of light!\n")
-                    player.removeItem(target)
-                    print("You dropped the " + target + "\n")
-                    if (type(Items[target]) is Treasure):
-                        player.score -= int(Items[target].on_drop())
-                        print('Your score decreases by: ' + str(Items[target].value) + '\n')
-                        print('Your score is now: ' + str(player.score) + '\n')
-                    player.room.addItem(Items[target])
-                else:
-                    print(target + " is not in your inventory\n")
-        else:
-            print("Good luck finding that in the dark!\n")
+            else:
+                print("Good luck finding that in the dark!\n")  
+        elif (verb == "Drop"):
+            if (player.searchInventory(target)):
+                if (target == "Lamp"):
+                    print("It's not wise to drop your source of light!\n")
+                player.removeItem(target)
+                print("You dropped the " + target + "\n")
+                if (type(Items[target]) is Treasure):
+                    player.score -= int(Items[target].on_drop())
+                    print('Your score decreases by: ' + str(Items[target].value) + '\n')
+                    print('Your score is now: ' + str(player.score) + '\n')
+                player.room.addItem(Items[target])
+            else:
+                print(target + " is not in your inventory\n")
     else:
         print("Invalid Command. Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Score | Quit:\n")
 
