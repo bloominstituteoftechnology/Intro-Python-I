@@ -61,7 +61,7 @@ while not done:
 
     prettyDesc = textwrap.fill(curRoom.description)
 
-    #switch to this if running 2.7 python
+    #switch to this if running > 3.6 python
     #print('\n{}:\n{}\n'.format(curRoom.name, curRoom.description))
 
     print(f'{curRoom.name}\n{prettyDesc}')
