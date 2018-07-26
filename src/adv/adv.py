@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item,Treasure, LightSource
+
 
 # Declare all the rooms
 
@@ -19,13 +20,12 @@ the distance, but there is no way across the chasm."""),
 to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+chamber!"""),
 }
 
 
 # Link rooms together
-room['outside'].items.append(Item('lantern','gives light'))
+room['outside'].items.append(LightSource('lantern','gives light'))
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -34,6 +34,10 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+room['treasure'].items.append(Treasure('chest','a treasure chest',100))
+room['treasure'].items.append(Treasure('ring','a magical ring',500))
+room['treasure'].items.append(Treasure('diamond','a diamond',1000))
+room['foyer'].is_light = True
 
 #
 # Main
@@ -56,7 +60,16 @@ player = Player(room['outside'])
 userInput = ""
 while userInput != "q":
   print("\n")
-  print(player.current.description)
+  if(player.has_light() or player.current.is_lit()):
+    print(player.current.description)
+    if(len(player.current.items) == 0):
+      print('this room has no items')
+    else:
+      for i in player.current.items:
+        print('\n ' + i.name + ': ' + i.description)
+  else:
+    print("It's pitch black")
+  print("\n")
   userInput = input("Direction? (q to quit) ").split(' ')
   print("\n")
 
@@ -88,12 +101,6 @@ while userInput != "q":
       else:
         for i in player.items:
           print('\n ' + i.name + ': ' + i.description)
-    elif userInput == 'items':
-      if(len(player.current.items) == 0):
-        print('this room has no items')
-      else:
-        for i in player.current.items:
-          print('\n ' + i.name + ': ' + i.description)
     elif userInput != 'q':
       print("Invalid Command")
   else:
@@ -103,11 +110,10 @@ while userInput != "q":
         if(i.name == userInput[1]):
           player.current.items.remove(i)
           player.items.append(i)
+          i.on_take()
           found = True
       if not found:
         print('that item is not here')
-      else:
-        print('you picked up ' + userInput[1])
     elif userInput[0] == 'drop':
       found = False
       for i in player.items:
