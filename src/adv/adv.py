@@ -59,11 +59,14 @@ done = False
 while not done:
     curRoom = player.room
 
-    # prettyDesc = textwrap.fill(curRoom.description)
+    prettyDesc = textwrap.fill(curRoom.description)
 
-    # print(f'{curRoom.name}\n{prettyDesc}')
+    #switch to this if running 2.7 python
+    #print('\n{}:\n{}\n'.format(curRoom.name, curRoom.description))
 
-    print('\n{}:\n{}\n'.format(curRoom.name, curRoom.description))
+    print(f'{curRoom.name}\n{prettyDesc}')
+
+    # print('\n{}:\n{}\n'.format(curRoom.name, curRoom.description))
 
     command = input("Command>   ").strip().lower()
 
