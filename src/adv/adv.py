@@ -2,25 +2,28 @@ import textwrap
 import os
 from room import Room
 from player import Player
+from item import Item
 # Declare all the rooms
+
+
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons",["stick","rock","flint","apple"]),
+                     "North of you, the cave mount beckons",items = [Item("rock", "worth a lot"),Item("sock", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""",["cloak","hat","rock"]),
+passages run north and east.""",items = [Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot")]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""",["rock","potion","binoculars"]),
+the distance, but there is no way across the chasm.""",items = [Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot")]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""",["shield","sword","water","candle"]),
+to north. The smell of gold permeates the air.""",items = [Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot")]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""",["gold","wand","bow","beef","grog"]),
+earlier adventurers. The only exit is to the south.""",items = [Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot")]),
 }
 
 
@@ -35,13 +38,24 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
+#room['outside'].items.append(Item["gold", "worth a lot"])
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
 player = Player("Jacob", room['outside'],[],6);
 # Write a loop that:
+print("{}".format(player))
+
+def findObject(input):
+    for index in range(len(player.current.items)):
+        if player.current.items[index].name == input:
+            return index
+    return "error"
 #
 # setting my flag for the coditon of my while loop
 playing = True;
@@ -64,7 +78,7 @@ while(playing):
     items = ""
     # iterate through the items in my room and add them to the items string
     for item in curRoom.items:
-        items +=  item + ", "
+        items +=  item.name + ", "
     # when the current room no longer has  any items have "Empty" displayed
     if len(curRoom.items) ==0:
         items = "Empty"
@@ -72,7 +86,7 @@ while(playing):
     bag = ""
     # iterate through the players inventory and create a string of all items
     for item in player.inventory:
-            bag += item +", " 
+            bag += item.name +", " 
     # when the players bag has no items display "Empty"       
     if len(player.inventory) == 0:
       bag += "Empty"
@@ -88,7 +102,7 @@ while(playing):
     print('\n\n\n\n\t\tYou are in the {}.\n{}\n\n{}\n\nLoot:\n{}\n\nBag:\n{}\n\n{}\n\n'.format(curRoom.name, borderTop, prettyDescription,items,bag,borderBtm))
     # ask the player if they would like to take or drop an item and take.
     # store the input into the loot varible, strip off white space and set to lower case.
-    loot =  input("\nwould you like to take or drop an item?\n(yes/no) ").strip().lower()
+    loot = input("\nwould you like to take or drop an item?\n(yes/no) ").strip().lower()
     # if the user enters in a "yes" or a "y", then ask them what they would like to do
     if loot == "yes" or loot =="y":
         # strip, lower and store the user input into a choice variable.
@@ -110,12 +124,13 @@ while(playing):
         
             # iterate through the items in the current room and if it is not in there,
             # print that it is not inside ot the room.
-            if item not in curRoom.items:
+            if findObject(item) == "error":
                 print("\n\n\t  Error: {} is not loot available this room\n{}".format(item,caret))
             #  if it is inside of the room and the players bags are not full, then allow the player to remove items from the room
             # and place them into the players inventory.
             elif len(player.inventory) < player.bagSize:
-                removed = curRoom.items.pop(curRoom.items.index(item))
+                print("item index::",findObject(item))
+                removed = curRoom.items.pop(findObject(item))
 
                 #removed = curRoom.items.remove(grab)
                 print("\nYou added {} to your bag".format(removed))
