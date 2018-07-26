@@ -9,3 +9,7 @@ class Room:
         self.n_to = n_to
         self.e_to = e_to
         self.w_to = w_to
+        
+        self.contents = []
+
+        # add item? to hard code into the room 

@@ -4,9 +4,12 @@ import os
 class Player:
     # str, Room(class reference)
     #{name: 'Jackee', location: SOME OBJECT REFERENCE}
-        def __init__(self, name, location):
+        def __init__(self, name, startRoom):
+            self.room = startRoom
             self.name = name
-            self.location = location
+            self.contents = []
+            self.contentsHistory = []
+            self.score = 0
         def move_to(self, direction):
             cardinal = direction + '_to'
             # if hasattr(self.location, 'cardinal'):
@@ -29,3 +32,4 @@ class Player:
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print('\nPick a different option, You cannot go that way...')
                 sleep(3)
+            
