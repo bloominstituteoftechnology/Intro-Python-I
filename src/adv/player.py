@@ -9,21 +9,24 @@ class Player:
         self.room = room
         self.items = []
 
-    def grab(self, item):
-        for item in self.room.items:
-            if item.name == item:
-                self.items.append(item)
-                self.room.items.remove(item)
-                return
-            else:
-                ### what do i put here if i dont grab the item but want to keep going?
+        self.contents = []
 
+    # def grab(self, item):
+    #     for item in self.room.items:
+    #         if item.name == item:
+    #             self.items.append(item)
+    #             self.room.items.remove(item)
+    #             return
+    #         else:
+    #             ### what do i put here if i dont grab the item but want to keep going?
+    #             return
 
-    def drop(self, item):
-        for item in self.items:
-            if item.name == item: 
-                self.room.items.append(item)
-                self.items.remove(item)
-                return
-            else:
-                ### what do i put here
+    # def drop(self, item):
+    #     for item in self.items:
+    #         if item.name == item: 
+    #             self.room.items.append(item)
+    #             self.items.remove(item)
+    #             return
+    #         else:
+    #             ### what do i put here
+    #             return

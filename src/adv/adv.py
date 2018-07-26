@@ -8,7 +8,7 @@ import textwrap
 
 room = {
     'outside':  Room("Outside Cave Entrance", 
-                     "To the East you see a bus stop! North of you, the cave mount beckons"),
+                     "To the East you see a bus stop! North of you, the cave mouth beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -22,7 +22,8 @@ to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exits are to the south and what looks like 
+some stairs leading to a basement to the east."""),
 
     'bus stop': Room("bus stop", """You're now waiting at the bus stop, too bad 
 there isnt another bus coming until next month! You might as well head back west and explore these rooms!"""),
@@ -43,6 +44,10 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 room['treasure'].e_to = room['basement']
+
+# adding an item to a room
+room['basement'].contents.append(Item("coins", "gold coins"))
+room['bus stop'].contents.append(Item("coins", "gold coins"))
 
 
 #
@@ -69,7 +74,13 @@ while not done:
     curRoom = player.room
     print(f'{curRoom.name}\n{curRoom.description}')
 
-    command = input("Command>").strip().lower()
+    if len(curRoom.contents) > 0:
+        print("you just found:")
+        for i in curRoom.contents:
+            print("  " + i.description)
+        print()
+
+    command = input("\nCommand> ").strip().lower()
 
     if command == 'q' or command == 'quit' or command == 'exit':
         done = True
