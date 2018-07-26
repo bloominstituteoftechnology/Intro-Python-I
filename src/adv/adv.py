@@ -1,8 +1,9 @@
 from room import Room
 from player import Player
+from item import Item
+from creature import Creature
 
 # Declare all the rooms
-
 rooms = {
     'outside': Room("Outside Cave Entrance", "North of you, the cave mouth beckons"),
 
@@ -17,9 +18,7 @@ rooms = {
     'treasure': Room("Treasure Chamber", "You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."),
 }
 
-
 # Link rooms together
-
 rooms['outside'].n_to = 'foyer'
 rooms['foyer'].s_to = 'outside'
 rooms['foyer'].n_to = 'overlook'
@@ -30,7 +29,27 @@ rooms['narrow'].w_to = 'foyer'
 rooms['narrow'].n_to = 'treasure'
 rooms['treasure'].s_to = 'narrow'
 
-rooms['treasure'].items.append('treasure')
+# Declare all the items
+items = {
+    'treasure': Item('treasure', 'a golden treasure - what a wonder to behold!'),
+    'sword': Item('sword', 'a sharp, heavy sword'),
+    'lantern': Item('lantern', 'a lantern shines brightly, casting a warm glow all around'),
+}
+
+# Put items in rooms
+rooms['outside'].items.append('treasure')
+
+# Declare all the creatures
+creatures = {
+    'rat': Creature('rat', 'a filthy rodent', 5),
+    'bat': Creature('bat', 'a squeaky, flapping, filthy rodent', 5),
+    'dragon': Creature('dragon', 'a fierce dragon', 500),
+}
+
+# Put creatures in rooms
+rooms['treasure'].creatures.append('dragon')
+
+
 #
 # Main
 #
