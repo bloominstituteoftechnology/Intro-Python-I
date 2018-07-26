@@ -66,7 +66,7 @@ def direction(command, curRoom):
     if hasattr(curRoom, dirAttr):
         player.room = getattr(curRoom, dirAttr)
     else:
-        print("You can't go that way.")
+        print("You can't go that way.\n")
     return curRoom
 
 done = False
@@ -102,7 +102,7 @@ def startGame():
 
     prettyDesc = textwrap.fill(curRoom.description)
 
-    print(f'\n{curRoom.name}\n{prettyDesc}')
+    print(f'{curRoom.name}\n{prettyDesc}')
 
     if len(player.room.items) > 0:
         print('\nYou see:')

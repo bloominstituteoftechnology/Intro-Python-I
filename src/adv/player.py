@@ -1,3 +1,5 @@
+from item import Item, Treasure
+
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 class Player:
@@ -21,7 +23,7 @@ class Player:
         return None
 
     def pickupItem(self, name):
-        item = self.curRoom.findItem(name)
+        item = self.room.findItem(name)
         if item is None:
             print('Item not found')
         else:
@@ -31,16 +33,16 @@ class Player:
                     self.addToScore(item.value)
 
             self.addItem(item)
-            self.curRoom.removeItem(item.name)
+            self.room.removeItem(item.name)
 
             
     def dropItem(self, name):
         item = self.findItem(name)
         if item is None:
-            print('Item not found')
+            print('Item not found\n')
         else:
             self.removeItem(item.name)
-            self.curRoom.addItem(item)
+            self.room.addItem(item)
 
     def printInventory(self):
         if len(self.items) > 0:
