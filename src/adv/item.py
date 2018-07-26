@@ -5,3 +5,8 @@ class Item:
 		self.name = name # one word
 		self.description = description
 		
+	def showName(self):
+		return self.name
+
+	def showDescription(self):
+		return self.description
