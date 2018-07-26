@@ -1,13 +1,13 @@
 from room import Room
 from player import Player
-from item import Item, Treasure
+from item import Item, Treasure, LightSource
 import textwrap
 import sys
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", []),
+                     "North of you, the cave mount beckons", [LightSource("lamp", "a battered old lamp with some oil in it")]),
 
     'bridge': Room("Bridge", """Rough winds blow acoss a lonely bridge. The smell of dragon fire and brimstone is heavy here.
 On the other side you see a red dragon sleeping in the sunlight. It guards the entrance to an ancient cathedral""", []),
@@ -16,7 +16,7 @@ On the other side you see a red dragon sleeping in the sunlight. It guards the e
 At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.""", [Treasure("ruby", "crimson red jewel worn by ancient priests", 10000)]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [Item("torch", "an everlasting torch that gives off a yellow light"), Item("potion", "a bright red potion"), 
+passages run north and east.""", [LightSource("torch", "an everlasting torch that gives off a yellow light"), Item("potion", "a bright red potion"), 
 Item("parchment", "dusy, yello parchment that's ready to disintegrate"), Treasure("sapphire", "sapphire set inside a silver ring", 20000)]),
 
     'armory': Room("Armory", """You find a small armory filled with rusted weapons and some tools. At the far end lies a locked chest
