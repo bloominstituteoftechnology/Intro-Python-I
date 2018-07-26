@@ -29,17 +29,17 @@ earlier adventurers. The only exit is to the south."""),
 
 Items = {
     "Sword" : Item('Sword', 'Shiny'),
-    "Bronze Coin" : Treasure('Bronze Coin', 'Bronze', '5'),
-    "Silver Coin" : Treasure('Silve Coin', 'Silver', '10'),
-    "Gold Coin" : Treasure('Gold Coin', 'Gold', '20')
+    "BronzeCoin" : Treasure('BronzeCoin', 'Bronze', '5'),
+    "SilverCoin" : Treasure('SilverCoin', 'Silver', '10'),
+    "GoldCoin" : Treasure('GoldCoin', 'Gold', '20')
 }
 
 # Adding Items to a Room
 
 room['outside'].addItem(Items['Sword'])
-room['foyer'].addItem(Items['Bronze Coin'])
-room['narrow'].addItem(Items['Silver Coin'])
-room['overlook'].addItem(Items['Gold Coin'])
+room['foyer'].addItem(Items['BronzeCoin'])
+room['narrow'].addItem(Items['SilverCoin'])
+room['overlook'].addItem(Items['GoldCoin'])
 
 # Link rooms together
 
@@ -139,6 +139,9 @@ while (player.room != 'exit'):
         if (verb == "Take"):
             if (player.room.searchItems(target)):
                 player.toInventory(Items[target])
+                if (type(Items[target]) is Treasure):
+                    player.score += int(Items[target].on_take())
+                    print('Player Score: ' + str(player.score) + '\n')
                 player.room.removeItem(target)
                 print(player.name + " takes the " + target + "\n")
             else: 

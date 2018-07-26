@@ -11,12 +11,20 @@ class Item:
     def __init__(self, name, description):
         self.name = name
         self.description = description
+        self.dropped = False
     
     def __repr__(self):
         return self.name
+
+    def on_take(self):
+        print('Hello')
+
 
 class Treasure(Item):
     def __init__(self, name, description, value):
         self.name = name
         self.description = description
         self.value = value
+
+    def on_take(self):
+        return self.value
