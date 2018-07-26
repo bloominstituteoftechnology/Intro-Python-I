@@ -5,6 +5,7 @@ class Player:
     def __init__(self, startRoom):
         self.curRoom = startRoom
         self.items = []
+        self.score = 0
 
     def addItem(self, item):
          self.items.append(item)
@@ -44,3 +45,11 @@ class Player:
                 print("name: ", item.name, "description: ", item.description)
         else:
             print("You have no items in inventory")
+
+    def addToScorce(self, amount):
+        self.score += amount
+
+    def subtractFromScorce(self, amount):
+
+        if self.score > 0:
+            self.score -= amount
