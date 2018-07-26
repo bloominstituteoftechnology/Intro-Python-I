@@ -2,7 +2,7 @@ from os import system
 
 from room import Room
 from player import Player
-from item import Item, Treasure
+from item import Item, Treasure, LightSource
 
 # Declare all the rooms
 
@@ -32,6 +32,7 @@ Items = {
     "BronzeCoin" : Treasure('BronzeCoin', 'Bronze', '5'),
     "SilverCoin" : Treasure('SilverCoin', 'Silver', '10'),
     "GoldCoin" : Treasure('GoldCoin', 'Gold', '20')
+    "Lamp" : LightSource('Lamp', 'Illuminator')
 }
 
 # Adding Items to a Room
@@ -40,6 +41,7 @@ room['outside'].addItem(Items['Sword'])
 room['foyer'].addItem(Items['BronzeCoin'])
 room['narrow'].addItem(Items['SilverCoin'])
 room['overlook'].addItem(Items['GoldCoin'])
+room['outside'].addItem(Items['Lamp'])
 
 # Link rooms together
 
@@ -72,6 +74,7 @@ player = Player(name, room['outside'])
     # 4. Quits the game (Quit)
 
     # 5. Take items from the room or drop items from the inventory (Take Item(Name) | Drop Item(Name))
+        # Also increase/decrease player's score dynamically
 
     # 6. Checks the inventory (Inventory)
 
@@ -91,8 +94,6 @@ while (player.room != 'exit'):
 
     instruction = input("Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Score | Quit:\n")
 
-    # - Travels through rooms using cardinal directions (North, East, South, West)
-
     direction = {
         "North": player.room.n_to,
         "East": player.room.e_to,
@@ -100,11 +101,15 @@ while (player.room != 'exit'):
         "West": player.room.w_to
     }
 
+    new_room = direction.get(instruction, None)
+    
+    # - Travels through rooms using cardinal directions (North, East, South, West)
+
     # Single Word Commands
 
     system("clear")
+
     if (len(instruction.split()) == 1):
-        new_room = direction.get(instruction, None)
 
     # - Quits the game (Quit)
 
