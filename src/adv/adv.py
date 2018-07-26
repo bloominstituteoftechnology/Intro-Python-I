@@ -72,7 +72,7 @@ player = Player("Justin", room['outside'])
 #
 # If the user enters "q", quit the game.
 
-general_inputs = ["q", "i"] # valid general inputs
+general_inputs = ["q", "i", "score"] # valid general inputs
 move_inputs = ["n", "e", "s", "w"] # valid inputs to advance game
 item_inputs = ["get", "take", "drop"] # valid item interactions
 
@@ -103,6 +103,9 @@ while not quit:
 			# show player inventory
 			if parsed[0] == "i":
 				print(player.showAllItems())
+			# show player score
+			if parsed[0] == "score":
+				print("Your score is {0}".format(player.score))
 		elif parsed[0] in move_inputs:
 			dirAttr = parsed[0] + "_to"
 			# check if move input is valid
