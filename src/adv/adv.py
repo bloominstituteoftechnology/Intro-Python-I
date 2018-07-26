@@ -4,6 +4,7 @@ from player import Player
 from item import Item
 from items import items
 from creature import Creature
+from creatures import creatures
 from helpfile import listOfCommands
 
 # Link rooms together
@@ -18,10 +19,10 @@ rooms['narrow'].n_to = 'treasure'
 rooms['treasure'].s_to = 'narrow'
 
 # Put items in rooms
-rooms['outside'].items.append('treasure')
+rooms['outside'].items.append(items['treasure'])
 
 # Put creatures in rooms
-rooms['treasure'].creatures.append('dragon')
+rooms['treasure'].creatures.append(creatures['dragon'])
 
 
 #
@@ -31,12 +32,17 @@ rooms['treasure'].creatures.append('dragon')
 # Check to see if the user can move in a direction
 def tryDirection(direction, currentRoom):
     key = direction + "_to"
-    print(key)
     destination = getattr(rooms[currentRoom], key)
     if destination == None:
         print("You can't go that way!")
         return currentRoom
     return destination
+
+def tryToPickUp(item, currentRoom):
+    for thing in getattr(rooms[currentRoom], 'items'):
+        if thing.name == item:
+            return thing
+    return None
 
 # Make a new player object that is currently in the 'outside' room.
 player=Player('outside', 'Ellen')
@@ -61,7 +67,7 @@ while not done:
     if (getattr(rooms[currentRoom], 'items') != []):
         print("Here, you see:")
     for item in getattr(rooms[currentRoom], 'items'):
-        print("{}".format(item))
+        print("{}".format(item.name))
     
 # GET USER INPUT
     commands = input("\n> ").strip().lower().split(' ')
@@ -89,5 +95,6 @@ while not done:
         verb = commands[0]
         noun = commands[1]
         if verb == 'g' or 'get':
-            item = 
-            rooms[currentRoom].remove
+            item = tryToPickUp(noun, rooms[currentRoom])
+            rooms[currentRoom].remove(item)
+            player.inventory.append(item)
