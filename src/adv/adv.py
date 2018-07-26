@@ -28,7 +28,7 @@ room = {
     'foyer':    Room("Foyer","Dim light filters in from the south. Dusty passages run north and east.", is_lit=True),
     'overlook': Room("Grand Overlook","A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."),
     'narrow':   Room("Narrow Passage","The narrow passage bends here from west to north. The smell of gold permeates the air."),
-    'treasure': Room("Treasure Chamber","You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers, but out of the corner of your eye you spot an old leather bag in the corner of the room. The only exit is to the south."),
+    'treasure': Room("Treasure Chamber","You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."),
     # Add your own room here
     'corridor': Room("Main Corridor", "You are located at a narrow corridor. West of you a dim light can be seen. East of you is the foyer"),
     'gallery':  Room(
