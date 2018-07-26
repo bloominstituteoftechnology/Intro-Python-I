@@ -1,0 +1,622 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pygame.joystick &#8212; Pygame v1.9.4.dev0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygame.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/pygame.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pygame.key" href="key.html" />
+    <link rel="prev" title="pygame.image" href="image.html" /> 
+  </head><body>  
+
+    <div class="document">
+
+  <div class="header">
+    <table>
+      <tr>
+	<td class="logo">
+	  <a href="https://www.pygame.org/">
+	    <img src="../_static/pygame_tiny.png"/>
+	  </a>
+	  <h5>pygame documentation</h5>
+	</td>
+	<td class="pagelinks">
+	  <p class="top">
+	    <a href="https://www.pygame.org/">Pygame Home</a> ||
+	    <a href="../index.html">Help Contents</a> ||
+	    <a href="../genindex.html">Reference Index</a>
+	  </p>
+	  <p class="bottom">
+	    <a href="color.html">Color</a> | 
+	    <a href="cursors.html">cursors</a> | 
+	    <a href="display.html">display</a> | 
+	    <a href="draw.html">draw</a> | 
+	    <a href="event.html">event</a> | 
+	    <a href="font.html">font</a> | 
+	    <a href="image.html">image</a> | 
+	    <a href="joystick.html">joystick</a> | 
+	    <a href="key.html">key</a> | 
+	    <a href="locals.html">locals</a> | 
+	    <a href="mask.html">mask</a> | 
+	    <a href="mixer.html">mixer</a> | 
+	    <a href="mouse.html">mouse</a> | 
+	    <a href="rect.html">Rect</a> | 
+	    <a href="surface.html">Surface</a> | 
+	    <a href="sprite.html">sprite</a> | 
+	    <a href="time.html">time</a> | 
+	    <a href="transform.html">transform</a> | 
+	    <a href="bufferproxy.html">BufferProxy</a> | 
+	    <a href="freetype.html">freetype</a> | 
+	    <a href="gfxdraw.html">gfxdraw</a> | 
+	    <a href="midi.html">midi</a> | 
+	    <a href="overlay.html">Overlay</a> | 
+	    <a href="pixelarray.html">PixelArray</a> | 
+	    <a href="pixelcopy.html">pixelcopy</a> | 
+	    <a href="sndarray.html">sndarray</a> | 
+	    <a href="surfarray.html">surfarray</a> | 
+	    <a href="camera.html">camera</a> | 
+	    <a href="cdrom.html">cdrom</a> | 
+	    <a href="examples.html">examples</a> | 
+	    <a href="math.html">math</a> | 
+	    <a href="music.html">music</a> | 
+	    <a href="pygame.html">pygame</a> | 
+	    <a href="scrap.html">scrap</a> | 
+	    <a href="tests.html">tests</a> | 
+	    <a href="pygame.html#module-pygame.version">version</a>
+	  </p>
+	</td>
+      </tr>
+    </table>
+  </div>
+
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+<div class="section" id="module-pygame.joystick">
+<span id="pygame-joystick"></span><dl class="definition module">
+<dt class="title module">
+<code class="docutils literal notranslate"><span class="pre">pygame.joystick</span></code></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">Pygame module for interacting with joysticks, gamepads, and trackballs.</span></div>
+</div>
+<table border="1" class="toc docutils">
+<colgroup>
+<col width="30%" />
+<col width="1%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="toc reference external" href="joystick.html#pygame.joystick.init">pygame.joystick.init</a></td>
+<td>—</td>
+<td>Initialize the joystick module.</td>
+</tr>
+<tr class="row-even"><td><a class="toc reference external" href="joystick.html#pygame.joystick.quit">pygame.joystick.quit</a></td>
+<td>—</td>
+<td>Uninitialize the joystick module.</td>
+</tr>
+<tr class="row-odd"><td><a class="toc reference external" href="joystick.html#pygame.joystick.get_init">pygame.joystick.get_init</a></td>
+<td>—</td>
+<td>Returns True if the joystick module is initialized.</td>
+</tr>
+<tr class="row-even"><td><a class="toc reference external" href="joystick.html#pygame.joystick.get_count">pygame.joystick.get_count</a></td>
+<td>—</td>
+<td>Returns the number of joysticks.</td>
+</tr>
+<tr class="row-odd"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick">pygame.joystick.Joystick</a></td>
+<td>—</td>
+<td>Create a new Joystick object.</td>
+</tr>
+</tbody>
+</table>
+<p>The joystick module manages the joystick devices on a computer.
+Joystick devices include trackballs and video-game-style
+gamepads, and the module allows the use of multiple buttons and &quot;hats&quot;.
+Computers may manage multiple joysticks at a time.</p>
+<p>Each instance of the Joystick class represents one gaming device plugged
+into the computer. If a gaming pad has multiple joysticks on it, than the
+joystick object can actually represent multiple joysticks on that single
+game device.</p>
+<p>For a quick way to initialise the joystick module and get a list of Joystick instances
+use the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pygame</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">joysticks</span> <span class="o">=</span> <span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">Joystick</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">get_count</span><span class="p">())]</span>
+</pre></div>
+</div>
+<p>The following event types will be generated by the joysticks</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">JOYAXISMOTION</span> <span class="n">JOYBALLMOTION</span> <span class="n">JOYBUTTONDOWN</span> <span class="n">JOYBUTTONUP</span> <span class="n">JOYHATMOTION</span>
+</pre></div>
+</div>
+<p>The event queue needs to be pumped frequently for some of the methods to work.
+So call one of pygame.event.get, pygame.event.wait, or pygame.event.pump regularly.</p>
+<dl class="definition function">
+<dt class="title" id="pygame.joystick.init">
+<code class="descclassname">pygame.joystick.</code><code class="descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.init" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">Initialize the joystick module.</span></div>
+<div class="line"><span class="signature">init() -&gt; None</span></div>
+</div>
+<p>This function is called automatically by <code class="docutils literal notranslate"><span class="pre">pygame.init()</span></code>.</p>
+<p>It initializes the joystick module. This will scan the system for all
+joystick devices. The module must be initialized before any other functions
+will work.</p>
+<p>It is safe to call this function more than once.</p>
+</dd></dl>
+
+<dl class="definition function">
+<dt class="title" id="pygame.joystick.quit">
+<code class="descclassname">pygame.joystick.</code><code class="descname">quit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.quit" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">Uninitialize the joystick module.</span></div>
+<div class="line"><span class="signature">quit() -&gt; None</span></div>
+</div>
+<p>Uninitialize the joystick module. After you call this any existing joystick
+objects will no longer work.</p>
+<p>It is safe to call this function more than once.</p>
+</dd></dl>
+
+<dl class="definition function">
+<dt class="title" id="pygame.joystick.get_init">
+<code class="descclassname">pygame.joystick.</code><code class="descname">get_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.get_init" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">Returns True if the joystick module is initialized.</span></div>
+<div class="line"><span class="signature">get_init() -&gt; bool</span></div>
+</div>
+<p>Test if the <code class="docutils literal notranslate"><span class="pre">pygame.joystick.init()</span></code> function has been called.</p>
+</dd></dl>
+
+<dl class="definition function">
+<dt class="title" id="pygame.joystick.get_count">
+<code class="descclassname">pygame.joystick.</code><code class="descname">get_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.get_count" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">Returns the number of joysticks.</span></div>
+<div class="line"><span class="signature">get_count() -&gt; count</span></div>
+</div>
+<p>Return the number of joystick devices on the system. The count will be 0 if
+there are no joysticks on the system.</p>
+<p>When you create Joystick objects using <code class="docutils literal notranslate"><span class="pre">Joystick(id)</span></code>, you pass an integer
+that must be lower than this count.</p>
+</dd></dl>
+
+<dl class="definition class">
+<dt class="title" id="pygame.joystick.Joystick">
+<code class="descclassname">pygame.joystick.</code><code class="descname">Joystick</code><a class="headerlink" href="#pygame.joystick.Joystick" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">Create a new Joystick object.</span></div>
+<div class="line"><span class="signature">Joystick(id) -&gt; Joystick</span></div>
+</div>
+<table border="1" class="toc docutils">
+<colgroup>
+<col width="43%" />
+<col width="1%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.init">pygame.joystick.Joystick.init</a></td>
+<td>—</td>
+<td>initialize the Joystick</td>
+</tr>
+<tr class="row-even"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.quit">pygame.joystick.Joystick.quit</a></td>
+<td>—</td>
+<td>uninitialize the Joystick</td>
+</tr>
+<tr class="row-odd"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.get_init">pygame.joystick.Joystick.get_init</a></td>
+<td>—</td>
+<td>check if the Joystick is initialized</td>
+</tr>
+<tr class="row-even"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.get_id">pygame.joystick.Joystick.get_id</a></td>
+<td>—</td>
+<td>get the Joystick ID</td>
+</tr>
+<tr class="row-odd"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.get_name">pygame.joystick.Joystick.get_name</a></td>
+<td>—</td>
+<td>get the Joystick system name</td>
+</tr>
+<tr class="row-even"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.get_numaxes">pygame.joystick.Joystick.get_numaxes</a></td>
+<td>—</td>
+<td>get the number of axes on a Joystick</td>
+</tr>
+<tr class="row-odd"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.get_axis">pygame.joystick.Joystick.get_axis</a></td>
+<td>—</td>
+<td>get the current position of an axis</td>
+</tr>
+<tr class="row-even"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.get_numballs">pygame.joystick.Joystick.get_numballs</a></td>
+<td>—</td>
+<td>get the number of trackballs on a Joystick</td>
+</tr>
+<tr class="row-odd"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.get_ball">pygame.joystick.Joystick.get_ball</a></td>
+<td>—</td>
+<td>get the relative position of a trackball</td>
+</tr>
+<tr class="row-even"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.get_numbuttons">pygame.joystick.Joystick.get_numbuttons</a></td>
+<td>—</td>
+<td>get the number of buttons on a Joystick</td>
+</tr>
+<tr class="row-odd"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.get_button">pygame.joystick.Joystick.get_button</a></td>
+<td>—</td>
+<td>get the current button state</td>
+</tr>
+<tr class="row-even"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.get_numhats">pygame.joystick.Joystick.get_numhats</a></td>
+<td>—</td>
+<td>get the number of hat controls on a Joystick</td>
+</tr>
+<tr class="row-odd"><td><a class="toc reference external" href="joystick.html#pygame.joystick.Joystick.get_hat">pygame.joystick.Joystick.get_hat</a></td>
+<td>—</td>
+<td>get the position of a joystick hat</td>
+</tr>
+</tbody>
+</table>
+<p>Create a new joystick to access a physical device. The id argument must be a
+value from 0 to pygame.joystick.get_count()-1.</p>
+<p>To access most of the Joystick methods, you'll need to <code class="docutils literal notranslate"><span class="pre">init()</span></code> the
+Joystick. This is separate from making sure the joystick module is
+initialized. When multiple Joysticks objects are created for the same
+physical joystick device (i.e., they have the same <code class="docutils literal notranslate"><span class="pre">ID</span></code> number), the state
+and values for those Joystick objects will be shared.</p>
+<p>The Joystick object allows you to get information about the types of
+controls on a joystick device. Once the device is initialized the pygame
+event queue will start receiving events about its input.</p>
+<p>You can call the <code class="docutils literal notranslate"><span class="pre">Joystick.get_name()</span></code> and <code class="docutils literal notranslate"><span class="pre">Joystick.get_id()</span></code> functions
+without initializing the Joystick object.</p>
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.init">
+<code class="descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.init" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">initialize the Joystick</span></div>
+<div class="line"><span class="signature">init() -&gt; None</span></div>
+</div>
+<p>The Joystick must be initialized to get most of the information about the
+controls. While the Joystick is initialized the pygame event queue will
+receive events from the Joystick input.</p>
+<p>It is safe to call this more than once.</p>
+</dd></dl>
+
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.quit">
+<code class="descname">quit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.quit" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">uninitialize the Joystick</span></div>
+<div class="line"><span class="signature">quit() -&gt; None</span></div>
+</div>
+<p>This will uninitialize a Joystick. After this the pygame event queue will
+no longer receive events from the device.</p>
+<p>It is safe to call this more than once.</p>
+</dd></dl>
+
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.get_init">
+<code class="descname">get_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.get_init" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">check if the Joystick is initialized</span></div>
+<div class="line"><span class="signature">get_init() -&gt; bool</span></div>
+</div>
+<p>Returns True if the <code class="docutils literal notranslate"><span class="pre">init()</span></code> method has already been called on this
+Joystick object.</p>
+</dd></dl>
+
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.get_id" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">get the Joystick ID</span></div>
+<div class="line"><span class="signature">get_id() -&gt; int</span></div>
+</div>
+<p>Returns the integer <code class="docutils literal notranslate"><span class="pre">ID</span></code> that represents this device. This is the same
+value that was passed to the <code class="docutils literal notranslate"><span class="pre">Joystick()</span></code> constructor. This method can
+safely be called while the Joystick is not initialized.</p>
+</dd></dl>
+
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.get_name">
+<code class="descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">get the Joystick system name</span></div>
+<div class="line"><span class="signature">get_name() -&gt; string</span></div>
+</div>
+<p>Returns the system name for this joystick device. It is unknown what name
+the system will give to the Joystick, but it should be a unique name that
+identifies the device. This method can safely be called while the
+Joystick is not initialized.</p>
+</dd></dl>
+
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.get_numaxes">
+<code class="descname">get_numaxes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.get_numaxes" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">get the number of axes on a Joystick</span></div>
+<div class="line"><span class="signature">get_numaxes() -&gt; int</span></div>
+</div>
+<p>Returns the number of input axes are on a Joystick. There will usually be
+two for the position. Controls like rudders and throttles are treated as
+additional axes.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pygame.JOYAXISMOTION</span></code> events will be in the range from -1.0 to
+1.0. A value of 0.0 means the axis is centered. Gamepad devices will
+usually be -1, 0, or 1 with no values in between. Older analog joystick
+axes will not always use the full -1 to 1 range, and the centered value
+will be some area around 0. Analog joysticks usually have a bit of noise
+in their axis, which will generate a lot of rapid small motion events.</p>
+</dd></dl>
+
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.get_axis">
+<code class="descname">get_axis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.get_axis" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">get the current position of an axis</span></div>
+<div class="line"><span class="signature">get_axis(axis_number) -&gt; float</span></div>
+</div>
+<p>Returns the current position of a joystick axis. The value will range
+from -1 to 1 with a value of 0 being centered. You may want to take into
+account some tolerance to handle jitter, and joystick drift may keep the
+joystick from centering at 0 or using the full range of position values.</p>
+<p>The axis number must be an integer from zero to get_numaxes()-1.</p>
+</dd></dl>
+
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.get_numballs">
+<code class="descname">get_numballs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.get_numballs" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">get the number of trackballs on a Joystick</span></div>
+<div class="line"><span class="signature">get_numballs() -&gt; int</span></div>
+</div>
+<p>Returns the number of trackball devices on a Joystick. These devices work
+similar to a mouse but they have no absolute position; they only have
+relative amounts of movement.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pygame.JOYBALLMOTION</span></code> event will be sent when the trackball is
+rolled. It will report the amount of movement on the trackball.</p>
+</dd></dl>
+
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.get_ball">
+<code class="descname">get_ball</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.get_ball" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">get the relative position of a trackball</span></div>
+<div class="line"><span class="signature">get_ball(ball_number) -&gt; x, y</span></div>
+</div>
+<p>Returns the relative movement of a joystick button. The value is a x, y
+pair holding the relative movement since the last call to get_ball.</p>
+<p>The ball number must be an integer from zero to get_numballs()-1.</p>
+</dd></dl>
+
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.get_numbuttons">
+<code class="descname">get_numbuttons</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.get_numbuttons" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">get the number of buttons on a Joystick</span></div>
+<div class="line"><span class="signature">get_numbuttons() -&gt; int</span></div>
+</div>
+<p>Returns the number of pushable buttons on the joystick. These buttons
+have a boolean (on or off) state.</p>
+<p>Buttons generate a <code class="docutils literal notranslate"><span class="pre">pygame.JOYBUTTONDOWN</span></code> and <code class="docutils literal notranslate"><span class="pre">pygame.JOYBUTTONUP</span></code>
+event when they are pressed and released.</p>
+</dd></dl>
+
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.get_button">
+<code class="descname">get_button</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.get_button" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">get the current button state</span></div>
+<div class="line"><span class="signature">get_button(button) -&gt; bool</span></div>
+</div>
+<p>Returns the current state of a joystick button.</p>
+</dd></dl>
+
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.get_numhats">
+<code class="descname">get_numhats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.get_numhats" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">get the number of hat controls on a Joystick</span></div>
+<div class="line"><span class="signature">get_numhats() -&gt; int</span></div>
+</div>
+<p>Returns the number of joystick hats on a Joystick. Hat devices are like
+miniature digital joysticks on a joystick. Each hat has two axes of
+input.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pygame.JOYHATMOTION</span></code> event is generated when the hat changes
+position. The position attribute for the event contains a pair of values
+that are either -1, 0, or 1. A position of (0, 0) means the hat is
+centered.</p>
+</dd></dl>
+
+<dl class="definition method">
+<dt class="title" id="pygame.joystick.Joystick.get_hat">
+<code class="descname">get_hat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.joystick.Joystick.get_hat" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">get the position of a joystick hat</span></div>
+<div class="line"><span class="signature">get_hat(hat_number) -&gt; x, y</span></div>
+</div>
+<p>Returns the current position of a position hat. The position is given as
+two values representing the <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">Y</span></code> position for the hat. (0, 0)
+means centered. A value of -1 means left/down and a value of 1 means
+right/up: so (-1, 0) means left; (1, 0) means right; (0, 1) means up; (1,
+1) means upper-right; etc.</p>
+<p>This value is digital, <code class="docutils literal notranslate"><span class="pre">i.e.</span></code>, each coordinate can be -1, 0 or 1 but
+never in-between.</p>
+<p>The hat number must be between 0 and get_numhats()-1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="../_images/joystick_calls.png"><img alt="joystick module example" src="../_images/joystick_calls.png" style="width: 363.0px; height: 397.0px;" /></a>
+<p class="caption"><span class="caption-text">Example code for joystick module.</span></p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygame</span>
+
+<span class="c1"># Define some colors</span>
+<span class="n">BLACK</span>    <span class="o">=</span> <span class="p">(</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">)</span>
+<span class="n">WHITE</span>    <span class="o">=</span> <span class="p">(</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+
+<span class="c1"># This is a simple class that will help us print to the screen</span>
+<span class="c1"># It has nothing to do with the joysticks, just outputting the</span>
+<span class="c1"># information.</span>
+<span class="k">class</span> <span class="nc">TextPrint</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">textString</span><span class="p">):</span>
+        <span class="n">textBitmap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">textString</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">BLACK</span><span class="p">)</span>
+        <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">textBitmap</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">line_height</span>
+        
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">line_height</span> <span class="o">=</span> <span class="mi">15</span>
+        
+    <span class="k">def</span> <span class="nf">indent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mi">10</span>
+        
+    <span class="k">def</span> <span class="nf">unindent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-=</span> <span class="mi">10</span>
+    
+
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+ 
+<span class="c1"># Set the width and height of the screen [width,height]</span>
+<span class="n">size</span> <span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">700</span><span class="p">]</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+
+<span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s2">&quot;My Game&quot;</span><span class="p">)</span>
+
+<span class="c1">#Loop until the user clicks the close button.</span>
+<span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># Used to manage how fast the screen updates</span>
+<span class="n">clock</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">Clock</span><span class="p">()</span>
+
+<span class="c1"># Initialize the joysticks</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+    
+<span class="c1"># Get ready to print</span>
+<span class="n">textPrint</span> <span class="o">=</span> <span class="n">TextPrint</span><span class="p">()</span>
+
+<span class="c1"># -------- Main Program Loop -----------</span>
+<span class="k">while</span> <span class="n">done</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+    <span class="c1"># EVENT PROCESSING STEP</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span> <span class="c1"># User did something</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span> <span class="c1"># If user clicked close</span>
+            <span class="n">done</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># Flag that we are done so we exit this loop</span>
+        
+        <span class="c1"># Possible joystick actions: JOYAXISMOTION JOYBALLMOTION JOYBUTTONDOWN JOYBUTTONUP JOYHATMOTION</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">JOYBUTTONDOWN</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Joystick button pressed.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">JOYBUTTONUP</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Joystick button released.&quot;</span><span class="p">)</span>
+            
+ 
+    <span class="c1"># DRAWING STEP</span>
+    <span class="c1"># First, clear the screen to white. Don&#39;t put other drawing commands</span>
+    <span class="c1"># above this, or they will be erased with this command.</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">WHITE</span><span class="p">)</span>
+    <span class="n">textPrint</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+    <span class="c1"># Get count of joysticks</span>
+    <span class="n">joystick_count</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">get_count</span><span class="p">()</span>
+
+    <span class="n">textPrint</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="s2">&quot;Number of joysticks: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">joystick_count</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">textPrint</span><span class="o">.</span><span class="n">indent</span><span class="p">()</span>
+    
+    <span class="c1"># For each joystick:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">joystick_count</span><span class="p">):</span>
+        <span class="n">joystick</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">Joystick</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">joystick</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+    
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="s2">&quot;Joystick </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">indent</span><span class="p">()</span>
+    
+        <span class="c1"># Get the name from the OS for the controller/joystick</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">joystick</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="s2">&quot;Joystick name: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="p">)</span>
+        
+        <span class="c1"># Usually axis run in pairs, up/down for one, and left/right for</span>
+        <span class="c1"># the other.</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="n">joystick</span><span class="o">.</span><span class="n">get_numaxes</span><span class="p">()</span>
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="s2">&quot;Number of axes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">indent</span><span class="p">()</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="n">axes</span> <span class="p">):</span>
+            <span class="n">axis</span> <span class="o">=</span> <span class="n">joystick</span><span class="o">.</span><span class="n">get_axis</span><span class="p">(</span> <span class="n">i</span> <span class="p">)</span>
+            <span class="n">textPrint</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="s2">&quot;Axis </span><span class="si">{}</span><span class="s2"> value: </span><span class="si">{:&gt;6.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">unindent</span><span class="p">()</span>
+            
+        <span class="n">buttons</span> <span class="o">=</span> <span class="n">joystick</span><span class="o">.</span><span class="n">get_numbuttons</span><span class="p">()</span>
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="s2">&quot;Number of buttons: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">buttons</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">indent</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="n">buttons</span> <span class="p">):</span>
+            <span class="n">button</span> <span class="o">=</span> <span class="n">joystick</span><span class="o">.</span><span class="n">get_button</span><span class="p">(</span> <span class="n">i</span> <span class="p">)</span>
+            <span class="n">textPrint</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="s2">&quot;Button </span><span class="si">{:&gt;2}</span><span class="s2"> value: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">button</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">unindent</span><span class="p">()</span>
+            
+        <span class="c1"># Hat switch. All or nothing for direction, not like joysticks.</span>
+        <span class="c1"># Value comes back in an array.</span>
+        <span class="n">hats</span> <span class="o">=</span> <span class="n">joystick</span><span class="o">.</span><span class="n">get_numhats</span><span class="p">()</span>
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="s2">&quot;Number of hats: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">hats</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">indent</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="n">hats</span> <span class="p">):</span>
+            <span class="n">hat</span> <span class="o">=</span> <span class="n">joystick</span><span class="o">.</span><span class="n">get_hat</span><span class="p">(</span> <span class="n">i</span> <span class="p">)</span>
+            <span class="n">textPrint</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="s2">&quot;Hat </span><span class="si">{}</span><span class="s2"> value: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">hat</span><span class="p">))</span> <span class="p">)</span>
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">unindent</span><span class="p">()</span>
+        
+        <span class="n">textPrint</span><span class="o">.</span><span class="n">unindent</span><span class="p">()</span>
+
+    
+    <span class="c1"># ALL CODE TO DRAW SHOULD GO ABOVE THIS COMMENT</span>
+    
+    <span class="c1"># Go ahead and update the screen with what we&#39;ve drawn.</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+
+    <span class="c1"># Limit to 20 frames per second</span>
+    <span class="n">clock</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+    
+<span class="c1"># Close the window and quit.</span>
+<span class="c1"># If you forget this line, the program will &#39;hang&#39;</span>
+<span class="c1"># on exit if running from IDLE.</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">quit</span> <span class="p">()</span>
+
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="key.html" title="pygame.key"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="image.html" title="pygame.image"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Pygame v1.9.4.dev0 documentation</a> &#187;</li>
+    <script type="text/javascript" src="../_static/jquery.plugin.docscomments.js"></script>
+
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2011, Pygame Developers.
+    </div>
+  </body>
+</html>

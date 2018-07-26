@@ -1,0 +1,240 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pygame.sndarray &#8212; Pygame v1.9.4.dev0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygame.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/pygame.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pygame.sprite" href="sprite.html" />
+    <link rel="prev" title="pygame.scrap" href="scrap.html" /> 
+  </head><body>  
+
+    <div class="document">
+
+  <div class="header">
+    <table>
+      <tr>
+	<td class="logo">
+	  <a href="https://www.pygame.org/">
+	    <img src="../_static/pygame_tiny.png"/>
+	  </a>
+	  <h5>pygame documentation</h5>
+	</td>
+	<td class="pagelinks">
+	  <p class="top">
+	    <a href="https://www.pygame.org/">Pygame Home</a> ||
+	    <a href="../index.html">Help Contents</a> ||
+	    <a href="../genindex.html">Reference Index</a>
+	  </p>
+	  <p class="bottom">
+	    <a href="color.html">Color</a> | 
+	    <a href="cursors.html">cursors</a> | 
+	    <a href="display.html">display</a> | 
+	    <a href="draw.html">draw</a> | 
+	    <a href="event.html">event</a> | 
+	    <a href="font.html">font</a> | 
+	    <a href="image.html">image</a> | 
+	    <a href="joystick.html">joystick</a> | 
+	    <a href="key.html">key</a> | 
+	    <a href="locals.html">locals</a> | 
+	    <a href="mask.html">mask</a> | 
+	    <a href="mixer.html">mixer</a> | 
+	    <a href="mouse.html">mouse</a> | 
+	    <a href="rect.html">Rect</a> | 
+	    <a href="surface.html">Surface</a> | 
+	    <a href="sprite.html">sprite</a> | 
+	    <a href="time.html">time</a> | 
+	    <a href="transform.html">transform</a> | 
+	    <a href="bufferproxy.html">BufferProxy</a> | 
+	    <a href="freetype.html">freetype</a> | 
+	    <a href="gfxdraw.html">gfxdraw</a> | 
+	    <a href="midi.html">midi</a> | 
+	    <a href="overlay.html">Overlay</a> | 
+	    <a href="pixelarray.html">PixelArray</a> | 
+	    <a href="pixelcopy.html">pixelcopy</a> | 
+	    <a href="sndarray.html">sndarray</a> | 
+	    <a href="surfarray.html">surfarray</a> | 
+	    <a href="camera.html">camera</a> | 
+	    <a href="cdrom.html">cdrom</a> | 
+	    <a href="examples.html">examples</a> | 
+	    <a href="math.html">math</a> | 
+	    <a href="music.html">music</a> | 
+	    <a href="pygame.html">pygame</a> | 
+	    <a href="scrap.html">scrap</a> | 
+	    <a href="tests.html">tests</a> | 
+	    <a href="pygame.html#module-pygame.version">version</a>
+	  </p>
+	</td>
+      </tr>
+    </table>
+  </div>
+
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+<div class="section" id="module-pygame.sndarray">
+<span id="pygame-sndarray"></span><dl class="definition module">
+<dt class="title module">
+<code class="docutils literal notranslate"><span class="pre">pygame.sndarray</span></code></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">pygame module for accessing sound sample data</span></div>
+</div>
+<table border="1" class="toc docutils">
+<colgroup>
+<col width="35%" />
+<col width="1%" />
+<col width="64%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="toc reference external" href="sndarray.html#pygame.sndarray.array">pygame.sndarray.array</a></td>
+<td>—</td>
+<td>copy Sound samples into an array</td>
+</tr>
+<tr class="row-even"><td><a class="toc reference external" href="sndarray.html#pygame.sndarray.samples">pygame.sndarray.samples</a></td>
+<td>—</td>
+<td>reference Sound samples into an array</td>
+</tr>
+<tr class="row-odd"><td><a class="toc reference external" href="sndarray.html#pygame.sndarray.make_sound">pygame.sndarray.make_sound</a></td>
+<td>—</td>
+<td>convert an array into a Sound object</td>
+</tr>
+<tr class="row-even"><td><a class="toc reference external" href="sndarray.html#pygame.sndarray.use_arraytype">pygame.sndarray.use_arraytype</a></td>
+<td>—</td>
+<td>Sets the array system to be used for sound arrays</td>
+</tr>
+<tr class="row-odd"><td><a class="toc reference external" href="sndarray.html#pygame.sndarray.get_arraytype">pygame.sndarray.get_arraytype</a></td>
+<td>—</td>
+<td>Gets the currently active array type.</td>
+</tr>
+<tr class="row-even"><td><a class="toc reference external" href="sndarray.html#pygame.sndarray.get_arraytypes">pygame.sndarray.get_arraytypes</a></td>
+<td>—</td>
+<td>Gets the array system types currently supported.</td>
+</tr>
+</tbody>
+</table>
+<p>Functions to convert between NumPy arrays and Sound objects. This
+module will only be available when pygame can use the external NumPy
+package.</p>
+<p>Sound data is made of thousands of samples per second, and each sample is the
+amplitude of the wave at a particular moment in time. For example, in 22-kHz
+format, element number 5 of the array is the amplitude of the wave after
+5/22000 seconds.</p>
+<p>Each sample is an 8-bit or 16-bit integer, depending on the data format. A
+stereo sound file has two values per sample, while a mono sound file only has
+one.</p>
+<dl class="definition function">
+<dt class="title" id="pygame.sndarray.array">
+<code class="descclassname">pygame.sndarray.</code><code class="descname">array</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.sndarray.array" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">copy Sound samples into an array</span></div>
+<div class="line"><span class="signature">array(Sound) -&gt; array</span></div>
+</div>
+<p>Creates a new array for the sound data and copies the samples. The array
+will always be in the format returned from <code class="docutils literal notranslate"><span class="pre">pygame.mixer.get_init()</span></code>.</p>
+</dd></dl>
+
+<dl class="definition function">
+<dt class="title" id="pygame.sndarray.samples">
+<code class="descclassname">pygame.sndarray.</code><code class="descname">samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.sndarray.samples" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">reference Sound samples into an array</span></div>
+<div class="line"><span class="signature">samples(Sound) -&gt; array</span></div>
+</div>
+<p>Creates a new array that directly references the samples in a Sound object.
+Modifying the array will change the Sound. The array will always be in the
+format returned from <code class="docutils literal notranslate"><span class="pre">pygame.mixer.get_init()</span></code>.</p>
+</dd></dl>
+
+<dl class="definition function">
+<dt class="title" id="pygame.sndarray.make_sound">
+<code class="descclassname">pygame.sndarray.</code><code class="descname">make_sound</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.sndarray.make_sound" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">convert an array into a Sound object</span></div>
+<div class="line"><span class="signature">make_sound(array) -&gt; Sound</span></div>
+</div>
+<p>Create a new playable Sound object from an array. The mixer module must be
+initialized and the array format must be similar to the mixer audio format.</p>
+</dd></dl>
+
+<dl class="definition function">
+<dt class="title" id="pygame.sndarray.use_arraytype">
+<code class="descclassname">pygame.sndarray.</code><code class="descname">use_arraytype</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.sndarray.use_arraytype" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">Sets the array system to be used for sound arrays</span></div>
+<div class="line"><span class="signature">use_arraytype (arraytype) -&gt; None</span></div>
+</div>
+<p>DEPRECATED: Uses the requested array type for the module functions. The
+only supported arraytype is <code class="docutils literal notranslate"><span class="pre">'numpy'</span></code>. Other values will raise ValueError.</p>
+</dd></dl>
+
+<dl class="definition function">
+<dt class="title" id="pygame.sndarray.get_arraytype">
+<code class="descclassname">pygame.sndarray.</code><code class="descname">get_arraytype</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.sndarray.get_arraytype" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">Gets the currently active array type.</span></div>
+<div class="line"><span class="signature">get_arraytype () -&gt; str</span></div>
+</div>
+<p>DEPRECATED: Returns the currently active array type. This will be a value of the
+<code class="docutils literal notranslate"><span class="pre">get_arraytypes()</span></code> tuple and indicates which type of array module is used
+for the array creation.</p>
+<p>New in pygame 1.8</p>
+</dd></dl>
+
+<dl class="definition function">
+<dt class="title" id="pygame.sndarray.get_arraytypes">
+<code class="descclassname">pygame.sndarray.</code><code class="descname">get_arraytypes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pygame.sndarray.get_arraytypes" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line"><span class="summaryline">Gets the array system types currently supported.</span></div>
+<div class="line"><span class="signature">get_arraytypes () -&gt; tuple</span></div>
+</div>
+<p>DEPRECATED: Checks, which array systems are available and returns them as a tuple of
+strings. The values of the tuple can be used directly in the
+<a class="tooltip reference internal" href="#pygame.sndarray.use_arraytype" title=""><code class="xref py py-func docutils literal notranslate"><span class="pre">pygame.sndarray.use_arraytype()</span></code><span class="tooltip-content">Sets the array system to be used for sound arrays</span></a> () method. If no supported array
+system could be found, None will be returned.</p>
+<p>New in pygame 1.8.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sprite.html" title="pygame.sprite"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="scrap.html" title="pygame.scrap"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Pygame v1.9.4.dev0 documentation</a> &#187;</li>
+    <script type="text/javascript" src="../_static/jquery.plugin.docscomments.js"></script>
+
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2011, Pygame Developers.
+    </div>
+  </body>
+</html>

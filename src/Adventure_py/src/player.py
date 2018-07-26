@@ -10,6 +10,9 @@ class Player(object):
         self.name = name
         self.health = 100
         self.fatigue = 0
+        self.strength = 10
+        self.attack_str = 1 * self.strength
+        self.gold = 0
         self.location = location
         self.inventory = {i: None for i in range(1, size + 1)}
 

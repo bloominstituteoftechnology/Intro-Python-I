@@ -4,7 +4,8 @@ from player import Player
 from location import Location
 from item import Item, Weapon
 from door import Door
-from playsound import playsound
+import pygame as pg
+
 
 # todo Add a way to win.
 # todo implement door's and keys
@@ -18,7 +19,7 @@ door = Door(key=key, status=False)
 
 # create locations.
 loc_one = Location(name="Outside Cave Entrance", description="North of you, \n\tthe cave mouth beckons")
-sub_room = Location(name="a small hole in the face of a rock.", description="You enter the small lit cave to find that someone has been living here recently.")
+sub_room = Location(name="a small hole in the face of a rock.", description="seems like someone has been living here recently.")
 loc_two = Location(name="Foyer", description="Dim light filters in from the south. \n\tDusty passages run north and east.")
 loc_three = Location(
     name="Grand Overlook",
@@ -54,8 +55,7 @@ loc_four.north = loc_five
 loc_five.south = loc_four
 
 
-# initialize globally scoped variables
-
+# initialize global scoped variables
 loc = p = None
 
 
@@ -102,6 +102,28 @@ def move(directory):
         print("cant go there.")
 
 
+def play_music(file, v=0.8):
+    freq = 44100
+    bitsize = -16
+    channels = 2
+    buffer = 2048
+    i = 0
+    pg.mixer.init(freq, bitsize, channels, buffer)
+    pg.mixer.music.set_volume(v)
+    clock = pg.time.Clock()
+
+    try:
+        pg.mixer.music.load(file)
+    except pg.error:
+        print("File {} not found! ({})".format(file, pg.get_error()))
+        return
+
+    pg.mixer.music.play()
+
+    while i < 100:
+        clock.tick(30)
+        i += 1
+
 def main():
     global loc, p
     loc = loc_one
@@ -115,7 +137,7 @@ def main():
         if p.location == loc_five:
             input("press enter to coninue.")
             clear()
-            playsound('./Assets/1.mp3')
+            play_music(file='./Assets/1.mp3')
             print("\n\t\tyou left the dungeon depressed and broke, Congratulations!.\nPlayer Stats \n" + str(p) + "\nInventory: " + str(p.inventory) + "\n")
             break
         x = input("enter your command: ")
