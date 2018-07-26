@@ -85,14 +85,14 @@ while(playing):
     #  such starting with the room name then the top border,
     #   then the description followed by the rooms items.
     #   after that the players inventory and the bottom border will be displayed
-    print('\n\t\tYou are in the {}.\n{}\n\n{}\n\nLoot:\n{}\n\nBag:\n{}\n\n{}\n'.format(curRoom.name, borderTop, prettyDescription,items,bag,borderBtm))
+    print('\n\n\n\n\t\tYou are in the {}.\n{}\n\n{}\n\nLoot:\n{}\n\nBag:\n{}\n\n{}\n\n'.format(curRoom.name, borderTop, prettyDescription,items,bag,borderBtm))
     # ask the player if they would like to take or drop an item and take.
     # store the input into the loot varible, strip off white space and set to lower case.
-    loot =  input("would you like to take or drop an item?\n(yes/no) ").strip().lower()
+    loot =  input("\nwould you like to take or drop an item?\n(yes/no) ").strip().lower()
     # if the user enters in a "yes" or a "y", then ask them what they would like to do
     if loot == "yes" or loot =="y":
         # strip, lower and store the user input into a choice variable.
-        choice =input("Would you like to get or drop an item? \nPick: ").strip().lower()
+        choice =input("\nWould you like to get or drop an item? \nPick: ").strip().lower()
         # slice the action out of the input by starting at the 0 index,
         # and going to the where the space is in the choice string.
         action = choice[0:choice.index(" ")]
@@ -100,12 +100,12 @@ while(playing):
         # this works, just grab start the slice at the index of the space,
         # then add 1 on it so it starts at the first letter then just got to the end of the string
         item = choice[choice.index(" ") +1:len(choice)]
-        print("you want to {} a {}".format(action,item))
+        print("\nyou want to {} a {}".format(action,item))
         # when the action matches "get", "gake" or "grab" then allow this block to execute
         if action == "get" or action == "take" or action == "grab" :
           
-            print("what would you like to loot:\n{}".format
-            (curRoom.items))
+            print("\nwhat would you like to loot:\n{}".format
+            (items))
             #removed = curRoom.items.pop(curRoom.items.index(input("pick:").strip().lower()))
         
             # iterate through the items in the current room and if it is not in there,
@@ -118,7 +118,7 @@ while(playing):
                 removed = curRoom.items.pop(curRoom.items.index(item))
 
                 #removed = curRoom.items.remove(grab)
-                print("You added {} to your bag".format(removed))
+                print("\nYou added {} to your bag".format(removed))
                 player.inventory.append(removed)
             # if the  players inventory exceeds the value of  the players bag size,
             # then send an error showing the player that the bag is full.   
