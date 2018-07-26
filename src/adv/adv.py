@@ -1,4 +1,6 @@
+import textwrap
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -37,15 +39,40 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-# Make a new player object that is currently in the 'outside' room.
 
+# I help
+def goTo(direction, shipRoom):
+    attr = direction + '_to'
+    if hasattr(shipRoom, attr):
+        return getattr(shipRoom, attr)
+
+    return shipRoom
+
+
+player1 = Player(room['outside'])
+directions = set(['n', 's', 'e''w'])
+
+playerChoice = None
 # Write a loop that:
-#
-# * Prints the current room name
+while True:
+    # * Prints the current room name
+    print(player1.currentRoom.name)
 # * Prints the current description (the textwrap module might be useful here).
+    print(textwrap.wrap(player1.currentRoom.description))
 # * Waits for user input and decides what to do.
+    playerChoice = input("Make a Choice\nOptions are n,s,e,w or q to quit.")
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
+    if playerChoice in directions:
+        if player1.currentRoom == goTo(playerChoice, player1.currentRoom):
+            print('There is nothing in that direction')
+        else:
+            player1 = Player(goTo(playerChoice, player1.currentRoom))
+    elif playerChoice == 'q':
+        print('Bye bye')
+        break
+    else:
+        print('Invalid option: pick one of \'n,s,e,w or q\'')
 #
 # If the user enters "q", quit the game.
