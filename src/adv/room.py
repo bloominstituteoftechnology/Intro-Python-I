@@ -15,12 +15,10 @@ class Room:
     def get_item(self, item_name):
         return [item for item in self.items if item.name == item_name][0]
 
-    def take_item(self, item_name):
-        item = self.get_item(item_name)
+    def remove_item(self, item):
         self.items.remove(item)
-        return item
 
-    def put_item(self, item):
+    def add_item(self, item):
         self.items.append(item)
 
     def is_illuminated(self):
