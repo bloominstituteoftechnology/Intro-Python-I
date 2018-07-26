@@ -60,6 +60,8 @@ while choice != 'q':
 
     print(player_1)
     print(prettyDesc)
+    for item in player_1.currentRoom.items:
+        print("You see a {}").format(item)
 
     choice = input("Choose direction('n', 'e', 'w', 's'):")
 
