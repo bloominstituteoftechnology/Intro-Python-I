@@ -69,9 +69,9 @@ player = Player(name, room['outside'])
 system("clear")
 while (player.room != 'exit'):
     print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
-    print("The item(s) in the room: " + str(player.room.items) + "\n")
+    print("The item(s) in the " + player.room.name + ": " + str(player.room.items) + "\n")
 
-    instruction = input("Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Quit:\n")
+    instruction = input("Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Quit:\n")
     direction = {
         "North": player.room.n_to,
         "East": player.room.e_to,
@@ -88,10 +88,13 @@ while (player.room != 'exit'):
             if (player.room.name == "Treasure Chamber"):
                 break
             player.room = new_room
+        elif (instruction == "Inventory"):
+            print("In your inventory:", player.inventory)
+            print("")
         elif (instruction in ["North", "East", "South", "West"]):
             print("Nowhere to go\n")
         else:
-            print("Invalid Command. Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Quit\n")
+            print("Invalid Command. Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Quit:\n")
     else:
         verb, target = [x for x in instruction.split()]
         if (verb == "Take"):
@@ -102,7 +105,6 @@ while (player.room != 'exit'):
             else: 
                 print(target + " is not available\n")
         if (verb == "Drop"):
-            print("Inventory", player.inventory)
             if (player.searchInventory(target)):
                 player.room.addItem(Items[target])
                 player.removeItem(target)
