@@ -103,7 +103,7 @@ while(True):
   if len(player_input) == 1:
     command = player_input[0]
 
-    if command == 'help' or command == 'options':
+    if command in ['help', 'options', 'h', 'o']:
       print('''\nYour command options are as follows:\n
 'room' - gives the name and basic decriptions of your location\n
 'look' or 'inspect' - allows you to examine the room that you are
@@ -113,19 +113,21 @@ while(True):
 'inventory' or 'bag' - check\'s what you have on your person\n
 'quit or q' - ends the game\n''')
 
-    elif command == 'look' or command == 'inspect':
+    elif command in ['look', 'inspect']:
       player.room.inspected = True
       action = 'You look around the ' + player.room.name
-      description = f'\n{textwrap.fill(player.room.look, 50)}\n'
+      description = f'{textwrap.fill(player.room.look_description, 50)}\n{player.room.list_items()}'
 
-    elif command == 'inventory' or command == 'bag':
+    elif command in ['inventory', 'bag', 'i', 'b']:
       print(player.inventory)
       action = 'You take inventory of your bag'
-      description = 'It contains the following'
+      description = 'It contains the following:'
 
-      for item in 
+      for item in self.inventory:
+        print('\n{}:\n{}\n'.format(item.name,
+        textwrap.fill(item.description, 50)))
 
-    elif command == 'quit' or command == 'q':
+    elif command in ['quit', 'q']:
       print('\nOk see ya later! Hope you had fun :)\n')
       break
 
@@ -138,13 +140,18 @@ while(True):
     verb = player_input[0]
     noun = player_input[1]
 
-    if verb == 'move' or verb == 'go':
+    if verb in ['move', 'go']:
       player.move(noun)
       action = 'You move to the ' + player.room.name
 
-    elif verb == 'take':
+    elif verb in ['take', 'grab']:
       player.take(noun)
       action = 'You take to the ' + noun
+      description  = item[noun].description
+
+    elif verb in ['drop']:
+      player.drop(noun)
+      action = 'You drop to the ' + noun
       description  = item[noun].description
 
     else:
