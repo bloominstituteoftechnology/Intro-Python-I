@@ -70,9 +70,10 @@ inputCommand = []
 
 def basicCommand():
     global done, player
+    dirtionCommands = ["n", "s", "w", "e"]
     if inputCommand[0] == "q":
         done = True
-    elif inputCommand[0] in ["n", "s", "w", "e"]:
+    elif inputCommand[0] in dirtionCommands:
         player.curRoom = direction(inputCommand[0], player.curRoom)
     elif inputCommand[0] in ["i", "inv", "inventory"]:
         player.printInventory()
@@ -81,7 +82,8 @@ def basicCommand():
 
 
 def complexCommand():
-    if inputCommand[0] in ["get", "take", "pickup"]:
+    pickupcommands = ["get", "take", "pickup"]
+    if inputCommand[0] in pickupcommands:
         player.pickUpItem(inputCommand[1])
     elif inputCommand[0] in ['drop', 'use']:
         player.useItem(inputCommand[1])
