@@ -51,15 +51,14 @@ def take_item(item_name, player):
     if not player.can_see():
         printing.prompt(f"{player.name} cannot see well enough to take anything.")
     elif player.room.has_item(item_name):
-        player.take_item_from_room(item_name, player.room)
+        player.take_item(item_name)
         player.last_item = item_name
     else:
         printing.prompt(f"There are no {item_name}s here to take")
 
 def drop_item(item_name, player):
     if player.has_item(item_name):
-        printing.prompt(f"{player} drops the {item_name} in the {player.room.name}")
-        player.drop_item_in_room(item_name, player.room)
+        player.drop_item(item_name)
         player.last_item = item_name
     else:
         printing.prompt(f"{player} has no {item_name}s to drop")
@@ -72,6 +71,10 @@ def inspect_item(item_name, player):
             return
     
     printing.prompt(f"No {item_name}s in {player}'s inventory or this room")
+
+def bool_prompt(message, prompt_message):
+    choice = printing.prompt(message, prompt_message)
+    return choice[0].lower() == 'y'
     
 def quit_game():
     printing.prompt("Thanks for playing!")
