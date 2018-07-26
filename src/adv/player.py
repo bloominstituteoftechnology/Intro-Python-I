@@ -6,3 +6,12 @@ class Player:
 		self.room = room
 		self.inventory = []
 		self.name = playername
+
+	def showInventory(self):
+		return self.inventory
+
+	def showRoom(self):
+		return self.room
+
+	def updateRoom(self, dest):
+		self.room = dest
