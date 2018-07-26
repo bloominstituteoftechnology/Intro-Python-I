@@ -18,4 +18,4 @@ class Player:
 
 	def showAllItems(self):
 		for item in self.inventory:
-			print("\t{0}\n".format(item))
+			print("\t{0}\n".format(item.name))
