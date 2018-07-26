@@ -16,7 +16,7 @@ class Item:
         return self.name
 
     def on_take(self):
-        print('Hello')
+        return self.name
 
 
 class Treasure(Item):

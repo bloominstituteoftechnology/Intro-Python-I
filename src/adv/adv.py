@@ -142,7 +142,8 @@ while (player.room != 'exit'):
                 if (type(Items[target]) is Treasure and Items[target].dropped == False):
                     player.score += int(Items[target].on_take())
                     Items[target].dropped = True
-                    print('Player Score: ' + str(player.score) + '\n')
+                    print(player.name + '\'s score increases by: ' + str(Items[target].value) + '\n')
+                    print('Your score is now: ' + str(player.score) + '\n')
                 player.room.removeItem(target)
                 print(player.name + " takes the " + target + "\n")
             else: 
@@ -164,5 +165,7 @@ system("clear")
 if (len(player.inventory) == 0):
     print("You left the cave empty handed!\n")
 else:
-    print("Congratulations, you managed to leave the cave with:", player.inventory)
-    print("")
+    if (player.score == 0):
+        print("Congratulations, you managed to leave the cave with: " + str(player.inventory) + "\n")
+    else:
+        print("Congratulations, you managed to leave the cave with: " + str(player.inventory) + " and your score is: " + str(player.score) + "\n")
