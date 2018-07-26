@@ -5,22 +5,25 @@ import textwrap
 # Declare all the rooms
 
 room = {
+
+
+
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", 'nothing'),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""",['knife, ' + 'shiny orb, ' + 'firepoker']),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", 'nothing'),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", 'nothing'),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", 'nothing'),
 }
 
 # Link rooms together
@@ -37,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-
+itemslist = ["there is nothing here"]
 # Make a new player object that is currently in the 'outside' room.
 
 name = input('Enter your name Traveler: ')
@@ -52,10 +55,11 @@ while not done:
     currentRoom = player1.room
 
     print("You are currently in " + currentRoom.name)
+    print("The items in this room are ", currentRoom.itemslist)
     print(currentRoom.description)
     direction = input('Please enter the direction you would like to go: ').strip().lower()
 
-    if direction == 'q' or direction == 'quit' or direction == 'exit:
+    if direction == 'q' or direction == 'quit' or direction == 'exit':
         done = True
     elif direction in ['s', 'n', 'e', 'w']:
         dirAttr = direction + '_to'
