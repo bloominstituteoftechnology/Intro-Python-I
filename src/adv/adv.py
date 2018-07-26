@@ -72,6 +72,7 @@ player = Player("Justin", room['outside'])
 #
 # If the user enters "q", quit the game.
 
+general_inputs = ["q", "i"] # valid general inputs
 move_inputs = ["n", "e", "s", "w"] # valid inputs to advance game
 item_inputs = ["get", "take", "drop"] # valid item interactions
 
@@ -92,23 +93,28 @@ while not quit:
 	player_input = input("Command: ").strip().lower()
 	# separate player commands into verb + noun
 	parsed = player_input.split(" ")
-	print("PARSED PLAYER COMMAND: {0}".format(parsed))
-	# player quits/exits game
-	if (parsed[0] == "q") or (parsed[0] == "quit"):
-		quit = True
-	if parsed[0] == "i":
-		# show player inventory
-		print("You have the following items: {0}".format(player.inventory)) 
-	# player continues the game - moves to another room
-	elif len(parsed) == 1:
-		# player moves in a new direction
+
+	if len(parsed) == 1:
+		if parsed[0] in general_inputs:
+			# player quits/exits game
+			if parsed[0] == "q" or parsed[0] == "quit":
+				quit = True
+			# show player inventory
+			if parsed[0] == "i":
+				print("You have the following items: {0}".format(player.inventory)) 
+
 		if parsed[0] in move_inputs:
 			dirAttr = parsed[0] + "_to"
 			# check if move input is valid
 			if hasattr(current, dirAttr):
 				player.room = getattr(current, dirAttr) # update player's location
 			else:
+				# invalid room change
 				print("You can't go that way!")
+
+		else:
+			# unknown single command
+			print("That command doesn't make sense!")
 	# player continues the game - interacts with items
 	elif len(parsed) == 2:
 		verb = parsed[0] # action player takes with an item
