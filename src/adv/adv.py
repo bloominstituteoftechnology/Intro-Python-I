@@ -48,32 +48,51 @@ print(player)
 playing = True;
 while(playing):
     #width = os.get_terminal_size() 
-    underline = " <"+ ("-" * 70) + ">"
+    borderTop = "╔"+ ("═" * 70) + "╗"
+    borderBtm = "╚"+ ("═" * 70) + "╝"
+    caret = "^" *72
 
 # * Prints the current room name
     curRoom = player.current
     prettyDescription = textwrap.fill(curRoom.description)
     #prettyDescription = prettyDescription.center(40," ")
-    print('\n\t\tYou are in the {}.\n{}\n\n{}\n\nLoot:\n{}\n\nBag:\n{}\n{}\n'.format(curRoom.name, underline, prettyDescription,curRoom.items,player.inventory,underline))
-    loot =  input("would you like to take an item?\n(yes/no)").strip().lower()
+    print('\n\t\tYou are in the {}.\n{}\n\n{}\n\nLoot:\n{}\n\nBag:\n{}\n\n{}\n'.format(curRoom.name, borderTop, prettyDescription,curRoom.items,player.inventory,borderBtm))
+    loot =  input("would you like to take an item?\n(yes/no) ").strip().lower()
     if loot == "yes" or loot =="y":
-        if len(player.inventory) < 4:
+        choice =input("Would you like to get or drop an item? \nPick: ").strip()
+        action = choice[0:choice.index(" ")]
+        item = choice[choice.index(" ") +1:len(choice)]
+        print("you want to {} a {}".format(action,item))
+
+        if action == "get" or action == "take" or action == "grab" and len(player.inventory) <= player.bagSize:
             print("what would you like to loot:\n{}".format
             (curRoom.items))
-            removed = curRoom.items.pop(curRoom.items.index(input("pick:").strip().lower()))
+            #removed = curRoom.items.pop(curRoom.items.index(input("pick:").strip().lower()))
+        
+            if item not in curRoom.items:
+                print("\n\n\t  Error: {} is not loot available this room\n{}".format(item,caret))
+            else:
+                removed = curRoom.items.pop(curRoom.items.index(item))
 
-
-            #removed = curRoom.items.remove(grab)
-            print("You added {} to your bag".format(removed))
-            player.inventory.append(removed)
+                #removed = curRoom.items.remove(grab)
+                print("You added {} to your bag".format(removed))
+                player.inventory.append(removed)
         elif len(player.inventory) >=player.bagSize:
           
              print("Bag is full!")
+        elif action == "drop" or action == "leave" or action =="remove" or action =="place":
+             place = player.inventory.pop(player.inventory.index(item))
+
+             #removed = curRoom.items.remove(grab)
+             print("You dropped {} inside of {}".format(place,curRoom.name))
+             curRoom.items.append(place)
+        else:
+            print("\n\n\t  Error: {} is not a valid action, try (get/drop)\n{}.".format(action,caret))         
 
     elif loot =='q' or loot == 'quit' or loot =='exit' or loot == 'stop':
              playing = False 
     elif loot == "no" or loot =="n": 
-        command = input("Enter a direction:\n N, S, W, E, ").strip().lower()
+        command = input("Enter a direction:\n N, S, W, E,").strip().lower()
 
         if command =='q' or command =='quit' or command == 'exit':
             playing = False
