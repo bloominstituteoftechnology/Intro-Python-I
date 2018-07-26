@@ -1,8 +1,18 @@
-import room
-import player
-import item
 from os import system
+
+import sys
 import textwrap
+
+import room
+
+# Access inanimate_objects directory
+sys.path.append('./inanimate_objects')
+from item import Item
+
+# Access living_beings directory
+sys.path.append('../living_beings')
+from player import Player
+
 
 ## Main
 
