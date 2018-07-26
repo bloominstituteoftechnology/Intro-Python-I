@@ -140,24 +140,24 @@ while (player.room != 'exit'):
         if (verb == "Take"):
             if (player.room.searchItems(target)):
                 player.toInventory(Items[target])
+                print("You took the " + target + "\n")
                 if (type(Items[target]) is Treasure and Items[target].dropped == False):
                     player.score += int(Items[target].on_take())
                     Items[target].dropped = True
-                    print(player.name + '\'s score increases by: ' + str(Items[target].value) + '\n')
+                    print('Your score increases by: ' + str(Items[target].value) + '\n')
                     print('Your score is now: ' + str(player.score) + '\n')
                 player.room.removeItem(target)
-                print(player.name + " takes the " + target + "\n")
             else: 
                 print(target + " is not available\n")
         elif (verb == "Drop"):
             if (player.searchInventory(target)):
                 player.removeItem(target)
+                print("You dropped the " + target + "\n")
                 if (type(Items[target]) is Treasure):
                     player.score -= int(Items[target].on_drop())
-                    print(player.name + '\'s score decreases by: ' + str(Items[target].value) + '\n')
+                    print('Your score decreases by: ' + str(Items[target].value) + '\n')
                     print('Your score is now: ' + str(player.score) + '\n')
                 player.room.addItem(Items[target])
-                print(player.name + " drops the " + target + "\n")
             else:
                 print(target + " is not in your inventory\n")
     else:

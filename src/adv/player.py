@@ -18,9 +18,8 @@ class Player():
     def searchInventory(self, item_name):
         for item in self.inventory:
             if item_name == item.name:
-                return item
-            else:
-                return None
+                return item        
+        return None
     
     def removeItem(self, item_name):
         for item in self.inventory:
