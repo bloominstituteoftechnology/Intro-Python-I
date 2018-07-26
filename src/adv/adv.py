@@ -49,8 +49,8 @@ room['bathroom'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 #
-room['foyer'].contents.append(Item("Lamp", "Light Source"))
-room['foyer'].contents.append(Item("Sword", "With Emeralds in the handle"))
+room['foyer'].contents.append(Item("lamp", "Lamp"))
+room['foyer'].contents.append(Item("sword", "A Sword with emeralds in the handle"))
 # Main
 # DEBUGGING
 # print(room['outside'].s_to)
@@ -135,7 +135,7 @@ while not done:
             else:
                 player.contents.append(candidates[0])
                 curRoom.contents.remove(candidates[0])
-                if candidates[0] not in player.contentsHistory:
+                if candidates not in player.contentsHistory:
                     print("Grats on points, Bro!")
                     player.score += 1
            
