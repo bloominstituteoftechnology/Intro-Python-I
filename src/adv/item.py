@@ -30,4 +30,4 @@ class LightSource(Item):
             print("If you drop this you won't be able to see")
             self.see = False:
             break
-        else: print()
+        else: print("Alright then")
