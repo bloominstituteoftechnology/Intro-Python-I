@@ -2,30 +2,7 @@ from os import system
 from room import Room
 from player import Player
 from item import Item
-
-# Declare all the rooms
-rooms = {
-    "outside": {
-        "name": "Outside Cave Entrance",
-        "description": "North of you, the cave mount beckons"
-    },
-    "foyer": {
-        "name": "Foyer",
-        "description": "Dim light filters in from the south. Dusty passages run north and east."
-    },
-    "overlook": {
-        "name": "Grand Overlook",
-        "description": "A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."
-    },
-    "narrow": {
-        "name": "Narrow Passage",
-        "description": "The narrow passage bends here from west to north. The smell of gold permeates the air."
-    },
-    "treasure": {
-        "name": "Treasure Chamber",
-        "description": "You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."
-    }
-}
+from data import rooms, items
 
 outside  = Room(rooms["outside"]["name"], rooms["outside"]["description"])
 foyer    = Room(rooms["foyer"]["name"], rooms["foyer"]["description"])
@@ -33,31 +10,12 @@ overlook = Room(rooms["overlook"]["name"], rooms["overlook"]["description"])
 narrow   = Room(rooms["narrow"]["name"], rooms["narrow"]["description"])
 treasure = Room(rooms["treasure"]["name"], rooms["treasure"]["description"])
 
-
-# Declare any items
-
-items = {
-    "mirror": {
-        "name": "Mirror",
-        "description": "Check out that reflection"
-    },
-    "flashlight": {
-       "name": "Flashlight",
-       "description": "A weathered flashlight"
-    },
-    "key": {
-       "name": "Key",
-       "description": "This could open something"
-    }
-}
-
 key        = Item(items["key"]["name"], items["key"]["description"])
 mirror     = Item(items["mirror"]["name"], items["mirror"]["description"])
 flashlight = Item(items["flashlight"]["name"], items["flashlight"]["description"])
 
 
 # Link rooms together
-
 outside.n_to = foyer
 
 foyer.s_to = outside
@@ -73,27 +31,117 @@ treasure.s_to = narrow
 
 
 # Add items to rooms
-
 outside.addItem(mirror)
-
 foyer.addItem(flashlight)
-
 narrow.addItem(key)
 
 
 # Make a new player object that is currently in the 'outside' room.
 
+def print_user_controls():
+   print("\n ~ Directions: move [n, s, e, w]")
+   print(" ~ Actions: [get, drop, use] item")
+   print(" ~ Quit: q or quit\n")
+
+
 system("cls" or "clear")
 
-print("Controls:")
-print("   ~  Directions: n, s, e, w")
-print("   ~  Actions: [get, drop, use] item\n")
+print_user_controls()
 
 username = input("Enter a player name: ")
 
 player = Player(username, outside)
 
 print("\nWelcome, %s!" % (player.playerName))
+
+
+# PRINT ITEMS IN THE ROOM AND ITEMS IN INVENTORY
+
+def printItems():
+   playerInventory = player.inventory
+   availableItems  = player.currentRoom.items
+
+   handleRoomChange(player.currentRoom)
+
+   print("Items in the room:")
+
+   if len(availableItems) is 0:
+      print("   None")
+   else:
+      for item in availableItems:
+         print("   %s - %s" % (item.name, item.description))
+
+   print("\nInventory:")
+
+   if len(playerInventory) is 0:
+      print("   None")
+   else:
+      for item in playerInventory:
+         print("   %s - %s" % (item.name, item.description))    
+
+
+
+def handleRoomChange(newRoom):
+   if newRoom is None: 
+      print("\nThere is no door to go to in that direction.")
+   else: 
+      player.setCurrentRoom(newRoom)
+      print("\nYou enter the %s\n" % (player.currentRoom.name))
+      print("%s\n" % player.currentRoom.description)
+
+
+
+# PARSE USER INPUT
+def parser(command):
+   directions = {
+      "n": player.currentRoom.n_to,
+      "s": player.currentRoom.s_to,
+      "e": player.currentRoom.e_to,
+      "w": player.currentRoom.w_to
+   }
+
+   commands = {
+      "get": player.getItem,
+      "drop": player.dropItem,
+      "use": unlock_treasure
+   }
+
+   commandParse = command.split(" ")
+   action = commandParse[0]
+   itemName = direction = commandParse[1]
+
+   if action not in commands:
+      if action is not "help": print("\nPlease use a valid command.")
+      print_user_controls()
+
+   if direction in directions:
+      handleRoomChange(directions[direction])
+   
+   else:
+      availableItem = player.currentRoom.itemAvailability(itemName) or player.locateInventory(itemName)
+
+      if availableItem is None:
+         print("\nItem is not available in this room.\nPlease choose a valid item.")
+      else:
+         commands[action](availableItem)
+
+         
+
+# TREASURE REACTION
+
+def unlock_treasure(item):
+   global game_over
+
+   if item.name is not "Key":
+      print("You cannot use this item here.")
+   else:
+      system("cls" or "clear")
+      print("\n\n\n\nYou insert the key and unlock the chest.")
+      print("\n\nIt's filled with gold and jewels!")
+      print("\n\nCongratulations, %s! You won!\n" % (player.playerName))
+      game_over = True
+
+
 
 # Write a loop that:
 #
@@ -106,93 +154,18 @@ print("\nWelcome, %s!" % (player.playerName))
 #
 # If the user enters "q", quit the game.
 
-def printItems():
-   playerInventory = player.inventory
-   availableItems  = player.currentRoom.items
+game_over = False
 
-   print("Items:")
+while game_over is not True:
+   system("cls" or "clear")
 
-   if len(availableItems) is 0:
-      print("   None")
-   else:
-      for item in availableItems:
-         print("   %s - %s" % (item.name, item.description))
-
-   print("Inventory:")
-
-   if len(playerInventory) is 0:
-      print("   None")
-   else:
-      for item in playerInventory:
-         print("   %s - %s" % (item.name, item.description))    
-
-
-def parseCommand(command):
-   commandParse = command.split(" ")
-   action = commandParse[0]
-   itemName = commandParse[1]
-
-   if action not in ["get", "drop", "use"]:
-      print("\nPlease use a valid action. [get, drop, use]")
-
-   else:
-      availableItem = player.currentRoom.itemAvailability(itemName) or player.locateInventory(itemName)
-
-      if availableItem is None:
-         print("\nItem is not available in this room.\nPlease choose a valid item.")
-
-      else:
-         if action == "get": 
-            player.getItem(availableItem)
-            print("\nYou picked up: ", itemName)
-         if action == "drop": 
-            player.dropItem(availableItem)
-            print("\nYou removed %s from your inventory." % (itemName))
-         if action == "use":
-            system("cls" or "clear")
-            print("\n\n\n\nYou insert the key and unlock the chest.")
-            print("\nYou win!")
-            print("\nGame over.\n")
-
-
-def handleTreasure():
-   print("\n\nCongratulations, %s! \n\nYou reached Treasure Chamber!" % (player.playerName))
-   print("\n\nA treasure chest glows in the far corner.\n\n")
-   print("The chest appears to be locked.\n\n")
-   action = input("Action: ")
-   parseCommand(action)
-
-
-while True:
-   if player.currentRoom.name is "Treasure Chamber":
-      handleTreasure()
-      break
-
-   print("\nYou enter the %s\n" % (player.currentRoom.name))
-   print("Description: ", player.currentRoom.description)
-    
    printItems()
 
    command = input("\nCommand> ")
 
-   directions = {
-      "n": player.currentRoom.n_to,
-      "s": player.currentRoom.s_to,
-      "e": player.currentRoom.e_to,
-      "w": player.currentRoom.w_to,
-   }
-
-   if len(command) is 1:
-      if command is "q":
-         print("\nThanks for playing!")
-         break
-      
-      elif command in directions:
-         userChoice = directions[command]
-         if userChoice is None: 
-            print("\nThere is no door to go to in that direction.")
-         else: 
-            player.setCurrentRoom(userChoice)
+   if command in ["q", "quit"]:
+      print("\nThanks for playing!")
+      break
 
    else:
-      parseCommand(command)
+      parser(command)

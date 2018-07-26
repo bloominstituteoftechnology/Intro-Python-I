@@ -10,10 +10,12 @@ class Player:
     self.currentRoom = newRoom
 
   def getItem(self, item):
+    print("\nYou picked up ", item.name)
     self.currentRoom.removeItem(item)
     self.inventory.append(item)
 
   def dropItem(self, item):
+    print("\nYou removed %s from your inventory." % (item.name))
     self.inventory.remove(item)
     self.currentRoom.addItem(item)
 
