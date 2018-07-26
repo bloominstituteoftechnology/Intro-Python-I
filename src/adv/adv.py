@@ -54,55 +54,46 @@ room['foyer'].items.append(item['sword'])
 room['overlook'].items.append(item['torch'])
 
 
+def headDirection(nextRoom, player):
+    if isinstance(nextRoom, DarkRoom):
+        if player.hasLightSource() or nextRoom.hasLightSource():
+            player.room = nextRoom
+            return 1
+        else:
+            print("This room looks to be too dark to enter...")
+    elif isinstance(nextRoom, Room):
+        player.room = nextRoom
+        return 1
+
+
+def look(items):
+    if len(items) == 1:
+        print(f"There's only a {items[0]}.")
+    if len(items) > 1:
+        print("There appear to be a few items:")
+        for item in items:
+            print(item)
+    if len(items) < 1:
+        print("You don't see anything.")
+    return 1
+
+
 def singleChoice(noun):
     if noun == "score":
         print("Your current score is: {}".format(player.score))
         return 1
 
     if (noun == "north") or (noun == "n"):
-        if isinstance(player.room.n_to, DarkRoom):
-            if player.hasLightSource() or player.room.n_to.hasLightSource():
-                player.room = player.room.n_to
-                return 1
-            else:
-                print("This room looks to be too dark to enter...")
-        elif isinstance(player.room.n_to, Room):
-            player.room = player.room.n_to
-            return 1
+        return headDirection(player.room.n_to, player)
 
     if (noun == "south") or (noun == "s"):
-        if isinstance(player.room.s_to, DarkRoom):
-            if player.hasLightSource() or player.room.s_to.hasLightSource():
-                player.room = player.room.s_to
-                return 1
-            else:
-                print("This room looks to be too dark to enter...")
-        elif isinstance(player.room.s_to, Room):
-            player.room = player.room.s_to
-            return 1
+        return headDirection(player.room.s_to, player)
 
     if (noun == "east") or (noun == "e"):
-        if isinstance(player.room.e_to, DarkRoom):
-            print(player.hasLightSource())
-            if player.hasLightSource() or player.room.e_to.hasLightSource():
-                player.room = player.room.e_to
-                return 1
-            else:
-                print("This room looks to be too dark to enter...")
-        elif isinstance(player.room.e_to, Room):
-            player.room = player.room.e_to
-            return 1
+        return headDirection(player.room.e_to, player)
 
     if (noun == "west") or (noun == "w"):
-        if isinstance(player.room.w_to, DarkRoom):
-            if player.hasLightSource() or player.room.w_to.hasLightSource():
-                player.room = player.room.w_to
-                return 1
-            else:
-                print("This room looks to be too dark to enter...")
-        elif isinstance(player.room.w_to, Room):
-            player.room = player.room.w_to
-            return 1
+        return headDirection(player.room.w_to, player)
 
     if (noun == 'i') or (noun == 'inventory'):
         if len(player.items) > 0:
@@ -114,17 +105,9 @@ def singleChoice(noun):
         return 1
 
     if noun == "look":
-        if len(player.room.items) == 1:
-            print(f"There's only a {player.room.items[0]}.")
-        if len(player.room.items) > 1:
-            print("There appear to be a few items:")
-            for item in player.room.items:
-                print(item)
-        if len(player.room.items) < 1:
-            print("You don't see anything.")
-        return 1
+        return look(player.room.items)
 
-    if noun == "q":
+    if (noun == "q") or (noun == "quit"):
         return 2
     return 0
 
@@ -146,25 +129,34 @@ def doubleChoice(verb, noun, item):
     return 0
 
 
-#
-# Main
-#
-
-player = Player(room['outside'])
-
-os.system("cls")
-while True:
-    flag = 0
+def printOutputAcceptInput():
     print(player.room)
     choice = input("What do you do? ")
     choice = choice.split(' ')
     os.system("cls")
+    return choice
+
+
+def whileSwitch(choice):
     if len(choice) == 1:
+        global flag
+        flag = 0
         flag = singleChoice(choice[0])
     if len(choice) == 2:
         flag = doubleChoice(choice[0], choice[1], item)
     if flag == 0:
         print("You can't do that.")
-    if flag == 2:
-        break
     print("\n")
+    return flag
+
+#
+# Main
+#
+
+
+player = Player(room['outside'])
+
+os.system("cls")
+while True:
+    if whileSwitch(printOutputAcceptInput()) == 2:
+        break
