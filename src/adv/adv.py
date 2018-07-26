@@ -100,17 +100,72 @@ actions = {   #dict of possible action commands
 #
 # If the user enters "q", quit the game.
 
-def movement_error():
-    errors = {
-        1: 'Nope cant do that',
+def movement_error():  #will generate an error based on incorrect movement command
+    if currentLocation == room['outside']:
+        count = 0
+    if currentLocation == room['foyer']:
+        count = 1
+    if currentLocation == room['overlook']:
+        count = 2
+    if currentLocation == room['narrow']:
+        count = 3
+    if currentLocation == room['treasure']:
+        count = 4
+    errors = [{
+        1: 'Nope cant do that',     #errors for movement outside
+        2: 'Not possible',
+        3: 'Try something else',
+        4: 'Why would you try that here?',
+        5: 'You\'re outside, this isnt the place for that',
+        6: 'How about you try entering the cave?',
+        7: 'You seem to have forgotten what you\'re capable of',
+        8: 'How about no'
+
+    },
+    {
+        1: 'Nope cant do that',     #errors for movement in the foyer
+        2: 'Not possible',
+        3: 'Try something else',
+        4: 'Why would you try that here?',
+        5: 'This is merely the foyer, stop making mistakes here',
+        6: 'How is it you dont remember where to go from here',
+        7: 'Not many places you can go from here...',
+        8: 'You seem to have forgotten what you\'re capable of',
+        9: 'How about no'
+
+    },
+    {
+        1: 'Nope cant do that',     #errors for movement at the voerlook
         2: 'Not possible',
         3: 'Try something else',
         4: 'Why would you try that here?',
         5: 'Can\'t do that here',
         6: 'You seem to have forgotten what you\'re capable of',
-        7: 'How about no'
-    }
-    return errors[randint(1, len(errors))]
+        7: 'How about no',
+        8: 'Are you trying to jump off the cliff?'
+    },
+    {
+        1: 'Nope cant do that',     #errors for movement in the narrow
+        2: 'Not possible',
+        3: 'Try something else',
+        4: 'Why would you try that here?',
+        5: 'Literally one 2 directions here, how did u mess that up',
+        6: 'You failed on a 50/50'
+
+    },
+    {
+        2: 'Not possible',
+        1: 'Nope cant do that',     #errors for movement by the treasure
+        4: 'Why would you try that here?',
+        3: 'Try something else',
+        5: 'Are you doing this because you missed out on treasure?',
+        6: 'Dont go walking into walls',
+        7: 'Nothing in that direction',
+        8: 'You seem to have forgotten what you\'re capable of',
+        9: 'How about no'
+
+    }]
+    return errors[count][randint(1, len(errors[count]))]
 
 playing = True
 print('Loading...')
@@ -145,7 +200,7 @@ while(playing):
                     character.change_location(currentLocation)
 
                 else:
-                    print(f'\n{movement_error()}')  #movement error
+                    print(f'\n{movement_error()}')  #prints a random movement error based on room
 
             else:
                 print('\nSorry I dont know how to do that yet :(')  #incorrect 1 word statement
