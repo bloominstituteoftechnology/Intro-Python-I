@@ -23,14 +23,27 @@
 - [ ] Follow the instructions `adv.py`.
 - [ ] Figure out what all those `.pyc` files are.
 * A *.pyc file is created for imported modules, and they are placed in the same directory containing the .py file. But a *.pyc file is never created for the main script for your program.
-
-## Day 2 Stretch
 - [ ] Add more rooms.
-- [ ] Add things to the game that can be found in rooms, e.g. sword, lamp.
-    * The room can keep a list of things found within it.
-- [ ] Show a listing of the things in room when the player walks into it.
-- [ ] Add functionality to allow the user to `take sword`, that will move it out of the room and into a list on the player called `inventory`.
-- [ ] Add the `i` command to show what is in the player's inventory.
-- [ ] Add functionality to allow the user to `drop sword`, that will move it out of the player's inventory into the current room the player is in.
-- [ ] Add a way to win.
-- [ ] Come up with more stretch goals! Scoring? Monsters?
+
+## Day (3) 
+- [ ] Add an Item class in a file item.py.
+- [ ] Add capability to add items to rooms.
+- [ ] Add capability to add Items to the player's inventory. 
+- [ ] Add a new type of sentence the parser can understand: two words.
+- [ ] Implement support for the verb get followed by an Item name. This will be used to pick up Items.
+- [ ] Add functionality to allow the Player to `drop sword`, that will move it out of the player's inventory into the current room the player is in.
+- [ ] Add the i and inventory commands that both show a list of items currently carried by the player.
+
+## Day (4)
+- [ ] Add a score to your Player class. Set it to 0.
+- [ ] Add a single word command, score, that the user can type in to see their current score.
+- [ ] Add a subclass to Item called Treasure. (Description, Value)
+- [ ] Add an on_take method to Item.
+- [ ] Override on_take in Treasure so that the player gets the value of the Treasure added to their score attribute but only the first time the treasure is picked up.
+- [ ] Add an on_drop method to Item. Implement it similar to on_take.
+- [ ] Add a subclass to Item called LightSource
+- [ ] During world creation, add a lamp LightSource to a convenient Room
+- [ ] Override on_drop in LightSource that tells the player "It's not wise to drop your source of light!" if the player drops it. (But still lets them drop it.)
+- [ ] Add an attribute to Room called is_light that is True if the Room is naturally illuminated, or False if a LightSource is required to see what is in the room.
+- [ ] Modify the main loop to test if there is light in the Room (i.e. if is_light is True or there is a LightSource item in the - [ ] Room's contents or if there is a LightSource item in the Player's contents).
+- [ ] Modify the get/take code to print "Good luck finding that in the dark!" if the user tries to pick up an Item in the dark.
