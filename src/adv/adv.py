@@ -6,21 +6,21 @@ from item import Item, Treasure
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [Item("flashlight")], False, 0),
+                     "North of you, the cave mount beckons", [Item("flashlight")], False, True),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [Treasure("sword", 100)], False, 0),
+passages run north and east.""", [Treasure("sword", 100)], False, True),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [Item("rope")], False, 0),
+the distance, but there is no way across the chasm.""", [Item("rope")], False, True),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", [Treasure("Diamonds", 5200)], False, 0),
+to north. The smell of gold permeates the air.""", [Treasure("Diamonds", 5200)], False, False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [Treasure("Gold", 645000)], False, 0),
+earlier adventurers. The only exit is to the south.""", [Treasure("Gold", 645000)], False, True),
 }
 
 
@@ -61,9 +61,12 @@ while newInput != "q":
     if len(newPlayer.room.items) != 0:
         for item in newPlayer.room.items:
             roomItems.append(item.name)
-    
-    print(f"Loot: {roomItems}")
-    print(newPlayer.room.summary)
+
+    if newPlayer.room.isLight == True:
+        print(f"Loot: {roomItems}")
+        print(newPlayer.room.summary)
+    else: 
+        print("Good luck seeing in a dark room!")
 
     newInput = input("Give a one letter direction (NESW): \n \n \n")
     newInput = newInput.lower()

@@ -2,7 +2,7 @@
 # description attributes.
 
 class Room:
-    def __init__(self, roomName, summary, items, treasureScored, index):
+    def __init__(self, roomName, summary, items, treasureScored, isLight):
         self.roomName = roomName
         self.summary = summary
         self.n_to = None
@@ -11,7 +11,7 @@ class Room:
         self.e_to = None
         self.items = items
         self.treasureScored = treasureScored
-        self.index = index
+        self.isLight = isLight
 
 
     def printRoom(self):
