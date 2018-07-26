@@ -20,6 +20,7 @@ class Player:
 
     def take_item_from_room(self, item_name, room):
         item = room.take_item(item_name)
+        item.on_take(self)
         self.items.append(item)
 
     def drop_item_in_room(self, item_name, room):
@@ -29,6 +30,9 @@ class Player:
 
     def get_score(self):
         return sum(self.score.values())
+
+    def add_score(self, category, amount):
+        self.score[category] += amount
 
     def __str__(self):
         return self.name
