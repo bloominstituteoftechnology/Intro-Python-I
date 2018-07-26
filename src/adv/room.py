@@ -24,7 +24,13 @@ class Room:
         self.items.append(item)
 
     def is_illuminated(self):
-        return self.illuminated or len([item for item in self.items if isinstance(item, LightSource)]) > 0
+        return self.illuminated or self.has_light_source()
+
+    def has_light_source(self):
+        len([item for item in self.items if isinstance(item, LightSource)]) > 0
+
+    def describe(self):
+        return textwrap.fill(self.description)
 
     def __str__(self):
-        return textwrap.fill(self.description)
+        return self.name
