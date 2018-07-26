@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 import textwrap
 
 # Declare all the rooms
@@ -28,7 +28,7 @@ earlier adventurers. The only exit is to the south. """),
 }
 
 t = Item("Torch", "And Let There Be Light")
-h = Item("Poo", "I don't know why you would pick this up")
+h = Treasure("Poo", "I don't know why you would pick this up", 100)
 room['outside'].item.append(h)
 
 
@@ -78,8 +78,12 @@ while over is False:
                 print("You grasp air....")
             else:
                 print("You picked up an item " + str(player.currentArea.item))
+                player.currentArea.item[0].on_take(player)
                 player.item.append(player.currentArea.item)
                 player.currentArea.item = []
+        elif u == "drop item":
+            player.currentArea.item.append(player.item[-1])
+            player.item.pop()
         elif u == "take": print("What did you mean to take? item? Use two words")
         elif u == 'inventory': print("Player Held Items: " + str(player.item))
         else: print("Commands: n,s,w,e | take item | q | quit")
@@ -87,6 +91,7 @@ while over is False:
         player.currentArea = cardDirection(u, player.currentArea)
     elif u == 'i':
         print("Player Held Items: " + str(player.item))
+        print("Player Score: " + str(player.score))
     elif u == "q":
         print("Quitter")
         over = True
