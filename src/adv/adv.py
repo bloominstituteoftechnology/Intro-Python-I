@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -21,6 +23,15 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+item = {
+    'tree':   Item("tree", "Just a tree"),
+    'knife':  Item('knife', 'A very sharp knife'),
+    'pig':    Item('pig', 'A wild boar'),
+    'pen':    Item('pen', 'A foutain pen'),
+    'gold':   Item('gold', '10 bars of gold'),
+    'eggs':   Item('eggs', 'a dozen eggs'),
+    'spoon':  Item('spoon', 'A golden spoon'),
+}
 
 # Link rooms together
 
@@ -33,19 +44,44 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+room['outside'].items.extend([item['tree'], item['pig']])
+room['foyer'].items.extend([item['knife'], item['pen']])
+room['overlook'].items.append(item['eggs'])
+room['narrow'].items.append(item['spoon'])
+room['treasure'].items.append(item['gold'])
+
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 
+player1 = Player(room['outside'])
+
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
+
+while(True):
+    print(player1.current_room.name)
+    print(player1.current_room.description)
+    print(f'Items present: {[i.name for i in player1.current_room.items]}')
+
+    user_input = input("\nEnter command ")
+
+    if user_input == 'q':
+        break;
+    print()
+
+    player1.handle_user_input(user_input)
+
+
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+    # import pdb; pdb.set_trace()

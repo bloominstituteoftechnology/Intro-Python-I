@@ -14,3 +14,6 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+print(calendar.month(int(sys.argv[1]), int(sys.argv[2])))
