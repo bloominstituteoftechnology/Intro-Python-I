@@ -9,4 +9,6 @@ class Player:
 
         self.contents = []
 
+        self.value = 0
+
     

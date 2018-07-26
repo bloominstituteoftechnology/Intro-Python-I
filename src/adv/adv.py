@@ -1,3 +1,4 @@
+from os import system # for system clear on game play
 from room import Room
 from player import Player
 from item import Item
@@ -122,6 +123,11 @@ while not done:
 
         else:
             print("I don't understand that command.")
+
+        # Check score
+        elif command[0] in ["Score?"]:
+            print(player.score)
+
 
     elif len(command) == 2:
 
