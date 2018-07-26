@@ -102,7 +102,7 @@ while not quit:
 				quit = True
 			# show player inventory
 			if parsed[0] == "i":
-				print("You have the following items: {0}".format(player.inventory)) 
+				print(player.showAllItems())
 		elif parsed[0] in move_inputs:
 			dirAttr = parsed[0] + "_to"
 			# check if move input is valid
