@@ -13,4 +13,21 @@
 # Hint: this should be about 15 lines of code. No loops are required. Read the
 # docs for the calendar module closely.
 
+import calendar
 import sys
+import datetime
+
+# print(sys.argv[0])
+
+calendar.setfirstweekday(calendar.MONDAY)
+
+
+
+
+if len(sys.argv) == 3:
+    a = sys.argv[1]
+    b = sys.argv[2]
+
+    print(calendar.month(int(a), int(b)))
+else:
+    print(calendar.month(2018, 7))
