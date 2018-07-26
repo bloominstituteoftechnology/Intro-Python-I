@@ -80,3 +80,18 @@ while not done:
 #and convert the command to lowercase
     command = input("Command> ").strip().lower()
     
+    #set quit command
+    if command == 'q' or command == 'quit' or command == 'exit':
+        done = True
+        # these are our movement options
+    elif command in ["n", "s", "e", "w"]:
+        #sets the _to on each command. 
+        dirAttr = command + "_to"
+
+        #check if the current room has the proper _to attached, 
+        if hasattr(current_room, dirAttr):
+            #if so, set the room to the proper room.
+            main_player.room = getattr(current_room, dirAttr)
+        else:
+            #if it does not, you cant go that way 
+            print("you cant go that way")
