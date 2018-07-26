@@ -2,7 +2,7 @@ from os import system
 
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 
 # Declare all the rooms
 
@@ -28,12 +28,18 @@ earlier adventurers. The only exit is to the south."""),
 # Create Items Dictionary
 
 Items = {
-    "Sword" : Item('Sword', 'Shiny')
+    "Sword" : Item('Sword', 'Shiny'),
+    "Bronze Coin" : Treasure('Bronze Coin', 'Bronze', '5'),
+    "Silver Coin" : Treasure('Silve Coin', 'Silver', '10'),
+    "Gold Coin" : Treasure('Gold Coin', 'Gold', '20')
 }
 
 # Adding Items to a Room
 
-room['outside'].addItem(Items["Sword"])
+room['outside'].addItem(Items['Sword'])
+room['foyer'].addItem(Items['Bronze Coin'])
+room['narrow'].addItem(Items['Silver Coin'])
+room['overlook'].addItem(Items['Gold Coin'])
 
 # Link rooms together
 
