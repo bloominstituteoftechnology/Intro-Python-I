@@ -90,6 +90,8 @@ while True:
             dircheck(cmd + "_to")
         elif cmd == "i" or cmd == "inventory":
             print("\nInventory:\n" + "\n".join([item.name + " - " + item.description for item in player.inventory]))
+        elif cmd == "score":
+            print("")
         else:
             print("\nSorry, Wrong Command - Try Again") 
     elif len(cmds) == 2:
@@ -123,50 +125,78 @@ while True:
 # while not done:
 #     curRoom = player.room
 
+#     # Print out room description
+
 #     prettyDesc = textwrap.fill(curRoom.description)
 
 #     print(f'\n{curRoom.name}\n\n{prettyDesc}')
 
-    # Print room contents
-    # if len(curRoom.contents) > 0:
-        # print("You also see:")
-        # for i in CurRoom.contents:
-            #print("  " + i.description)
-        # print()
+#     # Print room contents
+
+#     if len(curRoom.contents) > 0:
+#         print("\nYou also see:")
+#         for i in curRoom.contents:
+#             print("   " + i.description)
+
+#     # Prompt
 
 #     command = input("\nCommand> ").strip().lower()
 
-#     command = command.split('  ')
+#     command = command.split(' ')
+
+#     # Single word commands
 
 #     if len(command) == 1:
 
-#       if command[0] == 'q' or command[0] == 'quit' or command[0] == 'exit':
-#         done = True
+#         if command[0] == 'q' or command[0] == 'quit' or command[0] == 'exit':
+#             done = True
 
-#     elif command[0] in ["s", "n", "e", "w"]:
-#         dirAttr = command[0] + "_to"
+#         elif command[0] in ["s", "n", "e", "w"]:
+#             dirAttr = command[0] + "_to"
 
-#         if hasattr(curRoom, dirAttr):
-#             player.room = getattr(curRoom, dirAttr)
+#             if hasattr(curRoom, dirAttr):
+#                 player.room = getattr(curRoom, dirAttr)
+
+#             else:
+#                 print("You can't go that way.")
+
+#         elif command[0] in ["i", "inventory"]:
+#             if len(player.contents) > 0:
+#                 print("\nYou're currently carrying:")
+#                 for i in player.contents:
+#                     print("   " + i.description)
+#             else:
+#                 print("\nYou're not carrying anything.")
 
 #         else:
-#             print("You can't go that way.")
+#             print("I don't understand that!")
 
-#     elif command[0] in ["i", "inventory"]:
-#       print("You're currently carrying:")
+#     elif len(command) == 2:
+
+#         verb, obj = command
+
+#         if verb in ['get', 'take']:
+#             candidates = [item for item in curRoom.contents if item.name == obj]
+
+#             if len(candidates) == 0:
+#                 print("You don't see that here.")
+
+#             else:
+#                 player.contents.append(candidates[0])
+#                 curRoom.contents.remove(candidates[0])
+
+#         elif verb == 'drop':
+#             candidates = [item for item in player.contents if item.name == obj]
+
+#             if len(candidates) == 0:
+#                 print("You're not carrying that.")
+
+#             else:
+#                 player.contents.remove(candidates[0])
+#                 curRoom.contents.append(candidates[0])
+
+#         else:
+#             print("I don't understand that!")
+
 #     else:
 #         print("I don't understand that!")
-
-#   elif len(command) == 2:
-
-#       verb, obj = command
-       
-#       if verb in ['get', 'take']:
-#           candidates = [item for item in CurRoom.contents if item.name == obj]
-
-#       if len(candidates) == 0:
-#           print("You don't see that here.")
-
-#       else:
-#           player.contents.append(candidates[0])
-#           curRoom.contents.remove(candidates[0])
