@@ -61,36 +61,65 @@ room['treasure'].addItem(item5)
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-done = False
+def direction(d, curRoom):
+    dirAttr = d + "_to"
+    if hasattr(curRoom, dirAttr):
+        player.room = getattr(curRoom, dirAttr)
+    else:
+        print("You can't go that way.")
+    return curRoom
 
-while not done:
+done = False
+inputCommand = []
+
+def directionCommand():
+    global done, player
+    dirCommands = ['n', 's', 'w', 'e']
+    if inputCommand[0] == 'q' or inputCommand[0] == 'quit' or inputCommand[0] == 'exit':
+        done = True
+    elif inputCommand[0] in dirCommands:
+        player.curRoom = direction(inputCommand[0], player.curRoom)
+    elif inputCommand[0] in ['i', 'inv', 'inventory']:
+        player.printInventory()
+    elif inputCommand[0] == 'score':
+        player.printScore()
+    else:
+        print('Unknown command {}'.format(inputCommand))
+
+
+def verbCommand():
+    verbCommands = ['get', 'take', 'pickup']
+    if inputCommand[0] in verbCommands:
+        player.pickupItem(inputCommand[1])
+    elif inputCommand[0] in ['drop']:
+        player.dropItem(inputCommand[1])
+    else:
+        print('Unkown command {}'.format(inputCommand))
+
+
+def startGame():
     curRoom = player.room
 
     prettyDesc = textwrap.fill(curRoom.description)
 
     print(f'{curRoom.name}\n{prettyDesc}')
 
-    if len(player.room.items) > 0:
-        for i in player.room.items:
-            print(i.name, i.description)
+    if len(player.curRoom.items) > 0:
+        print('\nYou see:')
+        for i in player.curRoom.items:
+            print('  ' + str(i.name))
 
-    command = input("Command> ").strip().lower().split()
 
-    if len(command) >2 or len(command) < 1:
+while not done:
+    startGame()
+    inputCommand = input("Command> ").strip().lower().split()
+
+    if len(inputCommand) > 2 or len(inputCommand) < 1:
         print('Cannot use command')
-        
+    
+    if len(inputCommand) == 1:
+        directionCommand()
 
-    if command == 'q' or command == 'quit' or command == 'exit':
-        done = True
-
-    elif command in ["s", "n", "e", "w"]:
-        dirAttr = command + "_to"
-
-        if hasattr(curRoom, dirAttr):
-            player.room = getattr(curRoom, dirAttr)
-
-        else:
-            print("You can't go that way.")
-
-    else:
-        print("I don't understand that!")
+    if len(inputCommand) == 2:
+        verbCommand()
+    
