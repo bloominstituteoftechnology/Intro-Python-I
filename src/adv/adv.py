@@ -1,7 +1,7 @@
 from os import system # for system clear on game play
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure, LightSource
 import textwrap # or from textwrap import fill
 
 # Declare all the rooms
@@ -82,7 +82,9 @@ while True:
     print("To check your inventory, type 'i' or 'inventory'" "\n")
     
     cmd = input("\nWhich Direction Would You Like To Go? \n(n, s, e, w or q to quit): ").strip().lower()
+
     cmds = cmd.split(" ")
+
     if len(cmds) == 1:
         if cmd == "q" or cmd == "quit":
             break
@@ -90,8 +92,10 @@ while True:
             dircheck(cmd + "_to")
         elif cmd == "i" or cmd == "inventory":
             print("\nInventory:\n" + "\n".join([item.name + " - " + item.description for item in player.inventory]))
+
         elif cmd == "score":
-            print("")
+            print("\nYour Score:\n")
+            
         else:
             print("\nSorry, Wrong Command - Try Again") 
     elif len(cmds) == 2:
