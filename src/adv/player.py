@@ -15,3 +15,7 @@ class Player:
 
 	def updateRoom(self, dest):
 		self.room = dest
+
+	def showAllItems(self):
+		for item in self.inventory:
+			print("\t{0}\n".format(item))
