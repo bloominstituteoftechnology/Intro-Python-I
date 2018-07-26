@@ -113,4 +113,8 @@ while (player.room != 'exit'):
                 print(target + " is not in your inventory")
 
 system("clear")
-print("You are out of the cave and empty handed!\n")
+if (len(player.inventory) == 0):
+    print("You left the cave empty handed!\n")
+else:
+    print("Congratulations, you managed to leave the cave with:", player.inventory)
+    print("")
