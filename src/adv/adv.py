@@ -1,6 +1,7 @@
+from os import system
+
 from room import Room
 from player import Player
-from os import system
 from item import Item
 
 # Declare all the rooms
@@ -25,11 +26,13 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 # Create Items Dictionary
+
 Items = {
     "Sword" : Item('Sword', 'Shiny')
 }
 
 # Adding Items to a Room
+
 room['outside'].addItem(Items["Sword"])
 
 # Link rooms together
@@ -48,30 +51,38 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
 system("clear")
 name = input("Enter your name:\n")
 player = Player(name, room['outside'])
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
-#
-# Add functionality to the main loop that prints out all the items that are
-# visible to the player when they are in that room.
+# Game Features:
+    # - Display current room, room description, room items
 
+    # - Takes an input as an instruction
+
+    # - Travels through rooms using cardinal directions (North, East, South, West)
+
+    # - Quits the game (Quit)
+
+    # - Take items from the room or drop items from the inventory (Take Item(Name) | Drop Item(Name))
+
+    # - Checks the inventory (Inventory)
+
+    # - Display end game message
 system("clear")
 while (player.room != 'exit'):
+    # - Display current room, room description, room items
+
     print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
     print("The item(s) in the " + player.room.name + ": " + str(player.room.items) + "\n")
 
+    # - Takes an input as an instruction
+
     instruction = input("Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Quit:\n")
+
+    # - Travels through rooms using cardinal directions (North, East, South, West)
+
     direction = {
         "North": player.room.n_to,
         "East": player.room.e_to,
@@ -82,12 +93,18 @@ while (player.room != 'exit'):
     system("clear")
     if (len(instruction.split()) == 1):
         new_room = direction.get(instruction, None)
+
+    # - Quits the game (Quit)
+
         if (instruction == "Quit"):
             break
         elif (new_room):
             if (player.room.name == "Treasure Chamber"):
                 break
             player.room = new_room
+
+    # - Checks the inventory (Inventory)
+
         elif (instruction == "Inventory"):
             print("In your inventory:", player.inventory)
             print("")
@@ -95,6 +112,9 @@ while (player.room != 'exit'):
             print("Nowhere to go\n")
         else:
             print("Invalid Command. Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Quit:\n")
+
+    # - Take items from the room or drop items from the inventory (Take Item(Name) | Drop Item(Name))
+
     else:
         verb, target = [x for x in instruction.split()]
         if (verb == "Take"):
@@ -111,6 +131,8 @@ while (player.room != 'exit'):
                 print(player.name + " drops the " + target + "\n")
             else:
                 print(target + " is not in your inventory")
+
+# - Display end game message
 
 system("clear")
 if (len(player.inventory) == 0):
