@@ -16,11 +16,11 @@ into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""", [Item("rope")], False, True),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", [Treasure("Diamonds", 5200)], False, False),
+to north. The smell of gold permeates the air.""", [Treasure("diamonds", 5200)], False, False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [Treasure("Gold", 645000)], False, True),
+earlier adventurers. The only exit is to the south.""", [Treasure("gold", 645000)], False, True),
 }
 
 
@@ -61,12 +61,14 @@ while newInput != "q":
     if len(newPlayer.room.items) != 0:
         for item in newPlayer.room.items:
             roomItems.append(item.name)
+    
+    print(f"Loot: {roomItems}")
+
 
     if newPlayer.room.isLight == True:
-        print(f"Loot: {roomItems}")
         print(newPlayer.room.summary)
     else: 
-        print("Good luck seeing in a dark room!")
+        print("It's pitch black!!!")
 
     newInput = input("Give a one letter direction (NESW): \n \n \n")
     newInput = newInput.lower()
@@ -96,6 +98,10 @@ while newInput != "q":
 
     if len(newInput) >= 2:
         if newInput[0] == "get" or newInput[0] == "take":
+
+            if newPlayer.room.isLight == False:
+                print("Good luck finding that in the dark")
+                continue
 
             if len(newPlayer.room.items) != 0:
 
