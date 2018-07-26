@@ -5,9 +5,15 @@ from item import Item
 
 # Declare the items
 items = {
-    'jewel': Item("jewel", "glittering jewel. It is a deep red hue and seems to pulse to an unheard rhythm."),
-    'locket': Item("locket", "battered silver locket. Opening it reveals a faded photograph of two lovers."),
-    'dagger': Item("dagger", "thin dagger. It looks like it could be used to stab somebody.")
+    'jewel': Item("jewel",
+        ["glittering"],
+        "It is a deep red hue and seems to pulse to an unheard rhythm."),
+    'locket': Item("locket", 
+        ["battered", "silver"],
+        "Opening it reveals a faded photograph of two lovers."),
+    'dagger': Item("dagger",
+        ["thin"],
+        "It looks like it could be used to stab somebody.")
 }
 
 # Declare the rooms
@@ -30,6 +36,11 @@ rooms['narrow'].w_to = rooms['foyer']
 rooms['narrow'].n_to = rooms['treasure']
 rooms['treasure'].s_to = rooms['narrow']
 
+# Flags
+show_inventory = False
+show_help = False
+
+
 #
 # Player input handling methods
 #
@@ -48,7 +59,9 @@ def process_command(command):
         "quit": quit_game,
         "i": inventory,
         "inventory": inventory,
-        "drop": drop_item
+        "drop": drop_item,
+        "h": help,
+        "help": help
     }
     if command[0] in commands:
         commands[command[0]](command)
@@ -92,9 +105,12 @@ def drop_item(command):
         print("You have no {}s to drop".format(command[1]))
 
 def inventory(command):
-    print("{} is carrying:".format(player.playerName))
-    for item in player.inventory:
-        print("A {}".format(item))
+    global show_inventory 
+    show_inventory = True
+
+def help(command):
+    global show_help
+    show_help  = True
 
 #
 # Main loop
@@ -102,13 +118,17 @@ def inventory(command):
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player("Leon", rooms['outside'])
-
 while True:
     os.system('cls')
     print(player)
     print(player.current_room.description)
+    if show_inventory:
+        print("{} is carrying:".format(player.playerName))
+        for item in player.inventory:
+            print("A {}".format(item))
+        show_inventory = False
     for item in player.current_room.items:
         print("You see a {}".format(item))
 
-    command = input("\nCommands:\nmove (north, east, south, west)\ntake item\ndrop item\ninventory\nquit\nEnter choice: ")
+    command = input("Enter choice: ")
     process_command(command)
