@@ -20,6 +20,22 @@ class Player:
                 return item
         return None
 
+    def pickUpItem(self, name):
+        item = self.curRoom.findItem(name)
+        if item is None:
+            print("Item not found")
+        else:
+            self.addItem(item)
+            self.curRoom.removeItem(item.name)
+
+    def useItem(self, name):
+        item = self.findItem(name)
+        if item is None:
+            print("Item not found")
+        else:
+            self.removeItem(item.name)
+            self.curRoom.addItem(item)
+
     def printInventory(self):
 
         if len(self.items) > 0:
