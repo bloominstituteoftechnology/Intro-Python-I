@@ -20,9 +20,11 @@ class Player:
                 self.location.inventory.remove(item)
                 return
             else:
-                os.system('cls' if os.name == 'nt' else 'clear')
-                print('There is no ' + item_name + ' at this location')
-                sleep(2)
+                pass
+                # os.system('cls' if os.name == 'nt' else 'clear')
+                # print('\n'*50)
+                # print('There is no ' + item_name + ' at this location')
+                # sleep(2)
     
     def drop(self, item_name):
         # if item_name exists inside self.inventory
@@ -43,6 +45,7 @@ class Player:
 
     def display_inventory(self):
         os.system('cls' if os.name == 'nt' else 'clear')
+        print('\n'*50)
         # Print Items in current location
         items_info = []
         for item in self.inventory:
@@ -66,5 +69,6 @@ class Player:
                 os._exit(0)
             # Handling Moving in the wrong direction...
             os.system('cls' if os.name == 'nt' else 'clear')
+            print('\n'*50)
             print('\nThere is no available path in that direction\npick another direction to move towards...')
             sleep(2)

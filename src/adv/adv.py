@@ -68,10 +68,11 @@ player_inventory = ['i', 'inventory']
 
 # Parser Key and Functions assigned
 input_parser = {
-    'take': player.loot,
-    'loot': player.loot,
-    'drop': player.drop,
-    'discard': player.drop,
+    'take':     player.loot,
+    'get':      player.loot,
+    'loot':     player.loot,
+    'drop':     player.drop,
+    'discard':  player.drop,
 }
 
 def print_items():
@@ -86,6 +87,7 @@ def print_items():
 while(True):
     # Clear the console so it is more immersive    
     os.system('cls' if os.name == 'nt' else 'clear')
+    print('\n'*50)
     command = None
     print(
         '\nYou are located at:','\n'.join(wrap(player.location.name, width=50)),
