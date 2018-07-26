@@ -69,15 +69,31 @@ while (not True):
         print(line)
 
     # Print any items found in the room
-    if len(player.curRoom.contents) > 0:
+    if len(player.curRoom.holding) > 0:
         print("\nYou also see:\n")
-        for i in player.curRoom.contents:
+        for i in player.curRoom.holding:
             print("     " + str(i))
 
     # * Waits for user input and decides what to do.
+    print('\n which way?  type "n"')    
     move = input("\nCommand> ").strip().lower().split()
 
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
+    if len(move) == 1:
+        if move[0] == "quit" or move[0] == "q":
+            done = True
+        elif move[0] == "inventory" or move[0] == "i":
+            if len(player.holding) == 0:
+                print("You're not carrying anything.")
+            else:
+                print("You are carrying:\n")
+                for i in player.holding:
+                    print(f"    {i}")
+
+        # elif move[0] in ["n", "s", "w", "e"]:
+        #     player.curRoom = Direction(move[0], player.curRoom)
+        # else:
+        #     print("Unknown command, must be "n", "s", "w", "e"".format(' '.join(move)))
 #
 # If the user enters "q", quit the game.

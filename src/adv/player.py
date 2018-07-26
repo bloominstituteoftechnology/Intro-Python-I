@@ -4,4 +4,4 @@ class Player:
     def __init__(self, name, startRoom):
         self.name = name
         self.curRoom = startRoom
-        self.holding = []  # Items the player is carrying, has in possession
+        self.holding = []  # Inventory of tems the player is carrying
