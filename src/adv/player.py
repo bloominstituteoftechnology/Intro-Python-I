@@ -5,6 +5,9 @@ class Player:
     def __init__(self, location):
         self.location = location
         self.inventory = []
+        self.score = 0
+        self.history = {}
+        self.win_condition = False
 
     def change_location(self, new_location):
         self.location = new_location
@@ -25,6 +28,9 @@ class Player:
     
     def pick_up(self, item):  # player picks this up
         self.inventory.append(item)
+        if item not in self.history:
+            self.history[item] = True
+            self.score += 1
 
     def inspect(self, item):
         if len(self.inventory) > 0:
