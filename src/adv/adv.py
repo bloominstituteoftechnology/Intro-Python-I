@@ -84,7 +84,8 @@ while not quit:
 	print("{0}\n{1}".format(current.name, description))
 	# show player all items available in current room
 	if len(current.items) > 0:
-		print("Items: {0}".format(player.room.items))
+		for item in current.items:
+			print("You see:\n\ta {0}\n\t{1}".format(item.showName(), item.showDescription()))
 	else:
 		print("There are no items in this room")
 	# take player commands and remove formatting
