@@ -36,8 +36,8 @@ class LightSource(Item):
 	def __init__(self, name, description):
 		super().__init__(name, description)
 
-	def on_drop(self):
-		print("It's not wise to drop your source of light!")
+	def on_drop(self, entity, item_name):
+		print("{0} it's not wise to drop your source of light, the {1}!".format(entity.name, self.name))
 
 
 
