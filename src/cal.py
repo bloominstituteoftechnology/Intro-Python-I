@@ -14,3 +14,29 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+theYear = None
+theMonth = None
+
+x = calendar.TextCalendar(firstweekday=0)
+now = datetime.datetime.now()
+lengthOfArguments = len(sys.argv)
+
+# def dump(obj):
+#     for attr in dir(obj):
+#         print("obj.%s = %r" % (attr, getattr(obj, attr)))
+
+# dump(y)
+
+if lengthOfArguments == 3:
+    theYear = int(sys.argv[1])
+    theMonth = int(sys.argv[2])
+elif lengthOfArguments == 1:
+    theYear = now.year
+    theMonth = now.month
+
+print('\n')
+x.prmonth(theYear, theMonth, w=0, l=0)
+print('\n')
