@@ -14,21 +14,21 @@ class Room():
         self.e_to = None
         self.s_to = None
         self.w_to = None
-        self.Items = []
+        self.items = []
 
     def addItem(self, item):
-        self.Items.append(item)
+        self.items.append(item)
 
     def searchItems(self, item_name):
-        for item in self.Items:
+        for item in self.items:
             if item.name == item_name:
                 return item
             else:
                 return None
     
     def removeItem(self, item_name):
-        for item in self.Items:
+        for item in self.items:
             if (item.name == item_name):
-                self.Items.remove(item)
+                self.items.remove(item)
             else:
                 return None

@@ -15,3 +15,17 @@ class Player():
     
     def toInventory(self, item):
         self.inventory.append(item)
+    
+    def searchInventory(self, item_name):
+        for item in self.inventory:
+            if item_name == item.name:
+                return item
+            else:
+                return None
+    
+    def removeItem(self, item_name):
+        for item in self.inventory:
+            if (item.name == item_name):
+                self.inventory.remove(item)
+            else:
+                return None
