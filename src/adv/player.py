@@ -26,4 +26,4 @@ class Player:
                 self.items.remove(item)
                 return
             else:
-                ### what do i put here if i dont grab the item but want to keep going?
+                ### what do i put here
