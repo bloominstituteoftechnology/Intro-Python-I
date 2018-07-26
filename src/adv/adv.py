@@ -134,7 +134,7 @@ while (player.room != 'exit'):
     
     # - Take items from the room or drop items from the inventory (Take Item(Name) | Drop Item(Name))
 
-    else:
+    elif (len(instruction.split()) == 2):
         verb, target = [x for x in instruction.split()]
         if (verb == "Take"):
             if (player.room.searchItems(target)):
@@ -154,6 +154,9 @@ while (player.room != 'exit'):
                 print(player.name + " drops the " + target + "\n")
             else:
                 print(target + " is not in your inventory\n")
+    
+    else:
+        print("Invalid Command. Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Score | Quit:\n")
 
 # - Display end game message
 

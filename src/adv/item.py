@@ -21,8 +21,7 @@ class Item:
 
 class Treasure(Item):
     def __init__(self, name, description, value):
-        self.name = name
-        self.description = description
+        Item.__init__(self, name, description)
         self.value = value
         self.dropped = False
 
