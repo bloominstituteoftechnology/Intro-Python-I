@@ -23,7 +23,7 @@ class Room:
 
   def on_enter(self):
     if self.is_light is False:
-      print("\nIt's pitch black in here!\n")
+      print("\nIt's pitch black in here!\nYou need a light source.\n\n")
     
     print("Items in this room:")
 

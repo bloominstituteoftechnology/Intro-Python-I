@@ -22,3 +22,6 @@ class LightSource(Item):
   def on_drop(self):
     print("\nYou removed %s from your inventory." % (self.name))
     print("\nIt's not wise to drop your source of light!\n")
+
+  def on_use(self):
+    print("\nYou turn on the %s and can finally see!\n" % self.name)
