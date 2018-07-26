@@ -3,6 +3,9 @@
 ## Live Repl
 https://repl.it/@moisesdobar/MoisesTextAdventures
 
+## Mini Map of My Own Version
+![minimap](/src/adv/minimap/MyOwnMap.png)
+
 ## Goals
 
 It's time to learn a new language! Python!

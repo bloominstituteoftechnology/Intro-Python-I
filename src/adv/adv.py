@@ -88,6 +88,7 @@ while(True):
     # Clear the console so it is more immersive    
     os.system('cls' if os.name == 'nt' else 'clear')
     print('\n'*50)
+    print('Comparing LOCATIONS', room['outside'], '\n', player.location)
     command = None
     print(
         '\nYou are located at:','\n'.join(wrap(player.location.name, width=50)),

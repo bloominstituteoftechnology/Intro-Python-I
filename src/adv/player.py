@@ -11,6 +11,10 @@ class Player:
     
     def loot(self, item_name):
         # loop through room items
+        if item_name == 'all':
+            self.inventory = self.inventory + self.location.inventory
+            self.location.inventory = []
+            return
         for item in self.location.inventory:
             # if an item matches the item name
             if item.name == item_name:
@@ -19,17 +23,20 @@ class Player:
                 # remove it from room
                 self.location.inventory.remove(item)
                 return
-            else:
-                pass
-                # os.system('cls' if os.name == 'nt' else 'clear')
-                # print('\n'*50)
-                # print('There is no ' + item_name + ' at this location')
-                # sleep(2)
+
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print('\n'*50)
+        print('There is no ' + item_name + ' at this location')
+        sleep(4)
     
     def drop(self, item_name):
         # if item_name exists inside self.inventory
             # add it to self.location.inventory
             # remove it from self.inventory
+        if item_name == 'all':
+            self.location.inventory = self.location.inventory + self.inventory
+            self.inventory = []
+            return
         for item in self.inventory:
             if item.name == item_name:
                 # add it to the room
@@ -37,11 +44,11 @@ class Player:
                 # remove it from player inventory
                 self.inventory.remove(item)
                 return
-            else:
-                # os.system('cls' if os.name == 'nt' else 'clear')
-                # print('Unable to perform that action')
-                # sleep(2)
-                pass
+
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print('Unable to perform that action')
+        sleep(2)
+
 
     def display_inventory(self):
         os.system('cls' if os.name == 'nt' else 'clear')
