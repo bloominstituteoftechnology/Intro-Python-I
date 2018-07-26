@@ -23,9 +23,11 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 
     'bus stop': Room("bus stop", """You're now waiting at the bus stop, too bad 
-there isnt another bus coming until next month! You might as well head back west and explore these rooms!""")
-}
+there isnt another bus coming until next month! You might as well head back west and explore these rooms!"""),
 
+    'basement': Room("basement", """You're in the basement, its dark, you trip over something on the floor.
+do you pick it up?""")
+}
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -38,6 +40,7 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+room['treasure'].e_to = room['basement']
 
 
 #
@@ -75,7 +78,7 @@ while not done:
         if hasattr(curRoom, dirAttr):
                player.room = getattr(curRoom, dirAttr)
         else:
-                    print("you cant go that way homei")
+                    print("you cant go that way homie")
 
     else:
          print("i dont recognize that, what set you claiming? ")
