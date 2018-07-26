@@ -91,11 +91,16 @@ while (player.room != 'exit'):
         if [item for item in room[x].items if type(item) is LightSource] 
     ]
 
-    if (player.room in natural_room or player.room in illuminated_room or [item for item in player.inventory if type(item) is LightSource]):
+    illuminated = False
+
+    if (player.room in natural_room or player.room in illuminated_room or [item for item in player.inventory if type(item) is LightSource]): 
+        illuminated = True
+
+    if (illuminated):
         print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
         print("The item(s) in the " + player.room.name + ": " + str(player.room.items) + "\n")
     else:
-        print("It's pitch black!\n")
+        print("It's pitch black! Go to a different room or find a light source. \n")
 
     # - Takes an input as an instruction
 
@@ -148,32 +153,37 @@ while (player.room != 'exit'):
     # - Add score accordingly
 
     elif (len(instruction.split()) == 2):
+        
         verb, target = [x for x in instruction.split()]
-        if (verb == "Take"):
-            if (player.room.searchItems(target)):
-                player.toInventory(Items[target])
-                print("You took the " + target + "\n")
-                if (type(Items[target]) is Treasure and Items[target].dropped == False):
-                    player.score += int(Items[target].on_take())
-                    Items[target].dropped = True
-                    print('Your score increases by: ' + str(Items[target].value) + '\n')
-                    print('Your score is now: ' + str(player.score) + '\n')
-                player.room.removeItem(target)
-            else: 
-                print(target + " is not available\n")
-        elif (verb == "Drop"):
-            if (player.searchInventory(target)):
-                if (target == "Lamp"):
-                    print("It's not wise to drop your source of light!\n")
-                player.removeItem(target)
-                print("You dropped the " + target + "\n")
-                if (type(Items[target]) is Treasure):
-                    player.score -= int(Items[target].on_drop())
-                    print('Your score decreases by: ' + str(Items[target].value) + '\n')
-                    print('Your score is now: ' + str(player.score) + '\n')
-                player.room.addItem(Items[target])
-            else:
-                print(target + " is not in your inventory\n")
+        
+        if (illuminated):
+            if (verb == "Take"):
+                if (player.room.searchItems(target)):
+                    player.toInventory(Items[target])
+                    print("You took the " + target + "\n")
+                    if (type(Items[target]) is Treasure and Items[target].dropped == False):
+                        player.score += int(Items[target].on_take())
+                        Items[target].dropped = True
+                        print('Your score increases by: ' + str(Items[target].value) + '\n')
+                        print('Your score is now: ' + str(player.score) + '\n')
+                    player.room.removeItem(target)
+                else: 
+                    print(target + " is not available\n")
+            elif (verb == "Drop"):
+                if (player.searchInventory(target)):
+                    if (target == "Lamp"):
+                        print("It's not wise to drop your source of light!\n")
+                    player.removeItem(target)
+                    print("You dropped the " + target + "\n")
+                    if (type(Items[target]) is Treasure):
+                        player.score -= int(Items[target].on_drop())
+                        print('Your score decreases by: ' + str(Items[target].value) + '\n')
+                        print('Your score is now: ' + str(player.score) + '\n')
+                    player.room.addItem(Items[target])
+                else:
+                    print(target + " is not in your inventory\n")
+        else:
+            print("Good luck finding that in the dark!\n")
     else:
         print("Invalid Command. Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Score | Quit:\n")
 
