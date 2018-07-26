@@ -72,6 +72,7 @@ player = Player("Justin", room['outside'])
 #
 # If the user enters "q", quit the game.
 
+general_inputs = ["q", "i"] # valid general inputs
 move_inputs = ["n", "e", "s", "w"] # valid inputs to advance game
 item_inputs = ["get", "take", "drop"] # valid item interactions
 
@@ -84,48 +85,56 @@ while not quit:
 	print("{0}\n{1}".format(current.name, description))
 	# show player all items available in current room
 	if len(current.items) > 0:
-		print("Items: {0}".format(player.room.items))
+		for item in current.items:
+			print("You see:\n\ta {0}\n\t{1}".format(item.showName(), item.showDescription()))
 	else:
 		print("There are no items in this room")
 	# take player commands and remove formatting
 	player_input = input("Command: ").strip().lower()
 	# separate player commands into verb + noun
 	parsed = player_input.split(" ")
-	print("PARSED PLAYER COMMAND: {0}".format(parsed))
-	# player quits/exits game
-	if (parsed[0] == "q") or (parsed[0] == "quit"):
-		quit = True
-	if parsed[0] == "i":
-		# show player inventory
-		print("You have the following items: {0}".format(player.inventory)) 
-	# player continues the game - moves to another room
-	elif len(parsed) == 1:
-		# player moves in a new direction
-		if parsed[0] in move_inputs:
+
+	# Single Word Command Input Parsing
+	if len(parsed) == 1:
+		if parsed[0] in general_inputs:
+			# player quits/exits game
+			if parsed[0] == "q" or parsed[0] == "quit":
+				quit = True
+			# show player inventory
+			if parsed[0] == "i":
+				print(player.showAllItems())
+		elif parsed[0] in move_inputs:
 			dirAttr = parsed[0] + "_to"
 			# check if move input is valid
 			if hasattr(current, dirAttr):
 				player.room = getattr(current, dirAttr) # update player's location
 			else:
+				# invalid room change
 				print("You can't go that way!")
-	# player continues the game - interacts with items
+		else:
+			# unknown single command
+			print("That command doesn't make sense!")
+
+	# Two Word Command Input Parsing
 	elif len(parsed) == 2:
 		verb = parsed[0] # action player takes with an item
-		noun = parsed[1] # item itself
+		noun = parsed[1] # noun itself
 
-		if verb in item_inputs and noun in current.items:
+		if verb in item_inputs:
 			if verb == "get" or verb == "take":
-				# remove item from room
-				current.items.remove(noun)
-				# add item to player inventory
-				player.inventory.append(noun)
-			elif verb == "drop" and noun in player.inventory:
-				# remove item from player inventory
-				player.inventory.remove(noun)
-			else:
-				print("That item isn't in your inventory")
-		elif noun not in current.items:
-			print("That item isn't in this room")
+				for index, item in enumerate(current.items):
+					if item.name == noun:
+						# remove item from room
+						current.items.remove(current.items[index])
+						# add item to player inventory
+						player.inventory.append(item)
+			if verb == "drop":
+				for index, item in enumerate(player.inventory):
+					if item.name == noun:
+						# remove item from player inventory
+						player.inventory.remove(player.inventory[index])
+						# add item to room
+						current.items.append(item)
 		else:
 			print("You can't do that with an item!")
 	else:
