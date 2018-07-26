@@ -1,5 +1,7 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+from item import Item, Treasure
+
 
 class Player:
     def __init__(self, startRoom):
@@ -8,7 +10,7 @@ class Player:
         self.score = 0
 
     def addItem(self, item):
-         self.items.append(item)
+        self.items.append(item)
 
     def removeItem(self, name):
 
@@ -26,6 +28,11 @@ class Player:
         if item is None:
             print("Item not found")
         else:
+            if isinstance(item, Treasure):
+                if item.picked_up == False:
+                    item.picked_up = True
+                    self.addToScorce(item.value)
+
             self.addItem(item)
             self.curRoom.removeItem(item.name)
 

@@ -2,7 +2,7 @@ import textwrap
 
 from player import Player
 from room import Room
-from item import Item
+from item import Item, Treasure
 
 # Declare all the rooms
 
@@ -29,9 +29,11 @@ earlier adventurers. The only exit is to the south."""),
 item1 = Item("coins", "Shiny coins")
 item2 = Item("coins2", "Shiny coins 2")
 item3 = Item("coins3", "Shiny coins 3")
+gold = Treasure('gold', 'Money Money', 100)
 room['outside'].addItem(item1)
 room['outside'].addItem(item2)
 room['outside'].addItem(item3)
+room['outside'].addItem(gold)
 
 item4 = Item('dog', 'black')
 room['foyer'].addItem(item4)
