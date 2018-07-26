@@ -36,6 +36,13 @@ class Player:
       self.inventory.append(item)
     else:
       print('\nItem invalid\n')
+  
+  def drop(self, item):
+    if item in self.inventory:
+      self.inventory.remove(item)
+      self.room.items.append(item)
+    else:
+      print('\nItem invalid\n')
 
   def use(self, item):
     from adv import room
