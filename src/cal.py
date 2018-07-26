@@ -14,3 +14,16 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+from datetime import datetime
+
+month = datetime.now().month
+year = datetime.now().year
+
+if len(sys.argv) is 3:
+  month = int(sys.argv[1])
+  year = int(sys.argv[2])
+
+calendar.setfirstweekday(calendar.SUNDAY)
+
+print(calendar.month(year, month))
