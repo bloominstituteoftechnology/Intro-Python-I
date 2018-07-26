@@ -1,5 +1,4 @@
-# Write a class to hold player information, e.g. what room they are in
-# currently.
+from lightsource import LightSource
 
 class Player:
     def __init__(self, name, room):
@@ -27,6 +26,12 @@ class Player:
         item = self.get_item(item_name)
         self.items.remove(item)
         self.room.put_item(item)
+
+    def can_see(self):
+        return self.room.is_illuminated() or self.has_light_source()
+
+    def has_light_source(self):
+        return len([item for item in self.items if isinstance(item, LightSource)]) > 0
 
     def get_score(self):
         return sum(self.score.values())

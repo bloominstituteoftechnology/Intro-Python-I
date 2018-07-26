@@ -48,7 +48,9 @@ def move(direction, player):
         printing.prompt("You cannot go that way")
 
 def take_item(item_name, player):
-    if player.room.has_item(item_name):
+    if not player.can_see():
+        printing.prompt(f"{player.name} cannot see well enough to take anything.")
+    elif player.room.has_item(item_name):
         player.take_item_from_room(item_name, player.room)
         player.last_item = item_name
     else:
@@ -56,11 +58,11 @@ def take_item(item_name, player):
 
 def drop_item(item_name, player):
     if player.has_item(item_name):
-        printing.prompt(f"You drop the {item_name} in the {player.room.name}")
+        printing.prompt(f"{player} drops the {item_name} in the {player.room.name}")
         player.drop_item_in_room(item_name, player.room)
         player.last_item = item_name
     else:
-        printing.prompt(f"You have no {item_name}s to drop")
+        printing.prompt(f"{player} has no {item_name}s to drop")
 
 def inspect_item(item_name, player):
     # Check both inventory and the floor
