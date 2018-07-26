@@ -5,13 +5,12 @@
 # also be a `list` of items "in" the player, similar to how `Item`s can be in a
 # `Room`.
 
-from room import Room
-
 class Player():
     def __init__(self, name, room):
         self.name = name
         self.room = room
         self.inventory = []
+        self.score = 0
     
     def toInventory(self, item):
         self.inventory.append(item)

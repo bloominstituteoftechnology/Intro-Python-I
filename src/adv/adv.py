@@ -81,7 +81,7 @@ while (player.room != 'exit'):
 
     # - Takes an input as an instruction
 
-    instruction = input("Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Quit:\n")
+    instruction = input("Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Score | Quit:\n")
 
     # - Travels through rooms using cardinal directions (North, East, South, West)
 
@@ -91,6 +91,8 @@ while (player.room != 'exit'):
         "South": player.room.s_to,
         "West": player.room.w_to
     }
+
+    # Single Word Commands
 
     system("clear")
     if (len(instruction.split()) == 1):
@@ -110,11 +112,15 @@ while (player.room != 'exit'):
         elif (instruction == "Inventory"):
             print("In your inventory:", player.inventory)
             print("")
+        elif (instruction == "Score"):
+            print(player.name + "'s Current Score: " + str(player.score) + "\n")
         elif (instruction in ["North", "East", "South", "West"]):
             print("Nowhere to go\n")
         else:
-            print("Invalid Command. Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Quit:\n")
+            print("Invalid Command. Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Score | Quit:\n")
 
+    # Two Word Commands
+    
     # - Take items from the room or drop items from the inventory (Take Item(Name) | Drop Item(Name))
 
     else:
