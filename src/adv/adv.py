@@ -2,10 +2,13 @@ from room import Room
 from player import Player
 from item import Item
 from item import Treasure
-import json
-import codecs
+from item import LightSource
+# import json
+# import codecs
+import copy
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
+copy = copy.copy
 
 # Declare all the rooms
 
@@ -13,12 +16,13 @@ items = {
     'coins': Treasure("coins", "a pouch of coins", 100),
     'sword': Item("sword", "a rusty old sword"),
     'shield': Item("shield", "a battered old shield"),
-    'book': Item("book", "a dusty old book")
+    'book': Item("book", "a dusty old book"),
+    'lamp': LightSource("lamp", "a small dim lamp")
 }
 
 rooms = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", 'outside', [items['coins'], items['sword'], items['shield']]),
+                     "North of you, the cave mount beckons", 'outside', [copy(items['lamp']), copy(items['sword']), copy(items['shield'])]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", 'foyer'),
@@ -32,7 +36,7 @@ to north. The smell of gold permeates the air.""", 'narrow'),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", 'treasure', [items['coins'], items['coins'], items['coins']]),
+earlier adventurers. The only exit is to the south.""", 'treasure', [copy(items['coins']), copy(items['coins']), copy(items['coins'])]),
 }
 
 # Link rooms together
@@ -87,15 +91,21 @@ def saveGame(player):
 
 
 # def jsonSave(player):
-#     # saveFile = open("saves/%s.txt" % player.name, "w+")
-#     # saveFile.write("[%s,\n%s]" % (json.dumps(player), json.dumps(rooms)))
-#     # saveFile.close()
-#     # with open("saves/%s.txt" % player.name, "wb") as f:
-#     #     json.dump({player}, codecs.getwriter(
-#     #         'utf-8')(f), ensure_ascii=False)
-#     print("Game saved.")
-#     print(str(player.inventory[0], 'utf-8'))
-#     pp.pprint(vars(player))
+    # saveFile = open("saves/%s.txt" % player.name, "w+")
+    # saveFile.write("[%s,\n%s]" % (json.dumps(player), json.dumps(rooms)))
+    # saveFile.close()
+    # inventoryData = ''
+    # for i in player.inventory:
+    #     itemString = str(list(vars(i).values())).strip('[]')
+    #     inventoryData += "%s(%s)," % (type(i).__name__, itemString)
+    # player.inventory = "[%s]" % inventoryData
+    # player.room = player.room.key
+    # with open("saves/%s.json" % player.name, "wb") as f:
+    #     json.dump(repr(vars(player)), codecs.getwriter(
+    #         'utf-8')(f), ensure_ascii=True)
+    # print("Game saved.")
+    # print(player, 'utf-8')
+    # pp.pprint(vars(player))
 
 
 def loadGame(playerName):
@@ -139,7 +149,7 @@ else:
 # If the user enters "q", quit the game.
 
 playing = True
-helpString = 'Type n/s/e/w to move in a direction.\nType "i" or "inventory" to check your inventory.\nType "look" or "search" to look around for items.\nType "t" or "take" and the name of the item you want to take to pick up an item.\nType "d" or "drop" and the name of the item in your inventory that you want to drop.\nType "score" to see your score.\nType "q" or "quit" to quit and save.\nType "save" to save the game without quitting.'
+helpString = 'Type n/s/e/w to move in a direction.\nType "i" or "inventory" to check your inventory.\nType "look" or "search" to look around for items.\nType "t", "take", "g" or "get" and the name of the item you want to take to pick up an item.\nType "d" or "drop" and the name of the item in your inventory that you want to drop.\nType "score" to see your score.\nType "q" or "quit" to quit and save.\nType "save" to save the game without quitting.'
 
 print("\n" + player.room.description)
 
@@ -158,7 +168,6 @@ while(playing is True):
         print(helpString)
     elif command == "save":
         saveGame(player)
-        # jsonSave(player)
     elif command == "score":
         print("Your score is: %s" % player.score)
     elif command in ["s", "n", "e", "w"]:
@@ -178,28 +187,21 @@ while(playing is True):
         print("You check your inventory.")
         for i in player.inventory:
             print("You have %s." % i.description)
-    elif command == "t" or command == "take":
+    elif command == "t" or command == "take" or command == "g" or command == "get":
         item = next((i for i in curRoom.items if i.name == secondCommand), None)
         if item != None:
+            item.on_take(player)
             player.inventory.append(item)
             curRoom.items.remove(item)
-            print("You picked up %s." % item.description)
-            # print(isinstance(item, Treasure))
-            if isinstance(item, Treasure) is True:
-                # print("True or false " + str(item.taken))
-                if item.taken == False:
-                    item.on_take(player)
-                    print("Looting treasure increases your score by %s!" %
-                          item.value)
         else:
             print("There isn't any of that item that you can pick up.")
     elif command == "d" or command == "drop":
         item = next(
             (i for i in player.inventory if i.name == secondCommand), None)
         if item != None:
+            item.on_drop(player)
             player.inventory.remove(item)
             curRoom.items.append(item)
-            print("You dropped a %s." % item.name)
         else:
             print("You don't have that object.")
     else:
