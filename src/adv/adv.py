@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 import textwrap
 import sys
 # Declare all the rooms
@@ -13,11 +13,11 @@ room = {
 On the other side you see a red dragon sleeping in the sunlight. It guards the entrance to an ancient cathedral""", []),
 
     'cathedral': Room("Cathedral", """Broken pews, torn tapestries, and skeletons of past adventurers are all that remain inside.
-At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.""", []),
+At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.""", [Treasure("ruby", "crimson red jewel worn by ancient priests", "10,000 gold coins")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", [Item("torch", "an everlasting torch that gives off a yellow light"), Item("potion", "a bright red potion"), 
-Item("parchment", "dusy, yello parchment that's ready to disintegrate")]),
+Item("parchment", "dusy, yello parchment that's ready to disintegrate"), Treasure("sapphire", "sapphire set inside a silver ring", "20,000 gold coins")]),
 
     'armory': Room("Armory", """You find a small armory filled with rusted weapons and some tools. At the far end lies a locked chest
 and a blackened shield. You find an encryption on the chest lid: 'The ancient hero offers his sword but only to those he deems worthy'""", [
@@ -25,7 +25,7 @@ Item("shield", "a battered steel shield that's been blackened with fire")]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [Item("sword", "a broadsword fit for a hero")]),
+the distance, but there is no way across the chasm.""", [Item("sword", "a broadsword fit for a hero"), Treasure("emerald", "hero's emerald necklace", "30,000 gold coins")]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", []),
