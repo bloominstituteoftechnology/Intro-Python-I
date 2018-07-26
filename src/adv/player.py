@@ -2,10 +2,11 @@
 # currently.
 
 class Player:
-	def __init__(self, playername, room):
+	def __init__(self, playername, room, score=0):
 		self.room = room
 		self.inventory = []
 		self.name = playername
+		self.score = score
 
 	def showInventory(self):
 		return self.inventory
