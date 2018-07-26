@@ -54,32 +54,32 @@ currentLocation = room['outside']
 character = Player(currentLocation)
 
 def takeItem(target='default'):
-    item = currentLocation.item_found(target)
+    item = currentLocation.item_found(target) #item found in room
     if item:
-        character.pick_up(item)
+        character.pick_up(item) #character picks up found item
         print(f"\n{item} has been picked up!")
     else:
-        print('\nInvalid Input')
+        print('\nInvalid Input')  #customize error message for invalid action
 
 def dropItem(target='default'):
-    item = character.drop(target)
+    item = character.drop(target)  #character drops item
     if item:
-        currentLocation.item_dropped(item)
+        currentLocation.item_dropped(item)  #room gains dropped item
         print(f"\n{item} has been dropped!")
     else:
-        print('\nInvalid Input')
+        print('\nInvalid Input')  #customize error message for invalid action
 
 def viewItem(target='default'):
-    descript = character.inspect(target)
+    descript = character.inspect(target)  #gets the description of the item in character's inv
     if descript:
         print(f'\n{descript}')
     else:
-        print('\nInvalid Input')
+        print('\nInvalid Input')  #customize error message for invalid action
 
 
-movements = ['n', 'north', 's', 'south', 'e', 'east', 'w', 'west']
+movements = ['n', 'north', 's', 'south', 'e', 'east', 'w', 'west'] #list of possible movement commands
 
-actions = {
+actions = {   #dict of possible action commands
     't': takeItem,
     'take': takeItem,
     'd': dropItem,
@@ -87,11 +87,6 @@ actions = {
     'ins': viewItem,
     'inspect': viewItem
 }
-
-def executeAction(command, target):
-    for action, aim in actions.items():
-        if action == command:
-            aim(target)
 
 # Write a loop that:
 #
@@ -130,21 +125,21 @@ while(playing):
 
         else:
             if request[0] in movements:
-                attr = request[0][0] + '_to'
+                attr = request[0][0] + '_to'   #takes on the first letter of the command so n s e or w
 
                 if hasattr(currentLocation, attr):
                     currentLocation = getattr(currentLocation, attr)
                     character.change_location(currentLocation)
 
                 else:
-                    print('\nInvalid Input')
+                    print('\nInvalid Movement')  #movement error
 
             else:
-                print('\nInvalid Input')
+                print('\nSorry I dont know how to do that yet :(')  #incorrect 1 word statement
 
     elif len(request) == 2:
-        if request[0] in actions:
-            actions[request[0]](request[1])
+        if request[0] in actions:  #if valid action command
+            actions[request[0]](request[1])     #in action, command at request[0] on target at request[1]
 
     else:
-        print('\nInvalid Input')
+        print('\nToo many commands will confuse me D:')  #if more than 2 commands, invalid error
