@@ -1,5 +1,7 @@
 from room import Room
-
+from player import Player
+from item import Item, Treasure
+import textwrap
 # Declare all the rooms
 
 room = {
@@ -38,7 +40,17 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+item = Item('sword', 'silver sword')
+item2 = Item('cat', 'fuzzy cat')
+item3 = Item('dog', 'big dog')
+item4 = Item('knife', 'sharp knife')
+item5 = Item('nerf gun', 'blue nerf gun')
+player = Player('Tylar', room['outside'])
+room['outside'].addItem(item)
+room['foyer'].addItem(item2)
+room['overlook'].addItem(item3)
+room['narrow'].addItem(item4)
+room['treasure'].addItem(item5)
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +61,65 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+def direction(command, curRoom):
+    dirAttr = command + "_to"
+    if hasattr(curRoom, dirAttr):
+        player.room = getattr(curRoom, dirAttr)
+    else:
+        print("You can't go that way.\n")
+    return curRoom
+
+done = False
+inputCommand = []
+
+def directionCommand():
+    global done, player
+    dirCommands = ['n', 's', 'w', 'e']
+    if inputCommand[0] == 'q' or inputCommand[0] == 'quit' or inputCommand[0] == 'exit':
+        done = True
+    elif inputCommand[0] in dirCommands:
+        player.curRoom = direction(inputCommand[0], player.room)
+    elif inputCommand[0] in ['i', 'inv', 'inventory']:
+        player.printInventory()
+    elif inputCommand[0] == 'score':
+        player.printScore()
+    else:
+        print('Unknown command {}'.format(inputCommand))
+
+
+def verbCommand():
+    verbCommands = ['get', 'take', 'pickup']
+    if inputCommand[0] in verbCommands:
+        player.pickupItem(inputCommand[1])
+    elif inputCommand[0] in ['drop']:
+        player.dropItem(inputCommand[1])
+    else:
+        print('Unkown command {}'.format(inputCommand))
+
+
+def startGame():
+    curRoom = player.room
+
+    prettyDesc = textwrap.fill(curRoom.description)
+
+    print(f'{curRoom.name}\n{prettyDesc}')
+
+    if len(player.room.items) > 0:
+        print('\nYou see:')
+        for i in player.room.items:
+            print('  ' + str(i.name))
+
+
+while not done:
+    startGame()
+    inputCommand = input("Command> ").strip().lower().split()
+
+    if len(inputCommand) > 2 or len(inputCommand) < 1:
+        print('Cannot use command')
+    
+    if len(inputCommand) == 1:
+        directionCommand()
+
+    if len(inputCommand) == 2:
+        verbCommand()
+    
