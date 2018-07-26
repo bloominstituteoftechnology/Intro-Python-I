@@ -71,6 +71,8 @@ player = Player(name, room['outside'])
 
     # 7. Display end game message
 
+    # 8. Checks the score (Score)
+
 system("clear")
 while (player.room != 'exit'):
 
@@ -112,6 +114,9 @@ while (player.room != 'exit'):
         elif (instruction == "Inventory"):
             print("In your inventory:", player.inventory)
             print("")
+    
+    # - Checks the score (Score)
+
         elif (instruction == "Score"):
             print(player.name + "'s Current Score: " + str(player.score) + "\n")
         elif (instruction in ["North", "East", "South", "West"]):
