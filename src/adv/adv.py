@@ -1,51 +1,99 @@
+import os
+import textwrap
 from room import Room
+from player import Player
+from item import Item, Treasure, Weapon
 
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
-
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
-
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
+    "outside": Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    "foyer": Room(
+        "Foyer",
+        """Dim light filters in from the south. Dusty
+passages run north and east.""",
+    ),
+    "overlook": Room(
+        "Grand Overlook",
+        """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
-
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
+the distance, but there is no way across the chasm.""",
+    ),
+    "narrow": Room(
+        "Narrow Passage",
+        """The narrow passage bends here from west
+to north. The smell of gold permeates the air.""",
+    ),
+    "treasure": Room(
+        "Treasure Chamber",
+        """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""",
+    ),
 }
 
+#  Link rooms together
 
-# Link rooms together
+room["outside"].n_to = room["foyer"]  # North   Up
+room["foyer"].s_to = room["outside"]  # South    Down
+room["foyer"].n_to = room["overlook"]  # North    Up
+room["foyer"].e_to = room["narrow"]  # East    Left
+room["overlook"].s_to = room["foyer"]  # South    Down
+room["narrow"].w_to = room["foyer"]  # West    Right
+room["narrow"].n_to = room["treasure"]  # North    Up
+room["treasure"].s_to = room["narrow"]  # South    Down
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+# Items
+gold = Treasure("gold", "coins", 100)
+
+# Add items to rooms
+room["treasure"].roomItems.append(gold)
+
+#  
+
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player('Link', room['outside'])
 
 # Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
+while (not True):
+    # * Prints the current room name
+    print("\n{}\n".format(player.curRoom.name))
+
+    # * Prints the current description (the textwrap module might be useful here).
+    for line in textwrap.wrap(player.curRoom.description):
+        print(line)
+
+    # Print any items found in the room
+    if len(player.curRoom.holding) > 0:
+        print("\nYou also see:\n")
+        for i in player.curRoom.holding:
+            print("     " + str(i))
+
+    # * Waits for user input and decides what to do.
+    print('\n which way?  type "n"')    
+    move = input("\nCommand> ").strip().lower().split()
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
+    if len(move) == 1:
+        if move[0] == "quit" or move[0] == "q":
+            done = True
+        elif move[0] == "inventory" or move[0] == "i":
+            if len(player.holding) == 0:
+                print("You're not carrying anything.")
+            else:
+                print("You are carrying:\n")
+                for i in player.holding:
+                    print(f"    {i}")
+
+        # elif move[0] in ["n", "s", "w", "e"]:
+        #     player.curRoom = Direction(move[0], player.curRoom)
+        # else:
+        #     print("Unknown command, must be "n", "s", "w", "e"".format(' '.join(move)))
 #
 # If the user enters "q", quit the game.
