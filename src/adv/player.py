@@ -15,6 +15,7 @@ class Player:
         # Check if room is lit
         if self.location.is_lit == True:
             self.visibility = 1
+            return
         # Check if player has light
         else:
             for item in self.inventory:
@@ -22,8 +23,10 @@ class Player:
                     if getattr(item, 'lit'):
                         if item.lit == True:
                             self.visibility = 1
+                            return
                 except AttributeError:
-                    self.visibility = 0
+                    pass
+            self.visibility = 0
 
     def show_score(self):
         os.system('cls' if os.name == 'nt' else 'clear')
