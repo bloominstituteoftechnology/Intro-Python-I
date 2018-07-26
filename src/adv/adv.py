@@ -2,6 +2,10 @@ from room import Room
 from player import Player
 from item import Item
 from item import Treasure
+import json
+import codecs
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
 
 # Declare all the rooms
 
@@ -55,8 +59,18 @@ def saveGame(player):
     saveFile = open("saves/%s.txt" % player.name, "w+")
     saveFile.write("%s" % player.room.key)
     inventoryData = "//["
+
     for i in player.inventory:
-        inventoryData += "items['%s']," % i.name
+        # print(vars(i).items())
+        # pp.pprint("%s" % vars(i).values())
+        # print("type is %s", type(i).__name__)
+        # pp.pprint("%s" % repr(vars(i)))
+        # pp.pprint("%s" % repr(vars(i).values()))
+        # pp.pprint("%s".strip('[]') % list(vars(i).values()))
+        itemString = str(list(vars(i).values())).strip('[]')
+        # print(itemString)
+        inventoryData += "%s(%s)," % (type(i).__name__, itemString)
+
     inventoryData += "]"
     saveFile.write("%s" % inventoryData)
     saveFile.write("//")
@@ -64,11 +78,24 @@ def saveGame(player):
     for key, room in rooms.items():
         roomData += "["
         for item in room.items:
-            roomData += "items['%s']," % item.name
+            itemString = str(list(vars(item).values())).strip('[]')
+            roomData += "%s(%s)," % (type(item).__name__, itemString)
         roomData += "];"
     saveFile.write("%s//%d" % (roomData, player.score))
     saveFile.close()
     print("Game saved.")
+
+
+# def jsonSave(player):
+#     # saveFile = open("saves/%s.txt" % player.name, "w+")
+#     # saveFile.write("[%s,\n%s]" % (json.dumps(player), json.dumps(rooms)))
+#     # saveFile.close()
+#     # with open("saves/%s.txt" % player.name, "wb") as f:
+#     #     json.dump({player}, codecs.getwriter(
+#     #         'utf-8')(f), ensure_ascii=False)
+#     print("Game saved.")
+#     print(str(player.inventory[0], 'utf-8'))
+#     pp.pprint(vars(player))
 
 
 def loadGame(playerName):
@@ -131,6 +158,7 @@ while(playing is True):
         print(helpString)
     elif command == "save":
         saveGame(player)
+        # jsonSave(player)
     elif command == "score":
         print("Your score is: %s" % player.score)
     elif command in ["s", "n", "e", "w"]:
