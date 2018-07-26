@@ -12,7 +12,7 @@ room = {
         "Outside Cave Entrance",
         "North of you, the cave mount beckons",
         [
-            Item("Map", "Looks like a map for the cave. It looks heavily faded."),
+            Item("Map", "Looks like a map for the cave. It is heavily faded."),
             Item(
                 "BrokenSword",
                 "The tip of the sword is broken. It can probably still slay some beasts.",
@@ -91,31 +91,45 @@ def searchDirect(currentRoom, direction):
 
 playerExit = False
 
+# trigger keywords
+take_keyword = ["take", "add", "get", "obtain"]
+drop_keyword = ["drop", "remove"]
+
+
 while playerExit != True:
+
     # print current room and description
     print("\nCurrent room: {}".format(player.currentRoom.name))
     for line in textwrap.wrap(player.currentRoom.descript):
         print(line)
 
-    # take user input
-    # convert to lowercase
-    userInput = input("Player> ").strip().lower()
+    # take player input and convert to lowercase
+    userInput = input("\nPlayer> ").strip().lower()
 
-    # quit, search direction, or give error
-    if userInput == "q" or userInput == "quit" or userInput == "exit":
+    # slice user input.
+    parsed = userInput.split(" ")
+    
+    # mock for not typing anything
+    if userInput == '':
+        print("\nYou stand idle.")
+
+    # quit
+    elif userInput in {"q", "quit", "exit"}:
         print("\nFarewell, adventurer.\n")
         playerExit = True
 
     # shows all available actions
     elif userInput == "action" or userInput == "actions" or userInput == "help":
-        print("\navailable actions: n, w, s, e, get, item")
+        print("\navailable actions:\n n, w, s, e, get/take/add, item/inventory/i, ")
+        print("drop/remove")
 
     # direction
     elif userInput in {"n", "w", "s", "e"}:
         player.currentRoom = searchDirect(player.currentRoom, userInput)
 
     # list all items
-    elif userInput == "item" or userInput == "items":
+    elif userInput == "search":
+        # check list of item
         if len(player.currentRoom.itemList) != 0:
             for eachItem in player.currentRoom.itemList:
                 print("\nitem:", eachItem.name)
@@ -123,15 +137,56 @@ while playerExit != True:
         else:
             print("\nNo items found.")
 
-    # adding item
-    elif "add" in userInput:
-        # flag for item of interest
-        itemFound = False
+    # check inventory
+    elif userInput in {"inventory", "i", "item", "items"}:
+        # check inventory length
+        if len(player.inventory) != 0:
+            for eachItem in player.inventory:
+                print("\nitem:", eachItem.name)
+                print(eachItem.descript)
+        else:
+            print("\nYou have no item.")
 
-        # slice user input.
-        parsed = userInput.split(" ")
+    # if user is taking or dropping item
+    # i.e. interacting with environment object
+    elif len(parsed) == 2:
 
-        if len(parsed) >= 2:
+        # drop item from inventory
+        if any(eachWord == parsed[0] for eachWord in drop_keyword):
+            # flag for item of interest
+            itemFound = False
+
+            # check to see if there's any item
+            if len(player.inventory) != 0:
+
+                # iterate each item
+                for eachItem in player.inventory:
+
+                    # item is found
+                    if parsed[1] == eachItem.name.lower():
+                        # add item to player inventory and remove from room
+                        player.currentRoom.itemList.append(eachItem)
+                        player.inventory.remove(eachItem)
+
+                        # set flage to true
+                        itemFound = True
+                        break
+
+                if itemFound == True:
+                    # found item confirmation
+                    print("'{}' removed from inventory".format(parsed[1]))
+                else:
+                    # not found
+                    print("\nCannot find the item to drop.")
+            elif len(player.inventory) == 0:
+                print("\nNo items in the inventory")
+
+
+        # adding item
+        elif any(eachWord == parsed[0] for eachWord in take_keyword):
+            # flag for item of interest
+            itemFound = False
+
             # check to see if there's any item
             if len(player.currentRoom.itemList) != 0:
 
@@ -147,13 +202,22 @@ while playerExit != True:
                         # set flage to true
                         itemFound = True
                         break
-        else:
-            print('to add item, type "add [item]"')
 
-        if itemFound == True:
-            print("'{}' added to inventory".format(parsed[1]))
-        else:
-            print("\nItems not found.")
+                if itemFound == True:
+                    # found item confirmation
+                    print("'{}' added to inventory".format(parsed[1]))
+                else:
+                    # not found
+                    print("\nItem not found.")
 
+    # when player only typed add
+    elif any(eachWord == userInput for eachWord in take_keyword):
+        print('\nTo add item, type "add/get/take [item]"')
+
+    # when player only typed add
+    elif any(eachWord == userInput for eachWord in drop_keyword):
+        print('\nTo remove item, type "remove/drop [item]"')  
+
+    # throw error
     else:
         print("Invalid command.")
