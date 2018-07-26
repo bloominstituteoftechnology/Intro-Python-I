@@ -8,7 +8,7 @@ class Item:
 
 class Treasure(Item):
     def __init__(self, name, description, value):
-        super().__init__(name, description, value)
+        super().__init__(name, description)
 
 
 # test = Item("Sword", "500 physical damage and 200 magicka")
