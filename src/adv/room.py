@@ -6,10 +6,15 @@
 # The `Room` class should be extended with a `list` that holds the `Item`
 # that are currently in that room.
 
+# Add an attribute to `Room` called `is_light` that is 
+# `True` if the `Room` is naturally illuminated, or `False` if a 
+# `LightSource` is required to see what is in the room.
+
 class Room():
-    def __init__(self, name, description):
+    def __init__(self, name, description, is_Light):
         self.name = name
         self.description = description
+        self.is_Light = is_Light
         self.n_to = None
         self.e_to = None
         self.s_to = None
