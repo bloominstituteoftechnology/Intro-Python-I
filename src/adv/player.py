@@ -53,3 +53,6 @@ class Player:
 
         if self.score > 0:
             self.score -= amount
+
+    def printScore(self):
+        print("Your score is: ", self.score)

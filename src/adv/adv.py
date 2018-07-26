@@ -77,6 +77,8 @@ def basicCommand():
         player.curRoom = direction(inputCommand[0], player.curRoom)
     elif inputCommand[0] in ["i", "inv", "inventory"]:
         player.printInventory()
+    elif inputCommand[0] == 'score':
+        player.printScore()
     else:
         print("Unknown command {}".format(inputCommand))
 
@@ -87,6 +89,9 @@ def complexCommand():
         player.pickUpItem(inputCommand[1])
     elif inputCommand[0] in ['drop', 'use']:
         player.useItem(inputCommand[1])
+    else:
+        print("Unknown command {}".format(inputCommand))
+
 
 
 def startGameText():
