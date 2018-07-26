@@ -5,4 +5,5 @@ class Item:
         self.description = description
 
     def __str__(self):
-        return "a {} {}".format(", ".join(self.adjectives), self.name)
+        adjectives = ", ".join(self.adjectives)
+        return f"a {adjectives} {self.name}"
