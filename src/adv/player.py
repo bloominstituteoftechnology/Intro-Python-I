@@ -6,6 +6,7 @@ class Player:
         self.room = startRoom
         self.playerName = playerName
         self.inventory = []
+        
         self.score = 0
 
         #self.contents = [] #alternate solve from Beej

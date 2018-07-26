@@ -8,20 +8,20 @@ import textwrap # or from textwrap import fill
 
 room = {
     'outside':  Room("OUTSIDE CAVE ENTRANCE",
-                     "North of you, the cave mount beckons", [Item("Lantern", "A Lantern to light your way")] + [Item("Coin", "An old ancient coin")]),
+                     "North of you, the cave mount beckons", [Item("Lantern", "A Lantern to light your way", 5)] + [Item("Coin", "An old ancient coin", 25)]),
 
-    'foyer':    Room("FOYER", """Dim light filters in from the south. Dusty passages run north and east.""", [Item("Rope", "A bit of old used rope")]),
+    'foyer':    Room("FOYER", """Dim light filters in from the south. Dusty passages run north and east.""", [Item("Rope", "A bit of old used rope", 5)]),
 
-    'overlook': Room("GRAND OVERLOOK", """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""", [Item("Skull", "A skull from someone scared to death of that steep drop!")]),
+    'overlook': Room("GRAND OVERLOOK", """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""", [Item("Skull", "A skull from someone scared to death of that steep drop!", 0)]),
 
-    'narrow':   Room("NARROW PASSAGE", """The narrow passage bends here from west to north and south. The smell of gold permeates the air.""", [Item("Cloak", "A tattered, well worn cloak")]),
+    'narrow':   Room("NARROW PASSAGE", """The narrow passage bends here from west to north and south. The smell of gold permeates the air.""", [Item("Cloak", "A tattered, well worn cloak", 50)]),
 
-    'treasure': Room("TREASURE CHAMBER", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south, but you smell something from the North.""", [Item("Shield", "A shield made of sturdy steel")] + [Item("Chest", "An empty chest")]),
+    'treasure': Room("TREASURE CHAMBER", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south, but you smell something from the North.""", [Item("Shield", "A shield made of sturdy steel", 50)] + [Item("Chest", "An empty chest", 30)]),
     # Rm I added on for fun
     'dungeon': Room("THE DUNGEON", """You've entered the dark, smelly dungeon of doom! Now you are cursed for 10 million years and forever the
-caregiver for these smelly pugs. Exit to the east.""", [Item("Satchel", "A satchel made of pig skin to carry your loot")]),
+caregiver for these smelly pugs. Exit to the east.""", [Item("Satchel", "A satchel made of pig skin to carry your loot", 75)]),
     # Rm I added on for fun
-    'pugcave': Room("PUGS CAVE", """Oh No!!! You've awoken the pug beasts... RUN for your lives to the only exit north!""", [Item("Fang", "A smelly pug fang for goodluck")]),
+    'pugcave': Room("PUGS CAVE", """Oh No!!! You've awoken the pug beasts... RUN for your lives to the only exit north!""", [Item("Fang", "A smelly pug fang for goodluck", 150)]),
 }
 
 
@@ -93,9 +93,9 @@ while True:
         elif cmd == "i" or cmd == "inventory":
             print("\nInventory:\n" + "\n".join([item.name + " - " + item.description for item in player.inventory]))
 
-        elif cmd == "score":
-            print("\nYour Score:\n")
-            
+        # elif cmd == "score":
+        #     print(f"Your Score: {player.score}")
+
         else:
             print("\nSorry, Wrong Command - Try Again") 
     elif len(cmds) == 2:
