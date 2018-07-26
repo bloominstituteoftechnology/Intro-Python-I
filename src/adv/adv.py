@@ -97,30 +97,43 @@ while not done:
     print('\n\n==> Ok ok ok since you made it up to here, we want you to pic an item:')
     pick = False
     while not pick:
-        i = input('tape the name of your item plz:')
+        i = input('type the name of your item plz:')
 
         spl = i.split(' ')
         join = ''.join(spl[1:])
         joinedItems = [i.replace(" ", "") for i in nextRoom.items.description]
-
+        # joinedItemsPlayer = [i.replace(" ", "")
+        #                      for i in getattr(newPlayer, 'items')]
         if len(spl) <= 1:
-            print('!!! sorry you have to enter the item name as well')
-            continue
-        if spl[1] == '':
+            if spl[0] == 'i' or spl[0] == 'inventory':
+                print('newpaler items are: ==>', getattr(newPlayer, 'items'))
+                continue
+            else:
+                print('!!! sorry you have to enter verb and  the item name as well')
+                continue
+
+        elif spl[1] == '':
             print('!!!! item name can`t be whitespace')
             continue
 
-        if spl[0] == 'pick':
-            if join != None:
-                for i in joinedItems:
-                    if join == i:
-                        getattr(newPlayer, 'items').append(
-                            nextRoom.items.description[joinedItems.index(i)])
-                        del(nextRoom.items.description[joinedItems.index(i)])
-                        pick = True
+        elif spl[0] == 'drop':
+            del(getattr(newPlayer, 'items')[
+                getattr(newPlayer, 'items').index(spl[1])])
+            pick = True
 
-            else:
-                continue
+        elif spl[0] == 'pick':
+            # if join != None:
+            for i in joinedItems:
+
+                if join == i:
+                    getattr(newPlayer, 'items').append(
+                        nextRoom.items.description[joinedItems.index(i)])
+                    del(nextRoom.items.description[joinedItems.index(i)])
+                    pick = True
+
+            print('=====> !!!sorry there is no such item ')
+            # else:
+            #     continue
 
         else:
             print(' !!!! sorry wrong verb....')
@@ -183,24 +196,35 @@ while not done:
                            for i in roomAfter.items.description]
 
             if len(spl) <= 1:
-                print('!!! sorry you have to enter the item name as well')
-                continue
-            if spl[1] == '':
+                if spl[0] == 'i' or spl[0] == 'inventory':
+                    print('newpaler items are: ==>',
+                          getattr(newPlayer, 'items'))
+                    continue
+                else:
+                    print('!!! sorry you have to enter verb and  the item name as well')
+                    continue
+
+            elif spl[1] == '':
                 print('!!!! item name can`t be whitespace')
                 continue
 
-            if spl[0] == 'pick':
-                if join != None:
-                    for i in joinedItems:
-                        if join == i:
-                            getattr(newPlayer, 'items').append(
-                                roomAfter.items.description[joinedItems.index(i)])
-                            del(roomAfter.items.description[joinedItems.index(
-                                i)])
-                            pick = True
+            elif spl[0] == 'drop':
+                del(getattr(newPlayer, 'items')[
+                    getattr(newPlayer, 'items').index(spl[1])])
+                pick = True
 
-                else:
-                    continue
+            elif spl[0] == 'pick':
+                # if join != None:
+                for i in joinedItems:
+                    if join == i:
+                        getattr(newPlayer, 'items').append(
+                            roomAfter.items.description[joinedItems.index(i)])
+                        del(roomAfter.items.description[joinedItems.index(
+                            i)])
+                        pick = True
+                print('=====> !!!sorry there is no such item ')
+                # else:
+                #     continue
 
             else:
                 print(' !!!! sorry wrong verb....')
@@ -211,7 +235,6 @@ while not done:
                   roomAfter.items.description)
             nextRoom = roomAfter
 
-    # break
 
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
