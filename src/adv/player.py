@@ -12,7 +12,7 @@ class Player:
     def addItem(self, item):
         self.items.append(item)
 
-    def removeItem(self, item):
+    def removeItem(self, name):
         item = self.findItem(name)
         self.items.remove(item)
 
@@ -52,7 +52,7 @@ class Player:
         else:
             print('You have no items in inventory')
 
-    def addtoScore(self, amount):
+    def addToScore(self, amount):
         self.score += amount
 
     def substractFromScore(self, amount):

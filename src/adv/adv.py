@@ -40,17 +40,24 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-item = Item('sword', 'silver sword')
-item2 = Item('cat', 'fuzzy cat')
-item3 = Item('dog', 'big dog')
-item4 = Item('knife', 'sharp knife')
-item5 = Item('nerf gun', 'blue nerf gun')
+item = Item('sword', 'silver')
+item2 = Item('cat', 'fuzzy')
+item3 = Item('dog', 'big')
+item4 = Item('knife', 'sharp')
+item5 = Item('nerf gun', 'blue')
+item6 = Treasure('ball', 'blue', 5)
+item7 = Treasure('elephant', 'gray', 1000)
+item8 = Treasure('lion', 'mane', 10)
 player = Player('Tylar', room['outside'])
 room['outside'].addItem(item)
 room['foyer'].addItem(item2)
 room['overlook'].addItem(item3)
 room['narrow'].addItem(item4)
-room['treasure'].addItem(item5)
+#room['treasure'].addItem(item5)
+room['treasure'].addItem(item6)
+room['treasure'].addItem(item7)
+room['treasure'].addItem(item8)
+
 # Write a loop that:
 #
 # * Prints the current room name
