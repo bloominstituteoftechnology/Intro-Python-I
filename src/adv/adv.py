@@ -9,21 +9,21 @@ from item import Item
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons",items = [Item("rock", "worth a lot"),Item("sock", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot")]),
+                     "North of you, the cave mount beckons",items = [Item("rock", "Throw it at something!"),Item("sock", "Stinks of Goblin"),Item("stick", "This stick is covered in Goblin blood, very flammable"),Item("water", "Don't leave home without it!")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""",items = [Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot")]),
+passages run north and east.""",items = [Item("candle", "You no take!"),Item("apple", "slighly spoiled, but an adventure needs to eat... right?"),Item("cup", "This could keep you alive"),Item("knife", "Rusty and the handle is partly falling apart.")]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""",items = [Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot")]),
+the distance, but there is no way across the chasm.""",items = [Item("binoculars", "Allows you to see great distances"),Item("map", "Blood spattered and falling apart, This is useful"),Item("Egg", "This Egg is massive, you may not want to carry this item, someone may be looking for it.")]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""",items = [Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot")]),
+to north. The smell of gold permeates the air.""",items = [Item("bush", "Maybe you can use this for hiding?"),Item("rock", "Don't stub a toe")]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""",items = [Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot"),Item("gold", "worth a lot")]),
+earlier adventurers. The only exit is to the south.""",items = [Item("gold", "Shiny and useful, but also attracts the attention"),Item("wand", "Can you weild this powerful weapon, a keen mage can!"),Item("bow", "A ranged weapon, anyone can use, but some can make this weapon devistating"),Item("Robe", "Green robes, perfect for the earthy mage"), item("shield","A Oak shield with a ring of steel on the rim, painted green and maroon, or is that blood?.")]),
 }
 
 
@@ -49,8 +49,6 @@ room['treasure'].s_to = room['narrow']
 
 player = Player("Jacob", room['outside'],[],6);
 # Write a loop that:
-print("{}".format(player))
-
 def findObject(input):
     for index in range(len(player.current.items)):
         if player.current.items[index].name == input:
@@ -129,7 +127,6 @@ while(playing):
             #  if it is inside of the room and the players bags are not full, then allow the player to remove items from the room
             # and place them into the players inventory.
             elif len(player.inventory) < player.bagSize:
-                print("item index::",findObject(item))
                 removed = curRoom.items.pop(findObject(item))
 
                 #removed = curRoom.items.remove(grab)
