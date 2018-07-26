@@ -101,6 +101,8 @@ while userInput != "q":
       else:
         for i in player.items:
           print('\n ' + i.name + ': ' + i.description)
+    elif userInput == "score":
+      print(player.score)
     elif userInput != 'q':
       print("Invalid Command")
   else:
@@ -110,6 +112,8 @@ while userInput != "q":
         if(i.name == userInput[1]):
           player.current.items.remove(i)
           player.items.append(i)
+          if(isinstance(i,Treasure)):
+            player.add_score(i.value)
           i.on_take()
           found = True
       if not found:
@@ -120,6 +124,8 @@ while userInput != "q":
         if(i.name == userInput[1]):
           player.items.remove(i)
           player.current.items.append(i)
+          if(isinstance(i,Treasure)):
+            player.sub_score(i.value)
           i.on_drop()
           found = True
       if not found:

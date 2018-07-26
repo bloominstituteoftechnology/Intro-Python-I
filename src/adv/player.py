@@ -14,3 +14,9 @@ class Player:
       if isinstance(x,LightSource):
         return True
     return False 
+  
+  def add_score(self,value):
+    self.score += value
+
+  def sub_score(self,value):
+    self.score -= value
