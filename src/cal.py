@@ -14,3 +14,20 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+cal = calendar.TextCalendar(6)
+if len(sys.argv) == 3:
+  m = int(sys.argv[1])
+  y = int(sys.argv[2])
+
+  if 0 < m < 13:
+    print(cal.formatmonth(y, m))
+  else:
+    print("Error: Invalid month")
+elif len(sys.argv) > 1:
+  print("Usage: python cal.py <mm> <yyyy>")
+else:
+  cur = datetime.date.today()
+  print(cal.formatmonth(cur.year, cur.month))
