@@ -6,8 +6,16 @@ import os
 class Player():
     def __init__(self, name, location):
         self.name = name
+        self.score = 0
         self.location = location
         self.inventory = []
+
+    def show_score(self):
+        print(self.score)
+        input('\nPress enter to go back to game')
+        
+
+        
 
     def take(self, item_name):
         # loop through room items
@@ -16,8 +24,11 @@ class Player():
             if item.name == item_name:
                 # put it in player's inventory
                 self.inventory.append(item)
+                #invoke on_take from the item 
                 # remove it from room
                 self.location.inventory.remove(item)
+                item.on_take(self)
+                # invoke on_drop from the item
                 return
             else:
                 pass
