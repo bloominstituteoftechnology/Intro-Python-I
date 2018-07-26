@@ -143,7 +143,8 @@ def unlock_treasure(item):
       system("cls" or "clear")
       print("\n\n\n\nYou insert the key and unlock the chest.")
       print("\n\nIt's filled with gold and jewels!")
-      print("\n\nCongratulations, %s! You won!\n" % (player.playerName))
+      print("\n\nCongratulations, %s! You won!" % (player.playerName))
+      print("\n\nFinal score: 100\n")
       game_over = True
 
 
