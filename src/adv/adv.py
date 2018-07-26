@@ -7,32 +7,32 @@ import sys
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [LightSource("lamp", "a battered old lamp with some oil in it")]),
+                     "North of you, the cave mount beckons", [LightSource("lamp", "a battered old lamp with some oil in it")], True),
 
     'bridge': Room("Bridge", """Rough winds blow acoss a lonely bridge. The smell of dragon fire and brimstone is heavy here.
-On the other side you see a red dragon sleeping in the sunlight. It guards the entrance to an ancient cathedral""", []),
+On the other side you see a red dragon sleeping in the sunlight. It guards the entrance to an ancient cathedral""", [], True),
 
     'cathedral': Room("Cathedral", """Broken pews, torn tapestries, and skeletons of past adventurers are all that remain inside.
-At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.""", [Treasure("ruby", "crimson red jewel worn by ancient priests", 10000)]),
+At the end, sunlight illuminates the lady's chapel. You see a crack in the wall.""", [Treasure("ruby", "crimson red jewel worn by ancient priests", 10000)], False),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", [LightSource("torch", "an everlasting torch that gives off a yellow light"), Item("potion", "a bright red potion"), 
-Item("parchment", "dusy, yello parchment that's ready to disintegrate"), Treasure("sapphire", "sapphire set inside a silver ring", 20000)]),
+Item("parchment", "dusy, yello parchment that's ready to disintegrate"), Treasure("sapphire", "sapphire set inside a silver ring", 20000)], False),
 
     'armory': Room("Armory", """You find a small armory filled with rusted weapons and some tools. At the far end lies a locked chest
 and a blackened shield. You find an encryption on the chest lid: 'The ancient hero offers his sword but only to those he deems worthy'""", [
-Item("shield", "a battered steel shield that's been blackened with fire")]),
+Item("shield", "a battered steel shield that's been blackened with fire")], False),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [Item("sword", "a broadsword fit for a hero"), Treasure("emerald", "hero's emerald necklace", 30000)]),
+the distance, but there is no way across the chasm.""", [Item("sword", "a broadsword fit for a hero"), Treasure("emerald", "hero's emerald necklace", 30000)], True),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", []),
+to north. The smell of gold permeates the air.""", [], False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [Item("key", "a simple brass key")]),
+earlier adventurers. The only exit is to the south.""", [Item("key", "a simple brass key")], False),
 }
 
 
