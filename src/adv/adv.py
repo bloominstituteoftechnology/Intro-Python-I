@@ -24,11 +24,13 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-# Create Item
-sword = Item('Sword', 'Shiny')
+# Create Items Dictionary
+Items = {
+    "Sword" : Item('Sword', 'Shiny')
+}
 
 # Adding Items to a Room
-room['outside'].addItem(sword)
+room['outside'].addItem(Items["Sword"])
 
 # Link rooms together
 
@@ -67,7 +69,7 @@ player = Player(name, room['outside'])
 system("clear")
 while (player.room != 'exit'):
     print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
-    print("The item(s) in the room: " + str(player.room.Items) + "\n")
+    print("The item(s) in the room: " + str(player.room.items) + "\n")
 
     instruction = input("Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Quit:\n")
     direction = {
@@ -94,13 +96,19 @@ while (player.room != 'exit'):
         verb, target = [x for x in instruction.split()]
         if (verb == "Take"):
             if (player.room.searchItems(target)):
-                player.toInventory(target)
+                player.toInventory(Items[target])
                 player.room.removeItem(target)
                 print(player.name + " takes the " + target + "\n")
             else: 
                 print(target + " is not available\n")
         if (verb == "Drop"):
-            print("Bye\n")
+            print("Inventory", player.inventory)
+            if (player.searchInventory(target)):
+                player.room.addItem(Items[target])
+                player.removeItem(target)
+                print(player.name + " drops the " + target + "\n")
+            else:
+                print(target + " is not in your inventory")
 
 system("clear")
 print("You are out of the cave and empty handed!\n")
