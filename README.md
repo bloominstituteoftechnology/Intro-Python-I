@@ -81,11 +81,13 @@ Suggested order for implementing the toy programs:
 * `modules` -- Learn to import from modules
 * `printf` -- Formatted print output
 * `lists` -- Python's version of arrays
+* `tuples` -- Immutable lists typically for heterogenous data
 * `slice` -- Accessing parts of lists
 * `comp` -- List comprehensions
 * `dicts` -- Dictionaries
 * `func` -- Functions
 * `args` -- Arguments and Keyword Arguments
+* `scope` -- Global, Local, and Non-Local scope
 * `fileio` -- Read and write from files
 * `cal` -- Experiment with module imports
 * `obj` -- Classes and objects
