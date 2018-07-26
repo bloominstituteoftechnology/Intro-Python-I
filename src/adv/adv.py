@@ -65,7 +65,7 @@ def saveGame(player):
         for item in room.items:
             roomData += "items['%s']," % item.name
         roomData += "];"
-    saveFile.write("%s" % roomData)
+    saveFile.write("%s//%d" % (roomData, player.score))
     saveFile.close()
     print("Game saved.")
 
@@ -76,13 +76,14 @@ def loadGame(playerName):
     startingRoom = lines[0]
     inventoryData = lines[1]
     roomData = lines[2].strip(';').split(';')
+    playerScore = int(lines[3])
     loadFile.close()
     for index, room in enumerate(rooms.items()):
         # print(index)
         rooms[room[0]].items = eval(roomData[index])
     # print("startingRoom: %s\ninventoryData: %s\nroomData: %s\n" %
     #       (startingRoom, inventoryData, roomData))
-    return Player(playerName, rooms[startingRoom], eval(inventoryData))
+    return Player(playerName, rooms[startingRoom], eval(inventoryData), playerScore)
 
 
 newGame = input("Newgame or Loadgame (n/l): ").lower()
@@ -110,8 +111,9 @@ else:
 # If the user enters "q", quit the game.
 
 playing = True
+helpString = 'Type n/s/e/w to move in a direction.\nType "i" or "inventory" to check your inventory.\nType "look" or "search" to look around for items.\nType "t" or "take" and the name of the item you want to take to pick up an item.\nType "d" or "drop" and the name of the item in your inventory that you want to drop.\nType "q" or "quit" to quit and save.\nType "save" to save the game without quitting.'
 
-print("\n" + rooms[startingRoom].description)
+print("\n" + player.room.description)
 
 while(playing is True):
     curRoom = player.room
@@ -125,7 +127,7 @@ while(playing is True):
         playing = False
         break
     elif command == "help":
-        print('Type n/s/e/w to move in a direction.\nType "i" or "inventory" to check your inventory.\nType "look" or "search" to look around for items.\nType "t" or "take" and the name of the item you want to take to pick up an item.\nType "d" or "drop" and the name of the item in your inventory that you want to drop.\nType "q" or "quit" to quit and save.\nType "save" to save the game without quitting.')
+        print(helpString)
     elif command == "save":
         saveGame(player)
     elif command in ["s", "n", "e", "w"]:
@@ -150,7 +152,7 @@ while(playing is True):
         if item != None:
             player.inventory.append(item)
             curRoom.items.remove(item)
-            print("You picked up a %s." % item.name)
+            print("You picked up %s." % item.description)
         else:
             print("There isn't any of that item that you can pick up.")
     elif command == "d" or command == "drop":
@@ -164,4 +166,4 @@ while(playing is True):
             print("You don't have that object.")
     else:
         print("You entered an invalid command.")
-        print('Type n/s/e/w to move in a direction.\nType "i" or "inventory" to check your inventory.\nType "look" or "search" to look around for items.\nType "t" or "take" and the name of the item you want to take to pick up an item.\nType "d" or "drop" and the name of the item in your inventory that you want to drop.\nType "q" or "quit" to quit and save.\nType "save" to save the game without quitting.')
+        print(helpString)
