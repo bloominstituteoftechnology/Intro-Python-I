@@ -88,6 +88,9 @@ while newInput != "q":
         if newInput[0] == "score":
             print(f"Player score:  {newPlayer.score}")
 
+        if newInput[0] == "q" or newInput[0] == "quit":
+            break
+
     if len(newInput) >= 2:
         if newInput[0] == "get" or newInput[0] == "take":
 
@@ -101,12 +104,13 @@ while newInput != "q":
                             print('we broke')
                             break
                     except AttributeError:
-                        newPlayer.inventory.append(item.name)
-                        newPlayer.room.items.remove(item)
                         print('we reached an error')
                         continue
+                    finally: 
+                        newPlayer.inventory.append(item.name)
+                        newPlayer.room.items.remove(item)
                         
-                        print("still going")
+                    print("still going")
 
                     if item.name == newInput[1] and item.value and newPlayer.room.treasureScored == False:
                         print('here')
