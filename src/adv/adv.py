@@ -75,26 +75,38 @@ while not done:
             print(i.description)
 
     # User input
-    user_input = input("> ")
+    user_input = input("> ").lower()
 
-    # Directions
-    if user_input in ["n", "e", "s", "w"]:
-        dirAttr = user_input + "_to"
+    # Single word commands
+    if len(user_input) == 1:
 
-        if hasattr(p1.current_room, dirAttr):
-            p1.current_room = getattr(p1.current_room, dirAttr)
-        else:
-            print("Can't go that way.")
+        # Directions
+        if user_input in ["n", "e", "s", "w"]:
+            dirAttr = user_input + "_to"
 
-    # Quit
-    elif user_input == "q":
-        print("GG")
-        done = True
+            if hasattr(p1.current_room, dirAttr):
+                p1.current_room = getattr(p1.current_room, dirAttr)
+            else:
+                print("Can't go that way.")
+    
+        # Inventory
+        if user_input == "i":
+            if len(p1.items) > 0:
+                print("\nYour bag contains: ")
+                for i in p1.items:
+                    print(i.description)
+                else:
+                    print("\nYour bag is empty.")
 
-    # Help - show commands
-    elif user_input == "help":
-        helper = "\nCOMMANDS:\nn - north\ne - east\ns - south\nw - west\nq - quit"
-        print(helper)
+        # Help - show commands
+        elif user_input == "help":
+            helper = "\nCOMMANDS:\nn - north\ne - east\ns - south\nw - west\nq - quit"
+            print(helper)
+
+        # Quit
+        elif user_input == "q":
+            print("GG")
+            done = True
 
     # Invalid input
     else:
