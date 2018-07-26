@@ -55,10 +55,13 @@ currentLocation = room['outside']
 character = Player(currentLocation)
 
 def takeItem(target='default'):
-    item = currentLocation.item_found(target) #item found in room
-    if item:
-        character.pick_up(item) #character picks up found item
-        print(f"\n{item} has been picked up!")
+    loot = currentLocation.item_found(target) #item found in room
+    if loot:
+        character.pick_up(loot) #character picks up found item
+        print(f"\n{loot} has been picked up!")
+        if character.score == len(item):
+            character.win_condition = True
+            print('\nYou found every item!')
     else:
         print('\nInvalid Input')  #customize error message for invalid action
 
@@ -188,6 +191,9 @@ while(playing):
         elif request[0] == 'info':
             print(f'\nItems in Room: {currentLocation.print_items()}')
 
+        elif request[0] == 'score':
+            print(f'\nCurrent Score: {character.score}')
+
         elif request[0] == 'i' or request[0] == 'inv' or request[0] == 'inventory':
             print(f'\nCurrent Inventory: {character.print_inv()}')
 
@@ -211,3 +217,7 @@ while(playing):
 
     else:
         print('\nToo many commands will confuse me D:')  #if more than 2 commands, invalid error
+
+    if character.win_condition and character.score == len(item) and character.location == room['outside']:
+        print('Congrats on finding all the items and making it out!')
+        playing = False
