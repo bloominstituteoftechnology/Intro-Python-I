@@ -1,25 +1,26 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", ["flashlight"]),
+                     "North of you, the cave mount beckons", [Item("flashlight", "light up dar areas")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ["coins", "sword"]),
+passages run north and east.""", [Item("sword", "fight enemies")]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", ["rope"]),
+the distance, but there is no way across the chasm.""", [Item("rope", "rope for climing or tying")]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ["gold", "golden knife"]),
+to north. The smell of gold permeates the air.""", []),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", ["treasure box", "gold", "diamonds"]),
+earlier adventurers. The only exit is to the south.""", [Item("Gold", "Valuable assets")]),
 }
 
 
@@ -54,15 +55,21 @@ newPlayer = Player("Bob", room["outside"], [], 0)
 newInput = None
 
 while newInput != "q":
+
+    roomItems = []
+
+    if len(newPlayer.room.items) != 0:
+        for item in newPlayer.room.items:
+            roomItems.append(item.name)\
+    
+    print(f"Loot: {roomItems}")
     print(newPlayer.room.summary)
-    print(f"Items in room: {newPlayer.room.items}")
 
     newInput = input("Give a one letter direction (NESW): \n \n \n")
     newInput = newInput.lower()
     newInput = newInput.split(" ")
 
     if len(newInput) < 2:
-        print(newInput)
 
         if newInput[0] == "n":
             newPlayer.room = newPlayer.room.n_to
