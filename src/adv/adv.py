@@ -58,7 +58,7 @@ room['overlook'].contains.append(Item("leather bound book", "Seems to be a journ
 room['narrow'].contains.append(Item("lantern", "oil lantern, has some light left. do I have matches?"))
 room['narrow'].contains.append(Item("Single gold coin", "A single coin, its spanish, we must be going the right way.."))
 #treasure
-room['treasure'].contains.append(Item("dusty note", "It reads: your next adventure is coming soon..))
+room['treasure'].contains.append(Item("dusty note", "It reads: your next adventure is coming soon.."))
 
 #
 # Main
@@ -72,9 +72,9 @@ room['treasure'].contains.append(Item("dusty note", "It reads: your next adventu
 main_player = Player("Falcorn", room['outside'])
 
 #start game a line down 
-print("\n")
+print("\n\n\n")
 #player name should display at the top. 
-print("Your player: " + main_player.name + " defender of the alliance \n")
+print("Your player: " + main_player.name + " defender of the alliance")
 
 # Write a loop that:
 #
