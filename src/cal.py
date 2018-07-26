@@ -14,3 +14,9 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+if len(sys.argv) == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+    print(calendar.prmonth(year, month))
