@@ -53,6 +53,46 @@ room['treasure'].s_to = room['narrow']
 currentLocation = room['outside']
 character = Player(currentLocation)
 
+def takeItem(self, target):
+    print(f'\n{target} in takeItem')
+    item = currentLocation.item_found(target)
+    if item:
+        character.pick_up(item)
+        print(f"\n{item} has been picked up!")
+    else:
+        print('\nInvalid Input')
+
+def dropItem(self, target):
+    item = character.drop(target)
+    if item:
+        currentLocation.item_dropped(item)
+        print(f"\n{item} has been dropped!")
+    else:
+        print('\nInvalid Input')
+
+def viewItem(self, target):
+    descript = character.inspect(target)
+    if descript:
+        print(f'\n{descript}')
+    else:
+        print('\nInvalid Input')
+
+
+movements = ['n', 'north', 's', 'south', 'e', 'east', 'w', 'west']
+# actions = ['t', 'take', 'd', 'drop', 'ins', 'inspect']
+actions = {
+    't': takeItem,
+    'take': takeItem,
+    'd': dropItem,
+    'drop': dropItem,
+    'ins': viewItem,
+    'inspect': viewItem
+}
+
+def executeAction(command, target):
+    print(f'\n{command} {target} in execution')
+    actions[command](target)
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -78,62 +118,56 @@ while(playing):
     request = input("What would you like to do?\n\n").lower().split(' ')
 
     if len(request) == 1:
+
         if request[0] == 'q' or request[0] == 'quit':
             print('\nSee you again!')
             playing = False
+
         elif request[0] == 'info':
             print(f'\nItems in Room: {currentLocation.print_items()}')
+
         elif request[0] == 'i' or request[0] == 'inv' or request[0] == 'inventory':
             print(f'\nCurrent Inventory: {character.print_inv()}')
+
         else:
-            if request.count('north') > 0 or request.count('n') > 0:
-                if hasattr(currentLocation, 'n_to'):
-                    currentLocation = currentLocation.n_to
+
+            if request[0] in movements:
+                attr = request[0][0] + '_to'
+
+                if hasattr(currentLocation, attr):
+                    currentLocation = getattr(currentLocation, attr)
                     character.change_location(currentLocation)
                 else:
                     print('\nInvalid Input')
-            elif request.count('south') > 0 or request.count('s') > 0:
-                if hasattr(currentLocation, 's_to'):
-                    currentLocation = currentLocation.s_to
-                    character.change_location(currentLocation)
-                else:
-                    print('\nInvalid Input')
-            elif request.count('east') > 0 or request.count('e') > 0:
-                if hasattr(currentLocation, 'e_to'):
-                    currentLocation = currentLocation.e_to
-                    character.change_location(currentLocation)
-                else:
-                    print('\nInvalid Input')
-            elif request.count('west') > 0 or request.count('w') > 0:
-                if hasattr(currentLocation, 'w_to'):
-                    currentLocation = currentLocation.w_to
-                    character.change_location(currentLocation)
-                else:
-                    print('\nInvalid Input')
+
             else:
                 print('\nInvalid Input')
+
     elif len(request) == 2:
-        if request[0] == 'take' or request[0] == 't':
-            taken_item = currentLocation.item_found(request[1])
-            if taken_item:
-                character.pick_up(taken_item)
-                print(f"\n{taken_item} has been picked up!")
-            else:
-                print('\nInvalid Input')
-        elif request[0] == 'drop' or request[0] == 'd':
-            dropped_item = character.drop(request[1])
-            if dropped_item:
-                currentLocation.item_dropped(dropped_item)
-                print(f"\n{dropped_item} has been dropped!")
-            else:
-                print('\nInvalid Input')
-        elif request[0] == 'inspect' or request[0] == 'ins':
-            descript = character.inspect(request[1])
-            if descript:
-                print(f'\n{descript}')
-            else:
-                print('\nInvalid Input')
-        else:
-            print('\nInvalid Input')
+        action = request[0]
+        target = request[1]
+        if request[0] in actions:
+            print(f'\n{action} {target} in loop')
+            executeAction(action, target)
+        # if request[0] == 'take' or request[0] == 't':
+        #     taken_item = currentLocation.item_found(request[1])
+        #     if taken_item:
+        #     else:
+        #         print('\nInvalid Input')
+        # elif request[0] == 'drop' or request[0] == 'd':
+        #     dropped_item = character.drop(request[1])
+        #     if dropped_item:
+        #         currentLocation.item_dropped(dropped_item)
+        #         print(f"\n{dropped_item} has been dropped!")
+        #     else:
+        #         print('\nInvalid Input')
+        # elif request[0] == 'inspect' or request[0] == 'ins':
+        #     descript = character.inspect(request[1])
+        #     if descript:
+        #         print(f'\n{descript}')
+        #     else:
+        #         print('\nInvalid Input')
+        # else:
+        #     print('\nInvalid Input')
     else:
         print('\nInvalid Input')
