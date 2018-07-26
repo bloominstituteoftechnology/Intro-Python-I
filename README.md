@@ -78,8 +78,8 @@ Suggested order for implementing the toy programs:
 * `hello` -- Hello world
 * `bignum` -- Print some big numbers
 * `datatypes` -- Experiment with type conversion
-* `modules` -- Learn to import from modules
-* `printf` -- Formatted print output
+* `modules` -- Learn to import from modules // Will return to
+* `printf` -- Formatted print output // Not sure
 * `lists` -- Python's version of arrays
 * `tuples` -- Immutable lists typically for heterogenous data
 * `slice` -- Accessing parts of lists
