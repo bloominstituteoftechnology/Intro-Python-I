@@ -1,27 +1,26 @@
-Classes of game and inheritance
+Classes of game and inheritance structure
 
-LivingBeing (room, name, type, inventory, hp)
-  > Humanoid (equip_slots) [move, attack, examine, use, pickup, drop, equip]
+LivingBeing (room, name, kind, inventory, hp) [move, attack]
+  > Humanoid (equip_slots) [examine, use, pickup, drop, equip, check_equipped]
     > Player
-    > NPC
+    > NPC (action_loop, aggressive, service, dialogue)
+  > Non-humanoid (action_loop, aggressive)
+    > Animal 
     > Monster
-  > Non-humanoid [move, attack]
-    > Animal
-    > Monster
-  > Plant
  
 InanimateObject
-  > Item (name, description)
+  > Item (name, description, use)
     > Consumable [expend]
       > Food
       > Potion
       > Poison
       > Craft Material
-    > Equippable
+    > Equippable (slot)
       > Armor (protection)
       > Weapon (power)   
       > Accessory (effect)
       > Magic Item (charges)
+      > Light Source (lighting)
     > Container (capacity{current, max}, inventory) [isFull]
       > Equippable <Multi Inheritance>
         > Backpack
@@ -33,7 +32,7 @@ InanimateObject
       > Furniture
     
 
-Room (name, description, )
+Room (name, description, details, use_targets, lighting, inventory)
 
 Actions of Player
   ?? Make state machine like a regex parser for longer commands ???
@@ -41,6 +40,7 @@ Actions of Player
   One word -
     - [direction] : moves in direction
     - 'examine' : default to examine current room in detail
+    - 'equipped' : displays currently equipped items
     - 'help' or 'h' : displays all input option
     - 'quit' or 'q' : quits game session
 
