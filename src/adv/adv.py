@@ -81,14 +81,24 @@ quit = False # describes overall game state
 while not quit:
 	current = player.room
 	description = textwrap.fill(current.description)
-	# show player the room they are in
-	print("{0}\n{1}".format(current.name, description))
-	# show player all items available in current room
-	if len(current.items) > 0:
-		for item in current.items:
-			print("You see:\n\ta {0}\n\t{1}".format(item.showName(), item.showDescription()))
+
+	# current room has light
+	if current.is_light:
+		# show player the room they are in
+		print("{0}\n{1}".format(current.name, description))
+		# show player all items available in current room
+		if len(current.items) > 0:
+			for item in current.items:
+				print("You see:\n\ta {0}\n\t{1}".format(item.showName(), item.showDescription()))
+		else:
+			print("There are no items in this room")
 	else:
-		print("There are no items in this room")
+		# no light in current room
+		print("It's pitch black!")
+		for item in current.items:
+			if isinstance(item, LightSource):
+				print("{0} might help you see through the darkness".format(item.name))
+
 	# take player commands and remove formatting
 	player_input = input("Command: ").strip().lower()
 	# separate player commands into verb + noun
