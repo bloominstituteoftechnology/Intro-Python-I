@@ -7,21 +7,21 @@ import textwrap # or from textwrap import fill
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [Item("Lantern", "A Lantern to light your way")] + [Item(" Coin", "An old ancient coin")]),
+    'outside':  Room("OUTSIDE CAVE ENTRANCE",
+                     "North of you, the cave mount beckons", [Item("Lantern", "A Lantern to light your way")] + [Item("Coin", "An old ancient coin")]),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty passages run north and east.""", [Item("Rope", "A bit of old used rope")]),
+    'foyer':    Room("FOYER", """Dim light filters in from the south. Dusty passages run north and east.""", [Item("Rope", "A bit of old used rope")]),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""", [Item("Skull", "A skull from someone scared to death of that steep drop!")]),
+    'overlook': Room("GRAND OVERLOOK", """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""", [Item("Skull", "A skull from someone scared to death of that steep drop!")]),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west to north and south. The smell of gold permeates the air.""", [Item("Cloak", "A tattered, well worn cloak")]),
+    'narrow':   Room("NARROW PASSAGE", """The narrow passage bends here from west to north and south. The smell of gold permeates the air.""", [Item("Cloak", "A tattered, well worn cloak")]),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south, but you smell something from the North.""", [Item("Shield", "A shield made of sturdy steel")] + [Item("Chest", "An empty chest")]),
+    'treasure': Room("TREASURE CHAMBER", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south, but you smell something from the North.""", [Item("Shield", "A shield made of sturdy steel")] + [Item("Chest", "An empty chest")]),
     # Rm I added on for fun
-    'dungeon': Room("The Dungeon", """You've entered the dark, smelly dungeon of doom! Now you are cursed for 10 million years and forever the
+    'dungeon': Room("THE DUNGEON", """You've entered the dark, smelly dungeon of doom! Now you are cursed for 10 million years and forever the
 caregiver for these smelly pugs. Exit to the east.""", [Item("Satchel", "A satchel made of pig skin to carry your loot")]),
     # Rm I added on for fun
-    'pugcave': Room("Pugs Cave", """Oh No!!! You've awoken the pug beasts... RUN for your lives to the only exit north!""", [Item("Fang", "A smelly pug fang for goodluck")]),
+    'pugcave': Room("PUGS CAVE", """Oh No!!! You've awoken the pug beasts... RUN for your lives to the only exit north!""", [Item("Fang", "A smelly pug fang for goodluck")]),
 }
 
 
@@ -39,6 +39,9 @@ room['dungeon'].e_to = room['narrow']
 room['narrow'].s_to = room['dungeon']
 room['pugcave'].n_to = room['treasure']
 room['treasure'].n_to = room['pugcave']
+
+# Add Items (has to wired correctly on room.py as well)
+# room['overlook'].contains.append(Item("coins", "Gold coins"))
 
 #
 # Main
@@ -71,7 +74,7 @@ def dircheck(attr):
         print("\nYou Shall Not Pass\n")
 
 while True:
-    print("\n* " + player.room.name + " *")
+    print("\n~*~ " + player.room.name + " ~*~")
     print(textwrap.fill(player.room.description, 50))
     print("Items for the taking: " + (",".join([item.name for item in player.room.items]) or "None") + "\n")
     print("To take an item, type 'take [item]'")
@@ -122,15 +125,26 @@ while True:
 
 #     prettyDesc = textwrap.fill(curRoom.description)
 
-#     print(f'{curRoom.name}\n{prettyDesc}')
+#     print(f'\n{curRoom.name}\n\n{prettyDesc}')
 
-#     command = input("Command> ").strip().lower()
+    # Print room contents
+    # if len(curRoom.contents) > 0:
+        # print("You also see:")
+        # for i in CurRoom.contents:
+            #print("  " + i.description)
+        # print()
 
-#     if command == 'q' or command == 'quit' or command == 'exit':
+#     command = input("\nCommand> ").strip().lower()
+
+#     command = command.split('  ')
+
+#     if len(command) == 1:
+
+#       if command[0] == 'q' or command[0] == 'quit' or command[0] == 'exit':
 #         done = True
 
-#     elif command in ["s", "n", "e", "w"]:
-#         dirAttr = command + "_to"
+#     elif command[0] in ["s", "n", "e", "w"]:
+#         dirAttr = command[0] + "_to"
 
 #         if hasattr(curRoom, dirAttr):
 #             player.room = getattr(curRoom, dirAttr)
@@ -138,5 +152,21 @@ while True:
 #         else:
 #             print("You can't go that way.")
 
+#     elif command[0] in ["i", "inventory"]:
+#       print("You're currently carrying:")
 #     else:
 #         print("I don't understand that!")
+
+#   elif len(command) == 2:
+
+#       verb, obj = command
+       
+#       if verb in ['get', 'take']:
+#           candidates = [item for item in CurRoom.contents if item.name == obj]
+
+#       if len(candidates) == 0:
+#           print("You don't see that here.")
+
+#       else:
+#           player.contents.append(candidates[0])
+#           curRoom.contents.remove(candidates[0])

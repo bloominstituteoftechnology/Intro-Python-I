@@ -6,3 +6,5 @@ class Room:
         self.name = name
         self.description = description 
         self.items = items
+
+        # self.contents = [] # alternate solve for bringing in items; matches Beejs solution
