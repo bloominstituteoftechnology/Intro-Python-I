@@ -3,8 +3,11 @@ class Item:
         self.name = name
         self.description = description
 
-    def takes(self, player):
+    def takes(self, player):  # Item is taken by player
         pass
+
+    def __str__(self):
+        return self.description
 
 
 class Treasure(Item):
@@ -20,3 +23,7 @@ class Treasure(Item):
             player.score += self.value
             print(f"You get {self.value} points!")
             self.picked_up = True
+
+class Weapon(Item):
+    def __init__(self, name, description):
+        super().__init__(name, description)

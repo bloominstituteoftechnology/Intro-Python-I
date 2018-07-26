@@ -5,4 +5,4 @@ class Room:
   def __init__(self, name, description):
     self.name = name
     self.description = description
-    self.roomItems = []
+    self.roomItems = []   # Items in the room
