@@ -1,6 +1,7 @@
 from item import Item
 from player import Player
 from room import Room
+from random import randint
 
 # Declare all the rooms
 
@@ -99,6 +100,18 @@ actions = {   #dict of possible action commands
 #
 # If the user enters "q", quit the game.
 
+def movement_error():
+    errors = {
+        1: 'Nope cant do that',
+        2: 'Not possible',
+        3: 'Try something else',
+        4: 'Why would you try that here?',
+        5: 'Can\'t do that here',
+        6: 'You seem to have forgotten what you\'re capable of',
+        7: 'How about no'
+    }
+    return errors[randint(1, len(errors))]
+
 playing = True
 print('Loading...')
 print('Now Playing: \'Room Explorer.txt\'')
@@ -132,7 +145,7 @@ while(playing):
                     character.change_location(currentLocation)
 
                 else:
-                    print('\nInvalid Movement')  #movement error
+                    print(f'\n{movement_error()}')  #movement error
 
             else:
                 print('\nSorry I dont know how to do that yet :(')  #incorrect 1 word statement
