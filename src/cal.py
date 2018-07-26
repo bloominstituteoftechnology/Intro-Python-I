@@ -14,3 +14,7 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+newCal = calendar.TextCalendar()
+print(newCal.formatmonth(int(sys.argv[2]), int(sys.argv[1])))
