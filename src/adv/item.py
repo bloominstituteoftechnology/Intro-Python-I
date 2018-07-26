@@ -6,4 +6,6 @@ class Item():
         self.description = description
         self.owner = None
 
-
+    def info(self):
+        info_message = self.name + ':\t' + self.description
+        return '\n'.join(wrap(info_message, width=50))+ '\n' + '-'*50

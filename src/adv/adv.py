@@ -1,7 +1,10 @@
-from room import Room
-from player import Player
-from item import Item
 import os
+from textwrap import wrap
+from time import sleep
+
+from player import Player
+from room import Room
+from item import Item
 
 # Declare all the rooms
 items = {
@@ -14,23 +17,18 @@ items = {
 }
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
-
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm. """),
-
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north.The smell of gold permeates the air. """),
-
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers.The only exit is to the south. """),
-
-    'dunegon': Room("Dungeon Hell", """You are in the worst place in the world and
+    'dunegon':  Room("Dungeon Hell", """You are in the worst place in the world and
     should be careful where you step!!! """ ),
 }
 
@@ -55,19 +53,53 @@ room['narrow'].inventory.append(item['firestick'])
 
 
 # Main
-print(room['outside'].s_to)
+
 # Make a new player object that is currently in the 'outside' room.
 player = Player('Mark', room['outside'])
-direction = None
-# Write a loop that:
-while(True):
-    os.system('cls' if os.name == 'nt' else 'clear')
 
+# Game Controls
+player_movement = ['s', 'n', 'e', 'w', 'q']
+player_inventory = ['i', 'inventory']
+
+# Parse Functions
+parser_commands = {
+    'take': player.take
+    'drop': player.drop
+}
+
+# Print Items
+def print_items():
+    items_info = []
+    for item in player.location.inventory:
+        items_info.append(item.info()
+    print('\nThe following items are available:')
+    print('-' * 50)
+    print('\n'.join(items_info))
+
+# Write a loop that:
+while (True):
+    # Clear the console
+    os.system('cls' if os.name == 'nt' else 'clear')
+    command = None
     print(
-        '\n Your are currently here:', player.location.name,
-        '\n Description:', player.location.description)
-    direction = input('\nWhich way would you like to go?\n(N, E, S, W) pick one:').lower()
-    player.move_to(direction)
+        '\nYou are at:', 'n\'.join(wrap(player.location.name, width=50)),
+        '\nDescription:', '\n'.join(wrap(player.location.description, width=50))
+        )
+    print_items()
+    command = input("\nIn what direction do you wish to go\n(N,E,W,S) or (Q: to quit) pick one: ").lower()    
+    
+    # Handle movement
+    if command in player_inventory:
+        player.display_inventory()
+    else:
+        try:
+            # Make commands into an array
+            args = command.split(' ')
+            if leng(args) == 2:
+                input_parser[args[0]](args[1])
+            except:
+                pass
+    
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.

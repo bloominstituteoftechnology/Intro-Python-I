@@ -10,7 +10,10 @@ class Room():
         self.e_to = e_to
         self.s_to = s_to
         self.w_to = w_to
+    if inventory = None:
         self.inventory = []
+    else:
+        self.inventory = inventory
 
      
 
