@@ -9,7 +9,7 @@ class Item:
 
     def on_take(self, player):
         self.uncollected = False
-        prompt(f"{player.name} collects the {self.name} from the {player.room.name}")
+        prompt(f"{player} collects the {self} from the {player.room}")
 
     def __str__(self):
         adjectives = ", ".join(self.adjectives)

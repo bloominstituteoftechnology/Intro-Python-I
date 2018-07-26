@@ -2,8 +2,14 @@ import os
 
 def turn(player):
     clear()
-    print(f"{player} is in the {player.room.name}\n")
-    print(player.room)
+    print(f"{player} is in the {player.room}\n")
+
+    # Nothing can be seen if the room is dark and player has no light source
+    if not player.can_see():
+        print("It's too dark to see anything!")
+        return
+
+    print(player.room.describe())
     if player.room.items:    
         item_text = tabulate(
             "\nYou see the following in this room:\n",
@@ -14,10 +20,10 @@ def turn(player):
 def inventory(player):
     if player.items:
         inventory_text = tabulate(
-            f"{player.name} is carrying:\n",
+            f"{player} is carrying:\n",
             *map(str, player.items))
     else:
-        inventory_text = f"{player.name} is not carrying anything."
+        inventory_text = f"{player} is not carrying anything."
 
     prompt(inventory_text)
 
@@ -37,7 +43,7 @@ def help():
 
 def score(player):
     score_text = tabulate(
-        f"{player.name}'s score:\n",
+        f"{player}'s score:\n",
         f"Items: {player.score['items']}",
         f"Monsters: {player.score['monsters']}",
         f"Total: {player.get_score()}")
