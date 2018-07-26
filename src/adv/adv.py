@@ -127,6 +127,7 @@ while not quit:
 			if verb == "get" or verb == "take":
 				for index, item in enumerate(current.items):
 					if item.name == noun:
+						item.on_take(player, item.name)
 						# remove item from room
 						current.items.remove(current.items[index])
 						# add item to player inventory
