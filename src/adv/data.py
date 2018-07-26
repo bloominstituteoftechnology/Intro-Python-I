@@ -38,5 +38,20 @@ items = {
     "key": {
        "name": "Key",
        "description": "This could open something"
+    },
+    "treasure0": {
+        "name": "Treasure",
+        "description": "10 gold coins!",
+        "value": 10
+    },
+    "treasure1": {
+        "name": "Treasure",
+        "description": "5 gold coins!",
+        "value": 5
+    },
+    "treasure2": {
+        "name": "Treasure",
+        "description": "15 gold coins!",
+        "value": 15
     }
 }

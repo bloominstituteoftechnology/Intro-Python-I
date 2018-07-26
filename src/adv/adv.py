@@ -1,7 +1,7 @@
 from os import system
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 from data import rooms, items
 
 outside  = Room(rooms["outside"]["name"], rooms["outside"]["description"])
@@ -13,6 +13,10 @@ treasure = Room(rooms["treasure"]["name"], rooms["treasure"]["description"])
 key        = Item(items["key"]["name"], items["key"]["description"])
 mirror     = Item(items["mirror"]["name"], items["mirror"]["description"])
 flashlight = Item(items["flashlight"]["name"], items["flashlight"]["description"])
+
+treasureX = Treasure(items["treasure0"]["name"], items["treasure0"]["description"], items["treasure0"]["value"])
+treasureY = Treasure(items["treasure1"]["name"], items["treasure1"]["description"], items["treasure1"]["value"])
+treasureZ = Treasure(items["treasure2"]["name"], items["treasure2"]["description"], items["treasure1"]["value"])
 
 
 # Link rooms together
@@ -31,9 +35,15 @@ treasure.s_to = narrow
 
 
 # Add items to rooms
-outside.addItem(mirror)
-foyer.addItem(flashlight)
+narrow.addItem(treasureX)
 narrow.addItem(key)
+
+outside.addItem(treasureY)
+outside.addItem(mirror)
+
+foyer.addItem(flashlight)
+
+overlook.addItem(treasureZ)
 
 
 # Make a new player object that is currently in the 'outside' room.
@@ -125,6 +135,11 @@ def parser(command):
 
       if availableItem is None:
          print("\nItem is not available in this room.\nPlease choose a valid item.")
+
+      elif isinstance(availableItem, Treasure):
+         global score
+         score += availableItem.value
+         player.currentRoom.removeItem(availableItem)
 
       else:
          commands[action](availableItem)
