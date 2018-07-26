@@ -1,25 +1,31 @@
 from os import system
 from room import Room
 from player import Player
-from item import Item, Treasure
+from item import Item, Treasure, LightSource
 from data import rooms, items
+
+score = 0
+
+# INITIALIZE DATA
 
 outside  = Room(rooms["outside"]["name"], rooms["outside"]["description"])
 foyer    = Room(rooms["foyer"]["name"], rooms["foyer"]["description"])
 overlook = Room(rooms["overlook"]["name"], rooms["overlook"]["description"])
-narrow   = Room(rooms["narrow"]["name"], rooms["narrow"]["description"])
+narrow   = Room(rooms["narrow"]["name"], rooms["narrow"]["description"], False) # no light
 treasure = Room(rooms["treasure"]["name"], rooms["treasure"]["description"])
-
-key        = Item(items["key"]["name"], items["key"]["description"])
-mirror     = Item(items["mirror"]["name"], items["mirror"]["description"])
-flashlight = Item(items["flashlight"]["name"], items["flashlight"]["description"])
 
 treasureX = Treasure(items["treasure0"]["name"], items["treasure0"]["description"], items["treasure0"]["value"])
 treasureY = Treasure(items["treasure1"]["name"], items["treasure1"]["description"], items["treasure1"]["value"])
 treasureZ = Treasure(items["treasure2"]["name"], items["treasure2"]["description"], items["treasure1"]["value"])
 
+key        = Item(items["key"]["name"], items["key"]["description"])
+mirror     = Item(items["mirror"]["name"], items["mirror"]["description"])
+
+flashlight = LightSource(items["flashlight"]["name"], items["flashlight"]["description"])
+
 
 # Link rooms together
+
 outside.n_to = foyer
 
 foyer.s_to = outside
@@ -35,6 +41,7 @@ treasure.s_to = narrow
 
 
 # Add items to rooms
+
 narrow.addItem(treasureX)
 narrow.addItem(key)
 
@@ -46,9 +53,7 @@ foyer.addItem(flashlight)
 overlook.addItem(treasureZ)
 
 
-# Make a new player object that is currently in the 'outside' room.
-score = 0
-
+# Basic user commands
 def print_user_controls():
    global score
    print("\n ~ Directions: move [n, s, e, w]")
@@ -56,6 +61,8 @@ def print_user_controls():
    print(" ~ Quit: q or quit\n")
    print("Score: %d\n" % score)
 
+
+# Make a new player object that is currently in the 'outside' room.
 
 system("cls" or "clear")
 
@@ -68,32 +75,8 @@ player = Player(username, outside)
 print("\nWelcome, %s!" % (player.playerName))
 
 
-# PRINT ITEMS IN THE ROOM AND ITEMS IN INVENTORY
 
-def printItems():
-   playerInventory = player.inventory
-   availableItems  = player.currentRoom.items
-
-   handleRoomChange(player.currentRoom)
-
-   print("Items in this room:")
-
-   if len(availableItems) is 0:
-      print("   None")
-   else:
-      for item in availableItems:
-         print("   %s - %s" % (item.name, item.description))
-
-   print("\nInventory:")
-
-   if len(playerInventory) is 0:
-      print("   None")
-   else:
-      for item in playerInventory:
-         print("   %s - %s" % (item.name, item.description))    
-
-
-
+# CHANGE CURRENT ROOM
 def handleRoomChange(newRoom):
    if newRoom is None: 
       print("\nThere is no door to go to in that direction.")
@@ -101,6 +84,7 @@ def handleRoomChange(newRoom):
       player.setCurrentRoom(newRoom)
       print("\nYou enter the %s\n" % (player.currentRoom.name))
       print("%s\n" % player.currentRoom.description)
+      player.currentRoom.on_enter()
 
 
 
@@ -115,6 +99,7 @@ def parser(command):
 
    commands = {
       "get": player.getItem,
+      "take": player.getItem,
       "drop": player.dropItem,
       "use": unlock_treasure
    }
@@ -147,7 +132,6 @@ def parser(command):
          
 
 # TREASURE REACTION
-
 def unlock_treasure(item):
    global game_over
 
@@ -178,16 +162,21 @@ def unlock_treasure(item):
 game_over = False
 
 while game_over is not True:
+   # CLEAR THE TERMINAL
    system("cls" or "clear")
 
+   # PRINT BASIC COMMANDS, ITEMS IN THE ROOM, AND ITEMS IN INVENTORY
    print_user_controls()
-   printItems()
+   handleRoomChange(player.currentRoom)
+   player.print_inventory()
 
+   # AWAIT COMMAND
    command = input("\nCommand> ")
 
+   # END GAME CONDITIONAL
    if command in ["q", "quit"]:
       print("\nThanks for playing!")
       break
 
-   else:
-      parser(command)
+   # PARSE COMMAND
+   parser(command)
