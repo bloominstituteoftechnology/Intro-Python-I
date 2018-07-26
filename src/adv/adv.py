@@ -144,49 +144,61 @@ for key, value in room.iteritems():
                 print "     Weapon choice:", key
                 print "         Weapon description:", value
         print "\n"
-        
-            # print(each)
-        # print 'Description of Item', value.description_item
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
+   
 direction_input = 'hey'
+def starter(direction_input):
+        print(" Please enter directions: 'e' east, 'w' west, 'n' north,' s' south ")
+    # print(" Want to change weapon inventory? Enter 'weapon' ")
+        print(" Type 'get' + 'item name' or 'take' + 'item name' to add to inventory")
+        print(" To quit, enter 'q' ")
+        if direction_input.split()[0] == 'i' or direction_input.split()[0] == 'inventory':
+            direction_input = raw_input(
+        "enter choice:")
+        else:
+
+            # print(direction_input.split()[0] == 'i')
+            print "Type 'i' or 'inventory' to get current Player INVENTORY", direction_input.split()[0],direction_input.split()[0]
+            direction_input = raw_input(
+        "enter choice:")
+        if direction_input == 'n' or dir == 's' or direction_input == 'e' or direction_input == 'w':
+            direction_input = str(direction_input) + '_to'
+        else:
+            direction_input = direction_input
+        return direction_input
 while direction_input != 'q':
     tmp = 'default'
     clear = "\n" * 100
+    # def starter(hey):
     print(" Please enter directions: 'e' east, 'w' west, 'n' north,' s' south ")
     # print(" Want to change weapon inventory? Enter 'weapon' ")
     print(" Type 'get' + 'item name' or 'take' + 'item name' to add to inventory")
+    print "Type 'i' or 'inventory' to get current Player INVENTORY"
     print(" To quit, enter 'q' ")
     direction_input = raw_input(
-    "enter choice:")
+        "enter choice:")
+
     if direction_input == "q":
         exit(1)
-    
-    # print(direction_input.split(' '))
+ 
     out_ind = 0
     ind = 0
+    #HANDLES 'get' or 'take'
     if len(direction_input.split(' ')) == 2 and (direction_input.split()[0] == 'get' or direction_input.split()[0] == 'take'):
         cmd = direction_input.split()[0]
         itm = direction_input.split()[1]
         for key, value in room.iteritems():
             if key == new_player.room_location:
-                # print 'Current Room: ', value.room_name
-                # print 'Description: ', value.room_story
+                
                 check = False
                 for each in value.name_item.name_item:
                     for key,value in each.iteritems():
                         if key == itm:
-                            new_player.weapon_inventory = new_player.weapon_inventory + [key]
-                            # print(room[new_player.room_location].name_item.name_item[ind][key])
+                            new_player.weapon_inventory = new_player.weapon_inventory + [{key: value}]
                             room[new_player.room_location].name_item.name_item.pop(ind)
-                            # print(room[new_player.room_location].name_item.name_item[ind][key])
-                            # exit(1)
+                            
                             print(clear)
                             check = True
                             
-                            # print "     Weapon choice:", key
-                            # print "     Weapon description:", value
-        # print("Your new weapon: ", new_player.weapon_choice)
                             print("These weapons are in your inventory:")
                             i = 0
                             for each in new_player.weapon_inventory:
@@ -196,76 +208,74 @@ while direction_input != 'q':
                             choose_weapon = input("Weapon choice: ")
                             new_player.weapon_choice = new_player.weapon_inventory[choose_weapon]
                             print(clear)
-                            print "Player weapon of choice: ", new_player.weapon_choice
-                            direction_input = raw_input(
-                                "\n\n\n     Please enter directions: e east, w west, n north, s south, to quit q \n")
-                            if direction_input == "q":
-                                exit(1)
-                            direction_input = str(direction_input) + '_to'
+                            direction_input = starter(direction_input)
+                            
                         ind += 1
                 if check == False:
                     print(clear) 
                     print "The ITEM ", itm, "is NOT AVAILABLE for this ROOM"
             out_ind += 1
+    
+                            
+    #Handles 'drop'
+    elif len(direction_input.split(' ')) == 2 and (direction_input.split()[0] == 'drop' ):
+        cmd = direction_input.split()[0]
+        itm = direction_input.split()[1]
+        print "Drop, itm", itm
+        for each in new_player.weapon_inventory:
+            for key, value in each.iteritems():
+                if key == itm:
+                    
+                    leet = new_player.weapon_inventory.pop(i - 1)
+                    room[new_player.room_location].name_item.name_item.append(leet)
+
+            direction_input = starter(direction_input)
+           
+            i += 1
+      
     elif len(direction_input.split(' ')) == 2 and (direction_input.split()[0] != 'get' or direction_input.split()[0] != 'take'):
         print(clear)
         print "Command ", direction_input.split()[0], " is INVALID"
         print "\n"
-    #     print(" Please enter directions: 'e' east, 'w' west, 'n' north,' s' south ")
-    # # print(" Want to change weapon inventory? Enter 'weapon' ")
-    #     print(" Type 'get' + 'item name' or 'take' + 'item name' to add to inventory")
-    #     print(" To quit, enter 'q' ")
-    #     direction_input = raw_input(
-    #         "enter choice:")
+    
         if direction_input == "q":
             exit(1)
     else:
-        direction_input = str(direction_input) + '_to'
+        if direction_input == 'n' or dir == 's' or direction_input == 'e' or direction_input == 'w':
+            direction_input = str(direction_input) + '_to'
+        else:
+            direction_input = direction_input
+        
 
-                        
-    #     direction_input = raw_input(
-    # "\n\n\n     Please enter directions: e east, w west, n north, s south, to quit q \n")
-    #     if direction_input == "q":
-    #         exit(1)
-                        
-                        
-    # if direction_input == "weapon":
-    #     print(clear)
-    #     i = 0
-    #     tmp_weapons = []
-    #     for key, value in room.iteritems():
-    # # print(value, key)
-    #         if key == new_player.room_location:
-    #             print 'Current Room: ', value.room_name
-    #             print 'Description: ', value.room_story
-    #             for each in value.name_item.name_item:
-    #                 for key,value in each.iteritems():
-    #                     print "     Weapon choice:", key, "weapon number: ", i
-    #                     tmp_weapons.append(key)
-    #                     print "         Weapon description:", value
-    #                     print "\n"
-    #                     i += 1
-    #     print("\n Choose a weapon from these, specify the weapon number \n")
-    #     hold_weapon = input("What's your choice?")
-    #     new_player.weapon_inventory = new_player.weapon_inventory + [tmp_weapons[hold_weapon]]
-    #     print(clear)
-    #     # print("Your new weapon: ", new_player.weapon_choice)
-    #     print("These weapons are in your inventory:")
-    #     i = 0
-    #     for each in new_player.weapon_inventory:
-    #         print "Weapon: ", each, " weapon number: ", i
-    #         i += 1
-    #     # print("Choose your weapon to use: ")
-    #     choose_weapon = input("Weapon choice: ")
-    #     new_player.weapon_choice = new_player.weapon_inventory[choose_weapon]
-    #     print(clear)
-    #     print "Player weapon of choice: ", new_player.weapon_choice
-    #     direction_input = raw_input(
-    # "\n\n\n     Please enter directions: e east, w west, n north, s south, to quit q \n")
-    #     if direction_input == "q":
-    #         exit(1)
-    # direction_input = str(direction_input) + '_to'
-# print(direction_input)
+    if (direction_input.split()[0] == 'i' or direction_input.split()[0] == 'inventory' ):
+        i = 0
+        for key, value in room.iteritems():
+            if key == new_player.room_location:
+                print clear
+                for key, value in room.iteritems():
+                    if key == new_player.room_location:
+                        print 'Current Room: ', value.room_name
+                        print 'Description: ', value.room_story
+                        print "\n"
+                        print("     Weapon Choices For This ROOM:")
+                        print "\n"
+                        for each in value.name_item.name_item:
+                            for key,value in each.iteritems():
+                                print "     Weapon name:", key
+                                print "     DESCRIPTION:", value
+                                # print "\n"
+                        print "\n"
+                        print "\n"
+        print('Current Player Inventory:')
+        for each in new_player.weapon_inventory:
+            print "Weapon: ", each, " weapon number: ", i
+            i += 1
+        print "\n"
+        if i == 0:
+            print("No WEAPONS in INVENTORY")
+            print "\n"
+        # exit(1)
+        direction_input = starter(direction_input)
     new_direction = "start"
     if direction_input == "n_to":
         try:
@@ -303,7 +313,10 @@ while direction_input != 'q':
         try:
             tmp = new_player.weapon_choice
             tmp_inv = new_player.weapon_inventory
-            new_direction = room[(new_player.room_location)].w_to
+            if direction_input == "w_to":
+                new_direction = room[(new_player.room_location)].w_to
+            else:
+               new_direction = room[(new_player.room_location)].direction_input 
             
         except AttributeError, message:
             new_direction = "fail"
@@ -311,10 +324,16 @@ while direction_input != 'q':
             # exit(1)
     # print(new_direction.room_name)
     if new_direction == "fail":
-        print "\n   Direction ", direction_input, "IS INVALID, try a different direction \n"
+        tstr = direction_input.split()
+        if len(tstr) == 2:
+            print "\n   Entry option:", tstr[0], ' with and or argument:', tstr[1] ,"IS INVALID \n"
+        else:
+            print "\n   Entry option:", tstr[0], "IS INVALID \n"
+        
         if tmp != None:
                 new_player.weapon_choice = tmp
                 new_player.weapon_inventory = tmp_inv
+        # direction_input = starter()
         for key, value in room.iteritems():
     # print(value, key)
             if key == new_player.room_location:
@@ -354,15 +373,7 @@ while direction_input != 'q':
                                 # print "\n"
                         print "\n"
                         print "\n"
-                # print "\n Success, Direction IS VALID  \n"
-                        # print '     Current Room: ', value.room_name
-                        # print '     Room Description: ', value.room_story
-                        # print "     Current User Weapon: ", new_player.weapon_choice
-                        # print "\n"
-                        # print "\n"
-                # break
-    # print(new_player.room_location)
-        # break
+               
 
 # exec("%s = %d" % (direction_input,2))
 # print(type(s_to) )
