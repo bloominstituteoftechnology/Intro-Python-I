@@ -30,6 +30,7 @@ rooms['narrow'].w_to = 'foyer'
 rooms['narrow'].n_to = 'treasure'
 rooms['treasure'].s_to = 'narrow'
 
+rooms['treasure'].items.append('treasure')
 #
 # Main
 #
@@ -37,14 +38,10 @@ rooms['treasure'].s_to = 'narrow'
 # Check to see if the user can move in a direction
 def tryDirection(direction, currentRoom):
     key = direction + "_to"
-    print("current roooooom")
-    print(currentRoom)
     destination = getattr(rooms[currentRoom], key)
     if destination == None:
         print("You can't go that way!")
         return currentRoom
-    print("Destination:")
-    print(destination)
     return destination
 
 # Make a new player object that is currently in the 'outside' room.
@@ -63,10 +60,12 @@ done = False
 
 while not done:
     currentRoom = getattr(player, 'currentRoom')
-    print("curent room:")
-    print(currentRoom, )
-    print("\n{}\n".format(getattr(rooms[currentRoom], 'name')))
-    print("\n{}\n".format(getattr(rooms[currentRoom], 'description')))
+    print("\n{}".format(getattr(rooms[currentRoom], 'name')))
+    print("{}".format(getattr(rooms[currentRoom], 'description')))
+    if (getattr(rooms[currentRoom], 'items') != []):
+        print("Here, you see:")
+    for item in getattr(rooms[currentRoom], 'items'):
+        print("{}".format(item))
     command = input("\n> ").strip().lower()
     if (command == 'q') or (command == 'quit'):
         done = True
