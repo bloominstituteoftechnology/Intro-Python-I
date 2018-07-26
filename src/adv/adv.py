@@ -1,27 +1,36 @@
 from room import Room
 from player import Player
+from item import Item
 
 import textwrap
 
 # Declare all the rooms
 
 room = {
-    "outside": Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    "outside": Room(
+        "Outside Cave Entrance",
+        "North of you, the cave mount beckons",
+        Item("mirror", "Seems to have fallen from it's frame."),
+    ),
     "foyer": Room(
         "Foyer",
         """Dim light filters in from the south. Dusty passages run north and east.""",
+        [],
     ),
     "overlook": Room(
         "Grand Overlook",
         """A steep cliff appears before you, falling into the darkness.Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
+        [],
     ),
     "narrow": Room(
         "Narrow Passage",
         """The narrow passage bends here from west to north. The smell of gold permeates the air.""",
+        ["key"],
     ),
     "treasure": Room(
         "Treasure Chamber",
         """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.""",
+        [],
     ),
 }
 
@@ -58,9 +67,11 @@ done = False
 while not done:
     room_name = p1.current_room.name
     wrapped_desc = textwrap.fill(p1.current_room.description)
+    visible_item = p1.current_room.items
 
     print("\n{}".format(room_name))
     print("{}".format(wrapped_desc))
+    print("You find a {}".format(visible_item))
 
     user_input = input("> ")
 

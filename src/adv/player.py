@@ -5,6 +5,3 @@ class Player:
         self.name = name
         self.current_room = current_room
         self.hp = 100
-
-    def move(self, direction):
-        self
