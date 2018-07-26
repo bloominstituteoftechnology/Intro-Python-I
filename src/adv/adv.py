@@ -1,5 +1,5 @@
 #Standard Library
-import sys
+# import sys
 import re
 #Custom Modules
 from room import Room
@@ -13,9 +13,10 @@ playing = True
 
 #________FUNCTIONS________
 def playerAction(action):
-    try:  # check for N, S, E, or W, then move the player that direction
+    try:  
         global player
         global playing
+        # check for N, S, E, or W, then move the player that direction
         if re.match(r'[n|N]', action):
             player.loc = player.loc.n_to
         elif re.match(r'[s|S]', action):
@@ -24,32 +25,36 @@ def playerAction(action):
             player.loc = player.loc.e_to
         elif re.match(r'[w|W]', action):
             player.loc = player.loc.w_to
-        elif re.match(r'[i|I]', action):
+        elif re.match(r'[i|I]', action): # Print the inventory
             items = ''
             for item in player.playerInv:
                 items += item.name + ' '
             print("\nInventory: " + items)
-        # If the user enters "q", quit the game.
-        elif re.match(r'[q|Q]', action):
+        elif re.match(r'[q|Q]', action):  # Quit the game
             playing = False
-            return
     except:  # if a bad command was given, let the player know
         print("You have entered an unknown action.\n\n")
         print(div)
     return
-    
 
-# Main
-#
-# Make a new player object that is currently in the 'outside' room.
-player = Player(rooms['outside'])
-# Write a loop that:
+print("""
+Use commands to say where you want to go, and what you want to do.
+Keep your commands limited to 1 or 2 basic words.  "North" "Go North" "Take Rock" etc...
+""")
+
+# ________CREATE PLAYER________
+player = Player(rooms['cavemouth'])
+
+# ________GAME LOOP________
 while playing is True:
-# * Prints the current room name
-    print(player.loc.name)
-# * Prints the current description (the textwrap module might be useful here).
-    print(player.loc.description)
-    if len(player.loc.roomInv) > 0:
+    print(player.loc.name) # Print the room name
+
+    if player.loc.itemUsed == False:
+        print(player.loc.description) # Print the room description before requiredItem is used
+    else:
+        print(player.loc.nextDesc) # Print description after requiredItem is used
+
+    if len(player.loc.roomInv) > 0: # Print room's inventory
         items = ''
         for item in player.loc.roomInv:
             items += item.name + ' '
@@ -98,5 +103,7 @@ while playing is True:
                     if confirmItem == False: # if the item was never dropped, tell them they don't have it.
                         print('\nYou do not have one of those.')
                 print(div)
+            if re.match(r'[u|U][s|S][e|E]', action[0]):
+                print('USE ITEM')
         except:
             print("\nYou have entered an unknown action.\n")

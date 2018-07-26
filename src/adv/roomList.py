@@ -3,8 +3,8 @@ from item import Item
 import itemList
 # Declare all the rooms
 rooms = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'cavemouth':  Room("Outside Cave Entrance",
+                     "North of you, a cave mouth beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -24,8 +24,8 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
-rooms['outside'].n_to = rooms['foyer']
-rooms['foyer'].s_to = rooms['outside']
+rooms['cavemouth'].n_to = rooms['foyer']
+rooms['foyer'].s_to = rooms['cavemouth']
 rooms['foyer'].n_to = rooms['overlook']
 rooms['foyer'].e_to = rooms['narrow']
 rooms['overlook'].s_to = rooms['foyer']
@@ -34,4 +34,4 @@ rooms['narrow'].n_to = rooms['treasure']
 rooms['treasure'].s_to = rooms['narrow']
 
 # Beginning world items
-rooms['outside'].roomInv = [itemList.rock, itemList.stick]
+rooms['cavemouth'].roomInv = [itemList.rock, itemList.stick]
