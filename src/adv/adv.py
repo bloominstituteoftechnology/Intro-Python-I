@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 from item import Item
 from treasure import Treasure
+from lightsource import LightSource
 import printing
 import commandparser as parser
 
@@ -15,12 +16,15 @@ items = {
         "Opening it reveals a faded photograph of two lovers."),
     'dagger': Item("dagger",
         ["thin"],
-        "It looks like it could be used to stab somebody.")
+        "It looks like it could be used to stab somebody."),
+    'lantern': LightSource("lantern",
+        ["spooky"],
+        "It flickers gently as if spurred by an unfelt breeze.")
 }
 
 # Declare the rooms
 rooms = {
-    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons", True),
+    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons", True, [items['lantern']]),
     'foyer':    Room("Foyer", "Dim light filters in from the south. Dusty passages run north and east.", True, [items['dagger']]),
     'overlook': Room("Grand Overlook", "A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.", True, [items['locket']]),
     'narrow':   Room("Narrow Passage", "The narrow passage bends here from west to north. The smell of gold permeates the air.", False),
