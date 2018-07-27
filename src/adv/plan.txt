@@ -8,28 +8,23 @@ LivingBeing (room, name, kind, inventory, hp) [move, attack]
     > Animal 
     > Monster
  
-InanimateObject
-  > Item (name, description, use)
-    > Consumable [expend]
-      > Food
-      > Potion
-      > Poison
-      > Craft Material
-    > Equippable (slot)
-      > Armor (protection)
-      > Weapon (power)   
-      > Accessory (effect)
-      > Magic Item (charges)
-      > Light Source (lighting)
-    > Container (capacity{current, max}, inventory) [isFull]
-      > Equippable <Multi Inheritance>
-        > Backpack
-        > Satchel
-        > Pouch
-      > Chest
-      > Barrel
-      > Compartment
-      > Furniture
+Item(name, description)
+  > Consumable [expend] (quantity, kind(food | potion | poison | craft))
+  > Equippable
+    > Armor (protection)
+    > Weapon (power)   
+    > Accessory (effect)
+    > Magic Item (charges)
+    > Light Source (lighting)
+  > Container (capacity{current, max}, inventory) [isFull]
+    > Equippable <Multi Inheritance>
+      > Backpack
+      > Satchel
+      > Pouch
+    > Chest
+    > Barrel
+    > Compartment
+    > Furniture
     
 
 Room (name, description, details, use_targets, lighting, inventory)
