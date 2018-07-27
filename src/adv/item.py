@@ -29,5 +29,8 @@ class Treasure:
     def __repr__(self):
         return self.name
 
-    def onTake(self):
+    def __onTake__(self):
         print("Treasure value has been added to score!")
+
+    def __onDrop__(self):
+        print("Treasure value has been removed from score!")

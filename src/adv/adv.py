@@ -193,5 +193,6 @@ while not done:
                 #remove from the player, add to the room. 
                 print(candidates)
                 print(candidates[0])
+                main_player.score -= treasures[0].value
                 main_player.contains.remove(candidates[0])
                 current_room.contains.append(candidates[0])
