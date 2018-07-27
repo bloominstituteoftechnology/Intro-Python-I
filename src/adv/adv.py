@@ -133,38 +133,49 @@ while not done:
                 #if it does not, you cant go that way 
                 print("you cant go that way")
 
+        #check inventory
+        # is an i or inventory inputted by player?
         elif command[0] in ["i", "inventory"]:
+            #if so, do they have anything in inventory?
             if len(main_player.contains) > 0:
+                #if so, print it. 
                 print(f'{main_player.name} is currently carrying: {main_player.contains}')
             else:
+                #if not, remind them.
                 print("You're not carrying anything")
 
         else:
                 print("Invalid command. Move with n, s, e, w")
 
     elif len(command) == 2:
-
+        #desctructuring. Command will take in a verb, and an object
         verb, obj = command
-
+        # user needs to use these verbs
         if verb in ['get', 'take']:
+            #te user can choose from a list of what is in the room
             candidates = [item for item in current_room.contains if item.name == obj]
 
+            #if the room is empty, tell them.
             if len(candidates) == 0:
                 print("You dont see that item")
 
             else:
                 print(candidates)
                 print(candidates[0])
+                #add the item to the players inventpory, and remove from room. 
                 main_player.contains.append(candidates[0])
                 current_room.contains.remove(candidates[0])
-
+        #if the user types drop, prepare to check for item, and remove from player
+        #then add to the rooms item list. 
         if verb == 'drop':
             candidates = [item for item in main_player.contains if item.name == obj]
 
+            #if they try to drop something they dont have, tell them.
             if len(candidates) == 0:
                 print("You're not carrying that item")
 
             else:
+                #remove from the player, add to the room. 
                 print(candidates)
                 print(candidates[0])
                 main_player.contains.remove(candidates[0])
