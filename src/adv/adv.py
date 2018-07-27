@@ -72,6 +72,7 @@ while not done:
             print(i.name + " :"  + i.description)
 
     direction = input('Please enter the direction you would like to go: ').strip().lower()
+    direction = direction.split(' ')
 
     # Single word commands
 
@@ -89,16 +90,16 @@ while not done:
         elif direction[0] in ["i", 'inventory']:
             if len(player1.inventory) > 0:
                 print("\n Here is your inventory travler: ")
-                for i in player.inventory:
-                    print ("  " + i.description)
+                for i in player1.inventory:
+                    print (i.name + ": " + i.description)
             else:
                 print("You currently are holding nothing")
         else: 
             print('I do not understand that')
     elif len(direction) == 2:
 
-        ver, obj = direction
-        if verb in ["get", 'take', 'grab']:
+        verb, obj = direction
+        if verb in ['get', 'take', 'grab']:
             candidates = [item for item in currentRoom.itemslist if item.name == obj]
 
             if len(candidates) == 0:
@@ -106,7 +107,7 @@ while not done:
             else:
                 player1.inventory.append(candidates[0])
                 currentRoom.itemslist.remove(candidates[0])
-        elif ver == 'drop':
+        elif verb == 'drop':
             candidates = [item for item in player1.inventory if item.name == obj]
 
             if len(candidates) == 0:
@@ -117,7 +118,7 @@ while not done:
         else:
             print("I don't understand that")
     else:
-        print("I don't understand that")
+        print("I don't understand that, what did you want to do? " + str(direction))
 
 # Write a loop that:
 #
