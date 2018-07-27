@@ -137,7 +137,7 @@ while not done:
                 print("you cant go that way")
 
         elif command[0] == 'score':
-            print(total_score)
+            print(f'{main_player.name} has a current score of: {main_player.score}')
 
         #check inventory
         # is an i or inventory inputted by player?

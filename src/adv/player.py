@@ -8,3 +8,4 @@ class Player:
         self.name = playerName
 
         self.contains = []
+        self.score = 0 #add score to player class
