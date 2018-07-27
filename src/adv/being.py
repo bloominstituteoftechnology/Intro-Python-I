@@ -1,10 +1,18 @@
-class LivingBeing:
-  def __init__(self, room, name, kind, hp, inventory):
+from room import room
+
+class Being:
+  def __init__(self, room, name, kind, hp, inventory = []):
     self.room = room
     self.name = name
     self.kind = kind
     self.hp = hp
-    self.inventory = []
+    self.inventory = inventory
+  
+  def __str__(self):
+    return self.name
+
+  def __repr__(self):
+    return self.name
   
   def move(self, direction):
     # Account for variation
@@ -33,12 +41,13 @@ class LivingBeing:
     pass
 
 
-class Humanoid(LivingBeing):
+class Humanoid(Being):
   def __init__(self, room, name, kind, hp, inventory):
     super().__init__(room, name, kind, hp, inventory)
     self.equip_slots = {
       'backpack': None,
       'satchel': None,
+      'pouch': None,
       'armor': None,
       'weapon': None, # Natural weapon if none equipped
       'accessory': None,
@@ -61,8 +70,8 @@ class Humanoid(LivingBeing):
     pass
   
   def pickup(self, item):
-    if item in self.room.items:
-      self.room.items.remove(item)
+    if item in self.room.inventory:
+      self.room.inventory.remove(item)
       self.inventory.append(item)
     else:
       print('\nItem invalid\n')
@@ -70,7 +79,7 @@ class Humanoid(LivingBeing):
   def drop(self, item):
     if item in self.inventory:
       self.inventory.remove(item)
-      self.room.items.append(item)
+      self.room.inventory.append(item)
     else:
       print('\nItem invalid\n')
   
@@ -91,7 +100,7 @@ class Player(Humanoid):
 
 
 class NPC(Humanoid):
-  def __init__(self, room, name, kind, hp, inventory, action_loop, aggressive, service, dialogue):
+  def __init__(self, room, name, kind, hp, inventory, action_loop = None, aggressive = False, service = None, dialogue = None):
     super().__init__(room, name, kind, hp, inventory)
     self.action_loop = action_loop
     self.aggressive = aggressive
@@ -99,18 +108,18 @@ class NPC(Humanoid):
     self.dialogue = dialogue
 
 
-class NonHumanoid(LivingBeing):
-  def __init__(self, room, name, kind, hp, inventory, action_loop, aggressive):
+class NonHumanoid(Being):
+  def __init__(self, room, name, kind, hp, inventory, action_loop = None, aggressive = False):
     super().__init__(room, name, kind, hp, inventory)
     self.action_loop = action_loop
     self.aggressive = aggressive
 
 class Animal(NonHumanoid):
-  def __init__(self, room, name, kind, hp, inventory, action_loop, aggressive):
+  def __init__(self, room, name, kind, hp, inventory, action_loop = None, aggressive = False):
     super().__init__(room, name, kind, hp, inventory, action_loop, aggressive)
   
 class Monster(NonHumanoid):
-  def __init__(self, room, name, kind, hp, inventory, action_loop, aggressive):
+  def __init__(self, room, name, kind, hp, inventory, action_loop = None, aggressive = False):
     super().__init__(room, name, kind, hp, inventory, action_loop, aggressive)
 
 
@@ -125,7 +134,5 @@ class Monster(NonHumanoid):
 
 
 # Make a new player that is currently in the 'outside' room.
+player = Player(room['overlook'], 'Devon', 'human', 10, ['sword of awesomeness'])
 
-# player = Player('Devon', room['overlook'])
-    
-    
