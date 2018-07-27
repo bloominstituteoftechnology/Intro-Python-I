@@ -1,0 +1,76 @@
+'''
+
+                            Online Python Compiler.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
+#module that allows us to select a random number
+import random
+
+#dictionary
+options = { {1, "rock"},
+{2, "paper"},
+{3, "scissors"} }
+
+#load previous users from file into list
+#TO-DO
+text_file = open("results.txt", "rw")
+lines = text_file.read().split(',')
+print lines
+print len(lines)
+text_file.close()
+
+#welcome message
+print("Welcome to Rock, Paper, Scissors!")
+name = ("Please enter your name.")
+
+#initialize user, computer choices
+print("Please choose to continue...")
+computer =  random.randint(1,3)
+choice = int( input("[1] Rock    [2] Paper   [3] Scissors   [9] Quit Game\n") )
+print( choice )
+
+#game will continue as long as user does not chose 9
+while not choice == 9:
+    #user entered invalid option
+    if not(( choice == 1 ) or ( choice == 2 ) or ( choice == 3 )):
+        print( "Invalid selection. Choose again.")
+        choice = input("[1] Rock    [2] Paper   [3] Scissors   [9] Quit Game\n")
+    
+    #user chose ROCK
+    elif choice == 1:
+        if( computer == 1 ):
+            print( "Computer chose rock. Tie!" )
+        elif( computer == 2 ):
+            print( "Computer chose paper. You lose :( ")
+        else:
+            print( "Computer chose scissors. You win :)" )
+    
+    #user chose PAPER
+    elif choice == 2:
+        if( computer == 1 ):
+            print( "Computer chose rock. You  win :)" )
+        elif( computer == 2 ):
+            print( "Computer chose paper. Tie! ")
+        else:
+            print( "Computer chose scissors. You lose :(" )
+    
+    #user chose SCISSORS
+    else:
+        if( computer == 1 ):
+            print( "Computer chose rock. You  lose :(" )
+        elif( computer == 2 ):
+            print( "Computer chose paper. You win :) ")
+        else:
+            print( "Computer chose scissors. Tie! " )
+    print("\nPlease choose to continue...")
+    
+    #prompt user to make another selection
+    computer =  random.randint(1, 3)
+    choice = input("[1] Rock    [2] Paper   [3] Scissors   [9] Quit Game\n")
+    
+
+#implement ??? as a function
+#TO-DO
+
