@@ -25,7 +25,7 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. But after some searching you find a key... """, False),
 
     'secret': Room("Secret Room", """With all of your knowledge and sheer fortitude
-you have found a way into this room and found the treasure. Collect your prize! and go east to Exit this ride""", False)
+you have found a way into this room and found the treasure. And go east to exit this ride\n\nDon't forget to claim your prize!""", False)
 }
 
 # Create Items Dictionary
@@ -217,8 +217,23 @@ else:
         print("You have won the game!\n")
         if ([item for item in player.inventory if item.name == "Pebble"]):
             print("And you were also able to get the marvelous Pebble!\n")
-            
-if (player.score == 0):
-    print("You managed to leave the cave with: " + str(player.inventory) + "\n")
-else:
-    print("You managed to leave the cave with: " + str(player.inventory) + " and your score is: " + str(player.score) + "\n")
+            print("What's that? Your pebble is dirty...\n")
+            counter = 0
+            while (counter < 3):
+                surprise = input("Enter \"Clean\" to clean your pebble:\n\n")
+                if (surprise == "Clean"):
+                    # system('clear')
+                    counter += 1
+                    if (counter == 1):
+                        print('\nStill a little dirty\n')
+                    elif (counter == 2):
+                        print('\nTry once more\n')
+                    else:
+                        print('\nYou\'ve wiped off the dust to reveal that your marvelous Pebble is actually an\n\nInfinity Pebble!\n')
+                        print('******* You can now do anything you want *******\n')
+                        player.inventory.pop()
+                        player.inventory.append(Item("Infinity Pebble", "You can now do anything you want"))
+    if (player.score == 0):
+        print("You managed to leave the cave with: " + str(player.inventory) + "\n")
+    else:
+        print("You managed to leave the cave with: " + str(player.inventory) + " and your score is: " + str(player.score) + "\n")
