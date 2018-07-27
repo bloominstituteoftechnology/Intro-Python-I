@@ -101,7 +101,7 @@ while not done:
 
         # Help - show commands
         elif user_input[0] == "help":
-            helper = "\nCOMMANDS:\nn - north\ne - east\ns - south\nw - west\nq - quit"
+            helper = "\nCOMMANDS:\nn - north\ne - east\ns - south\nw - west\ni - inventory\nget <item> - pickup items\ndrop <item> - drop items\nq - quit"
             print(helper)
 
         # Quit
