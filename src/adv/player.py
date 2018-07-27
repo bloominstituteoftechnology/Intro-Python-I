@@ -52,12 +52,12 @@ class Player:
         return False
 
     def get(self, item_name):
-        if item_name in [i.name for i in self.current_room.items]:
+        # get index of item we're getting
+        index = next((i for i, item in enumerate(self.current_room.items) if item.name == item_name), -1)
+        if index != -1:
             if not self.light_source_exists():
                 print("Good luck finding that in the dark!")
                 return
-            # get index of item we're getting
-            index = next((i for i, item in enumerate(self.current_room.items) if item.name == item_name), -1)
 
             gotten_item = self.current_room.items.pop(index);
             self.inventory.append(gotten_item)
@@ -66,9 +66,9 @@ class Player:
             print(f'Error! {item_name} is not present in this room')
 
     def drop(self, item_name):
-        if item_name in [i.name for i in self.inventory]:
-            # get index of item we're dropping
-            index = next((i for i, item in enumerate(self.inventory) if item.name == item_name), -1)
+        # get index of item we're dropping
+        index = next((i for i, item in enumerate(self.inventory) if item.name == item_name), -1)
+        if index != -1:
             dropped_item = self.inventory.pop(index);
             self.current_room.items.append(dropped_item)
             dropped_item.on_drop()
