@@ -45,20 +45,20 @@ room['treasure'].s_to = room['narrow']
 #overlook room, lets append a new item to the contains list
 
 #outside
-room['outside'].contains.append(Item("wooden stick", "its but a tree branch."))
-room['outside'].contains.append(Item("box of matches", "maybe theres a fire place inside."))
+room['outside'].contains.append(Item("stick", "Stick. a simple tree branch."))
+room['outside'].contains.append(Item("matches", "Matches. an old book of matches."))
 #foyer
-room['foyer'].contains.append(Item("bowl of grapes", "need a snack?"))
-room['foyer'].contains.append(Item("bronze dagger", "letter opener, or stabby thing?"))
+room['foyer'].contains.append(Item("grapes", "Grapes.. need a snack?"))
+room['foyer'].contains.append(Item("dagger", "Dagger. letter opener, or stabby thing?"))
 #overlook
-room['overlook'].contains.append(Item("coin pouch", "A small leather pouch of silver coins. Good, but we're looking for bigger treasure."))
-room['overlook'].contains.append(Item("letter", "a letter, but not to us."))
-room['overlook'].contains.append(Item("leather bound book", "Seems to be a journal. Maybe the land owners."))
+room['overlook'].contains.append(Item("pouch", "Pouch. A small leather pouch of silver coins. Good, but we're looking for bigger treasure."))
+room['overlook'].contains.append(Item("letter", "Letter. A wax-sealed letter, but not addressed to us."))
+room['overlook'].contains.append(Item("book", "Book. A leather book. Seems to be a journal. Maybe the land owners."))
 #narrow
-room['narrow'].contains.append(Item("lantern", "oil lantern, has some light left. do I have matches?"))
-room['narrow'].contains.append(Item("Single gold coin", "A single coin, its spanish, we must be going the right way.."))
+room['narrow'].contains.append(Item("lantern", "Lantern. An oil lantern, has some light left. do I have matches?"))
+room['narrow'].contains.append(Item("coin", "Coin. A single coin, its spanish gold, we must be going the right way.."))
 #treasure
-room['treasure'].contains.append(Item("dusty note", "It reads: your next adventure is coming soon.."))
+room['treasure'].contains.append(Item("note", "Note. A small note. It reads: your next adventure is coming soon.."))
 
 #
 # Main
@@ -72,7 +72,7 @@ room['treasure'].contains.append(Item("dusty note", "It reads: your next adventu
 main_player = Player("Falcorn", room['outside'])
 
 #start game a line down 
-print("\n\n\n")
+print("\n")
 #player name should display at the top. 
 print("Your player: " + main_player.name + " defender of the alliance")
 
@@ -98,34 +98,74 @@ while not done:
 
     #print room contents
     if len(current_room.contains) > 0:
-        print(f'{main_player.name} also sees:')
+        print(f'in this area {main_player.name} sees:')
         #iterate through the contents in the current room
         #print them all out
         for i in current_room.contains:
-            print("  " + i.name)
+            print("  " + i.description)
         print()
 
 #ask for user input
 #this is going to take all the white space off
 #and convert the command to lowercase
     command = input("Command> ").strip().lower()
+
+    #second command
+    command = command.split(' ')
+
+    #check command
+    if len(command) == 1:
     
-    #set quit command
-    if command == 'q' or command == 'quit' or command == 'exit':
-        print('Your quest will continue some day. Thanks for playing!')
-        done = True
-        # these are our movement options
-    elif command in ["n", "s", "e", "w"]:
-        #sets the _to on each command. 
-        dirAttr = command + "_to"
+        #set quit command
+        if command[0] == 'q' or command[0] == 'quit' or command[0] == 'exit':
+            print('Your quest will continue some day. Thanks for playing!')
+            done = True
+            # these are our movement options
+        elif command[0] in ["n", "s", "e", "w"]:
+            #sets the _to on each command. 
+            dirAttr = command[0] + "_to"
 
-        #check if the current room has the proper _to attached, 
-        if hasattr(current_room, dirAttr):
-            #if so, set the room to the proper room.
-            main_player.room = getattr(current_room, dirAttr)
+            #check if the current room has the proper _to attached, 
+            if hasattr(current_room, dirAttr):
+                #if so, set the room to the proper room.
+                main_player.room = getattr(current_room, dirAttr)
+            else:
+                #if it does not, you cant go that way 
+                print("you cant go that way")
+
+        elif command[0] in ["i", "inventory"]:
+            if len(main_player.contains) > 0:
+                print(f'{main_player.name} is currently carrying: {main_player.contains}')
+            else:
+                print("You're not carrying anything")
+
         else:
-            #if it does not, you cant go that way 
-            print("you cant go that way")
+                print("Invalid command. Move with n, s, e, w")
 
-    else:
-            print("Invalid command. Move with n, s, e, w")
+    elif len(command) == 2:
+
+        verb, obj = command
+
+        if verb in ['get', 'take']:
+            candidates = [item for item in current_room.contains if item.name == obj]
+
+            if len(candidates) == 0:
+                print("You dont see that item")
+
+            else:
+                print(candidates)
+                print(candidates[0])
+                main_player.contains.append(candidates[0])
+                current_room.contains.remove(candidates[0])
+
+        if verb == 'drop':
+            candidates = [item for item in main_player.contains if item.name == obj]
+
+            if len(candidates) == 0:
+                print("You're not carrying that item")
+
+            else:
+                print(candidates)
+                print(candidates[0])
+                main_player.contains.remove(candidates[0])
+                current_room.contains.append(candidates[0])

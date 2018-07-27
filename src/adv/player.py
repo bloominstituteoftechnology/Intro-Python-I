@@ -6,3 +6,5 @@ class Player:
     def __init__(self, playerName, startRoom):
         self.room = startRoom
         self.name = playerName
+
+        self.contains = []
