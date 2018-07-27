@@ -22,7 +22,7 @@ to north. The smell of gold permeates the air.""", False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", False),
+earlier adventurers. Or maybe it was never there...""", False),
 }
 
 # Create Items Dictionary
@@ -32,7 +32,8 @@ Items = {
     "BronzeCoin" : Treasure('BronzeCoin', 'Bronze', '5'),
     "SilverCoin" : Treasure('SilverCoin', 'Silver', '10'),
     "GoldCoin" : Treasure('GoldCoin', 'Gold', '20'),
-    "Lamp" : LightSource('Lamp', 'Illuminator')
+    "Lamp" : LightSource('Lamp', 'Illuminator'),
+    "Key" : Item('Key', 'The Only Way To Win')
 }
 
 # Adding Items to a Room
@@ -82,10 +83,12 @@ player = Player(name, room['outside'])
 
     # 8. Checks the score (Score)
 
+    # 9. Added light scenarios and light sources 
+
 system("clear")
 while (player.room != 'exit'):
 
-    # - Display current room, room description, room items
+    # - Added light scenarios and light sources
     natural_room = [room[x] for x in ['outside', 'foyer', 'overlook', 'narrow', 'treasure'] if room[x].is_Light]
     illuminated_room = [room[x] for x in ['outside', 'foyer', 'overlook', 'narrow', 'treasure']
         if [item for item in room[x].items if type(item) is LightSource] 
@@ -97,6 +100,9 @@ while (player.room != 'exit'):
         illuminated = True
 
     if (illuminated):
+
+    # - Display current room, room description, room items
+
         print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
         print("The item(s) in the " + player.room.name + ": " + str(player.room.items) + "\n")
     else:
@@ -106,6 +112,8 @@ while (player.room != 'exit'):
 
     instruction = input("Enter: North | East | South | West | Take Item(Name) | Drop Item(Name) | Inventory | Score | Quit:\n")
 
+    # - Travels through rooms using cardinal directions (North, East, South, West)
+    
     direction = {
         "North": player.room.n_to,
         "East": player.room.e_to,
@@ -115,7 +123,6 @@ while (player.room != 'exit'):
 
     new_room = direction.get(instruction, None)
     
-    # - Travels through rooms using cardinal directions (North, East, South, West)
 
     # Single Word Commands
 
@@ -188,10 +195,13 @@ while (player.room != 'exit'):
 # - Display end game message
 
 system("clear")
-if (len(player.inventory) == 0):
-    print("You left the cave empty handed!\n")
+if (instruction == "Quit"):
+    print("You quit and gained nothing\n")
 else:
-    if (player.score == 0):
-        print("Congratulations, you managed to leave the cave with: " + str(player.inventory) + "\n")
+    if (len(player.inventory) == 0):
+        print("You left the cave empty handed!\n")
     else:
-        print("Congratulations, you managed to leave the cave with: " + str(player.inventory) + " and your score is: " + str(player.score) + "\n")
+        if (player.score == 0):
+            print("Congratulations, you managed to leave the cave with: " + str(player.inventory) + "\n")
+        else:
+            print("Congratulations, you managed to leave the cave with: " + str(player.inventory) + " and your score is: " + str(player.score) + "\n")
