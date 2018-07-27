@@ -2,6 +2,8 @@ from room import Room
 from player import Player
 from item import Item
 import textwrap
+from os import system
+import platform
 
 # Declare all the rooms
 
@@ -54,6 +56,12 @@ player = Player("Stan", room['outside'], [])
 # If the user enters "q", quit the game.
 done = False
 
+def clear():
+   if platform.system() == "Linux" or platform.system() == "Mac":
+       _ = system("clear")
+   elif platform.system() == "Windows":
+       _ = system("cls")
+
 while not done:
 	curRoom = player.room
 	
@@ -61,13 +69,13 @@ while not done:
 	
 	print(f'{curRoom.name}\n{prettyDesc}\n{curRoom.itemList}')
 
-	command = input("Command > ").strip().lower()
+	command = input("Command > ").strip().split(" ")
 
-	if command == 'q' or command == 'quit' or command == 'exit':
+	if command[0] == 'q' or command[0] == 'quit' or command[0] == 'exit':
 		done = True
 
-	elif command in ["s", "n", "e", "w"]:
-		dirAttr = command + "_to"
+	elif command[0] in ["s", "n", "e", "w"]:
+		dirAttr = command[0] + "_to"
 
 		if hasattr(curRoom, dirAttr):
 			player.room = getattr(curRoom, dirAttr)
@@ -75,14 +83,23 @@ while not done:
 		else:
   			print("You can't go that way.")
 
-	elif command in ['m']:
+	elif command[0] in ['m']:
 		for i in range (len(player.inventory)):
   			if player.inventory[i].name == 'map':
   				  player.check_map()
 		print("there is no map!")
 
-	elif command == 'p':
-  		player.addToInventory(input("What item do you want? "))
+	elif command[0] == 'Grab':
+		player.addToInventory(command[1])
+		pass
+
+	elif command[0] == 'drop':
+  		player.dropItem(command[1])
+
+	elif command[0] == 'inventory':
+		clear()
+		player.showInventory()
+
   					  
 	else:
 		print("I don't understand that.")
