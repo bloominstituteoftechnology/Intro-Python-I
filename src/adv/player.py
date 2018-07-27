@@ -3,5 +3,7 @@
 
 class Player:
   def __init__(self, playerName, currRoom):
-    self.currRoom = currRoom
+    self.room = currRoom
     self.playerName = playerName
+
+    self.contents = []
