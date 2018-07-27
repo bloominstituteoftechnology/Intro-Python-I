@@ -4,7 +4,11 @@ class Npc:
     self.description = description
 
 class Mob(Npc):
-  def __init__(self, name, description = '', reqItem = [], vanquished = False):
+  def __init__(self, name, description = '', vanquished = False):
     Npc.__init__(self, name, description)
-    self.reqItem = reqItem
     self.vanquished = vanquished
+
+class Follower(Npc):
+  def __init__(self, name, description = '', following = False):
+    Npc.__init__(self, name, description)
+    self.following = following
