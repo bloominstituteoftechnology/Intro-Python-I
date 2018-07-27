@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Item
+from item import Treasure
 
 # Declare all the rooms
 
@@ -28,11 +29,16 @@ item = {
     'knife':  Item('knife', 'A very sharp knife'),
     'pig':    Item('pig', 'A wild boar'),
     'pen':    Item('pen', 'A foutain pen'),
-    'gold':   Item('gold', '10 bars of gold'),
+    'bottle': Item('bottle', 'empty beer bottle'),
     'eggs':   Item('eggs', 'a dozen eggs'),
     'spoon':  Item('spoon', 'A golden spoon'),
 }
 
+treasure = {
+    'gold':    Treasure('gold', '10 bars of gold', 10),
+    'diamond': Treasure('diamond', '10 caret diamond', 20),
+    'cash':    Treasure('cash', 'A million bucks', 30),
+}
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -45,10 +51,11 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 room['outside'].items.extend([item['tree'], item['pig']])
+room['outside'].items.extend([treasure['gold'], treasure['diamond'], treasure['cash']])
 room['foyer'].items.extend([item['knife'], item['pen']])
 room['overlook'].items.append(item['eggs'])
-room['narrow'].items.append(item['spoon'])
-room['treasure'].items.append(item['gold'])
+room['narrow'].items.append(item['bottle'])
+room['treasure'].items.append(item['spoon'])
 
 
 #

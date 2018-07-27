@@ -2,9 +2,10 @@
 # currently.
 
 class Player:
-    def __init__(self, current_room):
+    def __init__(self, current_room, score = 0):
         self.current_room = current_room
         self.inventory = []
+        self.score = score
 
     def handle_user_input(self, user_input):
         self.user_input = user_input
@@ -16,8 +17,13 @@ class Player:
     def handle_one_word_command(self):
         if self.user_input == 'i' or self.user_input == 'inventory':
             self.list_inventory()
+        elif self.user_input == 'score':
+            self.display_score()
         else:
             self.move(self.user_input)
+
+    def display_score(self):
+        print(f'Current score is {self.score}')
 
     def list_inventory(self):
         print(f'You have: {[i.name for i in self.inventory]}')
@@ -41,6 +47,7 @@ class Player:
 
             gotten_item = self.current_room.items.pop(index);
             self.inventory.append(gotten_item)
+            gotten_item.on_take(self)
         else:
             print(f'Error! {item_name} is not present in this room')
 
