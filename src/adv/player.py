@@ -1,11 +1,16 @@
 from lightsource import LightSource
+from printing import prompt
+from weapon import Weapon
+from commandparser import quit_game
 
 class Player:
     def __init__(self, name, room):
         self.name = name
         self.room = room
         self.items = []
+        self.fist = Weapon(5, "fist", ["knobbly"], "It's all you've got")
         self.last_item = ''
+        self.health = 100
         self.score = {
             'items': 0,
             'monsters': 0
@@ -46,6 +51,37 @@ class Player:
 
     def add_score(self, category, amount):
         self.score[category] += amount
+
+    def attack(self, monster_name):
+        monster = self.room.get_monster(monster_name)
+        prompt(f"{self} swings at the {monster} with their {self.get_weapon()}.")
+
+        if monster.on_attack(self):
+            # Remove monster from the game if we've killed it
+            self.room.remove_monster(monster)
+        else:
+            monster.retaliate(self)
+
+    def apply_damage(self, amount):
+        if amount >= self.health:
+            prompt(f"{self} has suffered a mortal wound!")
+            quit_game()
+        else:
+            prompt(f"{self} suffers {amount} points of damage!")
+            self.health -= amount
+
+        
+    def get_attack_damage(self):
+        return self.get_weapon().damage
+
+    def get_weapon(self):
+        weapons = [item for item in self.items if isinstance(item, Weapon)]
+        if weapons:
+            # use the weapon with the highest damage
+            weapon = sorted(weapons, key=lambda weapon: weapon.damage, reverse=True)[0]
+            return weapon
+
+        return self.fist
 
     def __str__(self):
         return self.name

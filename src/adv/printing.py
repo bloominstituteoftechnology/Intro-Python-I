@@ -16,6 +16,13 @@ def turn(player):
             *format_items(player.room.items))
 
         print(item_text)
+    
+    if player.room.monsters:
+        monster_text = tabulate(
+            "\nYou are not alone in this room. Other creatures:\n",
+            *format_items(player.room.monsters))
+        
+        print(monster_text)
 
 def inventory(player):
     if player.items:
@@ -34,6 +41,7 @@ def help():
         "take < item >",
         "drop < item >",
         "inspect < item >",
+        "score",
         "quit",
         "inventory",
         "help")

@@ -25,6 +25,7 @@ def process_command(command, player):
         "get": take_item,
         "take": take_item,
         "drop": drop_item,
+        "attack": attack
     }
 
     # Handle 'it' as a stand-in for an item
@@ -47,9 +48,17 @@ def move(direction, player):
     else:
         printing.prompt("You cannot go that way")
 
+def attack(monster_name, player):
+    if not player.can_see():
+        printing.prompt(f"{player} cannot see well enough to fight!")
+    elif player.room.has_monster(monster_name):
+        player.attack(monster_name)
+    else:
+        printing.prompt(f"There are no {monster_name}s for {player} to attack in here.")
+
 def take_item(item_name, player):
     if not player.can_see():
-        printing.prompt(f"{player.name} cannot see well enough to take anything.")
+        printing.prompt(f"{player} cannot see well enough to take anything.")
     elif player.room.has_item(item_name):
         player.take_item(item_name)
         player.last_item = item_name
