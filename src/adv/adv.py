@@ -38,7 +38,7 @@ room["narrow"].n_to = room["treasure"]
 room["treasure"].s_to = room["narrow"]
 
 # Add items to rooms
-room["outside"].items.append(Item("mirror", "Your beautiful mug staring back from a mirror!"))
+room["outside"].items.append(Item("mirror", "A small mirror."))
 
 #
 # Main
@@ -75,13 +75,14 @@ while not done:
             print(i.description)
 
     # User input
-    user_input = input("> ").lower()
+    user_input = input("> ").strip().lower()
+    user_input = user_input.split(" ")
 
     # Single word commands
     if len(user_input) == 1:
 
         # Directions
-        if user_input in ["n", "e", "s", "w"]:
+        if user_input[0] in ["n", "e", "s", "w"]:
             dirAttr = user_input + "_to"
 
             if hasattr(p1.current_room, dirAttr):
@@ -90,24 +91,39 @@ while not done:
                 print("Can't go that way.")
     
         # Inventory
-        if user_input == "i":
+        elif user_input[0] == "i":
             if len(p1.items) > 0:
-                print("\nYour bag contains: ")
+                print("\nYour inventory contains: ")
                 for i in p1.items:
                     print(i.description)
-                else:
-                    print("\nYour bag is empty.")
+            else:
+                print("\nYour inventory is empty.")
 
         # Help - show commands
-        elif user_input == "help":
+        elif user_input[0] == "help":
             helper = "\nCOMMANDS:\nn - north\ne - east\ns - south\nw - west\nq - quit"
             print(helper)
 
         # Quit
-        elif user_input == "q":
+        elif user_input[0] == "q":
             print("GG")
             done = True
 
-    # Invalid input
-    else:
-        print("\n - Enter a valid command or type help - ")
+        # Invalid input
+        else:
+            print("\n - Enter a valid command or type help - ")
+
+    # Two word commands
+    elif len(user_input) == 2:
+        verb, obj = user_input
+
+        # Pickup items
+        if verb == "get":
+            room_items = [item for item in p1.current_room.items if item.name == obj]
+            print(obj + " was added to your inventory.")
+
+            if len(room_items) == 0:
+                print("That item doesn't seem to be here.")
+            else:
+                p1.items.append(room_items[0])
+                p1.current_room.items.remove(room_items[0])
