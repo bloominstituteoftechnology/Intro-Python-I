@@ -1,4 +1,5 @@
 from room import Room
+from item import Treasure
 from player import Player
 from item import Item
 import textwrap
@@ -43,6 +44,10 @@ room['narrow'].itemslist.append(Item('shield', 'an shield strong and sturdy'))
 room['foyer'].itemslist.append(Item('sword', 'it gives off an erry green glow'))
 room['treasure'].itemslist.append(Item('crown', 'A golden crown '))
 
+# add in the 3 treasures
+room['treasure'].itemslist.append(Treasure("chest", 'Chest full of coins', 100))
+room['outside'].itemslist.append(Treasure("chest", 'Chest full of coins', 100))
+room['foyer'].itemslist.append(Treasure("chest", 'Chest full of coins', 100))
 #
 # Main
 #
@@ -77,6 +82,8 @@ while not done:
     # Single word commands
 
     if len(direction) == 1:
+        if(direction[0] == 'score'):
+            print("Your score is: "+ str(player1.score))
     
         if direction[0] == 'q' or direction[0] == 'quit' or direction[0] == 'exit':
             done = True
