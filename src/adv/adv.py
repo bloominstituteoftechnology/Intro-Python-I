@@ -1,38 +1,40 @@
 from room import Room
 from player import Player
 from items import Item
+from items import Treasure
+from items import LightSource
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons",
                      items=Item('knifes', ['Irish knifes',
-                                           'turkish knife', 'viking knife'])
+                                           'turkish knife', 'viking knife']), treasure=None, light=LightSource('lamp', 'moderate light ', False)
                      ),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""",
+passages run north and east. """,
                      items=Item('books', ['magic books',
-                                          'bible', 'food', 'albums'])
+                                          'bible', 'food', 'albums']), treasure=None, light=None
                      ),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""",
+the distance, but there is no way across the chasm. #### THERE IS A TREASURE HERE#### """,
                      items=Item(
-                         'boxes ', ['pirates of the carribian', 'old stuff', 'bombs'])
+                         'boxes ', ['pirates of the carribian', 'old stuff', 'bombs']), treasure=Treasure('gold', 'british gold bullion', 90), light=None
                      ),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""",
+to north. The smell of gold permeates the air. #### THERE IS A TREASURE HERE #######""",
                      items=Item(
-                         'cloths ', ['army uniform', 'clone', 'pilot uniform', 'nurse uniform'])
+                         'cloths ', ['army uniform', 'clone', 'pilot uniform', 'nurse uniform']), treasure=Treasure("bronze", "argentina bronze bullion", 35), light=None
                      ),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
-                     items=Item('shields', ['hand shield', 'mask', ' motorcycle halmet'])),
+                     items=Item('shields', ['hand shield', 'mask', ' motorcycle halmet']), treasure=None, light=LightSource('lamp', 'very strong light', True)),
 }
 
 
@@ -48,7 +50,7 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 
-newPlayer = Player('john', 'outside')
+newPlayer = Player('john', 'outside')  # outside = ROOM()
 
 
 # Write a loop that:
@@ -80,19 +82,28 @@ while not done:
             c = "w_to"
 
     if hasattr(room[newPlayer.room], c) == False:
-        print('====> there is no such direction...')
+        print('\n\n====> there is no such direction...')
         continue
 
     nextRoom = getattr(room[newPlayer.room], c)
 
     if(nextRoom == None):
-        print('====> there is no room here ')
+        print('\n\n====> there is no room here ')
         continue
 
     if(nextRoom != None):
-        print('## GREAT JOB ##  you are  in new room ====>:', nextRoom.name)
+        print('\n\n## GREAT JOB ##  you are  in new room ====>:\n', nextRoom.name)
         print(
-            f"....{nextRoom.description}...\nitem ==>:{nextRoom.items.name}\nitemdesc==>:{nextRoom.items.description}")
+            f"....{nextRoom.description}...\n\nroom items==>:{nextRoom.items.description}")
+        print('\n\nnewpaler items are: ==>', getattr(newPlayer, 'items'))
+
+        if nextRoom.treasure != None:
+            print('\nthis is the treasure name ==>:', nextRoom.treasure)
+            print('\nthis is the treasure value ==>:', nextRoom.treasure.value)
+            print('\nthis is the treasure description  ==>:',
+                  nextRoom.treasure.description)
+        else:
+            print('\n==> there is no treasure', nextRoom.treasure)
 
     print('\n\n==> Ok ok ok since you made it up to here, we want you to pic an item:')
     pick = False
@@ -102,23 +113,34 @@ while not done:
         spl = i.split(' ')
         join = ''.join(spl[1:])
         joinedItems = [i.replace(" ", "") for i in nextRoom.items.description]
-        # joinedItemsPlayer = [i.replace(" ", "")
-        #                      for i in getattr(newPlayer, 'items')]
+
         if len(spl) <= 1:
             if spl[0] == 'i' or spl[0] == 'inventory':
-                print('newpaler items are: ==>', getattr(newPlayer, 'items'))
+                print('\nnewpaler items are: ==>', getattr(newPlayer, 'items'))
                 continue
+            if spl[0] == 'score':
+                print('newpaler score  is : ==>',
+                      getattr(newPlayer, 'score'))
+                continue
+
             else:
-                print('!!! sorry you have to enter verb and  the item name as well')
+                print('\n!!! sorry you have to enter verb and  the item name as well')
                 continue
 
         elif spl[1] == '':
-            print('!!!! item name can`t be whitespace')
+            print('\n!!!! item name can`t be whitespace')
             continue
 
         elif spl[0] == 'drop':
+            dropped = getattr(newPlayer, 'items')[
+                getattr(newPlayer, 'items').index(spl[1])]
+            print('dropped ==>:', dropped)
+
+            nextRoom.items.description.append(dropped)
+
             del(getattr(newPlayer, 'items')[
                 getattr(newPlayer, 'items').index(spl[1])])
+
             pick = True
 
         elif spl[0] == 'pick':
@@ -129,18 +151,22 @@ while not done:
                     getattr(newPlayer, 'items').append(
                         nextRoom.items.description[joinedItems.index(i)])
                     del(nextRoom.items.description[joinedItems.index(i)])
+                    Item.on_take()
                     pick = True
 
-            print('=====> !!!sorry there is no such item ')
+            if pick == False:
+                print('\n=====> !!!sorry there is no such item ')
+            # continue
             # else:
             #     continue
 
         else:
-            print(' !!!! sorry wrong verb....')
+            print('\n !!!! sorry wrong verb....')
             continue
 
-        print('newpaler items are: ==>', getattr(newPlayer, 'items'))
-        print('what left in the room is : ==>', nextRoom.items.description)
+        print('\n\n what left newpaler items are: ==>',
+              getattr(newPlayer, 'items'))
+        print('\n\nwhat left in the room is : ==>', nextRoom.items.description)
 
     ################################################################
 
@@ -171,24 +197,35 @@ while not done:
                 d = "w_to"
 
         if hasattr(nextRoom, d) == False:
-            print('=====> there is no such direction...')
+            print('\n=====> there is no such direction...')
             continue
 
         roomAfter = getattr(nextRoom, d)
 
         if(roomAfter == None):
-            print('====> there is no room here ...')
+            print('\n====> there is no room here ...')
             continue
 
         if(roomAfter != None):
-            print('## GREAT JOB ##  you are  in new room ====>:', roomAfter.name)
+            print('\n\n## GREAT JOB ##  you are  in new room ====>:\n', roomAfter.name)
             print(
-                f"....{roomAfter.description}...\nitem ==>:{roomAfter.items.name}\nitemdesc==>:{roomAfter.items.description}")
+                f"....{roomAfter.description}...\n\nitem ==>:{roomAfter.items.name}\nroom items==>:{roomAfter.items.description}")
+            print('\n\nnewpaler items are: ==>', getattr(newPlayer, 'items'))
+
+            if roomAfter.treasure != None:
+                print('\n## this is the treasure name ==>:',
+                      roomAfter.treasure.name)
+                print('\n## this is the treasure value  ==>:',
+                      roomAfter.treasure.value)
+                print('\n## this is the treasure description ==>:',
+                      roomAfter.treasure.description)
+            else:
+                print('\n==> ## there is no treasure here')
 
         print('\n\n==> Ok ok ok since you made it up to here, we want you to pic an item:')
         pick = False
         while not pick:
-            i = input('tape the name of your item plz:')
+            i = input('type the name of your item plz:')
 
             spl = i.split(' ')
             join = ''.join(spl[1:])
@@ -200,38 +237,69 @@ while not done:
                     print('newpaler items are: ==>',
                           getattr(newPlayer, 'items'))
                     continue
+
+                if spl[0] == 'score':
+                    print('newpaler score  is: ==>',
+                          getattr(newPlayer, 'score'))
+                    continue
+
                 else:
-                    print('!!! sorry you have to enter verb and  the item name as well')
+                    print(
+                        '\n!!! sorry you have to enter verb and  the item name as well')
                     continue
 
             elif spl[1] == '':
-                print('!!!! item name can`t be whitespace')
+                print('\n!!!! item name can`t be whitespace')
                 continue
 
             elif spl[0] == 'drop':
+
+                dropped2 = getattr(newPlayer, 'items')[
+                    getattr(newPlayer, 'items').index(spl[1])]
+                print('dropped ==>:', dropped2)
+
+                roomAfter.items.description.append(dropped2)
+
                 del(getattr(newPlayer, 'items')[
                     getattr(newPlayer, 'items').index(spl[1])])
                 pick = True
 
             elif spl[0] == 'pick':
-                # if join != None:
-                for i in joinedItems:
-                    if join == i:
-                        getattr(newPlayer, 'items').append(
-                            roomAfter.items.description[joinedItems.index(i)])
-                        del(roomAfter.items.description[joinedItems.index(
-                            i)])
-                        pick = True
-                print('=====> !!!sorry there is no such item ')
-                # else:
-                #     continue
+                if join == 'treasure':
+                    if roomAfter.treasure.name not in getattr(newPlayer, 'items'):
+                        newPlayer.score += roomAfter.treasure.on_take()
+
+                    getattr(newPlayer, 'items').append(
+                        getattr(roomAfter.treasure, 'name'))
+                    print('i piked the  treasure', roomAfter.treasure.name)
+
+                    if roomAfter.treasure.name in getattr(newPlayer, 'items'):
+                        newPlayer.score += roomAfter.treasure.on_take()
+
+                    pick = True
+                else:
+                    for i in joinedItems:
+                        if join == i:
+                            getattr(newPlayer, 'items').append(
+                                roomAfter.items.description[joinedItems.index(i)])
+                            del(roomAfter.items.description[joinedItems.index(
+                                i)])
+                            pick = True
+                            Item.on_take()
+                    if pick == False:
+                        print('\n=====> !!!sorry there is no such item ')
+                    # else:
+                    #     continue
 
             else:
-                print(' !!!! sorry wrong verb....')
+                print('\n !!!! sorry wrong verb....')
                 continue
 
-            print('newpaler items are: ==>', getattr(newPlayer, 'items'))
-            print('what left in the room is : ==>',
+            print('\n what left in newpaler items are: ==>',
+                  getattr(newPlayer, 'items'))
+            print('\n newpaler score is: ==>',
+                  getattr(newPlayer, 'score'))
+            print('\nwhat left in the room is : ==>',
                   roomAfter.items.description)
             nextRoom = roomAfter
 

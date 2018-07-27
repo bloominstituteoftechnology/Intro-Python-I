@@ -5,7 +5,7 @@
 
 
 class Room:
-    def __init__(self, name, description, items):
+    def __init__(self, name, description, items, treasure, light):
         self.name = name
         self.description = description
         self.n_to = None
@@ -13,3 +13,6 @@ class Room:
         self.e_to = None
         self.w_to = None
         self.items = items
+        self.treasure = treasure
+        self.light = light
+        self.is_light = False

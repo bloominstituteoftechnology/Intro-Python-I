@@ -7,3 +7,4 @@ class Player:
         self.name = name
         self.room = room
         self.items = ['pizza', 'cellphone', 'keys', 'water']
+        self.score = 0
