@@ -11,8 +11,7 @@ class Item:
 
 class Treasure(Item):
     def __init__(self, name, description, value):
-        self.name = name
-        self.description = description
+        super().__init__(name, description)
         self.value = value
         self.has_been_picked_up = False
 
@@ -23,8 +22,7 @@ class Treasure(Item):
 
 class LightSource(Item):
     def __init__(self, name, description):
-        self.name = name
-        self.description = description
+        super().__init__(name, description)
 
     def on_drop(self, player = None):
         print('It is not wise for you to drop your source of light!')
