@@ -172,11 +172,8 @@ while not done:
                 print("You dont see that item")
 
             else:
-                print(candidates)
-                print(candidates[0].name)
-                print(treasures)
-                print(treasures[0].name)
-                main_player.score += treasures[0].value
+                if treasures[0] in main_player.contains:
+                    main_player.score += treasures[0].value
                 #add the item to the players inventpory, and remove from room. 
                 main_player.contains.append(candidates[0])
                 current_room.contains.remove(candidates[0])
@@ -193,6 +190,7 @@ while not done:
                 #remove from the player, add to the room. 
                 print(candidates)
                 print(candidates[0])
-                main_player.score -= treasures[0].value
-                main_player.contains.remove(candidates[0])
-                current_room.contains.append(candidates[0])
+                if treasures[0] in main_player.contains:               
+                    main_player.score -= treasures[0].value
+                    main_player.contains.remove(candidates[0])
+                    current_room.contains.append(candidates[0])
