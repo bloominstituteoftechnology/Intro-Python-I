@@ -113,6 +113,9 @@ while not done:
     #second command
     command = command.split(' ')
 
+    #set total score
+    total_score = 0
+
     #check command
     if len(command) == 1:
     
@@ -132,6 +135,9 @@ while not done:
             else:
                 #if it does not, you cant go that way 
                 print("you cant go that way")
+
+        elif command[0] == 'score':
+            print(total_score)
 
         #check inventory
         # is an i or inventory inputted by player?
