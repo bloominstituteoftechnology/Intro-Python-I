@@ -4,6 +4,8 @@ from room import Room
 from player import Player
 #import item file into adv
 from item import Item
+#import treasure subclass
+from item import Treasure
 
 # Declare all the rooms
 # an object called room holding a location string, and an instance of room
@@ -50,13 +52,16 @@ room['outside'].contains.append(Item("matches", "Matches. an old book of matches
 #foyer
 room['foyer'].contains.append(Item("grapes", "Grapes.. need a snack?"))
 room['foyer'].contains.append(Item("dagger", "Dagger. letter opener, or stabby thing?"))
+room['foyer'].contains.append(Treasure("diamond", "A priceless Diamond. treasure", 1000))
 #overlook
 room['overlook'].contains.append(Item("pouch", "Pouch. A small leather pouch of silver coins. Good, but we're looking for bigger treasure."))
 room['overlook'].contains.append(Item("letter", "Letter. A wax-sealed letter, but not addressed to us."))
 room['overlook'].contains.append(Item("book", "Book. A leather book. Seems to be a journal. Maybe the land owners."))
+room['overlook'].contains.append(Treasure("ruby", "A priceless Ruby. treasure", 1000))
 #narrow
 room['narrow'].contains.append(Item("lantern", "Lantern. An oil lantern, has some light left. do I have matches?"))
 room['narrow'].contains.append(Item("coin", "Coin. A single coin, its spanish gold, we must be going the right way.."))
+room['narrow'].contains.append(Treasure("sapphire", "A priceless Sapphire. treasure", 1000))
 #treasure
 room['treasure'].contains.append(Item("note", "Note. A small note. It reads: your next adventure is coming soon.."))
 
@@ -160,6 +165,7 @@ while not done:
         if verb in ['get', 'take']:
             #te user can choose from a list of what is in the room
             candidates = [item for item in current_room.contains if item.name == obj]
+            treasures = [treasure for treasure in current_room.contains if treasure.name == obj]
 
             #if the room is empty, tell them.
             if len(candidates) == 0:
@@ -167,7 +173,10 @@ while not done:
 
             else:
                 print(candidates)
-                print(candidates[0])
+                print(candidates[0].name)
+                print(treasures)
+                print(treasures[0].name)
+                main_player.score += treasures[0].value
                 #add the item to the players inventpory, and remove from room. 
                 main_player.contains.append(candidates[0])
                 current_room.contains.remove(candidates[0])
