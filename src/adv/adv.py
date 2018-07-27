@@ -105,7 +105,7 @@ while playerExit != True:
         player.currentRoom.newRoom = False
 
     # print current room and description 
-    if player.currentRoom.is_light == True or any(eachItem for eachItem in light_sources for eachItem in player.inventory):
+    if player.currentRoom.is_light == True or any(eachItem == eachSource for eachSource in light_sources for eachItem in player.inventory):
         print("\nCurrent room: {}".format(player.currentRoom.name))
         for line in textwrap.wrap(player.currentRoom.descript):
             print(line)
@@ -200,8 +200,11 @@ while playerExit != True:
             # flag for item of interest
             itemFound = False
 
+            # check if room is dark
+            if player.currentRoom.is_light == False and not any(eachSource == eachItem for eachSource in light_sources for eachItem in player.inventory):
+                print("Good luck picking up anything in the darkness.")
             # check to see if there's any item
-            if len(player.currentRoom.itemList) != 0:
+            elif len(player.currentRoom.itemList) != 0:
 
                 # iterate each item
                 for eachItem in player.currentRoom.itemList:
