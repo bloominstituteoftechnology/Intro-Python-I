@@ -16,7 +16,7 @@ class Room:
         self.w_to = None
 
     def __str__(self):
-        return "You are currently " + self.name + '.\n\n' + self.description + '\n'
+        return "You are currently " + self.name + '.\n' + self.description
 
     def pickup(self, player, item):
         try:

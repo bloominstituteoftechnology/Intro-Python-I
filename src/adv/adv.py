@@ -146,7 +146,7 @@ def whileSwitch(choice):
         flag = doubleChoice(choice[0], choice[1], item)
     if flag == 0:
         print("You can't do that.")
-    print("\n")
+    print("")
     return flag
 
 #
