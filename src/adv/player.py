@@ -7,3 +7,6 @@ class Player:
     self.playerName = playerName
 
     self.contents = []
+
+    self.score = 0
+    

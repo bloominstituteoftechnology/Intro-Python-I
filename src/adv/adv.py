@@ -1,6 +1,7 @@
+from os import system
 from player import Player
 from room import Room
-from item import Item
+from item import Item, Treasure, LightSource
 import textwrap
 
 # Declare all the rooms
@@ -35,12 +36,16 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+room['dungeon'].e_to = room['narrow']
+room['narrow'].s_to = room['dungeon']
+room['pugcave'].n_to = room['treasure']
+room['treasure'].n_to = room['pugcave']
 
 #
 # Main
 #
-room['overlook'].contents.append(Item("coins", "Gold coins"))
-room['overlook'].contents.append(Item("sword", "Sword made of platinum"))
+room['overlook'].contains.append(Item("coins", "Gold coins"))
+room['overlook'].contains.append(Item("sword", "Sword made of platinum"))
 
 # Make a new player object that is currently in the 'outside' room.
 
