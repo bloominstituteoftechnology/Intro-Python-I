@@ -8,10 +8,10 @@ from item import LightSource
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", False),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", False),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -78,10 +78,14 @@ player1 = Player(room['outside'])
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 
+
 while(True):
-    print(player1.current_room.name)
-    print(player1.current_room.description)
-    print(f'Items present: {[i.name for i in player1.current_room.items]}')
+    if player1.light_source_exists():
+        print(player1.current_room.name)
+        print(player1.current_room.description)
+        print(f'Items present: {[i.name for i in player1.current_room.items]}')
+    else:
+        print("It's pitch black!")
 
     user_input = input("\nEnter command ")
 

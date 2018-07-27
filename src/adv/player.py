@@ -1,6 +1,7 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 
+from item import LightSource
 class Player:
     def __init__(self, current_room, score = 0):
         self.current_room = current_room
@@ -40,8 +41,21 @@ class Player:
         else:
             print("I don't understand that command\n")
 
+    def light_source_exists(self):
+        if self.current_room.is_light:
+            return True
+        if [ item for item in self.inventory if isinstance(item, LightSource) ]:
+            return True
+        if [ item for item in self.current_room.items if isinstance(item, LightSource) ]:
+            return True
+
+        return False
+
     def get(self, item_name):
         if item_name in [i.name for i in self.current_room.items]:
+            if not self.light_source_exists():
+                print("Good luck finding that in the dark!")
+                return
             # get index of item we're getting
             index = next((i for i, item in enumerate(self.current_room.items) if item.name == item_name), -1)
 
