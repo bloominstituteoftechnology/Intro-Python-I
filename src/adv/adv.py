@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 from item import Item
 from item import Treasure
+from item import LightSource
 
 # Declare all the rooms
 
@@ -39,6 +40,10 @@ treasure = {
     'diamond': Treasure('diamond', '10 caret diamond', 20),
     'cash':    Treasure('cash', 'A million bucks', 30),
 }
+
+light_source = {
+    'lamp':    LightSource('lamp', 'a battery lamp')
+}
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -52,6 +57,7 @@ room['treasure'].s_to = room['narrow']
 
 room['outside'].items.extend([item['tree'], item['pig']])
 room['outside'].items.extend([treasure['gold'], treasure['diamond'], treasure['cash']])
+room['outside'].items.append(light_source['lamp'])
 room['foyer'].items.extend([item['knife'], item['pen']])
 room['overlook'].items.append(item['eggs'])
 room['narrow'].items.append(item['bottle'])

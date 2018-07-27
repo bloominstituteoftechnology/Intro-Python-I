@@ -57,6 +57,7 @@ class Player:
             index = next((i for i, item in enumerate(self.inventory) if item.name == item_name), -1)
             dropped_item = self.inventory.pop(index);
             self.current_room.items.append(dropped_item)
+            dropped_item.on_drop()
         else:
             print(f'Error! You do not have {item_name} to drop')
 
