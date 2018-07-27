@@ -127,3 +127,18 @@ while not done:
             else:
                 p1.items.append(room_items[0])
                 p1.current_room.items.remove(room_items[0])
+
+        # Drop items
+        elif verb == "drop":
+            inventory_items = [item for item in p1.items if item.name == obj]
+            print(obj + " was dropped!")
+
+            if len(inventory_items) == 0:
+                print("Can't drop what you don't have.")
+            else:
+                p1.items.remove(inventory_items[0])
+                p1.current_room.items.append(inventory_items[0])
+
+        # Invalid input
+        else:
+            print("\n - Enter a valid command or type help - ")
