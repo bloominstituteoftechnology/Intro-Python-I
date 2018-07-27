@@ -114,6 +114,8 @@ while not done:
             else:
                 player1.inventory.append(candidates[0])
                 currentRoom.itemslist.remove(candidates[0])
+                if direction[1] == 'chest':
+                    player1.score += 100
         elif verb == 'drop':
             candidates = [item for item in player1.inventory if item.name == obj]
 
@@ -122,6 +124,9 @@ while not done:
             else:
                 player1.inventory.remove(candidates[0])
                 currentRoom.itemslist.append(candidates[0])
+                if direction[1] == 'chest':
+                    
+                    player1.score -= 100
         else:
             print("I don't understand that")
     else:
