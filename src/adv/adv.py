@@ -22,7 +22,10 @@ to north. The smell of gold permeates the air.""", False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. Or maybe it was never there...""", False),
+earlier adventurers. But after some searching you find a key... """, False),
+
+    'secret': Room("Secret Room", """With all of your knowledge and sheer fortitude
+you have found a way into this room and found the treasure. Collect your prize! and go east to Exit this ride""", False)
 }
 
 # Create Items Dictionary
@@ -33,7 +36,8 @@ Items = {
     "SilverCoin" : Treasure('SilverCoin', 'Silver', '10'),
     "GoldCoin" : Treasure('GoldCoin', 'Gold', '20'),
     "Lamp" : LightSource('Lamp', 'Illuminator'),
-    "Key" : Item('Key', 'The Only Way To Win')
+    "Key" : Item('Key', 'Secret Hidden Key'),
+    "Pebble" : Item('Pebble', 'Yep, Just A Pebble')
 }
 
 # Adding Items to a Room
@@ -43,6 +47,8 @@ room['foyer'].addItem(Items['BronzeCoin'])
 room['narrow'].addItem(Items['SilverCoin'])
 room['overlook'].addItem(Items['GoldCoin'])
 room['outside'].addItem(Items['Lamp'])
+room['treasure'].addItem(Items['Key'])
+room['secret'].addItem(Items['Pebble'])
 
 # Link rooms together
 
@@ -54,6 +60,7 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+room['treasure'].e_to = room['secret']
 
 #
 # Main
@@ -85,8 +92,16 @@ player = Player(name, room['outside'])
 
     # 9. Added light scenarios and light sources 
 
+    # 10. A win scenario
+
 system("clear")
 while (player.room != 'exit'):
+
+    key_checker = [item for item in player.inventory if item.name == "Key"]
+
+    if (player.room.name == "Secret Room" and len(key_checker) == 0):
+        player.room = room['treasure']
+        print("Sorry, you don't have the key to the secret room!\n")
 
     # - Added light scenarios and light sources
     natural_room = [room[x] for x in ['outside', 'foyer', 'overlook', 'narrow', 'treasure'] if room[x].is_Light]
@@ -132,11 +147,9 @@ while (player.room != 'exit'):
 
     # - Quits the game (Quit)
 
-        if (instruction == "Quit"):
+        if (instruction == "Quit" or instruction == "East" and player.room.name == "Secret Room"):
             break
         elif (new_room):
-            if (player.room.name == "Treasure Chamber"):
-                break
             player.room = new_room
 
     # - Checks the inventory (Inventory)
@@ -200,8 +213,12 @@ if (instruction == "Quit"):
 else:
     if (len(player.inventory) == 0):
         print("You left the cave empty handed!\n")
-    else:
-        if (player.score == 0):
-            print("Congratulations, you managed to leave the cave with: " + str(player.inventory) + "\n")
-        else:
-            print("Congratulations, you managed to leave the cave with: " + str(player.inventory) + " and your score is: " + str(player.score) + "\n")
+    elif ([item for item in player.inventory if item.name == "Key"]):
+        print("You have won the game!\n")
+        if ([item for item in player.inventory if item.name == "Pebble"]):
+            print("And you were also able to get the marvelous Pebble!\n")
+            
+if (player.score == 0):
+    print("You managed to leave the cave with: " + str(player.inventory) + "\n")
+else:
+    print("You managed to leave the cave with: " + str(player.inventory) + " and your score is: " + str(player.score) + "\n")
