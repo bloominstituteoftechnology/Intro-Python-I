@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure, LightSource
 
 import textwrap
 import sys
@@ -23,7 +23,7 @@ room = {
         "Foyer",
         """Dim light filters in from the south. Dusty
 passages run north and east.""",
-        [], True
+        [LightSource("Torch", "A respectable light source. Might come in handy for darker rooms ahead.")], True
     ),
     "overlook": Room(
         "Grand Overlook",
@@ -43,7 +43,7 @@ to north. The smell of gold permeates the air.""",
         """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
-        [], False
+        [Treasure("LootedTreasure", "Someone already had their hands on it. At least some remains to take home.", 1000)], False
     ),
 }
 
@@ -94,6 +94,7 @@ playerExit = False
 # trigger keywords
 take_keyword = ["take", "add", "get", "obtain"]
 drop_keyword = ["drop", "remove"]
+light_sources = ["Torch", "Flashlight"]
 
 
 while playerExit != True:
@@ -103,10 +104,13 @@ while playerExit != True:
         player.score += 1
         player.currentRoom.newRoom = False
 
-    # print current room and description
-    print("\nCurrent room: {}".format(player.currentRoom.name))
-    for line in textwrap.wrap(player.currentRoom.descript):
-        print(line)
+    # print current room and description 
+    if player.currentRoom.is_light == True or any(eachItem for eachItem in light_sources for eachItem in player.inventory):
+        print("\nCurrent room: {}".format(player.currentRoom.name))
+        for line in textwrap.wrap(player.currentRoom.descript):
+            print(line)
+    else:
+        print("You can't see anything in this room. You need to find a light source.")
 
     # take player input and convert to lowercase
     userInput = input("\nPlayer> ").strip().lower()
@@ -204,6 +208,12 @@ while playerExit != True:
 
                     # item is found
                     if parsed[1] == eachItem.name.lower():
+                        # if it was never picked up before:
+                        if eachItem.posessed == False:
+                            # change flag and add score
+                            eachItem.posessed = True
+                            player.score += eachItem.points
+
                         # add item to player inventory and remove from room
                         player.inventory.append(eachItem)
                         player.currentRoom.itemList.remove(eachItem)
