@@ -1,22 +1,31 @@
 import textwrap
+import sys
+from item import item
+
 
 # Implement a class to hold room information. This should have name and
 # description attributes.
 
-default_look = 'You don\'t see anything of particular interest'
+default = 'You don\'t see anything of particular interest'
 
 class Room:
-  def __init__(self, name, description, look_description = default_look, items=[]):
+  def __init__(self, name, description, details = default, inventory=[]):
     self.name = name
     self.description = description
-    self.look_description = look_description
-    self.items = items
+    self.details = details
+    self.inventory = inventory
     self.inspected = False
+  
+  def __str__(self):
+    return self.name
+
+  def __repr__(self):
+    return self.name
 
   def list_items(self):
-    return_str = '\nYou see the following items in the room:\n'
+    return_str = '\nYou see the following inventory in the room:\n'
 
-    for item in self.items:
+    for item in self.inventory:
       return_str += f'\n{item.name}:\n{textwrap.fill(item.description, 50)}\n'
     
     return return_str
@@ -37,7 +46,7 @@ appears to be a gab in the wall with a slot inside. It must be a mehcanism of so
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""", """As you inspect the area, you see a strange
 metal object near the edge of the cliff.
-It appears to be a lever.""",[item['lever']]),
+It appears to be a lever.""", [item['lever']]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
