@@ -74,14 +74,13 @@ while(True):
     - 'destroy' [item] : destroys item if able'''
 
     elif command in ['look', 'inspect']:
-      player.room.inspected = True
       action = 'You look around the ' + player.room.name
-      description = f'{textwrap.fill(player.room.look_description, 50)}\n{player.room.list_items()}'
+      info = player.room.inspect()
 
     elif command in ['inventory', 'bag', 'i', 'b']:
       print(player.inventory)
       action = 'You take inventory of your bag'
-      description = 'It contains the following:'
+      info = 'It contains the following:'
 
       for item in self.inventory:
         print('\n{}:\n{}\n'.format(item.name,
