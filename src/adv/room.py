@@ -2,10 +2,6 @@ import textwrap
 import sys
 from item import item
 
-
-# Implement a class to hold room information. This should have name and
-# description attributes.
-
 class Room:
   def __init__(self, name, description, inventory=[], details = None):
     self.name = name
@@ -32,7 +28,7 @@ class Room:
       return_str += "You see the following items:\n"
 
       for item in self.inventory:
-        return_str += f"\n{item.name} - {textwrap.fill(item.description, 50)}\n"
+        return_str += f"\n{item.name} - {textwrap.fill(item.description, 50)}"
 
     if return_str is '':
       return_str = 'You don\'t see anything of particular interest'
@@ -41,7 +37,6 @@ class Room:
 
 
 # Declare all the rooms
-
 room = {
     'outside':  Room("Outside Cave Entrance",
                     "North of you, the cave mount beckons"),
@@ -69,7 +64,6 @@ earlier adventurers. The only exit is to the south."""),
 
 
 # Link rooms together
-
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
