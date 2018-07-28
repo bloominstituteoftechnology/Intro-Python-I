@@ -1,56 +1,35 @@
-from os import system
-
 import sys
+import platform
 import textwrap
-
+from os import system
 from being import player
 from item import item
 from room import room
 
+# Detect platform for proper clear method
+plat = platform.system()
 
-## Main
-
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
-
-
-# Establish global variables for displaying information after console refresh
-
-action = None
-info = None
+# Establish global variables for displaying information after clear
+action, info = None, None
 
 while(True):
-  system('clear')
+  if plat is 'Windows': system('cls')
+  else: system('clear')
 
-  # Display current room and description
-
+  # Print current room and description
   print(f'\n{player.room.name}:\n{textwrap.fill(player.room.description, 50)}\n')
 
-  # Display most recent action and description
+  # Print most recent action and description
+  if action: print(action + '\n')
+  if info: print(info + '\n')
 
-  if action:
-    print(action + '\n')
-    action = None
-  
-  if info:
-    print(info + '\n')
-    info = None
-
+  action, info = None, None
 
   # Take player input and split string to parse commands
-
   player_input = input('> ').split()
   
-  # One word inputs (ex: look, north, e, inventory, help, quit)
 
+  # One word inputs (ex: look, north, e, inventory, help, quit)
   if len(player_input) == 1:
     command = player_input[0]
 
@@ -78,8 +57,7 @@ while(True):
       info = player.room.inspect()
 
     elif command in ['inventory', 'bag', 'i', 'b']:
-      print(player.inventory)
-      action = 'You take inventory of your bag'
+      action = 'You take inventory of your bag.'
       info = 'It contains the following:'
 
       for item in self.inventory:
@@ -94,7 +72,6 @@ while(True):
       print('\nInvalid single command input\n')
 
   # Two word inputs (ex: move north, use torch)
-
   elif len(player_input) == 2:
     verb = player_input[0]
     noun = player_input[1]
