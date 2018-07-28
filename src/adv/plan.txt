@@ -1,12 +1,12 @@
 Classes of game and inheritance structure
 
 LivingBeing (room, name, kind, inventory, hp) [move, attack]
-  > Humanoid (equip_slots) [examine, use, pickup, drop, equip, check_equipped]
+  > Humanoid (equip_slots) [examine, use, pickup, drop, equip, check_equipped, check_inventory]
     > Player
-    > NPC (action_loop, aggressive, service, dialogue)
-  > Non-humanoid (action_loop, aggressive)
-    > Animal 
-    > Monster
+    > NPC (service, dialogue, aggressive, action_loop)
+  > Non-humanoid (aggressive, action_loop)
+    > Animal (attack)
+    > Monster (weapon, armor)
  
 Item(name, description)
   > Consumable [expend] (quantity, kind(food | potion | poison | craft))
@@ -30,7 +30,7 @@ Item(name, description)
 Room (name, description, details, use_targets, lighting, inventory)
 
 Actions of Player
-  ?? Make state machine like a regex parser for longer commands ???
+  ???? Make state machine like a regex parser for longer commands ???
 
   One word -
     - [direction] : moves in direction
