@@ -55,6 +55,10 @@ while(True):
     - 'destroy' [item] : destroys item if able
     - 'quit game' or 'end game' : ends game session'''
 
+    elif command in ['north', 'east', 'south', 'west', 'n', 'e', 's', 'w']:
+      player.move_room(command)
+      action = 'You move to the ' + player.room.name
+
     elif command in ['examine', 'inspect', 'look']:
       action = 'You look around the ' + player.room.name
       info = player.room.inspect()
@@ -75,9 +79,8 @@ while(True):
     verb = player_input[0]
     noun = player_input[1]
 
-    if verb in ['move', 'go']:
-      player.move(noun)
-      action = 'You move to the ' + player.room.name
+    if verb in ['move', 'go'] and noun in ['north', 'east', 'south', 'west', 'n', 'e', 's', 'w']:
+      action = player.move_room(noun)
 
     elif verb in ['take', 'grab', 'pickup']:
       taken = player.take(item[noun])
