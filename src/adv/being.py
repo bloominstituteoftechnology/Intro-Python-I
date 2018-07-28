@@ -82,8 +82,10 @@ class Humanoid(Being):
     if item in self.inventory:
       self.inventory.remove(item)
       self.room.inventory.append(item)
-    else:
-      print('\nItem invalid\n')
+
+      return True
+    
+    return False
   
   def equip(self, item):
     # Check if item is on person or in room
@@ -100,9 +102,11 @@ class Humanoid(Being):
       return_str = 'You are carrying the following:\n'
 
       for item in self.inventory:
-        return_str += f"\n{item.name} - {textwrap.fill(item.description, 75)}"
-    else:
-      return "Your inventory is currently empty."
+        return_str += f"\n{item.name} - {textwrap.fill(item.description, 50)}"
+
+      return return_str
+
+    return "Your inventory is currently empty."
       
 
 class Player(Humanoid):
