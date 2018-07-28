@@ -21,22 +21,31 @@ from room import room
 #
 # If the user enters "q", quit the game.
 
+
 # Establish global variables for displaying information after console refresh
+
 action = None
-description = None
+info = None
 
 while(True):
   system('clear')
 
+  # Display current room and description
+
   print(f'\n{player.room.name}:\n{textwrap.fill(player.room.description, 50)}\n')
+
+  # Display most recent action and description
 
   if action:
     print(action + '\n')
     action = None
   
-  if description:
-    print(description + '\n')
+  if info:
+    print(info + '\n')
+    info = None
 
+
+  # Take player input and split string to parse commands
 
   player_input = input('> ').split()
   
@@ -46,14 +55,23 @@ while(True):
     command = player_input[0]
 
     if command in ['help', 'options', 'h', 'o']:
-      print('''\nYour command options are as follows:\n
-'room' - gives the name and basic decriptions of your location\n
-'look' or 'inspect' - allows you to examine the room that you are
-  currently in\n
-'move [direction]' or 'go [direction]' - input direction(north, east, ect..)
-  or first letter of direction to move\n
-'inventory' or 'bag' - check\'s what you have on your person\n
-'quit or q' - ends the game\n''')
+      action = 'Your command options are:'
+      info = '''  One word -
+    - [direction] : moves in direction
+    - 'examine' : default to examine current room in detail
+    - 'equipped' : displays currently equipped items
+    - 'help' or 'h' : displays all input option
+    - 'quit' or 'q' : quits game session
+
+  Two word -
+    - 'move' or 'go' [direction] : moves in direction
+    - 'examine' [item] : examines item if on person or in room
+    - 'use' [item] : uses item if on person or in room
+    - 'equip' [item] : equips item if on persom or in room
+    - 'attack' [target] : attacks with equipped weapon
+    - 'pickup' [item] : picks up item
+    - 'drop' [item] : drops item
+    - 'destroy' [item] : destroys item if able'''
 
     elif command in ['look', 'inspect']:
       player.room.inspected = True
