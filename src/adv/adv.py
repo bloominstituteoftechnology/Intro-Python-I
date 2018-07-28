@@ -44,12 +44,12 @@ while(True):
 
 Two words -
   - 'move' or 'go' [direction] : moves in direction
-  -  'inspect' or 'examine' [item] : inspects item
+  - 'inspect' or 'examine' [item] : inspects item
   - 'use' [item] : uses item
   - 'equip' [item] : equips item
   - 'attack' [target] : attacks target
-  - 'pickup' [item] : picks up item
-  - 'drop' [item] : drops item
+  - 'take' or 'grab' [item] : picks up item
+  - 'drop' or 'leave' [item] : drops item
   - 'destroy' [item] : destroys item
   - 'quit game' or 'end game' : ends game session
 
@@ -97,7 +97,7 @@ their respective first letters.
       else:
         info = 'Invalid item'
 
-    elif verb in ['drop']:
+    elif verb in ['drop' 'leave']:
       dropped = player.drop(item[noun])
 
       if dropped:
