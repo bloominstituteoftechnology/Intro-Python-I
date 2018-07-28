@@ -6,15 +6,12 @@ from item import item
 # Implement a class to hold room information. This should have name and
 # description attributes.
 
-default = 'You don\'t see anything of particular interest'
-
 class Room:
-  def __init__(self, name, description, details = default, inventory=[]):
+  def __init__(self, name, description, inventory=[], details = None):
     self.name = name
     self.description = description
-    self.details = details
     self.inventory = inventory
-    self.inspected = False
+    self.details = details
   
   def __str__(self):
     return self.name
@@ -22,12 +19,24 @@ class Room:
   def __repr__(self):
     return self.name
 
-  def list_items(self):
-    return_str = '\nYou see the following inventory in the room:\n'
+  def inspect(self):
+    return_str = ''
 
-    for item in self.inventory:
-      return_str += f'\n{item.name}:\n{textwrap.fill(item.description, 50)}\n'
-    
+    if self.details:
+      return_str += self.details
+
+    if len(self.inventory) is not 0:
+      if self.details:
+        return_str += '\n'
+
+      return_str += "You see the following items:\n"
+
+      for item in self.inventory:
+        return_str += f"\n{item.name} - {textwrap.fill(item.description, 50)}\n"
+
+    if return_str is '':
+      return_str = 'You don\'t see anything of particular interest'
+  
     return return_str
 
 
@@ -38,21 +47,19 @@ room = {
                     "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty 
-passages run north and east.""", """You see a wall to the west that seems to 
+passages run north and east.""", [], """You see a wall to the west that seems to 
 have very uniform gaps in the shape of a doorway. Upon further inspection there
 appears to be a gab in the wall with a slot inside. It must be a mehcanism of some sort"""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", """As you inspect the area, you see a strange
-metal object near the edge of the cliff.
-It appears to be a lever.""", [item['lever']]),
+the distance, but there is no way across the chasm.""", [item['lever']]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
 
     'workshop': Room("Smith's Workshop", """This hidden room has scraps strewn out
-across the floor and containers along portions of the walls.""", """Around the corner seems
+across the floor and containers along portions of the walls.""", [], """Around the corner seems
 to be a functional workbench. Maybe we could use this to craft something useful"""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
