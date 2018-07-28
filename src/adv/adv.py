@@ -6,20 +6,21 @@ from being import player
 from item import item
 from room import room
 
-# Detect platform for proper clear method
+# Detect operating system
 plat = platform.system()
 
 # Establish global variables for displaying information after clear
 action, info = None, None
 
 while(True):
+  # Call appropriate clear method
   if plat is 'Windows': system('cls')
   else: system('clear')
 
   # Print current room and description
   print(f'\n{player.room.name}:\n{textwrap.fill(player.room.description, 50)}\n')
 
-  # Print most recent action and description
+  # Print most recent action and description then reset
   if action: print(action + '\n')
   if info: print(info + '\n')
 
@@ -58,11 +59,7 @@ while(True):
 
     elif command in ['inventory', 'bag', 'i', 'b']:
       action = 'You take inventory of your bag.'
-      info = 'It contains the following:'
-
-      for item in self.inventory:
-        print('\n{}:\n{}\n'.format(item.name,
-        textwrap.fill(item.description, 50)))
+      info = player.check_inventory()
 
     elif command in ['quit', 'q']:
       print('\nOk see ya later! Hope you had fun :)\n')
