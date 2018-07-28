@@ -72,12 +72,14 @@ class Humanoid(Being):
         # Print error
     pass
   
-  def pickup(self, item):
+  def take(self, item):
     if item in self.room.inventory:
       self.room.inventory.remove(item)
       self.inventory.append(item)
-    else:
-      print('\nItem invalid\n')
+
+      return True
+
+    return False
   
   def drop(self, item):
     if item in self.inventory:
@@ -101,7 +103,7 @@ class Humanoid(Being):
       return_str = 'You are carrying the following:\n'
 
       for item in self.inventory:
-        return_str += f"\n{item.name} - {textwrap.fill(item.description, 50)}"
+        return_str += f"\n{item.name} - {textwrap.fill(item.description, 75)}"
     else:
       return "Your inventory is currently empty."
       
