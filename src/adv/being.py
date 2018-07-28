@@ -15,30 +15,27 @@ class Being:
   def __repr__(self):
     return self.name
   
-  def move(self, direction):
+  def move_room(self, direction):
     # Account for variation
-    valid_directions = [ 'north', 'east', 'south', 'west' ]
     abr_directions = { 'n': 'north', 'e': 'east', 's': 'south', 'w': 'west' }
 
     # Transfer direction to full name if abreviated
     if direction in abr_directions.keys():
       direction = abr_directions[direction]
 
-    # Check if direction is valid
-    if direction in valid_directions:
-      # Make string to call room attribute with getattr()
-      move_to = f'{direction[0]}_to'
-      
-      # Check if room has a path to the requested direction
-      if hasattr(self.room, move_to):
-        # Move rooms and print description
-        self.room = getattr(self.room, move_to)
-
-      else:
-        print(f'I\'m sorry, it looks like the {self.room.name} has no path leading {direction}\n')
+    # Make string to call room attribute with getattr()
+    move_to = f'{direction[0]}_to'
     
+    # Check if room has a path to the requested direction
+    if hasattr(self.room, move_to):
+      # Move rooms and return description
+      self.room = getattr(self.room, move_to)
+
+      return 'You move to the ' + self.room.name
+
     else:
-      print('\nInvalid direction.\n')
+      # Return information as to why move failed
+      return f'I\'m sorry, it looks like the {self.room.name} has no path leading {direction}'
     
   def attack(self, target):
     pass
