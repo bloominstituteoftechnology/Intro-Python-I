@@ -58,5 +58,5 @@ class MagicItem(Equippable):
 # Create all the items
 item = {
   'lever': Item('lever', """It looks as though it was broken off at the base.
-Maybe it goes to something."""),
+Possibly part of a larger contraption."""),
 }
