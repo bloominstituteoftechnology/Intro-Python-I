@@ -61,9 +61,11 @@ def headDirection(nextRoom, player):
             return 1
         else:
             print("This room looks to be too dark to enter...")
+            return 1
     elif isinstance(nextRoom, Room):
         player.room = nextRoom
         return 1
+    return 0
 
 
 def look(items):
@@ -132,7 +134,7 @@ def doubleChoice(verb, noun, item):
 def printOutputAcceptInput():
     print(player.room)
     choice = input("What do you do? ")
-    choice = choice.split(' ')
+    choice = choice.lower().split(' ')
     os.system("cls")
     return choice
 
