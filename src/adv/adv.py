@@ -37,11 +37,11 @@ while(True):
       action = 'Your command options are:'
       info = '''  One word -
     - [direction] : moves in direction
-    - 'examine' or 'inspect' : default to examine current
-        room in detail
+    - 'examine' or 'inspect' or 'look' : default to examine 
+        current room in detail
     - 'equipped' : displays currently equipped items
     - 'help' or 'options' : displays all input option
-    - 'quit' or 'end' : ends game session
+    - 'quit' or 'q' or 'end' : ends game session
 
   Two word -
     - 'move' or 'go' [direction] : moves in direction
@@ -55,8 +55,7 @@ while(True):
     - 'destroy' [item] : destroys item if able
     - 'quit game' or 'end game' : ends game session'''
 
-
-    elif command in ['examine', 'inspect']:
+    elif command in ['examine', 'inspect', 'look']:
       action = 'You look around the ' + player.room.name
       info = player.room.inspect()
 
@@ -64,7 +63,7 @@ while(True):
       action = 'You take inventory of your bag.'
       info = player.check_inventory()
 
-    elif command in ['quit', 'end']:
+    elif command in ['quit', 'q', 'end']:
       print('\nOk see ya later! Hope you had fun :)\n')
       break
 
@@ -80,10 +79,15 @@ while(True):
       player.move(noun)
       action = 'You move to the ' + player.room.name
 
-    elif verb in ['take', 'grab']:
-      player.take(noun)
-      action = 'You take the ' + noun
-      description  = item[noun].description
+    elif verb in ['take', 'grab', 'pickup']:
+      taken = player.take(item[noun])
+      
+      if taken:
+        action = 'You take the ' + noun
+        info = item[noun].description
+
+      else:
+        action = 'Invalid item'
 
     elif verb in ['drop']:
       player.drop(noun)
