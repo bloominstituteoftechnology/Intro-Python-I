@@ -28,7 +28,7 @@ class Room:
       return_str += "You see the following items:\n"
 
       for item in self.inventory:
-        return_str += f"\n{item.name} - {textwrap.fill(item.description, 50)}"
+        return_str += f"\n{item.name} - {textwrap.fill(item.description, 75)}"
 
     if return_str is '':
       return_str = 'You don\'t see anything of particular interest'
