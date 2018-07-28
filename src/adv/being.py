@@ -54,12 +54,25 @@ class Humanoid(Being):
       'magic item': None
     }
 
-  def examine(self, target):
-    # If no target given
-      # Print details of current room
-    # Otherwise
-      # Check if item is on person or in room
-    pass
+  def inspect(self, item = None):
+    return_str = ''
+
+    if self.room.details:
+      return_str += self.room.details
+
+    if len(self.room.inventory) is not 0:
+      if self.room.details:
+        return_str += '\n'
+
+      return_str += "You see the following items:\n"
+
+      for item in self.room.inventory:
+        return_str += f"\n{item.name} - {textwrap.fill(item.description, 75)}"
+
+    if return_str is '':
+      return_str = 'You don\'t see anything of particular interest'
+  
+    return return_str
   
   def use(self, item):
     # If item is on person or in room
@@ -149,5 +162,5 @@ class Monster(NonHumanoid):
 
 
 # Make a new player that is currently in the 'overlook' room.
-player = Player(room['overlook'], 'Devon', 'human', 10)
+player = Player(room['outside'], 'Devon', 'human', 10)
 

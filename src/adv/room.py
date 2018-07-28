@@ -15,26 +15,6 @@ class Room:
   def __repr__(self):
     return self.name
 
-  def inspect(self):
-    return_str = ''
-
-    if self.details:
-      return_str += self.details
-
-    if len(self.inventory) is not 0:
-      if self.details:
-        return_str += '\n'
-
-      return_str += "You see the following items:\n"
-
-      for item in self.inventory:
-        return_str += f"\n{item.name} - {textwrap.fill(item.description, 75)}"
-
-    if return_str is '':
-      return_str = 'You don\'t see anything of particular interest'
-  
-    return return_str
-
 
 # Declare all the rooms
 room = {

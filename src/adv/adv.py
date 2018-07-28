@@ -37,23 +37,28 @@ while(True):
       action = 'Your command options are:'
       info = '''One word -
   - [direction] : moves in direction
-  - 'examine' or 'inspect' or 'look' : default to examine 
-      current room in detail
+  - 'inspect', 'examine' or 'look' : inspects current room
   - 'equipped' : displays currently equipped items
   - 'help' or 'options' : displays all input option
-  - 'quit' or 'q' or 'end' : ends game session
+  - 'q', 'quit' or 'end' : ends game session
 
 Two words -
   - 'move' or 'go' [direction] : moves in direction
-  - 'examine' or 'inspect' [item] : examines item if on
-      person or in room
-  - 'use' [item] : uses item if on person or in room
-  - 'equip' [item] : equips item if on persom or in room
-  - 'attack' [target] : attacks with equipped weapon
+  -  'inspect' or 'examine' [item] : inspects item
+  - 'use' [item] : uses item
+  - 'equip' [item] : equips item
+  - 'attack' [target] : attacks target
   - 'pickup' [item] : picks up item
   - 'drop' [item] : drops item
-  - 'destroy' [item] : destroys item if able
-  - 'quit game' or 'end game' : ends game session'''
+  - 'destroy' [item] : destroys item
+  - 'quit game' or 'end game' : ends game session
+
+[Directions] can be north, east, south, west or any of
+their respective first letters.
+
+[Items] are the name of any item that you see in game.
+
+[Targets] are the names of any enemy you see in game.'''
 
     elif command in ['north', 'east', 'south', 'west', 'n', 'e', 's', 'w']:
       player.move_room(command)
@@ -61,7 +66,7 @@ Two words -
 
     elif command in ['examine', 'inspect', 'look']:
       action = 'You look around the ' + player.room.name
-      info = player.room.inspect()
+      info = player.inspect()
 
     elif command in ['inventory', 'bag']:
       action = 'You take inventory of your bag.'
