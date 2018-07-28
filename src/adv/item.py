@@ -1,6 +1,3 @@
-# Currently these classes are using a lot of inheritance that
-# they may not need at this point in time.
-# My goal with this is to privode scalability for future functionality
 
 class Item:
   def __init__(self, name, description):
@@ -59,7 +56,6 @@ class MagicItem(Equippable):
 
 
 # Create all the items
-
 item = {
   'lever': Item('lever', """It looks as though it was broken off at the base.
 Maybe it goes to something."""),
