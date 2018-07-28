@@ -1,7 +1,7 @@
 Classes of game and inheritance structure
 
 LivingBeing (room, name, kind, inventory, hp) [move, attack]
-  > Humanoid (equip_slots) [examine, use, pickup, drop, equip, check_equipped, check_inventory]
+  > Humanoid (equip_slots) [examine, use, take, drop, equip, check_equipped, check_inventory]
     > Player
     > NPC (service, dialogue, aggressive, action_loop)
   > Non-humanoid (aggressive, action_loop)
