@@ -1,3 +1,4 @@
+import textwrap
 from room import room
 
 class Being:
@@ -32,8 +33,10 @@ class Being:
       if hasattr(self.room, move_to):
         # Move rooms and print description
         self.room = getattr(self.room, move_to)
+
       else:
         print(f'I\'m sorry, it looks like the {self.room.name} has no path leading {direction}\n')
+    
     else:
       print('\nInvalid direction.\n')
     
@@ -42,7 +45,7 @@ class Being:
 
 
 class Humanoid(Being):
-  def __init__(self, room, name, kind, hp, inventory):
+  def __init__(self, room, name, kind, hp, inventory = []):
     super().__init__(room, name, kind, hp, inventory)
     self.equip_slots = {
       'backpack': None,
@@ -89,13 +92,22 @@ class Humanoid(Being):
       # Otherwise print error
     pass
   
-  def check_equipped(self, item):
+  def check_equipped(self):
     for slot, item in self.equip_slots.iteritems():
       print(f'{slot}: {item}\n')
+    
+  def check_inventory(self):
+    if len(self.inventory) is not 0:
+      return_str = 'You are carrying the following:\n'
 
+      for item in self.inventory:
+        return_str += f"\n{item.name} - {textwrap.fill(item.description, 50)}"
+    else:
+      return "Your inventory is currently empty."
+      
 
 class Player(Humanoid):
-  def __init__(self, room, name, kind, hp, inventory):
+  def __init__(self, room, name, kind, hp, inventory = []):
     super().__init__(room, name, kind, hp, inventory)
 
 
@@ -133,6 +145,6 @@ class Monster(NonHumanoid):
 #     self.room.w_to = room['workshop']
 
 
-# Make a new player that is currently in the 'outside' room.
-player = Player(room['overlook'], 'Devon', 'human', 10, ['sword of awesomeness'])
+# Make a new player that is currently in the 'overlook' room.
+player = Player(room['overlook'], 'Devon', 'human', 10)
 
