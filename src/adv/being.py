@@ -6,7 +6,10 @@ class Being:
     self.hp = hp
     self.hp_max = hp
     self.inventory = inventory
-    self.boons = boons
+    self.boons = {
+      'protection': 0,
+      'power': 0
+    }
   
   def __str__(self):
     return self.name
@@ -38,18 +41,26 @@ class Being:
     
   def attack(self, target):
     # Make sure that target is in same room
-    if self.room == target.room:
+    if target in self.room.occupants:
       # Account for human or non-human 
-      if hasattr(self, equip_slots):
-        power = self.equip_slots['weapon'].power
+      if hasattr(self, 'equip_slots'):
+        if self.equip_slots['weapon']: 
+          power = self.equip_slots['weapon'].power
 
-      else:
+        else: 
+          power = 1
+
+      else: 
         power = self.power
       
-      if hasattr(self, equip_slots):
-        protection = target.equip_slots['armor'].protection
+      if hasattr(self, 'equip_slots'):
+        if self.equip_slots['armor']: 
+          protection = target.equip_slots['armor'].protection
 
-      else:
+        else: 
+          protection = 0
+
+      else: 
         protection = target.protection
 
       # Calculate total damage after boons
@@ -57,13 +68,29 @@ class Being:
       protection += target.boons['protection']
       damage = power - protection
     
-    if damage > 0:
-      target.hp -= damage
+      if damage > 0:
+        target.hp -= damage
+        return f'You hit the {target.kind} {target.name} for {damage} damage!'
+
+      else:
+        return f'You\'re attac seems to be ineffective...'
+
+    else:
+      return f'There seems to be no enemy with that name in this room.{target}'
+
 
 
 class Humanoid(Being):
   def __init__(self, room, name, kind, hp, inventory = []):
     super().__init__(room, name, kind, hp, inventory)
+    self.nat_armor = {
+      'name': 'natural armor',
+      'protection': 0
+    },
+    self.nat_weapon = {
+      'name': 'natural weapons',
+      'power': 1
+    },
     self.equip_slots = {
       'backpack': None,
       'satchel': None,
@@ -88,6 +115,18 @@ class Humanoid(Being):
 
       for item in self.room.inventory:
         return_str += f"\n{item.name} - {item.description}"
+    
+    if len(self.room.occupants) is not 0:
+      if self.room.details or len(self.room.inventory) is not 0:
+        return_str += '\n\n'
+
+      return_str += "This room is occupied by:\n"
+
+      for being in self.room.occupants:
+        vowels = ['A', 'E', 'I', 'O', 'U']
+        prefix = 'An' if being.kind[0] in vowels else 'A'
+        target_key = f'{being.kind}:{being.name}'
+        return_str += f'\n{prefix} {being.kind} named {being.name} ({target_key})'
 
     if return_str is '':
       return_str = 'You don\'t see anything of particular interest'
