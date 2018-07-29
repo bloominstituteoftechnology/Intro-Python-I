@@ -1,12 +1,12 @@
 Classes of game and inheritance structure
 
-LivingBeing (room, name, kind, inventory, hp) [move, attack]
+Being (room, name, kind, hp, inventory, boons) [move, attack]
   > Humanoid (equip_slots) [examine, use, take, drop, equip, check_equipped, check_inventory]
     > Player
     > NPC (service, dialogue, aggressive, action_loop)
-  > Non-humanoid (aggressive, action_loop)
-    > Animal (attack)
-    > Monster (weapon, armor)
+  > Non-humanoid (power, protection, aggressive, action_loop)
+    > Animal
+    > Monster
  
 Item(name, description)
   > Consumable [expend] (quantity, kind(food | potion | poison | craft))
@@ -15,6 +15,7 @@ Item(name, description)
     > Weapon (power)   
     > Accessory (effect)
     > Magic Item (charges)
+    > Offhand <>
     > Light Source (lighting)
   > Container (capacity{current, max}, inventory) [isFull]
     > Equippable <Multi Inheritance>
@@ -26,8 +27,13 @@ Item(name, description)
     > Compartment
     > Furniture
     
-
 Room (name, description, details, use_targets, lighting, inventory)
+
+boon = {
+  'protection': 0,
+  'power': 0,
+  '
+}
 
 Actions of Player
   ???? Make state machine like a regex parser for longer commands ???
@@ -48,5 +54,10 @@ Actions of Player
     - 'pickup' [item] : picks up item
     - 'drop' [item] : drops item
     - 'destroy' [item] : destroys item if able
+
+
+TODO's
+  - Game selection screen(games.py): Import all classes and generate 
+    player/rooms/items based on scenario then import to adv.py
 
 
