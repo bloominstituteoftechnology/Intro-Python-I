@@ -2,7 +2,7 @@ import sys
 from item import item
 
 class Room:
-  def __init__(self, name, description, details = None, inventory=[]):
+  def __init__(self, name, description, details = None, inventory = []):
     self.name = name
     self.description = f'\'{description}\''
     self.inventory = inventory
@@ -40,6 +40,9 @@ useful."""),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by earlier adventurers. The 
 only exit is to the south."""),
+
+    'arena': Room("Arena", """This is the place where champions are made. Best of 
+    luck""")
 }
 
 
