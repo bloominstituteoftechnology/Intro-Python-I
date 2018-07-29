@@ -1,13 +1,16 @@
 import textwrap
 from room import room
+import weapon from item
 
 class Being:
-  def __init__(self, room, name, kind, hp, inventory = []):
+  def __init__(self, room, name, kind, hp, inventory = [], boon = {}):
     self.room = room
     self.name = name
     self.kind = kind
     self.hp = hp
+    self.hp_max = hp
     self.inventory = inventory
+    self.boons = boons
   
   def __str__(self):
     return self.name
@@ -38,7 +41,28 @@ class Being:
       return f'I\'m sorry, it looks like the {self.room.name} has no path leading {direction}'
     
   def attack(self, target):
-    pass
+    # Make sure that target is in same room
+    if self.room == target.room:
+      # Account for human or non-human 
+      if hasattr(self, equip_slots):
+        power = self.equip_slots['weapon'].power
+
+      else:
+        power = self.power
+      
+      if hasattr(self, equip_slots):
+        protection = target.equip_slots['armor'].protection
+
+      else:
+        protection = target.protection
+
+      # Calculate total damage after boons
+      power += self.boon['power']
+      protection += target.boon['protection']
+      damage = power - protection
+    
+    if damage > 0:
+      target.hp -= damage
 
 
 class Humanoid(Being):
@@ -49,7 +73,7 @@ class Humanoid(Being):
       'satchel': None,
       'pouch': None,
       'armor': None,
-      'weapon': None, # Natural weapon if none equipped
+      'weapon': weapon['human natural']
       'accessory': None,
       'magic item': None
     }
@@ -58,7 +82,7 @@ class Humanoid(Being):
     return_str = ''
 
     if self.room.details:
-      return_str += self.room.details
+      return_str += textwrap.fill(self.room.details, 65)
 
     if len(self.room.inventory) is not 0:
       if self.room.details:
@@ -67,7 +91,7 @@ class Humanoid(Being):
       return_str += "You see the following items:\n"
 
       for item in self.room.inventory:
-        return_str += f"\n{item.name} - {textwrap.fill(item.description, 75)}"
+        return_str += f"\n{item.name} - {item.description}"
 
     if return_str is '':
       return_str = 'You don\'t see anything of particular interest'
@@ -115,7 +139,7 @@ class Humanoid(Being):
       return_str = 'You are carrying the following:\n'
 
       for item in self.inventory:
-        return_str += f"\n{item.name} - {textwrap.fill(item.description, 50)}"
+        return_str += f"\n{item.name} - {item.description}"
 
       return return_str
 
@@ -137,18 +161,18 @@ class NPC(Humanoid):
 
 
 class NonHumanoid(Being):
-  def __init__(self, room, name, kind, hp, inventory, action_loop = None, aggressive = False):
-    super().__init__(room, name, kind, hp, inventory)
+  def __init__(self, room, name, kind, hp, inventory, power, protection, action_loop = None, aggressive = False):
+    super().__init__(room, name, kind, hp, inventory, power, protection)
     self.action_loop = action_loop
     self.aggressive = aggressive
 
 class Animal(NonHumanoid):
-  def __init__(self, room, name, kind, hp, inventory, action_loop = None, aggressive = False):
-    super().__init__(room, name, kind, hp, inventory, action_loop, aggressive)
+  def __init__(self, room, name, kind, hp, inventory, power, protection, action_loop = None, aggressive = False):
+    super().__init__(room, name, kind, hp, inventory, power, protection, action_loop, aggressive)
   
 class Monster(NonHumanoid):
-  def __init__(self, room, name, kind, hp, inventory, action_loop = None, aggressive = False):
-    super().__init__(room, name, kind, hp, inventory, action_loop, aggressive)
+  def __init__(self, room, name, kind, hp, inventory, power, protection, action_loop = None, aggressive = False):
+    super().__init__(room, name, kind, hp, inventory, power, protection, action_loop, aggressive)
 
 
 #   def use(self, item):
