@@ -1,9 +1,10 @@
 class Room:
-  def __init__(self, name, description, details = None, inventory = []):
+  def __init__(self, name, description, details = None, inventory = [], occupants = []):
     self.name = name
     self.description = f'\'{description}\''
-    self.inventory = inventory
     self.details = f'\'{details}\'' if details else details
+    self.inventory = inventory
+    self.occupants = occupants
   
   def __str__(self):
     return self.name
