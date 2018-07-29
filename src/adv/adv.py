@@ -2,8 +2,7 @@ import sys
 import platform
 import textwrap
 from os import system
-
-from game import player, item
+from game import player, npc, item
 
 # Detect operating system
 plat = platform.system()
@@ -46,7 +45,7 @@ Two words -
   - 'inspect' or 'examine' [item] : inspects item
   - 'use' [item] : uses item
   - 'equip' [item] : equips item
-  - 'attack' [target] : attacks target
+  - 'attack' [target_key] : attacks target
   - 'take' or 'grab' [item] : picks up item
   - 'drop' or 'leave' [item] : drops item
   - 'destroy' [item] : destroys item
@@ -105,6 +104,10 @@ their respective first letters.
       
       else:
         info = 'Invalid Item'
+    
+    elif verb in ['attack']:
+      action = f'You attacked {noun}'
+      info = player.attack(npc[noun])
 
     elif verb in ['quite', 'end'] and noun in ['game']:
       print('\nOk see ya later! Hope you had fun :)\n')
