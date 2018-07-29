@@ -18,7 +18,7 @@ while(True):
   else: system('clear')
 
   # Print current room and description
-  print(f'\n{player.room.name}:\n{textwrap.fill(player.room.description, 50)}\n')
+  print(f'\n{player.room.name}:\n\n{textwrap.fill(player.room.description, 65)}\n')
 
   # Print most recent action and description then reset
   if action: print(action + '\n')
@@ -97,7 +97,7 @@ their respective first letters.
       else:
         info = 'Invalid item'
 
-    elif verb in ['drop' 'leave']:
+    elif verb in ['drop', 'leave']:
       dropped = player.drop(item[noun])
 
       if dropped:
