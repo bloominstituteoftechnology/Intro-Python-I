@@ -1,9 +1,5 @@
-import textwrap
-from room import room
-import weapon from item
-
 class Being:
-  def __init__(self, room, name, kind, hp, inventory = [], boon = {}):
+  def __init__(self, room, name, kind, hp, inventory = [], boons = {}):
     self.room = room
     self.name = name
     self.kind = kind
@@ -57,8 +53,8 @@ class Being:
         protection = target.protection
 
       # Calculate total damage after boons
-      power += self.boon['power']
-      protection += target.boon['protection']
+      power += self.boons['power']
+      protection += target.boons['protection']
       damage = power - protection
     
     if damage > 0:
@@ -73,7 +69,7 @@ class Humanoid(Being):
       'satchel': None,
       'pouch': None,
       'armor': None,
-      'weapon': weapon['human natural']
+      'weapon': None,
       'accessory': None,
       'magic item': None
     }
@@ -82,7 +78,7 @@ class Humanoid(Being):
     return_str = ''
 
     if self.room.details:
-      return_str += textwrap.fill(self.room.details, 65)
+      return_str += self.room.details
 
     if len(self.room.inventory) is not 0:
       if self.room.details:
@@ -183,8 +179,3 @@ class Monster(NonHumanoid):
 # It slides into the slot with relative ease and the wall opens up,
 # revealing a hidden room.''')
 #     self.room.w_to = room['workshop']
-
-
-# Make a new player that is currently in the 'overlook' room.
-player = Player(room['outside'], 'Devon', 'human', 10)
-

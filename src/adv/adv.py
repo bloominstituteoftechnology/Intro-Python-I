@@ -2,9 +2,8 @@ import sys
 import platform
 import textwrap
 from os import system
-from being import player
-from item import item
-from room import room
+
+from game import player, item
 
 # Detect operating system
 plat = platform.system()
