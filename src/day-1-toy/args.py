@@ -71,4 +71,5 @@ d = {
 }
 
 # What thing do you have to add to make this work?
+# I need to add two ** to unpack the dict param
 f4(**d)
