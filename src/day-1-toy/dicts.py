@@ -1,5 +1,5 @@
 # Make an array of dictionaries. Each dictionary should have keys:
-#
+# word to the trizzle
 # lat: the latitude
 # lon: the longitude
 # name: the waypoint name
