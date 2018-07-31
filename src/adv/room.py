@@ -5,6 +5,7 @@ class Room:
   def _init_(self, name, description):
     self.name = name
     self.description = description
+    self.paths = []
     self.creatures = None
     self.contents = None
     self.n_to: None

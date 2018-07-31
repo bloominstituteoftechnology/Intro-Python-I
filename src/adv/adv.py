@@ -7,7 +7,7 @@ import textwrap
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+"North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -48,7 +48,12 @@ player  = Player(rooms['outside'])
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
+
+done = False
+
+while not done:
+    print("\n{}\n".format(rooms[player.currentRoom]['name']))
+    print("\n{}\n".format(rooms[player.currentRoom]['description']))
 # If the user enters a cardinal direction, attempt to move to the room there.
 def tryDirection(direction, currentRoom):
     key = direction + "_to"
