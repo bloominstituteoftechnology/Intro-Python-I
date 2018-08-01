@@ -14,3 +14,19 @@
 # docs for the calendar module closely.
 
 import sys
+from calendar import TextCalendar
+from datetime import datetime
+
+tc = TextCalendar()
+
+try:
+    month = int(sys.argv[1])
+except Exception as e:
+    month = datetime.today().month
+
+try:
+    year = int(sys.argv[2])
+except Exception as e:
+    year = datetime.today().year
+
+tc.prmonth(year, month)
