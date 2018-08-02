@@ -5,7 +5,7 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 def f1(x, y):
-    return x + y
+  return x + y
 
 print(f1(1, 2))
 
@@ -13,10 +13,10 @@ print(f1(1, 2))
 # sum. Google for "python arbitrary arguments" and look for "*args"
 # from functools import reduce
 # def f2(*args):
-#     return reduce((lambda x, y: x + y), args)
+#  return reduce((lambda x, y: x + y), args)
 
 def f2(*args):
-    return sum(args)
+  return sum(args)
 
 # print(f2(1))                    # Should print 1
 # print(f2(1, 3))                 # Should print 4
@@ -33,7 +33,7 @@ print(f2(*a))    # * specifies a list of arguments
 # arguments. Google "python default arguments" for a hint.
 
 def f3(x, y=1):
-    return x + y
+  return x + y
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -48,8 +48,8 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 def f4(**kwargs):
-    for k, v in kwargs.items():
-        print(f'key: {k}, value: {v}')
+  for k, v in kwargs.items():
+    print(f'key: {k}, value: {v}')
 
 # Should print
 # key: a, value: 12
@@ -63,8 +63,8 @@ f4(a=12, b=30)
 f4(city="Berkeley", population=121240, founded="March 23, 1868")
 
 d = {
-    "monster": "goblin",
-    "hp": 3
+  "monster": "goblin",
+  "hp": 3
 }
 
 # What thing do you have to add to make this work?
