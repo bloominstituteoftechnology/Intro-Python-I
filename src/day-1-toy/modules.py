@@ -6,13 +6,18 @@ import os
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
 
 # Print out the command line arguments in sys.argv, one per line:
+# why is script underlined in red? This is correct and it works.
+script, hello, world = sys.argv
+
+for arg in sys.argv:
+    print(arg + '\n')
 
 
 # Print out the plaform from sys:
-print()
+print(sys.platform)
 
 # Print out the Python version from sys:
-print()
+print(sys.version)
 
 
 
