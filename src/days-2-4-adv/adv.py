@@ -2,7 +2,7 @@ from room import Room
 
 # Declare all the rooms
 
-room = {
+rooms = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
 
@@ -24,14 +24,14 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+rooms['outside'].n_to = rooms['foyer']
+rooms['foyer'].s_to = rooms['outside']
+rooms['foyer'].n_to = rooms['overlook']
+rooms['foyer'].e_to = rooms['narrow']
+rooms['overlook'].s_to = rooms['foyer']
+rooms['narrow'].w_to = rooms['foyer']
+rooms['narrow'].n_to = rooms['treasure']
+rooms['treasure'].s_to = rooms['narrow']
 
 #
 # Main
@@ -49,3 +49,38 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+class Main:
+    def __init__(self, player, room):
+        self.player = player
+        self.room = room
+    
+    def getRoom(self):
+        print('***********************************')
+        print('You are in: ' + self.room.name)
+        print('This room is: ' + self.room.description)
+        
+        
+# Make a new player object that is currently in the 'outside' room.
+playerA = Main({'name': 'Thuy'}, rooms['outside'])
+print('Welcome ' + playerA.player['name'] + '!')
+playerA.getRoom()
+
+move = ''
+
+while move != 'q':
+    move = input(">>>>>>Your next move? w(west), s(south), n(north), e(east) or q(quit): ")
+    
+    if (move != 'q'):
+        moveKey = move + '_to'
+        
+        try:
+            playerA.room[moveKey]
+        except KeyError:
+            print('There is no way on that direction! Try again!')
+            print(playerA.room)
+        else:
+            playerA.room = rooms[playerA.room[moveKey]]
+            playerA.getRoom()
+    else:
+        print('See you later!')
