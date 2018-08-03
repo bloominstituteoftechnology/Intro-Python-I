@@ -22,15 +22,4 @@ if l == 2:
     month = None
     year = int(sys.argv[1])
 elif l == 3:
-    month = int(sys.argv[1])
-    year = int(sys.argv[2])
-else:
-    print("Usage: cal.py [month] year")
-    sys.exit(1)
-
-c = calendar.TextCalendar()
-
-if month != None:
-    c.prmonth(year, month)
-else:
-    c.pryear(year)
+    month = int(sys.argv[1
