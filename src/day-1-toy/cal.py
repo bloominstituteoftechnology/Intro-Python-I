@@ -15,3 +15,7 @@
 
 import sys
 import calendar
+import datetime
+
+year = int(input("Enter the year: "))
+month = int(input("Enter Month 1 - 12: "))
