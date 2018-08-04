@@ -6,6 +6,4 @@ class Room(object):
         self.name = name
         self.description = description
 
-    def __str__(self):
-        # we're gonna like return something or another
-        pass
+        

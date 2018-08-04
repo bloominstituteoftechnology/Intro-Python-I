@@ -1,11 +1,12 @@
 from room import Room
-
+from player import Player
+import textwrap
 # Declare all the rooms
 # oh my what do we have here...
 
 # okay so up at the top we're importing the room class
 
-# and here we're creating a Python dictionary 
+# and here we're creating a Python dictionary  
 # inside this dictionary each key is just a string
 # each value is an instance of Room class, with a name and a description
 room = {
@@ -35,6 +36,10 @@ earlier adventurers. The only exit is to the south."""),
 
 # so those .n_to, .s_to, etc appear to be methods that I haven't defined yet.
 # I think I have to define those methods in the room class...
+# aha! now I see something new after playing around with super simple on-the-fly classes
+# in the console I see that I can add attributes to an instance of a class
+# these attributes can be...anything I want! In the case below each of the attributes added are
+# other instances of the Room class
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -44,18 +49,32 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 # so after mapping out the rooms I've decided that I don't like this implementation
-# There has to be a better way...I don't like that there is a method for each
-# direction, to and from a room. My intuition tells me there's a better way to implement this
+# There has to be a better way...My intuition tells me there's a better way to implement this
 # but I'll go with the way it is for now...
 # okay if I think of this game as an app then this would be my top-level file
 # this is where the main loop of the game is called...
-# Main
+# Main  
 #
 
 # Make a new player object that is currently in the 'outside' room.
+new_player_message = """
+    Greetings player 1. Welcome to the Super Adventure Game. 
+    Please enter a name for your hero: """
+name = input(new_player_message)
 
+player = Player(name, room['outside'])
 # Write a loop that:
-#
+while True:
+    print player.room.description
+
+    message = """
+    Which direction do you go? 
+    Enter n, w, e, s for North,
+    West, East, or South: """
+
+    input(message)
+
+    
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
