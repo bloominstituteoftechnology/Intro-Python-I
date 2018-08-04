@@ -21,7 +21,7 @@ file = open("words.txt", "r")
 for line in file:
     words.append(line)
 file.close()
-targetWord = words[random.randint(0, len(words))]
+targetWord = words[random.randint(0, len(words)-1)]
 lettersLeft = len(targetWord)-1
 length = len(targetWord)-1
 curWord = "_" * length
@@ -58,19 +58,22 @@ printWord(alphabet)
 while strikes < 5 and lettersLeft > 0:
     letter = input("\nPlease guess a letter...")
     
-    if letter.upper() not in alphabet:
-        print("\n❌ {letter} is not a valid letter! Try again! \n")
-    else:
-        if letter in targetWord:
-            print("Great!")
-            fillLetters(letter)
+    if isinstance(letter, str) and len(letter) == 1:
+        if letter.upper() not in alphabet:
+            print("\n❌ {letter} is not a valid letter! Try again! \n")
         else:
-            strikes += 1
-            print( str(strikes) + " / 5 strikes" )
-            
-        printWord(curWord)
-        drawBody()
-        alphabet.remove(letter.upper())
+            if letter in targetWord:
+                print("Great!")
+                fillLetters(letter)
+            else:
+                strikes += 1
+                print( str(strikes) + " / 5 strikes" )
+                
+            printWord(curWord)
+            drawBody()
+            alphabet.remove(letter.upper())
+    else:
+        print("\n❌ {letter} is not a valid letter! Try again! \n")
     
     print("Letters left:")
     print(lettersLeft)
