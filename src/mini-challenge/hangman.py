@@ -2,8 +2,8 @@
 # These could include syntax errors, logical errors, spelling errors...
 # Find the mistakes and fix the game!
 #
-# STRETCH GOAL: If you fix all the errors, can you find a way to improve it?
-# STRETCH GOALS: Add a cheat code, more error handling, chose randomly
+# STRETCH GOAL: If you fix all the errors, can you find a way to improve 
+# it? Add a cheat code, more error handling, chose randomly
 # from a set of win/loss messages...basically, make it better!
 
 # Initial setup
