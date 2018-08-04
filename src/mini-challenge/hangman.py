@@ -74,10 +74,11 @@ while strikes < 5 and lettersLeft > 0:
         alphabet.remove(letter.upper())
     
     print("Letters left:")
+    print(lettersLeft)
     printWord(alphabet)
 
 # Game over, print outcome
-if lettersLeft < 0:
+if lettersLeft <= 0:
     print("YOU WIN!!")
 else:
     print("YOU LOSE...word was " + targetWord)
