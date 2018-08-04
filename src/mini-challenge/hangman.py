@@ -2,38 +2,44 @@
 # These could include syntax errors, logical errors, spelling errors...
 # Find the mistakes and fix the game!
 #
-# STRETCH GOAL: If you fix all the errors, can you find a way to improve 
+# STRETCH GOAL: If you fix all the errors, can you find a way to improve
 # it? Add a cheat code, more error handling, chose randomly
 # from a set of win/loss messages...basically, make it better!
 
+import random
+
 # Initial setup
-bodies = [ " ------\n |    |\n |    O\n |\n |\n |\n |\n |\n---", 
-" ------\n |    |\n |    O\n |    |\n |    |\n |\n |\n |\n---", 
-" ------\n |    |\n |    O\n |    |\n |    |\n |   / \n |\n |\n---", 
-" ------\n |    |\n |    O\n |    |\n |    |\n |   / \ \n |\n |\n---", 
+bodies = [ " ------\n |    |\n |    O\n |\n |\n |\n |\n |\n---",
+" ------\n |    |\n |    O\n |    |\n |    |\n |\n |\n |\n---",
+" ------\n |    |\n |    O\n |    |\n |    |\n |   / \n |\n |\n---",
+" ------\n |    |\n |    O\n |    |\n |    |\n |   / \ \n |\n |\n---",
 " ------\n |    |\n |    O\n |   \|\n |    |\n |   / \ \n |\n |\n---",
 " ------\n |    |\n |  O\n |   \|/\n |    |\n |   / \ \n |\n |\n---" ]
 strikes = 0
 words = [None]
-file = open("word.txt", "r")
+file = open("words.txt", "r")
 for line in file:
     words.append(line)
 file.close()
-targetWord = words[random.randint(0, 100)]
+targetWord = words[random.randint(0, len(words))]
+print(targetWord)
 lettersLeft = len(targetWord)-1
 length = len(targetWord)-1
+print(length)
 curWord = "_" * length
-alphabet = [chr(65+x) for x in range(1, 26) ]
+print(curWord)
+alphabet = [chr(65+x) for x in range(26) ]
 
 # Draw body based on # of incorrect guesses
-def drawBody()
+def drawBody():
     print(bodies[strikes])
 
 # Replace blanks with correctly guessed letters
 def fillLetters( letter ):
+    global curWord
     for i in range(len(targetWord)-1):
-        if( targetWord[i : i+1]) == letter:
-            curWord = curWord[0: i] + letter + curWord[i: ]
+        if( targetWord[i]) == letter:
+            curWord = curWord[0: i] + letter + curWord[i + 1: ]
             global lettersLeft
             lettersLeft -= 1
 
@@ -59,10 +65,13 @@ while strikes < 5 and lettersLeft > 0:
         fillLetters(letter)
     else:
         strikes += 1
-        print( strikes + " / 5 strikes" )
+        print( str(strikes) + " / 5 strikes" )
     printWord(curWord)
     drawBody()
-    alphabet.remove(letter.upper())
+    try:
+        alphabet.remove(letter.upper())
+    except ValueError as e:
+        pass
     print("Letters left:")
     printWord(alphabet)
 
