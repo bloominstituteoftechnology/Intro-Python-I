@@ -54,8 +54,6 @@ room['treasure'].s_to = room['narrow']
 # okay if I think of this game as an app then this would be my top-level file
 # this is where the main loop of the game is called...
 # Main  
-#
-
 # Make a new player object that is currently in the 'outside' room.
 new_player_message = """
     Greetings player 1. Welcome to the Super Adventure Game. 
@@ -63,16 +61,48 @@ new_player_message = """
 name = input(new_player_message)
 
 player = Player(name, room['outside'])
+# print(player.room.name)
+# player.room = player.room.n_to
+# print(player.room.name)
 # Write a loop that:
+invalid = "You can't go in that direction."
 while True:
-    print player.room.description
+
+    print(player.room.name)
+    print('\n')
+    print(player.room.description)
 
     message = """
     Which direction do you go? 
     Enter n, w, e, s for North,
     West, East, or South: """
 
-    input(message)
+    action = input(message)
+
+    if action == 'n':
+        if player.room.n_to != None:
+            player.room = player.room.n_to
+        else:
+            print(invalid)
+    elif action == 'w':
+        if player.room.w_to != None:
+            player.room = player.room.n_to
+        else: 
+            print(invalid)
+    elif action == 's':
+        if player.room.s_to != None:
+            player.room = player.room.s_to
+        else:
+            print(invalid)
+    elif action == 'e':
+        if player.room.e_to != None:
+            player.room = player.room.e_to
+        else: 
+            print(invalid)
+    elif action == 'q':
+        print("Goodbye!")
+        break
+    
 
     
 # * Prints the current room name
