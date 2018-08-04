@@ -7,6 +7,7 @@
 # from a set of win/loss messages...basically, make it better!
 
 # Initial setup
+import random
 bodies = [ " ------\n |    |\n |    O\n |\n |\n |\n |\n |\n---", 
 " ------\n |    |\n |    O\n |    |\n |    |\n |\n |\n |\n---", 
 " ------\n |    |\n |    O\n |    |\n |    |\n |   / \n |\n |\n---", 
@@ -15,7 +16,7 @@ bodies = [ " ------\n |    |\n |    O\n |\n |\n |\n |\n |\n---",
 " ------\n |    |\n |  O\n |   \|/\n |    |\n |   / \ \n |\n |\n---" ]
 strikes = 0
 words = [None]
-file = open("word.txt", "r")
+file = open("words.txt", "r")
 for line in file:
     words.append(line)
 file.close()
@@ -26,7 +27,7 @@ curWord = "_" * length
 alphabet = [chr(65+x) for x in range(1, 26) ]
 
 # Draw body based on # of incorrect guesses
-def drawBody()
+def drawBody():
     print(bodies[strikes])
 
 # Replace blanks with correctly guessed letters
@@ -45,7 +46,7 @@ def printWord( word ):
     print(prntWord)
 
 # Begin game
-print( "Welcome to Hangmn!" )
+print( "Welcome to Hangman!" )
 printWord(curWord)
 drawBody()
 print("Letters left:")
