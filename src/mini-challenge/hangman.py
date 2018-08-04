@@ -22,7 +22,6 @@ for line in file:
     words.append(line)
 file.close()
 targetWord = words[random.randint(0, len(words))]
-print(targetWord)
 lettersLeft = len(targetWord)-1
 length = len(targetWord)-1
 curWord = "_" * length
