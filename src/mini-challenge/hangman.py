@@ -22,6 +22,7 @@ for line in file:
     words.append(line)
 file.close()
 targetWord = words[random.randint(0, len(words))]
+print(targetWord)
 lettersLeft = len(targetWord)-1
 length = len(targetWord)-1
 curWord = "_" * length
@@ -36,7 +37,7 @@ def fillLetters( letter ):
     for i in range(len(targetWord)-1):
         if( targetWord[i : i+1]) == letter:
             global curWord
-            curWord = curWord[0: i] + letter + curWord[i: ]
+            curWord = curWord[0: i] + letter + curWord[i+1: ]
             global lettersLeft
             lettersLeft -= 1
 
@@ -59,7 +60,7 @@ while strikes < 5 and lettersLeft > 0:
     letter = input("\nPlease guess a letter...")
     
     if letter.upper() not in alphabet:
-        print("YOU ALREADY GUESSED THAT LETTER !!!!!")
+        print("\n❌ {letter} is not a valid letter! Try again! \n")
     else:
         if letter in targetWord:
             print("Great!")
