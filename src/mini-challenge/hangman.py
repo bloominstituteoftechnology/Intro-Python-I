@@ -22,12 +22,9 @@ for line in file:
     words.append(line)
 file.close()
 targetWord = words[random.randint(0, len(words))]
-print(targetWord)
 lettersLeft = len(targetWord)-1
 length = len(targetWord)-1
-print(length)
 curWord = "_" * length
-print(curWord)
 alphabet = [chr(65+x) for x in range(26) ]
 
 # Draw body based on # of incorrect guesses
@@ -76,7 +73,7 @@ while strikes < 5 and lettersLeft > 0:
     printWord(alphabet)
 
 # Game over, print outcome
-if lettersLeft < 0:
+if lettersLeft == 0:
     print("YOU WIN!!")
 else:
     print("YOU LOSE...word was " + targetWord)
