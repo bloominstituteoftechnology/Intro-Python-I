@@ -20,9 +20,10 @@ file = open("words.txt", "r")
 for line in file:
     words.append(line)
 file.close()
-targetWord = words[random.randint(0, 100)]
-lettersLeft = len(targetWord)-1
-length = len(targetWord)-1
+targetWord = 'word'
+# targetWord = words[random.randint(0, 100)]
+lettersLeft = len(targetWord)
+length = len(targetWord)
 curWord = "_" * length
 alphabet = [chr(65+x) for x in range(26) ]
 
@@ -33,9 +34,10 @@ def drawBody():
 # Replace blanks with correctly guessed letters
 def fillLetters( letter ):
     for i in range(len(targetWord)-1):
-        if( targetWord[i : i+1]) == letter:
+        if ( targetWord[i] ) == letter:
+        # if( targetWord[i : i+1]) == letter:
             global curWord
-            curWord = curWord[0: i] + letter + curWord[i: ]
+            curWord = list
             global lettersLeft
             lettersLeft -= 1
 
@@ -54,7 +56,7 @@ print("Letters left:")
 printWord(alphabet)
 
 # Gameplay loop
-while strikes < 5 and lettersLeft > 0:
+while strikes <= 5 and lettersLeft > 0:
     letter = input("\nPlease guess a letter...")
     if letter in targetWord:
         print("Great!")
@@ -64,12 +66,16 @@ while strikes < 5 and lettersLeft > 0:
         print( str(strikes) + " / 5 strikes" )
     printWord(curWord)
     drawBody()
-    alphabet.remove(letter.upper())
+    if letter in alphabet:
+        alphabet.remove(letter.upper())
+    else: 
+        print("You already picked that one!")
     print("Letters left:")
     printWord(alphabet)
 
 # Game over, print outcome
-if lettersLeft < 0:
+if curWord == targetWord:
+# if lettersLeft < 0:
     print("YOU WIN!!")
 else:
     print("YOU LOSE...word was " + targetWord)
