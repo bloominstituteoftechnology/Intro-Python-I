@@ -1,81 +1,68 @@
-# There are at least 10 "mistakes" in this Hangman game
-# These could include syntax errors, logical errors, spelling errors...
-# Find the mistakes and fix the game!
-#
-# STRETCH GOAL: If you fix all the errors, can you find a way to improve 
-# it? Add a cheat code, more error handling, chose randomly
-# from a set of win/loss messages...basically, make it better!
-
-# Initial setup
 import random
+
 bodies = [ " ------\n |    |\n |    O\n |\n |\n |\n |\n |\n---", 
 " ------\n |    |\n |    O\n |    |\n |    |\n |\n |\n |\n---", 
 " ------\n |    |\n |    O\n |    |\n |    |\n |   / \n |\n |\n---", 
 " ------\n |    |\n |    O\n |    |\n |    |\n |   / \ \n |\n |\n---", 
 " ------\n |    |\n |    O\n |   \|\n |    |\n |   / \ \n |\n |\n---",
-" ------\n |    |\n |  O\n |   \|/\n |    |\n |   / \ \n |\n |\n---" ]
+" ------\n |    |\n |    O\n |   \|/\n |    |\n |   / \ \n |\n |\n---" ]
 strikes = 0
 words = [None]
 file = open("words.txt", "r")
 for line in file:
     words.append(line)
 file.close()
-targetWord = 'word'
-# targetWord = words[random.randint(0, 100)]
-lettersLeft = len(targetWord)
-length = len(targetWord)
-curWord = "_" * length
-alphabet = [chr(65+x) for x in range(26) ]
+# target_word = words[random.randint(0, len(words))]
+target_word = list('word')
+length = len(target_word)
+cur_word = list("*" * length)
+alphabet = [chr(65+x) for x in range(0, 26) ]
 
 # Draw body based on # of incorrect guesses
 def drawBody():
     print(bodies[strikes])
 
-# Replace blanks with correctly guessed letters
-def fillLetters( letter ):
-    for i in range(len(targetWord)-1):
-        if ( targetWord[i] ) == letter:
-        # if( targetWord[i : i+1]) == letter:
-            global curWord
-            curWord = list
-            global lettersLeft
-            lettersLeft -= 1
+def print_word(word):
+    print('-'.join(word))
 
-# Add spaces when displaying letters / blanks for readability
-def printWord( word ):
-    prntWord = ""
-    for letter in word:
-        prntWord += letter + " "
-    print(prntWord)
+while True:
+    print('**********HANGMAN***********')
+    print('\n')
 
-# Begin game
-print( "Welcome to Hangman!" )
-printWord(curWord)
-drawBody()
-print("Letters left:")
-printWord(alphabet)
-
-# Gameplay loop
-while strikes <= 5 and lettersLeft > 0:
-    letter = input("\nPlease guess a letter...")
-    if letter in targetWord:
-        print("Great!")
-        fillLetters(letter)
-    else:
-        strikes += 1
-        print( str(strikes) + " / 5 strikes" )
-    printWord(curWord)
     drawBody()
-    if letter in alphabet:
-        alphabet.remove(letter.upper())
-    else: 
-        print("You already picked that one!")
-    print("Letters left:")
-    printWord(alphabet)
+    
+    print('\n')
+    print_word(cur_word)
+    print('-------------------------------------')
+    user_letter = input("Please pick a letter: ")
+    print('\n')
+    if not user_letter.isalpha():
+        print("Invalid input, please input lower-case letters a-z")
+        continue
+    if user_letter.isalpha():
+        if len(user_letter) > 1:
+            print("Pick one letter at a time!")
+            continue
+        else:
+            user_letter = user_letter.lower()
+            for i in range(len(target_word)):
+                if user_letter in cur_word:
+                    print("You already picked that letter! ")
+                    continue
+                elif user_letter == target_word[i]:
+                    cur_word[i] = user_letter 
+                    if ''.join(cur_word) == ''.join(target_word):
+                        print("Congratulations! You win!")
+                        print("**************************")
+                        print(''.join(cur_word).upper())
+                        print("**************************")
+                        break
+                else:
+                    strikes += 1
+                    if strikes == len(target_word):
+                        print("Too bad, you lose!")
+                        break
+                    
 
-# Game over, print outcome
-if curWord == targetWord:
-# if lettersLeft < 0:
-    print("YOU WIN!!")
-else:
-    print("YOU LOSE...word was " + targetWord)
+
+    
