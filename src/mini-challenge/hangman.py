@@ -16,7 +16,7 @@ file.close()
 target_word = list('word')
 length = len(target_word)
 cur_word = list("*" * length)
-alphabet = [chr(65+x) for x in range(0, 26) ]
+used = []
 
 # Draw body based on # of incorrect guesses
 def drawBody():
@@ -36,33 +36,36 @@ while True:
     print('-------------------------------------')
     user_letter = input("Please pick a letter: ")
     print('\n')
-    if not user_letter.isalpha():
-        print("Invalid input, please input lower-case letters a-z")
+    if user_letter in used:
+        print("You picked that one already!")
         continue
     if user_letter.isalpha():
+        user_letter = user_letter.lower()
         if len(user_letter) > 1:
-            print("Pick one letter at a time!")
+            print("One letter at a time!!")
             continue
         else:
-            user_letter = user_letter.lower()
-            for i in range(len(target_word)):
-                if user_letter in cur_word:
-                    print("You already picked that letter! ")
-                    continue
-                elif user_letter == target_word[i]:
-                    cur_word[i] = user_letter 
-                    if ''.join(cur_word) == ''.join(target_word):
-                        print("Congratulations! You win!")
-                        print("**************************")
-                        print(''.join(cur_word).upper())
-                        print("**************************")
-                        break
-                else:
-                    strikes += 1
-                    if strikes == len(target_word):
-                        print("Too bad, you lose!")
-                        break
+            used.append(user_letter)
+            if user_letter in target_word:
+                for i in range(len(target_word)):
+                    if target_word[i] == user_letter:
+                        cur_word[i] = user_letter
+            else:
+                print('Letter not in word, try again!!')
+                strikes += 1
+            if strikes >= 5:
+                drawBody()
+                print("Out of guesses, you lose!")
+                break
+            if ''.join(target_word) == ''.join(cur_word):
+                print('------------------------------')
+                print('CONGRATULATIONS, YOU WIN!!!')
+                print('------------------------------')
+                print(''.join(cur_word).upper())
+                print('------------------------------')
+                break
                     
-
+    else:
+        print("Pick a letter between a-z!!")
 
     
