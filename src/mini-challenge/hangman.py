@@ -7,6 +7,7 @@ bodies = [ " ------\n |    |\n |    O\n |\n |\n |\n |\n |\n---",
 " ------\n |    |\n |    O\n |   \|\n |    |\n |   / \ \n |\n |\n---",
 " ------\n |    |\n |    O\n |   \|/\n |    |\n |   / \ \n |\n |\n---" ]
 strikes = 0
+guesses_left = 5
 words = [None]
 file = open("words.txt", "r")
 for line in file:
@@ -17,6 +18,7 @@ target_word = list('word')
 length = len(target_word)
 cur_word = list("*" * length)
 used = []
+hint = False
 
 # Draw body based on # of incorrect guesses
 def drawBody():
@@ -30,7 +32,8 @@ while True:
     print('\n')
 
     drawBody()
-    
+    print('\n')
+    print("Guesses left: %s" % guesses_left)
     print('\n')
     print_word(cur_word)
     print('-------------------------------------')
@@ -41,11 +44,22 @@ while True:
         continue
     if user_letter.isalpha():
         user_letter = user_letter.lower()
+        if user_letter == 'hint':
+            magic_word = input("What's the magic word? ")
+            if magic_word == 'secret' and not hint:
+                print("Here is one of the letters...")
+                print("***** " + target_word[random.randint(0, len(target_word) -1)] + " ***** ")
+                hint = True
+                continue
+            else:
+                print("You already used your hint for this game! ")
+                continue
         if len(user_letter) > 1:
             print("One letter at a time!!")
             continue
         else:
             used.append(user_letter)
+            guesses_left -= 1
             if user_letter in target_word:
                 for i in range(len(target_word)):
                     if target_word[i] == user_letter:
@@ -60,8 +74,8 @@ while True:
             if ''.join(target_word) == ''.join(cur_word):
                 print('------------------------------')
                 print('CONGRATULATIONS, YOU WIN!!!')
-                print('------------------------------')
-                print(''.join(cur_word).upper())
+                drawBody()
+                print_word(cur_word)
                 print('------------------------------')
                 break
                     
