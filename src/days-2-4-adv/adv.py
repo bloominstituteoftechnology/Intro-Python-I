@@ -132,61 +132,84 @@ while True:
         player.display_actions()
     elif action == 'items':
         player.display_items()
-    elif action == 'search':
-        if len(player.room.items) > 0 and not player.room.searched:
+    elif 'search' in action:
+        if not player.room.searched:
             print(">>>>>>>>>>HERE IS WHAT YOU FIND>>>>>>>>>>")
             player.room.display_items()
             player.room.searched = True
         else:
-            print("You have already searched this room.")
+            print("You already searched this room!")
     elif 'grab' in action:
-        # okay so I don't like this...need to parse multiple values in one string...
-        if len(player.room.items) > 0 and player.room.searched == True:
-            if len(parsed_action) > 1:
-                if parsed_action[1] in player.room.items:
-                    for i in range(len(player.room.items)):
-                        if player.room.items[i] == parsed_action[1]:
-                            player.items.append(player.room.items[i])
-                            del player.room.items[i]
-                else:
-                    print("There is no item named %s in this room!" % parsed_action[1])
-            else:
-                print("What are you trying to grab?")
-        else:
-            print("You haven't searched enough or there is nothing left to grab!")
-    elif 'drop' in action:
-        if len(player.items) > 0:
-            if len(parsed_action) > 1:
-                if parsed_action[1] in player.items:
-                    for i in range(len(player.items)):
-                        if parsed_action[1] == player.items[i]:
-                            player.room.items.append(player.items[i])
-                            del player.items[i]
-                            player.room.searched = False
-                else:
-                    print("You have no item named %s in your inventory!" % parsed_action[1])
-            else:
-                print("What are you trying to drop?")
-        else:
-            print("Player %s has no items to drop!" % player.name)
-    elif 'light' in action:
-        print("You light your torch! You can now see better!")
-    elif 'use' in action:
-        if len(player.items) == 0:
-            print("Player has no items to use!")
-            continue
         if len(parsed_action) > 1:
-            if parsed_action[1] == 'key' and player.room.name == 'treasure' and room['treasure'].searched:
-                room['treasure'].secret_door.locked = False
-                room['treasure'].n_to = room['secret room']
-            elif parsed_actoin[1] == 'key':
-                print("You don't see anywhere to use the key in this room...")
+            if player.room.searched:
+                player.grab_item(parsed_action[1])
             else:
-                print("That item cannot be used here.")
+                print("You haven't searched this area yet!")
         else:
-            print("What are you trying to use?")
-    else:
-        print("Invalid input!")
+            print("What are you trying to grab?")
+    elif 'drop' in action:
+        if len(parsed_action) > 1:
+            player.drop_item(parsed_action[1])
+        else:
+            print("What are you trying to drop?")
+    
+
+
+    # elif action == 'search':
+    #     if len(player.room.items) > 0 and not player.room.searched:
+    #         print(">>>>>>>>>>HERE IS WHAT YOU FIND>>>>>>>>>>")
+    #         player.room.display_items()
+    #         player.room.searched = True
+    #     else:
+    #         print("You have already searched this room.")
+    # elif 'grab' in action:
+    #     # okay so I don't like this...need to parse multiple values in one string...
+    #     if len(player.room.items) > 0 and player.room.searched == True:
+    #         if len(parsed_action) > 1:
+    #             if parsed_action[1] in player.room.items:
+    #                 for i in range(len(player.room.items)):
+    #                     if player.room.items[i] == parsed_action[1]:
+    #                         player.items.append(player.room.items[i])
+    #                         del player.room.items[i]
+    #             else:
+    #                 print("There is no item named %s in this room!" % parsed_action[1])
+    #         else:
+    #             print("What are you trying to grab?")
+    #     else:
+    #         print("You haven't searched enough or there is nothing left to grab!")
+    # elif 'drop' in action:
+    #     if len(player.items) > 0:
+    #         if len(parsed_action) > 1:
+    #             if parsed_action[1] in player.items:
+    #                 for i in range(len(player.items)):
+    #                     if parsed_action[1] == player.items[i]:
+    #                         player.room.items.append(player.items[i])
+    #                         del player.items[i]
+    #                         player.room.searched = False
+    #             else:
+    #                 print("You have no item named %s in your inventory!" % parsed_action[1])
+    #         else:
+    #             print("What are you trying to drop?")
+    #     else:
+    #         print("Player %s has no items to drop!" % player.name)
+    # elif 'light' in action:
+    #     print("You light your torch! You can now see better!")
+    # elif 'use' in action:
+    #     if len(player.items) == 0:
+    #         print("Player has no items to use!")
+    #         continue
+    #     if len(parsed_action) > 1:
+    #         if parsed_action[1] == 'key' and player.room.name == 'treasure' and room['treasure'].searched:
+    #             room['treasure'].secret_door.locked = False
+    #             room['treasure'].n_to = room['secret room']
+    #         elif parsed_actoin[1] == 'key':
+    #             print("You don't see anywhere to use the key in this room...")
+    #         else:
+    #             print("That item cannot be used here.")
+    #     else:
+    #         print("What are you trying to use?")
+    # else:
+    #     print("Invalid input!")
         
     
     
