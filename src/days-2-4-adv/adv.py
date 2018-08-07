@@ -132,19 +132,20 @@ while True:
             player.room.searched = True
         else:
             print("There is nothing here.")
-    elif action == 'grab':
-        if len(player.room.items) > 0 and player.rooms.searched == True:
+    elif 'grab' in action:
+        # okay so I don't like this...need to parse multiple values in one string...
+        if len(player.room.items) > 0 and player.room.searched == True:
             print("What do you want to grab?")
             player.room.display_items()
             grabbed = input(">>> ")
             for i in range(len(player.room.items)):
                 if input == player.room.items[i.name]:
-                    player.items.append(player.room.items[i])
+                    player.items.append(play+er.room.items[i])
                     del player.room.items[i]
                 else:
-                    print("There is not item called %s here!" % grabbed)
+                    print("There is no item called %s here!" % grabbed)
         else:
-            print("There is nothing here to grab")
+            print("You haven't searched enough or there is nothing left to grab!")
         
 
     

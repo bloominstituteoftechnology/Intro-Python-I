@@ -12,6 +12,7 @@ class Player(object):
         self.actions = [
             'search: search room for hidden items',
             'grab: grab found item from room',
+            'drop: drop item',
             'use: attempt to use item in current room',
             'light: light torch',
             'items: display items carried by player'
