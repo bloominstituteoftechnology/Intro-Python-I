@@ -102,7 +102,6 @@ def main(screen):
         welcome_container.refresh()
         time.sleep(0.5)
         alpha_container.box()
-        # instr_container.box()
         Hangman(hangman_container)
         hangman_container.refresh()
         time.sleep(1)
@@ -118,7 +117,7 @@ def main(screen):
                 if target_word[i] == letter:
                     current_word = current_word[0: i] + letter + current_word[i + 1:]
 
-        while key is not 'Q' and current_word != target_word:
+        while key is not 'Q':
             key = screen.getkey()
 
             if key == 'KEY_DOWN' or key == 'KEY_LEFT':
@@ -142,8 +141,6 @@ def main(screen):
                     if strikes == 6:
                         break
 
-
-
             for i in range(0, 52):
                 if i in letters_used:
                     alpha_container.addstr(1, i + 1, f'{alphabet[int(i / 2)]}', used_text)
@@ -157,8 +154,6 @@ def main(screen):
                 if j < word_length * col_width:
                     word_container.addstr(0, j + 14, f'{current_word[int(j / col_width)]}')
 
-            # instr_container.addstr(3, 5, str(key))
-            # instr_container.addstr(8, 5, str(target_word))
             winnar = current_word == target_word.strip()
             if winnar:
                 instr_container.clear()
