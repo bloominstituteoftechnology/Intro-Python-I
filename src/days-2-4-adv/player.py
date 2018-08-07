@@ -4,7 +4,7 @@ from item import Item
 # currently.
 
 class Player(object):
-    def __init__(self, name, room, items):
+    def __init__(self, name, room):
         self.name = name
         self.room = room
         self.items = ['torch', 'flint']

@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-import textwrap
+# import textwrap
 # Declare all the rooms
 # oh my what do we have here...
 
@@ -65,6 +65,8 @@ player = Player(name, room['outside'])
 # player.room = player.room.n_to
 # print(player.room.name)
 # Write a loop that:
+boolean = player.room['outside'].w_to
+print(boolean)
 invalid = "You can't go in that direction."
 while True:
 
