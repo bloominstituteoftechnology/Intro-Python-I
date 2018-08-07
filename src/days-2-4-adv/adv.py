@@ -1,5 +1,7 @@
 from room import Room
 from player import Player
+from item import Item
+
 # import textwrap
 # Declare all the rooms
 # oh my what do we have here...
@@ -48,6 +50,15 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+# add items to rooms
+key = Item('key', 'a word brass key with a dragon head')
+torch = Item('torch', 'a simple wooden torch')
+note = Item('note', 'a small strip of paper with the numbers 2, 3, 1 printed on it')
+
+room['outside'].items.append(key)
+room['outside'].items.append(torch)
+room['narrow'].items.append(note)
 # so after mapping out the rooms I've decided that I don't like this implementation
 # There has to be a better way...My intuition tells me there's a better way to implement this
 # but I'll go with the way it is for now...
@@ -56,20 +67,27 @@ room['treasure'].s_to = room['narrow']
 # Main  
 # Make a new player object that is currently in the 'outside' room.
 new_player_message = """
-    Greetings player 1. Welcome to the Super Adventure Game. 
-    Please enter a name for your hero: """
+****************************************************************************************************
+                    Greetings player 1. Welcome to the Super Adventure Game. 
+                    Please enter a name for your hero: 
+*****************************************************************************************************
+>> """
 name = input(new_player_message)
 
 player = Player(name, room['outside'])
-# print(player.room.name)
-# player.room = player.room.n_to
-# print(player.room.name)
-# Write a loop that:
-boolean = player.room['outside'].w_to
-print(boolean)
-invalid = "You can't go in that direction."
-while True:
 
+invalid = """
+          *********YOU CAN'T GO IN THAT DIRECTION!***********
+          """
+
+# main game loop
+while True:
+    print("""
+               *************************************************************************************
+                                   FOR USER ACTIONS, TYPE actions
+               *************************************************************************************
+          """)
+    print("Player: ", player.name)
     print(player.room.name)
     print('\n')
     print(player.room.description)
@@ -80,7 +98,6 @@ while True:
     West, East, or South: """
 
     action = input(message)
-
     if action == 'n':
         if player.room.n_to != None:
             player.room = player.room.n_to
@@ -104,6 +121,33 @@ while True:
     elif action == 'q':
         print("Goodbye!")
         break
+    elif action == 'actions':
+        player.display_actions()
+    elif action == 'items':
+        player.display_items()
+    elif action == 'search':
+        if len(player.room.items) > 0 and not player.room.searched:
+            print(">>>>>>>>>>HERE IS WHAT YOU FIND>>>>>>>>>>")
+            player.room.display_items()
+            player.room.searched = True
+        else:
+            print("There is nothing here.")
+    elif action == 'grab':
+        if len(player.room.items) > 0 and player.rooms.searched == True:
+            print("What do you want to grab?")
+            player.room.display_items()
+            grabbed = input(">>> ")
+            for i in range(len(player.room.items)):
+                if input == player.room.items[i.name]:
+                    player.items.append(player.room.items[i])
+                    del player.room.items[i]
+                else:
+                    print("There is not item called %s here!" % grabbed)
+        else:
+            print("There is nothing here to grab")
+        
+
+    
     
 
     
