@@ -10,7 +10,7 @@ rooms = {
         "name": "Outside Cave Entrance",
         "description": "North of you, the cave mouth beckons.",
         "n_to": "foyer",
-        "contents": ['5 gold coins', 'things', 'other stuff', 'more things']
+        "contents": ['5 Gold Coins', 'Unknown Potion', 'Ration', 'Ration', 'Worn Pants']
     },
 
     "foyer": {
@@ -19,7 +19,7 @@ rooms = {
         "n_to": "overlook",
         "s_to": "outside",
         "e_to": "narrow",
-        "contents": []
+        "contents": ['Stuff', 'Things', 'Other Stuff']
     },
 
     "overlook": {
@@ -28,7 +28,7 @@ rooms = {
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
         "s_to": "foyer",
-        "contents": []
+        "contents": ['Stuff', 'Things', 'Other Stuff']
     },
 
     "narrow": {
@@ -36,7 +36,7 @@ the distance, but there is no way across the chasm.""",
         "description": "The narrow passage bends here from west to north. The smell of gold permeates the air.", 
         "w_to": "foyer",
         "n_to": "treasure",
-        "contents": []
+        "contents": ['Stuff', 'Things', 'Other Stuff']
     },
 
     "treasure": {
@@ -45,7 +45,7 @@ the distance, but there is no way across the chasm.""",
 chamber. Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
         "s_to": "narrow",
-        "contents": []
+        "contents": ['Stuff', 'Things', 'Other Stuff']
     },
 
 }
@@ -121,7 +121,7 @@ while not completed:
         print("\nContents of room: ")
         for item in rooms[Johnny.currentRoom]['contents']:
             print(item)
-    elif attempt == 'i':
+    elif attempt == 'i' or attempt == 'inventory':
         print("\nMy inventory contains: ")
         for item in Johnny.inventory:
             print(item)
