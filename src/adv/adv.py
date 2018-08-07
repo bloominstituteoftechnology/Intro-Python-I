@@ -10,7 +10,7 @@ plat = platform.system()
 # Establish global variables for displaying information after clear
 action, info = None, None
 
-while(True):
+while(player.isAlive):
   # Call appropriate clear method
   if plat is 'Windows': system('cls')
   else: system('clear')
@@ -31,6 +31,7 @@ while(True):
   if len(player_input) == 1:
     command = player_input[0]
 
+    # Display list of valid commands
     if command in ['help', 'options']:
       action = 'Your command options are:'
       info = '''One word -
@@ -42,7 +43,7 @@ while(True):
 
 Two words -
   - 'move' or 'go' [direction] : moves in direction
-  - 'inspect' or 'examine' [item] : inspects item
+  - 'inspect' or 'examine' [item or being] : inspects item or being
   - 'use' [item] : uses item
   - 'equip' [item] : equips item
   - 'attack' [target_key] : attacks target
@@ -58,18 +59,22 @@ their respective first letters.
 
 [Targets] are the names of any enemy you see in game.'''
 
+    # Move to adjacent room
     elif command in ['north', 'east', 'south', 'west', 'n', 'e', 's', 'w']:
       player.move_room(command)
       action = 'You move to the ' + player.room.name
 
+    # Inspect current room
     elif command in ['examine', 'inspect', 'look']:
       action = 'You look around the ' + player.room.name
       info = player.inspect()
 
+    # Checks contents of inventory
     elif command in ['inventory', 'bag']:
       action = 'You take inventory of your bag.'
       info = player.check_inventory()
 
+    # End game
     elif command in ['quit', 'q', 'end']:
       print('\nOk see ya later! Hope you had fun :)\n')
       break
@@ -82,9 +87,15 @@ their respective first letters.
     verb = player_input[0]
     noun = player_input[1]
 
+    # Move to an adjacent room
     if verb in ['move', 'go'] and noun in ['north', 'east', 'south', 'west', 'n', 'e', 's', 'w']:
       action = player.move_room(noun)
+    
+    # Examine a target (being or item)
+    elif verb in ['inspect', 'examine']:
+      pass
 
+    # Take item from room
     elif verb in ['take', 'grab']:
       taken = player.take(item[noun])
       
@@ -95,6 +106,7 @@ their respective first letters.
       else:
         info = 'Invalid item'
 
+    # Drop item in room
     elif verb in ['drop', 'leave']:
       dropped = player.drop(item[noun])
 
@@ -105,10 +117,12 @@ their respective first letters.
       else:
         info = 'Invalid Item'
     
+    # Attack target
     elif verb in ['attack']:
       action = f'You attacked {noun}'
       info = player.attack(npc[noun])
 
+    # End game
     elif verb in ['quite', 'end'] and noun in ['game']:
       print('\nOk see ya later! Hope you had fun :)\n')
       break
@@ -119,3 +133,7 @@ their respective first letters.
   else:
     action = '''Currently only one and two word commands are valid.\n
 Type 'help' or 'options' for a list of valid commands.'''
+
+print('''Womp womp wooooooomp!!! 
+You have parished. I hope that you enjoyed your time here warrior. 
+Please come back when you would like another taste of adventure.''')

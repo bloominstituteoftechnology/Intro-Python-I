@@ -41,7 +41,6 @@ Possibly part of a larger contraption."""),
 }
 
 weapon = {
-  # 'medium humanoid natural': Weapon('natural weapons', 'Flying fists and feet of fury!', 1),
   'steel sword': Weapon('steel sword', 'Tried and true with a keen edge.', 2),
   'iron hammer': Weapon('iron hammer', 'You could not ask for a more sturdy companion.', 3)
 }

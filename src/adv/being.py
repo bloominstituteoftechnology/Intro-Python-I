@@ -10,6 +10,7 @@ class Being:
       'protection': 0,
       'power': 0
     }
+    self.isAlive = True
   
   def __str__(self):
     return self.name
