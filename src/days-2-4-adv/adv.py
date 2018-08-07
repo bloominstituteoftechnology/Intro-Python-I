@@ -4,21 +4,21 @@ from room import Room
 
 rooms = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", "outside"),
+                     "North of you, the cave mount beckons", "outside", []),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", "foyer"),
+passages run north and east.""", "foyer", ["torch"]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", "overlook"),
+the distance, but there is no way across the chasm.""", "overlook", ["match"]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", "narrow"),
+to north. The smell of gold permeates the air.""", "narrow",[]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", "treasure"),
+earlier adventurers. The only exit is to the south.""", "treasure", []),
 }
 
 
@@ -70,22 +70,25 @@ playerA.getRoom()
 move = ''
 
 while move != 'q':
-    move = input(">>>>>>Your next move? w(west), s(south), n(north), e(east) or q(quit): ")
+    move = input(">>>>>>Your next move? w(west), s(south), n(north), e(east), l(look for items) or q(quit): ")
     
-    if (move != 'q'):
-        moveKey = move + '_to'
-        
-        try:
-            print(getattr(playerA.room,moveKey).shortname)
-            rooms[getattr(playerA.room,moveKey).shortname]
-        except AttributeError:
-            print('>>>>>>>There is no way on that direction! Try again!\n')
-            playerA.getRoom()
-        except KeyError:
-            print('>>>>>>>There is no way on that direction! Try again!\n')
-            playerA.getRoom()
+    if move != 'q':
+        if move == 'l':
+            playerA.room.view_items()
         else:
-            playerA.room = rooms[getattr(playerA.room,moveKey).shortname]
-            playerA.getRoom()
+            moveKey = move + '_to'
+            
+            try:
+                print(getattr(playerA.room,moveKey).shortname)
+                rooms[getattr(playerA.room,moveKey).shortname]
+            except AttributeError:
+                print('>>>>>>>There is no way on that direction! Try again!\n')
+                playerA.getRoom()
+            except KeyError:
+                print('>>>>>>>There is no way on that direction! Try again!\n')
+                playerA.getRoom()
+            else:
+                playerA.room = rooms[getattr(playerA.room,moveKey).shortname]
+                playerA.getRoom()
     else:
         print('See you later!')
