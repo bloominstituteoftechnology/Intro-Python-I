@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -51,44 +52,48 @@ rooms['treasure'].s_to = rooms['narrow']
 # If the user enters "q", quit the game.
 
 class Main:
-    def __init__(self, player, room):
-        self.player = player
-        self.room = room
-    
-    def getRoom(self):
-        print('***********************************')
-        print('You are in: ' + self.room.name)
-        print('This room is: ' + self.room.description)
+    def start(self):
+        # Make a new player object that is currently in the 'outside' room.
+        playerA = Player('Thuy', rooms['outside'])
+        print('Welcome ' + playerA.name + '!')
+        playerA.getRoom()
         
         
-# Make a new player object that is currently in the 'outside' room.
-playerA = Main({'name': 'Thuy'}, rooms['outside'])
-print('Welcome ' + playerA.player['name'] + '!')
-playerA.getRoom()
-
-
-move = ''
-
-while move != 'q':
-    move = input(">>>>>>Your next move? w(west), s(south), n(north), e(east), l(look for items) or q(quit): ")
-    
-    if move != 'q':
-        if move == 'l':
-            playerA.room.view_items()
-        else:
-            moveKey = move + '_to'
+        move = ''
+        
+        while move != 'q':
+            move = input(">>>>>>Your next move? w(west), s(south), n(north), e(east), l(look for items) or q(quit): ")
             
-            try:
-                print(getattr(playerA.room,moveKey).shortname)
-                rooms[getattr(playerA.room,moveKey).shortname]
-            except AttributeError:
-                print('>>>>>>>There is no way on that direction! Try again!\n')
-                playerA.getRoom()
-            except KeyError:
-                print('>>>>>>>There is no way on that direction! Try again!\n')
-                playerA.getRoom()
+            if move != 'q':
+                if move == 'l':
+                    playerA.room.view_items()
+                else:
+                    try:
+                        int(move)
+                    except ValueError:
+                        moveKey = move + '_to'
+                        
+                        try:
+                            print(getattr(playerA.room,moveKey).shortname)
+                            rooms[getattr(playerA.room,moveKey).shortname]
+                        except AttributeError:
+                            print('>>>>>>>There is no way on that direction! Try again!\n')
+                            playerA.getRoom()
+                        except KeyError:
+                            print('>>>>>>>There is no way on that direction! Try again!\n')
+                            playerA.getRoom()
+                        else:
+                            playerA.room = rooms[getattr(playerA.room,moveKey).shortname]
+                            playerA.getRoom()
+                            
+                    else:
+                        if int(move) <= (len(playerA.room.items)-1):
+                            playerA.add_item(playerA.room.items[int(move)])
+                            playerA.room.remove_item(int(move))
+                            playerA.view_bag()
+                            
             else:
-                playerA.room = rooms[getattr(playerA.room,moveKey).shortname]
-                playerA.getRoom()
-    else:
-        print('See you later!')
+                print('See you later!')
+
+new_game = Main()
+new_game.start()
