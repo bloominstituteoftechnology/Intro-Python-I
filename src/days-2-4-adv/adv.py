@@ -28,6 +28,8 @@ to north. The smell of gold permeates the air."""),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
+    'secret room': Room('Secret Room', """This is a secret room with a gilded treasure chest 
+     inside it. Opon closer examination you find a combination lock in it. """)
 }
 
 
@@ -54,7 +56,9 @@ room['treasure'].s_to = room['narrow']
 # add items to rooms
 key = Item('key', 'a word brass key with a dragon head')
 torch = Item('torch', 'a simple wooden torch')
-note = Item('note', 'a small strip of paper with the numbers 2, 3, 1 printed on it')
+note = Item('note', 'combo: 1 - 2 - 3')
+secret_door = Item('secret door', 'a door with a dragon symbol on it')
+secret_door.locked = True
 
 room['outside'].items.append(key)
 room['outside'].items.append(torch)
@@ -98,6 +102,9 @@ while True:
     West, East, or South: """
 
     action = input(message)
+    # come back and create parsed action variable to avoid using action.split(' ')[1] all the time
+    parsed_action = action.split(' ')
+
     if action == 'n':
         if player.room.n_to != None:
             player.room = player.room.n_to
@@ -131,23 +138,56 @@ while True:
             player.room.display_items()
             player.room.searched = True
         else:
-            print("There is nothing here.")
+            print("You have already searched this room.")
     elif 'grab' in action:
         # okay so I don't like this...need to parse multiple values in one string...
         if len(player.room.items) > 0 and player.room.searched == True:
-            print("What do you want to grab?")
-            player.room.display_items()
-            grabbed = input(">>> ")
-            for i in range(len(player.room.items)):
-                if input == player.room.items[i.name]:
-                    player.items.append(play+er.room.items[i])
-                    del player.room.items[i]
+            if len(parsed_action) > 1:
+                if parsed_action[1] in player.room.items:
+                    for i in range(len(player.room.items)):
+                        if player.room.items[i] == parsed_action[1]:
+                            player.items.append(player.room.items[i])
+                            del player.room.items[i]
                 else:
-                    print("There is no item called %s here!" % grabbed)
+                    print("There is no item named %s in this room!" % parsed_action[1])
+            else:
+                print("What are you trying to grab?")
         else:
             print("You haven't searched enough or there is nothing left to grab!")
+    elif 'drop' in action:
+        if len(player.items) > 0:
+            if len(parsed_action) > 1:
+                if parsed_action[1] in player.items:
+                    for i in range(len(player.items)):
+                        if parsed_action[1] == player.items[i]:
+                            player.room.items.append(player.items[i])
+                            del player.items[i]
+                            player.room.searched = False
+                else:
+                    print("You have no item named %s in your inventory!" % parsed_action[1])
+            else:
+                print("What are you trying to drop?")
+        else:
+            print("Player %s has no items to drop!" % player.name)
+    elif 'light' in action:
+        print("You light your torch! You can now see better!")
+    elif 'use' in action:
+        if len(player.items) == 0:
+            print("Player has no items to use!")
+            continue
+        if len(parsed_action) > 1:
+            if parsed_action[1] == 'key' and player.room.name == 'treasure' and room['treasure'].searched:
+                room['treasure'].secret_door.locked = False
+                room['treasure'].n_to = room['secret room']
+            elif parsed_actoin[1] == 'key':
+                print("You don't see anywhere to use the key in this room...")
+            else:
+                print("That item cannot be used here.")
+        else:
+            print("What are you trying to use?")
+    else:
+        print("Invalid input!")
         
-
     
     
 
