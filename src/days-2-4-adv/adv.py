@@ -63,7 +63,7 @@ secret_door = Item('secret door', 'a locked door with a dragon symbol on it')
 room['outside'].items.append(key)
 room['outside'].items.append(torch)
 room['narrow'].items.append(note)
-room['treasure'].items.append(secret_door)
+room['narrow'].items.append(secret_door)
 # so after mapping out the rooms I've decided that I don't like this implementation
 # There has to be a better way...My intuition tells me there's a better way to implement this
 # but I'll go with the way it is for now...
@@ -105,8 +105,6 @@ while True:
     action = input(message)
     # come back and create parsed action variable to avoid using action.split(' ')[1] all the time
     parsed_action = action.split(' ')
-    if secret_door.unlocked:
-        room['treasure'].n_to = room['secret room']
     if action == 'n':
         if player.room.n_to != None:
             player.room = player.room.n_to
@@ -134,6 +132,8 @@ while True:
         player.display_actions()
     elif action == 'items':
         player.display_items()
+    elif action == 'light':
+        print("You light your torch! You can now see better!")
     elif 'search' in action:
         if not player.room.searched:
             print(">>>>>>>>>>HERE IS WHAT YOU FIND>>>>>>>>>>")
@@ -156,7 +156,15 @@ while True:
             print("What are you trying to drop?")
     elif 'use' in action:
         if len(parsed_action) > 1:
-            
+            if parsed_action[1] == 'key' and player.room.name == 'narrow' and player.room.searched:
+                secret_door.unlocked = True
+                print("You unlocked the secret door! You can go through it now!")
+            elif parsed_action[1] == 'note' and player.room.name == 'secret room':
+                 print("Using the combination on the note, you carefully unlock the treasure chest...")
+                 print("Inside it is plenty of gold, silver, and gems, more than you can carry...")
+                 print("Congratulations! You win!")
+            else:
+                print("You can't use that item here!")
         else:
             print("What are you trying to use?")
     
