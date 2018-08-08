@@ -40,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 # players attribute is the room it is in.
-player = Player('Alexis', room['outside'], [''] )
+player = Player('Alexis', room['outside'], [] )
 
 # Write a loop that:
 #
@@ -84,12 +84,17 @@ while not done:
             else:
                 print("No such item exits...\n")
     elif choice == 'd':
+        print("Items that are in your inventory to drop...: \n")
+        for item in player.items:
+            print("  ", item)
         dropping = input("\n Which item would you like to drop? Type the name of the item to remove from your inventory...\n")
         for i in player.items:
-            if dropping in i:
+            if dropping == i.name:
                 print("Dropping...")
                 player.room.items.append(i)
                 player.items.remove(i)
+            else:
+                print("This item is not in your inventory...")
     if choice == "q":
         done = True
 
