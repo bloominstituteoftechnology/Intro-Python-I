@@ -62,35 +62,47 @@ class Main:
         move = ''
         
         while move != 'q':
-            move = input(">>>>>>Your next move? w(west), s(south), n(north), e(east), l(look for items) or q(quit): ")
+            move = input(">>>>>>Your next move? w(west), s(south), n(north), e(east), i(inventory) or q(quit): ")
             
             if move != 'q':
-                if move == 'l':
+                if move == 'i':
                     playerA.room.view_items()
-                else:
-                    try:
-                        int(move)
-                    except ValueError:
-                        moveKey = move + '_to'
-                        
+                    playerA.view_bag()
+                    action = input(">>>>>>Add (a), Drop (d) an item, or Skip(s): ")
+                    
+                    if action == 'a' or action == 'd':
+                        number = input(">>>>>>Item Number: ")
                         try:
-                            print(getattr(playerA.room,moveKey).shortname)
-                            rooms[getattr(playerA.room,moveKey).shortname]
-                        except AttributeError:
-                            print('>>>>>>>There is no way on that direction! Try again!\n')
-                            playerA.getRoom()
-                        except KeyError:
-                            print('>>>>>>>There is no way on that direction! Try again!\n')
-                            playerA.getRoom()
+                            int(number)
+                        except ValueError:
+                            print("Not a valid number!")
+                        if action == 'a':
+                            if int(number) <= (len(playerA.room.items)-1):
+                                playerA.add_item(playerA.room.items[int(number)])
+                                playerA.room.remove_item(int(number))
                         else:
-                            playerA.room = rooms[getattr(playerA.room,moveKey).shortname]
-                            playerA.getRoom()
-                            
+                            playerA.room.add_item(playerA.bag[int(number)])
+                            playerA.drop_item(int(number))
+                    
+                        playerA.room.view_items()
+                        playerA.view_bag()
+                        
+                else:
+                    moveKey = move + '_to'
+                    
+                    try:
+                        print(getattr(playerA.room,moveKey).shortname)
+                        rooms[getattr(playerA.room,moveKey).shortname]
+                    except AttributeError:
+                        print('>>>>>>>There is no way on that direction! Try again!\n')
+                        playerA.getRoom()
+                    except KeyError:
+                        print('>>>>>>>There is no way on that direction! Try again!\n')
+                        playerA.getRoom()
                     else:
-                        if int(move) <= (len(playerA.room.items)-1):
-                            playerA.add_item(playerA.room.items[int(move)])
-                            playerA.room.remove_item(int(move))
-                            playerA.view_bag()
+                        playerA.room = rooms[getattr(playerA.room,moveKey).shortname]
+                        playerA.getRoom()
+                        
                             
             else:
                 print('See you later!')

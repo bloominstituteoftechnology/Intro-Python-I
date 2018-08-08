@@ -12,13 +12,15 @@ class Room:
         self.items = items
         
     def view_items(self):
+        print("\nIn this room:")
         if len(self.items) is not 0:
-            print("You found something! Too collect, press a number. \n")
             for i, e in enumerate(self.items):
                 print(str(i) + "-" + e)
-            print("A-All")
         else:
-            print("There is nothing here")
+            print("This room is empty!")
     
     def remove_item(self, index):
         del self.items[index]
+        
+    def add_item(self, item):
+        self.items.append(item)

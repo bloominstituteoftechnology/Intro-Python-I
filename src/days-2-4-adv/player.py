@@ -9,14 +9,17 @@ class Player:
         
     def add_item(self, item):
         self.bag.append(item)
+    
+    def drop_item(self, index):
+        del self.bag[index]
         
     def view_bag(self):
-        print("\n In your bag:")
+        print("\nIn your bag:")
         if len(self.bag) is not 0:
-            for e in self.bag:
-                print(e)
+            for i, e in enumerate(self.bag):
+                print(str(i) + "-" + e)
         else:
-            print("Your bag is empty")
+            print("Your bag is empty!")
     
     def getRoom(self):
         print('***********************************')
