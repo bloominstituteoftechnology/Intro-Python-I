@@ -34,6 +34,7 @@ best for learning new languages.
 * [JavaScript<->Python cheatsheet](https://github.com/LambdaSchool/CS-Wiki/wiki/Javascript-Python-cheatsheet)
 * [How to read Specs and Code](https://github.com/LambdaSchool/CS-Wiki/wiki/How-to-Read-Specifications-and-Code)
 * [Python 3 standard library](https://docs.python.org/3.6/library/)
+* [Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/)
 
 ## Getting started
 
