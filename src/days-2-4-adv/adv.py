@@ -47,22 +47,23 @@ earlier adventurers. The only exit is to the south."""),
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
 room['overlook'].s_to = room['foyer']
+room['foyer'].e_to = room['narrow']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 # add items to rooms
-key = Item('key', 'a word brass key with a dragon head')
+key = Item('key', 'a worn brass key with a dragon head')
 torch = Item('torch', 'a simple wooden torch')
 note = Item('note', 'combo: 1 - 2 - 3')
-secret_door = Item('secret door', 'a door with a dragon symbol on it')
-secret_door.locked = True
+secret_door = Item('secret door', 'a locked door with a dragon symbol on it')
+
 
 room['outside'].items.append(key)
 room['outside'].items.append(torch)
 room['narrow'].items.append(note)
+room['treasure'].items.append(secret_door)
 # so after mapping out the rooms I've decided that I don't like this implementation
 # There has to be a better way...My intuition tells me there's a better way to implement this
 # but I'll go with the way it is for now...
@@ -104,7 +105,8 @@ while True:
     action = input(message)
     # come back and create parsed action variable to avoid using action.split(' ')[1] all the time
     parsed_action = action.split(' ')
-
+    if secret_door.unlocked:
+        room['treasure'].n_to = room['secret room']
     if action == 'n':
         if player.room.n_to != None:
             player.room = player.room.n_to
@@ -112,7 +114,7 @@ while True:
             print(invalid)
     elif action == 'w':
         if player.room.w_to != None:
-            player.room = player.room.n_to
+            player.room = player.room.w_to
         else: 
             print(invalid)
     elif action == 's':
@@ -152,6 +154,12 @@ while True:
             player.drop_item(parsed_action[1])
         else:
             print("What are you trying to drop?")
+    elif 'use' in action:
+        if len(parsed_action) > 1:
+            
+        else:
+            print("What are you trying to use?")
+    
     
 
 

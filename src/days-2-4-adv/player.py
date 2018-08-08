@@ -56,6 +56,8 @@ class Player(object):
             del self.items[item_index]
             self.room.searched = False
             print("++++++++++ %s DROPPED! ++++++++++" % name)
+        else:
+            print("Item %s not in inventory!")
 
     def use_item(self, item):
         pass
