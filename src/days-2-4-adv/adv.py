@@ -5,21 +5,21 @@ from item import Item
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [ Item('Sharp rock', 'Ouch! This rock is sharp, but useless.') ]),
+                     "North of you, the cave mount beckons", [ Item('Rock', 'Ouch! This rock is sharp, but useless.') ]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", []),
+passages run north and east.""", [ Item('Sword', 'Looks strong, but feels weaker than a twig.')]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", []),
+the distance, but there is no way across the chasm.""", [ Item('Health', 'This can be useful.')]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", []),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", []),
+earlier adventurers. The only exit is to the south.""", [ Item('Ultima', 'So... So shiny, and made of a mystery metal.')]),
 }
 
 
@@ -40,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 # players attribute is the room it is in.
-player = Player('Alexis', room['outside'], ['Mango'] )
+player = Player('Alexis', room['outside'], [''] )
 
 # Write a loop that:
 #
@@ -59,24 +59,38 @@ start = False
 while not done:
     while not start:
         print("\n", player.name, player.room.name, player.room.description)
+        player.room.room_items()
         start = True
-    choice = input("\n Enter a direction: n, s, e, or w. Press i to check inventory, or enter q to quit. ").lower()
-    if choice == 'i':
+    choice = input("\n Enter a direction: n, s, e, or w. Press i to check inventory, or enter q to quit.\n While in a room, you can press g to grab the item ").lower()
+    if choice != 'q' and choice != 'i' and choice != 'g' and choice != 'd':
+        choice += '_to'
+        if hasattr(player.room, choice):
+            player.room = getattr(player.room, choice)
+            print("\n You have entered the" ,player.room.name,",", player.room.description, "\n" )
+            player.room.room_items()
+        else:
+            print("This way is not allowed! Go another direction!")
+    elif choice == 'i':
         print("\n ", "Inventory: ")
         for item in player.items:
             print("  ", item)
-    if choice != 'q':
-        choice += '_to'
-        if hasattr(player.room, choice):
-            player.room = getattr(player.room, choice)  
-            print("\n You have entered the" ,player.room.name,",", player.room.description )
-    else:
-        break
-    # print(choice)
+    elif choice == 'g':
+        grabbing = input("\n Which item would you like to grab? Type the name of the item to put in your inventory...\n")
+        for i in player.room.items:
+            if grabbing in i.name:
+                print("Grabbed item!")
+                player.items.append(i)
+                player.room.items.remove(i)
+            else:
+                print("No such item exits...\n")
+    elif choice == 'd':
+        dropping = input("\n Which item would you like to drop? Type the name of the item to remove from your inventory...\n")
+        for i in player.items:
+            if dropping in i:
+                print("Dropping...")
+                player.room.items.append(i)
+                player.items.remove(i)
     if choice == "q":
         done = True
-    # elif choice in ["n", "s", "e", "w"]:
-    #     break
-    # done = True
 
 

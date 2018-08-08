@@ -6,3 +6,12 @@ class Room:
         self.name = name
         self.description = description
         self.items = items
+
+    def room_items(self):
+        print("Items that can be taken in this room are... \n")
+        if len(self.items) == 0:
+            print("Nothing here!")
+        else:
+            for item in self.items:
+                print(item,"\n")
+            return item
