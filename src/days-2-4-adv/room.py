@@ -20,7 +20,10 @@ class Room:
             print("This room is empty!")
     
     def remove_item(self, index):
-        del self.items[index]
+        if len(self.items) is 0:
+            print("This room is empty!")
+        else:
+            del self.items[index]
         
     def add_item(self, item):
         self.items.append(item)

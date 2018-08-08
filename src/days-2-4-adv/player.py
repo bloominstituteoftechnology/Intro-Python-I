@@ -11,7 +11,10 @@ class Player:
         self.bag.append(item)
     
     def drop_item(self, index):
-        del self.bag[index]
+        if len(self.bag) is 0:
+            print("Your bag is empty!")
+        else:
+            del self.bag[index]
         
     def view_bag(self):
         print("\nIn your bag:")
