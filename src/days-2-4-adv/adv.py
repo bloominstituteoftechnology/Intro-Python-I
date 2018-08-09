@@ -106,9 +106,16 @@ while not done:
         dropping = input("\n Which item would you like to drop? Type the name of the item to remove from your inventory...\n")
         for i in player.items:
             if dropping == i.name:
-                print("Dropping...")
-                player.room.items.append(i)
-                player.items.remove(i)
+                if isinstance(i, BlznIt):
+                    print("\nIt's not wise to drop your source of light!\n")
+                    print("Dropping...")
+                    player.room.items.append(i)
+                    player.items.remove(i)
+                elif not isinstance(i, BlznIt):
+                    print("Dropping...")
+                    player.room.items.append(i)
+                    player.items.remove(i)
+
             else:
                 print("\n This item is currently not in your inventory... \n")
 
