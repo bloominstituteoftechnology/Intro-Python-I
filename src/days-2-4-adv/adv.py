@@ -1,25 +1,27 @@
 from room import Room
 from player import Player
+from item import Item
 import textwrap
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", []),
+                     "North of you, the cave mount beckons",
+                     [Item("rock", "The great big rock")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ["mango"]),
+passages run north and east.""", [Item('light', 'A very dim light')]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", []),
+the distance, but there is no way across the chasm.""", [Item('tree', 'A big pine tree.')]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", []),
+to north. The smell of gold permeates the air.""", [Item('snake', 'A dark hissing snake.')]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", []),
+earlier adventurers. The only exit is to the south.""", [Item('gold', 'My precious')]),
 }
 
 
@@ -40,7 +42,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 current_room = 'outside'
-player = Player(room[current_room], ["mango"])
+player = Player(room[current_room], [Item('gold', 'My precious')])
 # Write a loop that:
 #
 
@@ -71,7 +73,15 @@ while True:
     for desc in description_list:
         print("     " + desc)
 
+    print("Items found in room:")
+    if not player.room.items:
+        print("     " + "none")
+    else:
+        for i in player.room.items:
+            print("     " + str(i))
+
     print("\n")
+    print("================================================\n")
 
     user_input = input("Please enter....\n\t" +
                        "n,s,e,w to move OR \n\t" +
@@ -97,27 +107,50 @@ while True:
         item = item.strip()
 
         if action == "g" or action == "grab":
-            if item in player.room.items:
+            if item in player.room._registry:
                 print("...grabbing " + item + "...")
-                player.room.items.remove(item)
-                player.items.append(item)
+                grabbed_item = player.room.remove_item(item)
+                player.add_item(grabbed_item)
+                print(item + " grabbed...")
+                print("============================")
             else:
                 print("Items are unavailable in room")
+                print("============================")
+
+        elif action == "d" or action == "drop":
+            if item in player._registry:
+                print("...dropping " + item + "...")
+                dropped_item = player.remove_item(item)
+                player.room.add_item(dropped_item)
+
+                print(item + " dropped...")
+                print("============================")
+            else:
+                print("Items are unavailable to drop")
 
     else:
-        direction_to = user_input + "_to"
-        for r_name in room.keys():
-            if hasattr(room[r_name], direction_to):
-                if getattr(room[r_name], direction_to) == room[current_room]:
-                    player.room = room[r_name]
-                    current_room = r_name
-                    moved = True
-                    break
-
-        if moved:
-            print("Moved to room {}\n".format(current_room))
+        if user_input == "i" or user_input == "inventory":
+            print("Player Inventory:")
+            if not player.items:
+                print("     " + "none")
+            else:
+                for i in player.items:
+                    print("     " + str(i))
             print("================================================\n\n")
+
         else:
-            print("Movement is not allowed. Try again...")
-            print("================================================\n\n")
+            direction_to = user_input + "_to"
+            for r_name in room.keys():
+                if hasattr(room[r_name], direction_to):
+                    if getattr(room[r_name], direction_to) == room[current_room]:
+                        player.room = room[r_name]
+                        current_room = r_name
+                        moved = True
+                        break
 
+            if moved:
+                print("Moved to room {}\n".format(current_room))
+                print("================================================\n\n")
+            else:
+                print("Invalid movement OR movement is not allowed. Please try again...")
+                print("================================================\n\n")
