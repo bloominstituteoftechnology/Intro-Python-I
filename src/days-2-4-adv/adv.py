@@ -1,11 +1,11 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure, LightSource
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [ Item('Rock', 'Ouch! This rock is sharp, but useless.') ]),
+                     "North of you, the cave mount beckons", [ LightSource('Rock', 'Ouch! This rock is sharp, but useless.') ]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", [ Item('Sword', 'Looks strong, but feels weaker than a twig.')]),
@@ -15,7 +15,7 @@ into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""", [ Item('Health', 'This can be useful.')]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", []),
+to north. The smell of gold permeates the air.""", [ Treasure('Amethyst', 'Looks expensive.', 100) ]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -33,6 +33,8 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+room['outside'].is_light = True
 
 #
 # Main
@@ -56,37 +58,52 @@ player = Player('Alexis', room['outside'], [] )
 done = False
 start = False
 
+
 while not done:
+
+    if player.score >= 200:
+        print("You win the game!")
+        done = True
+
     while not start:
-        print("\n", player.name, player.room.name, player.room.description)
-        player.room.room_items()
-        start = True
-    choice = input("\n Enter a direction: n, s, e, or w. Press i to check inventory, or enter q to quit.\n While in a room, you can press g to grab the item ").lower()
-    if choice != 'q' and choice != 'i' and choice != 'g' and choice != 'd':
+            print("\n", player.name, player.room.name, player.room.description)
+            player.room.room_items()
+            start = True
+    choice = input("\nEnter a direction: n, s, e, or w. \nPress i to check inventory, or enter q to quit.\nType score to see your score. \nWhile in a room, you can press g to grab the item, or d to drop an item. ").lower()
+
+    if choice != 'q' and choice != 'i' and choice != 'g' and choice != 'd' and choice != 'score':
         choice += '_to'
         if hasattr(player.room, choice):
             player.room = getattr(player.room, choice)
-            print("\n You have entered the" ,player.room.name,",", player.room.description, "\n" )
-            player.room.room_items()
+            if player.room.is_light:
+                print("\n You have entered the" ,player.room.name,",", player.room.description, "\n" )
+                player.room.room_items()
+            else:
+                print("\nIt's pitch black\n")
+            for i in player.items:
+                if isinstance(i, LightSource):
+                    print("\n You have entered the" ,player.room.name,",", player.room.description, "\n" )
+                    player.room.room_items()
+
         else:
-            print("This way is not allowed! Go another direction!")
+            print("\n This way is not allowed! Go another direction! \n")
+
     elif choice == 'i':
-        print("\n ", "Inventory: ")
-        for item in player.items:
-            print("  ", item)
+        player.inv_check( player )
+
     elif choice == 'g':
         grabbing = input("\n Which item would you like to grab? Type the name of the item to put in your inventory...\n")
+
         for i in player.room.items:
-            if grabbing in i.name:
-                print("Grabbed item!")
-                player.items.append(i)
-                player.room.items.remove(i)
-            else:
-                print("No such item exits...\n")
+            if grabbing == i.name:
+                i.on_grab( player )
+
     elif choice == 'd':
         print("Items that are in your inventory to drop...: \n")
+        
         for item in player.items:
             print("  ", item)
+
         dropping = input("\n Which item would you like to drop? Type the name of the item to remove from your inventory...\n")
         for i in player.items:
             if dropping == i.name:
@@ -94,7 +111,10 @@ while not done:
                 player.room.items.append(i)
                 player.items.remove(i)
             else:
-                print("This item is not in your inventory...")
+                print("\n This item is currently not in your inventory... \n")
+
+    elif choice == 'score':
+        print("\n You have a score of %d...\n " % player.score)
     if choice == "q":
         done = True
 

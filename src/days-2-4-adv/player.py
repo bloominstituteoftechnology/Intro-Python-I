@@ -6,3 +6,11 @@ class Player:
         self.room = room
         self.name = name
         self.items = items
+        self.score = 0
+    
+    def inv_check( self, player ):
+        print("\n ", "Inventory: ")
+        for item in player.items:
+            print("  ", item)
+
+

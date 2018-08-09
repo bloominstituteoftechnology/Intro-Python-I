@@ -6,6 +6,7 @@ class Room:
         self.name = name
         self.description = description
         self.items = items
+        self.is_light = False
 
     def room_items(self):
         print("Items that can be taken in this room are... \n")
