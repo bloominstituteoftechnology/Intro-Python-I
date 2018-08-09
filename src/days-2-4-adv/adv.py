@@ -1,11 +1,11 @@
 from room import Room
 from player import Player
-from item import Item, Treasure, LightSource
+from item import Item, Treasure, BlznIt
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [ LightSource('Rock', 'Ouch! This rock is sharp, but useless.') ]),
+                     "North of you, the cave mount beckons", [ BlznIt('Rock', 'Ouch! This rock is sharp, but useless.') ]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", [ Item('Sword', 'Looks strong, but feels weaker than a twig.')]),
@@ -34,7 +34,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-room['outside'].is_light = True
+room['outside'].is_lit = True
 
 #
 # Main
@@ -75,16 +75,15 @@ while not done:
         choice += '_to'
         if hasattr(player.room, choice):
             player.room = getattr(player.room, choice)
-            if player.room.is_light:
+            if player.room.is_lit:
                 print("\n You have entered the" ,player.room.name,",", player.room.description, "\n" )
                 player.room.room_items()
             else:
                 print("\nIt's pitch black\n")
             for i in player.items:
-                if isinstance(i, LightSource):
+                if isinstance(i, BlznIt):
                     print("\n You have entered the" ,player.room.name,",", player.room.description, "\n" )
                     player.room.room_items()
-
         else:
             print("\n This way is not allowed! Go another direction! \n")
 

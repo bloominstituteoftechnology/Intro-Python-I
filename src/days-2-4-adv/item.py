@@ -23,7 +23,7 @@ class Treasure(Item):
             player.score += self.value
             self.grabbed_treasure = True
 
-class LightSource(Item):
+class BlznIt(Item):
     def __init__( self, name, description ):
         super().__init__( name, description )
         self.lightsource = True
