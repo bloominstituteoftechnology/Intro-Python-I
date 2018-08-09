@@ -22,18 +22,11 @@ for line in file:
     words.append(line)
 file.close()
 targetWord = words[random.randint(0, len(words))]
-<<<<<<< HEAD
-=======
-print(targetWord)
->>>>>>> master
 lettersLeft = len(targetWord)-1
 length = len(targetWord)-1
 print(length)
 curWord = "_" * length
-<<<<<<< HEAD
-=======
 print(curWord)
->>>>>>> master
 alphabet = [chr(65+x) for x in range(26) ]
 
 # Draw body based on # of incorrect guesses
