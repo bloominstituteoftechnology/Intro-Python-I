@@ -3,9 +3,11 @@
 from item import Item
 
 class Room(object):
-    def __init__(self, name, description):
+    # light_source is a boolean
+    def __init__(self, name, description, light_source):
         self.name = name
         self.description = description
+        self.light_source = light_source
         self.items = []
         self.n_to = None
         self.s_to = None

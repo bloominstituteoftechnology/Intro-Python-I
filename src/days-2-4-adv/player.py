@@ -8,6 +8,7 @@ class Player(object):
     def __init__(self, name, room):
         self.name = name
         self.room = room
+        self.score = 0
         # there should be no duplicates in items
         self.items = [flint, mirror]
         self.actions = [
@@ -16,7 +17,8 @@ class Player(object):
             'drop: drop item',
             'use: attempt to use item in current room',
             'light: light torch',
-            'items: display items carried by player'
+            'items: display items carried by player',
+            'score: display current player score'
         ]
 
     def display_items(self):

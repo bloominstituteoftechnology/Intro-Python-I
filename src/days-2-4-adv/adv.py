@@ -54,16 +54,16 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 # add items to rooms
-key = Item('key', 'a worn brass key with a dragon head')
-torch = Item('torch', 'a simple wooden torch')
-note = Item('note', 'combo: 1 - 2 - 3')
-secret_door = Item('secret door', 'a locked door with a dragon symbol on it')
+# key = Item('key', 'a worn brass key with a dragon head')
+# torch = Item('torch', 'a simple wooden torch')
+# note = Item('note', 'combo: 1 - 2 - 3')
+# secret_door = Item('secret door', 'a locked door with a dragon symbol on it')
 
 
-room['outside'].items.append(key)
-room['outside'].items.append(torch)
-room['overlook'].items.append(note)
-room['treasure'].items.append(secret_door)
+# room['outside'].items.append(key)
+# room['outside'].items.append(torch)
+# room['overlook'].items.append(note)
+# room['treasure'].items.append(secret_door)
 # so after mapping out the rooms I've decided that I don't like this implementation
 # There has to be a better way...My intuition tells me there's a better way to implement this
 # but I'll go with the way it is for now...
@@ -175,71 +175,4 @@ while True:
     
 
 
-    # elif action == 'search':
-    #     if len(player.room.items) > 0 and not player.room.searched:
-    #         print(">>>>>>>>>>HERE IS WHAT YOU FIND>>>>>>>>>>")
-    #         player.room.display_items()
-    #         player.room.searched = True
-    #     else:
-    #         print("You have already searched this room.")
-    # elif 'grab' in action:
-    #     # okay so I don't like this...need to parse multiple values in one string...
-    #     if len(player.room.items) > 0 and player.room.searched == True:
-    #         if len(parsed_action) > 1:
-    #             if parsed_action[1] in player.room.items:
-    #                 for i in range(len(player.room.items)):
-    #                     if player.room.items[i] == parsed_action[1]:
-    #                         player.items.append(player.room.items[i])
-    #                         del player.room.items[i]
-    #             else:
-    #                 print("There is no item named %s in this room!" % parsed_action[1])
-    #         else:
-    #             print("What are you trying to grab?")
-    #     else:
-    #         print("You haven't searched enough or there is nothing left to grab!")
-    # elif 'drop' in action:
-    #     if len(player.items) > 0:
-    #         if len(parsed_action) > 1:
-    #             if parsed_action[1] in player.items:
-    #                 for i in range(len(player.items)):
-    #                     if parsed_action[1] == player.items[i]:
-    #                         player.room.items.append(player.items[i])
-    #                         del player.items[i]
-    #                         player.room.searched = False
-    #             else:
-    #                 print("You have no item named %s in your inventory!" % parsed_action[1])
-    #         else:
-    #             print("What are you trying to drop?")
-    #     else:
-    #         print("Player %s has no items to drop!" % player.name)
-    # elif 'light' in action:
-    #     print("You light your torch! You can now see better!")
-    # elif 'use' in action:
-    #     if len(player.items) == 0:
-    #         print("Player has no items to use!")
-    #         continue
-    #     if len(parsed_action) > 1:
-    #         if parsed_action[1] == 'key' and player.room.name == 'treasure' and room['treasure'].searched:
-    #             room['treasure'].secret_door.locked = False
-    #             room['treasure'].n_to = room['secret room']
-    #         elif parsed_actoin[1] == 'key':
-    #             print("You don't see anywhere to use the key in this room...")
-    #         else:
-    #             print("That item cannot be used here.")
-    #     else:
-    #         print("What are you trying to use?")
-    # else:
-    #     print("Invalid input!")
-        
-    
-    
-
-    
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+   
