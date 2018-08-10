@@ -1,7 +1,14 @@
 from room import Room
 from player import Player
 from item import Item, Treasure, BlznIt
+from monster import Monster
+import random
+import time
 # Declare all the rooms
+
+monster = {
+    'spider':   Monster("Big Creepy Spider", "Huge hairy legs that ooze a stick substance")
+}
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -42,7 +49,7 @@ room['outside'].is_lit = True
 
 # Make a new player object that is currently in the 'outside' room.
 # players attribute is the room it is in.
-player = Player('Alexis', room['outside'], [] )
+player = Player('Alexis', room['outside'], [])
 
 # Write a loop that:
 #
@@ -57,6 +64,7 @@ player = Player('Alexis', room['outside'], [] )
 
 done = False
 start = False
+battle = False
 
 
 while not done:
@@ -89,10 +97,21 @@ while not done:
 
     elif choice == 'i':
         player.inv_check( player )
+        battle_start = random.randint(0, 10)
+        if battle_start <= 3:
+            battle = True
+        while battle:
+            print("\nWhile checking your inventory, a huge monster appeared before you!\n")
+            time.sleep(1)
+            print("\n", monster['spider'].name, monster['spider'].description)
+            time.sleep(2)
+            print("... The monster killed you. Sorry for your loss.\n")
+            battle = False
+            choice = 'q'
+
 
     elif choice == 'g':
         grabbing = input("\n Which item would you like to grab? Type the name of the item to put in your inventory...\n")
-
         for i in player.room.items:
             if grabbing == i.name:
                 i.on_grab( player )
@@ -122,6 +141,7 @@ while not done:
     elif choice == 'score':
         print("\n You have a score of %d...\n " % player.score)
     if choice == "q":
+        print("Game Over.")
         done = True
 
 
