@@ -8,7 +8,7 @@ class Room(object):
         self.name = name
         self.description = description
         self.light_source = light_source
-        self.items = []
+        self.items = {}
         self.n_to = None
         self.s_to = None
         self.w_to = None
@@ -21,3 +21,5 @@ class Room(object):
                 print('\t' + '* ' + i.name + '----' + i.description)
         else:
             print("**********Room has no items!**********")
+
+            
