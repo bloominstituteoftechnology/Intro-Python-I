@@ -2,7 +2,9 @@ x = 5
 y = "7"
 
 # Write a print statement that combines x + y into the integer value 12
-print(x + y)
+z = int (y,10)
+print(x + z)
 
 # Write a print statement that combines x + y into the string value 57
-print(x + y)
+s = str (x)
+print(s + y)
