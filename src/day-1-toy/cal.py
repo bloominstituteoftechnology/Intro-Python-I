@@ -25,7 +25,7 @@ elif l == 3:
     month = int(sys.argv[1])
     year = int(sys.argv[2])
 else:
-    print("usage: cal.py [month] year")
+    print("Month 1-12, year XXXX")
     sys.exit(1)
 
 c = calendar.TextCalendar()
