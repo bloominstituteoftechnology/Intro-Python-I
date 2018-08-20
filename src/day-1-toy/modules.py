@@ -8,7 +8,7 @@ import os
 # Print out the command line arguments in sys.argv, one per line:
 
 
-# Print out the plaform from sys:
+# Print out the platform from sys:
 print()
 
 # Print out the Python version from sys:
