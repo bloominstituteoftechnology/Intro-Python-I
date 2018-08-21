@@ -8,3 +8,4 @@ z = "I like turtles!"
 
 
 # Use the 'format' string method to print the same thing
+print("x is %i, y is %.5f, z is '%s'" % (x, y , z))
