@@ -39,16 +39,36 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+def moveRoom(d, curRoom):
+    attrib = d + '_to'
 
+    if hasattr(curRoom, attrib):
+        return getattr(curRoom, attrib)
+
+    print("Dead End!")
+
+    return curRoom
 # Make a new player object that is currently in the 'outside' room.
 player = Player(room['outside'])
 
 # Write a loop that:
 #
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
+# Prints the current room name
+
+done = False
+
+while not done:
+
+    # Checks if player has joined
+        
+        # Prints the current room's description using textwrap module
+        print("\n{}".format(player.curRoom.name))
+        
+        for line in textwrap.wrap(player.curRoom.description):
+            print(line)
+        done = True
+
+# Waits for user input and decides what to do.
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
