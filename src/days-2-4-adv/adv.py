@@ -4,35 +4,35 @@ from player import Player
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'roadside':  Room("Outside a Lonely Service Station in the Desert",
+"To the north the station door is open, a light is on, but it seems empty inside"),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+    'doorway':    Room("Just inside the doorway of the Service Station, a light flickers overhead", """To the south is only the desert, 
+your busted old car, and the sinking sun. Further north are some ailes with food, much of it on the ground. To the east is the counter
+and a door partially open."""),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+    'ailes': Room("Rows of food and candy", """Some bag of chips and candy indicate that it was once neatly arranged, strangely
+much of the items are now strewn on the floor, among muddy bootprints, and a strange black substance.  To the south is the doorway,
+and the humming noise gets louder"""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+    'counter':   Room("A cash register, cigarettes, and a lone pair of eyeglasses", """In front of the counter the register is closed, behind
+the counter a door creaks open invitingly to the north. Back west the humming dies down, but you need to find help."""),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+    'breakroom': Room("Staff Break Room", """Everything here indicates a normal break room.  Coffee machine, old magazines, a half-broken
+old television.   On the couch is a harmonica, finely engraved with the word Veritas.  For some reason, you feel the urge to pick it up.
+To the north you see a mirror, which reflects the same room you are in, only with a gaping hole in the floor.  South is where you came from, safe and useless."""),
 }
-
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['roadside'].n_to = room['doorway']
+room['doorway'].s_to = room['roadside']
+room['doorway'].n_to = room['ailes']
+room['doorway'].e_to = room['counter']
+room['ailes'].s_to = room['doorway']
+room['counter'].w_to = room['doorway']
+room['counter'].n_to = room['breakroom']
+room['breakroom'].s_to = room['counter']
 
 #
 # Main
