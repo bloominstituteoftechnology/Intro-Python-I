@@ -14,10 +14,19 @@
 # docs for the calendar module closely.
 
 import calendar
+from datetime import datetime
 import sys
 
-if len(sys.argv) == 3:
+numArgs = len(sys.argv)
+
+if numArgs == 1:
+    month = datetime.now().month
+    year = datetime.now().year 
+    calendar.TextCalendar().prmonth(year, month)
+elif numArgs == 3:
     month = int(sys.argv[1])
     year = int(sys.argv[2])
-    print(calendar.prmonth(year, month))
+    calendar.TextCalendar().prmonth(year, month)
+else:
+    print("invalid input")
 
