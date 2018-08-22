@@ -2,6 +2,10 @@
 # currently.
 
 class Player:
-    def __init__(self, startRoom):
+    def __init__(self, name, startRoom):
+        self.name = name
         self.curRoom = startRoom
-        
+    def mRooms(self, direction):
+        nextRoom = self.curRoom.roomConnection(direction)
+        if nextRoom is not None:
+            self.curRoom = nextRoom
