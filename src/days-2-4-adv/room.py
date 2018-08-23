@@ -2,26 +2,45 @@
 # description attributes.
 
 class Room:
-    n_to=None
-    s_to=None
-    e_to=None
-    w_to=None
-    def __init__(self, name="DEFAULT NAME", description="DEFAULT DESCRIPTION"):
-        self.name = name
-        self.description = description
+    def __init__(self, name, description):
+        self.name = str(name)
+        self.description = str(description
+        self.n_to=None
+        self.s_to=None
+        self.e_to=None
+        self.w_to=None
+        self.items = []
+    def _str_ (self):
+        returnString = "\n%s\n\n %s\n" % (self.name, self.description)
+        if self.items != []:
+            itemString = " ".join([str(item) for item in self.item])
+            returnString += itemString
+        returnString += "\n"
+        return returnString
     def connect(self, room, direction):
-        if direction == 'n':
+        if direction = "n":
             self.n_to = room
             room.s_to = self
-        elif direction == 's':
+        if direction = "s":
             self.s_to = room
             room.n_to = self
-        elif direction == 'e':
+        if direction = "e":
             self.e_to = room
             room.w_to = self
-        elif direction == 'w':
+        if direction = "w":
             self.w_to = room
             room.e_to = self
-    def __str__(self):
-        return "%s:\n%s" % (self.name, self.description)
+    def getRoomConnection(self, direction):
+        if direction == 'n':
+            return self.n_to
+        elif direction == 's':
+            return self.s_to
+        elif direction == 'e':
+            return self.e_to
+        elif direction == 'w':
+            return self.w_to
+        else:
+            return None
+    def addItem(self, item):
+
 

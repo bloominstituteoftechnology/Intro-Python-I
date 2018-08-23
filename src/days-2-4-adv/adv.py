@@ -25,14 +25,19 @@ To the north you see a mirror, which reflects the same room you are in, only wit
 
 # Link rooms together
 
-room['roadside'].n_to = room['doorway']
-room['doorway'].s_to = room['roadside']
-room['doorway'].n_to = room['ailes']
-room['doorway'].e_to = room['counter']
-room['ailes'].s_to = room['doorway']
-room['counter'].w_to = room['doorway']
-room['counter'].n_to = room['breakroom']
-room['breakroom'].s_to = room['counter']
+# room['roadside'].n_to = room['doorway']
+# room['doorway'].s_to = room['roadside']
+# room['doorway'].n_to = room['ailes']
+# room['doorway'].e_to = room['counter']
+# room['ailes'].s_to = room['doorway']
+# room['counter'].w_to = room['doorway']
+# room['counter'].n_to = room['breakroom']
+# room['breakroom'].s_to = room['counter']
+
+room['roadside'].connect(room['doorway'], 'n')
+room['doorway'].connect(room['ailes'], 'n')
+room['doorway'].connect(room['counter'], 'e')
+room['counter'].connect(room['breakroom'], 'n')
 
 #
 # Main
@@ -50,3 +55,14 @@ room['breakroom'].s_to = room['counter']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+player = Player(input("What is your name?"), room['roadside'])
+
+print("Hello, %s!" % player.name)
+
+while True:
+    inp = input("> ")
+    if inp == "q":
+        print("You have quit the game")
+        break
+    print(inp)
