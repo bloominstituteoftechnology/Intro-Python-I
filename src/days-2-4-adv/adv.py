@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -56,13 +57,30 @@ room['counter'].connect(room['breakroom'], 'n')
 #
 # If the user enters "q", quit the game.
 
+directions = ["n", "s", "e", "w"]
+
 player = Player(input("What is your name?"), room['roadside'])
 
 print("Hello, %s!" % player.name)
 
+errorString = ""
+
 while True:
+    print(player.currentRoom)
+    if errorString != "":
+        print (errorString)
+        errorString = ""
     inp = input("> ")
-    if inp == "q":
-        print("You have quit the game")
-        break
-    print(inp)
+    inputs = inp.split()
+    numsArg = len(inputs)
+    if numsArg == 1:
+        if inp in directions:
+            player.moveRooms(inp)
+        elif inp == "q":
+            print("You have quit the game")
+            break
+        else:
+            errorString = "I did not recognize that command..."
+    elif numsArg > 1:
+        if inputs[0] == "look":
+            print(player.currentRoom.lookItem(inputs[1]))
