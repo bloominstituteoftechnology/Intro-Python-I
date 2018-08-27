@@ -7,7 +7,6 @@ import os
 
 # Print out the command line arguments in sys.argv, one per line:
 
-
 # Print out the platform from sys:
 print()
 
