@@ -4,8 +4,6 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-import functools
-
 def f1(x, y):
   return x + y
 
@@ -15,7 +13,7 @@ print(f1(1, 2))
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 def f2(*args):
-  return functools.reduce(lambda a, b : a+b, args )
+  return sum(args)
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4

@@ -8,10 +8,10 @@ for line in f:
 f.close()
 
 # Use open to open file "bar.txt" for writing
-f = open('/Users/cave-computer/Documents/LambdaSchool/cs/python/Intro-Python/src/day-1-toy/bar.txt', 'w')
+w = open('/Users/cave-computer/Documents/LambdaSchool/cs/python/Intro-Python/src/day-1-toy/bar.txt', 'w')
 
 # Use the write() method to write three lines to the file
 for number in range(3):
-    f.write(number)
+    w.write(str(number))
 # Close the file
-f.close()
+w.close()
