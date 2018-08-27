@@ -13,11 +13,9 @@ print(f1(1, 2))
 
 # Write a function f2 that takes any number of iteger arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
-from functools import reduce
-
 
 def f2(*args):
-    return reduce((lambda x, y: x+y), args)
+    return sum(args)
 
 
 print(f2(1))                    # Should print 1
