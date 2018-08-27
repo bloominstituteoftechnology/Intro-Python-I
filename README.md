@@ -2,7 +2,7 @@
 
 ## Goals
 
-It's time to learn a new language! Python!
+It's time to learn a new language, TG! Python!
 
 Python is a popular, easy-to-use programming language that has significant
 traction in the field.
