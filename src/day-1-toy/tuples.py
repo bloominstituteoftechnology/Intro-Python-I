@@ -22,9 +22,9 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 
 # Write a function that prints all the values in a tuple
 
-def print_tuple(tuple):
+def print_tuple(t):
     """Prints all the values of the tuple"""
-    for value in tuple:
+    for value in t:
         print(value)
 
 t = (1, 2, 5, 7, 99)
