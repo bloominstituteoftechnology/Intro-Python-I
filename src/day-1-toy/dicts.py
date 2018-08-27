@@ -25,5 +25,20 @@ waypoints = [
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
+# QQQQQQQQ:Are we supposed to print both the keys and values and not just the values?
+
+for i in waypoints:
+    print(i)
+
+
 
 # Add a new waypoint to the list
+
+waypoints.append({
+    "lat": 80,
+    "lon": -160,
+    "name": "bleep bloop place"
+})
+
+for i in waypoints:
+    print(i)
