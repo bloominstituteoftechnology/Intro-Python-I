@@ -4,8 +4,8 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-#def f1(...
-
+def f1(a, b):
+    return a + b
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of iteger arguments and prints the
