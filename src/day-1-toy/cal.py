@@ -14,3 +14,11 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+c = calendar.TextCalendar()
+args = sys.argv
+
+if (len(args) == 3):
+  print(c.formatmonth(int(args[2]), int(args[1])))
+
