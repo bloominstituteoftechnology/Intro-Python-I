@@ -14,8 +14,13 @@
 # docs for the calendar module closely.
 
 import sys
+import datetime
+import calendar
 
 
-def show_calendar(**cal):
-    if cal == None:
-        return sys.date.today()
+def show_calendar(month, year):
+    c = calendar.TextCalendar(calendar.SUNDAY)
+    c.prmonth(year, month)
+
+
+show_calendar(9, 2010)
