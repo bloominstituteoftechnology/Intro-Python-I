@@ -14,3 +14,16 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+if (len(sys.argv) > 2):
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+else:
+    month = datetime.datetime.now().month
+    year = datetime.datetime.now().year
+
+c = calendar.TextCalendar(calendar.SUNDAY)
+str = c.formatmonth(year, month)
+print(str)
