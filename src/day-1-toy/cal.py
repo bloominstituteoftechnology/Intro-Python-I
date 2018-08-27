@@ -14,3 +14,8 @@
 # docs for the calendar module closely.
 
 import sys
+
+
+def show_calendar(**cal):
+    if cal == None:
+        return sys.date.today()
