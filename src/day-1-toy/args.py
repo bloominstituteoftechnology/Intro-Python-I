@@ -48,7 +48,7 @@ print(f3(8))     # Should print 9
 
 def f4(**args):
     for k, v in args.items():
-        print(f'{k}: {v}')
+        print(f'key: {k}, value: {v}')
 
 # Should print
 # key: a, value: 12
