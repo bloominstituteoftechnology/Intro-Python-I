@@ -4,14 +4,21 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-#def f1(...
+f1 = lambda arg1 , arg2 : arg1 + arg2
 
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of iteger arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
-# def f2(...
+def f2(*args):
+    x = 0
+    for arg in args:
+        if type(arg) is list:
+            for el in arg:
+                x += el
+        else: x += arg
+    return x
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -27,7 +34,8 @@ print(f2(a))    # Should print 22
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments. Google "python default arguments" for a hint.
 
-#def f3(...
+def f3(x, y=1):
+    return x + y
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -41,7 +49,11 @@ print(f3(8))     # Should print 9
 #
 # Google "python keyword arguments".
 
-#def f4(...
+def f4(*posArgs,**keyArgs):
+    for arg in posArgs:
+        print(arg)
+    for arg in keyArgs:
+        print(arg)
 
 # Should print
 # key: a, value: 12
