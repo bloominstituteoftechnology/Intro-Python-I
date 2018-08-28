@@ -39,7 +39,7 @@ room['treasure'].s_to = 'narrow'
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player('DaBoss')
+player = Player('DaBoss', 'outside')
 
 # Write a loop that:
 #
@@ -52,39 +52,57 @@ player = Player('DaBoss')
 #
 # If the user enters "q", quit the game.
 while True:
-    print("DESC: {}".format(room[player.location].description))
+    print("{}".format(room[player.location].description))
     inp = input("\nEnter a command: ")
     if inp == 'q' or inp == 'quit':
         break
     elif inp == "l" or inp == 'look':
-        print()
-    #     print(room[player.location].description)
+        print("\n{}".format(room[player.location].name))
+        print("Items in the room:")
+        for key in room[player.location].inventory:
+            if room[player.location].inventory[key]:
+                print("\t{}".format(key))
+                print()
+            else:
+                print("\tNothing to take here.\n")
     elif inp =='n':
         try:
             if (room[player.location].n_to):
                 player.location = room[player.location].n_to
-                # print(room)
-                # player.location = room[player.location].n_to.name.lower()
-                # print(room.keys())
         except:
-            print("Can't continue north")
+            print("Can't continue north\n")
     elif inp =='s':
         try:
             if (room[player.location].s_to):
                 player.location = room[player.location].s_to
         except:
-            print("Can't continue south")
+            print("Can't continue south\n")
     elif inp =='e':
         try:
             if (room[player.location].e_to):
                 player.location = room[player.location].e_to
         except:
-            print("Can't continue east")
+            print("Can't continue east\n")
     elif inp =='w':
         try:
             if (room[player.location].w_to):
                 player.location = room[player.location].w_to
         except:
-            print("Can't continue west")
+            print("Can't continue west\n")
+    elif inp == 't':
+        print('Taking {}\n'.format('apple'))
+        room[player.location].drop('apple')
+        player.take('apple')
+    elif inp == 'i':
+        inv = player.getInventory()
+        if (inv.keys()):
+            print("your stuff:")
+            for key in inv:
+                print("\t{}".format(key))
+            print()
+        else:
+            print("You aren't carrying anything")
+    elif inp == "h" or inp == "help":
+        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, t)ake, i)inventory, q)uit, h)elp")
     else:
         print("I don't know that command")
