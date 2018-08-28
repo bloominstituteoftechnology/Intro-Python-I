@@ -62,18 +62,29 @@ print(flair)
 name = input("Please choose your hero's name!!\n")
 player = Player(name, room['outside'])
 
-while move != 'q':
+while move != 'Q':
     print(flair)
     room = player.getRoom()
     room.getDescription()
-    validMoves = room.validMoves
+    validMoves = room.validMoves()
+    
+    print(f"\n{str(player)}, Please choose a direction by typing the corresponding letter..\n")
     print("\n" + flair)
-    print("\nPlease choose a direction..\n")
     
     # Loop through cardinal directions and get that rooms values
     for key, value in validMoves.items():
         print(f"{key} ({key[0].lower()}): {str(value)} \n")
+    
+    print(f"Q : quit \n")
 
-    move = input(: )
+    move = input(": ").upper()
 
+    if move in list(validMoves.keys()):
+      newRoom = validMoves[move]
+      player.room = newRoom
+      print("\n" + flair)
+      print(newRoom.getDescription())
+    else:
+      print("Please enter a valid letter for the direction you want to go")
 
+print("Goodbye")

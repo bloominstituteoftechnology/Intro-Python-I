@@ -15,17 +15,6 @@ class Room:
     def getDescription(self):
         wrapper = textwrap.TextWrapper(initial_indent="* ", width=40, subsequent_indent="* ")
         return wrapper.fill(self.description) + "\n"
-    def direction(self, direction):
-        if direction == 'N':
-            return self.n_to
-        elif direction == 'S':
-            return self.n_to
-        elif direction == 'E':
-            return self.n_to
-        elif direction == 'W':
-            return self.n_to
-        else:
-            return None
     def validMoves(self):
         valid = {}
         if self.n_to:
