@@ -59,13 +59,13 @@ player = Player(room['outside'].n_to)
 print(player.room)"""
 
 while True:
-    current_room = "outside"
-    print("You are at {}.".format(player.room))
-    message = input("\nWhere do you want to go? (North/South/East/West): ")
+    print("You are at {}.".format(player.room.getDescription()))
+    message = input("\nWhere do you want to go? (north/south/east/west): ")
     if message == 'quit':
         print("Game over")
         break
     if message not in allowed:
         print("\nPlease only choose north, south, east, or west.\n")
-    else:
-        player = Player(room[current_room].n_to)
+    elif hasattr(player.room, message[0] + '_to'):
+        # print("Worked!")
+        player.room = getattr(player.room, message[0] + '_to')
