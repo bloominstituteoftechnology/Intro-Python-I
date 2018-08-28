@@ -1,5 +1,6 @@
 from room import Room
-
+from player import Player
+from textwrap3 import wrap
 # Declare all the rooms
 
 room = {
@@ -21,7 +22,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -33,19 +33,39 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
 # Main
-#
 
 # Make a new player object that is currently in the 'outside' room.
+player1 = Player('Schpilkus', room['overlook'])
 
 # Write a loop that:
-#
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
+
+while True:
+    print(f'\nCurrent location:  {player1.location.name}.')
+    print(wrap(player1.location.description + '\n', 140)
+
+direction = input('Where to (N,S,E,W)?')
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
-#
 # If the user enters "q", quit the game.
+
+    if direction.lower() == 'q':
+        print('\nUntil next time...\n')
+        break
+    else:
+        if validRoom(player1.location, direction):
+            if direction.lower() == 'n':
+                player1.location = player1.location.n_to
+            if direction.lower() == 's':
+                player1.location = player1.location.s_to
+            if direction.lower() == 'e':
+                player1.location = player1.location.w_to
+            if direction.lower() == 'w':
+                player1.location = player1.location.e_to
+        else:
+            print('\nImpossible, try again.\n') 
+
