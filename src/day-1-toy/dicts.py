@@ -8,22 +8,29 @@
 
 waypoints = [
     {
-        "lat": 43,
-        "lon": -121,
-        "name": "a place"
-    }, 
+        "lat": 47.606209,
+        "lon": -122.332069,
+        "name": "Seattle, WA"
+    },
     {
-        "lat": 41,
-        "lon": -123,
-        "name": "another place"
-    }, 
+        "lat": 21.967580,
+        "lon": -159.357960,
+        "name": "Kauai, Hawaii"
+    },
     {
-        "lat": 43,
-        "lon": -122,
-        "name": "a third place"
+        "lat": 10.605903,
+        "lon": 119.499662,
+        "name": "Palawan, Philippines"
     }
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
-
+for city in waypoints:
+    print('{}: latitude = {}, longitude = {}'.format(city["name"], city["lat"], city["lon"]))
 # Add a new waypoint to the list
+waypoints.append({
+    "lat": 23.45,
+    "lon": -123,
+    "name": "Bombadil's House"
+})
+print(waypoints)
