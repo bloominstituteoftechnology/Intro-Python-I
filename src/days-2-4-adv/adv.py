@@ -25,14 +25,14 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['outside'].n_to = 'foyer'
+room['foyer'].s_to = 'outside'
+room['foyer'].n_to = 'overlook'
+room['foyer'].e_to = 'narrow'
+room['overlook'].s_to = 'foyer'
+room['narrow'].w_to = 'foyer'
+room['narrow'].n_to = 'treasure'
+room['treasure'].s_to = 'narrow'
 
 #
 # Main
@@ -52,7 +52,7 @@ player = Player('DaBoss')
 #
 # If the user enters "q", quit the game.
 while True:
-    print(room[player.location].description)
+    print("DESC: {}".format(room[player.location].description))
     inp = input("\nEnter a command: ")
     if inp == 'q' or inp == 'quit':
         break
@@ -62,26 +62,28 @@ while True:
     elif inp =='n':
         try:
             if (room[player.location].n_to):
-                # player.location = room[player.location].n_to
-                player.location = room[player.location].n_to.name.lower()
+                player.location = room[player.location].n_to
+                # print(room)
+                # player.location = room[player.location].n_to.name.lower()
+                # print(room.keys())
         except:
             print("Can't continue north")
     elif inp =='s':
         try:
             if (room[player.location].s_to):
-                player.location = room[player.location].s_to.name.lower()
+                player.location = room[player.location].s_to
         except:
             print("Can't continue south")
     elif inp =='e':
         try:
             if (room[player.location].e_to):
-                player.location = room[player.location].e_to.name.lower()
+                player.location = room[player.location].e_to
         except:
             print("Can't continue east")
     elif inp =='w':
         try:
             if (room[player.location].w_to):
-                player.location = room[player.location].w_to.name.lower()
+                player.location = room[player.location].w_to
         except:
             print("Can't continue west")
     else:
