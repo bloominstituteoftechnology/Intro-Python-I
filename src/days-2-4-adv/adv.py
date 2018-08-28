@@ -49,14 +49,14 @@ print('\nWelcome %s to the text adventure game!')
 print('\nFollow prompts on screen.\n~Enter \'q\' to quit\n~Enter \'player\' for name and location')
 while True:
     print('\n ====================================================================================')
-    print('\nCurrent room: %s Description: %s' % (p1.location.name, p1.location.description))
+    print('\n%s\n%s' % (p1.location.name, p1.location.description))
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
     inp = input('\nWhich direction (n/s/e/w): ')
     if inp == 'q':
         print('Quitting application...')
         break
-    elif inp in ['n', 's', 'e', 'w']:
+    elif (inp in ['n', 's', 'e', 'w']):
         if hasattr(p1.location, inp + '_to'):
             p1.location = getattr(p1.location, inp + '_to')
         else:
