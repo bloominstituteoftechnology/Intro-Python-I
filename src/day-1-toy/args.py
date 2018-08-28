@@ -53,7 +53,9 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 #def f4(...
-def f4(*args) 
+def f4(**kwargs):
+    for key in kwargs:
+        print('key: {}, value: {})'.format(key, kwargs[key]))
 # Should print
 # key: a, value: 12
 # key: b, value: 30
@@ -71,4 +73,4 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+f4(**d)
