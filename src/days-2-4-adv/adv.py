@@ -51,11 +51,9 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-
 #
 # Main
 #
-
 
 # Make a new player object that is currently in the 'outside' room.
 player1 = Player('Stormer', room['outside'])
@@ -75,7 +73,7 @@ print(f'\n=== Welcome to the epic MUD game, {player1.name} ===\n')
 while True:
     print(f'\nCurrent location:  {player1.location.name}.')
     print(player1.location.description + '\n')
-    print(f'Items found: {[i.name for i in player1.location.items]}\n')
+    print(f'Items found: {player1.location.getItems()}\n')
 
     direction = input('Which direction to do you want to go to (N,S,W,E)?')
 

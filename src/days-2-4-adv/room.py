@@ -5,4 +5,6 @@ class Room:
         self.name = name
         self.description = description
         self.items = items
-        
+
+    def getItems(self):
+        return ', '.join([i.name for i in self.items])
