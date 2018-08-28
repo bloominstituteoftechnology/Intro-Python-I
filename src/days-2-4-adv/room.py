@@ -18,11 +18,11 @@ class Room:
     def validMoves(self):
         valid = {}
         if self.n_to:
-            valid.update(North = self.n_to)
+            valid.update(N = self.n_to)
         if self.s_to:
-            valid.update(South = self.s_to)
+            valid.update(S = self.s_to)
         if self.e_to:
-            valid.update(East = self.e_to)
+            valid.update(E = self.e_to)
         if self.w_to:
-            valid.update(West = self.w_to)
+            valid.update(W = self.w_to)
         return valid

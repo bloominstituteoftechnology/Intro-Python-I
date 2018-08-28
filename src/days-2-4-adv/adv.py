@@ -55,36 +55,43 @@ room['treasure'].s_to = room['narrow']
 # If the user enters "q", quit the game.
 
 move = ''
+letterToDirection = {'N': 'North', 'S': 'South', 'E': 'East', 'W': 'West'}
 flair = "***********************************************************"
 print(flair)
-print("Welcome to 'let's move around a little bit'!\n The game where the title really says it all!")
+print("\nWelcome to 'let's move around a little bit'!\nThe game where the title really says it all!\n")
 print(flair)
-name = input("Please choose your hero's name!!\n")
+
+name = input("Please choose your hero's name: ")
 player = Player(name, room['outside'])
 
+
 while move != 'Q':
-    print(flair)
+    
     room = player.getRoom()
     room.getDescription()
     validMoves = room.validMoves()
     
+    print(flair)
     print(f"\n{str(player)}, Please choose a direction by typing the corresponding letter..\n")
-    print("\n" + flair)
-    
+    print("\n" + flair + '\n')
+
     # Loop through cardinal directions and get that rooms values
     for key, value in validMoves.items():
-        print(f"{key} ({key[0].lower()}): {str(value)} \n")
+        print(f"{letterToDirection[key]} ({key}): {str(value)} \n")
     
     print(f"Q : quit \n")
+    
 
     move = input(": ").upper()
 
     if move in list(validMoves.keys()):
       newRoom = validMoves[move]
       player.room = newRoom
-      print("\n" + flair)
+      print('\n' + flair + '\n')
       print(newRoom.getDescription())
+    elif move == 'Q':
+        break
     else:
-      print("Please enter a valid letter for the direction you want to go")
+      print("\nPlease enter a valid letter for the direction you want to go")
 
 print("Goodbye")
