@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -33,6 +34,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
 #
 # Main
 #
@@ -49,3 +51,21 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+player = Player(room['outside'])
+allowed = ['north', 'south', 'east', 'west']
+"""print(player.room)
+player = Player(room['outside'].n_to)
+print(player.room)"""
+
+while True:
+    current_room = "outside"
+    print("You are at {}.".format(player.room))
+    message = input("\nWhere do you want to go? (North/South/East/West): ")
+    if message == 'quit':
+        print("Game over")
+        break
+    if message not in allowed:
+        print("\nPlease only choose north, south, east, or west.\n")
+    else:
+        player = Player(room[current_room].n_to)
