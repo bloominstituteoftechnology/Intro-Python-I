@@ -6,7 +6,7 @@ class Player:
         self.location = location
 
     def printLoc(self):
-        print('I am player1 and I am {}'.format(self.location))
+        print('I am player1 and I am {}'.format(self.location.name))
         #return 'I am player1 and I am {}'.format(self.location)
 
     def move(self, destination):

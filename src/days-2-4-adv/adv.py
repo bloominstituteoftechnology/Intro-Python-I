@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -38,22 +39,33 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+#print(room['outside'].name)
+
 # Make a new player object that is currently in the 'outside' room.
 
-player1 = Player("outside")
-player1.printLoc()
-
-inp = input('Where will I move? ')
-
-player1.move(inp)
+player1 = Player(room['outside'])
 
 while(True):
-    player1.printLoc()
-    inp = input('Where will I move? ')
+    print('\n [{}]...\n'.format(player1.location.name))
+    print('...{}\n'.format(player1.location.description))
+    inp = input('Which direction will you move?')
     if inp == 'q':
         break;
+    elif inp == 'n':
+        if player1.location.n_to:
+            player1.location = player1.location.n_to
+        else:
+            print('Error, invalid input, try again')
+
+    elif inp == 'w':
+        player1.location = player1.location.w_to
+    elif inp == 'e':
+        player1.location = player1.location.e_to
+    elif inp == 's':
+        player1.location = player1.location.s_to
     else:
-        player1.move(inp)
+        print('None has traveled catacorner to the three dimensions...invalid input try again...')
+
 # Write a loop that:
 #
 # * Prints the current room name
