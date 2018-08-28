@@ -1,5 +1,6 @@
+import textwrap
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -21,7 +22,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -38,12 +38,69 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player('outside')
 
 # Write a loop that:
-#
+
+
 # * Prints the current room name
+currentRoom = player.currentRoom
+print(room[currentRoom].name)
+    
 # * Prints the current description (the textwrap module might be useful here).
+print(room[currentRoom].description)
+    
 # * Waits for user input and decides what to do.
+    
+
+def one():
+    player.moveTo('foyer')
+    print(room['foyer'].name)
+    print(room['foyer'].description)
+    n = True
+    s = True
+    e = True
+    w = False
+
+def two():
+    player.moveTo('overlook')
+    print(room['overlook'].name)
+    print(room['overlook'].description)
+    
+def three():
+    player.moveTo('foyer')
+    print(room['foyer'].name)
+    print(room['foyer'].description)
+
+def four():
+    player.moveTo('foyer')
+    print(room['foyer'].name)
+    print(room['foyer'].description)
+
+def five():
+    player.moveTo('foyer')
+    print(room['foyer'].name)
+    print(room['foyer'].description)
+
+while True:
+def SwitchE(a):
+    switcher = {
+        1: one,
+        2: two,
+        3: three,
+        4: four,
+        5: five 
+    }
+    func = switcher.get(a, lambda: "nothing")
+    func()   
+
+    userInput = input("Please Progress- ")
+    if userInput == 'q':
+        break
+    elif userInput == 'n':
+        a = 1
+        SwitchE(a)    
+    
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
