@@ -1,6 +1,12 @@
 # Use the 'calendar' module to draw calendars to the console
 # https://docs.python.org/3.6/library/calendar.html
 #
+import calendar
+
+a = calendar.calendar(6)
+
+print(a)
+
 # Use the sys module to look for command line arguments in the `argv` list
 # variable.
 #
@@ -14,3 +20,5 @@
 # docs for the calendar module closely.
 
 import sys
+
+sys.argv
