@@ -48,7 +48,7 @@ p1 = Player("Adventurer #1", room['outside'])
 print('\nWelcome %s to the text adventure game!')
 print('\nFollow prompts on screen.\n~Enter \'q\' to quit\n~Enter \'player\' for name and location')
 while True:
-    print('\n \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/')
+    print('\n ====================================================================================')
     print('\nCurrent room: %s Description: %s' % (p1.location.name, p1.location.description))
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
@@ -58,7 +58,7 @@ while True:
         break
     elif inp in ['n', 's', 'e', 'w']:
         if hasattr(p1.location, inp + '_to'):
-            p1.location = getattr(pq.location, inp + '_to')
+            p1.location = getattr(p1.location, inp + '_to')
         else:
             print('\nThis move is not allowed')
     elif inp == 'player':
