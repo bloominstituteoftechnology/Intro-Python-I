@@ -75,15 +75,15 @@ NOTE: `adv/` is for Day 2, so ignore it for today.
 
 Suggested order for implementing the toy programs:
 
-* `hello` -- Hello world
+<!-- * `hello` -- Hello world
 * `bignum` -- Print some big numbers
 * `datatypes` -- Experiment with type conversion
-* `modules` -- Learn to import from modules
-* `printf` -- Formatted print output
-* `lists` -- Python's version of arrays
-* `tuples` -- Immutable lists typically for heterogenous data
-* `slice` -- Accessing parts of lists
-* `comp` -- List comprehensions
+* `modules` -- Learn to import from modules -->
+<!-- * `printf` -- Formatted print output -->
+<!-- * `lists` -- Python's version of arrays -->
+<!-- * `tuples` -- Immutable lists typically for heterogenous data -->
+<!-- * `slice` -- Accessing parts of lists -->
+<!-- * `comp` -- List comprehensions -->
 * `dicts` -- Dictionaries
 * `func` -- Functions
 * `args` -- Arguments and Keyword Arguments
