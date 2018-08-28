@@ -3,10 +3,12 @@ def is_even(n):
     return n % 2 == 0
 
 # Read a number from the keyboard
-num = input("Enter a number: ")
+num = int(input("Enter a number: "))
 
 # Print out "Even!" if the number is even. Otherwise print "Odd"
-if is_even(n):
+if is_even(num):
     print("Even!")
 else:
     print("Odd")
+
+# print("Even!" if is_even(num) % 2 == 0 else "Odd")
