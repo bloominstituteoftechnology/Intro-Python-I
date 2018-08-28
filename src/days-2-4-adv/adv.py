@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -33,11 +34,20 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+def switch(dir, player):
+    if dir is 'n': player.location = player.location.n_to
+    elif dir is 's': player.location = player.location.s_to
+    elif dir is 'w': player.location = player.location.w_to
+    elif dir is 'e': player.location = player.location.e_to
+    else: print('invalid direction, enter n, s, w or e')
+
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +59,17 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    print(player.location.name)
+    print(player.location.description)
+    dir = input("where do you choose to go?")
+    # dirFull = dir + "_to"
+    # if player.location[dirFull]: player.location = player.location[dirFull]
+    # else: print('Invalid direction')
+    try:
+        switch(dir, player)
+    except AttributeError:
+        print('')
+        print('-- invalid direction-- ')
+        print('')
