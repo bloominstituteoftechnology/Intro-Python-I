@@ -150,6 +150,6 @@ while True:
         else:
             print("You aren't carrying anything\n")
     elif inp == "h" or inp == "help":
-        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, get, drop, exits, i)inventory, q)uit, h)elp\n")
+        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, get, drop, exits, i)nventory, q)uit, h)elp\n")
     else:
         print("I don't know that command")
