@@ -18,7 +18,8 @@ print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # [command here]
-x.remove(8)
+# x.remove(8)
+x.pop(x.index(8))
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]

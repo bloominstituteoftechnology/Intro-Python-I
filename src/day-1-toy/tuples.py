@@ -18,8 +18,6 @@ b = (-14, 72)
 # Prints "Distance is 66.94"
 print("Distance is: {:.2f}".format(dist(a, b)))
 
-
-
 # Write a function that prints all the values in a tuple
 
 def print_tuple(t):
