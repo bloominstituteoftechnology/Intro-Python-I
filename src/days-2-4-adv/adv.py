@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -39,6 +40,20 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+player1 = Player("outside")
+player1.printLoc()
+
+inp = input('Where will I move? ')
+
+player1.move(inp)
+
+while(True):
+    player1.printLoc()
+    inp = input('Where will I move? ')
+    if inp == 'q':
+        break;
+    else:
+        player1.move(inp)
 # Write a loop that:
 #
 # * Prints the current room name
