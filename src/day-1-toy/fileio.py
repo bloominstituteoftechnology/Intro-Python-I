@@ -6,8 +6,8 @@ print(open("foo.txt", "r").read())
 open("foo.txt", "r").close()
 
 # Use open to open file "bar.txt" for writing
-open("foo.txt", "a")
+open("bar.txt", "a")
 # Use the write() method to write three lines to the file
-open("foo.txt", "a").write("\n Hello \n World \n !")
+open("bar.txt", "a").write("\n Hello \n World \n !")
 # Close the file
-open("foo.txt", "a").close()
+open("bar.txt", "a").close()
