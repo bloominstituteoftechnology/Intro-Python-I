@@ -8,16 +8,36 @@
 
 ## Lets go to Brazil!!
 waypoints = [
-{"lat": 14.23},
-{"lon": 51.23},
-{"name": "Brazil"}
+    {
+        "lat": 14.23,
+        "lon": 51.23,
+        "name": "Brazil"
+    },
+    {
+        "lat": 11.34,
+        "lon": 51.55,
+        "name": "Panama"
+    },
+    {
+        "lat": 10.34,
+        "lon": 40.32,
+        "name": "SF - Lambda HQ"
+    }
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
-for x in waypoints:
-    print(x.values(), x.keys())
+for i in waypoints:
+    for x, y in i.items():
+        print(y)
 
-## runing my code in repl.it at the moment
-## dict_values([14.23]) dict_keys(['lat'])
-## dict_values([51.23]) dict_keys(['lon'])
-## dict_values(['Brazil']) dict_keys(['name'])
+
+
+# Add a new waypoint to the list
+
+waypoints.append({
+   “lat”: 10,
+   “lon”: 322,
+   “name”: “San Diego”
+})
+                  
+

@@ -48,3 +48,7 @@ playerA = Player("playerA", rooms["outside"])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+while True:
+    inp = input(" Which room will you go to next?: ")
+    if inp == "q"
+        break
