@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-
+import os
 # Declare all the rooms
 
 room = {
@@ -44,6 +44,8 @@ room['treasure'].s_to = 'narrow'
 # Make a new player object that is currently in the 'outside' room.
 player = Player('DaBoss', 'outside')
 
+enemy = Player('', 'narrow')
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -54,6 +56,7 @@ player = Player('DaBoss', 'outside')
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+os.system('clear')
 while True:
     print("{}".format(room[player.location].description))
     inp = input("\nEnter a command: ")
@@ -83,18 +86,42 @@ while True:
                 player.location = room[player.location].w_to
         except:
             print("Can't continue west\n")
-
+    elif inp =='exits':
+        exits = 'You can exit: '
+        try:
+            if (room[player.location].n_to):
+                exits += "n, "
+        except:
+            pass
+        try:
+            if (room[player.location].e_to):
+                exits += "e, "
+        except:
+            pass
+        try:
+            if (room[player.location].w_to):
+                exits += "w, "
+        except:
+            pass
+        try:
+            if (room[player.location].s_to):
+                exits += "s, "
+        except:
+            pass
+        # print the exits, minus the ", "
+        print(exits[:-2])
     # PLAYER ACTIONS
     elif inp == "l" or inp == 'look':
         print("\n{}".format(room[player.location].name))
-        print("Items in the room:")
+        if (room[player.location].inventory):
+            print("Items in the room:")
         for key in room[player.location].inventory:
             if room[player.location].inventory[key]:
                 print("\t{} {}".format(room[player.location].inventory[key], key))
                 print()
             else:
                 print("\tNothing to take here.\n")
-    elif inp.startswith('take'):
+    elif inp.startswith('take') or inp.startswith('get'):
         try:
             item = inp.split(' ')[1]
             # check to see if the item is in the room
@@ -123,6 +150,6 @@ while True:
         else:
             print("You aren't carrying anything\n")
     elif inp == "h" or inp == "help":
-        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, drop, i)inventory, q)uit, h)elp\n")
+        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, get, drop, exits, i)inventory, q)uit, h)elp\n")
     else:
         print("I don't know that command")
