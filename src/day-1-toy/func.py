@@ -12,3 +12,4 @@ def is_even(number):
 
 is_even(num)
 
+#print("Even!" if int(num) % 2 == 0 else "Odd")  //instructors solution: as ternary
