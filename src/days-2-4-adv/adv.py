@@ -4,7 +4,7 @@ from room import Room
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     """North of you, the cave mount beckons"""),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -49,3 +49,12 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    inp = input("\nWhat would you like to do?: ")
+    if inp == "quit" or "exit":
+        break
+    elif inp == "move"
+        inp2 = input("Which direction do you want to move? (n/w/e/s)")
+            if inp2 == "n":
+                
