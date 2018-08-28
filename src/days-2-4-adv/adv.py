@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -33,19 +33,59 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+# Check if room is valid
+
+
+def validRoom(room, direction):
+    try:
+        if direction == 'n' and room.n_to:
+            return True
+        if direction == 's' and room.s_to:
+            return True
+        if direction == 'e' and room.e_to:
+            return True
+        if direction == 'w' and room.w_to:
+            return True
+    except:
+        return False
 #
 # Main
 #
 
+
 # Make a new player object that is currently in the 'outside' room.
+player1 = Player('Stormer', room['outside'])
 
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
+#('Which direction to do you want to go to (N,S,W,E)?')
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+print(f'\n=== Welcome to the epic MUD game, {player1.name} ===\n')
+while True:
+    print(f'\nCurrent location:  {player1.location.name}.')
+    print(player1.location.description + '\n')
+
+    direction = input('Which direction to do you want to go to (N,S,W,E)?')
+
+    if direction.lower() == 'q':
+        print('\nGoodbye! Please come again.\n')
+        break
+    else:
+        if validRoom(player1.location, direction):
+            if direction.lower() == 'n':
+                player1.location = player1.location.n_to
+            if direction.lower() == 's':
+                player1.location = player1.location.s_to
+            if direction.lower() == 'w':
+                player1.location = player1.location.w_to
+            if direction.lower() == 'e':
+                player1.location = player1.location.e_to
+        else:
+            print('\nThere is no room in this direction. Please try again!\n')
