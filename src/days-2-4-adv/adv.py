@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,6 +39,8 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+currentLocation = room['outside']
+character = Player(currentLocation)
 
 # Write a loop that:
 #
@@ -49,3 +52,42 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+playing = True
+print('Loading...')
+print('Now Playing: \'Room Explorer.txt\'')
+print('You will be starting out outside. In order to move around type in (n)orth (s)outh (e)ast or (w)est')
+print('When you are done exploring, type q to exit')
+while(playing):
+    print(character)
+    request = input("What would you like to do?\n").lower()
+     if request == 'q':
+        print('See you again!')
+        playing = False
+    else:
+        if request == 'north' or request == 'n':
+            if hasattr(currentLocation, 'n_to'):
+                currentLocation = currentLocation.n_to
+                character.change_location(currentLocation)
+            else:
+                print('Invalid Input')
+        elif request == 'south' or request == 's':
+            if hasattr(currentLocation, 's_to'):
+                currentLocation = currentLocation.s_to
+                character.change_location(currentLocation)
+            else:
+                print('Invalid Input')
+        elif request == 'east' or request == 'e':
+            if hasattr(currentLocation, 'e_to'):
+                currentLocation = currentLocation.e_to
+                character.change_location(currentLocation)
+            else:
+                print('Invalid Input')
+        elif request == 'west' or request == 'w':
+            if hasattr(currentLocation, 'w_to'):
+                currentLocation = currentLocation.w_to
+                character.change_location(currentLocation)
+            else:
+                print('Invalid Input')
+        else:
+            print('Invalid Input')
