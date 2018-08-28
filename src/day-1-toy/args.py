@@ -5,13 +5,20 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 #def f1(...
+def f1(a,b):
+    return(a+b)
 
 print(f1(1, 2))
 
-# Write a function f2 that takes any number of iteger arguments and prints the
+# Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # def f2(...
+def f2(*args):
+    sum = 0
+    for arg in args:
+        print(arg)
+
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
