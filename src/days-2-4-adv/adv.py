@@ -59,6 +59,7 @@ player = Player(room['outside'].n_to)
 print(player.room)"""
 
 while True:
+    print("----------------Treasure Game----------------")
     print("You are at {}.".format(player.room.getDescription()))
     message = input("\nWhere do you want to go? (north/south/east/west): ")
     if message == 'quit':
@@ -66,6 +67,8 @@ while True:
         break
     if message not in allowed:
         print("\nPlease only choose north, south, east, or west.\n")
-    elif hasattr(player.room, message[0] + '_to'):
+    if hasattr(player.room, message[0] + '_to'):
         # print("Worked!")
         player.room = getattr(player.room, message[0] + '_to')
+    elif hasattr(player.room, message[0] + '_to') == False:
+        print("That doesn't lead anywhere, please choose another direction.")
