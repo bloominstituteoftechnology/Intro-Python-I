@@ -34,11 +34,16 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+gameRunning = True
 def switch(dir, player):
     if dir is 'n': player.location = player.location.n_to
     elif dir is 's': player.location = player.location.s_to
     elif dir is 'w': player.location = player.location.w_to
     elif dir is 'e': player.location = player.location.e_to
+    elif dir is 'q':
+        print('Quitting Game')
+        global gameRunning
+        gameRunning = False
     else: print('invalid direction, enter n, s, w or e')
 
 
@@ -60,7 +65,7 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-while True:
+while gameRunning:
     print(player.location.name)
     print(player.location.description)
     dir = input("where do you choose to go?")
