@@ -29,7 +29,6 @@ print(x)
 # Print the length of list x
 # [command here]
 print(len(x))
-print(len(x))
 
 # Using a for loop, print all the element values multiplied by 1000
 
