@@ -2,7 +2,7 @@ from room import Room
 from player import Player
 
 # Declare all the rooms
-
+# Which rooms are empty?? Who knows?
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
