@@ -14,3 +14,18 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+if len(sys.argv) == 2:
+    month = None
+    year = int(sys.argv[1])
+elif len(sys.argv) == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+else:
+    sys.exit(1)
+
+if month != None:
+    calendar.prmonth(year, month)
+else:
+    calendar.prcal(year)
