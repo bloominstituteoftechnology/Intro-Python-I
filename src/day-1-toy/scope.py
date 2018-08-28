@@ -5,6 +5,7 @@
 x = 12
 
 def changeX():
+    global x
     x = 99
 
 changeX()
@@ -15,10 +16,14 @@ print(x)
 
 # This nested function has a similar problem.
 
+# also works with global being declared twice on outer and inner
+
 def outer():
+
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()

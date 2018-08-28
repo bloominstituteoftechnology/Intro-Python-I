@@ -8,4 +8,4 @@ z = "I like turtles!"
 print('x is %d, y is %1.2f, z is %a' % (x, y, z))
 
 # Use the 'format' string method to print the same thing
-print('x is {}, y is {:1.2f}, z is {}'.format(x, y, z))
+print('x is {}, y is {:1.2f}, z is "{}"'.format(x, y, z))
