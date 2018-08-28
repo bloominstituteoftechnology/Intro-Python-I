@@ -24,6 +24,9 @@ class Waypoint(Latlon):
     def get_description(self):
         return (self.name + " is located at " + str(self.lat) + " latitude and " + str(self.lon) + " longitude")
 
+    def __repr__(self):
+        return "Waypoint: {}, {}, {}".format(self.name, self.lat, self.lon)
+
 
 class Geocache(Waypoint):
     def __init__(self, name, difficulty, size, lat, lon):
@@ -38,12 +41,14 @@ class Geocache(Waypoint):
 
 new_waypoint = Waypoint("Catacombs", 41.70505, -121.51521)
 w = new_waypoint.get_description()
+x = Waypoint("France", 41.1563, 123.156)
 
 # Print it
 #
 # Without changing the following line, how can you make it print into something
 # more human-readable?
 print(w)
+print(x)
 
 
 new_geocache = Geocache("Newberry Views", "1.5", "2",
