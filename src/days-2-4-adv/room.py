@@ -14,12 +14,12 @@ class Room:
           for key in self.inventory:
               if key == item:
                   self.inventory[key] += 1
-                  return
+                  return True
           self.inventory[item] = 1
         def drop(self, item):
           for key in self.inventory:
               if key == item:
                   if self.inventory[key] > 0:
                     self.inventory[key] -= 1
-                    return
+                    return True
           print("Nothing to get!")

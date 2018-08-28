@@ -89,20 +89,21 @@ while True:
                 player.location = room[player.location].w_to
         except:
             print("Can't continue west\n")
-    elif inp == 't':
-        print('Taking {}\n'.format('apple'))
-        room[player.location].drop('apple')
-        player.take('apple')
+    elif inp.startswith('take'):
+        item = inp.split(' ')[1]
+        print('Taking {}\n'.format(item))
+        if (room[player.location].drop(item)):
+            player.take(item)
     elif inp == 'i':
         inv = player.getInventory()
         if (inv.keys()):
             print("your stuff:")
             for key in inv:
-                print("\t{}".format(key))
+                print("\t{} {}".format(inv[key], key))
             print()
         else:
             print("You aren't carrying anything")
     elif inp == "h" or inp == "help":
-        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, t)ake, i)inventory, q)uit, h)elp")
+        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, i)inventory, q)uit, h)elp\n")
     else:
         print("I don't know that command")
