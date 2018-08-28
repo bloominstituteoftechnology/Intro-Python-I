@@ -53,7 +53,7 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 #def f4(...
-
+def f4(*args) 
 # Should print
 # key: a, value: 12
 # key: b, value: 30
