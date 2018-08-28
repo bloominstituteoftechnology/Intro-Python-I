@@ -9,6 +9,8 @@ def is_even(a):
     else:
         print('Odd')
 
+# print('Even!' if int(num) % 2 == 0 else 'Odd')
+
 is_even(num)
 
 

@@ -21,7 +21,7 @@ def outer():
     y = 120
 
     def inner():
-        nonlocal y
+        nonlocal y  # use y from the containing scope
         y = 999
 
     inner()

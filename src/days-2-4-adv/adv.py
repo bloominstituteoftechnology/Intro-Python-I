@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -24,6 +25,7 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
+
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -38,14 +40,47 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+playerOne = Player('Dray', room['outside'])
 
 # Write a loop that:
 #
 # * Prints the current room name
+
 # * Prints the current description (the textwrap module might be useful here).
+print()
 # * Waits for user input and decides what to do.
 #
+# playerOne.moveTo('north')
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+arr = ['n', 'e', 's', 'w']
+while True:
+    print('\nYou are in: ' + playerOne.room.name + '.')
+    print(playerOne.room.description)
+    inp = input("\nChoose direction n/s/e/w  or enter q to quit: ").strip().lower()
+    
+    if (inp == 'q'):
+        print('Goodbye!')
+        break
+    if (inp in arr):
+        if hasattr(playerOne.room, inp+'_to'):
+            playerOne.room = getattr(playerOne.room, inp + '_to')
+        else:
+            print('This path is blocked. Choose another direction')
+    else:
+        print ("I did not recognize that command")
+
+# *************
+# hasattr(object, name)
+# The arguments are an object and a string. 
+# *************
+# getattr(object, name[, default])
+# Return the value of the named attribute of object. name must be a string. 
+
+# For example, getattr(x, 'foobar') is equivalent to x.foobar. 
+# If the named attribute does not exist, default is returned if provided, 
+# otherwise AttributeError is raised.
+# *************

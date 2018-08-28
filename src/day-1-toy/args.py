@@ -15,6 +15,11 @@ print(f1(1, 2))
 
 def f2(*arg):
     return sum(arg)
+    # ********** v2
+    #     f2sum = 0
+    # for n in args:
+    #     f2sum += n
+    # return f2sum
 
 print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 print(f2(1))                    # Should print 1
@@ -30,8 +35,8 @@ print(f2(*a))    # Should print 22
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments. Google "python default arguments" for a hint.
 # 
-def f3(*arg, num = 1):
-    return sum(arg)
+def f3(a , num = 1):
+    return a + num
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -66,6 +71,5 @@ d = {
     "hp": 3
 }
 
-f4(**d)
 # What thing do you have to add to make this work?
 f4(**d)
