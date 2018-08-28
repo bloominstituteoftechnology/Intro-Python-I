@@ -73,7 +73,7 @@ f4(a=12, b=30)
 # key: city, value: Berkeley
 # key: population, value: 121240
 # key: founded, value: "March 23, 1868"
-f4(city="Berkeley", population=121240, founded="March 23, 1868")
+f4(city="Berkeley", population=121240, founded="March 23, 188")
 
 
 d = {
