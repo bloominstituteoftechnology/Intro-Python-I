@@ -22,6 +22,9 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+"""where add stuff to the rooms"""
+# add an apple to the outside room
+room['outside'].take('apple')
 
 # Link rooms together
 
@@ -56,15 +59,6 @@ while True:
     inp = input("\nEnter a command: ")
     if inp == 'q' or inp == 'quit':
         break
-    elif inp == "l" or inp == 'look':
-        print("\n{}".format(room[player.location].name))
-        print("Items in the room:")
-        for key in room[player.location].inventory:
-            if room[player.location].inventory[key]:
-                print("\t{}".format(key))
-                print()
-            else:
-                print("\tNothing to take here.\n")
     elif inp =='n':
         try:
             if (room[player.location].n_to):
@@ -89,11 +83,36 @@ while True:
                 player.location = room[player.location].w_to
         except:
             print("Can't continue west\n")
+
+    # PLAYER ACTIONS
+    elif inp == "l" or inp == 'look':
+        print("\n{}".format(room[player.location].name))
+        print("Items in the room:")
+        for key in room[player.location].inventory:
+            if room[player.location].inventory[key]:
+                print("\t{} {}".format(room[player.location].inventory[key], key))
+                print()
+            else:
+                print("\tNothing to take here.\n")
     elif inp.startswith('take'):
-        item = inp.split(' ')[1]
-        print('Taking {}\n'.format(item))
-        if (room[player.location].drop(item)):
-            player.take(item)
+        try:
+            item = inp.split(' ')[1]
+            # check to see if the item is in the room
+            if (room[player.location].drop(item)):
+                print('Taking {}\n'.format(item))
+                # item is in the room, so player can take it
+                player.take(item)
+        except:
+            print("You must enter something to take.")
+    elif inp.startswith('drop'):
+        try:
+            item = inp.split(' ')[1]
+            # check to see if the item is in player inventory
+            if (player.drop(item)):
+                print('Dropping {}\n'.format(item))
+                room[player.location].take(item)
+        except:
+            print("You must enter something to drop.")
     elif inp == 'i':
         inv = player.getInventory()
         if (inv.keys()):
@@ -102,8 +121,8 @@ while True:
                 print("\t{} {}".format(inv[key], key))
             print()
         else:
-            print("You aren't carrying anything")
+            print("You aren't carrying anything\n")
     elif inp == "h" or inp == "help":
-        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, i)inventory, q)uit, h)elp\n")
+        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, drop, i)inventory, q)uit, h)elp\n")
     else:
         print("I don't know that command")

@@ -5,9 +5,7 @@ class Room:
         def __init__(self, name, description):
             self.name=name
             self.description= description
-            self.inventory = {
-                'apple': 1
-            }
+            self.inventory = {}
         def __str__(self):
           return(f'name: {self.name}\n')
         def take(self, item):
@@ -22,4 +20,4 @@ class Room:
                   if self.inventory[key] > 0:
                     self.inventory[key] -= 1
                     return True
-          print("Nothing to get!")
+          print("There is no {} here to get!\n".format(item))
