@@ -1,10 +1,11 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mouth beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -38,6 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player('DaBoss')
 
 # Write a loop that:
 #
@@ -49,3 +51,38 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+while True:
+    print(room[player.location].description)
+    inp = input("\nEnter a command: ")
+    if inp == 'q' or inp == 'quit':
+        break
+    elif inp == "l" or inp == 'look':
+        print()
+    #     print(room[player.location].description)
+    elif inp =='n':
+        try:
+            if (room[player.location].n_to):
+                # player.location = room[player.location].n_to
+                player.location = room[player.location].n_to.name.lower()
+        except:
+            print("Can't continue north")
+    elif inp =='s':
+        try:
+            if (room[player.location].s_to):
+                player.location = room[player.location].s_to.name.lower()
+        except:
+            print("Can't continue south")
+    elif inp =='e':
+        try:
+            if (room[player.location].e_to):
+                player.location = room[player.location].e_to.name.lower()
+        except:
+            print("Can't continue east")
+    elif inp =='w':
+        try:
+            if (room[player.location].w_to):
+                player.location = room[player.location].w_to.name.lower()
+        except:
+            print("Can't continue west")
+    else:
+        print("I don't know that command")
