@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = {
+players = {
     'player 1': Player('outside', None)
 }
 
@@ -48,6 +48,51 @@ player = {
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
+user_input = input('Which direction do you want to go?')
+while True:
+    print(p.location, p.items, user_input)
+    if user_input == 'q':
+        break
+    elif p.location == 'outside':
+        if user_input == 'n':
+            #not sure how to change location yet
+            print(r.description)
+        else:
+            print('That movement is not allowed.')
+    elif p.location == 'foyer':
+        if user_input == 's':
+            #
+            print(r.description)
+        elif user_input == 'n':
+            #
+            print(r.description)
+        elif user_input == 'e':
+            #
+            print(r.description)
+        else:
+            print('That movement is not allowed.')
+    elif p.location == 'overlook':
+        if user_input == 's':
+            #
+            print(r.description)
+        else:
+            print('That movement is not allowed.')
+    elif p.location == 'narrow':
+        if user_input == 'w':
+            #
+            print(r.description)
+        if user_input == 'n':
+            #
+            print(r.description)
+        else: 
+            print('That movement is not allowed.')
+    elif p.location == 'treasure':
+        if user_input == 's':
+            #
+            print(r.description)
+        else:
+            print("That movement is not allowed.")
+    
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
