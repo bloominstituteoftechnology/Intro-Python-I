@@ -5,6 +5,9 @@ class LatLon():
     self.lat = lat
     self.lon = lon
 
+  def __str__(self):
+    return (f'lat: {self.lat}\n' f'lon:{self.lon}')
+
 # Make a class Waypoint that can be passed parameters `name`, `lat`, and `lon` to the
 # constructor. It should inherit from LatLon.
 class Waypoint(LatLon):

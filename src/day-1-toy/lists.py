@@ -16,6 +16,10 @@ print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 x.remove(8)
+
+# other ways to remove
+#del(x[4])
+#x.pop(4) #returns the value and mutates the array
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]

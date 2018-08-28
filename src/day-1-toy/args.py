@@ -43,6 +43,12 @@ def f3(n1,n2=None):
     else:
         return n1+n2 
 
+# def f3(a, b=None):
+#     return a+b if b is not None else a+1
+
+# def f3(a, b=1):
+#     return a+b
+
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
 
@@ -55,9 +61,13 @@ print(f3(8))     # Should print 9
 #
 # Google "python keyword arguments".
 
-def f4(**args):
-    for key in args:
-        print("key: {}, value: {}".format(key, args[key]))
+def f4(**kargs):
+    for key in kargs:
+        print("key: {}, value: {}".format(key, kargs[key]))
+
+# def f4(**kwargs):
+#     for k, v in kwargs.items():
+#         print(f'{k}: {v}')
 
 # Should print
 # key: a, value: 12
