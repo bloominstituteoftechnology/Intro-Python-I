@@ -29,6 +29,9 @@ class Geocache(Waypoint):
         self.difficulty = difficulty
         self.size = size
 
+    def __repr__(self):
+        return "Geocache: \nName: {}\n\tdiff: {}, size: {}\n\tlat: {}, lon: {}".format(self.name, self.difficulty, self.size, self.lat, self.lon)
+
 
 # Make a new waypoint "Catacombs", 41.70505, -121.51521
 w = Waypoint("Catacombs", 41.70505, -121.51521)
@@ -40,6 +43,6 @@ w = Waypoint("Catacombs", 41.70505, -121.51521)
 print(w)
 
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
-
+g = Geocache("Newberry Views", 1.5, 2, 44.052137, -121.41556)
 # Print it--also make this print more nicely
-# print(g)
+print(g)
