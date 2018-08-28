@@ -34,7 +34,7 @@ w = 'Waypoint\nName: {}\nLat: {}\nLon: {}\n'.format(w.name, w.lat, w.lon)
 print(w)
 
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
-g = Geocache('Newberry Views', 1.5, 2, 44.052137, -12141556)
+g = Geocache('Newberry Views', 1.5, 2, 44.052137, -121.41556)
 g = 'Geocache\nName: {}\nDifficulty: {}\nSize: {}\nLat: {}\nLon: {}\n'.format(g.name, g.difficulty, g.size, g.lat, g.lon)
 
 # Print it--also make this print more nicely
