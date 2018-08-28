@@ -16,10 +16,11 @@ print(f1(1, 2))
 # def f2(...
 def f2(*args):
     sum = 0
-    for arg in args:
-        print(arg)
+    for num in args:
+        sum += num
+    print(sum)
 
-
+#QQQQQQQQQQQQQQQ?: I get these right, except that the function returns "None" after the sum.
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
 print(f2(1, 4, -12))            # Should print -7
