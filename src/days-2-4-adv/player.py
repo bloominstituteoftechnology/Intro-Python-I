@@ -3,7 +3,7 @@
 from room import Room
 
 
-class Player(object):
+class Player:
     def __init__(self, name, room):
         self.name = name
         self.location = room

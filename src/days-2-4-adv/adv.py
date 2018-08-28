@@ -1,24 +1,42 @@
 from room import Room
 from player import Player
+from item import Item
 # Declare all the rooms
+items = {
+    'sword': Item('Sword', '+10 Attack'),
+    'shield': Item('Shield', '+5 Defense'),
+    'armor': Item('Armor', '+3 Defense'),
+    'pants': Item('Pants', '+2 Defense'),
+    'dagger': Item('Dagger', '+5 Attack'),
+    'bracers': Item('Bracers', '+1 Defense'),
+    'potion': Item('Potion', 'Restore 5hp'),
+    'bandage': Item('Bandage', 'Restore 2hp'),
+    'diamond': Item('Diamond', 'can be traded for 1000 gold'),
+    'revivepotion': Item('RevivePotion', 'can revive player 1 time')
+}
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     """North of you, the cave mount beckons""",
+                     [items['sword'], items['bandage']]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""",
+                     [items['shield'], items['pants']]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""",
+                     [items['armor'], items['dagger']]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""",
+                     [items['bracers'], items['potion']]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""",
+                     [items['diamond'], items['revivepotion']]),
 }
 
 
@@ -33,21 +51,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-# Check if room is valid
 
-
-def validRoom(room, direction):
-    try:
-        if direction == 'n' and room.n_to:
-            return True
-        if direction == 's' and room.s_to:
-            return True
-        if direction == 'e' and room.e_to:
-            return True
-        if direction == 'w' and room.w_to:
-            return True
-    except:
-        return False
 #
 # Main
 #
@@ -71,6 +75,7 @@ print(f'\n=== Welcome to the epic MUD game, {player1.name} ===\n')
 while True:
     print(f'\nCurrent location:  {player1.location.name}.')
     print(player1.location.description + '\n')
+    print(f'Items found: {[i.name for i in player1.location.items]}\n')
 
     direction = input('Which direction to do you want to go to (N,S,W,E)?')
 
@@ -78,14 +83,16 @@ while True:
         print('\nGoodbye! Please come again.\n')
         break
     else:
-        if validRoom(player1.location, direction):
+        try:
             if direction.lower() == 'n':
                 player1.location = player1.location.n_to
-            if direction.lower() == 's':
+            elif direction.lower() == 's':
                 player1.location = player1.location.s_to
-            if direction.lower() == 'w':
+            elif direction.lower() == 'w':
                 player1.location = player1.location.w_to
-            if direction.lower() == 'e':
+            elif direction.lower() == 'e':
                 player1.location = player1.location.e_to
-        else:
-            print('\nThere is no room in this direction. Please try again!\n')
+            else:
+                print('\nPlease enter a valid direction.')
+        except:
+            print('\nThere is no room in this direction. Please try again!')
