@@ -43,8 +43,9 @@ room['treasure'].s_to = 'narrow'
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player('DaBoss', 'outside')
-
 enemy = Player('', 'narrow')
+
+# Generate items
 
 # Write a loop that:
 #
@@ -87,7 +88,7 @@ while True:
         except:
             print("Can't continue west\n")
     elif inp =='exits':
-        exits = 'You can exit: '
+        exits = 'You can exit: '        
         try:
             if (room[player.location].n_to):
                 exits += "n, "
