@@ -34,4 +34,4 @@ print(len(x))
 # Using a for loop, print all the element values multiplied by 1000
 
 for num in x:
-    f"{num * 1000}"
+    print(f"{num * 1000}")

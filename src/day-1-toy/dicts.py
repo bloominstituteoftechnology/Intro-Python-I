@@ -41,9 +41,9 @@ waypoints = [
 
 # Write a loop that prints out all the field values for all the waypoints
 for point in waypoints:
-    f"Latitude: {point['lat']}"
-    f"Longitude: {point['lon']}"
-    f"Name: {point['name']}"
+    print(f"Latitude: {point['lat']}")
+    print(f"Longitude: {point['lon']}")
+    print(f"Name: {point['name']}")
 
 # Add a new waypoint to the list
 

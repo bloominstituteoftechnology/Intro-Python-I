@@ -19,14 +19,15 @@ import datetime
 
 todayDate = datetime.date.today()
 
-if len(sys.argv) > 2:
+if len(sys.argv) > 1:
     # sys.argv[0] is program name, sys.argv[1] is month sys.argv[2] is year
-    myCalendar = calendar.TextCalendar(calendar.SUNDAY)
-    str = myCalendar.formatmonth(int(sys.argv[2]), int(sys.argv[1]))
-    print(str)
+    month = sys.argv[1]
+    year = sys.argv[2]
+    
 else:
-    myCalendar = calendar.TextCalendar(calendar.SUNDAY)
-    str = myCalendar.formatmonth(int(todayDate.year), int(todayDate.month))
-    print(str)
+    month = todayDate.month
+    year = todayDate.year
 
-
+myCalendar = calendar.TextCalendar(calendar.SUNDAY)
+str = myCalendar.formatmonth(int(year), int(month))
+print(str)
