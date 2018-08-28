@@ -37,3 +37,6 @@ waypoints.append({
 print('Updated Waypoints')
 for i in waypoints:
     print(i)
+
+for key in waypoints:
+    print("<{} located at {},{}>".format(key["name"], key["lat"], key["lon"]))
