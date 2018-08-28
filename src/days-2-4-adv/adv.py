@@ -62,25 +62,25 @@ while True:
     inp = input("\nEnter a command: ")
     if inp == 'q' or inp == 'quit':
         break
-    elif inp =='n':
+    elif inp =='n' or inp == "north":
         try:
             if (room[player.location].n_to):
                 player.location = room[player.location].n_to
         except:
             print("Can't continue north\n")
-    elif inp =='s':
+    elif inp =='s' or inp == "south":
         try:
             if (room[player.location].s_to):
                 player.location = room[player.location].s_to
         except:
             print("Can't continue south\n")
-    elif inp =='e':
+    elif inp =='e' or inp == "east":
         try:
             if (room[player.location].e_to):
                 player.location = room[player.location].e_to
         except:
             print("Can't continue east\n")
-    elif inp =='w':
+    elif inp =='w' or inp == "west":
         try:
             if (room[player.location].w_to):
                 player.location = room[player.location].w_to
@@ -140,7 +140,7 @@ while True:
                 room[player.location].take(item)
         except:
             print("You must enter something to drop.")
-    elif inp == 'i':
+    elif inp == 'i' or inp == "inventory":
         inv = player.getInventory()
         if (inv.keys()):
             print("your stuff:")
