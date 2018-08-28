@@ -1,5 +1,25 @@
+import textwrap
 from room import Room
 from player import Player
+
+
+# def load_adv():
+#     text_file = open("adventure.txt", "r")
+#     history = text_file.read().split(",")
+#     text_file.close()
+#     return history
+
+
+# def save_adv(args):
+#     text_file = open("adventure.txt", "w")
+#     text_file.write(args)
+#     text_file.close()
+
+
+# adv = load_adv()
+#player = args
+
+
 # Declare all the rooms
 
 room = {
@@ -38,7 +58,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-Ahmed = Player(room['outside'])
+Ahmed = Player("Ahmed", room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +69,37 @@ Ahmed = Player(room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+print("Welcome to Adventure Game!\n")
+print("You are in {}.\n".format(Ahmed.location.name))
+print(textwrap.fill(Ahmed.location.description, 70))
+print("Please choose to continue...\n")
+user = str(input("[W] North   [A] West   [S] South   [D] East   [Q] Quit\n"))
+
+while not user == "q":
+    if user == "w":
+        try:
+            Ahmed.location = Ahmed.location.n_to
+        except AttributeError:
+            print("It's too dangerous to go here alone! Please try again.\n")
+    elif user == "a":
+        try:
+            Ahmed.location = Ahmed.location.w_to
+        except AttributeError:
+            print("It's too dangerous to go here alone! Please try again.\n")
+    elif user == "s":
+        try:
+            Ahmed.location = Ahmed.location.s_to
+        except AttributeError:
+            print("It's too dangerous to go here alone! Please try again.\n")
+    elif user == "d":
+        try:
+            Ahmed.location = Ahmed.location.e_to
+        except AttributeError:
+            print("It's too dangerous to go here alone! Please try again.\n")
+    else:
+        print("Invalid selection. Please try again.\n")
+    print("You are in {}.\n".format(Ahmed.location.name))
+    print(textwrap.fill(Ahmed.location.description, 70))
+    print("\nPlease choose to continue...\n")
+    user = str(
+        input("[W] North   [A] West   [S] South   [D] East   [Q] Quit\n"))
