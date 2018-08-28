@@ -56,7 +56,7 @@ room['treasure'].s_to = room['narrow']
 
 move = ''
 letterToDirection = {'N': 'North', 'S': 'South', 'E': 'East', 'W': 'West'}
-flair = "***********************************************************"
+flair = "\n***********************************************************\n"
 print(flair)
 print("\nWelcome to 'let's move around a little bit'!\nThe game where the title really says it all!\n")
 print(flair)
@@ -73,7 +73,7 @@ while move != 'Q':
     
     print(flair)
     print(f"\n{str(player)}, Please choose a direction by typing the corresponding letter..\n")
-    print("\n" + flair + '\n')
+    print(flair)
 
     # Loop through cardinal directions and get that rooms values
     for key, value in validMoves.items():
@@ -87,7 +87,7 @@ while move != 'Q':
     if move in list(validMoves.keys()):
       newRoom = validMoves[move]
       player.room = newRoom
-      print('\n' + flair + '\n')
+      print(flair)
       print(newRoom.getDescription())
     elif move == 'Q':
         break
