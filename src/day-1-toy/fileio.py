@@ -1,5 +1,5 @@
 # Use open to open file "foo.txt" for reading
-
+foo = open("src/day-1-toy/foo.txt")
 # Print all the lines in the file
 
 # Close the file
