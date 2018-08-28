@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -22,6 +23,7 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 
+
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -32,6 +34,8 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+
 
 #
 # Main
@@ -49,3 +53,27 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+move = ''
+flair = "***********************************************************"
+print(flair)
+print("Welcome to 'let's move around a little bit'!\n The game where the title really says it all!")
+print(flair)
+name = input("Please choose your hero's name!!\n")
+player = Player(name, room['outside'])
+
+while move != 'q':
+    print(flair)
+    room = player.getRoom()
+    room.getDescription()
+    validMoves = room.validMoves
+    print("\n" + flair)
+    print("\nPlease choose a direction..\n")
+    
+    # Loop through cardinal directions and get that rooms values
+    for key, value in validMoves.items():
+        print(f"{key} ({key[0].lower()}): {str(value)} \n")
+
+    move = input(: )
+
+
