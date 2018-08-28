@@ -7,13 +7,13 @@ print(lines)
 f.close()
 
 
-# Use open to open file "bar.txt" for writing
-f = open('bar.txt', 'w')
+# # Use open to open file "bar.txt" for writing
+# f = open('bar.txt', 'w')
 
-# Use the write() method to write three lines to the file
-f.write("""line 1
-line2
-line 3""")
+# # Use the write() method to write three lines to the file
+# f.write("""line 1
+# line2
+# line 3""")
 
-# Close the file
-f.close()
+# # Close the file
+# f.close()

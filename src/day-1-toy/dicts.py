@@ -30,6 +30,8 @@ waypoints = [
 for i in waypoints:
     print(i)
 
+#nested for loop for (x,y) in items: print y
+
 
 
 # Add a new waypoint to the list

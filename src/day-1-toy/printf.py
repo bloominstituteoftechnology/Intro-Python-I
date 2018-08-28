@@ -8,4 +8,6 @@ z = "I like turtles!"
 
 print("x is %x" % z)
 
+# print("x")
+
 # Use the 'format' string method to print the same thing
