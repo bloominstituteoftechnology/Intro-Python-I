@@ -1,8 +1,5 @@
 from room import Room
 from player import Player
-import textwrap
-
-wrapper = textwrap.TextWrapper(width=50)
 
 # Declare all the rooms
 
@@ -42,25 +39,30 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-p1 = Player("Adventurer #1", "outside")
+p1 = Player("Adventurer #1", room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
+print('\nWelcome %s to the text adventure game!')
+print('\nFollow prompts on screen.\n~Enter \'q\' to quit\n~Enter \'player\' for name and location')
 while True:
-    print('Current room: %s, Description: %s' % (p1.location, room[p1.location].description))
+    print('\n \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/')
+    print('\nCurrent room: %s Description: %s' % (p1.location.name, p1.location.description))
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
     inp = input('\nWhich direction (n/s/e/w): ')
     if inp == 'q':
+        print('Quitting application...')
         break
-    elif inp == 'n':
-        p1.location = 'foyer'
-    elif inp == 's':
-        print('This move is not allowed')
-    elif inp == 'e':
-        print('This move is not allowed')
-    elif inp == 'w':
-        print('This move is not allowed')
+    elif inp in ['n', 's', 'e', 'w']:
+        if hasattr(p1.location, inp + '_to'):
+            p1.location = getattr(pq.location, inp + '_to')
+        else:
+            print('\nThis move is not allowed')
+    elif inp == 'player':
+        print('\nName: %s Current Location: %s' % (p1.name, p1.location.name))
+    else:
+        print('\nInvalid entry, try again')
 # If the user enters "q", quit the game.
