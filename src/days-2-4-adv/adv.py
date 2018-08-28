@@ -109,7 +109,7 @@ while True:
         except:
             pass
         # print the exits, minus the ", "
-        print(exits[:-2])
+        print("{}\n".format(exits[:-2]))
     # PLAYER ACTIONS
     elif inp == "l" or inp == 'look':
         print("\n{}".format(room[player.location].name))
