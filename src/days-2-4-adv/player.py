@@ -2,5 +2,10 @@
 # currently.
 
 class Player:
-    def __init__(self, room):
+    def __init__(self, room, items=[]):
         self.room = room
+        self.items = items
+    def get(self, item):
+        self.items.append(item)
+    def drop(self, item):
+        del self.items[self.items.index(item)]
