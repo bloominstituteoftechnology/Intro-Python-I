@@ -31,23 +31,25 @@ class Room:
         
         print('************************************************')
        
+    def connect_one_way(self, to, destinationRoom):
+        self.connectedRooms[to] = destinationRoom
     
-    
-    def connect_rooms(self, to, destinationRoom):
+    def connectRoom(self, to, destinationRoom):
         if self.connectedRooms[to] != None:
             print('{} is {} of {}'.format(self.connectedRooms[to].name, to, self.name))
             return
+        oppositeDirection = '';
+        if to == 'n':
+            oppositeDirection = 's'
 
-        oppositeDirection = {
-        'n': 's',
-        's': 'n',
-        'w': 'e',
-        'e': 'w'
-        };
+        elif to == 's':
+            oppositeDirection = 'n'
 
-        if to in oppositeDirection:
-            self.connectedRooms[to] = destinationRoom
-            destinationRoom.connectedRooms[oppositeDirection[to]] = self
+        elif to == 'e':
+            oppositeDirection = 'w'
+
+        elif to == 'w':
+            oppositeDirection = 'e'
         
         else:
             print('Please give a valid direction')
