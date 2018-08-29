@@ -4,10 +4,9 @@ class Player:
     def __init__(self, name, age, height, weight, hp, attack, defense, inventory):
         self.name = name
         self.age = age
-        self.height = str(height) + ' centimeters' if int(height) <= 1 else str(height) + ' centimeter'
-        self.weight = str(weight) + ' pounds' if int(weight) <= 1 else str(weight) + ' pound'
-        self.totalHp = hp
-        self.remainingHp = hp
+        self.height = str(height) + ' centimeters' if height <= 1 else str(height) + ' centimeter'
+        self.weight = str(weight) + ' pounds' if weight <= 1 else str(weight) + ' pound'
+        self.hp = hp
         self.attack = attack
         self.defense = defense
         self.inventory = inventory
@@ -17,7 +16,12 @@ class Player:
         print('Name: {},\nAge: {},\nHeight: {},\nWeight: {}'.format(self.name, self.age, self.height, self.weight))
 
     def go_direction(self, direction):
-        self.set_location(self.currentRoom.connectedRooms[direction])
+        chosenRoom = self.currentRoom.connectedRooms[direction]
+
+        if chosenRoom == None:
+            print('Sorry, there is no room that way')
+            return
+        self.set_location(chosenRoom)
     
     def check_hp(self):
         print(self.hp)
