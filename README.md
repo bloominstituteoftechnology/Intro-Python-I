@@ -1,6 +1,6 @@
 # Intro to Python
 
-## Goals
+## Goals 
 
 It's time to learn a new language! Python!
 
