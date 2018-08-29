@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 import textwrap
 
 # Declare all the rooms
@@ -43,35 +44,44 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player1 = Player(room['outside'])
+player1 = Player(room['outside'], [Item('Pen', 'A mighty instrument to influence minds'), Item('Sword', 'Not as mighty...')])
 
 while(True):
-    print('\n [{}]...\n'.format(player1.location.name))
-    print('...{}\n'.format(player1.location.description))
     inp = input('Which direction will you move?')
     if inp == 'q':
         break;
     elif inp == 'n':
         if hasattr(player1.location, 'n_to'):
             player1.location = player1.location.n_to
+            print('\n [{}]...\n'.format(player1.location.name))
+            print('...{}\n'.format(player1.location.description))
         else:
             print('\nNone has traveled catacorner to the three dimensions...invalid input try again...')
 
     elif inp == 'w':
         if hasattr(player1.location, 'w_to'):
             player1.location = player1.location.w_to
+            print('\n [{}]...\n'.format(player1.location.name))
+            print('...{}\n'.format(player1.location.description))
         else:
             print('\nNone has traveled catacorner to the three dimensions...invalid input try again...')
     elif inp == 'e':
         if hasattr(player1.location, 'e_to'):
             player1.location = player1.location.e_to
+            print('\n [{}]...\n'.format(player1.location.name))
+            print('...{}\n'.format(player1.location.description))
         else:
             print('\nNone has traveled catacorner to the three dimensions...invalid input try again...')
     elif inp == 's':
         if hasattr(player1.location, 's_to'):
             player1.location = player1.location.s_to
+            print('\n [{}]...\n'.format(player1.location.name))
+            print('...{}\n'.format(player1.location.description))
         else:
             print('\nNone has traveled catacorner to the three dimensions...invalid input try again...')
+    elif inp == 'i':
+        for item in player1.inventory:
+            print('{} {}'.format(item.name, item.description))
     else:
         print('None has traveled catacorner to the three dimensions...invalid input try again...')
 
