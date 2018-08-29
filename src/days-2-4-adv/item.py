@@ -1,7 +1,7 @@
 
 class Item:
-    def __init__(self, item_name, description):
-        self.item_name = item_name
+    def __init__(self, name, description):
+        self.name = name
         self.description = description
 
     def __repr__(self):
