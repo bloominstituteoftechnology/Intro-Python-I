@@ -30,7 +30,7 @@ class Treasure(Items):
     
     def on_take(self, player):
         # self.on_take = False
-        # player.score += self.value
+        player.score += self.value
         print('does this run/work')
         # return player.score
 

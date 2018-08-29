@@ -14,10 +14,8 @@ class Player:
         for key in self.inventory:
             if key == item:
                 self.inventory[key] += 1
-                self.addScore(item.value)
                 return True
         self.inventory[item] = 1
-        self.addScore(item.value)
 
     def drop(self, item):
         for key in self.inventory:

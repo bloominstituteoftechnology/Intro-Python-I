@@ -25,7 +25,7 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 # Declare all the items
-item = {
+item_dict = {
     'apple': Food('apple', 'a small to medium-sized conic apple', 'food', 10),
     'bread': Food('bread', 'a slice of bread', 'food', 10),
     'ring': Treasure('ring', 'a silver ring', 'treasure', 50)
@@ -34,9 +34,9 @@ item = {
 """where add stuff to the rooms"""
 # add an apple to the outside room
 # room['outside'].take('apple')
-room['outside'].take(item['apple'].name)
-room['outside'].take(item['bread'].name)
-room['outside'].take(item['ring'].name)
+room['outside'].take(item_dict['apple'].name)
+room['outside'].take(item_dict['bread'].name)
+room['outside'].take(item_dict['ring'].name)
 
 # Link rooms together
 room['outside'].n_to = 'foyer'
@@ -152,9 +152,8 @@ while True:
                 print('Taking {}\n'.format(item))
                 # item is in the room, so player can take it
                 player.take(item)
-                # room[player.location].inventory[item].on_take(player)
-                print(room[player.location])
-                print('player: {}'.format(player))
+                item_dict[item].on_take(player)
+                # print('player: {}'.format(player)) #This is printing?
         except:
             print("You must enter something to take.\n")
     elif inp.startswith('drop'):
