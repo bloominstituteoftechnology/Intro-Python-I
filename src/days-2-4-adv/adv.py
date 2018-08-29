@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -21,6 +22,8 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+player = {'default_character': Player('JJ', room['outside'], 'brown', 'blue', 'male', 'slender'),}
+
 
 # Link rooms together
 
@@ -40,6 +43,37 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 
 # Write a loop that:
+current_room = room['outside']
+user_character = player['default_character']
+print("Welcome to the game!")
+player_name = input("Enter your name:")
+inp = input("Type 'JJ' to play as JJ, or Type 'C' to create a character:")
+if inp == 'JJ':
+  user_character == player['default_character']
+  print(user_character)
+else:
+  char = inp("Please enter your characters info (name, hair color, eye color, gender, build)")  
+  player[player_name] = Player(name = char.name, in_room = room['outside'], hair_color = char.hair_color, eye_color = char.eye_color, gender = char.gender, build = char.build )
+  print(player[player_name])
+while True:
+  print("You are at the {}.".format(current_room.name))
+  inp = input("What is your input: ")
+  if inp == 'q':
+    print("See ya!")
+    break
+  elif inp == 'n' and current_room == room['outside']:
+    current_room = room['outside'].n_to
+  elif inp == 's' and current_room == room['outside']:
+    print("Can not go any further South.")
+  elif inp == 'e' and current_room == room['outside']:
+    current_room = room['outside'].s_to
+  elif inp == 'me':
+    print(player[player_name])
+    
+
+    
+
+
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
