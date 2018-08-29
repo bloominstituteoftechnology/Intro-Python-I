@@ -58,6 +58,11 @@ def move(direction, presentRoom):
     print('wrong way')
     return presentRoom
 
+def retrieve(name, presentRoom):
+    for item in presentRoom.items:
+        if item.name == name:
+            return item
+
 running = True
 
 while running:
@@ -68,10 +73,15 @@ while running:
 
     print('Next move: ')
     inp = input()
-    
-    if inp in ['n', 's', 'e', 'w']:
-        player.room = move(inp, player.room)
-    elif inp == 'q':
-        running = False
-    else:
-        print('enter n, s, e, or w for deired direction or q to quit')
+    if len(inp) == 1:
+        if inp in ['n', 's', 'e', 'w']:
+            player.room = move(inp, player.room)
+        elif inp == 'q':
+            running = False
+        else:
+            print('enter n, s, e, or w for deired direction or q to quit')
+    elif len(inp) == 2:
+        if inp[0] == 'take':
+            item = retrieve(inp[1], player.room)
+            player.room.items.remove(item)
+            player.items.append(item)
