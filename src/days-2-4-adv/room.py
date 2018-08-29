@@ -3,10 +3,10 @@
 
 
 class Room():
-    def __init__(self, name, description, items=[]):
+    def __init__(self, name, description):
         self.name = name
         self.description = description
-        self.items = items
+        self.items = []
 
     def getDescription(self):
         return ("{}.\n{}.".format(self.name, self.description))

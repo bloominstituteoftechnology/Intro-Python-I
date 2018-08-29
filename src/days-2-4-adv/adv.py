@@ -1,30 +1,30 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 # Which rooms are empty?? Who knows?
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", ["rocks", "paper", "gum"]),
+                     "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ["smoke"]),
+passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", ["chandelier", "pants"]),
+the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ["pen"]),
+to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", ["newspaper", "treasure"]),
+earlier adventurers. The only exit is to the south."""),
 }
 
 
 # Link rooms together
-
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -51,6 +51,8 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+new_item = Item("flashlight", "Good light source")
+room['outside'].items.append(new_item)
 
 player = Player(room['outside'])
 allowed = ['north', 'south', 'east', 'west']
@@ -74,9 +76,27 @@ while True:
         newMessage = message.split(" ")
         if len(newMessage) > 1:
             if (newMessage[0] == "take" or newMessage[0] == "get"):
-                print("take or get")
+                for item in player.room.items:
+                    if item.name == newMessage[1]:
+                        player.room.items.remove(item)
+                        player.items.append(item)
+                        print("You have picked up the {}".format(item))
+                    else:
+                        print("{} is not in the room.".format(newMessage[1]))
             elif (newMessage[0] == "drop"):
-                pass
+                for item in player.items:
+                    if item == newMessage[1]:
+                        player.room.items.append(item)
+                        player.items.remove(item)
+                        print("You have picked dropped the {} in the {}".format(
+                            item, player.room.name))
+                    else:
+                        print("You are not holding that item. ")
+            else:
+                print("An error has occurred.")
+        elif (newMessage[0] == "show"):
+            for item in player.items:
+                print("You are holding {}".format(item.name))
         else:
             print("Not a valid option, please choose another.")
     else:
