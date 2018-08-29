@@ -40,10 +40,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player1 = Player('Samwise', room['foyer'])
-# print(player1.curRoom.name)
-# player1.curRoom = player1.curRoom.n_to
-# print(player1.curRoom.name)
+player = Player('Samwise', room['foyer'])
 
 # Write a loop that:
 #
@@ -59,17 +56,17 @@ player1 = Player('Samwise', room['foyer'])
 while True:
     print("""{} is currently in {}:
     {}
-    Please input a new direction (n, e, s, or w) for {}, or enter \'quit\' to exit the game.""".format(player1.name, player1.curRoom.name, player1.curRoom.description, player1.name))
+    Please input a new direction (north, east, south, or west) for {}, or enter \'quit\' to exit the game.""".format(player.name, player.curRoom.name, player.curRoom.description, player.name))
     userInput = input()
 
     if userInput == 'quit':
         print('Thanks for playing, have a nice day!')
         exit()
-    elif userInput in ['n', 'e', 's', 'w']:
-        newRoom = player1.curRoom.getRoomInDirection(userInput)
+    elif userInput in ['north', 'east', 'south', 'west']:
+        newRoom = player.curRoom.getRoomInDirection(userInput)
         if newRoom == None:
-            print('You cannot move in this direction')
+            print('You cannot move in this direction.')
         else:
-            player1.change_location(newRoom)
+            player.change_location(newRoom)
     else:
-        print('INVALID INPUT: please input a proper command for {}'.format(player1.name))
+        print('INVALID INPUT: please input a proper command for {}'.format(player.name))

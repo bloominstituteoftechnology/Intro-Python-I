@@ -10,13 +10,13 @@ class Room:
         self.s_to = None
         self.w_to = None
     def getRoomInDirection(self, direction):
-        if direction == 'n':
+        if direction == 'north':
             return self.n_to
-        elif direction == 'e':
+        elif direction == 'east':
             return self.e_to
-        elif direction == 's':
+        elif direction == 'south':
             return self.s_to
-        elif direction == 'w':
+        elif direction == 'west':
             return self.w_to
         else:
             return None
