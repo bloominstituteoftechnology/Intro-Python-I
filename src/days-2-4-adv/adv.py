@@ -31,6 +31,13 @@ room['narrow'].connectRoom('n',room['treasure'])
 room['treasure'].connectRoom('e',room['narrow'])
 
 
+# player.set_location(room['foyer'])
+# player.get_current_location()
+# player.go_direction('n')
+
+# player.get_current_location()
+
+# name, age, height, weight, hp, attack, defense, inventory
 
 #
 # Main
