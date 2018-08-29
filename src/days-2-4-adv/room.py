@@ -7,8 +7,8 @@ class Room:
         self.description = description
 
 '''
-    def n_to(self):
-        if self.name == "Outside Cave Entrance":
+    def connect(self, Room, direction):
+        if self.name == "Outside Cave Entrance" and direction == n:
             self.name = "Foyer"
             self.description = """Dim light filters in from the south. Dusty
             passages run north and east."""

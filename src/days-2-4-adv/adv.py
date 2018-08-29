@@ -52,17 +52,26 @@ while(True):
     if inp == 'q':
         break;
     elif inp == 'n':
-        if player1.location.n_to:
+        if hasattr(player1.location, 'n_to'):
             player1.location = player1.location.n_to
         else:
-            print('Error, invalid input, try again')
+            print('ERROR, invalid input, try again')
 
     elif inp == 'w':
-        player1.location = player1.location.w_to
+        if hasattr(player1.location, 'w_to'):
+            player1.location = player1.location.w_to
+        else:
+            print('ERROR, invalid input, try again')
     elif inp == 'e':
-        player1.location = player1.location.e_to
+        if hasattr(player1.location, 'e_to'):
+            player1.location = player1.location.e_to
+        else:
+            print('ERROR, invalid input, try again')
     elif inp == 's':
-        player1.location = player1.location.s_to
+        if hasattr(player1.location, 's_to'):
+            player1.location = player1.location.s_to
+        else:
+            print('ERROR, invalid input, try again')
     else:
         print('None has traveled catacorner to the three dimensions...invalid input try again...')
 
