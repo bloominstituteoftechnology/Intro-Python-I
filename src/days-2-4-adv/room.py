@@ -9,8 +9,7 @@ class Room:
         self.description = description
 
 
-
 location1 = Room('Living Room', 'Space for lounging and hanging out.')
 
-print(location1.name)
-print(location1.description)
+# print(location1.name)
+# print(location1.description)

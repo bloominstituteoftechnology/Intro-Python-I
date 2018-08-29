@@ -1,5 +1,4 @@
 from room import Room
-from player import Player
 
 # Declare all the rooms
 
@@ -39,9 +38,9 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
-player_1 = Player("Bob", "outside")
-print(player_1.location)
+from player import Player
+player_1 = Player('Bob', 'outside')
+# print(player_1.location)
 
 # Write a loop that:
 #
@@ -50,7 +49,29 @@ print(player_1.location)
 # * Waits for user input and decides what to do.
 #
 
-for player_1 print(player_1.location)
+# for key in player_1.__dict__:
+#     if key == 'location': 
+#         print(player_1.location)
+#     for key in room:
+#         if key == player_1.location:
+#             print(room[player_1.location].description)
+
+
+for key in player_1.__dict__:
+    if key == 'location': 
+        for key in room:
+            if key == player_1.location:
+                print(room[player_1.location].name)
+                print(room[player_1.location].description)
+        nextMove = input("Enter next move: ")
+
+        
+
+
+# print(room['outside'].description)
+
+
+
 
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
