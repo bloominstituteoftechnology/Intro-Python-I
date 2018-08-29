@@ -55,17 +55,17 @@ player = Player("Dan", room["outside"])
 # If the user enters "q", quit the game.
 
 
-def choosePath(room, path):
-    if path == "n" and room.n_to:
-        return True
-    elif path == "s" and room.s_to:
-        return True
-    elif path == "e" and room.e_to:
-        return True
-    elif path == "w" and room.w_to:
-        return True
-    else:
-        print("\n ===== Please return a valid selection (N), (S), (E) or (W) =====\n")
+# def choosePath(room, path):
+#     if path == "n" and room.n_to:
+#         return True
+#     elif path == "s" and room.s_to:
+#         return True
+#     elif path == "e" and room.e_to:
+#         return True
+#     elif path == "w" and room.w_to:
+#         return True
+#     else:
+#         print("\n ===== Please return a valid selection (N), (S), (E) or (W) =====\n")
 
 
 while True:
@@ -79,10 +79,16 @@ while True:
         print("I guess you were too scared to play")
         break
     else:
-        if choosePath(player.current_room, path):
-            if path == "n":
-                player.current_room = player.current_room.n_to
-
+        if path == "n":
+            player.current_room = player.current_room.n_to
+        elif path == "s":
+            player.current_room = player.current_room.s_to
+        elif path == "e":
+            player.current_room = player.current_room.e_to
+        elif path == "w":
+            player.current_room = player.current_room.w_to
+        else:
+            print("\n === You cant go this way ===\n")
 
 # choosePath()
 # roomNames()
