@@ -56,39 +56,24 @@ room['treasure'].s_to = room['narrow']
 
 player1 = Player(room['outside'], [Item('Pen', 'A mighty instrument to influence minds'), Item('Sword', 'Not as mighty...')])
 
-while(True):
-    inp = input('Which direction will you move?')
-    if inp == 'q':
-        break;
-    elif inp == 'n':
-        if hasattr(player1.location, 'n_to'):
-            player1.location = player1.location.n_to
-            print('\n [{}]...\n'.format(player1.location.name))
-            print('...{}\n'.format(player1.location.description))
-        else:
-            print('\nNone has traveled catacorner to the three dimensions...invalid input try again...')
+suppressRoomPrint = False
 
-    elif inp == 'w':
-        if hasattr(player1.location, 'w_to'):
-            player1.location = player1.location.w_to
-            print('\n [{}]...\n'.format(player1.location.name))
-            print('...{}\n'.format(player1.location.description))
+while(True):
+    if suppressRoomPrint:
+        suppressRoomPrint = False
+    else:
+        print('\n [{}]...\n'.format(player1.location.name))
+        print('...{}\n'.format(player1.location.description))
+        inp = input('Which direction will you move?')
+
+    if inp == 'q':
+        break
+    elif inp == 'n' or inp == 's' or inp == 'e' or inp == 'w':
+        newRoom = player1.location.getRoomDirection(inp)
+        if newRoom == None:
+            print('\n -Thwack! You just hit a brick wall (or fell off a cliff), choose another direction-\n')
         else:
-            print('\nNone has traveled catacorner to the three dimensions...invalid input try again...')
-    elif inp == 'e':
-        if hasattr(player1.location, 'e_to'):
-            player1.location = player1.location.e_to
-            print('\n [{}]...\n'.format(player1.location.name))
-            print('...{}\n'.format(player1.location.description))
-        else:
-            print('\nNone has traveled catacorner to the three dimensions...invalid input try again...')
-    elif inp == 's':
-        if hasattr(player1.location, 's_to'):
-            player1.location = player1.location.s_to
-            print('\n [{}]...\n'.format(player1.location.name))
-            print('...{}\n'.format(player1.location.description))
-        else:
-            print('\nNone has traveled catacorner to the three dimensions...invalid input try again...')
+            player1.change_location(newRoom)
     elif inp == 'inventory':
         for item in player1.inventory:
             print('{} {}'.format(item.name, item.description))

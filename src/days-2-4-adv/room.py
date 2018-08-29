@@ -7,6 +7,18 @@ class Room:
         self.description = description
         self.items = items
 
+    def getRoomDirection(self, direction):
+        if direction == "n":
+            return self.n_to
+        elif direction == "s":
+            return self.s_to
+        elif direction == "e":
+            return self.e_to
+        elif direction == "w":
+            return self.w_to
+        else:
+            return None
+
 '''
     def connect(self, Room, direction):
         if self.name == "Outside Cave Entrance" and direction == n:
