@@ -66,7 +66,100 @@ room['treasure'].e_to = room['secret']
 # Main
 #
 
+# Make a new player object that is currently in the 'outside' room.
 
+print("")
+print("")
+print("")
+print("")
+print("")
+print("")
+print("")
+print("")
+name = input("Enter your name:\n")
+player = Player(name, room['outside'])
+
+# Game Features:
+    # 1. Display current room, room description, room items
+
+    # 2. Takes an input as an instruction
+
+    # 3. Travels through rooms using cardinal directions (North, East, South, West)
+
+    # 4. Quits the game (Quit)
+
+    # 5. Take items from the room or drop items from the inventory (Take Item(Name) | Drop Item(Name))
+        # Also increase/decrease player's score dynamically
+
+    # 6. Checks the inventory (Inventory)
+
+    # 7. Display end game message
+
+    # 8. Checks the score (Score)
+
+    # 9. Added light scenarios and light sources 
+
+    # 10. A win scenario
+
+print("")
+print("")
+print("")
+print("")
+print("")
+print("")
+print("")
+print("")
+while (player.room != 'exit'):
+
+    key_checker = [item for item in player.inventory if item.name == "Key"]
+
+    if (player.room.name == "Secret Room" and len(key_checker) == 0):
+        player.room = room['treasure']
+        print("Sorry, you don't have the key to the secret room!\n")
+
+    # - Added light scenarios and light sources
+    natural_room = [room[x] for x in ['outside', 'foyer', 'overlook', 'narrow', 'treasure'] if room[x].is_Light]
+    illuminated_room = [room[x] for x in ['outside', 'foyer', 'overlook', 'narrow', 'treasure']
+        if [item for item in room[x].items if type(item) is LightSource] 
+    ]
+
+    illuminated = False
+
+    if (player.room in natural_room or player.room in illuminated_room or [item for item in player.inventory if type(item) is LightSource]): 
+        illuminated = True
+
+    if (illuminated):
+
+    # - Display current room, room description, room items
+
+        print(player.name + " is at the\n" + player.room.name + ": " + player.room.description + "\n")
+        print("The item(s) in the " + player.room.name + ": " + str(player.room.items) + "\n")
+    else:
+        print("It's pitch black! Go to a different room or find a light source. \n")
+
+    # - Takes an input as an instruction
+
+    instruction = input("Enter: North (N/n) | East (E/e) | South (S/s) | West (W/w) \n| Take Item(Name) | Drop Item(Name) | Inventory | Score | Quit:\n")
+
+    # - Travels through rooms using cardinal directions (North, East, South, West)
+    
+    direction = {
+        "North": player.room.n_to,
+        "East": player.room.e_to,
+        "South": player.room.s_to,
+        "West": player.room.w_to,
+        "n": player.room.n_to,
+        "e": player.room.e_to,
+        "s": player.room.s_to,
+        "w": player.room.w_to,
+        "N": player.room.n_to,
+        "E": player.room.e_to,
+        "S": player.room.s_to,
+        "W": player.room.w_to
+    }
+
+    new_room = direction.get(instruction, None)
+    
 
     # Single Word Commands
 
@@ -85,11 +178,107 @@ room['treasure'].e_to = room['secret']
 
         if (instruction == "Quit" or instruction == "East" and player.room.name == "Secret Room"):
             break
+        elif (new_room):
+            player.room = new_room
 
- 
+    # - Checks the inventory (Inventory)
+
+        elif (instruction == "Inventory"):
+            print("In your inventory:", player.inventory)
+            print("")
+    
+    # - Checks the score (Score)
+
+        elif (instruction == "Score"):
+            print(player.name + "'s Current Score: " + str(player.score) + "\n")
+        elif (instruction in ["North", "East", "South", "West"]):
+            print("Nowhere to go\n")
+        else:
+            print("Invalid Command. \nEnter: North (N/n) | East (E/e) | South (S/s) | West (W/w) \n| Take Item(Name) | Drop Item(Name) | Inventory | Score | Quit:\n")
+
+    # Two Word Commands
+    
+    # - Take items from the room or drop items from the inventory (Take Item(Name) | Drop Item(Name))
+    # - Add score accordingly
+
+    elif (len(instruction.split()) == 2):
+        verb, target = [x for x in instruction.split()]
+        if (verb == "Take"):
+            if (illuminated):
+                if (player.room.searchItems(target)):
+                    player.toInventory(Items[target])
+                    print("You took the " + target + '\n')
+                    if (type(Items[target]) is Treasure and Items[target].dropped == False):
+                        player.score += int(Items[target].on_take())
+                        Items[target].dropped = True
+                        print('Your score increases by: ' + str(Items[target].value) + '\n')
+                        print('Your score is now: ' + str(player.score) + '\n')
+                    player.room.removeItem(target)
+                else: 
+                    print(target + " is not available\n")
+            else:
+                print("Good luck finding that in the dark!\n")  
+        elif (verb == "Drop"):
+            if (player.searchInventory(target)):
+                if (target == "Lamp"):
+                    print("It's not wise to drop your source of light!\n")
+                player.removeItem(target)
+                print("You dropped the " + target + "\n")
+                if (type(Items[target]) is Treasure):
+                    player.score -= int(Items[target].on_drop())
+                    print('Your score decreases by: ' + str(Items[target].value) + '\n')
+                    print('Your score is now: ' + str(player.score) + '\n')
+                player.room.addItem(Items[target])
+            else:
+                print(target + " is not in your inventory\n")
+    else:
+    	print("Enter: North (N/n) | East (E/e) | South (S/s) | West (W/w) \n| Take Item(Name) | Drop Item(Name) | Inventory | Score | Quit:")
+
 # - Display end game message
 
 print("")
+print("")
+print("")
+print("")
+print("")
+print("")
+print("")
+print("")
 if (instruction == "Quit"):
-    print("You quit and gained nothing\n")
-    
+	print('\x1b[1;31;40m' + 'Success!' + '\x1b[0m')
+	print("You quit and gained nothing\n")
+
+else:
+    if (len(player.inventory) == 0):
+        print("You left the cave empty handed!\n")
+    elif ([item for item in player.inventory if item.name == "Key"]):
+        print("You have won the game!\n")
+        if ([item for item in player.inventory if item.name == "Pebble"]):
+            print("And you were also able to get the marvelous Pebble!\n")
+            print("What's that? Your pebble is dirty...\n")
+            counter = 0
+            while (counter < 3):
+                surprise = input("Enter \"Clean\" to clean your pebble:\n\n")
+                if (surprise == "Clean"):
+                    print("")
+                    print("")
+                    print("")
+                    print("")
+                    print("")
+                    print("")
+                    print("")
+                    print("")
+                    counter += 1
+                    if (counter == 1):
+                        print('\nStill a little dirty\n')
+                    elif (counter == 2):
+                        print('\nTry once more\n')
+                    else:
+                        print('\nYou\'ve wiped off the dust to reveal that your marvelous Pebble is actually an\n\nInfinity Pebble!\n')
+                        print('******* You can now do anything you want *******\n')
+                        player.inventory.pop()
+                        player.inventory.append(Item("Infinity Pebble", "You can now do anything you want"))
+    if (player.score == 0):
+        print("You managed to leave the cave with: " + str(player.inventory) + "\n")
+    else:
+        print("You managed to leave the cave with: " + str(player.inventory) + " and your score is: " + str(player.score) + "\n")
