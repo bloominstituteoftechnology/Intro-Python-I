@@ -111,10 +111,26 @@ commands['l'] = look
 commands['c'] = checkInventory
 commands['g'] = getItem
 
+# Commands Help
+commandsHelp = {}
+commandsHelp['n'] = "Move North"
+commandsHelp['s'] = "Move South"
+commandsHelp['e'] = "Move East"
+commandsHelp['w'] = "Move West"
+commandsHelp['i'] = "Inspect Room for Items"
+commandsHelp['l'] = "Check current location or specify direction to look"
+commandsHelp['c'] = "Check current inventory"
+commandsHelp['g'] = "Get specififed item from room"
+
 # Util
 
 def printErrorString(error):
   print(f'\x1b[1;31;40m\n{error}\x1b[0m\n')
+  return True
+
+def printHelp():
+  for command in commandsHelp:
+      print(f'{command} - {commandsHelp[command]}')
   return True
 
 # Write a loop that:
@@ -138,5 +154,7 @@ while True:
       break
   elif inp[0] in commands:
     suppressRoomPrint = commands[inp[0]](player, *inp)
+  elif inp[0] == "help":
+    suppressRoomPrint = printHelp()
   else:
     suppressRoomPrint = printErrorString('Command not registered')
