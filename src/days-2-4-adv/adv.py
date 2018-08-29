@@ -70,9 +70,22 @@ os.system('cls') if sys.platform.startswith('win') else os.system('clear')
 print("Welcome to the grand adventure!!  Press 'h' at any time for help.\n\n")
 
 while True:
+    # what player sees in the room
     print("\nYou are at {}.\n{}.".format(
         room[player.location].name, room[player.location].description))
+    # shows items in the room, if there are any
+    if (room[player.location].inventory):
+        print("Items in the room:")
+    for key in room[player.location].inventory:
+        if room[player.location].inventory[key]:
+            print("\t{} {}".format(
+                room[player.location].inventory[key], key))
+            print()
+        else:
+            print("\tNothing to take here.\n")
+    # input
     inp = input("\nEnter a command: ")
+
     if inp == 'q' or inp == 'quit':
         break
     elif inp == 'n' or inp == "north":
@@ -125,15 +138,7 @@ while True:
         print("{}\n".format(exits[:-2]))
     # PLAYER ACTIONS
     elif inp == "l" or inp == 'look':
-        if (room[player.location].inventory):
-            print("Items in the room:")
-        for key in room[player.location].inventory:
-            if room[player.location].inventory[key]:
-                print("\t{} {}".format(
-                    room[player.location].inventory[key], key))
-                print()
-            else:
-                print("\tNothing to take here.\n")
+        pass
     elif inp.startswith('take') or inp.startswith('get'):
         try:
             item = inp.split(' ')[1]

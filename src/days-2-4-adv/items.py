@@ -7,6 +7,9 @@ class Items:
         self.description = description
         self.itemType = itemType
 
+    def on_take(self):
+        print("You've picked up the {}".format(self.name))
+
 
 class Food(Items):
     def __init__(self, name, description, itemType, health):
