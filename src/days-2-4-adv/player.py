@@ -2,11 +2,9 @@
 # currently.
 
 class Player:
-    def __init__(self, name, room):
+    def __init__(self, name, current_room):
         self.name = name
-        self.room = room
-        self.inventory = []
-        self.xp = 0
+        self.current_room = current_room
 
-    def moveTo(self, direction):
-        self.direction = direction
+
+
