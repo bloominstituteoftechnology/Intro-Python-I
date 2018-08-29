@@ -2,13 +2,12 @@
 # currently.
 
 class Player:
-    def __init__(self, name, startLocation):
-        self.name = name
+    def __init__(self, playerName, startLocation):
+        self.name = playerName
         self.location = startLocation
 
     
 # p1 = Player('Adrian', 'Living Room')
-
 # print(p1.__dict__)
 # print(p1.name)
 # print(p1.location)
