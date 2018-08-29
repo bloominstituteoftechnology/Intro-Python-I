@@ -14,7 +14,7 @@ class Room:
        
         self.enemies = []
     
-    def getRoomInfo(self):
+    def get_room_info(self):
         directions = {
             'n': 'north',
             's': 'south',
@@ -34,27 +34,25 @@ class Room:
     def connect_one_way(self, to, destinationRoom):
         self.connectedRooms[to] = destinationRoom
     
-    def connectRoom(self, to, destinationRoom):
+    
+    def connect_rooms(self, to, destinationRoom):
         if self.connectedRooms[to] != None:
             print('{} is {} of {}'.format(self.connectedRooms[to].name, to, self.name))
             return
-        oppositeDirection = '';
-        if to == 'n':
-            oppositeDirection = 's'
-
-        elif to == 's':
-            oppositeDirection = 'n'
-
-        elif to == 'e':
-            oppositeDirection = 'w'
-
-        elif to == 'w':
-            oppositeDirection = 'e'
         
+        oppositeDirection = {
+        'n': 's',
+        's': 'n',
+        'w': 'e',
+        'e': 'w'
+        };
+        
+        if to in oppositeDirection:
+            self.connectedRooms[to] = destinationRoom
+            destinationRoom.connectedRooms[oppositeDirection[to]] = self
+
         else:
             print('Please give a valid direction')
             return
 
-        self.connectedRooms[to] = destinationRoom
-        destinationRoom.connectedRooms[oppositeDirection] = self
 
