@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from dialogue import Dialogue
 import os
 # Declare all the rooms
 
@@ -25,16 +26,32 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
-room['outside'].connectRoom('n', room['foyer'])
-room['foyer'].connectRoom('n',room['overlook'])
-room['foyer'].connectRoom('e',room['narrow'])
-room['narrow'].connectRoom('n',room['treasure'])
-room['treasure'].connectRoom('e',room['narrow'])
+room['outside'].connect_rooms('e', room['foyer'])
+room['foyer'].connect_rooms('n',room['overlook'])
+room['overlook'].connect_rooms('w',room['narrow'])
+room['narrow'].connect_rooms('s',room['treasure'])
+room['treasure'].connect_one_way('s',room['outside'])
 
+def displayHelp():
+    print("""
+    Type in a command:
 
-# player.set_location(room['foyer'])
-# player.get_current_location()
-# player.go_direction('n')
+    Directions[n,s,e,w]
+
+    Get info: [se: scan enemies]
+
+    Battle: [a [Enemy]: attack [Enemy]]
+
+    Other commands: [q: quit]
+    """)
+
+def printErrorString(errorString):
+    print(f'\x1b[1;31;40m\n{errorString}\x1b[0m\n')
+
+Dialogue.intro()
+player = Player.create_player()
+player.set_location(room['outside'])
+Dialogue.greet_player(player.name)
 
 playerCommands = {
     'directions': ['n','s','w','e'],
@@ -45,27 +62,22 @@ playerCommands = {
 
 
 while(True):
-    command = input("""
-    Type in a command:
-
-    Directions[n,s,e,w]
-
-    Get Room info: [room info]
-
-    Other commands: [q: quit]
-
-    """)
+    player.get_current_location()
+    
+    command = input(">>>")
+    
     os.system('cls' if os.name == 'nt' else 'clear')
-    for direction in directions:
+
+    
+    for direction in playerCommands['directions']:
         if command == direction:
             player.go_direction(command)
     
-    if command == 'room info':
-        player.get_current_location()
-    
-    elif command == 'q':
-        quit()
-       
+    if command in playerCommands:
+        playerCommands[command]()
+    else:
+        printErrorString('Invalid command')
+
 #
 # Main
 #
