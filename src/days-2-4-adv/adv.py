@@ -59,6 +59,33 @@ def printErrorString(errorString):
     global suppressRoomPrint
     suppressRoomPrint = True
 
+def printPlayerItems():
+    if(len(player.items) > 0):
+        printErrorString('Player Items:')
+        for item in player.items:
+            print(f'{item.name}: {item.description}')
+    else:
+        printErrorString('Player Items: None')
+
+def printRoomItems():
+    if(len(player.room.items) > 0):
+        print('\nRoom Items:')
+        for item in player.room.items:
+            print(f'{item.name}: {item.description}')
+    else:
+        print('\nRoom Items: None')
+
+def printCommands():
+    printErrorString("""q = Quit
+n = Move North
+e = Move East
+s = Move South
+w = Move West
+r = Show current room
+i / inventory = Check player items
+get (item) / take (item) = Takes item from room
+drop (item) = Drops item from player inventory""")
+
 suppressRoomPrint = None
 
 while True:
@@ -67,32 +94,26 @@ while True:
     else:
         print('\n ==========================-----------------------==========================\n')
         print(f"{player.room.name}\n{player.room.description}")
-        if(len(player.items) > 0):
-            print('\nPlayer Items:')
-            for item in player.items:
-                print(f'{item.name}: {item.description}')
-        else:
-            print('\nPlayer Items: None')
+        printRoomItems()
+  
+    inp = input('\nType help to get a list of commands >>> ').lower().split(' ')
 
-        if(len(player.room.items) > 0):
-            print('\nRoom Items:')
-            for item in player.room.items:
-                print(f'{item.name}: {item.description}')
-        else:
-            print('\nRoom Items: None')
-        
-
-    inp = input('\nWhere would you like to move? (n/e/s/w) enter \'q\' to quit: ').lower().split(' ')
-
+    if(inp[0] == 'q'):
+        print('\nThanks for playing, exiting now!')
+        break
     if(len(inp) == 1):
-        if(inp[0] == 'q'):
-            print('\nThanks for playing, exiting now!')
-            break
-        elif(inp[0] in ['n', 'e', 's', 'w']):
+        if(inp[0] in ['n', 'e', 's', 'w']):
             if hasattr(player.room, inp[0] + '_to'):
                 player.room = getattr(player.room, inp[0] + '_to')
             else:
                 printErrorString('Cannot go that way!')
+        elif(inp[0] == 'r'):
+            printErrorString(f'{player.room.name}\n{player.room.description}')
+            printRoomItems()
+        elif(inp[0] in ['i', 'inventory']):
+            printPlayerItems()
+        elif(inp[0] == 'help'):
+            printCommands()
         else:
             printErrorString('Invalid input, please try again.')
     elif(len(inp) == 2):
@@ -110,6 +131,8 @@ while True:
                     player.room.items.append(item)
                 else:
                     printErrorString('Item not found.')
+        else:
+            printErrorString('Invalid input, please try again.')
     else:
         printErrorString('Invalid input, please try again.')
 
