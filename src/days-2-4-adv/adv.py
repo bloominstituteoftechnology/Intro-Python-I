@@ -55,11 +55,14 @@ def move(direction, presentRoom):
     attr = direction + '_to'
     if hasattr(presentRoom, attr):
         return getattr(presentRoom, attr)
+    print('wrong way')
+    return presentRoom
 
 running = True
 
 while running:
-    print("{}".format(player.room.name))
+    print("{}\n{}".format(player.room.name, player.room.description))
+
 
     print('Next move: ')
     inp = input()
