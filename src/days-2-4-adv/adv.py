@@ -69,7 +69,7 @@ while True:
     if suppressRoomPrint:
         suppressRoomPrint = False
     else:
-        print (f"\n  {player.location.title}\n    {player.location.description}\n" )
+        print (f"\n  {player.location.title}\n    {player.location.description}\n     Item: {player.location.items}" )
 
     inp_args = input(">>>").split(" ")
     if inp_args[0] == "q":
