@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from items import Items, Food, Treasure, LightSource
 import os
 import sys
 # Declare all the rooms
@@ -23,12 +24,16 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+# Declare all the items
+# item = {
+#     'apple': Food('Gala Apple', 'A small to medium-sized conic apple.', 'food', [2,5])
+# }
+
 """where add stuff to the rooms"""
 # add an apple to the outside room
 room['outside'].take('apple')
 
 # Link rooms together
-
 room['outside'].n_to = 'foyer'
 room['foyer'].s_to = 'outside'
 room['foyer'].n_to = 'overlook'
