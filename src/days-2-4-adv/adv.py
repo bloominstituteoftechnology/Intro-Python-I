@@ -79,13 +79,13 @@ while True:
         print("I guess you were too scared to play")
         break
     else:
-        if path == "n":
+        if path == "n" and hasattr(player.current_room, "n_to"):
             player.current_room = player.current_room.n_to
-        elif path == "s":
+        elif path == "s" and hasattr(player.current_room, "s_to"):
             player.current_room = player.current_room.s_to
-        elif path == "e":
+        elif path == "e" and hasattr(player.current_room, "e_to"):
             player.current_room = player.current_room.e_to
-        elif path == "w":
+        elif path == "w" and hasattr(player.current_room, "w_to"):
             player.current_room = player.current_room.w_to
         else:
             print("\n === You cant go this way ===\n")
