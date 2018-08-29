@@ -5,38 +5,38 @@ from item import Item
 # Declare all the rooms
 
 room = {
-    'cargo': Room("Cargo Bay", """You are inside the cargo hold of an abandonded space station. 
+    'Cargo': Room("Cargo Bay", """You are inside the cargo hold of an abandonded space station. 
     The only door is to the north."""),
-    'corridor': Room("Corridor", """Dim lights flicker in the corridor. 
+    'Corridor': Room("Corridor", """Dim lights flicker in the corridor. 
     Derelict passages run north and east."""),
-    'holodeck': Room("Holodeck", """The doors to the holodeck slide open. 
+    'Holodeck': Room("Holodeck", """The doors to the holodeck slide open. 
     You enter, an old program seems to be playing in a loop. 
     'Get ooouuuutt' a phantom voice seems to whisper quietly in the air. 
     The only exit is to the south"""),
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west to north. 
+    'Narrow':   Room("Narrow", """The narrow passage bends here from west to north. 
     The smell of ash permeates the air."""),
-    'incinerator': Room("Incinerator room", """You've found the incinerator room! 
+    'Incinerator': Room("Incinerator", """You've found the incinerator room! 
     All that remains is ash. 
     The only exit is to the south."""),
 }
 
 # Link rooms together
 
-room['cargo'].n_to = room['corridor']
-room['corridor'].s_to = room['cargo']
-room['corridor'].n_to = room['holodeck']
-room['corridor'].e_to = room['narrow']
-room['holodeck'].s_to = room['corridor']
-room['narrow'].w_to = room['corridor']
-room['narrow'].n_to = room['incinerator']
-room['incinerator'].s_to = room['narrow']
+room['Cargo'].n_to = room['Corridor']
+room['Corridor'].s_to = room['Cargo']
+room['Corridor'].n_to = room['Holodeck']
+room['Corridor'].e_to = room['Narrow']
+room['Holodeck'].s_to = room['Corridor']
+room['Narrow'].w_to = room['Corridor']
+room['Narrow'].n_to = room['Incinerator']
+room['Incinerator'].s_to = room['Narrow']
 
 # items
 item = Item("screwdriver", "A screwdriver, but it does extra space stuff too")
-room['cargo'].contents.append(item)
+room['Cargo'].contents.append(item)
 
 item = Item("cat skull", "The skull of a cat")
-room['incinerator'].contents.append(item)
+room['Incinerator'].contents.append(item)
 
 # Game Variables
 suppressRoomPrint = False
@@ -47,12 +47,7 @@ validDirections = ['n', 's', 'e', 'w']
 #
 
 # Make a new player object that is currently in the 'cargo' room.
-player = Player(room['cargo'])
-
-# Util
-
-def printErrorString(error):
-  print(f'\x1b[1;31;40m\n{error}\x1b[0m\n')
+player = Player(room['Cargo'])  
 
 # Command functions
 
@@ -60,6 +55,7 @@ def moveCommand(player, *args):
   newRoom = player.location.getRoomInDirection(args[0])
   if newRoom == None:
     printErrorString("You can't go that way")
+    return True
   else:
     player.change_location(newRoom)
   return False
@@ -71,7 +67,7 @@ def inspectRoom(player, *args):
     print('The room contains:')
     for item in player.location.contents:
       print(f'{item}')
-    return True
+  return True
 
 def look(player, *args):
   if not args[0] == 'l':
@@ -86,6 +82,24 @@ def look(player, *args):
       printErrorString('Nothing is in that direction')
     return True
 
+def checkInventory(player, *args):
+  if(player.inventory == []):
+    printErrorString('Inventory is empty')
+  else:
+    for item in player.inventory:
+      print(item)
+    return True
+
+def getItem(player, *args):
+  print(args[1])
+  if(args[1] in player.location.contents):
+    room[player.location.title].contents.remove(args[1])
+    player.inventory.append(args[1])
+    print(f'You have acquired the {args[1]}')
+  else:
+    printErrorString("No such item")
+    return True
+
 # Commands
 commands = {}
 commands['n'] = moveCommand
@@ -94,6 +108,14 @@ commands['e'] = moveCommand
 commands['w'] = moveCommand
 commands['i'] = inspectRoom
 commands['l'] = look
+commands['c'] = checkInventory
+commands['g'] = getItem
+
+# Util
+
+def printErrorString(error):
+  print(f'\x1b[1;31;40m\n{error}\x1b[0m\n')
+  return True
 
 # Write a loop that:
 #
@@ -107,7 +129,7 @@ commands['l'] = look
 # If the user enters "q", quit the game.
 
 while True:
-  if suppressRoomPrint:
+  if suppressRoomPrint == True:
       suppressRoomPrint = False
   else:
     print (f"\n  {player.location.title}\n    {player.location.description}\n" )
@@ -115,6 +137,6 @@ while True:
   if inp[0] == "q":
       break
   elif inp[0] in commands:
-    supressRoomPrint = commands[inp[0]](player, *inp)
+    suppressRoomPrint = commands[inp[0]](player, *inp)
   else:
-    printErrorString('Command not registered')
+    suppressRoomPrint = printErrorString('Command not registered')
