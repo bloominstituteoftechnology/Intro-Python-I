@@ -1,55 +1,38 @@
 from room import Room
 from player import Player
+from item import itemList
+from item import Item
+from room import roomlist
 
-# Declare all the rooms
-
-room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
-
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
-
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
-
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
-}
+roomlist['outside'].connectRooms(roomlist['foyer'], "n")
+roomlist['foyer'].connectRooms(roomlist['overlook'], "n")
+roomlist['foyer'].connectRooms(roomlist['narrow'], "e")
+roomlist['narrow'].connectRooms(roomlist['treasure'], "n")
+roomlist['overlook'].connectRooms(roomlist['treasure'], "e")
+roomlist['foyer'].connectRooms(roomlist['dungeon'], "w")
 
 
-# Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+player = Player(input("\nWhat is your name?:"),  roomlist['outside'], [itemList['torch'], itemList['hat']])
+print(f"Welcome, {player.name} !\n")
 
-#
-# Main
-#
+while True:
 
-# Make a new player object that is currently in the 'outside' room.
-Nick = Player(room['outside'])
+    print(f"\nCurrent Room: {player.location.title}\n\
+Room contains: {player.location.print_items()}\n")
 
-
-# Write a loop that:
-#
-
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+    inp = input("What is your command: ").split(" ")
+    
+    if inp[0] == "q":
+        break
+    if inp[0] =="n" or inp[0] =="s" or inp[0] =="w" or inp[0] =="e":
+        player.move(inp[0])       
+    if inp[0] =="get" or inp[0] =="take":
+        player.get(inp[1])
+    if inp[0] =="drop":
+        player.drop(inp[1])
+    if inp[0]=="i":
+        player.player_inventory()
+    if inp[0]=="l":
+        print(f"Current Room Description: {player.location.description}")
+        input("Press Enter to Exit Description")
