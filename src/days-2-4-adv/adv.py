@@ -1,6 +1,5 @@
 from room import Room
 from player import Player
-import os
 # Declare all the rooms
 
 room = {
@@ -32,7 +31,40 @@ room['narrow'].connectRoom('n',room['treasure'])
 room['treasure'].connectRoom('e',room['narrow'])
 
 
+# player.set_location(room['foyer'])
+# player.get_current_location()
+# player.go_direction('n')
 
+# player.get_current_location()
+
+# name, age, height, weight, hp, attack, defense, inventory
+player = Player('John', 14, 1, 180, 12, 5, 4, {})
+player.set_location(room['foyer'])
+
+directions = ['n','s','w','e']
+import os
+while(True):
+    command = input("""
+    Type in a command:
+
+    Directions[n,s,e,w]
+
+    Get Room info: [room info]
+
+    Other commands: [q: quit]
+    
+    """)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    for direction in directions:
+        if command == direction:
+            player.go_direction(command)
+    
+    if command == 'room info':
+        player.get_current_location()
+    
+    elif command == 'q':
+        quit()
+       
 #
 # Main
 #
