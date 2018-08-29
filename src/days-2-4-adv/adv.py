@@ -62,7 +62,9 @@ running = True
 
 while running:
     print("{}\n{}".format(player.room.name, player.room.description))
-
+    
+    for item in player.room.items: 
+        print(item)
 
     print('Next move: ')
     inp = input()
