@@ -1,4 +1,5 @@
 import textwrap
+import time
 from room import Room
 from player import Player
 
@@ -54,29 +55,26 @@ player = Player("Dan", room["outside"])
 #
 # If the user enters "q", quit the game.
 
-
-# def choosePath(room, path):
-#     if path == "n" and room.n_to:
-#         return True
-#     elif path == "s" and room.s_to:
-#         return True
-#     elif path == "e" and room.e_to:
-#         return True
-#     elif path == "w" and room.w_to:
-#         return True
-#     else:
-#         print("\n ===== Please return a valid selection (N), (S), (E) or (W) =====\n")
+print("#######################")
+print("# Welcome to MUD Game #")
+print("    -----Rules-----    ")
+print("   Make it out Alive!  ")
+print("#######################")
 
 
 while True:
-    print("%a" % (player.current_room.name))
-    print("%a" % (player.current_room.description))
+
+    print("\n{}\n".format(player.current_room.name))
+
+    for text in textwrap.wrap(player.current_room.description):
+        print(text)
+    print()
 
     path = input(
         "Choose your path (N)North, (S)South, (E)East, (W)West, or (Q)Quit\n").lower()
 
     if path == "q":
-        print("I guess you were too scared to play")
+        print("Better luck next time")
         break
     else:
         if path == "n" and hasattr(player.current_room, "n_to"):
@@ -89,6 +87,4 @@ while True:
             player.current_room = player.current_room.w_to
         else:
             print("\n === You cant go this way ===\n")
-
-# choosePath()
-# roomNames()
+            time.sleep(1.5)
