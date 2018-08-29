@@ -3,12 +3,19 @@
 from room import Room
 
 class Player:
-    def __init__(self, name, startLocation):
+    def __init__(self, name, startLocation, items):
         self.name = name
         self.location = startLocation
+        self.items = items
     def changeLocation(self, newLocation):
         self.location = newLocation
     def __repr__(self):
         return "Current Location: {}".format(self.location)
     def __str__(self):
         return "Current Location: {}".format(self.location)
+
+    def getItem(item):
+        self.items.append(item)
+
+    def dropItem(item):
+        self.items.remove(item)

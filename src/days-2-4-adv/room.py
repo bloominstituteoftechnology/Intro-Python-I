@@ -2,9 +2,10 @@
 # description attributes.
 
 class Room:
-    def __init__(self, title, description):
+    def __init__(self, title, description, items):
         self.title = title
         self.description = description
+        self.items = items
         self.n_to = None
         self.s_to = None
         self.e_to = None
@@ -21,7 +22,7 @@ class Room:
         else:
             return None
 
-        '''  def connectRooms(self, destRoom, direction):
+    def connectRooms(self, destRoom, direction):
         if direction == 'n':
             self.n_to = destRoom
             destRoom.s_to == 's'
@@ -34,4 +35,10 @@ class Room:
         elif direction == 'w':
             self.w_to = destRoom
             destRoom.e_to == 'e'
-        '''
+        
+    def removeItem(item):
+        for item in items:
+            self.remove(item[0])
+
+    def gainItem(item):
+        self.append(item)
