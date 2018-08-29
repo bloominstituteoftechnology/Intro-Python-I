@@ -69,8 +69,8 @@ Ahmed = Player("Ahmed", room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-print("Welcome to Adventure Game!\n")
-print("You are in {}.\n".format(Ahmed.location.name))
+print(f"Welcome to Adventure Game, {Ahmed.name}!\n")
+print(f"You are in {Ahmed.location.name}.\n")
 print(textwrap.fill(Ahmed.location.description, 70))
 print("Please choose to continue...\n")
 user = str(input("[W] North   [A] West   [S] South   [D] East   [Q] Quit\n"))
@@ -98,7 +98,7 @@ while not user == "q":
             print("It's too dangerous to go here alone! Please try again.\n")
     else:
         print("Invalid selection. Please try again.\n")
-    print("You are in {}.\n".format(Ahmed.location.name))
+    print(f"You are in {Ahmed.location.name}.\n")
     print(textwrap.fill(Ahmed.location.description, 70))
     print("\nPlease choose to continue...\n")
     user = str(
