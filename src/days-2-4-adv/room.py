@@ -37,8 +37,8 @@ class Room:
             destRoom.e_to == 'e'
         
     def removeItem(self, item):
-        for item in items:
-            self.remove(item[0])
+        for item in self.items:
+            self.items.remove(item)
 
     def gainItem(self, item):
-        self.append(item)
+        self.items.append(item)

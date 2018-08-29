@@ -84,11 +84,16 @@ while True:
 
     elif inp_args[0] == 'g' or inp_args[0] == 'get':
         item = inp_args[1]
+        current_room = player.location
         player.getItem(item)
-        #room.removeItem(item)
+        current_room.removeItem(item)
+        print(current_room.items)
     elif inp_args[0] == 'd' or inp_args[0] == 'drop':
-        player.dropItem(inp_args[1])
-        #room.gainItem(inp_args[1])
+        item = inp_args[1]
+        current_room = player.location
+        player.dropItem(item)
+        current_room.gainItem(item)
+        print(current_room.items)
     elif inp_args[0] == 'i' or inp_args[0] == 'inventory':
         if len(player.items) == 0:
             print("You have no items.")
