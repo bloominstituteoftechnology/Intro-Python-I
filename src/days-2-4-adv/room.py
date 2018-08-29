@@ -15,38 +15,44 @@ class Room:
         self.enemies = []
     
     def getRoomInfo(self):
+        directions = {
+            'n': 'north',
+            's': 'south',
+            'e': 'east',
+            'w': 'west'
+        }
+        print('************************************************')
         print('Room Name: {}\nDescription: {}\n'.format(self.name, self.description))
+        print('Directions to other rooms:')
+
         for direction in self.connectedRooms:
             if self.connectedRooms[direction] != None:
-                print(direction)
-                print('{} is located {}'.format(self.connectedRooms[direction].name, direction))
+                print('{} is {}.'.format(self.connectedRooms[direction].name, directions[direction]))
+        
+        print('************************************************')
+       
     
-    def connectRoom(self, direction, destinationRoom):
+    def connectRoom(self, to, destinationRoom):
+        if self.connectedRooms[to] != None:
+            print('{} is {} of {}'.format(self.connectedRooms[to].name, to, self.name))
+            return
         oppositeDirection = '';
-        if direction == 'n':
+        if to == 'n':
             oppositeDirection = 's'
 
-        elif direction == 's':
+        elif to == 's':
             oppositeDirection = 'n'
 
-        elif direction == 'e':
+        elif to == 'e':
             oppositeDirection = 'w'
 
-        elif direction == 'w':
+        elif to == 'w':
             oppositeDirection = 'e'
         
         else:
-            print('Please give a room direction')
+            print('Please give a valid direction')
             return
 
-        self.connectedRooms[direction] = destinationRoom
-        destinationRoom.connectedRooms[oppositeDirection] = self.connectedRooms[direction]
+        self.connectedRooms[to] = destinationRoom
+        destinationRoom.connectedRooms[oppositeDirection] = self
 
-
-
-room = Room('Foyer', 'It is very dark, scary, and has rotten smells of death.')
-room2 = Room('outside', 'The sun shines with its flowers blooming in the fields.')
-room.connectRoom('n', room2);
-
-
-room.getRoomInfo()
