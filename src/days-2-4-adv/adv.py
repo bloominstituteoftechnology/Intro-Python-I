@@ -25,12 +25,19 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
-room['outside'].connect_rooms('e', room['foyer'])
-room['foyer'].connect_rooms('n',room['overlook'])
-room['overlook'].connect_rooms('w',room['narrow'])
-room['narrow'].connect_rooms('s',room['treasure'])
-room['treasure'].connect_one_way('s',room['outside'])
 
+def displayHelp():
+    print("""
+    Type in a command:
+
+    Directions[n,s,e,w]
+
+    Get info: [se: scan enemies]
+
+    Battle: [a [Enemy]: attack [Enemy]]
+
+    Other commands: [q: quit]
+    """)
 
 
 # player.set_location(room['foyer'])
