@@ -53,12 +53,13 @@ jedi = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-while True:
-    incorrect_dir_msg = '\x1b[1;37;41m' + "Sorry that direction does not exist.. please try again" + '\x1b[0m'
-    user_prompt_msg = '\x1b[6;30;42m' + "\n\n\nPlease enter a cardinal direction (n,s,e,w) or q to quit: " + '\x1b[0m'
-    exit_msg = "\nThank you for playing!"
-    bad_command_msg = '\x1b[1;37;41m' + "\nI didn't recognize that command, please enter, n,s,e,w" + '\x1b[0m'
+incorrect_dir_msg = '\x1b[1;31;40m' + "Sorry that direction does not exist.. please try again" + '\x1b[0m'
+user_prompt_msg = '\x1b[1;32;40m' + "\n\n\nPlease enter a cardinal direction (n,s,e,w) or q to quit: " + '\x1b[0m'
+exit_msg = "\nThank you for playing!"
+bad_command_msg = '\x1b[1;31;40m' + "\nI didn't recognize that command, please enter, n,s,e,w" + '\x1b[0m'
 
+
+while True:
     print("\n\n\nYou are currently in the {}".format(jedi.room.name))
     print("\n{}".format(jedi.room.description))
     
