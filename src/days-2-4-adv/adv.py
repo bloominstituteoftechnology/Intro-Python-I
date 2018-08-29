@@ -103,6 +103,13 @@ while True:
                     player.items.append(item)
                 else:
                     printErrorString('Item not found.')
+        elif(inp[0] == 'drop'):
+            for item in player.items:
+                if item.name.lower() == inp[1]:
+                    player.items.remove(item)
+                    player.room.items.append(item)
+                else:
+                    printErrorString('Item not found.')
     else:
         printErrorString('Invalid input, please try again.')
 
