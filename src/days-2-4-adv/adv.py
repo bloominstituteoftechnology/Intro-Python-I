@@ -39,6 +39,7 @@ item = Item("cat skull", "The skull of a cat")
 room['incinerator'].contents.append(item)
 
 # Game Variables
+suppressRoomPrint = False
 validDirections = ['n', 's', 'e', 'w']
 
 #
@@ -61,6 +62,7 @@ def moveCommand(player, *args):
     printErrorString("You can't go that way")
   else:
     player.change_location(newRoom)
+  return False
 
 def inspectRoom(player, *args):
   if player.location.contents == []:
@@ -69,6 +71,20 @@ def inspectRoom(player, *args):
     print('The room contains:')
     for item in player.location.contents:
       print(f'{item}')
+    return True
+
+def look(player, *args):
+  if not args[0] == 'l':
+    printErrorString("That is not a look command")
+  elif (len(args)) == 1:
+    return False
+  elif args[1] in validDirections:
+    lookedRoom = player.location.getRoomInDirection(args[1])
+    if lookedRoom is not None:
+      print(lookedRoom)
+    else:
+      printErrorString('Nothing is in that direction')
+    return True
 
 # Commands
 commands = {}
@@ -77,6 +93,7 @@ commands['s'] = moveCommand
 commands['e'] = moveCommand
 commands['w'] = moveCommand
 commands['i'] = inspectRoom
+commands['l'] = look
 
 # Write a loop that:
 #
@@ -90,11 +107,14 @@ commands['i'] = inspectRoom
 # If the user enters "q", quit the game.
 
 while True:
+  if suppressRoomPrint:
+      suppressRoomPrint = False
+  else:
     print (f"\n  {player.location.title}\n    {player.location.description}\n" )
-    inp = input(">>> ").split(" ")
-    if inp[0] == "q":
-        break
-    elif inp[0] in commands:
-      commands[inp[0]](player, *inp)
-    else:
-      printErrorString('Command not registered')
+  inp = input(">>> ").split(" ")
+  if inp[0] == "q":
+      break
+  elif inp[0] in commands:
+    supressRoomPrint = commands[inp[0]](player, *inp)
+  else:
+    printErrorString('Command not registered')
