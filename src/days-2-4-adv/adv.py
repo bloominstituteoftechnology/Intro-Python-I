@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 import os
+import sys
 # Declare all the rooms
 
 room = {
@@ -43,9 +44,10 @@ room['treasure'].s_to = 'narrow'
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player('DaBoss', 'outside')
-enemy = Player('', 'narrow')
+enemy = Player('Big Monster', 'narrow')
 
 # Generate items
+
 
 # Write a loop that:
 #
@@ -57,7 +59,10 @@ enemy = Player('', 'narrow')
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-os.system('clear')
+
+# CLEAR SCREEN
+os.system('cls') if sys.platform.startswith('win') else os.system('clear')
+
 while True:
     print("{}".format(room[player.location].description))
     inp = input("\nEnter a command: ")
@@ -131,7 +136,7 @@ while True:
                 # item is in the room, so player can take it
                 player.take(item)
         except:
-            print("You must enter something to take.")
+            print("You must enter something to take.\n")
     elif inp.startswith('drop'):
         try:
             item = inp.split(' ')[1]
@@ -140,17 +145,19 @@ while True:
                 print('Dropping {}\n'.format(item))
                 room[player.location].take(item)
         except:
-            print("You must enter something to drop.")
+            print("You must enter something to drop.\n")
     elif inp == 'i' or inp == "inventory":
         inv = player.getInventory()
         if (inv.keys()):
-            print("your stuff:")
+            print("your stuff:\n")
             for key in inv:
                 print("\t{} {}".format(inv[key], key))
             print()
         else:
             print("You aren't carrying anything\n")
+    elif inp == 'score':
+        print('{}\n'.format(player.getScore()))
     elif inp == "h" or inp == "help":
-        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, get, drop, exits, i)nventory, q)uit, h)elp\n")
+        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, get, drop, score, exits, i)nventory, q)uit, h)elp\n")
     else:
         print("I don't know that command")

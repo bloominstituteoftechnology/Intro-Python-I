@@ -6,6 +6,7 @@ class Player:
         self.location = location
         self.inventory = {}
         self.health = 100
+        self.score = 0
     def take(self, item):
         for key in self.inventory:
             if key == item:
@@ -24,3 +25,5 @@ class Player:
         print("You don't have a {} to drop.\n".format(item))
     def getInventory(self):
         return self.inventory
+    def getScore(self):
+        return self.score
