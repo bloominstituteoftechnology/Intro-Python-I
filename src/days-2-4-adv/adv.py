@@ -55,23 +55,23 @@ player = Player("Dan", room["outside"])
 # If the user enters "q", quit the game.
 
 
-def choosePath(room, direction):
-    if direction == "N" and room.n_to:
+def choosePath(room, path):
+    if path == "N" and room.n_to:
         return True
     else:
         print("You cant go that way")
 
-    if direction == "S" and room.s_to:
+    if path == "S" and room.s_to:
         return True
     else:
         print("You cant go that way")
 
-    if direction == "E" and room.e_to:
+    if path == "E" and room.e_to:
         return True
     else:
         print("You cant go that way")
 
-    if direction == "W" and room.w_to:
+    if path == "W" and room.w_to:
         return True
     else:
         print("You cant go that way")
