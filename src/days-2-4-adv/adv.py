@@ -32,18 +32,18 @@ room['narrow'].connectRoom('n',room['treasure'])
 room['treasure'].connectRoom('e',room['narrow'])
 
 
-Dialogue.intro()
-player = Player.create_player()
-player.set_location(room['outside'])
-Dialogue.greet_player(player.name)
-
+# player.set_location(room['foyer'])
 # player.get_current_location()
+# player.go_direction('n')
 
-# name, age, height, weight, hp, attack, defense, inventory
-player = Player('John', 14, 1, 180, 12, 5, 4, {})
-player.set_location(room['foyer'])
+playerCommands = {
+    'directions': ['n','s','w','e'],
+    'help': displayHelp,
+    'hp': player.check_hp,
+    'q': quit
+}
 
-directions = ['n','s','w','e']
+
 while(True):
     command = input("""
     Type in a command:
