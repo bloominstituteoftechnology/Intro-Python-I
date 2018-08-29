@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-
+from item import Item
 # Declare all the rooms
 
 room = {
@@ -34,6 +34,8 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+item1 = Item('Food', 'Some food to eat')
+room['outside'].items.append(item1)
 #
 # Main
 #
@@ -52,28 +54,49 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-suppressRoomPrint = True
+suppressRoomPrint = None
 
 while True:
     if suppressRoomPrint:
         suppressRoomPrint = False
     else:
         print('\n ==========================-----------------------==========================\n')
-        print(f"{player.room.name}\n{player.room.description}\nItems: {player.room.items}")
-
-    inp = input('\nWhere would you like to move? (n/e/s/w) enter \'q\' to quit: ').split(' ')
-
-    if(inp[0] == 'q'):
-        print('\nThanks for playing, exiting now!')
-        break
-    elif(inp[0] in ['n', 'e', 's', 'w']):
-        if hasattr(player.room, inp[0] + '_to'):
-            player.room = getattr(player.room, inp[0] + '_to')
+        print(f"{player.room.name}\n{player.room.description}")
+        if(len(player.items) > 0):
+            print('\nPlayer Items:')
+            for item in player.items:
+                print(f'{item.name}: {item.description}')
         else:
-            print('\nCannot go that way!')
-            suppressRoomPrint = True
-    elif(inp[0] == 'get' or inp[0] == 'take'):
-        print('hi')
+            print('\nPlayer Items: None')
+
+        if(len(player.room.items) > 0):
+            print('\nRoom Items:')
+            for item in player.room.items:
+                print(f'{item.name}: {item.description}')
+        else:
+            print('\nRoom Items: None')
+        
+
+    inp = input('\nWhere would you like to move? (n/e/s/w) enter \'q\' to quit: ').lower().split(' ')
+
+    if(len(inp) == 1):
+        if(inp[0] == 'q'):
+            print('\nThanks for playing, exiting now!')
+            break
+        elif(inp[0] in ['n', 'e', 's', 'w']):
+            if hasattr(player.room, inp[0] + '_to'):
+                player.room = getattr(player.room, inp[0] + '_to')
+            else:
+                print('\nCannot go that way!')
+                suppressRoomPrint = True
+    elif(len(inp) == 2):
+        if(inp[0] in ['get', 'take']):
+            for item in player.room.items:
+                if item.name.lower() == inp[1]:
+                    player.room.items.remove(item)
+                    player.items.append(item)
+                else:
+                    print('Item not found.')
     else:
         print('\nInvalid input, please try again.')
         suppressRoomPrint = True
