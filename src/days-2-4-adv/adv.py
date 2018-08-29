@@ -31,12 +31,11 @@ room['foyer'].connectRoom('e',room['narrow'])
 room['narrow'].connectRoom('n',room['treasure'])
 room['treasure'].connectRoom('e',room['narrow'])
 
-def printErrorString(errorString):
-    print(f'\x1b[1;31;40m\n{errorString}\x1b[0m\n')
 
-# player.set_location(room['foyer'])
-# player.get_current_location()
-# player.go_direction('n')
+Dialogue.intro()
+player = Player.create_player()
+player.set_location(room['outside'])
+Dialogue.greet_player(player.name)
 
 # player.get_current_location()
 
