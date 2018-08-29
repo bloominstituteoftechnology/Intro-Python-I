@@ -52,24 +52,30 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-while True:
-    print('\n ==========================-----------------------==========================')
-    print(
-    f"""
-{player.room.name}
-{player.room.description}
-Items: {player.room.items}
-    """)
-    inp = input('\nWhere would you like to move? (n/e/s/w) enter \'q\' to quit: ')
+suppressRoomPrint = True
 
-    if(inp == 'q'):
+while True:
+    if suppressRoomPrint:
+        suppressRoomPrint = False
+    else:
+        print('\n ==========================-----------------------==========================\n')
+        print(f"{player.room.name}\n{player.room.description}\nItems: {player.room.items}")
+
+    inp = input('\nWhere would you like to move? (n/e/s/w) enter \'q\' to quit: ').split(' ')
+
+    if(inp[0] == 'q'):
         print('\nThanks for playing, exiting now!')
         break
-    elif(inp in ['n', 'e', 's', 'w']):
-        if hasattr(player.room, inp + '_to'):
-            player.room = getattr(player.room, inp + '_to')
+    elif(inp[0] in ['n', 'e', 's', 'w']):
+        if hasattr(player.room, inp[0] + '_to'):
+            player.room = getattr(player.room, inp[0] + '_to')
         else:
             print('\nCannot go that way!')
+            suppressRoomPrint = True
+    elif(inp[0] == 'get' or inp[0] == 'take'):
+        print('hi')
     else:
         print('\nInvalid input, please try again.')
+        suppressRoomPrint = True
+
                      
