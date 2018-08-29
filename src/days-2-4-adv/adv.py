@@ -51,9 +51,22 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
+def move(direction, presentRoom):
+    attr = direction + '_to'
+    if hasattr(presentRoom, attr):
+        return getattr(presentRoom, attr)
+
 running = True
 
 while running:
     print("{}".format(player.room.name))
+
+    print('Next move: ')
+    inp = input()
     
-    running = False
+    if inp in ['n', 's', 'e', 'w']:
+        player.room = move(inp, player.room)
+    elif inp == 'q':
+        running = False
+    else:
+        print('enter n, s, e, or w for deired direction or q to quit')
