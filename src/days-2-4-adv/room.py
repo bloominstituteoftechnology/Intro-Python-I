@@ -19,3 +19,5 @@ class Room():
       return self.e_to
     elif direction == "w":
       return self.w_to
+    else:
+      return None
