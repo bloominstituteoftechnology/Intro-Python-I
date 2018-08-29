@@ -58,14 +58,14 @@ print()
 
 arr = ['n', 'e', 's', 'w']
 while True:
-    print('\nYou are in: ' + playerOne.room.name + '.')
+    print('\nIt is ' + playerOne.room.name + '.')
     print(playerOne.room.description)
     inp = input("\nChoose direction n/s/e/w  or enter q to quit: ").strip().lower()
     
     if (inp == 'q'):
         print('Goodbye!')
         break
-    if (inp in arr):
+    elif (inp in arr):
         if hasattr(playerOne.room, inp+'_to'):
             playerOne.room = getattr(playerOne.room, inp + '_to')
         else:
