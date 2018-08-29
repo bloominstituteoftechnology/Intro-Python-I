@@ -4,6 +4,7 @@
 class Player:
     def __init__(self, location):
         self.location = location
+        self.inventory = []
     def change_location(self, new_location):
         self.location = new_location
     def __repr__(self):

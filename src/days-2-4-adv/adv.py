@@ -1,25 +1,24 @@
 from room import Room
 from player import Player
+from item import Item
+
 # Declare all the rooms
 
 room = {
-    'cargo':  Room("Cargo Bay",
-                     "You are inside a the cargo hold of an abandonded space station. The only door is to the north."),
-
-    'corridor':    Room("Corridor", """Dim lights flicker in the corridor. Derelict
-passages run north and east."""),
-
-    'holodeck': Room("Holodeck", """The doors to the holodeck slide open. You enter, and an old program seems to
-    be playing in a loop. 'Get ooouuuutt' a phantom voice seems to whisper quietly in the air. 
+    'cargo': Room("Cargo Bay", """You are inside the cargo hold of an abandonded space station. 
+    The only door is to the north."""),
+    'corridor': Room("Corridor", """Dim lights flicker in the corridor. 
+    Derelict passages run north and east."""),
+    'holodeck': Room("Holodeck", """The doors to the holodeck slide open. 
+    You enter, an old program seems to be playing in a loop. 
+    'Get ooouuuutt' a phantom voice seems to whisper quietly in the air. 
     The only exit is to the south"""),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of ash permeates the air."""),
-
-    'incinerator': Room("Incinerator room", """You've found the incinerator
-room! All that remains is ash. The only exit is to the south."""),
+    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west to north. 
+    The smell of ash permeates the air."""),
+    'incinerator': Room("Incinerator room", """You've found the incinerator room! 
+    All that remains is ash. 
+    The only exit is to the south."""),
 }
-
 
 # Link rooms together
 
@@ -32,13 +31,52 @@ room['narrow'].w_to = room['corridor']
 room['narrow'].n_to = room['incinerator']
 room['incinerator'].s_to = room['narrow']
 
+# items
+item = Item("screwdriver", "A screwdriver, but it does extra space stuff too")
+room['cargo'].contents.append(item)
 
-player = Player(room['cargo'])
+item = Item("cat skull", "The skull of a cat")
+room['incinerator'].contents.append(item)
+
+# Game Variables
+validDirections = ['n', 's', 'e', 'w']
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'cargo' room.
+player = Player(room['cargo'])
+
+# Util
+
+def printErrorString(error):
+  print(f'\x1b[1;31;40m\n{error}\x1b[0m\n')
+
+# Command functions
+
+def moveCommand(player, *args):
+  newRoom = player.location.getRoomInDirection(args[0])
+  if newRoom == None:
+    printErrorString("You can't go that way")
+  else:
+    player.change_location(newRoom)
+
+def inspectRoom(player, *args):
+  if player.location.contents == []:
+    print('The room is empty')
+  else:
+    print('The room contains:')
+    for item in player.location.contents:
+      print(f'{item}')
+
+# Commands
+commands = {}
+commands['n'] = moveCommand
+commands['s'] = moveCommand
+commands['e'] = moveCommand
+commands['w'] = moveCommand
+commands['i'] = inspectRoom
 
 # Write a loop that:
 #
@@ -53,12 +91,10 @@ player = Player(room['cargo'])
 
 while True:
     print (f"\n  {player.location.title}\n    {player.location.description}\n" )
-    inp = input("What is your command: ")
-    if inp == "q":
+    inp = input(">>> ").split(" ")
+    if inp[0] == "q":
         break
-    if inp == "n" or inp == "s" or inp == "w" or inp == "e":
-        newRoom = player.location.getRoomInDirection(inp)
-        if newRoom == None:
-            print("You cannot move in that direction")
-        else:
-            player.change_location(newRoom)
+    elif inp[0] in commands:
+      commands[inp[0]](player, *inp)
+    else:
+      printErrorString('Command not registered')
