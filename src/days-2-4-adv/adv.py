@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,6 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+jedi = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -51,17 +53,41 @@ room['treasure'].s_to = room['narrow']
 # If the user enters "q", quit the game.
 
 while True:
+    
+    print("\nYou are currently in the {}".format(jedi.room.name))
+    print("\n{}".format(jedi.room.description))
     inp = input("\nPlease enter a cardinal direction (n,s,e,w): ")
+    
     if inp == "q":
         print('\nThank you for playing!')
         break
+
     elif inp == "n":
-        print("\nYou entered North!")
+        if not hasattr(jedi.room.n_to, 'name'):
+            print('\nSorry that direction does not exist.. please try again')
+        else:
+            jedi.room = jedi.room.n_to
+
     elif inp == "s":
-        print("\nYou entered South!")
+        # if(jedi.room.s_to.name == None):
+        if not hasattr(jedi.room.s_to, 'name'):
+            print('\nSorry that direction does not exist.. please try again')
+        else:
+            jedi.room = jedi.room.s_to
+
     elif inp == "w":
-        print("\nYou entered West!")
+        # if(jedi.room.w_to.name == None):
+        if not hasattr(jedi.room.w_to, 'name'):
+            print('\nSorry that direction does not exist.. please try again')
+        else:
+            jedi.room = jedi.room.w_to
+
     elif inp == "e":
-        print("\nYou entered East!")
+        # if(jedi.room.e_to.name == None):
+        if not hasattr(jedi.room.e_to, 'name'):
+            print('\nSorry that direction does not exist.. please try again')
+        else:
+            jedi.room = jedi.room.e_to
+
     else:
         print("\nI didn't recognize that command, please enter, n,s,e,w")
