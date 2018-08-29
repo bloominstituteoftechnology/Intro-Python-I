@@ -56,31 +56,42 @@ player = Player("Dan", room["outside"])
 
 
 def choosePath(room, path):
-    if path == "N" and room.n_to:
+    if path == "n" and room.n_to:
         return True
     else:
         print("You cant go that way")
 
-    if path == "S" and room.s_to:
+    if path == "s" and room.s_to:
         return True
     else:
         print("You cant go that way")
 
-    if path == "E" and room.e_to:
+    if path == "e" and room.e_to:
         return True
     else:
         print("You cant go that way")
 
-    if path == "W" and room.w_to:
+    if path == "w" and room.w_to:
         return True
     else:
-        print("You cant go that way")
+        False
 
 
 while True:
     print("%a" % (player.current_room.name))
     print("%a" % (player.current_room.description))
-    break
+
+    path = input(
+        "Choose your path (N)North, (S)South, (E)East, (W)West, or (Q)Quit\n").lower()
+
+    if path == "q":
+        print("I guess you were too scared to play")
+        break
+    else:
+        if choosePath(player.current_room, path):
+            if path == "n":
+                player.current_room = player.current_room.n_to
+
 
 # choosePath()
 # roomNames()
