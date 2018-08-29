@@ -54,6 +54,11 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
+def printErrorString(errorString):
+    print(f'\x1b[1;31;40m\n{errorString}\x1b[0m')
+    global suppressRoomPrint
+    suppressRoomPrint = True
+
 suppressRoomPrint = None
 
 while True:
@@ -87,8 +92,9 @@ while True:
             if hasattr(player.room, inp[0] + '_to'):
                 player.room = getattr(player.room, inp[0] + '_to')
             else:
-                print('\nCannot go that way!')
-                suppressRoomPrint = True
+                printErrorString('Cannot go that way!')
+        else:
+            printErrorString('Invalid input, please try again.')
     elif(len(inp) == 2):
         if(inp[0] in ['get', 'take']):
             for item in player.room.items:
@@ -96,9 +102,9 @@ while True:
                     player.room.items.remove(item)
                     player.items.append(item)
                 else:
-                    print('Item not found.')
+                    printErrorString('Item not found.')
     else:
-        print('\nInvalid input, please try again.')
-        suppressRoomPrint = True
+        printErrorString('Invalid input, please try again.')
+
 
                      
