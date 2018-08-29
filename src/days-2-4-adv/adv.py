@@ -55,23 +55,23 @@ while(True):
         if hasattr(player1.location, 'n_to'):
             player1.location = player1.location.n_to
         else:
-            print('ERROR, invalid input, try again')
+            print('\nNone has traveled catacorner to the three dimensions...invalid input try again...')
 
     elif inp == 'w':
         if hasattr(player1.location, 'w_to'):
             player1.location = player1.location.w_to
         else:
-            print('ERROR, invalid input, try again')
+            print('\nNone has traveled catacorner to the three dimensions...invalid input try again...')
     elif inp == 'e':
         if hasattr(player1.location, 'e_to'):
             player1.location = player1.location.e_to
         else:
-            print('ERROR, invalid input, try again')
+            print('\nNone has traveled catacorner to the three dimensions...invalid input try again...')
     elif inp == 's':
         if hasattr(player1.location, 's_to'):
             player1.location = player1.location.s_to
         else:
-            print('ERROR, invalid input, try again')
+            print('\nNone has traveled catacorner to the three dimensions...invalid input try again...')
     else:
         print('None has traveled catacorner to the three dimensions...invalid input try again...')
 
