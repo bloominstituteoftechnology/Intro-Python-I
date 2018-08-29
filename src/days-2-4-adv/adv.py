@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,13 +39,44 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(input("Please enter your name: "), room['outside'])
+incorrectMessage = '\nThere is no path in that direction'
 
+print(f'\nHello {player.name}')
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 #
+while True:
+    print(f'\nLocation: {player.location.name}')
+    print(f'{player.location.description}')
+
+    direction = str(input('Which direction do you walk?  '))
+
+    if direction == 'q':
+        break
+    elif direction.lower() == 'n' or direction.lower() == 'north':
+        if player.location.n_to:
+            player.location = player.location.n_to
+        else:
+            print(incorrectMessage)
+    elif direction.lower() == 's' or direction.lower() == 'south':
+        if player.location.s_to:
+            player.location = player.location.s_to
+        else:
+            print(incorrectMessage)
+    elif direction.lower() == 'w' or direction.lower() == 'west':
+        if player.location.w_to:
+            player.location = player.location.w_to
+        else:
+            print(incorrectMessage)
+    elif direction.lower() == 'e' or direction.lower() == 'east':
+        if player.location.e_to:
+            player.location = player.location.e_to
+        else:
+            print(incorrectMessage)
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
