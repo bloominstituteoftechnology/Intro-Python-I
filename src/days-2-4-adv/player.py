@@ -18,11 +18,11 @@ class Player:
     def go_direction(self, direction):
         self.set_location(self.currentRoom.connectedRooms[direction])
     
-    def get_hp(self):
-        print('Your current health is {}/{}'.format(self.remainingHp, self.totalHp))
+    def check_hp(self):
+        print(self.hp)
     
     def get_current_location(self):
-        self.currentRoom.getRoomInfo()
+        self.currentRoom.get_room_info()
     
     def set_location(self, room):
         self.currentRoom = room
