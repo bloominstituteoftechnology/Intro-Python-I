@@ -6,7 +6,10 @@ class Player:
     def __init__(self, name, curRoom):
         self.name = name
         self.curRoom = curRoom
+        self.inventory = []
     def __repr__(self):
         return f'Player {self.name}, {self.curRoom}'
     def change_location(self, newRoom):
         self.curRoom = newRoom
+    def add_item(self, item):
+        self.inventory.append(item)

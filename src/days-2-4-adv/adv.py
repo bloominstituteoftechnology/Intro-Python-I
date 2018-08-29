@@ -53,7 +53,7 @@ player = Player('Samwise', room['foyer'])
 #
 # If the user enters "q", quit the game.
 
-initialGreeting = print(f"""Wlecome {player.name}! You are currently located in the following room:
+initialGreeting = print(f"""Welcome {player.name}! You are currently located in the following room:
 
     {player.curRoom.name}:
     {player.curRoom.description}
@@ -65,12 +65,12 @@ initialGreeting = print(f"""Wlecome {player.name}! You are currently located in 
 
 while True:
     print(initialGreeting)
-    userInput = input()
+    userInput = input('>>> ').split(' ')
 
-    if userInput == 'quit':
+    if userInput[0] == 'quit':
         print('Thanks for playing, have a nice day!')
         exit()
-    elif userInput in ['north', 'east', 'south', 'west']:
+    elif userInput[0] in ['north', 'east', 'south', 'west']:
         newRoom = player.curRoom.getRoomInDirection(userInput)
         if newRoom == None:
             print('You cannot move in this direction.')
