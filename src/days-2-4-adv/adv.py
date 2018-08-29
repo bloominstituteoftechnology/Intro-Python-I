@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import os
 
 # Declare all the rooms
 
@@ -53,10 +54,12 @@ jedi = Player(room['outside'])
 # If the user enters "q", quit the game.
 
 while True:
+    incorrect_dir_msg = "\n\n\nSorry that direction does not exist.. please try again"
     
     print("\n\n\nYou are currently in the {}".format(jedi.room.name))
     print("\n{}".format(jedi.room.description))
-    inp = input("\n\n\nPlease enter a cardinal direction (n,s,e,w): ")
+    inp = input("\n\n\nPlease enter a cardinal direction (n,s,e,w) or q to quit: ")
+    os.system('cls' if os.name == 'nt' else 'clear')
     
     if inp == "q":
         print('\nThank you for playing!')
@@ -64,25 +67,25 @@ while True:
 
     elif inp == "n":
         if not hasattr(jedi.room.n_to, 'name'):
-            print('\nSorry that direction does not exist.. please try again')
+            print(incorrect_dir_msg)
         else:
             jedi.room = jedi.room.n_to
 
     elif inp == "s":
         if not hasattr(jedi.room.s_to, 'name'):
-            print('\nSorry that direction does not exist.. please try again')
+            print(incorrect_dir_msg)
         else:
             jedi.room = jedi.room.s_to
 
     elif inp == "w":
         if not hasattr(jedi.room.w_to, 'name'):
-            print('\nSorry that direction does not exist.. please try again')
+            print(incorrect_dir_msg)
         else:
             jedi.room = jedi.room.w_to
 
     elif inp == "e":
         if not hasattr(jedi.room.e_to, 'name'):
-            print('\nSorry that direction does not exist.. please try again')
+            print(incorrect_dir_msg)
         else:
             jedi.room = jedi.room.e_to
 
