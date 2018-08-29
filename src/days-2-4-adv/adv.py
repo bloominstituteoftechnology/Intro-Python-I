@@ -62,21 +62,23 @@ while(True):
     if suppressRoomPrint:
         suppressRoomPrint = False
     else:
-        print('\n [{}]...\n'.format(player1.location.name))
-        print('...{}\n'.format(player1.location.description))
-        inp = input('Which direction will you move?')
-
+        print(player1.location)
+    inp = input('Which direction will you move?')
     if inp == 'q':
         break
-    elif inp == 'n' or inp == 's' or inp == 'e' or inp == 'w':
+    if inp == 'n' or inp == 's' or inp == 'e' or inp == 'w':
         newRoom = player1.location.getRoomDirection(inp)
         if newRoom == None:
-            print('\n -Thwack! You just hit a brick wall (or fell off a cliff), choose another direction-\n')
+            print('\x1b[1;37;41m' + '\n -Thwack! You just hit a brick wall (or fell off a cliff), choose another direction-' + '\x1b[0m\n')
+            suppressRoomPrint = True
         else:
             player1.change_location(newRoom)
     elif inp == 'inventory':
+        print('\n INVENTORY:')
         for item in player1.inventory:
-            print('{} {}'.format(item.name, item.description))
+            print('-{}: {}'.format(item.name, item.description))
+            suppressRoomPrint = True
+        print('\n')
     elif inp == "look":
         print('\nThis room contains...')
         for item in player1.location.items:
