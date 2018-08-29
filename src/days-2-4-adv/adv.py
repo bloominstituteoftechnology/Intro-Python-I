@@ -49,3 +49,19 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    inp = input("\nPlease enter a cardinal direction (n,s,e,w): ")
+    if inp == "q":
+        print('\nThank you for playing!')
+        break
+    elif inp == "n":
+        print("\nYou entered North!")
+    elif inp == "s":
+        print("\nYou entered South!")
+    elif inp == "w":
+        print("\nYou entered West!")
+    elif inp == "e":
+        print("\nYou entered East!")
+    else:
+        print("\nI didn't recognize that command, please enter, n,s,e,w")
