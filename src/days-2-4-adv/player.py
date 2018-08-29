@@ -2,10 +2,22 @@
 # currently.
 
 class Player:
-  def __init__(self, name, in_room, hair_color, eye_color, gender, build):
+  def __init__(self, name, start_room):
     self.name = name
-    self.in_room = in_room
-    self.hair_color = hair_color
-    self.eye_color = eye_color
-    self.gender = gender
-    self.build = build
+    self.location = start_room
+  def changeLocation(self, new_room):
+    self.location = new_room
+  def __repr__(self):
+    return "Current Location: {}\n".format(self.location.name)
+  def __str__(self):
+    return "Current Location: {}\n".format(self.location.name)
+
+
+
+
+    # def change_location(self, new_location):
+    #     self.location = new_location
+    # def __repr__(self):
+    #     return "Current Location: {}".format(self.location)
+    # def __str__(self):
+    #     return "Current Location: {}".format(self.location)

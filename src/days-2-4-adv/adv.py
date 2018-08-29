@@ -22,7 +22,7 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-player = {'default_character': Player('JJ', room['outside'], 'brown', 'blue', 'male', 'slender'),}
+player = {'default_character': Player('JJ', room['outside']),}
 
 
 # Link rooms together
@@ -41,34 +41,50 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
-# Write a loop that:
+noPrint = False
 current_room = room['outside']
 user_character = player['default_character']
 print("Welcome to the game!")
-player_name = input("Enter your name:")
-inp = input("Type 'JJ' to play as JJ, or Type 'C' to create a character:")
+inp = input("Type 'JJ' to play as default character, or Type 'C' to create a character:")
 if inp == 'JJ':
   user_character == player['default_character']
   print(user_character)
 else:
-  char = inp("Please enter your characters info (name, hair color, eye color, gender, build)")  
-  player[player_name] = Player(name = char.name, in_room = room['outside'], hair_color = char.hair_color, eye_color = char.eye_color, gender = char.gender, build = char.build )
-  print(player[player_name])
+  char_name = inp("Please enter your characters name: ")  
+  player[char_name] = Player(name = char_name.name, start_room = room['outside'])
+  user_character = player[char_name]
+
+
 while True:
-  print("You are at the {}.".format(current_room.name))
+  if noPrint:
+    noPrint = False
+  else:
+    print("  *\|---- You are at the {} ----|/*\n".format(current_room.name))
+    print("    {}.".format(current_room.description))
   inp = input("What is your input: ")
   if inp == 'q':
     print("See ya!")
     break
-  elif inp == 'n' and current_room == room['outside']:
-    current_room = room['outside'].n_to
-  elif inp == 's' and current_room == room['outside']:
-    print("Can not go any further South.")
-  elif inp == 'e' and current_room == room['outside']:
-    current_room = room['outside'].s_to
-  elif inp == 'me':
-    print(player[player_name])
+  if inp == "n" or inp == "s" or inp == "w" or inp == "e":
+    current_room = user_character.location.getRoomInDirection(inp)
+
+  if inp == "n" or inp == "s" or inp == "w" or inp == "e":
+    newRoom = user_character.location.getRoomInDirection(inp)
+    if newRoom == None:
+      print("You cannot go that way.")
+      noPrint = True
+    else:
+      user_character.changeLocation(newRoom)
+
+
+  # elif inp == 'n' and current_room == room['outside']:
+  #   current_room = room['outside'].n_to
+  # elif inp == 's' and current_room == room['outside']:
+  #   print("Can not go any further South.")
+  # elif inp == 'e' and current_room == room['outside']:
+  #   current_room = room['outside'].s_to
+  # elif inp == 'me':
+  #   print(player[player_name])
     
 
     
