@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import os
 # Declare all the rooms
 
 room = {
@@ -42,7 +43,6 @@ player = Player('John', 14, 1, 180, 12, 5, 4, {})
 player.set_location(room['foyer'])
 
 directions = ['n','s','w','e']
-import os
 while(True):
     command = input("""
     Type in a command:
@@ -52,7 +52,7 @@ while(True):
     Get Room info: [room info]
 
     Other commands: [q: quit]
-    
+
     """)
     os.system('cls' if os.name == 'nt' else 'clear')
     for direction in directions:
