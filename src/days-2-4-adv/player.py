@@ -30,5 +30,17 @@ class Player:
     def check_inventory(self):
         print(self.inventory)
 
+    @classmethod
+    def create_player(cls):
+
+        info = ['Name', 'Age', 'Height in centimeters', 'Weight in pounds']
+        enteredInfo = []
+        for i in info:
+            enteredInfo.append(input(f'{i}:'))
+        
+        # name, age, height, weight, hp, attack, defense, inventory
+        return cls(*enteredInfo, 14, 5, 3, {});
+        
+
 
 # name, age, height, weight, hp, attack, defense, inventory
