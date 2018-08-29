@@ -34,64 +34,46 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
+'''room['outside'].connectRooms(room['foyer'], "n")
+room['foyer'].connectRooms(room['overlook'], "n")
+room['foyer'].connectRooms(room['outside'], "s")
+room['foyer'].connectRooms(room['narrow'], "e")
+room['overlook'].connectRooms(room['foyer'], "s")
+room['narrow'].connectRooms(room['foyer'], "w")
+room['narrow'].connectRooms(room['treasure'], "n")
+room['treasure'].connectRooms(room['narrow'], "s")
+'''
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-players = {
-    'player 1': Player('outside', None)
-}
 
+name = input("What is your name? ")
+
+player = Player(name, room['outside'])
+
+print (f"Welcome, {player.name}!\n")
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-user_input = input('Which direction do you want to go?')
+
 while True:
-    print(p.location, p.items, user_input)
-    if user_input == 'q':
+    print (f"\n  {player.location.title}\n    {player.location.description}\n" )
+    inp = input("What is your command: ")
+    if inp == "q":
         break
-    elif p.location == 'outside':
-        if user_input == 'n':
-            #not sure how to change location yet
-            print(r.description)
+    if inp == "n" or inp == "s" or inp == "w" or inp == "e":
+        newRoom = player.location.getRmInDir(inp)
+        if newRoom == None:
+            print("You cannot move in that direction")
         else:
-            print('That movement is not allowed.')
-    elif p.location == 'foyer':
-        if user_input == 's':
-            #
-            print(r.description)
-        elif user_input == 'n':
-            #
-            print(r.description)
-        elif user_input == 'e':
-            #
-            print(r.description)
-        else:
-            print('That movement is not allowed.')
-    elif p.location == 'overlook':
-        if user_input == 's':
-            #
-            print(r.description)
-        else:
-            print('That movement is not allowed.')
-    elif p.location == 'narrow':
-        if user_input == 'w':
-            #
-            print(r.description)
-        if user_input == 'n':
-            #
-            print(r.description)
-        else: 
-            print('That movement is not allowed.')
-    elif p.location == 'treasure':
-        if user_input == 's':
-            #
-            print(r.description)
-        else:
-            print("That movement is not allowed.")
+            player.changeLocation(newRoom)
+    else:
+        print('That command is not recognized.')
     
 #
 # If the user enters a cardinal direction, attempt to move to the room there.

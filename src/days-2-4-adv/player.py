@@ -2,10 +2,13 @@
 # currently.
 from room import Room
 
-class Player(Room):
-    def __init__(self, location, description, items):
-        self.items = items
-        Room.__init__(self, location, description)
+class Player:
+    def __init__(self, name, startLocation):
+        self.name = name
+        self.location = startLocation
+    def changeLocation(self, newLocation):
+        self.location = newLocation
+    def __repr__(self):
+        return "Current Location: {}".format(self.location)
     def __str__(self):
-        return self.location + '' + self.items
-        
+        return "Current Location: {}".format(self.location)
