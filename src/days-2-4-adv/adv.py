@@ -5,21 +5,21 @@ from player import Player
 
 room = {
     'outside':  Room("outside the cave entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", "stick"),
 
     'foyer':    Room("in the foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", "flashlight"),
 
     'overlook': Room("at the grand overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", "map"),
 
     'narrow':   Room("in the narrow passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", "sword"),
 
     'treasure': Room("inside the treasure chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", "magic lantern"),
 }
 
 
@@ -55,10 +55,33 @@ player = Player(room['outside'])
 
 print('\nWelcome to TAG, the text adventure game!')
 print('\nFollow the prompts on screen.\n~Enter \'Where am I?\' for your current location\n~Enter \'q\' to quit')
+
 while True:
     print('\n ~ ~ ~')
+
+    print("\n                        _.--.")
+    print("                    _.-'_:-'||")
+    print("                _.-'_.-::::'||")
+    print("           _.-:'_.-::::::'  ||")
+    print("         .'`-.-:::::::'     ||")
+    print("        /.'`;|:::::::'      ||_")
+    print("       ||   ||::::::'     _.;._'-._")
+    print("       ||   ||:::::'  _.-!oo @.!-._'-.")
+    print("       \'.  ||:::::.-!()oo @!()@.-'_.|")
+    # print("\n        \'.'-;|:.-'.&$@.& ()$%-'o.'\U||")
+    print("          `>'-.!@%()@'@_%-'_.-o _.|'||")
+    print("           ||-._'-.@.-'_.-' _.-o  |'||")
+    # print("\n           ||=[ '-._.-\U/.-'    o |'||")
+    print("           || '-.]=|| |'|      o  |'||")
+    print("           ||      || |'|        _| ';")
+    print("           ||      || |'|    _.-'_.-'")
+    print("           |'-._   || |'|_.-'_.-'")
+    print("            '-._'-.|| |' `_.-'")
+    print("                '-.||_/.-'")
+
     print('\nYou are currently %s'  % (player.room.name))
     print('\n... %s' % (player.room.description))
+    print('\n... %s' % (player.room.items))
 
     inp = input('\nWhich direction do you want to go? (n/e/s/w): ')
     if inp == 'q':
