@@ -51,9 +51,9 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-done = False
+running = True
 
-while not done:
+while running:
     print("{}".format(player.room.name))
-
-done = True
+    
+    running = False
