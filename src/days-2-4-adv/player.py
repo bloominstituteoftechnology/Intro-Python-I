@@ -14,14 +14,15 @@ class Player:
     
     def __str__(self):
         print('Name: {},\nAge: {},\nHeight: {},\nWeight: {}'.format(self.name, self.age, self.height, self.weight))
-    def go_direction(direction):
-        print(direction)
+
+    def go_direction(self, direction):
+        self.set_location(self.currentRoom.connectedRooms[direction])
     
     def check_hp(self):
         print(self.hp)
     
     def get_current_location(self):
-        print(self.currentRoom)
+        self.currentRoom.getRoomInfo()
     
     def set_location(self, room):
         self.currentRoom = room
@@ -31,4 +32,3 @@ class Player:
 
 
 # name, age, height, weight, hp, attack, defense, inventory
-player1 = Player('John', 14, 1, 180, 12, 5, 4, {})
