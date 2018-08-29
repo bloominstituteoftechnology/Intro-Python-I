@@ -21,3 +21,19 @@ class Room():
       return self.w_to
     else:
       return None
+
+  def connectRooms(self,destination_room, direction):
+    if direction == "n":
+      self.n_to = destination_room
+      destination_room.s_to = self
+    elif direction == "s":
+      self.s_to = destination_room
+      destination_room.n_to = self  
+    elif direction == "e":
+      self.e_to = destination_room
+      destination_room.w_to = self  
+    elif direction == "w":
+      self.w_to = destination_room
+      destination_room.e_to = self
+    else:
+      pring("Invalid Direction")
