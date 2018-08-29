@@ -40,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-jedi = Player(room['outside'])
+player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -58,10 +58,21 @@ user_prompt_msg = '\x1b[1;32;40m' + "\n\n\nPlease enter a cardinal direction (n,
 exit_msg = "\nThank you for playing!"
 bad_command_msg = '\x1b[1;31;40m' + "\nI didn't recognize that command, please enter, n,s,e,w" + '\x1b[0m'
 
+next_room_by_dir = {}
+next_room_by_dir['n'] = player.room.n_to
+next_room_by_dir['s'] = player.room.s_to
+next_room_by_dir['e'] = player.room.e_to
+next_room_by_dir['w'] = player.room.w_to
+
+# def move_room():
+#     if not hasattr(player.room.n_to, 'name'):
+#         print(incorrect_dir_msg)
+#     else:
+#         player.room = player.room.n_to
 
 while True:
-    print("\n\n\nYou are currently in the {}".format(jedi.room.name))
-    print("\n{}".format(jedi.room.description))
+    print("\n\n\nYou are currently in the {}".format(player.room.name))
+    print("\n{}".format(player.room.description))
     
     inp = input(user_prompt_msg)
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -70,29 +81,38 @@ while True:
         print(exit_msg)
         break
 
-    elif inp == "n":
-        if not hasattr(jedi.room.n_to, 'name'):
+    elif inp == "n" or inp == "s" or inp == "e" or inp == "w":
+        nextRoom = player.room.getRoomInDirection(inp)
+        if nextRoom ==  None:
             print(incorrect_dir_msg)
         else:
-            jedi.room = jedi.room.n_to
+            player.set_room(nextRoom)
+            
 
-    elif inp == "s":
-        if not hasattr(jedi.room.s_to, 'name'):
-            print(incorrect_dir_msg)
-        else:
-            jedi.room = jedi.room.s_to
 
-    elif inp == "w":
-        if not hasattr(jedi.room.w_to, 'name'):
-            print(incorrect_dir_msg)
-        else:
-            jedi.room = jedi.room.w_to
+    # elif inp == "n":
+    #     if not hasattr(player.room.n_to, 'name'):
+    #         print(incorrect_dir_msg)
+    #     else:
+    #         player.set_room(player.room.n_to)
 
-    elif inp == "e":
-        if not hasattr(jedi.room.e_to, 'name'):
-            print(incorrect_dir_msg)
-        else:
-            jedi.room = jedi.room.e_to
+    # elif inp == "s":
+    #     if not hasattr(player.room.s_to, 'name'):
+    #         print(incorrect_dir_msg)
+    #     else:
+    #         player.set_room(player.room.s_to)
+
+    # elif inp == "w":
+    #     if not hasattr(player.room.w_to, 'name'):
+    #         print(incorrect_dir_msg)
+    #     else:
+    #         player.set_room(player.room.w_to)
+
+    # elif inp == "e":
+    #     if not hasattr(player.room.e_to, 'name'):
+    #         print(incorrect_dir_msg)
+    #     else:
+    #         player.set_room(player.room.e_to)
 
     else:
         print(bad_command_msg)
