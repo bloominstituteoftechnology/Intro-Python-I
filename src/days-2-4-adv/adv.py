@@ -53,10 +53,12 @@ player = Player('Samwise', room['foyer'])
 #
 # If the user enters "q", quit the game.
 
+initialGreeting = print(f"""{player.name} is currently in {player.curRoom.name}:
+    {player.curRoom.description}
+    Please input a new direction (north, east, south, or west) for {player.name}, or enter \'quit\' to exit the game.""")
+
 while True:
-    print("""{} is currently in {}:
-    {}
-    Please input a new direction (north, east, south, or west) for {}, or enter \'quit\' to exit the game.""".format(player.name, player.curRoom.name, player.curRoom.description, player.name))
+    print(initialGreeting)
     userInput = input()
 
     if userInput == 'quit':
