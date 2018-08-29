@@ -36,9 +36,9 @@ class Room:
             self.w_to = destRoom
             destRoom.e_to == 'e'
         
-    def removeItem(item):
+    def removeItem(self, item):
         for item in items:
             self.remove(item[0])
 
-    def gainItem(item):
+    def gainItem(self, item):
         self.append(item)

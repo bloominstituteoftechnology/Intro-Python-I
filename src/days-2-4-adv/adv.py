@@ -83,14 +83,12 @@ while True:
             player.changeLocation(newRoom)
 
     elif inp_args[0] == 'g' or inp_args[0] == 'get':
-        if inp_args[1] in room.items:
-            player.getItem(inp_args[1])
-            room.removeItem(inp_args[1])
-        else:
-            print("You cannot get that item.")
+        item = inp_args[1]
+        player.getItem(item)
+        #room.removeItem(item)
     elif inp_args[0] == 'd' or inp_args[0] == 'drop':
-        player.dropItem()
-        room.gainItem()
+        player.dropItem(inp_args[1])
+        room.gainItem(inp_args[1])
     elif inp_args[0] == 'i' or inp_args[0] == 'inventory':
         if len(player.items) == 0:
             print("You have no items.")

@@ -14,8 +14,8 @@ class Player:
     def __str__(self):
         return "Current Location: {}".format(self.location)
 
-    def getItem(item):
+    def getItem(self, item):
         self.items.append(item)
 
-    def dropItem(item):
+    def dropItem(self, item):
         self.items.remove(item)
