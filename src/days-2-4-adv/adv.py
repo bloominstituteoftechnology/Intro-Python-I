@@ -67,38 +67,40 @@ enemy = Player('Big Monster', 'narrow')
 
 # CLEAR SCREEN
 os.system('cls') if sys.platform.startswith('win') else os.system('clear')
+print("Welcome to the grand adventure!!  Press 'h' at any time for help.\n\n")
 
 while True:
-    print("{}".format(room[player.location].description))
+    print("\nYou are at {}.\n{}.".format(
+        room[player.location].name, room[player.location].description))
     inp = input("\nEnter a command: ")
     if inp == 'q' or inp == 'quit':
         break
-    elif inp =='n' or inp == "north":
+    elif inp == 'n' or inp == "north":
         try:
             if (room[player.location].n_to):
                 player.location = room[player.location].n_to
         except:
             print("Can't continue north\n")
-    elif inp =='s' or inp == "south":
+    elif inp == 's' or inp == "south":
         try:
             if (room[player.location].s_to):
                 player.location = room[player.location].s_to
         except:
             print("Can't continue south\n")
-    elif inp =='e' or inp == "east":
+    elif inp == 'e' or inp == "east":
         try:
             if (room[player.location].e_to):
                 player.location = room[player.location].e_to
         except:
             print("Can't continue east\n")
-    elif inp =='w' or inp == "west":
+    elif inp == 'w' or inp == "west":
         try:
             if (room[player.location].w_to):
                 player.location = room[player.location].w_to
         except:
             print("Can't continue west\n")
-    elif inp =='exits':
-        exits = 'You can exit: '        
+    elif inp == 'exits':
+        exits = 'You can exit: '
         try:
             if (room[player.location].n_to):
                 exits += "n, "
@@ -123,12 +125,12 @@ while True:
         print("{}\n".format(exits[:-2]))
     # PLAYER ACTIONS
     elif inp == "l" or inp == 'look':
-        print("\n{}".format(room[player.location].name))
         if (room[player.location].inventory):
             print("Items in the room:")
         for key in room[player.location].inventory:
             if room[player.location].inventory[key]:
-                print("\t{} {}".format(room[player.location].inventory[key], key))
+                print("\t{} {}".format(
+                    room[player.location].inventory[key], key))
                 print()
             else:
                 print("\tNothing to take here.\n")
