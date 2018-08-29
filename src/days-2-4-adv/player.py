@@ -4,9 +4,8 @@ class Player:
     def __init__(self, name, age, height, weight, hp, attack, defense, inventory):
         self.name = name
         self.age = age
-        self.height = str(height) + ' centimeters' if height <= 1 else str(height) + ' centimeter'
-        self.weight = str(weight) + ' pounds' if weight <= 1 else str(weight) + ' pound'
-        self.hp = hp
+        self.totalHp = hp
+        self.remainingHp = hp
         self.attack = attack
         self.defense = defense
         self.inventory = inventory
