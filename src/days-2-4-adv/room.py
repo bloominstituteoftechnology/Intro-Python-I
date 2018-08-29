@@ -22,3 +22,5 @@ class Room:
             return self.w_to
         else:
             return None
+    def itemsInRoom(self, items):
+        

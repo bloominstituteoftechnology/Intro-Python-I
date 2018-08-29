@@ -2,8 +2,8 @@
 # currently.
 
 class Player:
-    def __init__(self, startlocation):
-        self.location = startlocation
+    def __init__(self, startLocation):
+        self.location = startLocation
     def change_location(self, new_location):
         self.location = new_location
     def __repr__(self):
