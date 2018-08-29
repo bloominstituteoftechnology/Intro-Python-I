@@ -33,13 +33,15 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+# print(room['foyer'].n_to.name)
+# print(room['foyer'])
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 from player import Player
-player_1 = Player('Bob', 'outside')
+player_1 = Player('Bob', 'treasure')
 # print(player_1.location)
 
 # Write a loop that:
@@ -47,15 +49,6 @@ player_1 = Player('Bob', 'outside')
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
-
-# for key in player_1.__dict__:
-#     if key == 'location': 
-#         print(player_1.location)
-#     for key in room:
-#         if key == player_1.location:
-#             print(room[player_1.location].description)
-
 
 for key in player_1.__dict__:
     if key == 'location': 
@@ -66,14 +59,61 @@ for key in player_1.__dict__:
         nextMove = input("Enter next move: ")
 
         
-
-
-# print(room['outside'].description)
-
-
-
-
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+# if nextMove == 'n':
+#     if player_1.location == room[player_1.location].n_to.name:
+#     # player_1.location = room['foyer']
+#         print(player_1.location)
+#     else:
+#         print(player_1.location)
+
+room['outside'].n_to = room['foyer']
+room['foyer'].s_to = room['outside']
+room['foyer'].n_to = room['overlook']
+room['foyer'].e_to = room['narrow']
+room['overlook'].s_to = room['foyer']
+room['narrow'].w_to = room['foyer']
+room['narrow'].n_to = room['treasure']
+room['treasure'].s_to = room['narrow']
+
+if nextMove == 'n':
+    if player_1.location == 'outside' or player_1.location == 'foyer' or player_1.location == 'narrow':
+        player_1.location = room[player_1.location].n_to.name
+        print(player_1.location)
+    else:
+        print('Movement not allowed!')
+        # nextMove = input("Enter next move: ")
+
+
+if nextMove == 's':
+    if player_1.location == 'foyer' or player_1.location == 'overlook' or player_1.location == 'treasure':
+        player_1.location = room[player_1.location].s_to.name
+        print(player_1.location)
+    else:
+        print('Movement not allowed!')
+        # nextMove = input("Enter next move: ")
+
+if nextMove == 'e':
+    if player_1.location == 'foyer':
+        player_1.location = room[player_1.location].s_to.name
+        print(player_1.location)
+    else:
+        print('Movement not allowed!')
+        # nextMove = input("Enter next move: ")
+
+if nextMove == 'w':
+    if player_1.location == 'narrow':
+        player_1.location = room[player_1.location].s_to.name
+        print(player_1.location)
+    else:
+        print('Movement not allowed!')
+        # nextMove = input("Enter next move: ")
+
+if nextMove == 'g': 
+    print('GAME OVER')
+
