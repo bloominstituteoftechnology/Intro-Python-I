@@ -54,7 +54,12 @@ player = Player(room['outside'])
 
 while True:
     print('\n ==========================-----------------------==========================')
-    print('\n{:s}\n{:s}'.format(player.room.name, player.room.description))
+    print(
+    f"""
+{player.room.name}
+{player.room.description}
+Items: {player.room.items}
+    """)
     inp = input('\nWhere would you like to move? (n/e/s/w) enter \'q\' to quit: ')
 
     if(inp == 'q'):
