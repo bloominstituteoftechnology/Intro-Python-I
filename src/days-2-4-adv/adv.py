@@ -1,27 +1,32 @@
 from room import Room
 from player import Player
+from items import Items
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("outside the cave entrance",
-                     "North of you, the cave mount beckons", "stick"),
+                     "North of you, the cave mount beckons"),
 
     'foyer':    Room("in the foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", "flashlight"),
+passages run north and east."""),
 
     'overlook': Room("at the grand overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", "map"),
+the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("in the narrow passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", "sword"),
+to north. The smell of gold permeates the air."""),
 
     'treasure': Room("inside the treasure chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", "magic lantern"),
+earlier adventurers. The only exit is to the south."""),
 }
 
+# Add items to two rooms
+
+room['foyer'].items.append(Items("flashlight", "\'Take flashlight\' and use it to illuminate the passages"))
+room['treasure'].items.append(Items("coin", "\'Take coin\' as consolation for an empty chest"))
 
 # Link rooms together
 
@@ -81,7 +86,18 @@ while True:
 
     print('\nYou are currently %s'  % (player.room.name))
     print('\n... %s' % (player.room.description))
-    print('\n... %s' % (player.room.items))
+    
+    # Print room contents
+
+    if len(player.room.items) > 0:
+        for i in player.room.items:
+            print('\nOn the ground you see a %s' % (i.name))
+        else:
+            print()
+        
+
+
+
 
     inp = input('\nWhich direction do you want to go? (n/e/s/w): ')
     if inp == 'q':
