@@ -14,8 +14,10 @@ class Player:
         for key in self.inventory:
             if key == item:
                 self.inventory[key] += 1
+                self.addScore(item.value)
                 return True
         self.inventory[item] = 1
+        self.addScore(item.value)
 
     def drop(self, item):
         for key in self.inventory:
@@ -28,8 +30,14 @@ class Player:
                     return True
         print("You don't have a {} to drop.\n".format(item))
 
+    def eat(self, item):
+        pass
+
     def getInventory(self):
         return self.inventory
 
     def getScore(self):
-        return self.score
+        print(self.score)
+
+    def addScore(self, value):
+        self.score += value

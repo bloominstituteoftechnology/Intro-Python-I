@@ -25,13 +25,18 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 # Declare all the items
-# item = {
-#     'apple': Food('Gala Apple', 'A small to medium-sized conic apple.', 'food', [2,5])
-# }
+item = {
+    'apple': Food('apple', 'a small to medium-sized conic apple', 'food', 10),
+    'bread': Food('bread', 'a slice of bread', 'food', 10),
+    'ring': Treasure('ring', 'a silver ring', 'treasure', 50)
+}
 
 """where add stuff to the rooms"""
 # add an apple to the outside room
-room['outside'].take('apple')
+# room['outside'].take('apple')
+room['outside'].take(item['apple'].name)
+room['outside'].take(item['bread'].name)
+room['outside'].take(item['ring'].name)
 
 # Link rooms together
 room['outside'].n_to = 'foyer'
@@ -147,6 +152,9 @@ while True:
                 print('Taking {}\n'.format(item))
                 # item is in the room, so player can take it
                 player.take(item)
+                # room[player.location].inventory[item].on_take(player)
+                print(room[player.location])
+                print('player: {}'.format(player))
         except:
             print("You must enter something to take.\n")
     elif inp.startswith('drop'):
@@ -168,7 +176,8 @@ while True:
         else:
             print("You aren't carrying anything\n")
     elif inp == 'score':
-        print('{}\n'.format(player.getScore()))
+        # print('{}\n'.format(player.getScore()))
+        player.getScore()
     elif inp == "h" or inp == "help":
         print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, get, drop, score, exits, i)nventory, q)uit, h)elp\n")
     else:

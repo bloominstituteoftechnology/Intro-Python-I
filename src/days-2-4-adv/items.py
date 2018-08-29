@@ -12,22 +12,30 @@ class Items:
 
 
 class Food(Items):
-    def __init__(self, name, description, itemType, health):
-        super().__init__(self, name, description, itemType)
-        self.health = random.randint(health[0], health[1])
-        self.currentHealth = self.health
+    def __init__(self, name, description, itemType, heal):
+        Items.__init__(self, name, description, itemType)
+        self.heal = heal # random.randint(health[0], health[1])
+        self.currentHeal = self.heal
 
-    def eat(self, item):
-        pass
+    # def eat(self, item):
+        # return self.heal= health +
+        
+# class Weapon(Items):
 
 
 class Treasure(Items):
-    def __init__(self, name, description, value):
-        super().__init__(self, name, description)
+    def __init__(self, name, description, itemType, value):
+        Items.__init__(self, name, description, itemType)
         self.value = value
+    
+    def on_take(self, player):
+        # self.on_take = False
+        # player.score += self.value
+        print('does this run/work')
+        # return player.score
 
 
 class LightSource(Items):
     def __init__(self, name, description, energy):
-        super().__init__(self, name, description)
+        Items.__init__(self, name, description)
         self.energy = energy
