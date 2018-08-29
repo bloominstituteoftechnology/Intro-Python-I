@@ -44,6 +44,13 @@ player = Player(room['outside'])
 
 #print(f"Welcome, {player.name}!\n")
 
+print("#######################")
+print("***** WELCOME PLAYER 1 *****")
+print("***** ONE RULE AND ONE RULE ONLY *****")
+print("   STAY WOKE OR PERISH!  ")
+print("#######################")
+
+
 # Write a loop that:
 #
 # * Prints the current room name
