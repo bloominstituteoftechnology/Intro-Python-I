@@ -51,9 +51,34 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-new_item = Item("flashlight", "Good light source")
-room['outside'].items.append(new_item)
 
+# --------------------Helper Functions-----------------
+def helpCommands():
+    print("""
+    -------------------------------------------
+    q = Quit
+    i / inventory = Show Player Inventory
+    north = Move North
+    south = Move South
+    east = Move East
+    west = Move West
+    help = See this menu
+    take/get *item* = Pick up Item from Room
+    drop *item = Drop Item in the Room
+    --------------------------------------------
+    """
+          )
+
+
+# --------------------Adding new items-----------------
+new_item = Item("flashlight", "Good light source")
+new_item2 = Item("Bacon", "Good food source")
+new_item3 = Item("Gold", "This should belong in the treasure room.")
+room['outside'].items.append(new_item)
+room['foyer'].items.append(new_item2)
+room['treasure'].items.append(new_item3)
+
+# ---------------------Initializing Player--------------
 player = Player(room['outside'])
 allowed = ['north', 'south', 'east', 'west']
 """print(player.room)
@@ -61,11 +86,12 @@ player = Player(room['outside'].n_to)
 print(player.room)"""
 suppressRoomPrint = False
 
+# --------------------Starting Game Loop----------------
 while True:
     if suppressRoomPrint:
         suppressRoomPrint = False
     else:
-        print("----------------Treasure Game----------------")
+        print("\n----------------Treasure Game----------------")
         print("You are at {}.".format(player.room.getDescription()))
     message = input("\nWhere do you want to go? (north/south/east/west): ")
     if message == 'quit':
@@ -80,25 +106,28 @@ while True:
                     if item.name == newMessage[1]:
                         player.room.items.remove(item)
                         player.items.append(item)
-                        print("You have picked up the {}".format(item))
+                        print("You have picked up the {}.".format(item.name))
                     else:
                         print("{} is not in the room.".format(newMessage[1]))
             elif (newMessage[0] == "drop"):
                 for item in player.items:
-                    if item == newMessage[1]:
+                    if item.name == newMessage[1]:
                         player.room.items.append(item)
                         player.items.remove(item)
-                        print("You have picked dropped the {} in the {}".format(
-                            item, player.room.name))
+                        print("You have dropped the {} in the {}".format(
+                            item.name, player.room.name))
                     else:
                         print("You are not holding that item. ")
             else:
                 print("An error has occurred.")
-        elif (newMessage[0] == "show"):
+        elif (newMessage[0] == "i" or newMessage[0] == "inventory"):
             for item in player.items:
                 print("You are holding {}".format(item.name))
+        elif (newMessage[0] == "help"):
+            helpCommands()
+            suppressRoomPrint = True
         else:
-            print("Not a valid option, please choose another.")
+            print("Not a valid option, enter 'help' for a list of all options.")
     else:
         if hasattr(player.room, message[0] + '_to'):
             # print("Worked!")
@@ -106,92 +135,3 @@ while True:
         elif hasattr(player.room, message[0] + '_to') == False:
             print("That doesn't lead anywhere, please choose another direction.")
             suppressRoomPrint = True
-
-
-"""
-# Game variables
-suppressRoomPrint = False
-validDirections = ["n", "s", "e", "w"]
-
-
-
-############
-# Command functions
-############
-commands = {}
-commands["n"] = moveCommand
-commands["s"] = moveCommand
-commands["e"] = moveCommand
-commands["w"] = moveCommand
-commands["l"] = lookCommand
-commands["look"] = lookCommand
-
-commandsHelp = {}
-commandsHelp["n"] = "Move North"
-commandsHelp["s"] = "Move South"
-commandsHelp["e"] = "Move Eath"
-commandsHelp["w"] = "Move West"
-commandsHelp["l"] = "Look somewhere"
-commandsHelp["look"] = "Look somewhere"
-
-
-def moveCommand(player, *args):
-    newRoom = player.location.getRoomInDirection(args[0])
-    if newRoom == None:
-        printErrorString("You cannot move in that direction!")
-    else:
-        player.change_location(newRoom)
-    return False
-
-def lookCommand(player, *args):
-
-    if not (args[0] == "l" or args[0] == "look"):
-        printErrorString("That is not a look command")
-    elif len(args) == 1:
-        return False
-    elif args[1] in validDirections:
-        lookRoom = player.location.getRoomInDirection(args[1])
-        if lookRoom is not None:
-            print (lookRoom)
-        else:
-            printErrorString("There is nothing in that direction.")
-        return True
-
-#######
-# Util
-#######
-
-def printErrorString(errorString):
-    print(f'\x1b[1;31;40m\n{errorString}\x1b[0m\n')
-    global suppressRoomPrint
-    suppressRoomPrint = True
-
-# Room.connect(<Room>, <direction>)
-
-
-
-######
-# Start Game loop here
-######
-
-
-player = Player( input("\nWhat is your name?: ") , room['outside'])
-
-print (f"Welcome, {player.name}!\n")
-
-while True:
-    if suppressRoomPrint:
-        suppressRoomPrint = False
-    else:
-        print (player.location)
-    inputList = input(">>> ").split(" ")
-    if inputList[0] == "q":
-        break
-    elif inputList[0] in commands:
-        suppressRoomPrint = commands[inputList[0]](player, *inputList)
-    elif inputList[0] == "help":
-        for command in commandsHelp:
-            print (f"{command} - {commandsHelp[command]}")
-    else:
-        printErrorString("I do not understand that command")
-"""
