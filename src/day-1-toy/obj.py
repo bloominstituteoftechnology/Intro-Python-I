@@ -15,7 +15,7 @@ class LatLon:
 # INHERITING (latLon)
 class Waypoint(LatLon):
     def __init__(self, name, lat, lon):
-        # LatLon.__init__(lat, lon)  
+        # LatLon.__init__(self, lat, lon)  
         ### ABOVE SAME AS BELOW, USING SUPER()
         super().__init__(lat, lon)
         self.name = name
