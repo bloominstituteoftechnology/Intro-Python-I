@@ -8,4 +8,4 @@ class Room():
         self.description = description
 
     def __str__(self):
-        return "Name: %a, Description: %a" % (self.name, self.description)
+        return (self.name, self.description)

@@ -41,8 +41,8 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = Player(room["outside"])
-print(player.current_room)
+player = Player("Dan", room["outside"])
+# print(player.current_room)
 # Write a loop that:
 #
 # * Prints the current room name
@@ -53,3 +53,34 @@ print(player.current_room)
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+def choosePath(room, direction):
+    if direction == "N" and room.n_to:
+        return True
+    else:
+        print("You cant go that way")
+
+    if direction == "S" and room.s_to:
+        return True
+    else:
+        print("You cant go that way")
+
+    if direction == "E" and room.e_to:
+        return True
+    else:
+        print("You cant go that way")
+
+    if direction == "W" and room.w_to:
+        return True
+    else:
+        print("You cant go that way")
+
+
+while True:
+    print("%a" % (player.current_room.name))
+    print("%a" % (player.current_room.description))
+    break
+
+# choosePath()
+# roomNames()
