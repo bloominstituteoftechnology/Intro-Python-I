@@ -7,3 +7,4 @@ class Player:
         self.name = name
         self.location = location
         self.inventory = []
+        self.score = 0
