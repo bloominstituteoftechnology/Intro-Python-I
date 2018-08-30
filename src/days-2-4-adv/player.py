@@ -1,9 +1,8 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 from room import Room
-
 class Player:
-    def __init__(self, startLocation, equipment[], inventory[]):
+    def __init__(self, startLocation, equipment=[], inventory=[]):
         self.location = startLocation
         self.equipment = equipment
         self.inventory = inventory

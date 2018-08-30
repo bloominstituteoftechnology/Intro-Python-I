@@ -52,3 +52,8 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+room['outside'].connectRooms(room['foyer'], 'n')
+room['foyer'].connectRooms(room['overlook'], 'n')
+room['foyer'].connectRooms(room['narrow'], 'e')
+room['narrow'].connectRooms(room['treasure'], 'n')
