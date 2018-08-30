@@ -14,3 +14,12 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+from datetime import datetime
+
+if len(sys.argv) == 2:
+    calendar.prcal(int(sys.argv[1]))
+elif len(sys.argv) == 3:
+    calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+else:
+    calendar.prmonth(datetime.now().year, datetime.now().month)
