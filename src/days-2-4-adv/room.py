@@ -17,5 +17,6 @@ class Room:
                 print('Room has: ' + value)
                 # print('Room has: ' + str(c) + ' ' + value)
     def remove_item(self, item):
-        del self.items[item]
+        for item in self.items:
+            self.items.remove(item)
         

@@ -10,7 +10,7 @@ passages run north and east.""", ["apple"]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", []),
+the distance, but there is no way across the chasm.""", ["key"]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", []),
@@ -49,13 +49,16 @@ while True:
         playerOne.check_bag()
     elif (inp == 'c'):
         playerOne.room.check_room()
-        if playerOne.room.items is not 0:
-            action = input('Take (t) or Skip(s): ')
+        if len(playerOne.room.items) is not 0:
+            action = input('Take(t), drop(d) or Skip(s): ')
             if (action == 't'):
                 playerOne.takeItem(playerOne.room.items)
-                # playerOne.room.remove_item(playerOne.room.items)
-                playerOne.check_bag()
-                playerOne.room.check_room()
+                playerOne.room.remove_item(playerOne.room.items)
+            elif(action == 'd'):
+                if len(playerOne.bag) is not 0:
+                    playerOne.dropItem()
+            elif (action =='s'):
+                pass
 
     else:
         print ("I did not recognize that command")
