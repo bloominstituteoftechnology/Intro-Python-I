@@ -58,8 +58,8 @@ def move(direction, presentRoom):
     print('wrong way')
     return presentRoom
 
-def retrieve(name, presentRoom):
-    for item in presentRoom.items:
+def retrieve(name, itemLocation):
+    for item in itemLocation.items:
         if item.name == name:
             return item
 
@@ -83,5 +83,17 @@ while running:
     elif len(inp) == 2:
         if inp[0] == 'take':
             item = retrieve(inp[1], player.room)
-            player.room.items.remove(item)
-            player.items.append(item)
+            if item == None:
+                print("That's not here")
+            else:
+                player.room.items.remove(item)
+                player.items.append(item)
+        elif inp[0] == 'drop':
+            item = retrieve(inp[1], player)
+            if item == None:
+                print("You don't have that")
+            else:
+                player.items.remove(item)
+                player.room.items.append(item)
+        else:
+            print('Command Unknown')
