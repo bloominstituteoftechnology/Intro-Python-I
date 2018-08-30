@@ -17,26 +17,26 @@ items = {
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-        "North of you, the cave mount beckons"),
-        [items['scimitar'], items['health_potion']],
+        """North of you, the cave mount beckons""",
+     [items['scimitar'], items['health_potion']]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
-[items['tower_shield'], items['chainmail']],
+passages run north and east.""",
+[items['tower_shield'], items['chainmail']]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
-[items['mace'], items['mana_potion']],
+the distance, but there is no way across the chasm.""",
+[items['mace'], items['mana_potion']]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
-[items['gold_plate'], items['heraldic_shield']],
+to north. The smell of gold permeates the air.""",
+[items['gold_plate'], items['heraldic_shield']]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
-[items['gold'], items['demon_heart']],
+earlier adventurers. The only exit is to the south.""",
+[items['gold'], items['demon_heart']]),
 }
 
 # Link rooms together
