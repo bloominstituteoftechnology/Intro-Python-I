@@ -2,7 +2,7 @@ import sys
 import textwrap
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 
 # Declare all the rooms
 
@@ -63,6 +63,15 @@ room['narrow'].items.append(coins)
 
 sword = Item("sword", "a weapon to vanquish your foes")
 player.inventory.append(sword)
+
+gold = Treasure("gold", "first place treasure", 500)
+room['treasure'].items.append(gold)
+
+silver = Treasure("silver", "second place treasure", 250)
+room['overlook'].items.append(silver)
+
+bronze = Treasure("bronze", "third place treasure", 100)
+room['outside'].items.append(bronze)
 
 print(f"Welcome to Adventure Game, {player.name}!\n")
 print(f"You are in {player.location.name}.\n")
