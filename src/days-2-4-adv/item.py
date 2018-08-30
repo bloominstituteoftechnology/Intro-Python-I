@@ -7,3 +7,10 @@ class Item:
     def getName(self):
         return self.name
     
+class Treasure(Item):
+    def __init__(self, name, description, value):
+        Item.__int__(self, name, description)
+
+class LightSource(Item):
+    def __init__(self, name, description):
+        Item.__int__(self, name, description)
