@@ -127,8 +127,10 @@ while True:
         if(inp[0] in ['get', 'take']):
             for item in player.room.items:
                 if item.name.lower() == inp[1]:
+                    item.on_take(player)
                     player.room.items.remove(item)
                     player.items.append(item)
+                    suppressRoomPrint = True
                 else:
                     printErrorString('Item not found.')
         elif(inp[0] == 'drop'):
