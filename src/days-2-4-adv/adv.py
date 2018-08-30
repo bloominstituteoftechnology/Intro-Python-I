@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from items import Items
+from items import Items, Treasure
 
 # Declare all the rooms
 
@@ -25,7 +25,9 @@ chamber! Sadly, it has already been completely emptied by earlier adventurers. T
 
 room['outside'].items.append(Items("shovel", "Enter \'take shovel\' to dig holes and defend yourself from zombies"))
 room['foyer'].items.append(Items("flashlight", "Enter \'take flashlight\' and use it to illuminate the passages"))
-room['treasure'].items.append(Items("coin", "Enter \'take coin\' as consolation for an empty chest"))
+room['treasure'].items.append(Treasure("gold", "Enter \'take gold\' thought it's not a chest full, you\'ve found something", "25"))
+room['narrow'].items.append(Treasure("silver", "Enter \'take silver\' when there's silver, sometimes gold is near", "10"))
+room['overlook'].items.append(Treasure("bronze", "Enter \'take bronze\' when there's bronze, sometimes silver is near", "5"))
 
 # Link rooms together
 
