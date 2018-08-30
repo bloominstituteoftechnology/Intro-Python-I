@@ -42,13 +42,21 @@ def lookCommand(player, *args):
         printErrorString("That is not a look command")
     elif len(args) == 1:
         return False
+    elif args[1] == "here":
+        print (player.location.description + "\n\nThere are the following items here: " + player.location.items)
     elif args[1] in validDirections:
         lookRoom = player.location.getRoomInDirection(args[1])
         if lookRoom is not None:
-            print (lookRoom)
+            print ('\n' + lookRoom.description + '\n' + lookRoom.items + '\n')
         else:
             printErrorString("You cannot go that way.")
         return True
+
+def takeItemCommand(player, *args):
+    if not (args[0] == "g" or args[0] == "get"):
+        printErrorString("That is not a get command")
+    elif len(args) == 1:
+        return False
 
 def printErrorString(errorString):
     print(f'{errorString}')
@@ -62,14 +70,7 @@ commands["e"] = moveCommand
 commands["w"] = moveCommand
 commands["l"] = lookCommand
 commands["look"] = lookCommand
-
-commandsHelp = {}
-commandsHelp["n"] = "Move North"
-commandsHelp["s"] = "Move South"
-commandsHelp["e"] = "Move East"
-commandsHelp["w"] = "Move West"
-commandsHelp["l"] = "Look somewhere"
-commandsHelp["look"] = "Look somewhere"
+commands["take"] =
 
 # Link rooms together
 
@@ -86,14 +87,13 @@ while True:
     if suppressRoomPrint:
         suppressRoomPrint = False
     else:
-        print(f'{player.location.title}')
-    inputList = input(">>> ").split(" ")
+        print(f'{player.location.title}\n')
+
+    inputList = input("> ").split(" ")
     if inputList[0] == "q":
         break
     elif inputList[0] in commands:
         suppressRoomPrint = commands[inputList[0]](player, *inputList)
-    elif inputList[0] == "help":
-        for command in commandsHelp:
-            print (f"{command} - {commandsHelp[command]}")
+
     else:
         printErrorString("That command does not exist")
