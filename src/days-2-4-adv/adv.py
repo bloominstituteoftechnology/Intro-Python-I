@@ -8,28 +8,28 @@ import textwrap
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons",
-                     *[Item("Rock", """Who knows how useful this could be!"""),
+                     [Item("Rock", """Who knows how useful this could be!"""),
                      Item("Grass", """A nutritious treat should you get hungry in your travels"""),
                      Item("Key", """Who knows what doors this may open?""")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", *[Item("Umbrella", """This will protect against
-suppressive  waterpower""")]),
+                    passages run north and east.""",
+                    [Item("Umbrella", """This will protect against suppressive waterpower""")]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", *[Item("Axe",
+the distance, but there is no way across the chasm.""", [Item("Axe",
 """Heeeerrre's Johnny!"""), Item("Native American Artifact", """Legend says this
 artifact allows the possessor to communicate telepathically with the ghost of
 Scatman Crothers""")]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", *[Item("Torch", """Batteries
+to north. The smell of gold permeates the air.""", [Item("Torch", """Batteries
 included"""), Item("Wet Mud", """Gross!""")]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", *[Item("Empty Treasure Chest",
+earlier adventurers. The only exit is to the south.""", [Item("Empty Treasure Chest",
 "A big box that once held great treasure"), Item("Scribbled Note", """A note
 containing a famous director's explanation of a mysterious hotel room...""")]),
 }
@@ -74,10 +74,31 @@ def lookCommand(player, *args):
     elif args[1] in validDirections:
         lookRoom = player.location.getRoomDirection(args[1])
         if lookRoom is not None:
-            print(lookRoom)
+            print('Player looks and takes a gander and sees...\n{}'.format(lookRoom))
         else:
             printErrorString('Nothing to see overthere')
         return True
+    elif args[1] == 'around':
+        print('\nRoom contains:')
+        index = 0
+        for item in player.location.items:
+            print('\n-- ({}) {}: {} --\n'.format(index, item.name, item.description))
+            index += 1
+    elif args[1] == 'inside':
+        print('\nINVENTORY: ')
+        index = 0
+        for item in player.inventory:
+            print(f'\n-- ({index}) {item.name}: {item.description} --\n')
+            index += 1
+
+def getCommand(player, *args):
+    if player.location.items[int(args[1])]:
+        player.inventory.append(player.location.items[int(args[1])])
+        print('You have obtained {}!'.format(player.location.items[int(args[1])].name))
+        player.location.items.pop(int(args[1]))
+    else:
+        printErrorString('Better get the heck outta here! Not a valid get command, boss')
+
 
 commands = {}
 commands['n'] = moveCommand
@@ -86,6 +107,7 @@ commands['e'] = moveCommand
 commands['w'] = moveCommand
 commands['l'] = lookCommand
 commands['look'] = lookCommand
+commands['get'] = getCommand
 
 commandsHelp = {}
 commandsHelp['n'] = "Move North"
