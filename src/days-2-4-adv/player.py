@@ -72,6 +72,21 @@ class Player:
         for item in self.currentRoom.items:
             print(f'Item: {item.name}')
     
+    
+    def add_item(self):
+        itemName = input(f"""
+        What item would you like to grab out of this room?
+        {self.look_for_items()}
+        """)
+        for index, item in enumerate(self.currentRoom.items):
+            if itemName.lower() == item.name.lower():
+                self.inventory[item.name] = []
+                self.inventory[item.name].append(item)
+                print_format_string('success', f'You grabbed {item}')
+                self.currentRoom.remove_item(index)
+                return
+    
+        print_format_string('error', 'No such item in this room')
     @classmethod
     def create_player(cls):
 
