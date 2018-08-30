@@ -15,9 +15,15 @@ class Room:
         return (f'{self.__class__.__name__}('
                 f'{self.name!r}, {self.description!r}, {self.items!r})')
 
+    def addItems(self, items):
+        self.items.extend(items)
+
 
 
 # l1 = Room('basement', 'a space for storing items', ['pen', 'pencil', 'skateboard'])
+# print(l1.items)
+
+# l1.addItems(['hat', 'baseball'])
 # print(l1.items)
 
 

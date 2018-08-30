@@ -61,7 +61,7 @@ from item import Item
 # print(item1.name)
 
 while True:
-    # print(player1.location.name + '\n'+ player1.location.description)
+    print(player1.location.name + '\n'+ player1.location.description)
     print("Items in the room: ", player1.location.items)
 
     command = input('Next move: ')
