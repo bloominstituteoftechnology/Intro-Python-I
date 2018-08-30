@@ -60,7 +60,7 @@ while True:
         suppressRoomPrint = False
     else:
         print (player.location)
-    print (f'\n{player.location.title}\n {player.location.description}\n {player.location.getItems()}\n')
+    print (f'\n{player.location.name}\n {player.location.description}\n {player.location.getItems()}\n')
     inp = input("What is your command: ")
 
     if inp == "q":

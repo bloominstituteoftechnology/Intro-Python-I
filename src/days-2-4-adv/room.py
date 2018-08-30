@@ -9,6 +9,7 @@ class Room(object):
         self.s_to = None
         self.e_to = None
         self.w_to = None
+    
     def getRoominDirection(self, direction):
         if direction == "n":
             return self.n_to
@@ -20,5 +21,6 @@ class Room(object):
             return self.w_to
         else:
             return None
+            
     def getItems(self):
         return ', '.join([i.name for i in self.items]) 
