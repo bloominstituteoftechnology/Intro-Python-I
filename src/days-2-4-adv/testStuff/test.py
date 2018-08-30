@@ -1,9 +1,20 @@
-next_room_by_dir = {}
-next_room_by_dir['n'] = "North"
-next_room_by_dir['s'] = "South"
-next_room_by_dir['e'] = "East"
-next_room_by_dir['w'] = "West"
+class Item():
+  def __init__(self, name, description):
+    self.name = name
+    self.description = description
+  def __inter__(self):
+    return iter(self)
 
 
-inp = n
-print(next_room_by_dir[inp])
+# test = [{'name':1,'desc':2},{'name':11,'desc':22},{'name':111,'desc':222}]
+test = [Item('r',23423), Item('p', 234234), Item('s', 234234)]
+
+# print([i[k] for i in test for k in i if k=='name'])
+
+x = []
+for i in test:
+  print(i)
+  x.append(i.name)
+
+print(x)
+
