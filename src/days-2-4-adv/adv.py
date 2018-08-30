@@ -151,7 +151,7 @@ while True:
         print("You can't even see the hand in front of your face!")
     # shows items in the room, if there are any
     # input
-    inp=input("\nEnter a command: ")
+    inp = input("\nEnter a command: ")
 
     if inp == 'q' or inp == 'quit':
         print("Thanks for playing!\n")
@@ -159,29 +159,29 @@ while True:
     elif inp == 'n' or inp == "north":
         try:
             if (room[player.location].n_to):
-                player.location=room[player.location].n_to
+                player.location = room[player.location].n_to
         except:
             print("Can't continue north\n")
     elif inp == 's' or inp == "south":
         try:
             if (room[player.location].s_to):
-                player.location=room[player.location].s_to
+                player.location = room[player.location].s_to
         except:
             print("Can't continue south\n")
     elif inp == 'e' or inp == "east":
         try:
             if (room[player.location].e_to):
-                player.location=room[player.location].e_to
+                player.location = room[player.location].e_to
         except:
             print("Can't continue east\n")
     elif inp == 'w' or inp == "west":
         try:
             if (room[player.location].w_to):
-                player.location=room[player.location].w_to
+                player.location = room[player.location].w_to
         except:
             print("Can't continue west\n")
     elif inp == 'exits':
-        exits='You can exit: '
+        exits = 'You can exit: '
         try:
             if (room[player.location].n_to):
                 exits += "n, "
@@ -210,7 +210,7 @@ while True:
     elif inp.startswith('take') or inp.startswith('get'):
         if (room[player.location].is_light or checkInventory('lamp')):
             try:
-                item=inp.split(' ')[1]
+                item = inp.split(' ')[1]
                 # check to see if the item is in the room
                 if (room[player.location].drop(item)):
                     # item is in the room, so player can take it
@@ -226,7 +226,7 @@ while True:
             print("Good luck finding that in the dark!")
     elif inp.startswith('drop'):
         try:
-            item=inp.split(' ')[1]
+            item = inp.split(' ')[1]
             # check to see if the item is in player inventory
             if (player.drop(item)):
                 print('Dropping {}\n'.format(item))
@@ -235,22 +235,45 @@ while True:
             print("You must enter something to drop.\n")
     elif inp.startswith('eat'):
         try:
-            ateItem=False
-            inv=player.getInventory()
-            item=inp.split(' ')[1]
+            ateItem = False
+            inv = player.getInventory()
+            item = inp.split(' ')[1]
             if (inv.keys()):
                 for key in inv:
                     if key == item:
                         print('Eating {}\n'.format(item))
                         player.eat(item_dict[item])
-                        ateItem=True
+                        ateItem = True
                         break
             if (not ateItem):
                 print("You don't have a {} to eat!\n".format(item))
         except:
             print("You cannot eat that!")
+    elif inp.startswith('equip'):
+        try:
+            equipItem = False
+            haveItem = False
+            inv = player.getInventory()
+            item = inp.split(' ')[1]
+            if (inv.keys()):
+                for key in inv:
+                    if key == item and isinstance(item_dict[item], Weapon):
+                        print('Equipping {}\n'.format(item))
+                        player.equip(item_dict[item])
+                        equipItem = True
+                        haveItem = True
+                        break
+                    if key == item:
+                        haveItem = True
+                        break
+            if (haveItem and not equipItem):
+                print("You can't equip a {}".format(item))
+            if (not haveItem):
+                print("You don't have a {} to equip!\n".format(item))
+        except:
+            print("You cannot equip that.")            
     elif inp == 'i' or inp == "inventory":
-        inv=player.getInventory()
+        inv = player.getInventory()
         if (inv.keys()):
             print("your stuff:\n")
             for key in inv:
@@ -264,6 +287,6 @@ while True:
     elif inp == 'status':
         player.getStatus()
     elif inp == "h" or inp == "help":
-        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, get, drop, score, status, exits, i)nventory, q)uit, h)elp\n")
+        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, get, drop, equip, score, status, exits, i)nventory, q)uit, h)elp\n")
     else:
         print("I don't know that command")

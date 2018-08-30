@@ -54,5 +54,7 @@ class Player:
         print(f'Health: \t{self.health}')
         print(f'Score: \t\t{self.score}')
 
+    def equip(self, item):
+        print("You have been equipped! with {}.\n".format(item))
     # def addScore(self, value):
     #     self.score += value
