@@ -9,7 +9,10 @@ class Room:
     def remove_item(self, item):
         del self.items[self.items.index(item)]
     def check_for_item(self, item_name):
-        return item_name in self.items
+        for item in self.items:
+            if item.name == item_name:
+                return True
+        return False
 
 class Player:
     def __init__(self, room, items=[]):
@@ -20,7 +23,10 @@ class Player:
     def drop(self, item):
         del self.items[self.items.index(item)]
     def check_for_item(self, item_name):
-        return item_name in self.items
+        for item in self.items:
+            if item.name == item_name:
+                return True
+        return False
 
 class Item:
     def __init__(self, name):
