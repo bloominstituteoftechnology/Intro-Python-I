@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Treasure
 # Declare all the rooms
 
 room = {
@@ -34,8 +34,13 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-item1 = Item('Food', 'Some food to eat')
-room['outside'].items.append(item1)
+t1 = Treasure('Gold', 'Some nice looking gold', 50)
+t2 = Treasure('Silver', 'Some nice looking silver', 20)
+t3 = Treasure('Staff', 'A rare looking staff', 200)
+room['foyer'].items.append(t1)
+room['narrow'].items.append(t2)
+room['treasure'].items.append(t3)
+
 #
 # Main
 #
