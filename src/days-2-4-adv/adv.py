@@ -41,23 +41,54 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 from player import Player
-player1 = Player('Bob', 'outside')
-print(player1.location)
+player1 = Player(input('Enter player name: '), room['outside'])
+
 # Write a loop that:
-#
+
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 
-
-        
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
 
 
+while True:
+    print(player1.location.name + '\n'+ player1.location.description)
 
+    command = input('Next move: ')
+    validCommands = ['n', 's', 'e', 'w','q']
+
+    if command == 'q':
+        print('GAME OVER')
+        break
+
+    if command in validCommands:
+        dirAttr = command + '_to'
+
+        if hasattr(player1.location, dirAttr): #The arguments are an object and a string. The result is True if the string is the name of one of the object’s attributes, False if not.
+            player1.location = getattr(player1.location, dirAttr)
+        else:
+            print('Can\'t go that way! Please choose a different direction.')
+    
+    else:
+        print('Invalid command.')
+    
+        
+
+
+    
+
+# room['outside'].n_to = room['foyer']
+# room['foyer'].s_to = room['outside']
+# room['foyer'].n_to = room['overlook']
+# room['foyer'].e_to = room['narrow']
+# room['overlook'].s_to = room['foyer']
+# room['narrow'].w_to = room['foyer']
+# room['narrow'].n_to = room['treasure']
+# room['treasure'].s_to = room['narrow']
 
 
 
