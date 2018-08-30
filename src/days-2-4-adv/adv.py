@@ -66,7 +66,7 @@ validDirection: ['n', 's', 'e', 'w']
 # Make a new player object that is currently in the 'outside' room.
 
 name = input("What is your name? ")
-player = Player(name, room['outside'], [])
+player = Player(name, room['outside'], [], 0)
 
 print (f"Welcome, {player.name}!\n")
 # Write a loop that:
@@ -116,6 +116,8 @@ while True:
         else:
             for i in player.items:
                 print(f"\n{i.name}\n")
+    elif inp_args[0] == "score":
+        print(player.score)
     else:
         print('That command is not recognized.')
         suppressRoomPrint = True

@@ -3,10 +3,11 @@
 from room import Room
 
 class Player:
-    def __init__(self, name, startLocation, items):
+    def __init__(self, name, startLocation, items, score):
         self.name = name
         self.location = startLocation
         self.items = items
+        self.score = score
     def changeLocation(self, newLocation):
         self.location = newLocation
     def __repr__(self):
