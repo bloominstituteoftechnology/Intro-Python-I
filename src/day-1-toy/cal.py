@@ -3,7 +3,7 @@
 #
 # Use the sys module to look for command line arguments in the `argv` list
 # variable.
-#
+
 # If the user specifies two command line arguments, month and year, then draw
 # the calendar for that month.
 
@@ -14,3 +14,7 @@
 # docs for the calendar module closely.
 
 import sys
+
+args = sys.argv
+
+class.calendar.itermonthdates()
