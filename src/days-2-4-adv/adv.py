@@ -113,7 +113,7 @@ while True:
             else:
                 printErrorString('Cannot go that way!')
         elif(inp[0] == 'r'):
-            printErrorString(f'{player.room.name}\n{player.room.description}')
+            print(f'{player.room.name}\n{player.room.description}')
             printRoomItems()
         elif(inp[0] in ['i', 'inventory']):
             printPlayerItems()
@@ -125,21 +125,29 @@ while True:
             printErrorString('Invalid input, please try again.')
     elif(len(inp) == 2):
         if(inp[0] in ['get', 'take']):
-            for item in player.room.items:
-                if item.name.lower() == inp[1]:
-                    item.on_take(player)
-                    player.room.items.remove(item)
-                    player.items.append(item)
-                    suppressRoomPrint = True
-                else:
-                    printErrorString('Item not found.')
+            if(len(player.room.items) > 0):
+                for item in player.room.items:
+                    if item.name.lower() == inp[1]:
+                        item.on_take(player)
+                        player.room.items.remove(item)
+                        player.items.append(item)
+                        suppressRoomPrint = True
+                    else:
+                        printErrorString('Item not found.')
+            else:
+                printErrorString('There are no items in this room to take!')
         elif(inp[0] == 'drop'):
-            for item in player.items:
-                if item.name.lower() == inp[1]:
-                    player.items.remove(item)
-                    player.room.items.append(item)
-                else:
-                    printErrorString('Item not found.')
+            if(len(player.items) > 0):
+                for item in player.items:
+                    if item.name.lower() == inp[1]:
+                        item.on_drop()
+                        player.items.remove(item)
+                        player.room.items.append(item)
+                        suppressRoomPrint = True
+                    else:
+                        printErrorString('Item not found.')
+            else:
+                printErrorString('You have no items to drop!')
         else:
             printErrorString('Invalid input, please try again.')
     else:
