@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Treasure
+from item import Treasure, LightSource
 # Declare all the rooms
 
 room = {
@@ -38,7 +38,7 @@ room['outside'].is_light = False
 
 t1 = Treasure('Gold', 'Some nice looking gold', 50)
 t2 = Treasure('Silver', 'Some nice looking silver', 20)
-t3 = Treasure('Staff', 'A rare looking staff', 200)
+t3 = LightSource('Torch', 'A lit torch')
 room['foyer'].items.append(t1)
 room['narrow'].items.append(t2)
 room['treasure'].items.append(t3)
@@ -82,6 +82,11 @@ def printRoomItems():
     else:
         print('\nRoom Items: None')
 
+def getItem(name, obj):
+    for item in obj.items:
+        if item.name.lower() == name:
+            return item
+
 def printCommands():
     printErrorString("""q = Quit
 n = Move North
@@ -100,7 +105,9 @@ while True:
         suppressRoomPrint = False
     else:
         print('\n ==========================-----------------------==========================\n')
-        if(player.room.is_light):
+        light_sources = [item for item in player.items + player.room.items if isinstance(item, LightSource)]
+        is_light = player.room.is_light or len(light_sources) > 0
+        if(is_light):
             print(f"{player.room.name}\n{player.room.description}")
             printRoomItems()
         else:
@@ -130,27 +137,29 @@ while True:
             printErrorString('Invalid input, please try again.')
     elif(len(inp) == 2):
         if(inp[0] in ['get', 'take']):
-            if(len(player.room.items) > 0):
-                for item in player.room.items:
-                    if item.name.lower() == inp[1]:
-                        item.on_take(player)
-                        player.room.items.remove(item)
-                        player.items.append(item)
-                        suppressRoomPrint = True
-                    else:
-                        printErrorString('Item not found.')
+            if(len(player.room.items) > 0 and is_light):
+                item = getItem(inp[1], player.room)
+                if item == None:
+                    printErrorString('Item not found.')
+                else:
+                    item.on_take(player)
+                    player.room.items.remove(item)
+                    player.items.append(item)
+                    suppressRoomPrint = True
+            elif(not is_light):
+                printErrorString('Good luck finding that in the dark!')
             else:
                 printErrorString('There are no items in this room to take!')
         elif(inp[0] == 'drop'):
             if(len(player.items) > 0):
-                for item in player.items:
-                    if item.name.lower() == inp[1]:
-                        item.on_drop()
-                        player.items.remove(item)
-                        player.room.items.append(item)
-                        suppressRoomPrint = True
-                    else:
-                        printErrorString('Item not found.')
+                item = getItem(inp[1], player)
+                if item == None:
+                    printErrorString('Item not found.')
+                else:
+                    item.on_drop()
+                    player.items.remove(item)
+                    player.room.items.append(item)
+                    suppressRoomPrint = True           
             else:
                 printErrorString('You have no items to drop!')
         else:

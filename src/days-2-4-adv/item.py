@@ -4,7 +4,7 @@ class Item:
         self.description = description
 
     def on_take(self, player):
-        print(f'Picked up {self.name}!')
+        print(f'\x1b[1;31;40m\nPicked up {self.name}!\x1b[0m')
 
     def on_drop(self):
         print(f'\x1b[1;31;40m\nDropped {self.name}\x1b[0m')
@@ -28,4 +28,4 @@ class LightSource(Item):
         super().__init__(name, description)
         
     def on_drop(self):
-        print('It\'s not wise to drop your source of light!')
+        print(f'\x1b[1;31;40m\nIt\'s not wise to drop your source of light!\n\nDropped {self.name}\x1b[0m')
