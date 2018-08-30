@@ -1,7 +1,10 @@
 from room import Room
 from player import Player
+from items import *
 from dialogue import Dialogue
+from game_system import Game_System
 import os
+import re
 # Declare all the rooms
 
 room = {
@@ -32,39 +35,56 @@ room['overlook'].connect_rooms('w',room['narrow'])
 room['narrow'].connect_rooms('s',room['treasure'])
 room['treasure'].connect_one_way('s',room['outside'])
 
-def displayHelp():
-    print("""
-    Type in a command:
+# Item Creation
+debris = Item('debris', 'It is just a useless item', {})
+print(debris.name)
+# Add items to rooms
 
-    Directions[n,s,e,w]
+room['outside'].add_item(debris)
+# functions that only belong in this file
+def print_format_string(color, message):
+    colors = {
+        'success': '\x1b[6;30;42m',
+        'error': '\x1b[0;30;41m'
+    }
+    print(f'${colors[color]}{message}\x1b[0m')
 
-    Get info: [se: scan enemies]
+# Start of game
+Dialogue.intro()
 
-    Battle: [a [Enemy]: attack [Enemy]]
+# name, age, height, weight, hp, attack, defense, inventory
+restart = 'r'
+while restart == 'r':
+    player = Player.create_player()
 
-    Other commands: [q: quit]
+    restart = input(
+    f"""
+    Your starting character attributes:
+
+    {player}
+
+    Enter r to restart putting bio information
+
+    Press enter to continue
     """)
 
-def printErrorString(errorString):
-    print(f'\x1b[1;31;40m\n{errorString}\x1b[0m\n')
-
-Dialogue.intro()
-player = Player.create_player()
 player.set_location(room['outside'])
 Dialogue.greet_player(player.name)
 
 playerCommands = {
     'directions': ['n','s','w','e'],
-    'help': displayHelp,
-    'hp': player.check_hp,
-    'q': quit
+    'help': Game_System.display_help,
+    'hp': player.get_hp,
+    'q': quit,
+    'look for items': player.look_for_items,
+    'check inventory': player.get_inventory,
 }
 
 
 while(True):
     player.get_current_location()
     
-    command = input(">>>")
+    command = input(">>> ")
     
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -75,8 +95,6 @@ while(True):
     
     if command in playerCommands:
         playerCommands[command]()
-    else:
-        printErrorString('Invalid command')
 
 #
 # Main

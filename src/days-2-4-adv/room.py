@@ -11,7 +11,7 @@ class Room:
             'e': None,
             'w': None
         }
-       
+        self.items = []
         self.enemies = []
     
     def get_room_info(self):
@@ -46,7 +46,7 @@ class Room:
         'w': 'e',
         'e': 'w'
         };
-        
+
         if to in oppositeDirection:
             self.connectedRooms[to] = destinationRoom
             destinationRoom.connectedRooms[oppositeDirection[to]] = self
@@ -54,5 +54,8 @@ class Room:
         else:
             print('Please give a valid direction')
             return
+
+    def add_item(self,item):
+        self.items.append(item)
 
 
