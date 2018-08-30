@@ -6,3 +6,10 @@ class Room:
     self.name = name
     self.description = description
     self.items = []
+
+  def removeItem(self, item):
+    if len(self.items) > 0:
+      self.items.remove(item)
+
+  def addItem(self, item):
+    self.items.append(item)

@@ -12,21 +12,20 @@ room = {
 passages run north and east."""),
 
     'overlook': Room("at the grand overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("in the narrow passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
 
     'treasure': Room("inside the treasure chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."""),
 }
 
 # Add items to two rooms
 
-room['foyer'].items.append(Items("flashlight", "\'Take flashlight\' and use it to illuminate the passages"))
-room['treasure'].items.append(Items("coin", "\'Take coin\' as consolation for an empty chest"))
+room['outside'].items.append(Items("shovel", "Enter \'take shovel\' to dig holes and defend yourself from zombies"))
+room['foyer'].items.append(Items("flashlight", "Enter \'take flashlight\' and use it to illuminate the passages"))
+room['treasure'].items.append(Items("coin", "Enter \'take coin\' as consolation for an empty chest"))
 
 # Link rooms together
 
@@ -58,11 +57,13 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-print('\nWelcome to TAG, the text adventure game!')
-print('\nFollow the prompts on screen.\n~Enter \'Where am I?\' for your current location\n~Enter \'q\' to quit')
+print('\n~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')
+print('~ ~ ~ ~ ~ ~ Welcome to TAG, ~ ~ ~ ~ ~ ~ ~')
+print('~ ~ ~ ~ the text adventure game! ~ ~ ~ ~')
+print('~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~')
+print('\nFollow the prompts - find the treasure.')
 
 while True:
-    print('\n ~ ~ ~')
 
     print("\n                        _.--.")
     print("                    _.-'_:-'||")
@@ -92,22 +93,53 @@ while True:
     if len(player.room.items) > 0:
         for i in player.room.items:
             print('\nOn the ground you see a %s' % (i.name))
-        else:
-            print()
+            print('\n... %s' % (i.description))
+
+    # Player input prompt
+
+    inp = input("\nDirections: \'n\'orth, \'e\'ast, \'s\'outh or \'w\'est\nActions: \'take [item]'\', \'drop [item]\' or \'q\'uit\nEnter a command: ").split(' ')
+    
+    # Single word commands
+
+    if len(inp) == 1:
+
+        if inp[0] in ['n', 's', 'e', 'w']:
+            if hasattr(player.room, inp[0] + '_to'):
+                player.room = getattr(player.room, inp[0] + '_to')
+            else:
+                print('\nTHOUGH SHALL NOT PASS. TRY A DIFFERENT DIRECTION.')
+
+        elif inp[0] == 'i' or 'inventory':
+            if len(player.items) == 0:
+                print('\n You aren\'t carrying anything')
+            else:
+                print('\n You\'re carrying: %s' % (player.items))
+
+        elif inp[0] == 'q':
+            print('\nQuitting game...\n')
+            break
+
+        elif inp[0] != ['n', 's', 'e', 'w']:
+            print("\nINVALID INPUT, PLEASE ENTER \'n\', \'e\', \'s\' or \'w\'")
         
 
 
+    # Two word commands
+    
+    if len(inp) == 2:
 
+        if inp[0] == 'take':
+            player.addItem(inp[1])
+            print(player.items)
+            player.room.removeItem(player.room.items[0]) 
+            # what happens if there is more than one item in the list?
+            # how can we find the removeItem(item) by name instead?
+            print('\nYou are now carrying the %s' % (inp[1]))
 
-    inp = input('\nWhich direction do you want to go? (n/e/s/w): ')
-    if inp == 'q':
-        print('\nQuitting application...\n')
-        break
-    elif inp in ['n', 's', 'e', 'w']:
-        if hasattr(player.room, inp + '_to'):
-            player.room = getattr(player.room, inp + '_to')
-        else:
-            print('\nTHOUGH SHALL NOT PASS. TRY A DIFFERENT DIRECTION.')
-    elif inp != ['n', 's', 'e', 'w']:
-        print("\nINVALID INPUT, PLEASE ENTER \'n\', \'e\', \'s\' or \'w\'")
-        
+        # if inp[0] == 'drop':
+        #     print(inp[1])
+        #     player.room.addItem(inp[1])
+            
+            # player.removeItem(player.items[0]) 
+            # print('\nYou are no longer carrying the %s' % (inp[1]))
+            
