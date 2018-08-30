@@ -9,20 +9,21 @@ import textwrap
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons",
+                     "North of you, the cave mount beckons", True,
                      [Item("Rock", """Who knows how useful this could be!"""),
                      Item("Grass", """A nutritious treat should you get hungry in your travels"""),
-                     Item("Key", """Who knows what doors this may open?""")]),
+                     Item("Key", """Who knows what doors this may open?"""),
+                     LightSource("Torch", """Batteries included""")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-                    passages run north and east.""",
+                    passages run north and east.""", False,
                     [Item("Umbrella", """This will protect against suppressive waterpower"""),
                     Treasure("Briefcase", """An Ominous Black Briefcase with
                     gold light emanating from inside""", 666)]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
                     into the darkness. Ahead to the north, a light flickers in
-                    the distance, but there is no way across the chasm.""",
+                    the distance, but there is no way across the chasm.""", True,
                     [Item("Axe", """Heeeerrre's Johnny!"""),
                     Treasure("Native American Artifact",
                     """Legend says this artifact allows the possessor to
@@ -30,13 +31,12 @@ room = {
                     1980)]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-                    to north. The smell of gold permeates the air.""",
-                    [LightSource("Torch", """Batteries included"""),
-                    Item("Wet Mud", """Gross!""")]),
+                    to north. The smell of gold permeates the air.""", False,
+                    [Item("Wet Mud", """Gross!""")]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
                     chamber! Sadly, it has already been completely emptied by
-                    earlier adventurers. The only exit is to the south.""",
+                    earlier adventurers. The only exit is to the south.""", False,
                     [Item("Empty Treasure Chest",
                     "A big box that once held great treasure"),
                     Treasure("Gold Coin", """All that's left...""", 1),
@@ -74,6 +74,15 @@ def moveCommand(player, *args):
         suppressRoomPrint = True
     else:
         player.change_location(newRoom)
+        light_sources = [item for item in player.inventory if isinstance(item, LightSource)]
+        is_light = player.location.is_light or len(light_sources) > 0
+        if is_light:
+            print(player.location)
+            return True
+        else:
+            print("It's pitch black!")
+            return True
+
 
 def lookCommand(player, *args):
     if not (args[0] == 'l' or args[0] == 'look'):
@@ -89,12 +98,19 @@ def lookCommand(player, *args):
             printErrorString('Nothing to see overthere')
         return True
     elif args[1] == 'around':
-        print('\nRoom contains:')
-        index = 0
-        for item in player.location.items:
-            print(f'\n-- ({index}) {item} --\n')
-            index += 1
-        return True
+        light_sources = [item for item in player.inventory if isinstance(item, LightSource)]
+        is_light = player.location.is_light or len(light_sources) > 0
+        if is_light:
+            print('\nRoom contains:')
+            index = 0
+            for item in player.location.items:
+                print(f'\n-- ({index}) {item} --\n')
+                index += 1
+            return True
+        else:
+            print("It's pitch black!")
+            return True
+
     elif args[1] == 'inside':
         print('\nINVENTORY: ')
         index = 0
@@ -112,6 +128,7 @@ def getCommand(player, *args):
         player.inventory.append(player.location.items[int(args[1])])
         player.score += player.location.items[int(args[1])].on_take()
         player.location.items.pop(int(args[1]))
+        return True
     else:
         printErrorString("Better GET the heck outta here! Not a valid command, boss")
 
@@ -181,7 +198,8 @@ while(True):
     if suppressRoomPrint:
         suppressRoomPrint = False
     else:
-        print(player1.location)
+        print("Welcome to the game you are...")
+        print(room['outside'])
     inputList = input('>>> ').split(' ')
     # If the user enters "q", quit the game.
     if inputList[0] == 'q':
