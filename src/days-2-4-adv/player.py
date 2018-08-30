@@ -5,3 +5,4 @@ class Player:
     self.name = name
     self.location = location
     self.inventory = inventory
+    self.score = 0
