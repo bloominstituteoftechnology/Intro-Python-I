@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -51,10 +52,16 @@ room['treasure'].s_to = room['narrow']
 #
 # If the user enters "q", quit the game.
 
-player = Player(room['outside'])
+gold = Item("Gold", "The warm glow is enticing.")
+axe = Item("Battle Axe", "Close quarters weapon.")
+
+room['outside'].addItem(gold)
+
+
+player = Player(room['outside'], axe)
 ast = "\n*********************************************\n"
 while True:
-    print (f"{ast}You are at the {player.location.title.upper()}\n   {player.location.description}{ast}")
+    print (f"{ast}You are at the {player.location.name.upper()}\n   {player.location.description}{ast}")
     inp = input(">>> ENTER YOUR COMMAND: ").lower()
     if inp == "q":
         break
@@ -64,3 +71,8 @@ while True:
             print ("You can not move in that direction.")
         else:
             player.changeLocation(newRoom)
+    if inp == "inventory" or inp == "i":
+        print(f"Your inventory contains: {player.items}")
+    if inp == "look" or inp == "l":
+        print(f"{room.items}")
+
