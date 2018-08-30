@@ -7,11 +7,6 @@
     def yesNo(x):
     if x = "yes":
 
-
-
-
-
-
 class Room:
     def __init__(self, title, description):
         self.title = title
