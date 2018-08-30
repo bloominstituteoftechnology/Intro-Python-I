@@ -8,6 +8,7 @@ class Player():
         self.room = room
         self.items = []
         self.score = 0
+        self.health = 100
 
     def getScore(self):
         print("You currently have {} points, pick up more items to earn more points.".format(

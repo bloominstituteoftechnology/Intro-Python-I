@@ -21,6 +21,8 @@ to north. The smell of gold permeates the air.""", True),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", False),
+
+    'kitchen': Room("Kitchen Room", """The aroma in here smells like bread and cookies. Wonder what is in here.""", False)
 }
 
 
@@ -33,6 +35,10 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+room['outside'].e_to = room['kitchen']
+room['narrow'].s_to = room['kitchen']
+room['kitchen'].w_to = room['outside']
+room['kitchen'].n_to = room['narrow']
 
 
 #
@@ -80,6 +86,7 @@ new_item3 = Item("gold", "This should belong in the treasure room.")
 room['outside'].items.append(new_item)
 room['foyer'].items.append(new_item2)
 room['treasure'].items.append(new_item3)
+room['kitchen'].items.append(Item("cookies", "smells good"))
 
 # adding treasures
 treasure1 = Treasure("money", "currency", 100)
