@@ -20,22 +20,27 @@ room = {
                     gold light emanating from inside""", 666)]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [Item("Axe",
-"""Heeeerrre's Johnny!"""), Treasure("Native American Artifact", """Legend says this
-artifact allows the possessor to communicate telepathically with the ghost of
-Scatman Crothers""", 1980)]),
+                    into the darkness. Ahead to the north, a light flickers in
+                    the distance, but there is no way across the chasm.""",
+                    [Item("Axe", """Heeeerrre's Johnny!"""),
+                    Treasure("Native American Artifact",
+                    """Legend says this artifact allows the possessor to
+                    communicate telepathically with the ghost of Scatman Crothers""",
+                    1980)]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", [Item("Torch", """Batteries
-included"""), Item("Wet Mud", """Gross!""")]),
+                    to north. The smell of gold permeates the air.""",
+                    [Item("Torch", """Batteries included"""),
+                    Item("Wet Mud", """Gross!""")]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [Item("Empty Treasure Chest",
-"A big box that once held great treasure"), Treasure("Gold Coin",
-"""All that's left...""", 1), Item("Scribbled Note", """A note
-containing a famous director's explanation of a mysterious hotel room...""")]),
+                    chamber! Sadly, it has already been completely emptied by
+                    earlier adventurers. The only exit is to the south.""",
+                    [Item("Empty Treasure Chest",
+                    "A big box that once held great treasure"),
+                    Treasure("Gold Coin", """All that's left...""", 1),
+                    Item("Scribbled Note", """A note containing a famous
+                    director's explanation of a mysterious hotel room...""")]),
 }
 
 
