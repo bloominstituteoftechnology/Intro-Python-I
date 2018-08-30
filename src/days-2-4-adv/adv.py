@@ -117,18 +117,19 @@ def checkInventory(player, *args):
 def getItem(player, *args):
   itemToGet = player.location.findItemByName(args[1])
   if itemToGet is not None:
-    if getattr(itemToGet, 'value') > 0:
+    value = getattr(itemToGet, 'value')
+    if value > 0:
       if getattr(itemToGet, 'picked_up') == True:
         player.addItem(itemToGet)
         player.location.removeItem(itemToGet)
         print(f'You added {itemToGet} to inventory')
-      elif getattr(itemToGet) == False:
+      elif getattr(itemToGet, 'picked_up') == False:
         itemToGet.picked_up = True
         player.addItem(itemToGet)
         player.location.removeItem(itemToGet)
         print(f'You added {itemToGet} to inventory')
-        print(f'You got {player.addToScore(item)} points!')
-    elif getattr(itemToGet, 'value') == 0:
+        player.addToScore(value)
+    elif value == 0:
       player.addItem(itemToGet)
       player.location.removeItem(itemToGet)
       print(f'You added {itemToGet} to inventory')

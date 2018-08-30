@@ -1,8 +1,8 @@
 class Item:
-  def __init__(self, name, description):
+  def __init__(self, name, description, value = 0):
     self.name = name
     self.description = description
-    self.value = 0
+    self.value = value
   def __repr__(self):
     return f'{self.name}'
   def __str__(self):
@@ -14,9 +14,9 @@ class Item:
 
 class Commodity(Item):
   def __init__(self, name, description, value):
-      self.value = value
+      super().__init__(name, description, value)
       self.picked_up = False
-      super().__init__(name, description)
+      
   def on_take(self, player):
     if self.picked_up is False:
       player.score += self.value

@@ -2,10 +2,10 @@
 # currently.
 
 class Player:
-    def __init__(self, location):
+    def __init__(self, location, score = 0):
         self.location = location
         self.inventory = []
-        self.score = 0
+        self.score = score
     def change_location(self, new_location):
         self.location = new_location
     # def __repr__(self):
@@ -26,6 +26,6 @@ class Player:
       return None
     def getInventoryString(self):
       return ", ".join([item.name for item in self.inventory])
-    def addToScore(self, item):
-      self.score += item.value
-      return item.value
+    def addToScore(self, value):
+      self.score += value
+      print(f'You get {value} points!')
