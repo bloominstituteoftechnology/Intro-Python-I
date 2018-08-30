@@ -3,8 +3,11 @@ from player import Player
 from items import *
 from dialogue import Dialogue
 from game_system import Game_System
+from functools import partial
 import os
 import re
+from functools import partial
+
 # Declare all the rooms
 
 room = {
@@ -45,9 +48,24 @@ room['outside'].add_item(debris)
 def print_format_string(color, message):
     colors = {
         'success': '\x1b[6;30;42m',
-        'error': '\x1b[0;30;41m'
+        'error': '\x1b[1;31;40m'
     }
     print(f'${colors[color]}{message}\x1b[0m')
+
+def treeSearch(userInput, obj):
+  if type(obj) != dict:
+    obj()
+    return
+  
+  if userInput[0] in obj:
+    newObj = obj[userInput[0]]
+  else:
+    print_format_string('error','Invalid command')
+    return
+  
+  newUserInput = userInput[1:]
+
+  treeSearch(newUserInput, newObj)
 
 # Start of game
 Dialogue.intro()
@@ -72,12 +90,22 @@ player.set_location(room['outside'])
 Dialogue.greet_player(player.name)
 
 playerCommands = {
-    'directions': ['n','s','w','e'],
+    'n': partial(player.go_direction, 'n'),
+    's': partial(player.go_direction, 's'),
+    'e': partial(player.go_direction, 'e'),
+    'w': partial(player.go_direction, 'w'),
     'help': Game_System.display_help,
     'hp': player.get_hp,
     'q': quit,
-    'look for items': player.look_for_items,
-    'check inventory': player.get_inventory,
+    'look':{
+        'for': {
+            'items': player.look_for_items,
+            'enemies': player.look_for_enemies
+        },
+    },
+    'check':{
+         'inventory': player.get_inventory,
+    },
 }
 
 
@@ -88,13 +116,10 @@ while(True):
     
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    
-    for direction in playerCommands['directions']:
-        if command == direction:
-            player.go_direction(command)
-    
-    if command in playerCommands:
-        playerCommands[command]()
+    pattern = re.compile(r'\s+')
+    command = re.split(pattern, command)
+    treeSearch(command, playerCommands)
+
 
 #
 # Main
