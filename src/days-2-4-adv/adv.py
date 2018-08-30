@@ -81,7 +81,7 @@ n = Move North
 e = Move East
 s = Move South
 w = Move West
-r = Show current room
+r = Show current room info
 i / inventory = Check player items
 get (item) / take (item) = Takes item from room
 drop (item) = Drops item from player inventory""")
@@ -114,6 +114,8 @@ while True:
             printPlayerItems()
         elif(inp[0] == 'help'):
             printCommands()
+        elif(inp[0] == 'score'):
+            printErrorString(f'Score: {player.score}')
         else:
             printErrorString('Invalid input, please try again.')
     elif(len(inp) == 2):
