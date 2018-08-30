@@ -23,3 +23,12 @@ class Room:
             return self.w_to
         else:
             return None
+    def findItemByName(self, name):
+      for item in self.contents:
+        if item.name.lower() == name.lower():
+          return item
+      return None
+    def removeItem(self, item):
+      self.contents.remove(item)
+    def addItem(self, item):
+      self.contents.append(item)

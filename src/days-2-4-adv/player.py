@@ -10,4 +10,18 @@ class Player:
     # def __repr__(self):
     #     return "Current Location: {}".format(self.location)
     def __str__(self):
-        return "Current Inventory: {}".format(self.inventory) 
+        return f'Current Location: {self.location.title}'
+    def addItem(self, item):
+      self.inventory.append(item)
+    def dropItem(self, item):
+      item.on_drop()
+      self.inventory.remove(item)
+    def removeItem(self, item):
+      self.inventory.remove(item)
+    def findItemByName(self, name):
+      for item in self.inventory:
+        if item.name.lower() == name.lower():
+          return item
+      return None
+    def getInventoryString(self):
+      return ", ".join([item.name for item in self.inventory])

@@ -5,38 +5,42 @@ from item import Item
 # Declare all the rooms
 
 room = {
-    'Cargo': Room("Cargo Bay", """You are inside the cargo hold of an abandonded space station. 
+    'cargo': Room("Cargo Bay", """You are inside the cargo hold of an abandonded space station. 
     The only door is to the north."""),
-    'Corridor': Room("Corridor", """Dim lights flicker in the corridor. 
+    'corridor': Room("Corridor", """Dim lights flicker in the corridor. 
     Derelict passages run north and east."""),
-    'Holodeck': Room("Holodeck", """The doors to the holodeck slide open. 
+    'holodeck': Room("Holodeck", """The doors to the holodeck slide open. 
     You enter, an old program seems to be playing in a loop. 
     'Get ooouuuutt' a phantom voice seems to whisper quietly in the air. 
     The only exit is to the south"""),
-    'Narrow':   Room("Narrow", """The narrow passage bends here from west to north. 
+    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west to north. 
     The smell of ash permeates the air."""),
-    'Incinerator': Room("Incinerator", """You've found the incinerator room! 
+    'incinerator': Room("Incinerator", """You've found the incinerator room! 
     All that remains is ash. 
     The only exit is to the south."""),
 }
 
 # Link rooms together
 
-room['Cargo'].n_to = room['Corridor']
-room['Corridor'].s_to = room['Cargo']
-room['Corridor'].n_to = room['Holodeck']
-room['Corridor'].e_to = room['Narrow']
-room['Holodeck'].s_to = room['Corridor']
-room['Narrow'].w_to = room['Corridor']
-room['Narrow'].n_to = room['Incinerator']
-room['Incinerator'].s_to = room['Narrow']
+room['cargo'].n_to = room['corridor']
+room['corridor'].s_to = room['cargo']
+room['corridor'].n_to = room['holodeck']
+room['corridor'].e_to = room['narrow']
+room['holodeck'].s_to = room['corridor']
+room['narrow'].w_to = room['corridor']
+room['narrow'].n_to = room['incinerator']
+room['incinerator'].s_to = room['narrow']
 
 # items
+
 item = Item("screwdriver", "A screwdriver, but it does extra space stuff too")
-room['Cargo'].contents.append(item)
+room['cargo'].contents.append(item)
+
+item = Item("shield", "A small, broken shield")
+room['cargo'].contents.append(item)
 
 item = Item("cat skull", "The skull of a cat")
-room['Incinerator'].contents.append(item)
+room['incinerator'].contents.append(item)
 
 # Game Variables
 suppressRoomPrint = False
@@ -47,7 +51,7 @@ validDirections = ['n', 's', 'e', 'w']
 #
 
 # Make a new player object that is currently in the 'cargo' room.
-player = Player(room['Cargo'])  
+player = Player(room['cargo'])  
 
 # Command functions
 
@@ -60,27 +64,36 @@ def moveCommand(player, *args):
     player.change_location(newRoom)
   return False
 
-def inspectRoom(player, *args):
-  if player.location.contents == []:
-    print('The room is empty')
-  else:
-    print('The room contains:')
-    for item in player.location.contents:
-      print(f'{item}')
-  return True
-
 def look(player, *args):
   if not args[0] == 'l':
     printErrorString("That is not a look command")
   elif (len(args)) == 1:
-    return False
-  elif args[1] in validDirections:
-    lookedRoom = player.location.getRoomInDirection(args[1])
-    if lookedRoom is not None:
-      print(lookedRoom)
+    print (f"\n  {player.location.title}\n    {player.location.description}\n" )
+    if player.location.contents == []:
+      print('The room is empty')
     else:
-      printErrorString('Nothing is in that direction')
+      print('The room contains:')
+      for item in player.location.contents:
+        print(f'{item}')
     return True
+  currentInput = 1
+  while currentInput < len(args):
+    if args[currentInput] in validDirections:
+      lookedRoom = player.location.getRoomInDirection(args[currentInput])
+      if lookedRoom is not None:
+        print(lookedRoom)
+      else:
+        printErrorString('There is nothing in that direction')
+    else:
+      itemToLookAt = player.findItemByName(args[currentInput])
+      if itemToLookAt is None:
+        itemToLookAt = player.location.findItemByName(args[currentInput])
+      if itemToLookAt is None:
+        printErrorString('No such item')
+      else:
+        print(itemToLookAt.getDescription())
+    currentInput += 1
+  return True
 
 def checkInventory(player, *args):
   if(player.inventory == []):
@@ -88,17 +101,24 @@ def checkInventory(player, *args):
   else:
     for item in player.inventory:
       print(item)
-    return True
+  return True
 
 def getItem(player, *args):
-  print(args[1])
-  if(args[1] in player.location.contents):
-    room[player.location.title].contents.remove(args[1])
-    player.inventory.append(args[1])
-    print(f'You have acquired the {args[1]}')
+  itemToGet = player.location.findItemByName(args[1])
+  if itemToGet is not None:
+    player.addItem(itemToGet)
+    player.location.removeItem(itemToGet)
   else:
-    printErrorString("No such item")
-    return True
+    printErrorString('No such item in room')
+
+def dropItem(player, *args):
+  itemToDrop = player.findItemByName(args[1])
+  if itemToDrop is not None:
+    player.dropItem(itemToDrop)
+    player.location.addItem(itemToDrop)
+  else:
+    printErrorString(f'You are not holding {args[1]}')
+  return True
 
 # Commands
 commands = {}
@@ -106,10 +126,10 @@ commands['n'] = moveCommand
 commands['s'] = moveCommand
 commands['e'] = moveCommand
 commands['w'] = moveCommand
-commands['i'] = inspectRoom
 commands['l'] = look
-commands['c'] = checkInventory
+commands['i'] = checkInventory
 commands['g'] = getItem
+commands['d'] = dropItem
 
 # Commands Help
 commandsHelp = {}
@@ -121,6 +141,7 @@ commandsHelp['i'] = "Inspect Room for Items"
 commandsHelp['l'] = "Check current location or specify direction to look"
 commandsHelp['c'] = "Check current inventory"
 commandsHelp['g'] = "Get specififed item from room"
+commandsHelp['d'] = "Drop specified item from inventory"
 
 # Util
 
