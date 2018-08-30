@@ -14,3 +14,25 @@
 # docs for the calendar module closely.
 
 import sys
+
+import calendar
+
+# y = input("Enter the year (YYYY): ")
+# m = input("Enter the month (M or MM - Sep=9, Oct=10): ")
+
+# c = calendar.TextCalendar()
+# str = c.formatmonth(int(y), int(m))
+# print(str)
+
+import datetime
+
+if len(sys.argv) > 2:
+    yr = sys.argv[1]
+    mo = sys.argv[2]
+else:
+    yr = datetime.datetime.now().year
+    mo = datetime.datetime.now().month
+
+cc = calendar.TextCalendar()
+str = cc.formatmonth(int(yr), int(mo))
+print(str)

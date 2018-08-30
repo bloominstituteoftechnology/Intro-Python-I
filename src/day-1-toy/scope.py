@@ -5,6 +5,7 @@
 x = 12
 
 def changeX():
+    global x # create a global variable for the value
     x = 99
 
 changeX()
@@ -19,6 +20,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y # Nonlocal variable are used in nested function whose local scope is not defined. This means, the variable can be neither in the local nor the global scope. We use nonlocal keyword to create nonlocal variable.
         y = 999
 
     inner()
