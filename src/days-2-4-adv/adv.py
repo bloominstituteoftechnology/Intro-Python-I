@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item, Treasure
+from item import Item, Treasure, LightSource
 
 # Declare all the rooms and items
 items = {
@@ -16,7 +16,8 @@ items = {
     'revivepotion': Item('RevivePotion', 'can revive player 1 time'),
     'excalibur': Treasure('Excalibur', 'The Legendary Sword', 10),
     'aegis': Treasure('Aegis', "Lord of Olympia Zeus' shield", 10),
-    'mjolnir': Treasure('Mjolnir', 'The hammer of Thor', 10)
+    'mjolnir': Treasure('Mjolnir', 'The hammer of Thor', 10),
+    'lamp': LightSource('Lamp', 'Help you see in the dark')
 }
 
 room = {
@@ -35,7 +36,7 @@ the distance, but there is no way across the chasm.""",
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""",
-                     [items['bracers'], items['potion']]),
+                     [items['bracers'], items['potion'], items['lamp']]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -155,6 +156,8 @@ while True:
         else:
             index = itemList.index(inputList[1])
             player.location.receiveItem(player.inventory[index])
+            if (isinstance(player.inventory[index], LightSource)):
+                print("It's not wise to drop your source of light!")
             player.dropItem(index)
         suppressRoomPrint=True
 

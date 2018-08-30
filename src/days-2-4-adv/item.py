@@ -26,6 +26,9 @@ class Treasure(Item):
         print(f"You've dropped {self.name}!")
         self.value = 0
 
+class LightSource(Item):
+    def __init__(self, name, description):
+        super().__init__(name, description)
     
 
 
