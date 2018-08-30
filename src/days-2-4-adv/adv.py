@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 
 # Declare all the rooms
 # Which rooms are empty?? Who knows?
@@ -72,11 +72,18 @@ def helpCommands():
 
 # --------------------Adding new items-----------------
 new_item = Item("flashlight", "Good light source")
-new_item2 = Item("Bacon", "Good food source")
-new_item3 = Item("Gold", "This should belong in the treasure room.")
+new_item2 = Item("bacon", "Good food source")
+new_item3 = Item("gold", "This should belong in the treasure room.")
 room['outside'].items.append(new_item)
 room['foyer'].items.append(new_item2)
 room['treasure'].items.append(new_item3)
+
+treasure1 = Treasure("money", "currency", 100)
+treasure2 = Treasure("chalice", "shiny", 2000)
+treasure3 = Treasure("battery", "can go in a flashlight", 5)
+room['treasure'].items.append(treasure2)
+room['foyer'].items.append(treasure3)
+room['overlook'].items.append(treasure1)
 
 # ---------------------Initializing Player--------------
 player = Player(room['outside'])
