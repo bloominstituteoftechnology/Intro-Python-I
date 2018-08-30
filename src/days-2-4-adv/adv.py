@@ -100,7 +100,8 @@ def lookCommand(player, *args):
 def getCommand(player, *args):
     if player.location.items[int(args[1])]:
         player.inventory.append(player.location.items[int(args[1])])
-        print('You have obtained {}!'.format(player.location.items[int(args[1])].name))
+        player.score += player.location.items[int(args[1])].on_take()
+        #print('You have obtained {}!'.format(player.location.items[int(args[1])].name))
         player.location.items.pop(int(args[1]))
     else:
         printErrorString('Better get the heck outta here! Not a valid get command, boss')
@@ -110,6 +111,7 @@ def dropCommand(player, *args):
         player.location.items.append(player.inventory[int(args[1])])
         print('You dropped {}!'.format(player.inventory[int(args[1])].name))
         player.inventory.pop(int(args[1]))
+        return True
 
 def  viewCommand(player, *args):
     if args[0] == 'i' or args[0] == 'inventory':
@@ -162,7 +164,6 @@ player1 = Player(room['outside'], 0, [Item('Pen', 'A mighty instrument to influe
 suppressRoomPrint = False
 
 #Prints, current room name, description and waits for user input
-print(Treasure('Gold', 'Dublooons!', 9001))
 while(True):
     if suppressRoomPrint:
         suppressRoomPrint = False
