@@ -48,7 +48,11 @@ class Item:
     def __init__(self, name):
         self.name = name
 
-class Treasure:
+    def on_take(self): pass
+
+    def on_drop(self): pass
+
+class Treasure(Item):
     def __init__(self, name, value):
         Item.__init__(self, name)
         self.value = value
@@ -56,3 +60,10 @@ class Treasure:
 
     def on_take(self):
         self.picked_up = True
+
+class LightSource(Item):
+    def __init__(self, name):
+        Item.__init__(self, name)
+
+    def on_drop(self):
+        print("\nIt's not wise to drop your source of light!")

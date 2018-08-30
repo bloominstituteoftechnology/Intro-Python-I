@@ -1,11 +1,13 @@
 from classes import Room
 from classes import Item
 from classes import Treasure
+from classes import LightSource
 
 item = {
     'knife': Item('knife'),
     'coin': Treasure('coin', 75),
-    'shield': Item('shield')
+    'shield': Item('shield'),
+    'lamp': LightSource('lamp')
 }
 
 room = {
@@ -16,7 +18,7 @@ room = {
 
     'foyer':    Room("Foyer",
                     """Dim light filters in from the south. Dusty passages run north and east.""",
-                    [],
+                    [item['lamp']],
                     {'n': 'overlook', 's': 'outside', 'w': None, 'e': 'narrow'}),
 
     'overlook': Room("Grand Overlook",

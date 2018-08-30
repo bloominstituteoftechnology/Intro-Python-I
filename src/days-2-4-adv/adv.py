@@ -4,6 +4,7 @@ from classes import Room
 from classes import Player
 from classes import Item
 from classes import Treasure
+from classes import LightSource
 
 def printErrorString(errorString):
     print(f'\x1b[1;31;40m\n{errorString}\x1b[0m')
@@ -53,8 +54,11 @@ while True:
                     player.score += new_item.value
                     new_item.on_take()
         elif command == "drop":
-            player.drop(item[target])
-            player.room.add_item(item[target])
+            dropped_item = item[target]
+            player.drop(dropped_item)
+            player.room.add_item(dropped_item)
+            if type(dropped_item) is LightSource:
+                dropped_item.on_drop()
         else:
             printErrorString("I did not recognize that command.")
     else:
