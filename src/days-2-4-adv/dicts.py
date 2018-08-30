@@ -1,15 +1,16 @@
 from classes import Room
 from classes import Item
+from classes import Treasure
 
 item = {
     'knife': Item('knife'),
-    'coin': Item('coin'),
+    'coin': Treasure('coin', 75),
     'shield': Item('shield')
 }
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                    "North of you, the cave mount beckons",
+                    "North of you, the cave mount beckons.",
                     [item['knife'], item['shield']],
                     {'n': 'foyer', 's': None, 'w': None, 'e': None}),
 

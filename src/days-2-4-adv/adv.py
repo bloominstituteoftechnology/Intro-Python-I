@@ -3,6 +3,7 @@ from dicts import room
 from classes import Room
 from classes import Player
 from classes import Item
+from classes import Treasure
 
 def printErrorString(errorString):
     print(f'\x1b[1;31;40m\n{errorString}\x1b[0m')
@@ -16,9 +17,11 @@ while True:
     inp = input("\n>>> ").split(" ")
     if len(inp) == 1 or len(inp) == 2 and not inp[1]:
         command, target = inp[0], None
-        if command == "q":
+        if command == "quit":
             printErrorString("YOU HAVE DIED.\n")
             break
+        if command == "score":
+            player.score_report()
         elif command == "items":
             if player.items:
                 player.inventory()
@@ -28,8 +31,7 @@ while True:
             if player.room.adjacent_rooms[command] == None:
                 printErrorString("You cannot move that way.")
             else:
-                new_room = player.room.adjacent_rooms[command]
-                player.room = room[new_room]
+                player.room = room[player.room.adjacent_rooms[command]]
         else:
             printErrorString("I did not recognize that command.")
     elif len(inp) == 2:
@@ -43,8 +45,13 @@ while True:
         elif command == "drop" and not player.check_for_item(target):
             printErrorString("You have no such item.")
         elif command == "get":
-            player.get(item[target])
-            player.room.remove_item(item[target])
+            new_item = item[target]
+            player.room.remove_item(new_item)
+            player.get(new_item)
+            if type(new_item) is Treasure:
+                if not new_item.picked_up:
+                    player.score += new_item.value
+                    new_item.on_take()
         elif command == "drop":
             player.drop(item[target])
             player.room.add_item(item[target])
