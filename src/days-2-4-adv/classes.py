@@ -1,7 +1,8 @@
 class Room:
-    def __init__(self, name, description, items=[], adjacent_rooms={}):
+    def __init__(self, name, description, is_lit, items=[], adjacent_rooms={}):
         self.name = name
         self.description = description
+        self.is_lit = is_lit
         self.items = items
         self.adjacent_rooms = adjacent_rooms
 
@@ -38,6 +39,12 @@ class Player:
                 return True
         return False
 
+    def check_for_light(self):
+        for item in self.items:
+            if type(item) == LightSource:
+                return True
+        return False
+
     def score_report(self):
         print(f"\nYour score is: {self.score}")
 
@@ -48,9 +55,11 @@ class Item:
     def __init__(self, name):
         self.name = name
 
-    def on_take(self): pass
+    def on_take(self):
+        raise NotImplementedError
 
-    def on_drop(self): pass
+    def on_drop(self):
+        raise NotImplementedError
 
 class Treasure(Item):
     def __init__(self, name, value):
@@ -61,9 +70,13 @@ class Treasure(Item):
     def on_take(self):
         self.picked_up = True
 
+    def on_drop(self): pass
+
 class LightSource(Item):
     def __init__(self, name):
         Item.__init__(self, name)
+
+    def on_take(self): pass
 
     def on_drop(self):
         print("\nIt's not wise to drop your source of light!")

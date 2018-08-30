@@ -12,9 +12,13 @@ def printErrorString(errorString):
 player = Player(room['outside'])
 
 while True:
-    print("\nYou are in the %s. %s" % (player.room.name, player.room.description))
-    if player.room.items:
-        player.room.inventory()
+    print("\nYou are in the {}.".format(player.room.name))
+    if player.room.is_lit or player.check_for_light():
+        print(player.room.description)
+        if player.room.items:
+            player.room.inventory()
+    else:
+        printErrorString("It's pitch black!")
     inp = input("\n>>> ").split(" ")
     if len(inp) == 1 or len(inp) == 2 and not inp[1]:
         command, target = inp[0], None
@@ -37,7 +41,9 @@ while True:
             printErrorString("I did not recognize that command.")
     elif len(inp) == 2:
         command, target = inp
-        if command == "get" and not player.room.items:
+        if command == "get" and not player.room.is_lit and not player.check_for_light():
+            printErrorString("Good luck finding that in the dark!")
+        elif command == "get" and not player.room.items:
             printErrorString("There is nothing for you to take.")
         elif command == "drop" and not player.items:
             printErrorString("You have no items.")
