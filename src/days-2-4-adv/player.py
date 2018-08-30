@@ -10,4 +10,13 @@ class Player:
         self.inventory = inventory
 
     def getInventory(self):
-        return ', '.join([i.name for i in self.inventory])
+        if (len(self.inventory) == 0):
+            return None
+        else:
+            return ([i.name for i in self.inventory])
+
+    def getItem(self, item):
+        self.inventory.append(item)
+    
+    def dropItem(self, index):
+        del self.inventory[index]

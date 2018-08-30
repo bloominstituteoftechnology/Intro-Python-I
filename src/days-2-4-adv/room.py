@@ -11,7 +11,9 @@ class Room:
         self.w_to = None
 
     def getLoots(self):
-        return ', '.join([i.name for i in self.items])
+        if len(self.items)==0:
+            return None
+        return [i.name for i in self.items]
 
     def getRoomInDirection(self, direction):
         if direction=='n':
@@ -24,3 +26,9 @@ class Room:
             return self.e_to
         else:
             return None
+    
+    def removeItem(self, index):
+        del self.items[index]
+
+    def receiveItem(self, item):
+        self.items.append(item)

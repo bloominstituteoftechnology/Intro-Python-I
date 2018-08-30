@@ -1,7 +1,8 @@
 from room import Room
 from player import Player
 from item import Item
-# Declare all the rooms
+
+# Declare all the rooms and items
 items = {
     'sword': Item('Sword', '+10 Attack'),
     'shield': Item('Shield', '+5 Defense'),
@@ -38,7 +39,9 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
                      [items['diamond'], items['revivepotion']]),
 }
-
+# Game variables
+suppressRoomPrint = False
+validDirections = ["n", "s", "e", "w"]
 
 # Link rooms together
 
@@ -51,12 +54,19 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+#######
+# Util
+#######
+
+def printErrorString(errorString):
+    print(f'=== {errorString} ===')
+    global suppressRoomPrint
+    suppressRoomPrint = True
+
+
 #
 # Main
 #
-
-# Make a new player object that is currently in the 'outside' room.
-player1 = Player('Stormer', room['outside'])
 
 # Write a loop that:
 #
@@ -69,28 +79,73 @@ player1 = Player('Stormer', room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-print(f'\n=== Welcome to the epic MUD game, {player1.name} ===\n')
+player = Player( input("\nWhat is your name?: ") , room['outside'])
+print (f"Welcome, {player.name}!\n")
 while True:
-    print(f'\nCurrent location:  {player1.location.name}.')
-    print(player1.location.description + '\n')
-    print(f'Items found: {player1.location.getItems()}\n')
+    if suppressRoomPrint:
+        suppressRoomPrint = False
+    else:
+        print(f'\nCurrent location:  {player.location.name}.')
+        print(player.location.description + '\n')
+        print(f'Items found: {player.location.getLoots()}\n')
 
-    direction = input('Which direction to do you want to go to (N,S,W,E)?')
+    inputList = input('>>>').split()
 
-    if direction.lower() == 'q':
+    if inputList[0] == 'q':
         print('\nGoodbye! Please come again.\n')
         break
+    elif inputList[0] == 'n':
+        player.location = player.location.getRoomInDirection('n')
+    elif inputList[0] == 's':
+        player.location = player.location.getRoomInDirection('s')
+    elif inputList[0] == 'e':
+        player.location = player.location.getRoomInDirection('e')
+    elif inputList[0] == 'w':
+        player.location = player.location.getRoomInDirection('w')
+
+    #Player inventory
+    elif inputList[0] == 'i'  and len(inputList)==1:
+        if player.getInventory() is None:
+            print('You have no item in your inventory.')
+        else:
+            print(', '.join(player.getInventory()))
+        suppressRoomPrint=True
+
+    #Room loot list
+    elif inputList[0] == 'loots' and len(inputList)==1:
+        if player.location.getLoots() is None:
+            print('There is no item in this room')
+        else:
+            print(', '.join(player.location.getLoots()))
+        suppressRoomPrint=True
+
+    #Get item
+    elif inputList[0] == 'get' and inputList[1]:
+        itemList = player.location.getLoots()
+        if (inputList[1] not in itemList):
+            print('There is no such item in this room')
+        else:
+            index = itemList.index(inputList[1])
+            player.getItem(player.location.items[index])
+            player.location.removeItem(index)
+        suppressRoomPrint=True
+
+    #Drop item
+    elif inputList[0] == 'drop' and inputList[1]:
+        itemList = player.getInventory()
+        if (inputList[1] not in itemList):
+            print('There is no such item in your inventory')
+        else:
+            index = itemList.index(inputList[1])
+            player.location.receiveItem(player.inventory[index])
+            player.dropItem(index)
+        suppressRoomPrint=True
     else:
-        try:
-            if direction.lower() == 'n':
-                player1.location = player1.location.n_to
-            elif direction.lower() == 's':
-                player1.location = player1.location.s_to
-            elif direction.lower() == 'w':
-                player1.location = player1.location.w_to
-            elif direction.lower() == 'e':
-                player1.location = player1.location.e_to
-            else:
-                print('\nPlease enter a valid direction.')
-        except:
-            print('\nThere is no room in this direction. Please try again!')
+        printErrorString("I do not understand that command")
+
+
+# if inputList[0] == 'look':
+#     if inputList[1] and inputList[1] == 'n':
+#         print('look north')
+#     else:
+#         print('look')
