@@ -39,9 +39,20 @@ class Room():
     else:
       pring("Invalid Direction")
 
-  def addItems(self,item):
+  def addItem(self,item):
     self.items.append(item)
 
+  def removeItem(self, item):
+    if len(self.items) > 0:
+      for i in self.items:
+        if i.name == item:
+          self.items.remove(i)
+    else:
+      print('Item not available to remove!')
+
   def displayItems(self):
-    for i in self.items:
-      print('\x1b[1;33;40m' + i + '\x1b[0m')
+    if (self.items):
+      for i in self.items:
+        print('\x1b[1;33;40m' + i.name + '\x1b[0m')
+    else:
+      print('No items available')
