@@ -44,7 +44,7 @@ room['incinerator'].contents.append(item)
 
 # Game Variables
 suppressRoomPrint = False
-validDirections = ['n', 's', 'e', 'w']
+validDirections = ['n', 's', 'e', 'w', 'north', 'south', 'east', 'west']
 
 #
 # Main
@@ -65,9 +65,7 @@ def moveCommand(player, *args):
   return False
 
 def look(player, *args):
-  if not args[0] == 'l':
-    printErrorString("That is not a look command")
-  elif (len(args)) == 1:
+  if (len(args)) == 1:
     print (f"\n  {player.location.title}\n    {player.location.description}\n" )
     if player.location.contents == []:
       print('The room is empty')
@@ -123,25 +121,32 @@ def dropItem(player, *args):
 # Commands
 commands = {}
 commands['n'] = moveCommand
+commands['north'] = moveCommand
 commands['s'] = moveCommand
+commands['south'] = moveCommand
 commands['e'] = moveCommand
+commands['east'] = moveCommand
 commands['w'] = moveCommand
+commands['west'] = moveCommand
 commands['l'] = look
+commands['look'] = look
 commands['i'] = checkInventory
+commands['inventory'] = checkInventory
 commands['g'] = getItem
+commands['get'] = getItem
 commands['d'] = dropItem
+commands['drop'] = dropItem
 
 # Commands Help
 commandsHelp = {}
-commandsHelp['n'] = "Move North"
-commandsHelp['s'] = "Move South"
-commandsHelp['e'] = "Move East"
-commandsHelp['w'] = "Move West"
-commandsHelp['i'] = "Inspect Room for Items"
-commandsHelp['l'] = "Check current location or specify direction to look"
-commandsHelp['c'] = "Check current inventory"
-commandsHelp['g'] = "Get specififed item from room"
-commandsHelp['d'] = "Drop specified item from inventory"
+commandsHelp['north'] = "Move North"
+commandsHelp['south'] = "Move South"
+commandsHelp['east'] = "Move East"
+commandsHelp['west'] = "Move West"
+commandsHelp['inventory'] = "Check inventory"
+commandsHelp['look'] = "Check current location for or specify direction to look for rooms"
+commandsHelp['get'] = "Get specififed item from room"
+commandsHelp['drop'] = "Drop specified item from inventory"
 
 # Util
 
@@ -176,6 +181,7 @@ while True:
   elif inp[0] in commands:
     suppressRoomPrint = commands[inp[0]](player, *inp)
   elif inp[0] == "help":
+    print('You may shorten any command to its first letter\n' )
     suppressRoomPrint = printHelp()
   else:
     suppressRoomPrint = printErrorString('Command not registered')

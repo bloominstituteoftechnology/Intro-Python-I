@@ -13,13 +13,13 @@ class Room:
     def __str__(self):
         return "You see: {}".format(self.title) 
     def getRoomInDirection(self, direction):
-        if direction == "n":
+        if direction == "n" or direction == "north":
             return self.n_to
-        elif direction == "s":
+        elif direction == "s" or direction == "south":
             return self.s_to
-        elif direction == "e":
+        elif direction == "e" or direction == "east":
             return self.e_to
-        elif direction == "w":
+        elif direction == "w" or direction == "west":
             return self.w_to
         else:
             return None
