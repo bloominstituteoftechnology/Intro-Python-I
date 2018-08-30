@@ -1,26 +1,49 @@
 from room import Room
 from player import Player
+from item import Item
 import os
 
-# Declare all the rooms
 
+###########
+# Initialization
+###########
+
+#Declare all items:
+items = {}
+items['rocks']  = Item('rocks', 'good as weapon and building a fort')
+items['gloves']  = Item('gloves', 'good to keep warm, climb and not leave fingerprints')
+items['hammer']  = Item('hammer', 'good for building stuff, breaking stuff and of course a weapon')
+items['flashlight']  = Item('flashlight', 'light source and a weapon')
+items['carabiner']  = Item('carabiner', 'good for climbing and hanging')
+items['rope']  = Item('rope', 'good for climbing and hanging and a weapon')
+items['snowboard']  = Item('snowboard', 'in case you have to jet')
+items['mushies']  = Item('mushies', 'good as weapon and to spread the love')
+items['tent']  = Item('tent', 'good for camping, sleeping and sexing')
+items['hashies']  = Item('hashies', 'good for a party and to spark it up')
+items['mollys']  = Item('mollys', 'good for a party and to spread the love')
+items['gold']  = Item('gold', 'can be used to trade')
+items['silver']  = Item('silver', 'can be used to trade')
+items['titanium']  = Item('titanium', 'can be used to trade')
+
+
+# Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", ['rocks', 'gloves']),
+                     "North of you, the cave mount beckons", [items['rocks'], items['gloves']]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ['hammer', 'flashlight']),
+passages run north and east.""", [items['hammer'] , items['flashlight'] ]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", ['caribiner', 'rope', 'harness']),
+the distance, but there is no way across the chasm.""", [items['carabiner'], items['rope'], items['snowboard'] ]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ['mushies', 'tent', 'hashies', 'mollys']),
+to north. The smell of gold permeates the air.""", [items['mushies'], items['mollys'], items['hashies'] , items['tent'] ]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", ['gold', 'silver', 'titanium']),
+earlier adventurers. The only exit is to the south.""", [items['gold'] , items['silver'] , items['titanium'] ]),
 }
 
 
@@ -29,63 +52,84 @@ room['outside'].connectRooms(room['foyer'], 'n')
 room['foyer'].connectRooms(room['overlook'], 'n')
 room['foyer'].connectRooms(room['narrow'], 'e')
 room['narrow'].connectRooms(room['treasure'], 'n')
-#
-# Main
-#
+
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(room['outside'])
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
 
+# Messages
 def printRedMsg(msg):
     print(f"\x1b[1;31;40m {msg} \x1b[0m")
 
-
-user_prompt_msg = '\x1b[1;32;40m' + "\n\n\nPlease enter a cardinal direction [n,s,e,w] or q to quit: " + '\x1b[0m'
+user_prompt_msg = '\x1b[1;32;40m' + "\n\n\nEnter [take/drop] item-name OR a cardinal direction [n,s,e,w] OR q to quit: " + '\x1b[0m'
 exit_msg = "\nThank you for playing!"
 
 
+###########
+# Game Loop
+###########
 while True:
+    #Messages during each loop: where they are and what's in the room
     print("\n\n\nYou are currently in the {}".format(player.room.name))
     print("\n{}".format(player.room.description))
     print("\n\nThis room has the following items: ")
     player.room.displayItems()
 
-    inp = input(user_prompt_msg)
+    #Grab user input and clear screen
+    inp = input(user_prompt_msg).split(' ')
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    number_of_args = len(inp.split(' '))
-    print(f'Number of args is: {number_of_args}')
+    #If the user enters 1 word
+    if len(inp) == 1:
 
-    if number_of_args == 1:
-
-        if inp == "q":
+        if inp[0] == "q":
             print(exit_msg)
             break
 
-        elif inp == "n" or inp == "s" or inp == "e" or inp == "w":
-            nextRoom = player.room.getRoomInDirection(inp)
+        elif inp[0] == "n" or inp[0] == "s" or inp[0] == "e" or inp[0] == "w":
+            nextRoom = player.room.getRoomInDirection(inp[0])
             if nextRoom ==  None:
                 printRedMsg("Sorry that direction does not exist.. please try again")
             else:
                 player.set_room(nextRoom)
 
+        elif inp[0] == "i":
+            print("\n\nYou have the following items: ")
+            player.displayItems()
+
         else:
             printRedMsg("I didn't recognize that command, please enter, [take/drop] or [n,s,e,w]")
+    
+    #If the user enters 2 words
+    elif len(inp) == 2:
 
-    elif number_of_args == 2:
-        print('HOoray')
+        if len(player.room.items) > 0:
+            #Create a list of item names
+            room_item_names = [item.name for item in player.room.items]
+        
+        if len(player.items) > 0:
+            #Create a list of item names
+            player_item_names = [item.name for item in player.items]
 
+        #Check to see if the 2 word input requirement is not met:
+        if not ((inp[0] == 'take' or inp[0] == 'drop') and (inp[1] in room_item_names or inp[1] in player_item_names)):
+            printRedMsg("I didn't recognize that command, please enter, [take/drop item-name]")
+        
+        #The two word input requirement is met:
+        else:
+            if (inp[0] == 'take'):
+                player.room.removeItem(inp[1])
+                player.addItem(items[inp[1]])
+
+            elif (inp[0] == 'drop'):
+                player.removeItem(inp[1])
+                player.room.addItem(items[inp[1]])
+            
+            else:
+                print('Good input but last clause')
+    
+    #If the user enters 3 or more words
     else:
         printRedMsg('Too many input arguments!')
 
