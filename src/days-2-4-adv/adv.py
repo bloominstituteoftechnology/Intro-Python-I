@@ -1,4 +1,3 @@
-import os
 from dicts import item
 from dicts import room
 from classes import Room
@@ -11,19 +10,18 @@ def printErrorString(errorString):
 player = Player(room['outside'])
 
 while True:
-    # os.system('cls' if os.name == 'nt' else 'clear')
     print("\nYou are in the %s. %s" % (player.room.name, player.room.description))
     if player.room.items:
-        print(f"\nInside the room, you see the following items: {', '.join(item.name for item in player.room.items)}")
+        player.room.inventory()
     inp = input("\n>>> ").split(" ")
     if len(inp) == 1 or len(inp) == 2 and not inp[1]:
         command, target = inp[0], None
         if command == "q":
-            printErrorString("YOU HAVE DIED.")
+            printErrorString("YOU HAVE DIED.\n")
             break
         elif command == "items":
             if player.items:
-                print(f"\nYou have the following items: {', '.join(item.name for item in player.items)}")
+                player.inventory()
             else:
                 printErrorString("You have no items.")
         elif command in ['n', 's', 'e', 'w']:
