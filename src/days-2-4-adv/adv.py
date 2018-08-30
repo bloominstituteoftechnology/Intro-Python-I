@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -33,6 +34,15 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+sword = Item('sword', 'finest steel')
+room['overlook'].items.append(sword)
+
+shield = Item('narrow', 'heavy duty')
+room['narrow'].items.append(shield)
+
+helmet = Item('helmet', 'partially crushed')
+room['foyer'].items.append(helmet)
 
 #
 # Main
@@ -72,7 +82,7 @@ while running:
         print(item)
 
     print('Next move: ')
-    inp = input()
+    inp = input().split()
     if len(inp) == 1:
         if inp in ['n', 's', 'e', 'w']:
             player.room = move(inp, player.room)
