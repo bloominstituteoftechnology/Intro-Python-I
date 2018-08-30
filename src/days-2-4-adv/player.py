@@ -17,4 +17,4 @@ class Player:
     def getInventory(self):
         return ', '.join([i.name for i in self.inventory])
     def getEquipment(self):
-        return ', '.join([i.name for i in self.equipments])
+        return ', '.join([i.name for i in self.equipment])
