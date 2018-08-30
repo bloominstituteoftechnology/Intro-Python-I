@@ -5,6 +5,7 @@ class Item:
     
     def on_take(self):
         print(f"You've picked up {self.name}!")
+        return 0
 
     def on_drop(self):
         print(f"You've dropped {self.name}!")
@@ -16,12 +17,17 @@ class Treasure(Item):
 
     def on_take(self):
         if (self.value!=0):
-            print(f"Congratulations! You're the first finder of the treasure {self.name}! You got {self.value} points!")
-            score = self.value
-            self.value = 0
-            return self.value
+            print(f"Congratulations! You're the first finder of the treasure {self.name}! You got {self.value} points!")            
         else:
             print(f'This treasure {self.name} has been found before. You got no point!')
+        return self.value
+    
+    def on_drop(self):
+        print(f"You've dropped {self.name}!")
+        self.value = 0
+
+    
+
 
 
         

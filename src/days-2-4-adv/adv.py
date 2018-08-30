@@ -66,7 +66,6 @@ def printErrorString(errorString):
     global suppressRoomPrint
     suppressRoomPrint = True
 
-
 #
 # Main
 #
@@ -121,7 +120,6 @@ while True:
             suppressRoomPrint=True
         else:
             player.location = player.location.getRoomInDirection('w')
-
     #Player inventory
     elif inputList[0] == 'i'  and len(inputList)==1:
         if player.getInventory() is None:
@@ -158,6 +156,11 @@ while True:
             index = itemList.index(inputList[1])
             player.location.receiveItem(player.inventory[index])
             player.dropItem(index)
+        suppressRoomPrint=True
+
+    #Get Score
+    elif inputList[0] == 'score'  and len(inputList)==1:
+        player.getScore()
         suppressRoomPrint=True
     else:
         printErrorString("I do not understand that command")
