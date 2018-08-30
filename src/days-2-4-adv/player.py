@@ -12,3 +12,19 @@ class Player:
 
     def __str__(self):
         return "Current Location: {}".format(self.location.title)
+
+    def addItem(self, item):
+        self.items.append(item)
+
+    def dropItem(self, item):
+        item.on_drop()
+        self.items.remove(item)
+
+    def removeItem(self, item):
+        self.items.remove(item)
+
+    def findItemByName(self, name):
+        for item in self.items:
+            if item.name.lower() == name.lower():
+                return item
+        return None

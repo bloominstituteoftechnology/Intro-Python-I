@@ -8,6 +8,9 @@ class Room:
         self.description = description
         self.n_to = None
         self.s_to = None
+
+
+        
         self.e_to = None
         self.w_to = None
 
@@ -22,3 +25,6 @@ class Room:
             return self.w_to
         else:
             return None
+
+    #def itemsInRoom(self, item):
+        

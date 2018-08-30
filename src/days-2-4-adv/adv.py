@@ -28,10 +28,10 @@ earlier adventurers. The only exit is to the south."""),
 #will declare my items in this file
 
 item = {
-    'fire branch': Item("need the power of light to move on!!!!"),
-    'Jump Spell': Item("Jump the overlook with your J-Spell"),
-    'Shovel': Item("Get your gold matey P.S none for one eyed Willy"),
-    'Map': Item("NOOOOOOOOOOO----well, another map you say??  lets go!!!"),
+    'fire branch': Item("Fire Branch","""need the power of light to move on!!!!"""),
+    'Jump Spell': Item("Jump Spell","""Jump the Overlook with your J-Spell"""),
+    'Shovel': Item("Shovel","""Get your gold matey P.S none for One-Eyed-Willy"""),
+    'Map': Item("Treasure Map","""NOOOOOOOOOOO----well, another map you say??  lets go!!!"""),
 }
 
 
@@ -48,6 +48,14 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+
+
+
+
+room['outside'].addItem('fire branch')
+room['foyer'].addItem('jump spell')
+room['overlook'].addItem('shovel')
+room['narrow'].addItem('Map')
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(room['outside'])

@@ -1,4 +1,5 @@
 {
     "python.pythonPath": "/Users/MarcoG/.local/share/virtualenvs/Intro-Python-mYKjtc-u/bin/python",
-    "python.formatting.provider": "autopep8"
+    "python.formatting.provider": "autopep8",
+    "git.ignoreLimitWarning": true
 }
