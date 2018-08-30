@@ -4,14 +4,10 @@ from room import Room
 
 
 class Player:
-    def __init__(self, name, room, inventory=[], equipments=[]):
+    def __init__(self, name, startRoom, inventory=[]):
         self.name = name
-        self.location = room
+        self.location = startRoom
         self.inventory = inventory
-        self.equipments = equipments
 
     def getInventory(self):
         return ', '.join([i.name for i in self.inventory])
-
-    def getEquipment(self):
-        return ', '.join([i.name for i in self.equipments])
