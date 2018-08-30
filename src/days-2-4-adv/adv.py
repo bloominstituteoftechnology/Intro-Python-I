@@ -186,7 +186,7 @@ while True:
         pass
     elif inp.startswith('take') or inp.startswith('get'):
         if (room[player.location].is_light or checkInventory('lamp')):
-            # try:
+            try:
                 item = inp.split(' ')[1]
                 # check to see if the item is in the room
                 if (room[player.location].drop(item)):
@@ -197,8 +197,8 @@ while True:
                     print("You must enter something to take.\n")
                 else:
                     print("There is no '{}' for you take!".format(item))
-            # except:
-            #     print("You must enter something to take.\n")
+            except:
+                print("You must enter something to take.\n")
         else:
             print("Good luck finding that in the dark!")
     elif inp.startswith('drop'):

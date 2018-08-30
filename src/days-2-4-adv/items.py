@@ -29,9 +29,12 @@ class Treasure(Items):
     def on_take(self, player):
         # self.on_take = False
         player.score += self.value
+        if (self.value):
+            print("You've picked up the {} and now have {} more points.".format(
+                self.name, self.value))
+        else:
+            print("You've picked up the {}, but you already got the points.".format(self.name))
         self.value = 0
-        # print('does this run/work')
-        # return player.score
 
 
 class LightSource(Items):
