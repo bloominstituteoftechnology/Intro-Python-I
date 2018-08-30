@@ -50,7 +50,59 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-#print(room['outside'].name)
+#Game Variables
+validDirections = ['n', 's', 'e', 'w']
+
+###################
+# Command Functions
+###################
+def moveCommand(player, *args):
+    newRoom = player.location.getRoomDirection(args[0])
+    if newRoom == None:
+        # Print an error message if the movement isn't allowed.
+        printErrorString(" -Thwack! You just hit a brick wall (or fell off a cliff), choose another direction-")
+        suppressRoomPrint = True
+    else:
+        player.change_location(newRoom)
+
+def lookCommand(player, *args):
+    if not (args[0] == 'l' or args[0] == 'look'):
+        printErrorString('That is not a look command') #What is the function of this line?
+    elif len(args) == 1:
+        return False
+    # If the user enters a cardinal direction, attempt to move to the room there.
+    elif args[1] in validDirections:
+        lookRoom = player.location.getRoomDirection(args[1])
+        if lookRoom is not None:
+            print(lookRoom)
+        else:
+            printErrorString('Nothing to see overthere')
+        return True
+
+commands = {}
+commands['n'] = moveCommand
+commands['s'] = moveCommand
+commands['e'] = moveCommand
+commands['w'] = moveCommand
+commands['l'] = lookCommand
+commands['look'] = lookCommand
+
+commandsHelp = {}
+commandsHelp['n'] = "Move North"
+commandsHelp['w'] = "Move West"
+commandsHelp['e'] = "Move East"
+commandsHelp['s'] = "Move South"
+commandsHelp['l'] = "Look Somewhere"
+commandsHelp['look'] = "Look Somewhere"
+
+######
+# Util
+######
+
+def printErrorString(errorString):
+    print(f'\x1b[1;37;41m\n{errorString}\x1b[0m\n')
+    global suppressRoomPrint
+    suppressRoomPrint = False
 
 # Make a new player object that is currently in the 'outside' room.
 
@@ -58,41 +110,20 @@ player1 = Player(room['outside'], [Item('Pen', 'A mighty instrument to influence
 
 suppressRoomPrint = False
 
+#Prints, current room name, description and waits for user input
 while(True):
     if suppressRoomPrint:
         suppressRoomPrint = False
     else:
         print(player1.location)
-    inp = input('Which direction will you move?')
-    if inp == 'q':
+    inputList = input('>>> ').split(' ')
+    # If the user enters "q", quit the game.
+    if inputList[0] == 'q':
         break
-    if inp == 'n' or inp == 's' or inp == 'e' or inp == 'w':
-        newRoom = player1.location.getRoomDirection(inp)
-        if newRoom == None:
-            print('\x1b[1;37;41m' + '\n -Thwack! You just hit a brick wall (or fell off a cliff), choose another direction-' + '\x1b[0m\n')
-            suppressRoomPrint = True
-        else:
-            player1.change_location(newRoom)
-    elif inp == 'inventory':
-        print('\n INVENTORY:')
-        for item in player1.inventory:
-            print('-{}: {}'.format(item.name, item.description))
-            suppressRoomPrint = True
-        print('\n')
-    elif inp == "look":
-        print('\nThis room contains...')
-        for item in player1.location.items:
-            print('\n-- {}: {}--\n'.format(item.name, item.description))
+    elif inputList[0] in commands:
+        suppressRoomPrint = commands[inputList[0]](player1, *inputList)
+    elif inputList[0] == 'help':
+        for command in commandsHelp:
+            print(f"{command} - {commandsHelp[command]}")
     else:
-        print('None has traveled catacorner to the three dimensions...invalid input try again...')
-
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+        printErrorString("I do not understand that command")
