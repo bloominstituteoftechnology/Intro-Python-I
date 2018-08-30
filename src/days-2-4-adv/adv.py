@@ -128,6 +128,8 @@ while not user == "q":
                 print("You're carrying:\n")
                 for i in player.inventory:
                     print(f" - {i}\n")
+        elif user == "score":
+            print(f"{player.name}, your current score is {player.score}")
 
         else:
             print("Invalid selection. Please try again.\n")
