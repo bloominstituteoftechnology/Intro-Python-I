@@ -41,8 +41,8 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 from player import Player
-player1 = Player('Bob', 'treasure')
-
+player1 = Player('Bob', 'outside')
+print(player1.location)
 # Write a loop that:
 #
 # * Prints the current room name
