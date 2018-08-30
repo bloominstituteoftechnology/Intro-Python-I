@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 sword = Item('sword', 'finest steel')
 room['overlook'].items.append(sword)
 
-shield = Item('narrow', 'heavy duty')
+shield = Item('shield', 'heavy duty')
 room['narrow'].items.append(shield)
 
 helmet = Item('helmet', 'partially crushed')
@@ -76,13 +76,16 @@ def retrieve(name, itemLocation):
 running = True
 
 while running:
-    print("{}\n{}".format(player.room.name, player.room.description))
-    
+    print("\n{}\n{}".format(player.room.name, player.room.description))
+
+    print("\nItems in the room:")
     for item in player.room.items: 
         print(item.name)
 
-    print('Next move: ')
-    inp = input().strip().split()
+    print('\nNext move: ')
+    inp = input().split()
+    if len(inp) < 1 or len(inp) > 2:
+        print('Unknown Command')
     if len(inp) == 1:
         if inp[0] in ['n', 's', 'e', 'w']:
             player.room = move(inp[0], player.room)
@@ -90,13 +93,14 @@ while running:
             running = False
         elif inp[0] == 'i':
             if len(player.items) == 0:
-                print("You don't have anything")
+                print("\nYou don't have anything")
             else:
-                print("You have:")
+                print("\nYou have:")
                 for item in player.items:
                     print("{}".format(item.name))
         else:
-            print('enter n, s, e, or w for desired direction or i for inventory or q to quit')
+            print('Unknown Command')
+            print('Enter n, s, e, or w for desired direction or i for inventory or q to quit')
             
     elif len(inp) == 2:
         if inp[0] == 'take':
@@ -114,4 +118,5 @@ while running:
                 player.items.remove(item)
                 player.room.items.append(item)
         else:
-            print('Command Unknown')
+            print('\nUnknown Command')
+            print("Enter 'take' or 'drop' to take or drop an item")
