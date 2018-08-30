@@ -1,3 +1,4 @@
+
 # Experiment with scope in Python.
 # Good reading: https://www.programiz.com/python-programming/global-local-nonlocal-variables
 
@@ -5,6 +6,7 @@
 x = 12
 
 def changeX():
+    global x
     x = 99
 
 changeX()
@@ -19,6 +21,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()
