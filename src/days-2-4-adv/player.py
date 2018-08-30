@@ -5,6 +5,7 @@ class Player:
   def __init__(self, room):
     self.room = room
     self.items = []
+    self.score = 0
 
   def removeItem(self, item):
     if len(self.items) > 0:
@@ -12,3 +13,6 @@ class Player:
 
   def addItem(self, item):
     self.items.append(item)
+
+def __repr__(self):
+    return f"{self.room}"

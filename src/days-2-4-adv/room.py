@@ -13,3 +13,6 @@ class Room:
 
   def addItem(self, item):
     self.items.append(item)
+
+def __repr__(self):
+    return f"{self.name} - {self.description}"

@@ -109,37 +109,42 @@ while True:
             else:
                 print('\nTHOUGH SHALL NOT PASS. TRY A DIFFERENT DIRECTION.')
 
-        elif inp[0] == 'i' or 'inventory':
+        elif inp[0] == 'i':
             if len(player.items) == 0:
                 print('\n You aren\'t carrying anything')
             else:
                 print('\n You\'re carrying: %s' % (player.items))
 
+        elif inp[0] == 'score':
+            if player.score == 0:
+                print('\nScore some points before asking - your score is 0!')
+            else:
+                print('\n Your score is %s' % (player.score))
+        
         elif inp[0] == 'q':
             print('\nQuitting game...\n')
             break
 
-        elif inp[0] != ['n', 's', 'e', 'w']:
-            print("\nINVALID INPUT, PLEASE ENTER \'n\', \'e\', \'s\' or \'w\'")
-        
-
+            print("\nINVALID INPUT, PLEASE ENTER A DIRECTION OR AN ACTION")
 
     # Two word commands
     
     if len(inp) == 2:
 
         if inp[0] == 'take':
-            player.addItem(inp[1])
+            current_item = [item for item in player.room.items if item.name == inp[0]]
+            player.addItem(current_item)
             print(player.items)
+            print(player.room.items)
             player.room.removeItem(player.room.items[0]) 
             # what happens if there is more than one item in the list?
             # how can we find the removeItem(item) by name instead?
             print('\nYou are now carrying the %s' % (inp[1]))
 
-        # if inp[0] == 'drop':
-        #     print(inp[1])
-        #     player.room.addItem(inp[1])
+        if inp[0] == 'drop':
+            print(inp[1])
+            player.room.addItem(inp[1])
             
-            # player.removeItem(player.items[0]) 
-            # print('\nYou are no longer carrying the %s' % (inp[1]))
+            player.removeItem(player.items[0]) 
+            print('\nYou are no longer carrying the %s' % (inp[1]))
             
