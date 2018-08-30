@@ -9,7 +9,11 @@ class Player:
         self.inventory = []
     def __repr__(self):
         return f'Player {self.name}, {self.curRoom}'
+    def __str__(self):
+        return f'Player {self.name}, {self.curRoom}'
     def change_location(self, newRoom):
         self.curRoom = newRoom
     def add_item(self, item):
         self.inventory.append(item)
+    def remove_item(self, item):
+        self.inventory.remove(item)
