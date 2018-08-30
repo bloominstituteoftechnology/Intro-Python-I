@@ -181,7 +181,7 @@ while True:
                         ateItem = True
                         break
             if (not ateItem):
-                print('There is no {} to eat!\n'.format(item))
+                print("You don't have a {} to eat!\n".format(item))
         except:
             print("You cannot eat the {}!\n".format(item))
     elif inp == 'i' or inp == "inventory":
