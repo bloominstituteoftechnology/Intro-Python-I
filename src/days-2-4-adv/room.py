@@ -4,20 +4,27 @@
 
 
 class Room:
-    def __init__(self, title, description, items):
-        self.items = items
+    def __init__(self, title, description):
+        self.items = []
         self.title = title
         self.description = description
         self.n_to = None
         self.s_to = None
         self.e_to = None
         self.w_to = None
+    def create_world(self, items):
+        for item in items:
+            self.items.append(item)
     def add_item(self, item):
         self.items.append(item)
     def drop_item(self, item):
         for itim in self.items:
             if itim == item:
                 self.items.remove(itim)
+    def check_item(self, item):
+        for itim in self.items:
+            if itim == item:
+                return True
     def getRoomInDirection(self, direction):
         if direction == "n":
             return self.n_to

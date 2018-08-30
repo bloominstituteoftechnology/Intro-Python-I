@@ -6,6 +6,7 @@ class Player:
         self.name = name
         self.location = startLocation
         self.items = items
+        self.score = 0
     def change_location(self, new_location):
         self.location = new_location
     def add_item(self, item):

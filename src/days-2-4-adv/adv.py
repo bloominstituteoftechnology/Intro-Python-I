@@ -6,21 +6,21 @@ from item import Item
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", ["torch", "matches", "food", "water", "pen and paper"]),
+                     "North of you, the cave mount beckons"), 
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ["sword"]),
+passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", ["stool"]),
+the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ["matches"]),
+to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", ["gold"]),
+earlier adventurers. The only exit is to the south."""),
 }
 
 # Link rooms together
@@ -54,42 +54,62 @@ def printErrorString(errorString):
 name = input("\nWhat is your name? ")
 player = Player(name, room['outside'], [])
 #player = Player( input("\nWhat is your name?: ") room['outside'])
-print(f"Hello, {player.name}!\n")
+print(f"\nHello, {player.name}!\n")
+print(f"\nOk {player.name} lets create our world")
+items = input("\nWhat items would you like outside? ").split(" ") 
+room['outside'].create_world(items) 
+items = input("\nWhat items would you like in the foyer? ").split(" ") 
+room['foyer'].create_world(items) 
+items = input("\nWhat items would you like in the overlook? ").split(" ") 
+room['overlook'].create_world(items) 
+items = input("\nWhat items would you like in the narrow? ").split(" ") 
+room['narrow'].create_world(items) 
+items = input("\nWhat items would you like in the treasure room? ").split(" ") 
+room['treasure'].create_world(items) 
 
 
-validDirection = ["n", "s", "e", "w"]
-
+validDirection = ["n", "s", "e", "w", ]
+validActions = ["take", "drop", "inventory", "i", "score"]
 
 while True:
-    if suppressRoomPrint:
+    '''if suppressRoomPrint:
         suppressRoomPrint = False
-    else:
+    else:'''
         #print (f"\n  {player.location.title}\n    {player.location.description} \n " )
-        print("\n".join(textwrap.wrap(player.location.title)))
-        print("\n".join(textwrap.wrap(player.location.description)))
-        print("\nI can see ", player.location.items)
-        print("Do you want to take any items with you, only three allowed")
-        inputList = input("\nWhat direction of travel or action will you take? \n").split(" ")
+    print("\n".join(textwrap.wrap(player.location.title)))
+    print("\n".join(textwrap.wrap(player.location.description)))
+    print("\nI can see ", player.location.items)
+    print("\nDo you want to take any items with you, only four allowed")
+    inputList = input("\nWhat direction of travel or action will you take? \n").split(" ")
     #print(f"Your command has {len(inputList)} arguments)
     if inputList[0] == "q":
         break
-    elif inputList[0] == "take" and len(player.items) < 3:
-        player.add_item(inputList[1])
-        player.location.drop_item(inputList[1])
-    elif inputList[0] == "inventory":
-        print("Your inventory now includes", player.items)
-    elif inputList[0] == "drop":
+    if (len(inputList) == 2) and inputList[0] not in validActions:
+            printErrorString("Invalid command! Your options are take, drop, score, and inventory i")
+    if inputList[0] == "take" and len(player.items) < 4:
+        if player.location.check_item(inputList[1]) == True:
+            print(inputList[1])
+            player.add_item(inputList[1])
+            player.location.drop_item(inputList[1])
+        else:
+            printErrorString("\nThat item is not available!")
+    if inputList[0] == "inventory" or "i":
+        print("\nYour inventory now includes", player.items)
+    if inputList[0] == "score":
+        print(player.name, " your score is ", player.score)
+    if inputList[0] == "drop":
         player.drop_item(inputList[1])
         player.location.add_item(inputList[1])
         print(player.location.items)
-        print("Your inventory now includes", player.items)
-    elif inputList[0] in validDirection:
+        print("\nYour inventory now includes", player.items)
+        print("\nYou can see", player.location.items)
+    if inputList[0] in validDirection:
         newRoom = player.location.getRoomInDirection(inputList[0])
         if newRoom == None:
             printErrorString("You cannot move in that direction!")
         else:
             player.change_location(newRoom)
-    else:
+    if inputList[0] not in validActions and inputList[0] not in validDirection:
             printErrorString("I do not understand that command")
             #suppressRoomPrint = True    
     '''elif inputList[0] == "look":
