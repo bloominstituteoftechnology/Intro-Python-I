@@ -44,13 +44,13 @@ room['narrow'].items.append(shield)
 helmet = Item('helmet', 'partially crushed')
 room['foyer'].items.append(helmet)
 
-gold = Treasure('gold', 'gold bar')
+gold = Treasure('gold', 'gold bar', 600)
 room['treasure'].items.append(gold)
 
-diamonds = Treasure('diamonds', 'satchel of diamonds')
+diamonds = Treasure('diamonds', 'satchel of diamonds', 300)
 room['overlook'].items.append(diamonds)
 
-rubies = Treasure('rubies', 'bag of rubies')
+rubies = Treasure('rubies', 'bag of rubies', 150)
 room['narrow'].items.append(rubies)
 
 #
@@ -121,6 +121,7 @@ while running:
             else:
                 player.room.items.remove(item)
                 player.items.append(item)
+                item.on_take(player)
         elif inp[0] == 'drop':
             item = retrieve(inp[1], player)
             if item == None:
