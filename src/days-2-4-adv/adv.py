@@ -113,6 +113,8 @@ def viewInventory(player, *args):
         index += 1
     return False
 
+
+
 commands = {}
 commands['n'] = moveCommand
 commands['s'] = moveCommand
