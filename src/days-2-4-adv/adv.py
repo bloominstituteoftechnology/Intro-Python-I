@@ -84,12 +84,14 @@ def lookCommand(player, *args):
         for item in player.location.items:
             print('\n-- ({}) {}: {} --\n'.format(index, item.name, item.description))
             index += 1
+        return True
     elif args[1] == 'inside':
         print('\nINVENTORY: ')
         index = 0
         for item in player.inventory:
             print(f'\n-- ({index}) {item.name}: {item.description} --\n')
             index += 1
+        return True
 
 def getCommand(player, *args):
     if player.location.items[int(args[1])]:
@@ -105,15 +107,25 @@ def dropCommand(player, *args):
         print('You dropped {}!'.format(player.inventory[int(args[1])].name))
         player.inventory.pop(int(args[1]))
 
-def viewInventory(player, *args):
+'''def viewInventory(player, *args):
     print('\nINVENTORY: ')
     index = 0
     for item in player.inventory:
         print(f'\n-- ({index}) {item.name}: {item.description} --\n')
         index += 1
-    return False
-
-
+'''
+def  viewCommand(player, *args):
+    if args[0] == 'i' or args[0] == 'inventory':
+        print('\nINVENTORY: ')
+        index = 0
+        for item in player.inventory:
+            print(f'\n-- ({index}) {item.name}: {item.description} --\n')
+            index += 1
+        return True
+    elif args[0] == 'score':
+        print('\nSCORE: ')
+        print(f'Player1: {player1.score}')
+        return True
 
 commands = {}
 commands['n'] = moveCommand
@@ -123,8 +135,9 @@ commands['w'] = moveCommand
 commands['l'] = lookCommand
 commands['look'] = lookCommand
 commands['get'] = getCommand
-commands['i'] = viewInventory
-commands['inventory'] = viewInventory
+commands['i'] = viewCommand
+commands['inventory'] = viewCommand
+commands['score'] = viewCommand
 commands['drop'] = dropCommand
 
 commandsHelp = {}
@@ -146,7 +159,7 @@ def printErrorString(errorString):
 
 # Make a new player object that is currently in the 'outside' room.
 
-player1 = Player(room['outside'], [Item('Pen', 'A mighty instrument to influence minds'), Item('Sword', 'Not as mighty...')])
+player1 = Player(room['outside'], 0, [Item('Pen', 'A mighty instrument to influence minds'), Item('Sword', 'Not as mighty...')])
 
 suppressRoomPrint = False
 
