@@ -40,10 +40,10 @@ while True:
             printErrorString("There is nothing for you to take.")
         elif command == "drop" and not player.items:
             printErrorString("You have no items.")
-        # elif command == "get" and target not in item.name for item in player.room.items:
-        #     print("\nThat item is not present.")
-        # elif command == "drop" and target not in player.items:
-        #     print("\nYou have no such item.")
+        elif command == "get" and not player.room.check_for_item(target):
+            printErrorString("That item is not present.")
+        elif command == "drop" and not player.check_for_item(target):
+            printErrorString("You have no such item.")
         elif command == "get":
             player.get(item[target])
             player.room.remove_item(item[target])

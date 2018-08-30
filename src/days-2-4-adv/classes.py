@@ -8,8 +8,8 @@ class Room:
         self.items.append(item)
     def remove_item(self, item):
         del self.items[self.items.index(item)]
-    # def check_for_item(self, item):
-    #     if item in self.items
+    def check_for_item(self, item_name):
+        return item_name in self.items
 
 class Player:
     def __init__(self, room, items=[]):
@@ -19,6 +19,8 @@ class Player:
         self.items.append(item)
     def drop(self, item):
         del self.items[self.items.index(item)]
+    def check_for_item(self, item_name):
+        return item_name in self.items
 
 class Item:
     def __init__(self, name):
