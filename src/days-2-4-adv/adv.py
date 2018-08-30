@@ -62,9 +62,9 @@ player = Player(room['outside'])
 def printRedMsg(msg):
     print(f"\x1b[1;31;40m {msg} \x1b[0m")
 
-user_prompt_msg = '\x1b[1;32;40m' + "\n\n\nEnter [take/drop] item-name OR a cardinal direction [n,s,e,w] OR q to quit: " + '\x1b[0m'
+user_prompt_msg = '\x1b[1;32;40m' + "\n\n\nEnter [take/drop item-name] OR a direction [n,s,e,w], [q]uit or [score]: " + '\x1b[0m'
 exit_msg = "\nThank you for playing!"
-invalid_command_msg = "I didn't recognize that command, please enter: [take/drop item-name] or [n,s,e,w,q]"
+invalid_command_msg = "I didn't recognize that command, please enter [take/drop item-name] OR a direction [n,s,e,w], [q]uit or [score]"
 item_nonexist = "Sorry that item doesn't exist"
 
 
@@ -99,6 +99,9 @@ while True:
         elif inp[0] == "i":
             print("\n\nYou have the following items: ")
             player.displayItems()
+        
+        elif inp[0] == "score":
+            print(f"\n\n                          \x1b[1;34;40m Your score is:  \x1b[1;37;44m {player.score} \x1b[0m")
 
         else:
             printRedMsg(invalid_command_msg)

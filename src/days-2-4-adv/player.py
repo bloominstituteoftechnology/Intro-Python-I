@@ -5,11 +5,18 @@ class Player:
   def __init__(self, start_room):
     self.room = start_room #instance variable
     self.items = []
+    self.score = 0
+  
   def __repr__(self):
     return "Current Location: {}".format(self.room)
   def __str__(self):
     return "Current Location: {}".format(self.room) 
 
+  def set_room(self, new_room):
+    self.room = new_room
+
+  def setScore(self, score):
+    self.score = score
 
   def addItem(self,item):
     self.items.append(item)
@@ -21,10 +28,6 @@ class Player:
           self.items.remove(i)
     else:
       print('Item not available to remove!')
-
-
-  def set_room(self, new_room):
-    self.room = new_room
 
   def getItemsList(self):
     if (self.items):
