@@ -1,13 +1,15 @@
 from room import Room
 from player import Player
 from item import Item
+from item import LightSource
+from item import Treasure
 
 
 item = {
     "key": Item("key", "a small golden key"),
     "rock": Item("rock", "just a small rock"),
-    "torch": Item("torch", "a torch with a flame"),
-    "coins": Item("coins", "a pouch filled with golden coins"),
+    "torch": LightSource("torch", "a torch with a flame"),
+    "coins": Treasure("coins", "a pouch filled with golden coins", 5),
 
 }
 
@@ -15,21 +17,21 @@ item = {
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [item["rock"]]),
+                     "North of you, the cave mount beckons", [item["rock"]], True),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [item["key"]]),
+passages run north and east.""", [item["key"]], True),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [item["torch"]]),
+the distance, but there is no way across the chasm.""", [item["torch"]], True),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", []),
+to north. The smell of gold permeates the air.""", [], False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [item["coins"]]),
+earlier adventurers. The only exit is to the south.""", [item["coins"]], False),
 }
 
 
@@ -76,12 +78,19 @@ print (f"Welcome, {player.name}!\n")
 # * Waits for user input and decides what to do.
 
 while True:
-    if suppressRoomPrint:
+    if suppressRoomPrint == True:
         suppressRoomPrint = False
     else:
-        print (f"\n  {player.location.title}\n    {player.location.description}\n     Items in this room: \n" )
-        for i in player.location.items:
-            print (f"\n  {i.name}: {i.description}")
+        
+        if player.location.is_light == False and item.LightSource not in player.items and item.LightSource not in player.location.items:
+            print("It's pitch black!")
+            inp_args = input(">>>").split(" ")
+            if inp_args[0] == 'g' or inp_args[0] == 'get':
+                print("Good luck finding that in the dark!")
+        else:
+            print (f"\n  {player.location.title}\n    {player.location.description}\n     Items in this room: \n" )
+            for i in player.location.items:
+                print (f"\n  {i.name}: {i.description}")
     inp_args = input(">>>").split(" ")
     if inp_args[0] == "q":
         break
@@ -99,6 +108,7 @@ while True:
         if itm in current_room.items:
             player.getItem(itm)
             current_room.removeItem(itm)
+            
         else:
             print("You cannot get that item.")
 

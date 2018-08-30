@@ -17,6 +17,14 @@ class Player:
 
     def getItem(self, item):
         self.items.append(item)
+        add_to_score = item.on_take()
+        self.score = add_to_score
 
     def dropItem(self, item):
+        item.on_drop(item)
         self.items.remove(item)
+
+    def findItemByName(self, name):
+        for item in self.items:
+            if item.name.lower() == name.lower():
+                return item
