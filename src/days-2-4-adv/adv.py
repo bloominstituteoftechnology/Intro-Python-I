@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 
 # Declare all the rooms
 
@@ -43,6 +43,15 @@ room['narrow'].items.append(shield)
 
 helmet = Item('helmet', 'partially crushed')
 room['foyer'].items.append(helmet)
+
+gold = Treasure('gold', 'gold bar')
+room['treasure'].items.append(gold)
+
+diamonds = Treasure('diamonds', 'satchel of diamonds')
+room['overlook'].items.append(diamonds)
+
+rubies = Treasure('rubies', 'bag of rubies')
+room['narrow'].items.append(rubies)
 
 #
 # Main
