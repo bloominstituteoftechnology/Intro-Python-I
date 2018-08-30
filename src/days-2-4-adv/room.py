@@ -2,13 +2,14 @@
 # description attributes.
 
 class Room():
-  def __init__(self, name, description):
+  def __init__(self, name, description, items):
     self.name = name
     self.description = description
     self.n_to = None
     self.s_to = None
     self.w_to = None
     self.e_to = None
+    self.items = items
 
   def getRoomInDirection(self, direction):
     if direction == "n":
@@ -37,3 +38,10 @@ class Room():
       destination_room.e_to = self
     else:
       pring("Invalid Direction")
+
+  def addItems(self,item):
+    self.items.append(item)
+
+  def displayItems(self):
+    for i in self.items:
+      print('\x1b[1;33;40m' + i + '\x1b[0m')
