@@ -12,7 +12,7 @@ class Room:
         return (f'{self.__class__.__name__}('
                 f'{self.name!r}, {self.description!r})')
 
-location1 = Room('Living Room', 'Space for lounging and hanging out.')
-# print("Location name: " + location1.name + "\n" + "Location description: " + location1.description)
+# location1 = Room('Living Room', 'Space for lounging and hanging out.')
+# # print("Location name: " + location1.name + "\n" + "Location description: " + location1.description)
 
-print(repr(location1))
+# print(repr(location1))

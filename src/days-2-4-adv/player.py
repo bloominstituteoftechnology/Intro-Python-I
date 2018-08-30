@@ -9,7 +9,7 @@ class Player:
     def __repr__(self):
         # return f'Player({self.name!r}, {self.location!r}'
         return (f'{self.__class__.__name__}('
-                f'{self.name!r}, {self.location})')
+                f'{self.name!r}, {self.location!r})')
     
 
     
