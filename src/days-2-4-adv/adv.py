@@ -170,6 +170,7 @@ while True:
             print("You must enter something to drop.\n")
     elif inp.startswith('eat'):
         try:
+            ateItem = False
             inv = player.getInventory()
             item = inp.split(' ')[1]
             if (inv.keys()):
@@ -177,9 +178,10 @@ while True:
                     if key == item:
                         print('Eating {}\n'.format(item))
                         player.eat(item_dict[item])
+                        ateItem = True
                         break
-                    else:
-                        print("You cannot eat that.\n")
+            if (not ateItem):
+                print('There is no {} to eat!\n'.format(item))
         except:
             print("You cannot eat the {}!\n".format(item))
     elif inp == 'i' or inp == "inventory":
