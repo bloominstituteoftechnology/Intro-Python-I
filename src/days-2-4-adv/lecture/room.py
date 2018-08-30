@@ -47,5 +47,10 @@ class Room:
     def removeItem(self, item):
         self.items.remove(item)
 
+    def checkLigh(self):
+        if self.is_light:
+            pass
+        else:
+            print('It\'s pitch black!')
     
     

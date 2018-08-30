@@ -25,9 +25,5 @@ class Player:
                 self.items.remove(item)
     def currentScore(self):
         print(self.score)
-
-
-
-
     def moveTo(self, direction):
         self.direction = direction
