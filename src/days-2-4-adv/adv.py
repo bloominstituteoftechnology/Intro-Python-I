@@ -1,5 +1,7 @@
 from player import Player
+from intro import Intro
 from room import Room
+
 
 # Declare all the rooms
 
@@ -44,6 +46,8 @@ room['treasure'].s_to = room['narrow']
 # Write a loop that:
 #
 while True:
+
+    Intro.start()
     inp = input('<Create your character> with Name, Job, and Location set to outside: ')
     if inp == "q":
         break
@@ -57,8 +61,11 @@ while True:
         elif charLocation == "outside":
             newPlayer = Player(charName, charJob, charLocation)
             print("Your character's name is {}, job title is {} and location is {}".format(newPlayer.name, newPlayer.job, newPlayer.location))
+            Intro.characterCreated(newPlayer.name)
         if newPlayer.location == "outside":
-            input()
+            print("Choose to proceed in which direction?")
+            if()
+
 # * Prints the current room name
 
 # * Prints the current description (the textwrap module might be useful here).
