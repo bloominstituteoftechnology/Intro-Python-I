@@ -22,66 +22,78 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+suppressRoomPrint = False
+validDirections = ["n", "s", "e", "w"]
+
+
+def moveCommand(player, *args):
+    newRoom = player.location.getRoomInDirection(args[0])
+    if newRoom == None:
+        printErrorString("You cannot move in that direction!")
+    else:
+        player.change_location(newRoom)
+    return False
+
+def lookCommand(player, *args):
+    """
+    Returns suppressRoomString value
+    """
+    if not (args[0] == "l" or args[0] == "look"):
+        printErrorString("That is not a look command")
+    elif len(args) == 1:
+        return False
+    elif args[1] in validDirections:
+        lookRoom = player.location.getRoomInDirection(args[1])
+        if lookRoom is not None:
+            print (lookRoom)
+        else:
+            printErrorString("You cannot go that way.")
+        return True
+
+def printErrorString(errorString):
+    print(f'{errorString}')
+    global suppressRoomPrint
+    suppressRoomPrint = True
+
+commands = {}
+commands["n"] = moveCommand
+commands["s"] = moveCommand
+commands["e"] = moveCommand
+commands["w"] = moveCommand
+commands["l"] = lookCommand
+commands["look"] = lookCommand
+
+commandsHelp = {}
+commandsHelp["n"] = "Move North"
+commandsHelp["s"] = "Move South"
+commandsHelp["e"] = "Move East"
+commandsHelp["w"] = "Move West"
+commandsHelp["l"] = "Look somewhere"
+commandsHelp["look"] = "Look somewhere"
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['outside'].connectRooms(room['foyer'], "n")
+room['foyer'].connectRooms(room['overlook'], "n")
+room['foyer'].connectRooms(room['narrow'], "e")
+room['narrow'].connectRooms(room['treasure'], "n")
 
-#
-# Main
-#
+player = Player(input("\nWhat is your name?: ") , room['outside'])
 
-# Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+print (f"Salutations, {player.name}!\n")
 
 while True:
-    incorrect_area = '\nYou cannot go that way'
-    print (f" \n{player.location.name} \n{player.location.description} \n")
-    inp = input("\nChoose your path: (n), (s), (e), (w) or quit (q)\n")
-
-    if inp == "q":
-        print("Better luck next time!")
+    if suppressRoomPrint:
+        suppressRoomPrint = False
+    else:
+        print(f'{player.location.title}')
+    inputList = input(">>> ").split(" ")
+    if inputList[0] == "q":
         break
-
-    if inp == "n":
-        if not hasattr(player.location.n_to, 'name'):
-            print(incorrect_area)
-        else:
-            player.location = player.location.n_to
-
-    if inp == "s":
-        if not hasattr(player.location.s_to, 'name'):
-            print(incorrect_area)
-        else:
-            player.location = player.location.s_to
-    
-    if inp == "e":
-        if not hasattr(player.location.e_to, 'name'):
-            print(incorrect_area)
-        else:
-            player.location = player.location.e_to
-
-    if inp == "w":
-        if not hasattr(player.location.w_to, 'name'):
-            print(incorrect_area)
-        else:
-            player.location = player.location.w_to
-
-
+    elif inputList[0] in commands:
+        suppressRoomPrint = commands[inputList[0]](player, *inputList)
+    elif inputList[0] == "help":
+        for command in commandsHelp:
+            print (f"{command} - {commandsHelp[command]}")
+    else:
+        printErrorString("That command does not exist")
