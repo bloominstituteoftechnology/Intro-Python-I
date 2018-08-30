@@ -29,6 +29,8 @@ class Apple(Item):
     def __init__(self):
         super(Apple, self).__init__('Apple', 'A healthy looking fruit.')
 
+apple1 = Apple()
+
 ###### Title Screen ######
 def title_screen_selections():
     option = input("> ")
@@ -64,7 +66,7 @@ def help_menu():
     print('# Welcome to the Text RPG! #')
     print('############################')
     print('— Type your commands to perform actions.')
-    print('— Use "move" with up, SOUTH, left, right to navigate.')
+    print('— Use "move" with north, south, east, west to navigate.')
     print('— Use "look" to inspect something.')
     print('— Have fun!')
     title_screen_selections()
@@ -85,11 +87,11 @@ def help_menu():
 # -------------
 # """
 
-ZONENAME = ''
+ZONENAME = 'zonename'
 DESCRIPTION = 'description'
-EXAMINATION = 'examine'
-SOLVED = False
-ITEMLIST = []
+EXAMINATION = 'examination'
+SOLVED = 'solved'
+ITEMLIST = 'itemlist'
 NORTH = 'north'
 SOUTH = 'south'
 EAST = 'east'
@@ -256,7 +258,7 @@ zonemap = {
         DESCRIPTION: 'Outside Cave Entrance',
         EXAMINATION: """North of you, the cave mount beckons""",
         SOLVED: False,
-        # ITEMLIST: [],
+        ITEMLIST: [{"name": "Big Twig", "description": "Not the sturdiest of branches, but nothing to shake a stick at, either. Or with."}, apple1],
         NORTH: 'c2',
         SOUTH: '',
         EAST: '',
@@ -300,34 +302,36 @@ def prompt():
     print("what would you like to do?")
     action = input("> ")
 
-    acceptable_actions = ["quit", "q", "move", "look", "help", "search", "move north", "move n", "move south", "move s", "move east", "move e", "move west", "move w"]
+    acceptable_actions = ["quit", "q", "move", "look", "help", "search", "move north", "move n", "move south", "move s", "move east", "move e", "move west", "move w", "pickup", "search", "s", "h", "l", "m", "p", "m n", "m s", "m e", "m w", "check", "c"]
     while action.lower() not in acceptable_actions:
         print('Unknown action, try again. Not sure of what to do? Use "help" to find out!\n')
         action = input("> ")
     if action.lower() in ["quit", "q"]:
         sys.exit()
-    elif action.lower() in ["move"]:
+    elif action.lower() in ["move", "m"]:
         player_move(action.lower())
-    elif action.lower() in ["move north", "move n"]:
+    elif action.lower() in ["move north", "move n", "m n"]:
         destination = zonemap[myPlayer.location][NORTH]
         movement_handler(destination)    
-    elif action.lower() in ["move south", "move s"]:
+    elif action.lower() in ["move south", "move s", "m s"]:
         destination = zonemap[myPlayer.location][SOUTH]
         movement_handler(destination)    
-    elif action.lower() in ["move east", "move e"]:
-        destination = zonemap[myPlayer.location][WEST]
-        movement_handler(destination)    
-    elif action.lower() in ["move west", "move w"]:
+    elif action.lower() in ["move east", "move e", "m e"]:
         destination = zonemap[myPlayer.location][EAST]
+        movement_handler(destination)    
+    elif action.lower() in ["move west", "move w", "m w"]:
+        destination = zonemap[myPlayer.location][WEST]
         movement_handler(destination)
-    elif action.lower() in ["look"]:
+    elif action.lower() in ["look", "l"]:
         player_examine(action.lower())
-    elif action.lower() in ["help"]:
+    elif action.lower() in ["help", "h"]:
         player_help(action.lower())
-    elif action.lower() in ["search"]:
+    elif action.lower() in ["search", "s"]:
         player_search(action.lower())
-    elif action.lower() in ["pickup"]:
+    elif action.lower() in ["pickup", "p"]:
         player_pickup(action.lower())
+    elif action.lower() in ["check", "c"]:
+        player_check(action.lower())
 
 def player_move(myAction):
     ask = "Where would you like to move to?\n"
@@ -354,23 +358,28 @@ def movement_handler(destination):
         print_location()
 
 def player_examine(action):
-    print("You are at " + zonemap[myPlayer.location][DESCRIPTION] + "." + "\n" + zonemap[myPlayer.location][EXAMINATION])
+    print("\nYou are at " + zonemap[myPlayer.location][DESCRIPTION] + "." + "\n" + zonemap[myPlayer.location][EXAMINATION])
 
 def player_help(action):
-    print("You can try to 'move' or 'look' at this time.")
+    print("You can try to '[m]ove' or '[l]ook' at this time.")
 
 def player_search(action):
     # if item is in room,
-        print(len(str(zonemap[myPlayer.location][ITEMLIST].items())))
+        # print(len(str(zonemap[myPlayer.location][ITEMLIST].items())))
+        print(str(zonemap[myPlayer.location]["itemlist"]))
     # else print no items are in this area
 
 def player_pickup(action):
-    item = zonemap[myPlayer.location][ITEMLIST].items()
-    if len(item) == 0:
+    if len(str(zonemap[myPlayer.location]["itemlist"])) < 3:
         print("Doesn't look like there's anything to pick up.")
-    elif len(zonemap[myPlayer.location][ITEMLIST]) > 0:
-        zonemap[myPlayer.inventory].append(item)
-        print("Acquired " + item[name])
+    elif len(str(zonemap[myPlayer.location]["itemlist"][-1])) > 3:
+        item = str(zonemap[myPlayer.location]["itemlist"][-1])
+        myPlayer.inventory.append(zonemap[myPlayer.location]["itemlist"].pop())
+        print("Acquired " + item)
+        # print("Acquired " + item[name])
+
+def player_check(action):
+    print(str(myPlayer.inventory))
 
 ###### GAME FUNCTIONALITY ######
 def main_game_loop():
