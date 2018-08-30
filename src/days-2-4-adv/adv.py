@@ -90,7 +90,7 @@ def battle(player, monster):
     while player.health > 0:
         action = input('Choose your action: ')
         if action == 'attack' or action == 'a':
-            player.attack(item_dict['sword'], monster)
+            player.attack(player.equipped, monster)
             print("\tMONSTER HEALTH {}".format(monster.health))
             if monster.health < 1:
                 monster.drop('largeTreasureChest')
