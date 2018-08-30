@@ -44,8 +44,8 @@ suppressRoomPrint = False
 def printErrorString(errorString):
     #print("\n -You cannot travel in that direction-\n")
     print(f'\x1b[1;31;40m\n{errorString}\x1b[0m\n')
-    global suppressRoomPrint
-    suppressRoomPrint = True
+    #global suppressRoomPrint
+    #suppressRoomPrint = True
 
 
 #print(player)
@@ -73,10 +73,11 @@ while True:
     #print(f"Your command has {len(inputList)} arguments)
     if inputList[0] == "q":
         break
-    elif inputList[0] == "take":
+    elif inputList[0] == "take" and len(player.items) < 3:
         player.add_item(inputList[1])
+        player.location.drop_item(inputList[1])
+    elif inputList[0] == "inventory":
         print("Your inventory now includes", player.items)
-        player
     elif inputList[0] == "drop":
         player.drop_item(inputList[1])
         player.location.add_item(inputList[1])
@@ -88,7 +89,10 @@ while True:
             printErrorString("You cannot move in that direction!")
         else:
             player.change_location(newRoom)
-    elif inputList[0] == "look":
+    else:
+            printErrorString("I do not understand that command")
+            #suppressRoomPrint = True    
+    '''elif inputList[0] == "look":
         if len(inputList) == 1:
             pass
             suppressRoomPrint = True
@@ -98,7 +102,5 @@ while True:
                 print(lookRoom.title)
             else:
                  printErrorString("There is nothing in that direction")
-            suppressRoomPrint = True
-    else:
-        printErrorString("I do not understand that command")
-        suppressRoomPrint = True    
+            suppressRoomPrint = True'''
+        
