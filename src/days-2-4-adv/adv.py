@@ -60,6 +60,7 @@ print(f'\nHello {player.name}')
 while True:
     print(f'\nLocation: {player.location.name}')
     print(f'{player.location.description}')
+    print(f'{player.location.items}')
 
     direction = str(input('Which direction do you walk?  '))
 
