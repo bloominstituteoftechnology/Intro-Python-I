@@ -4,3 +4,4 @@ class Player:
     def __init__(self, startRoom):
         self.room = startRoom
         self.items = []
+        self.score = 0

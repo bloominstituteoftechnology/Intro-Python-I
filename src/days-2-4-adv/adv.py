@@ -98,6 +98,8 @@ while running:
                 print("\nYou have:")
                 for item in player.items:
                     print("{}".format(item.name))
+        elif inp[0] == 'score':
+            print("\nYou're score is {}.".format(player.score))
         else:
             print('Unknown Command')
             print('Enter n, s, e, or w for desired direction or i for inventory or q to quit')
