@@ -4,21 +4,21 @@ from room import Room
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", ["rock", "log", "rope"]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", ["lamp", "chair", "table"]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", ["bird's nest", "hiking pole"]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", ["empty treasure chest", "shovel"]),
 }
 
 
@@ -56,8 +56,13 @@ player1 = Player(input('Enter player name: '), room['outside'])
 
 # Add functionality to the main loop that prints out all the items that are visible to the player when they are in that room.
 
+from item import Item
+# item1 = Item('box', 'a small cardboard box')
+# print(item1.name)
+
 while True:
-    print(player1.location.name + '\n'+ player1.location.description)
+    # print(player1.location.name + '\n'+ player1.location.description)
+    print("Items in the room: ", player1.location.items)
 
     command = input('Next move: ')
     validCommands = ['n', 's', 'e', 'w','q']
