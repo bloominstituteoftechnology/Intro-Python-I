@@ -34,6 +34,6 @@ class Treasure(Items):
 
 
 class LightSource(Items):
-    def __init__(self, name, description, energy):
-        Items.__init__(self, name, description)
+    def __init__(self, name, description, itemType, energy):
+        Items.__init__(self, name, description, itemType)
         self.energy = energy

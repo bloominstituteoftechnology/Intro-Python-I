@@ -10,7 +10,7 @@ room = {
                      "North of you, the cave mouth beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", False),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -28,7 +28,8 @@ earlier adventurers. The only exit is to the south."""),
 item_dict = {
     'apple': Food('apple', 'a small to medium-sized conic apple', 'food', 10),
     'bread': Food('bread', 'a slice of bread', 'food', 10),
-    'ring': Treasure('ring', 'a silver ring', 'treasure', 50)
+    'ring': Treasure('ring', 'a silver ring', 'treasure', 50),
+    'lamp': LightSource('lamp', 'a lamp', 'light source', 50)
 }
 
 """where add stuff to the rooms"""
@@ -39,10 +40,11 @@ room['outside'].take(item_dict['apple'].name)
 # room['outside'].take(item_dict['apple'].name)
 room['outside'].take(item_dict['bread'].name)
 room['outside'].take(item_dict['ring'].name)
+room['outside'].take(item_dict['lamp'].name)
 
 # Link rooms together
 room['outside'].n_to = 'foyer'
-# room['foyer'].s_to = 'outside'
+room['foyer'].s_to = 'outside'
 room['foyer'].n_to = 'overlook'
 room['foyer'].e_to = 'narrow'
 room['overlook'].s_to = 'foyer'
@@ -58,6 +60,16 @@ room['treasure'].s_to = 'narrow'
 player = Player('DaBoss', 'outside')
 enemy = Player('Big Monster', 'narrow')
 
+# set up some helper functions
+
+
+def checkInventory(item):
+    inv = player.getInventory()
+    if (inv.keys()):
+        for key in inv:
+            if key == item:
+                return True
+    return False
 
 # Write a loop that:
 #
@@ -70,23 +82,28 @@ enemy = Player('Big Monster', 'narrow')
 #
 # If the user enters "q", quit the game.
 
+
 # CLEAR SCREEN
 os.system('cls') if sys.platform.startswith('win') else os.system('clear')
 print("Welcome to the grand adventure!!  Press 'h' at any time for help.\n\n")
 
 while True:
     # what player sees in the room
-    print("\nYou are at {}.\n{}.".format(
-        room[player.location].name, room[player.location].description))
+    # isinstance(variable, LightSource)
+    if (room[player.location].is_light or checkInventory('lamp')):
+        print("\nYou are at {}.\n{}.".format(
+            room[player.location].name, room[player.location].description))
+        if len(room[player.location].inventory) > 0:
+            print("Items in the room:")
+            for key in room[player.location].inventory:
+                if room[player.location].inventory[key]:
+                    print("\t{} {}".format(
+                        room[player.location].inventory[key], key))
+                else:
+                    print("\tNothing to take here.\n")
+    else:
+        print("You can't even see the hand in front of your face!")
     # shows items in the room, if there are any
-    if len(room[player.location].inventory) > 0:
-        print("Items in the room:")
-        for key in room[player.location].inventory:
-            if room[player.location].inventory[key]:
-                print("\t{} {}".format(
-                    room[player.location].inventory[key], key))
-            else:
-                print("\tNothing to take here.\n")
     # input
     inp = input("\nEnter a command: ")
 
