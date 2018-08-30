@@ -178,7 +178,7 @@ while True:
                     else:
                         print("You cannot eat that.\n")
         except:
-            pass
+            print("You cannot eat the {}!\n".format(item))
     elif inp == 'i' or inp == "inventory":
         inv = player.getInventory()
         if (inv.keys()):
