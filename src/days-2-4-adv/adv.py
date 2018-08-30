@@ -91,6 +91,7 @@ while True:
     inp = input("\nEnter a command: ")
 
     if inp == 'q' or inp == 'quit':
+        print("Thanks for playing!\n")
         break
     elif inp == 'n' or inp == "north":
         try:
@@ -183,7 +184,7 @@ while True:
             if (not ateItem):
                 print("You don't have a {} to eat!\n".format(item))
         except:
-            print("You cannot eat the {}!\n".format(item))
+            print("You cannot eat that!")
     elif inp == 'i' or inp == "inventory":
         inv = player.getInventory()
         if (inv.keys()):
