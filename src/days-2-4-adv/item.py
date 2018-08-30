@@ -22,3 +22,10 @@ class Treasure(Item):
             self.looted = True
         else:
             print(f'\x1b[1;31;40m\nYou picked up {self.name} but do not earn any score because you have already looted this item.\x1b[0m')
+
+class LightSource(Item):
+    def __init__(self, name, description):
+        super().__init__(name, description)
+        
+    def on_drop(self):
+        print('It\'s not wise to drop your source of light!')
