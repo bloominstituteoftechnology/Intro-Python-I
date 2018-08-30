@@ -64,6 +64,8 @@ def printRedMsg(msg):
 
 user_prompt_msg = '\x1b[1;32;40m' + "\n\n\nEnter [take/drop] item-name OR a cardinal direction [n,s,e,w] OR q to quit: " + '\x1b[0m'
 exit_msg = "\nThank you for playing!"
+invalid_command_msg = "I didn't recognize that command, please enter: [take/drop item-name] or [n,s,e,w,q]"
+item_nonexist = "Sorry that item doesn't exist"
 
 
 ###########
@@ -99,37 +101,44 @@ while True:
             player.displayItems()
 
         else:
-            printRedMsg("I didn't recognize that command, please enter, [take/drop] or [n,s,e,w]")
+            printRedMsg(invalid_command_msg)
     
     #If the user enters 2 words
     elif len(inp) == 2:
 
         if len(player.room.items) > 0:
-            #Create a list of item names
+            #Create a list of item names move into room class!!
             room_item_names = [item.name for item in player.room.items]
         
         if len(player.items) > 0:
-            #Create a list of item names
+            #Create a list of item names move into player class!!
             player_item_names = [item.name for item in player.items]
 
         #Check to see if the 2 word input requirement is not met:
         if not ((inp[0] == 'take' or inp[0] == 'drop') and (inp[1] in room_item_names or inp[1] in player_item_names)):
-            printRedMsg("I didn't recognize that command, please enter, [take/drop item-name]")
+            printRedMsg(invalid_command_msg)
         
         #The two word input requirement is met:
         else:
             if (inp[0] == 'take'):
-                player.room.removeItem(inp[1])
-                player.addItem(items[inp[1]])
+                if items[inp[1]] in player.room.items:
+                    player.room.removeItem(inp[1])
+                    player.addItem(items[inp[1]])
+                else:
+                    printRedMsg(item_nonexist)
+
 
             elif (inp[0] == 'drop'):
-                player.removeItem(inp[1])
-                player.room.addItem(items[inp[1]])
+                if items[inp[1]] in player.items:
+                    player.removeItem(inp[1])
+                    player.room.addItem(items[inp[1]])
+                else:
+                    printRedMsg(item_nonexist)
             
             else:
-                print('Good input but last clause')
+                printRedMsg(invalid_command_msg)
     
     #If the user enters 3 or more words
     else:
-        printRedMsg('Too many input arguments!')
+        printRedMsg(invalid_command_msg)
 
