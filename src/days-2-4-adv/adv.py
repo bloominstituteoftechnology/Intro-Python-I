@@ -52,7 +52,6 @@ room['foyer'].take(item_dict['sword'].name)
 room['overlook'].take(item_dict['lamp'].name)
 room['overlook'].take(item_dict['necklace'].name)
 room['narrow'].take(item_dict['bracelet'].name)
-room['treasure'].take(item_dict['largeTreasureChest'].name)
 
 
 # Link rooms together
@@ -70,8 +69,9 @@ room['treasure'].s_to = 'narrow'
 #
 
 # Make a new player object that is currently in the 'outside' room.
-monster = Player('Big Monster', 'narrow')
+monster = Player('Big Monster', 'narrow', 80)
 monster.take('knife')
+monster.take('largeTreasureChest')
 
 # set up some helper functions
 
@@ -89,16 +89,20 @@ def battle(player, monster):
     print("\n\nYou've confronted a monster")
     while player.health > 0:
         action = input('Choose your action: ')
-        if action == 'attack':
+        if action == 'attack' or action == 'a':
             player.attack(item_dict['sword'], monster)
-            print("MONSTER HEALTH {}".format(monster.health))
+            print("\tMONSTER HEALTH {}".format(monster.health))
             if monster.health < 1:
+                monster.drop('largeTreasureChest')
+                room[player.location].take('largeTreasureChest')
                 print("You have vanquished the monster!!!")
+                print("You now see a large treasure chest!")
                 room[player.location].is_occupied = False
                 return True
             monster.attack(item_dict['sword'], player)
-            print("PLAYER HEALTH {}".format(player.health))
-
+            print("\tYOUR HEALTH {}\n".format(player.health))
+        # todo move eat function
+        # elif action == 'eat'
         elif action == 'q':
             break
     print("You have died:(")
@@ -121,7 +125,7 @@ def battle(player, monster):
 os.system('cls') if sys.platform.startswith('win') else os.system('clear')
 print("Welcome to the grand adventure!!  Press 'h' at any time for help.\n\n")
 player_name = input("\nEnter your name: ")
-player = Player(player_name, 'outside')
+player = Player(player_name, 'outside', 100)
 
 while True:
     # what player sees in the room
@@ -131,6 +135,7 @@ while True:
             battleResults = battle(player, monster)
             if not battleResults:
                 print("Game over!")
+                print("Your score is: {}".format(player.score))
                 break
         print("\nYou are at {}.\n{}.".format(
             room[player.location].name, room[player.location].description))

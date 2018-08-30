@@ -4,11 +4,11 @@ from random import *
 
 
 class Player:
-    def __init__(self, name, location):
+    def __init__(self, name, location, health):
         self.name = name
         self.location = location
         self.inventory = {}
-        self.health = 100
+        self.health = health
         self.score = 0
 
     def take(self, item):
