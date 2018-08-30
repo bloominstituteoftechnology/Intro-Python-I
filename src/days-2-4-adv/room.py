@@ -50,6 +50,12 @@ class Room():
     else:
       print('Item not available to remove!')
 
+  def getItemsList(self):
+    if (self.items):
+      return [i.name for i in self.items]
+    else:
+      return []
+    
   def displayItems(self):
     if (self.items):
       for i in self.items:

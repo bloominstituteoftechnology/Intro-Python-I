@@ -106,16 +106,18 @@ while True:
     #If the user enters 2 words
     elif len(inp) == 2:
 
-        if len(player.room.items) > 0:
-            #Create a list of item names move into room class!!
-            room_item_names = [item.name for item in player.room.items]
+        # if len(player.room.items) > 0:
+        #     #Create a list of item names move into room class!!
+        #     room_item_names = [item.name for item in player.room.items]
         
-        if len(player.items) > 0:
-            #Create a list of item names move into player class!!
-            player_item_names = [item.name for item in player.items]
+        # if len(player.items) > 0:
+        #     #Create a list of item names move into player class!!
+        #     player_item_names = [item.name for item in player.items]
 
-        #Check to see if the 2 word input requirement is not met:
-        if not ((inp[0] == 'take' or inp[0] == 'drop') and (inp[1] in room_item_names or inp[1] in player_item_names)):
+        #Check to see if the 2 word input requirement is NOT met:
+        # Check if the first word of the input is NOT take or drop AND
+        #   check if the second word of the input is NOT in the player.room or room
+        if not ( ( inp[0] == 'take' or inp[0] == 'drop' ) and ( inp[1] in player.room.getItemsList() or inp[1] in player.getItemsList() ) ):
             printRedMsg(invalid_command_msg)
         
         #The two word input requirement is met:
