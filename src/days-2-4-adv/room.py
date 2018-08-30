@@ -10,3 +10,9 @@ class Room():
 
     def getDescription(self):
         return ("{}.\n{}.".format(self.name, self.description))
+
+    def showItems(self):
+        message = "{} contains: ".format(self.name)
+        print(message)
+        for item in self.items:
+            print(item.name)

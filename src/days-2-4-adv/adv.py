@@ -63,11 +63,13 @@ def helpCommands():
     east = Move East
     west = Move West
     help = See this menu
+    show = Show items in a Room
     take/get *item* = Pick up Item from Room
     drop *item = Drop Item in the Room
     --------------------------------------------
     """
           )
+
 
 
 # --------------------Adding new items-----------------
@@ -78,6 +80,7 @@ room['outside'].items.append(new_item)
 room['foyer'].items.append(new_item2)
 room['treasure'].items.append(new_item3)
 
+# adding treasures
 treasure1 = Treasure("money", "currency", 100)
 treasure2 = Treasure("chalice", "shiny", 2000)
 treasure3 = Treasure("battery", "can go in a flashlight", 5)
@@ -113,7 +116,7 @@ while True:
                     if item.name == newMessage[1]:
                         player.room.items.remove(item)
                         player.items.append(item)
-                        print("You have picked up the {}.".format(item.name))
+                        item.on_take()
                     else:
                         print("{} is not in the room.".format(newMessage[1]))
             elif (newMessage[0] == "drop"):
@@ -121,8 +124,7 @@ while True:
                     if item.name == newMessage[1]:
                         player.room.items.append(item)
                         player.items.remove(item)
-                        print("You have dropped the {} in the {}".format(
-                            item.name, player.room.name))
+                        item.on_drop(player.room.name)
                     else:
                         print("You are not holding that item. ")
             else:
@@ -132,6 +134,9 @@ while True:
                 print("You are holding {}".format(item.name))
         elif (newMessage[0] == "help"):
             helpCommands()
+            suppressRoomPrint = True
+        elif (newMessage[0] == "show"):
+            player.room.showItems()
             suppressRoomPrint = True
         else:
             print("Not a valid option, enter 'help' for a list of all options.")
