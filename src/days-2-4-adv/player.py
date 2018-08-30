@@ -10,6 +10,7 @@ class Player:
         self.inventory = {}
         self.health = health
         self.score = 0
+        self.equipped = None
 
     def take(self, item):
         for key in self.inventory:
@@ -55,6 +56,7 @@ class Player:
         print(f'Score: \t\t{self.score}')
 
     def equip(self, item):
-        print("You have been equipped! with {}.\n".format(item))
+        self.equipped = item
+        print("You have been equipped! with {}.\n".format(item.name))
     # def addScore(self, value):
     #     self.score += value
