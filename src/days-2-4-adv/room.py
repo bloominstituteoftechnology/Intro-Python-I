@@ -2,7 +2,7 @@
 # description attributes.
 
 class Room:
-    def __init__(self, name, description):
+    def __init__(self, name, description, items):
         self.name = name
         self.description = description
         self.n_to = None
@@ -21,7 +21,10 @@ class Room:
             return self.w_to
         else:
             return None
-    def addItem(self, item):
+    def display_items(self):
+        for item in self.items:
+            print(item)
+    def add_item(self, item):
         self.items.append(item)
-    def removeItem(self, item):
+    def remove_item(self, item):
         self.items.remove(item)
