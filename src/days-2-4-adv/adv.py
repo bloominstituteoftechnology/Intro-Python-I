@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from items import Items, Food, Treasure, LightSource
+from items import Items, Food, Treasure, LightSource, Weapon
 import os
 import sys
 # Declare all the rooms
@@ -17,19 +17,26 @@ into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", False),
 }
 
 # Declare all the items
 item_dict = {
-    'apple': Food('apple', 'a small to medium-sized conic apple', 'food', 10),
-    'bread': Food('bread', 'a slice of bread', 'food', 10),
-    'ring': Treasure('ring', 'a silver ring', 'treasure', 50),
-    'lamp': LightSource('lamp', 'a lamp', 'light source', 50)
+    'apple': Food('apple', 'a small to medium-sized conic apple', 'food', 1, 10),
+    'bread': Food('bread', 'a slice of bread', 'food', 1, 10),
+    'ring': Treasure('ring', 'a silver ring', 'treasure', 1, 50),
+    'lamp': LightSource('lamp', 'a lamp', 'light source', 1, 50),
+    'necklace': Treasure('necklace', 'a silver necklace', 'treasure', 1, 50),
+    'bracelet': Treasure('bracelet', 'a silver bracelet', 'treasure', 1, 50),
+    'largeTreasureChest': Treasure('bracelet', 'a large treasure chest', 'treasure', 1, 500),
+    'sword': Weapon('sword', 'a large ninja katana', 'weapon', 10, 10)
+    # 'shield': None,
+    # 'helmet': None,
+    # 'boots': None
 }
 
 """where add stuff to the rooms"""
@@ -40,7 +47,12 @@ room['outside'].take(item_dict['apple'].name)
 # room['outside'].take(item_dict['apple'].name)
 room['outside'].take(item_dict['bread'].name)
 room['outside'].take(item_dict['ring'].name)
-room['outside'].take(item_dict['lamp'].name)
+room['foyer'].take(item_dict['sword'].name)
+room['overlook'].take(item_dict['lamp'].name)
+room['overlook'].take(item_dict['necklace'].name)
+room['narrow'].take(item_dict['bracelet'].name)
+room['treasure'].take(item_dict['largeTreasureChest'].name)
+
 
 # Link rooms together
 room['outside'].n_to = 'foyer'
@@ -57,7 +69,6 @@ room['treasure'].s_to = 'narrow'
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player('DaBoss', 'outside')
 enemy = Player('Big Monster', 'narrow')
 
 # set up some helper functions
@@ -70,6 +81,16 @@ def checkInventory(item):
             if key == item:
                 return True
     return False
+
+
+def battle(player, monster):
+    while player.health > 0:
+        action = input('Choose your action: ')
+        if action == 'swing':
+            print('You swung something')
+        elif action == 'q':
+            break
+
 
 # Write a loop that:
 #
@@ -86,6 +107,8 @@ def checkInventory(item):
 # CLEAR SCREEN
 os.system('cls') if sys.platform.startswith('win') else os.system('clear')
 print("Welcome to the grand adventure!!  Press 'h' at any time for help.\n\n")
+player_name = input("\nEnter your name: ")
+player = Player(player_name, 'outside')
 
 while True:
     # what player sees in the room
@@ -162,21 +185,22 @@ while True:
     elif inp == "l" or inp == 'look':
         pass
     elif inp.startswith('take') or inp.startswith('get'):
-        try:
-            item = inp.split(' ')[1]
-            # check to see if the item is in the room
-            if (room[player.location].drop(item)):
-                print('Taking {}\n'.format(item))
-                # item is in the room, so player can take it
-                player.take(item)
-                item_dict[item].on_take(player)
-                # print('player: {}'.format(player)) #This is printing?
-            elif item == '':
-                print("You must enter something to take.\n")
-            else:
-                print("There is no '{}' for you take!".format(item))
-        except:
-            print("You must enter something to take.\n")
+        if (room[player.location].is_light or checkInventory('lamp')):
+            # try:
+                item = inp.split(' ')[1]
+                # check to see if the item is in the room
+                if (room[player.location].drop(item)):
+                    # item is in the room, so player can take it
+                    player.take(item)
+                    item_dict[item].on_take(player)
+                elif item == '':
+                    print("You must enter something to take.\n")
+                else:
+                    print("There is no '{}' for you take!".format(item))
+            # except:
+            #     print("You must enter something to take.\n")
+        else:
+            print("Good luck finding that in the dark!")
     elif inp.startswith('drop'):
         try:
             item = inp.split(' ')[1]
