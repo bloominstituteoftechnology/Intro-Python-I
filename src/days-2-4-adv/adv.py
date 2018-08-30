@@ -1,74 +1,50 @@
 from room import Room
 from player import Player
+from item import itemList
+from item import Item
+from room import roomlist
+from item import LightSource
 
-# Declare all the rooms
-
-room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", ('sword' , 'shield')),
-
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", []),
-
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", []),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", []),
-
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", []),
-}
+roomlist['outside'].connectRooms(roomlist['foyer'], "n")
+roomlist['foyer'].connectRooms(roomlist['overlook'], "n")
+roomlist['foyer'].connectRooms(roomlist['narrow'], "e")
+roomlist['narrow'].connectRooms(roomlist['treasure'], "n")
+roomlist['overlook'].connectRooms(roomlist['treasure'], "e")
+roomlist['foyer'].connectRooms(roomlist['dungeon'], "w")
 
 
-# Link rooms together
-
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
-
-#
-# Main
-
-# Make a new player object that is currently in the 'outside' room.
-
-
-
-
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
-
-
-
-player = Player(input("\nWhat is your name?:"),  room['outside'], ['sword'])
+player = Player(input("\nWhat is your name?:"),
+ roomlist['outside'], [itemList['torch'], itemList['hat']], 0)
 print(f"Welcome, {player.name} !\n")
 
-while True:
-    print(f"\n{player.location.title}\n \n{player.location.description}\n {player.location.items}")
-    inp = input("What is your command: ")
-    if inp == "q":
+playing = True
+while(playing):
+    print(f"\n\033[92mCurrent Room:\033[0m \033[95m{player.location.title}\033[0m\n---------\
+-----------------\n\033[92mRoom contains:\033[94m{player.location.check_for_light(player)}\033[0m\033[0m\n--------------------------")
+
+    inp = input("What is your command: ").split(" ")
+
+    if inp[0] == "q":
         break
-    if inp =="n" or inp =="s" or inp =="w" or inp =="e":
-        newRoom = player.location.getRoomInDirection(inp)
-        if newRoom == None:
-            print ("You cannot move in that direction")
-        else:
-            player.change_location(newRoom)
+    if inp[0] =="n" or inp[0] =="s" or inp[0] =="w" or inp[0] =="e":
+        player.move(inp[0])
+    if inp[0] =="get" or inp[0] =="take":
+        player.get(inp[1])
+    if inp[0] =="drop":
+        player.drop(inp[1])
+    if inp[0]=="i":
+        player.player_inventory()
+    if inp[0] == "score":
+        player.get_score()
+    if inp[0] == "inspect":
+        player.inspect(inp[1])
+    if inp[0]=="l":
+        print(f"\n\033[92mCurrent Room Description:\033[0m \n\033[95m{player.location.description}\033[0m")
+        input(f"\x1b[1;31;40mPress Enter to Exit Description\x1b[0m")
+
+    if player.score == 57:
+        print('CONGRATULATIONS, YOU HAVE WON THE GAME')
+        playing = False
 
 
 
