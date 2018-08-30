@@ -34,7 +34,9 @@ item_dict = {
     'bracelet': Treasure('bracelet', 'a silver bracelet', 'treasure', 1, 50),
     'largeTreasureChest': Treasure('bracelet', 'a large treasure chest', 'treasure', 1, 500),
     'sword': Weapon('sword', 'a large ninja katana', 'weapon', 10, 10),
-    'knife': Weapon('knife', 'a rusty knife', 'weapon', 10, 7)
+    'knife': Weapon('knife', 'a rusty knife', 'weapon', 10, 7),
+    'fist': Weapon('fist', 'your knuckles hardened by life', 'weapon', 1, 1),
+    
     # 'shield': None,
     # 'helmet': None,
     # 'boots': None
@@ -90,21 +92,27 @@ def battle(player, monster):
     while player.health > 0:
         action = input('Choose your action: ')
         if action == 'attack' or action == 'a':
-            player.attack(player.equipped, monster)
-            print("\tMONSTER HEALTH {}".format(monster.health))
-            if monster.health < 1:
-                monster.drop('largeTreasureChest')
-                room[player.location].take('largeTreasureChest')
-                print("You have vanquished the monster!!!")
-                print("You now see a large treasure chest!")
-                room[player.location].is_occupied = False
-                return True
-            monster.attack(item_dict['sword'], player)
-            print("\tYOUR HEALTH {}\n".format(player.health))
+            if (player.equipped is None):
+                print("You have no weapon!")
+            else:
+                player.attack(player.equipped, monster)
+                print("\tMONSTER HEALTH {}".format(monster.health))
+                if monster.health < 1:
+                    monster.drop('largeTreasureChest')
+                    room[player.location].take('largeTreasureChest')
+                    print("You have vanquished the monster!!!")
+                    print("You now see a large treasure chest!")
+                    room[player.location].is_occupied = False
+                    return True
+                monster.attack(item_dict['sword'], player)
+                print("\tYOUR HEALTH {}\n".format(player.health))
         # todo move eat function
         # elif action == 'eat'
         elif action == 'q':
-            break
+            # todo return from whence player came
+            print("You run away!!!!")
+            room[player.location] = room['foyer']
+            return True
     print("You have died:(")
     return False
 
@@ -126,6 +134,7 @@ os.system('cls') if sys.platform.startswith('win') else os.system('clear')
 print("Welcome to the grand adventure!!  Press 'h' at any time for help.\n\n")
 player_name = input("\nEnter your name: ")
 player = Player(player_name, 'outside', 100)
+player.equip(item_dict['fist'])
 
 while True:
     # what player sees in the room
