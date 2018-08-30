@@ -35,6 +35,8 @@ item_dict = {
 # add an apple to the outside room
 # room['outside'].take('apple')
 room['outside'].take(item_dict['apple'].name)
+# room['outside'].take(item_dict['apple'].name)
+# room['outside'].take(item_dict['apple'].name)
 room['outside'].take(item_dict['bread'].name)
 room['outside'].take(item_dict['ring'].name)
 
@@ -56,7 +58,7 @@ room['treasure'].s_to = 'narrow'
 player = Player('DaBoss', 'outside')
 enemy = Player('Big Monster', 'narrow')
 
-# Generate items
+
 
 
 # Write a loop that:
@@ -165,6 +167,19 @@ while True:
                 room[player.location].take(item)
         except:
             print("You must enter something to drop.\n")
+    elif inp.startswith('eat'):
+        try:
+            inv = player.getInventory()
+            item = inp.split(' ')[1]
+            if (inv.keys()):
+                for key in inv:
+                    if key == item:
+                        print('Eating {}\n'.format(item))
+                        player.eat(item_dict[item])
+                    else:
+                        print("You cannot eat that.\n")
+        except:
+            print("You cannot eat that.\n")
     elif inp == 'i' or inp == "inventory":
         inv = player.getInventory()
         if (inv.keys()):
@@ -177,7 +192,9 @@ while True:
     elif inp == 'score':
         # print('{}\n'.format(player.getScore()))
         player.getScore()
+    elif inp == 'status':
+        player.getStatus()
     elif inp == "h" or inp == "help":
-        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, get, drop, score, exits, i)nventory, q)uit, h)elp\n")
+        print("\nCommands: n)orth, e)ast, w)est, s)outh, l)ook, take, get, drop, score, status, exits, i)nventory, q)uit, h)elp\n")
     else:
         print("I don't know that command")

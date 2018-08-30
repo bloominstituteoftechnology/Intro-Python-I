@@ -26,4 +26,4 @@ class Room:
                 if self.inventory[key] == 0:
                     del self.inventory[key]
                     return True
-        print("There is no {} here to get!\n".format(item))
+        # print("There is no {} here to get!\n".format(item))
