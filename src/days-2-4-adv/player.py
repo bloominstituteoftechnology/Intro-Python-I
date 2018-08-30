@@ -2,8 +2,10 @@
 # currently.
 
 class Player:
-    def __init__(self, startLocation):
+    def __init__(self, name, startLocation, inventory):
+        self.name = name
         self.location = startLocation
+        self.inventory = inventory
     def change_location(self, newLocation):
         self.location = newLocation
     def __repr__(self):
