@@ -1,4 +1,12 @@
 from room import Room
+from player import Player
+from items import *
+from dialogue import Dialogue
+from game_system import Game_System
+from functools import partial
+import os
+import re
+from functools import partial
 
 # Declare all the rooms
 
@@ -24,14 +32,128 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['outside'].connect_rooms('e', room['foyer'])
+room['foyer'].connect_rooms('n',room['overlook'])
+room['overlook'].connect_rooms('w',room['narrow'])
+room['narrow'].connect_rooms('s',room['treasure'])
+room['treasure'].connect_one_way('s',room['outside'])
+
+# Item Creation
+debris = Item('debris', 'It is just a useless item', {})
+print(debris.name)
+# Add items to rooms
+
+room['outside'].add_item(debris)
+# functions that only belong in this file
+def print_format_string(color, message):
+    colors = {
+        'success': '\x1b[6;30;42m',
+        'error': '\x1b[1;31;40m'
+    }
+    print(f'${colors[color]}{message}\x1b[0m')
+
+def treeSearch(userInput, obj):
+  if type(obj) != dict:
+    obj()
+    return
+  
+  if userInput[0] in obj:
+    newObj = obj[userInput[0]]
+  else:
+    print_format_string('error','Invalid command')
+    return
+  
+  newUserInput = userInput[1:]
+
+  treeSearch(newUserInput, newObj)
+
+# Start of game
+Dialogue.intro()
+
+# name, age, height, weight, hp, attack, defense, inventory
+restart = 'r'
+while restart == 'r':
+    player = Player.create_player()
+
+    restart = input(
+    f"""
+    Your starting character attributes:
+
+    {player}
+
+    Enter r to restart putting bio information
+
+    Press enter to continue
+    """)
+
+player.set_location(room['outside'])
+Dialogue.greet_player(player.name)
+
+# These commands are traversed with a tree algorithm
+playerCommands = {
+    'n': partial(player.go_direction, 'n'),
+    's': partial(player.go_direction, 's'),
+    'e': partial(player.go_direction, 'e'),
+    'w': partial(player.go_direction, 'w'),
+    'help': Game_System.display_help,
+    'hp': player.get_hp,
+    'health': player.get_hp,
+    'my': {
+        'health': player.get_hp,
+        'hp': player.get_hp
+    },
+    'q': quit,
+    'quit': quit,
+    'loc': player.get_current_location,
+    'look':{
+        'for': {
+            'items': player.look_for_items,
+            'enemies': player.look_for_enemies
+        },
+        'around': player.get_current_location
+    },
+    'where': {
+        'am': {
+            'i': player.get_current_location
+        },
+        'is': {
+            'this': {
+                'place': player.get_current_location
+            }
+        }
+    },
+    'check':{
+         'inventory': player.get_inventory,
+    },
+    'inventory': player.get_inventory,
+    'get': {
+        'item': player.add_item,
+        'hp': player.get_hp,
+        'current': {
+            'location': player.get_current_location
+        }
+    },
+    'grab': {
+        'item': player.add_item
+    },
+    'drop': {
+        'item': player.drop_item
+    }
+}
+
+
+player.get_current_location()
+
+while(True):
+    
+    command = input(">>> ").lower()
+    
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    pattern = re.compile(r'\s+')
+    command = re.split(pattern, command)
+    treeSearch(command, playerCommands)
+
 
 #
 # Main
