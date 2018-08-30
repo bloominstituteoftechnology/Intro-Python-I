@@ -5,7 +5,7 @@ class Player:
     def __init__(self, location, score, inventory = []):
         self.location = location
         self.inventory = inventory
-        self.score = 0
+        self.score = score
     def __str__(self):
         return 'Current Location: {}, Current inventory: {}'.format(self.location, self.inventory)
     def change_location(self, new_location):
