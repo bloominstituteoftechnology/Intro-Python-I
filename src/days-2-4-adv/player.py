@@ -29,6 +29,6 @@ class Player:
   def displayItems(self):
     if (self.items):
       for i in self.items:
-        print('\x1b[1;33;40m' + i.name + '\x1b[0m')
+        print('\x1b[1;35;40m' + i.name + '\x1b[0m')
     else:
-      print('')
+      print('\x1b[1;35;40m' + "You don't have any items!" + '\x1b[0m')
