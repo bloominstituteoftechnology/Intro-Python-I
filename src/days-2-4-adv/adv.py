@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Item
+from item import Commodity
 
 # Declare all the rooms
 
@@ -41,6 +42,15 @@ room['cargo'].contents.append(item)
 
 item = Item("cat skull", "The skull of a cat")
 room['incinerator'].contents.append(item)
+
+item = Commodity("platinum", "raw platinum ore", 500)
+room['cargo'].contents.append(item)
+
+item = Commodity("mithril", "raw mithril ore", 700)
+room['incinerator'].contents.append(item)
+
+item = Commodity("fluxerator", "an ancient alien machine part of unknown origin, cannot be reproduced", 1200)
+room['holodeck'].contents.append(item)
 
 # Game Variables
 suppressRoomPrint = False
@@ -95,8 +105,11 @@ def look(player, *args):
 
 def checkInventory(player, *args):
   if(player.inventory == []):
+    print(f'Score: {player.score}')
     printErrorString('Inventory is empty')
   else:
+    print(f'Score: {player.score}')
+    print('Items:')
     for item in player.inventory:
       print(item)
   return True
@@ -104,8 +117,21 @@ def checkInventory(player, *args):
 def getItem(player, *args):
   itemToGet = player.location.findItemByName(args[1])
   if itemToGet is not None:
-    player.addItem(itemToGet)
-    player.location.removeItem(itemToGet)
+    if getattr(itemToGet, 'value') > 0:
+      if getattr(itemToGet, 'picked_up') == True:
+        player.addItem(itemToGet)
+        player.location.removeItem(itemToGet)
+        print(f'You added {itemToGet} to inventory')
+      elif getattr(itemToGet) == False:
+        itemToGet.picked_up = True
+        player.addItem(itemToGet)
+        player.location.removeItem(itemToGet)
+        print(f'You added {itemToGet} to inventory')
+        print(f'You got {player.addToScore(item)} points!')
+    elif getattr(itemToGet, 'value') == 0:
+      player.addItem(itemToGet)
+      player.location.removeItem(itemToGet)
+      print(f'You added {itemToGet} to inventory')
   else:
     printErrorString('No such item in room')
 
