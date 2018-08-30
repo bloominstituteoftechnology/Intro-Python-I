@@ -99,6 +99,13 @@ def getCommand(player, *args):
     else:
         printErrorString('Better get the heck outta here! Not a valid get command, boss')
 
+def viewInventory(player, *args):
+    print('\nINVENTORY: ')
+    index = 0
+    for item in player.inventory:
+        print(f'\n-- ({index}) {item.name}: {item.description} --\n')
+        index += 1
+    return False
 
 commands = {}
 commands['n'] = moveCommand
@@ -108,6 +115,8 @@ commands['w'] = moveCommand
 commands['l'] = lookCommand
 commands['look'] = lookCommand
 commands['get'] = getCommand
+commands['i'] = viewInventory
+commands['inventory'] = viewInventory
 
 commandsHelp = {}
 commandsHelp['n'] = "Move North"
