@@ -6,6 +6,7 @@ class Item:
       self.description = description
       self.weight = 1
       self.firstPickup = True
+      self.value = 0
    
    def itemInfo(self):
       print(f"a {self.name}")

@@ -54,7 +54,6 @@ item = {
    "necklace" : Treasure("Necklace", "A heavy gold necklace set with 3 large diamonds surrounded by smaller rubies", 500)
 
 }
-
 room["overlook"].inventory["coin"] = item["coin"]
 room["treasure"].inventory["scepter"] = item["scepter"]
 room["overlook"].inventory["necklace"] = item["necklace"]

@@ -49,6 +49,9 @@ class Player(Character):
          self.inventory[item] = self.location.inventory[item]
          print(f"you picked up the {item}")
          self.location.inventory.pop(item)
+         if self.inventory[item].firstPickup:
+            self.score += self.inventory[item].value
+            self.inventory[item].firstPickup = False
 
       else: print("item does not exist")
    
