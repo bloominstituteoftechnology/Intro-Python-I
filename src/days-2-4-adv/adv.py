@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 
 # Declare all the rooms and items
 items = {
@@ -13,7 +13,10 @@ items = {
     'potion': Item('Potion', 'Restore 5hp'),
     'bandage': Item('Bandage', 'Restore 2hp'),
     'diamond': Item('Diamond', 'can be traded for 1000 gold'),
-    'revivepotion': Item('RevivePotion', 'can revive player 1 time')
+    'revivepotion': Item('RevivePotion', 'can revive player 1 time'),
+    'excalibur': Treasure('Excalibur', 'The Legendary Sword', 10),
+    'aegis': Treasure('Aegis', "Lord of Olympia Zeus' shield", 10),
+    'mjolnir': Treasure('Mjolnir', 'The hammer of Thor', 10)
 }
 
 room = {
@@ -37,7 +40,7 @@ to north. The smell of gold permeates the air.""",
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
-                     [items['diamond'], items['revivepotion']]),
+                     [items['diamond'], items['revivepotion'], items['excalibur'], items['aegis'], items['mjolnir']]),
 }
 # Game variables
 suppressRoomPrint = False
@@ -87,7 +90,7 @@ while True:
     else:
         print(f'\nCurrent location:  {player.location.name}.')
         print(player.location.description + '\n')
-        print(f'Items found: {player.location.getLoots()}\n')
+        print(f'Items found: {", ".join(player.location.getLoots())}\n')
 
     inputList = input('>>>').split()
 
@@ -95,13 +98,29 @@ while True:
         print('\nGoodbye! Please come again.\n')
         break
     elif inputList[0] == 'n':
-        player.location = player.location.getRoomInDirection('n')
+        if player.location.getRoomInDirection('n') is None:
+            print('There is no room in this direction, please choose again.')
+            suppressRoomPrint=True
+        else:
+            player.location = player.location.getRoomInDirection('n')
     elif inputList[0] == 's':
-        player.location = player.location.getRoomInDirection('s')
+        if player.location.getRoomInDirection('s') is None:
+            print('There is no room in this direction, please choose again.')
+            suppressRoomPrint=True
+        else:
+            player.location = player.location.getRoomInDirection('s')
     elif inputList[0] == 'e':
-        player.location = player.location.getRoomInDirection('e')
+        if player.location.getRoomInDirection('e') is None:
+            print('There is no room in this direction, please choose again.')
+            suppressRoomPrint=True
+        else:
+            player.location = player.location.getRoomInDirection('e')
     elif inputList[0] == 'w':
-        player.location = player.location.getRoomInDirection('w')
+        if player.location.getRoomInDirection('w') is None:
+            print('There is no room in this direction, please choose again.')
+            suppressRoomPrint=True
+        else:
+            player.location = player.location.getRoomInDirection('w')
 
     #Player inventory
     elif inputList[0] == 'i'  and len(inputList)==1:
