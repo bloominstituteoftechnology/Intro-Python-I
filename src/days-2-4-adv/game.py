@@ -302,7 +302,7 @@ def prompt():
     print("what would you like to do?")
     action = input("> ")
 
-    acceptable_actions = ["quit", "q", "move", "look", "help", "search", "move north", "move n", "move south", "move s", "move east", "move e", "move west", "move w", "pickup", "search", "s", "h", "l", "m", "p", "m n", "m s", "m e", "m w", "check", "c"]
+    acceptable_actions = ["quit", "q", "move", "look", "help", "search", "move north", "move n", "move south", "move s", "move east", "move e", "move west", "move w", "pickup", "search", "s", "h", "l", "m", "p", "m n", "m s", "m e", "m w", "check", "c", "drop", "d"]
     while action.lower() not in acceptable_actions:
         print('Unknown action, try again. Not sure of what to do? Use "help" to find out!\n')
         action = input("> ")
@@ -332,6 +332,8 @@ def prompt():
         player_pickup(action.lower())
     elif action.lower() in ["check", "c"]:
         player_check(action.lower())
+    elif action.lower() in ["drop", "d"]:
+        player_drop(action.lower())
 
 def player_move(myAction):
     ask = "Where would you like to move to?\n"
@@ -380,6 +382,14 @@ def player_pickup(action):
 
 def player_check(action):
     print(str(myPlayer.inventory))
+
+def player_drop(action):
+    if len(str(myPlayer.inventory)) < 3:
+        print("Doesn't look like there's anything for you to drop.")
+    elif len(str(myPlayer.inventory[-1])) > 3:
+        item = str(myPlayer.inventory[-1])
+        zonemap[myPlayer.location]["itemlist"].append(myPlayer.inventory.pop())
+        print("Dropped " + item)
 
 ###### GAME FUNCTIONALITY ######
 def main_game_loop():
