@@ -1,6 +1,11 @@
+from os import system, name
+import random
 from room import Room
-
+from player import Player
 # Declare all the rooms
+
+suppressRoomPrint = False
+validDirections = ["n", "s", "e", "w"]
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -23,7 +28,6 @@ earlier adventurers. The only exit is to the south."""),
 
 
 # Link rooms together
-
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -33,19 +37,30 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
 
-# Make a new player object that is currently in the 'outside' room.
+def move_check(p_location):
+    if p_location:
+        system('cls')
+        player.change_location(p_location)
+        print(player.location.weaponDrop)
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+    else:
+        print("\nCan't go that way!\n")
+
+player = Player((input("What is your name: ")), room['outside'])
+
+
+while True:
+    inp = input("What would you like to do next: ")
+    if inp == 'q':
+        break
+    elif inp == 'n':
+        move_check(player.location.n_to)
+    elif inp == 'e':
+        move_check(player.location.e_to)
+    elif inp == 's':
+        move_check(player.location.s_to)
+    elif inp == 'w':
+        move_check(player.location.w_to)
+    else:
+        print('\nInvalid entry, please type n, e, s, w\n')
