@@ -62,7 +62,7 @@ player = Player(room['outside'])
 # If the user enters "q", quit the game.
 
 def move(direction, presentRoom):
-    attr = direction + '_to'
+    attr = str(direction) + '_to'
     if hasattr(presentRoom, attr):
         return getattr(presentRoom, attr)
     print('wrong way')
@@ -79,17 +79,25 @@ while running:
     print("{}\n{}".format(player.room.name, player.room.description))
     
     for item in player.room.items: 
-        print(item)
+        print(item.name)
 
     print('Next move: ')
-    inp = input().split()
+    inp = input().strip().split()
     if len(inp) == 1:
-        if inp in ['n', 's', 'e', 'w']:
-            player.room = move(inp, player.room)
-        elif inp == 'q':
+        if inp[0] in ['n', 's', 'e', 'w']:
+            player.room = move(inp[0], player.room)
+        elif inp[0] == 'q':
             running = False
+        elif inp[0] == 'i':
+            if len(player.items) == 0:
+                print("You don't have anything")
+            else:
+                print("You have:")
+                for item in player.items:
+                    print("{}".format(item.name))
         else:
-            print('enter n, s, e, or w for deired direction or q to quit')
+            print('enter n, s, e, or w for desired direction or i for inventory or q to quit')
+            
     elif len(inp) == 2:
         if inp[0] == 'take':
             item = retrieve(inp[1], player.room)
