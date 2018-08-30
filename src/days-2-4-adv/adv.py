@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 from item import Item
 from item import Treasure
+from item import LightSource
 import textwrap
 
 # Declare all the rooms
@@ -30,7 +31,7 @@ room = {
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
                     to north. The smell of gold permeates the air.""",
-                    [Item("Torch", """Batteries included"""),
+                    [LightSource("Torch", """Batteries included"""),
                     Item("Wet Mud", """Gross!""")]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
@@ -103,20 +104,27 @@ def lookCommand(player, *args):
         return True
 
 def getCommand(player, *args):
-    if player.location.items[int(args[1])]:
+    if len(player.location.items) == 0:
+        printErrorString("All you do is take! There's nothing more to get in this room")
+    elif int(args[1]) >= len(player.location.items):
+        printErrorString('Grasping at straws...No item with that ID!')
+    elif len(player.location.items) > 0:
         player.inventory.append(player.location.items[int(args[1])])
         player.score += player.location.items[int(args[1])].on_take()
-        #print('You have obtained {}!'.format(player.location.items[int(args[1])].name))
         player.location.items.pop(int(args[1]))
     else:
-        printErrorString('Better get the heck outta here! Not a valid get command, boss')
+        printErrorString("Better GET the heck outta here! Not a valid command, boss")
 
 def dropCommand(player, *args):
-    if player.inventory[int(args[1])]:
+    if int(args[1]) >= len(player.inventory):
+        printErrorString('No such object to drop!')
+    elif len(player.inventory) > 0:
         player.location.items.append(player.inventory[int(args[1])])
-        print('You dropped {}!'.format(player.inventory[int(args[1])].name))
+        player.inventory[int(args[1])].on_drop()
         player.inventory.pop(int(args[1]))
         return True
+    else:
+        printErrorString('You have nothing to drop')
 
 def  viewCommand(player, *args):
     if args[0] == 'i' or args[0] == 'inventory':
