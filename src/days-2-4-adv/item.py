@@ -10,6 +10,8 @@ class Item:
     def on_take(self):
         print(f'\x1b[1;27;42m -You have obtained {self.name}!- \x1b[0m')
         return 0
+    def on_drop(self):
+        print(f'\x1b[1;27;42m -You dropped {self.name}!- \x1b[0m')
 
 class Treasure(Item):
     def __init__(self, name, description, value, notTakenBefore=True):
@@ -26,3 +28,12 @@ class Treasure(Item):
         else:
             print(f'\x1b[1;27;42m -Slimy fingered, ornery knave, lazy bum! You dropped your {self.name} and tried to pick it up again. No points for you!- \x1b[0m')
             return 0
+
+class LightSource(Item):
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
+    def __str__(self):
+        return '(Light Source) {}: {}\n'.format(self.name, self.description)
+    def on_drop(self):
+        print(f"\x1b[1;27;42m It's not wise to drop your source of light! \x1b[0m")
