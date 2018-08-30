@@ -34,6 +34,8 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+room['outside'].is_light = False
+
 t1 = Treasure('Gold', 'Some nice looking gold', 50)
 t2 = Treasure('Silver', 'Some nice looking silver', 20)
 t3 = Treasure('Staff', 'A rare looking staff', 200)
@@ -98,9 +100,12 @@ while True:
         suppressRoomPrint = False
     else:
         print('\n ==========================-----------------------==========================\n')
-        print(f"{player.room.name}\n{player.room.description}")
-        printRoomItems()
-  
+        if(player.room.is_light):
+            print(f"{player.room.name}\n{player.room.description}")
+            printRoomItems()
+        else:
+            print('It\'s pitch black!')
+
     inp = input('\nType help to get a list of commands >>> ').lower().split(' ')
 
     if(inp[0] == 'q'):
