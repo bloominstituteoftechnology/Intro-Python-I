@@ -1,30 +1,14 @@
+import sys
 import textwrap
 from room import Room
 from player import Player
-
-
-# def load_adv():
-#     text_file = open("adventure.txt", "r")
-#     history = text_file.read().split(",")
-#     text_file.close()
-#     return history
-
-
-# def save_adv(args):
-#     text_file = open("adventure.txt", "w")
-#     text_file.write(args)
-#     text_file.close()
-
-
-# adv = load_adv()
-#player = args
-
+from item import Item
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -58,7 +42,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-Ahmed = Player("Ahmed", room['outside'])
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -69,37 +53,86 @@ Ahmed = Player("Ahmed", room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-print(f"Welcome to Adventure Game, {Ahmed.name}!\n")
-print(f"You are in {Ahmed.location.name}.\n")
-print(textwrap.fill(Ahmed.location.description, 70))
+
+name = str(input("What's your name?\n>>>"))
+
+player = Player(name, room['outside'])
+
+coins = Item("coins", "some valuable currency")
+room['narrow'].items.append(coins)
+
+sword = Item("sword", "a weapon to vanquish your foes")
+player.inventory.append(sword)
+
+print(f"Welcome to Adventure Game, {player.name}!\n")
+print(f"You are in {player.location.name}.\n")
+print(textwrap.fill(player.location.description, 70))
 print("Please choose to continue...\n")
-user = str(input("[W] North   [A] West   [S] South   [D] East   [Q] Quit\n"))
+user = str(
+    input("[N]orth  [S]outh  [E]ast  [W]est  [I]nventory  [Q]uit\n>>>")).strip().lower()
 
 while not user == "q":
-    if user == "w":
-        try:
-            Ahmed.location = Ahmed.location.n_to
-        except AttributeError:
-            print("It's too dangerous to go here alone! Please try again.\n")
-    elif user == "a":
-        try:
-            Ahmed.location = Ahmed.location.w_to
-        except AttributeError:
-            print("It's too dangerous to go here alone! Please try again.\n")
-    elif user == "s":
-        try:
-            Ahmed.location = Ahmed.location.s_to
-        except AttributeError:
-            print("It's too dangerous to go here alone! Please try again.\n")
-    elif user == "d":
-        try:
-            Ahmed.location = Ahmed.location.e_to
-        except AttributeError:
-            print("It's too dangerous to go here alone! Please try again.\n")
+    command = user.split(" ")
+
+    if len(command) == 2:
+        if command[0] == "take" or command[0] == "get":
+            if not player.location.items:
+                print(
+                    f"There is no {command[1]} here! In fact, this room is empty!\n")
+            else:
+                for i in player.location.items:
+                    if i.name == command[1]:
+                        player.location.items.remove(i)
+                        player.inventory.append(i)
+                        print(f"You picked up {i}!\n")
+                    else:
+                        print(f"There is no {command[1]} here!\n")
+        elif command[0] == "drop":
+            if not player.inventory:
+                print(
+                    f"There is no {command[1]} in your inventory! In fact, your inventory is empty!\n")
+            else:
+                for i in player.inventory:
+                    if i.name == command[1]:
+                        player.inventory.remove(i)
+                        player.location.items.append(i)
+                        print(f"You dropped {i}!\n")
+                    else:
+                        print(f"There is no {command[1]} in your inventory!\n")
+
     else:
-        print("Invalid selection. Please try again.\n")
-    print(f"You are in {Ahmed.location.name}.\n")
-    print(textwrap.fill(Ahmed.location.description, 70))
+        if user == "n":
+            try:
+                player.location = player.location.n_to
+            except AttributeError:
+                print("It's too dangerous to go here alone! Please try again.\n")
+        elif user == "w":
+            try:
+                player.location = player.location.w_to
+            except AttributeError:
+                print("It's too dangerous to go here alone! Please try again.\n")
+        elif user == "s":
+            try:
+                player.location = player.location.s_to
+            except AttributeError:
+                print("It's too dangerous to go here alone! Please try again.\n")
+        elif user == "e":
+            try:
+                player.location = player.location.e_to
+            except AttributeError:
+                print("It's too dangerous to go here alone! Please try again.\n")
+        elif user == "i":
+            if len(player.inventory) == 0:
+                print("You're not carrying any items!\n")
+            else:
+                print("You're carrying:\n")
+                for i in player.inventory:
+                    print(f" - {i}\n")
+
+        else:
+            print("Invalid selection. Please try again.\n")
+    print(f"You are in {player.location.name}.\n")
+    print(textwrap.fill(player.location.description, 70))
     print("\nPlease choose to continue...\n")
     user = str(
-        input("[W] North   [A] West   [S] South   [D] East   [Q] Quit\n"))
+        input("[N]orth  [S]outh  [E]ast  [W]est  [I]nventory  [Q]uit\n>>>")).strip().lower()
