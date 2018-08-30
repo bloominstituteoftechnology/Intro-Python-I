@@ -17,7 +17,7 @@ into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", False),
+to north. The smell of gold permeates the air.""", False, True),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -33,7 +33,8 @@ item_dict = {
     'necklace': Treasure('necklace', 'a silver necklace', 'treasure', 1, 50),
     'bracelet': Treasure('bracelet', 'a silver bracelet', 'treasure', 1, 50),
     'largeTreasureChest': Treasure('bracelet', 'a large treasure chest', 'treasure', 1, 500),
-    'sword': Weapon('sword', 'a large ninja katana', 'weapon', 10, 10)
+    'sword': Weapon('sword', 'a large ninja katana', 'weapon', 10, 10),
+    'knife': Weapon('knife', 'a rusty knife', 'weapon', 10, 7)
     # 'shield': None,
     # 'helmet': None,
     # 'boots': None
@@ -69,7 +70,8 @@ room['treasure'].s_to = 'narrow'
 #
 
 # Make a new player object that is currently in the 'outside' room.
-enemy = Player('Big Monster', 'narrow')
+monster = Player('Big Monster', 'narrow')
+monster.take('knife')
 
 # set up some helper functions
 
@@ -84,12 +86,24 @@ def checkInventory(item):
 
 
 def battle(player, monster):
+    print("\n\nYou've confronted a monster")
     while player.health > 0:
         action = input('Choose your action: ')
-        if action == 'swing':
-            print('You swung something')
+        if action == 'attack':
+            player.attack(item_dict['sword'], monster)
+            print("MONSTER HEALTH {}".format(monster.health))
+            if monster.health < 1:
+                print("You have vanquished the monster!!!")
+                room[player.location].is_occupied = False
+                return True
+            monster.attack(item_dict['sword'], player)
+            print("PLAYER HEALTH {}".format(player.health))
+
+
         elif action == 'q':
             break
+    print("You have died:(")
+    return False
 
 
 # Write a loop that:
@@ -113,9 +127,10 @@ player = Player(player_name, 'outside')
 while True:
     # what player sees in the room
     # isinstance(variable, LightSource)
-    if (room[player.location].is_light or checkInventory('lamp')):
-        print("\nYou are at {}.\n{}.".format(
-            room[player.location].name, room[player.location].description))
+    # if (room[player.location].is_occupied):
+            # if (battle(player, monster)
+    if room[player.location].is_light or checkInventory('lamp'):
+        print("\nYou are at {}.\n{}.".format(room[player.location].name, room[player.location].description))
         if len(room[player.location].inventory) > 0:
             print("Items in the room:")
             for key in room[player.location].inventory:

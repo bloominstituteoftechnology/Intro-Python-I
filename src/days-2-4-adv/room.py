@@ -3,11 +3,12 @@
 
 
 class Room:
-    def __init__(self, name, description, is_light=True):
+    def __init__(self, name, description, is_light=True, is_occupied=False):
         self.name = name
         self.description = description
         self.inventory = {}
         self.is_light = is_light
+        self.is_occupied = is_occupied
 
     def __str__(self):
         return(f'name: {self.name}\n')

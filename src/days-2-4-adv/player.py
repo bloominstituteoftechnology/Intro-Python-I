@@ -1,5 +1,6 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+from random import *
 
 
 class Player:
@@ -7,7 +8,7 @@ class Player:
         self.name = name
         self.location = location
         self.inventory = {}
-        self.health = 100
+        self.health = 10
         self.score = 0
 
     def take(self, item):
@@ -33,6 +34,14 @@ class Player:
         self.inventory[item.name] -= 1
         if self.inventory[item.name] <= 0:
             del self.inventory[item.name]
+
+    def attack(self, item, player):  # pass in monster object for monster.health
+        # if (battle()): # might not be needed because already in battle
+        if(random() >= .3):
+            player.health -= item.damage
+            print("{} dealt {} damage!".format(self.name, item.damage))
+        else:
+            print("You missed!")
 
     def getInventory(self):
         return self.inventory
