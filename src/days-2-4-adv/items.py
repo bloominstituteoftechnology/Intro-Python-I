@@ -14,3 +14,8 @@ class Treasure(Items):
         self.name = name
         self.description = description
         self.value = value
+
+class Lightsource(Items):
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description

@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from items import Items, Treasure
+from items import Items, Treasure, Lightsource
 
 # Declare all the rooms
 
@@ -8,23 +8,19 @@ room = {
     'outside':  Room("outside the cave entrance",
                      "North of you, the cave mount beckons"),
 
-    'foyer':    Room("in the foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+    'foyer':    Room("in the foyer", """Dim light filters in from the south. Dusty passages run north and east."""),
 
-    'overlook': Room("at the grand overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."""),
+    'overlook': Room("at the grand overlook", """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."""),
 
-    'narrow':   Room("in the narrow passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+    'narrow':   Room("in the narrow passage", """The narrow passage bends here from west to north. The smell of gold permeates the air."""),
 
-    'treasure': Room("inside the treasure chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."""),
+    'treasure': Room("inside the treasure chamber", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."""),
 }
 
 # Add items to two rooms
 
 room['outside'].items.append(Items("shovel", "Enter \'take shovel\' to dig holes and defend yourself from zombies"))
-room['foyer'].items.append(Items("flashlight", "Enter \'take flashlight\' and use it to illuminate the passages"))
+room['foyer'].items.append(Lightsource("lamp", "Enter \'take lamp\' and use it to illuminate the passages"))
 room['treasure'].items.append(Treasure("gold", "Enter \'take gold\' thought it's not a chest full, you\'ve found something", "25"))
 room['narrow'].items.append(Treasure("silver", "Enter \'take silver\' when there's silver, sometimes gold is near", "10"))
 room['overlook'].items.append(Treasure("bronze", "Enter \'take bronze\' when there's bronze, sometimes silver is near", "5"))
@@ -134,19 +130,17 @@ while True:
     if len(inp) == 2:
 
         if inp[0] == 'take':
-            current_item = [item for item in player.room.items if item.name == inp[0]]
-            player.addItem(current_item)
-            print(player.items)
-            print(player.room.items)
-            player.room.removeItem(player.room.items[0]) 
-            # what happens if there is more than one item in the list?
-            # how can we find the removeItem(item) by name instead?
+            current_item = player.room.findItemByName(inp[1])
+            if current_item is not None:
+                player.addItem(current_item)
+                player.room.removeItem(current_item)
             print('\nYou are now carrying the %s' % (inp[1]))
 
+
         if inp[0] == 'drop':
-            print(inp[1])
-            player.room.addItem(inp[1])
-            
-            player.removeItem(player.items[0]) 
+            current_item = player.room.findItemByName(inp[1])
+            if current_item is not None:
+                player.room.addItem(current_item)
+                player.removeItem(current_item)
             print('\nYou are no longer carrying the %s' % (inp[1]))
             

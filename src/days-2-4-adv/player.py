@@ -14,5 +14,11 @@ class Player:
   def addItem(self, item):
     self.items.append(item)
 
+  def findItemByName(self, name):
+    for item in self.items:
+      if item.name.lower() == name.lower():
+        return item
+      return None
+
 def __repr__(self):
     return f"{self.room}"
