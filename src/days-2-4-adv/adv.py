@@ -35,14 +35,14 @@ item_dict = {
 # add an apple to the outside room
 # room['outside'].take('apple')
 room['outside'].take(item_dict['apple'].name)
-# room['outside'].take(item_dict['apple'].name)
+room['outside'].take(item_dict['apple'].name)
 # room['outside'].take(item_dict['apple'].name)
 room['outside'].take(item_dict['bread'].name)
 room['outside'].take(item_dict['ring'].name)
 
 # Link rooms together
 room['outside'].n_to = 'foyer'
-room['foyer'].s_to = 'outside'
+# room['foyer'].s_to = 'outside'
 room['foyer'].n_to = 'overlook'
 room['foyer'].e_to = 'narrow'
 room['overlook'].s_to = 'foyer'
@@ -57,8 +57,6 @@ room['treasure'].s_to = 'narrow'
 # Make a new player object that is currently in the 'outside' room.
 player = Player('DaBoss', 'outside')
 enemy = Player('Big Monster', 'narrow')
-
-
 
 
 # Write a loop that:
@@ -81,15 +79,14 @@ while True:
     print("\nYou are at {}.\n{}.".format(
         room[player.location].name, room[player.location].description))
     # shows items in the room, if there are any
-    if (room[player.location].inventory):
+    if len(room[player.location].inventory) > 0:
         print("Items in the room:")
-    for key in room[player.location].inventory:
-        if room[player.location].inventory[key]:
-            print("\t{} {}".format(
-                room[player.location].inventory[key], key))
-            print()
-        else:
-            print("\tNothing to take here.\n")
+        for key in room[player.location].inventory:
+            if room[player.location].inventory[key]:
+                print("\t{} {}".format(
+                    room[player.location].inventory[key], key))
+            else:
+                print("\tNothing to take here.\n")
     # input
     inp = input("\nEnter a command: ")
 
@@ -157,7 +154,8 @@ while True:
                 item_dict[item].on_take(player)
                 # print('player: {}'.format(player)) #This is printing?
         except:
-            print("You must enter something to take.\n")
+            # print("You must enter something to take.\n")
+            pass
     elif inp.startswith('drop'):
         try:
             item = inp.split(' ')[1]

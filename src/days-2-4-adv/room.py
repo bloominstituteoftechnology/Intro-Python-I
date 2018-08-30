@@ -23,7 +23,7 @@ class Room:
             if key == item:
                 if self.inventory[key] > 0:
                     self.inventory[key] -= 1
-                if self.inventory[key] == 0:
-                    del self.inventory[key]
-                    return True
+                    if self.inventory[key] == 0:
+                        del self.inventory[key]
+                return True
         # print("There is no {} here to get!\n".format(item))
