@@ -153,9 +153,12 @@ while True:
                 player.take(item)
                 item_dict[item].on_take(player)
                 # print('player: {}'.format(player)) #This is printing?
+            elif item == '':
+                print("You must enter something to take.\n")
+            else:
+                print("There is no '{}' for you take!".format(item))
         except:
-            # print("You must enter something to take.\n")
-            pass
+            print("You must enter something to take.\n")
     elif inp.startswith('drop'):
         try:
             item = inp.split(' ')[1]
