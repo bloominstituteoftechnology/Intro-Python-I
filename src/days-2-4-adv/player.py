@@ -8,7 +8,7 @@ class Player:
         self.name = name
         self.location = location
         self.inventory = {}
-        self.health = 10
+        self.health = 100
         self.score = 0
 
     def take(self, item):
