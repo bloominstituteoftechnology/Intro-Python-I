@@ -25,3 +25,6 @@ class Treasure(Item):
 class LightSource(Item):
     def __init(self, name, description):
         super().__init__(name, description)
+
+    def on_drop(self, room):
+        print("You have dropped the lamp in the {}. It's not wise to drop your lamp, please consider taking it back.".format(room))

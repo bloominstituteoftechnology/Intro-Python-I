@@ -1,26 +1,26 @@
 from room import Room
 from player import Player
-from item import Item, Treasure
+from item import Item, Treasure, LightSource
 
 # Declare all the rooms
 # Which rooms are empty?? Who knows?
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", False),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", True),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", False),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", True),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", False),
 }
 
 
@@ -89,12 +89,13 @@ room['treasure'].items.append(treasure2)
 room['foyer'].items.append(treasure3)
 room['overlook'].items.append(treasure1)
 
-# ---------------------Initializing Player--------------
+# adding lamp
+lamp = LightSource("lamp", "good light source")
+room["foyer"].items.append(lamp)
+
+# ---------------------Initializing Player/Room--------------
 player = Player(room['outside'])
 allowed = ['north', 'south', 'east', 'west']
-"""print(player.room)
-player = Player(room['outside'].n_to)
-print(player.room)"""
 suppressRoomPrint = False
 
 # --------------------Starting Game Loop----------------
