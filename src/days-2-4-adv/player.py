@@ -2,9 +2,16 @@
 # currently.
 
 class Player:
-    def __init__(self, name, current_room):
+    def __init__( self,name, location, items):
+        self.location = location
         self.name = name
-        self.current_room = current_room
+        self.items = list(items)
+    def change_location(self, new_location):
+        self.location = new_location
 
+    def __repr__(self):
+        return "Current Location: {}".format(self.location)
+    def __str__(self):
+        return "Current Location: {}".format(self.location.title)
 
 

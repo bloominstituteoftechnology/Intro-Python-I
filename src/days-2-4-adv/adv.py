@@ -5,21 +5,21 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", ('sword' , 'shield')),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", []),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", []),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", []),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", []),
 }
 
 
@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 # Main
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
+
 
 
 
@@ -53,30 +53,22 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-user_input = none
 
-while user_input != 'q':
-    print(player)
-    print(player.current_room.description)
 
-    user_input = input("Please choose a Direction('n', 'e', 'w', 's'):")
+player = Player(input("\nWhat is your name?:"),  room['outside'], ['sword'])
+print(f"Welcome, {player.name} !\n")
 
-    directions = {
-        "n": player.current_room.n_to,
-        "e": player.current_room.e_to,
-        "s": player.current_room.s_to,
-        "w": player.current_room.w_to
-    }
-    nextRoom = directions.get(user_input, None)
-    if nextRoom:
-        player.current_room = nextRoom
-    else:
-        if user_input in ['n','e','s','w']:
-            print("You're going wrong way")
-        elif user_input is "q":
-            print("See Ya")
+while True:
+    print(f"\n{player.location.title}\n \n{player.location.description}\n {player.location.items}")
+    inp = input("What is your command: ")
+    if inp == "q":
+        break
+    if inp =="n" or inp =="s" or inp =="w" or inp =="e":
+        newRoom = player.location.getRoomInDirection(inp)
+        if newRoom == None:
+            print ("You cannot move in that direction")
         else:
-            "Enter a direction or 'q' to quit"
+            player.change_location(newRoom)
 
 
 
