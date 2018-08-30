@@ -357,7 +357,7 @@ def player_examine(action):
     print("You are at " + zonemap[myPlayer.location][DESCRIPTION] + "." + "\n" + zonemap[myPlayer.location][EXAMINATION])
 
 def player_help(action):
-    print("You can try to 'move' or 'examine' at this time.")
+    print("You can try to 'move' or 'look' at this time.")
 
 def player_search(action):
     # if item is in room,

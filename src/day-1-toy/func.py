@@ -6,3 +6,9 @@ def is_even(a):
 num = input("Enter a number: ")
 
 # Print out "Even!" if the number is even. Otherwise print "Odd"
+if is_even(n):
+  print("Even!")
+else:
+  print("Odd")
+
+# print("Even!" if int(num) % 2 == 0 else "Odd")
