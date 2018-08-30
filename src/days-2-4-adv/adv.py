@@ -174,10 +174,11 @@ while True:
                     if key == item:
                         print('Eating {}\n'.format(item))
                         player.eat(item_dict[item])
+                        break
                     else:
                         print("You cannot eat that.\n")
         except:
-            print("You cannot eat that.\n")
+            pass
     elif inp == 'i' or inp == "inventory":
         inv = player.getInventory()
         if (inv.keys()):
