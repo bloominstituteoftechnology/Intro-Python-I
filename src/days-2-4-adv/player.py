@@ -2,15 +2,7 @@
 # currently.
 
 class Player:
-    def __init__(self, health, mana, location):
+    def __init__(self, health, mana, startingLocation):
         self.health = 100
         self.mana = 100
         self.location = "outside"
-    def changeLocation(self):
-        """
-        We use this to move from room to room.
-        """
-        if self.location == "outside"
-            if
-    def move(self):
-        

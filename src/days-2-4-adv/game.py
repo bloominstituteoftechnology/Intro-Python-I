@@ -6,6 +6,7 @@ import sys
 import os
 import time
 import random
+from item import Item
 
 screen_width = 100
 
@@ -17,9 +18,16 @@ class player:
         self.hp = 0
         self.mp = 0
         self.status_effects = []
+        self.inventory = []
         self.location = 'd2'
         self.game_over = False
 myPlayer = player()
+
+###### Items ######
+
+class Apple(Item):
+    def __init__(self):
+        super(Apple, self).__init__('Apple', 'A healthy looking fruit.')
 
 ###### Title Screen ######
 def title_screen_selections():
@@ -31,7 +39,7 @@ def title_screen_selections():
     elif option.lower() == ("quit"):
         sys.exit()
     while option.lower() not in ['play', 'help', 'quit']:
-        print["Please enter a valid command."]
+        print("[Please enter a valid command.]")
         option = input("> ")
         if option.lower() == ("play"):
             start_game()
@@ -55,9 +63,9 @@ def help_menu():
     print('############################')
     print('# Welcome to the Text RPG! #')
     print('############################')
-    print('— Use up, down, left, right to move')
-    print('— Type your commands to do them')
-    print('— Use "look" to inspect something')
+    print('— Type your commands to perform actions.')
+    print('— Use "move" with up, SOUTH, left, right to navigate.')
+    print('— Use "look" to inspect something.')
     print('— Have fun!')
     title_screen_selections()
 
@@ -81,10 +89,11 @@ ZONENAME = ''
 DESCRIPTION = 'description'
 EXAMINATION = 'examine'
 SOLVED = False
-UP = 'up', 'north'
-DOWN = 'down', 'south'
-LEFT = 'left', 'west'
-RIGHT = 'right', 'east'
+ITEMLIST = []
+NORTH = 'north'
+SOUTH = 'south'
+EAST = 'east'
+WEST = 'west'
 
 solved_places = {'a1': False, 'a2': False, 'a3': False, 'a4': False,
                  'b1': False, 'b2': False, 'b3': False, 'b4': False,
@@ -98,50 +107,55 @@ zonemap = {
     #     DESCRIPTION: 'description',
     #     EXAMINATION: 'examine',
     #     SOLVED: False,
-    #     UP: 'up', 'north',
-    #     DOWN: 'down', 'south',
-    #     LEFT: 'left', 'west',
-    #     RIGHT: 'right', 'east'
+    #     ITEMLIST = []
+    #     NORTH: 'north',
+    #     SOUTH: south',
+    #     WEST: 'west',
+    #     EAST: 'east',
     # },
     # 'a2': {
     #     ZONENAME: "",
     #     DESCRIPTION: 'description',
     #     EXAMINATION: 'examine',
     #     SOLVED: False,
-    #     UP: 'up', 'north',
-    #     DOWN: 'down', 'south',
-    #     LEFT: 'left', 'west',
-    #     RIGHT: 'right', 'east'
+    #     ITEMLIST = [],
+    #     NORTH: 'north',
+    #     SOUTH: 'south',
+    #     EAST: 'east',
+    #     WEST: 'west',
     # },
     # 'a3': {
     #     ZONENAME: "",
     #     DESCRIPTION: 'description',
     #     EXAMINATION: 'examine',
     #     SOLVED: False,
-    #     UP: 'up', 'north',
-    #     DOWN: 'down', 'south',
-    #     LEFT: 'left', 'west',
-    #     RIGHT: 'right', 'east'
+    #     ITEMLIST = [],
+    #     NORTH: 'north',
+    #     SOUTH: 'south',
+    #     EAST: 'east',
+    #     WEST: 'west',
     # },
     # 'a4': {
     #     ZONENAME: "",
     #     DESCRIPTION: 'description',
     #     EXAMINATION: 'examine',
     #     SOLVED: False,
-    #     UP: 'up', 'north',
-    #     DOWN: 'down', 'south',
-    #     LEFT: 'left', 'west',
-    #     RIGHT: 'right', 'east'
+    #     ITEMLIST = [],
+    #     NORTH: 'north',
+    #     SOUTH: 'south',
+    #     EAST: 'east',
+    #     WEST: 'west',
     # },
     # 'b1': {
     #     ZONENAME: "",
     #     DESCRIPTION: 'description',
     #     EXAMINATION: 'examine',
     #     SOLVED: False,
-    #     UP: 'up', 'north',
-    #     DOWN: 'down', 'south',
-    #     LEFT: 'left', 'west',
-    #     RIGHT: 'right', 'east'
+    #     ITEMLIST = [],
+    #     NORTH: 'north',
+    #     SOUTH: 'south',
+    #     EAST: 'east',
+    #     WEST: 'west',
     # },
     'b2': {
         ZONENAME: "overlook",
@@ -150,10 +164,12 @@ zonemap = {
         \nAhead to the north, a light flickers in the distance, 
         \nbut there is no way across the chasm.""",
         SOLVED: False,
-        UP: '',
-        DOWN: 'c2',
-        LEFT: '',
-        RIGHT: ''
+        # ITEMLIST = {"Glass Bead" : {"name": "Glass Bead", "description": "A toy for youngsters that's sort of like a marble. But not really."},
+        #            {"Rod of Dreams" : {"name": "Rod of Dreams", "description": "You have yet to understand the mysteries of this wand."}}
+        NORTH: '',
+        SOUTH: 'c2',
+        EAST: '',
+        WEST: '',
     },
     'b3': {
         ZONENAME: "treasure",
@@ -162,40 +178,44 @@ zonemap = {
         \nSadly, it has already been completely emptied by earlier adventurers. 
         \n \nThe only exit is to the south.""",
         SOLVED: False,
-        UP: '',
-        DOWN: 'c3',
-        LEFT: '',
-        RIGHT: ''
+        # ITEMLIST = {"Leather Belt" : {"name": "Leather Belt", "description": "Common leather belt. Sturdy construction."}},
+        NORTH: '',
+        SOUTH: 'c3',
+        EAST: '',
+        WEST: '',
     },
     # 'b4': {
     #     ZONENAME: "",
     #     DESCRIPTION: 'description',
     #     EXAMINATION: 'examine',
     #     SOLVED: False,
-    #     UP: 'up', 'north',
-    #     DOWN: 'down', 'south',
-    #     LEFT: 'left', 'west',
-    #     RIGHT: 'right', 'east'
+    #     ITEMLIST = [],
+    #     NORTH: 'north',
+    #     SOUTH: 'south',
+    #     EAST: 'east',
+    #     WEST: 'west',
     # },
     # 'c1': {
     #     ZONENAME: "",
     #     DESCRIPTION: 'description',
     #     EXAMINATION: 'examine',
     #     SOLVED: False,
-    #     UP: 'up', 'north',
-    #     DOWN: 'down', 'south',
-    #     LEFT: 'left', 'west',
-    #     RIGHT: 'right', 'east'
+    #     ITEMLIST = [],
+    #     NORTH: 'north',
+    #     SOUTH: 'south',
+    #     EAST: 'east',
+    #     WEST: 'west',
     # },
     'c2': {
         ZONENAME: "foyer",
         DESCRIPTION: 'Foyer',
         EXAMINATION: """Dim light filters in from the south. Dusty passages run north and east.""",
         SOLVED: False,
-        UP: 'b2',
-        DOWN: 'd2',
-        LEFT: '',
-        RIGHT: 'c3'
+        # ITEMLIST = { "Valentinian Coin" : {"name": "Valentinian Coin", "description": "It gleams with an eerie aura about it. You sense a slight chill when you hold it in your hand."}},
+        NORTH: 'b2',
+        SOUTH: 'd2',
+        EAST: 'c3',
+        WEST: '',
     },
     'c3': {
         ZONENAME: "narrow",
@@ -203,62 +223,70 @@ zonemap = {
         EXAMINATION: """The narrow passage bends here from west to north.
         \nThe smell of gold permeates the air.""",
         SOLVED: False,
-        UP: 'b3',
-        DOWN: '',
-        LEFT: 'c2',
-        RIGHT: ''
+        # ITEMLIST = {"Big Twig" : {"name": "Big Twig", "description": "Not the sturdiest of branches, but nothing to shake a stick at, either. Or with."}},
+        NORTH: 'b3',
+        SOUTH: '',
+        EAST: '',
+        WEST: 'c2',
     },
     # 'c4': {
     #     ZONENAME: "",
     #     DESCRIPTION: 'description',
     #     EXAMINATION: 'examine',
     #     SOLVED: False,
-    #     UP: 'up', 'north',
-    #     DOWN: 'down', 'south',
-    #     LEFT: 'left', 'west',
-    #     RIGHT: 'right', 'east'
+    #     ITEMLIST = [],
+    #     NORTH: 'north',
+    #     SOUTH: 'south',
+    #     EAST: 'east',
+    #     WEST: 'west',
     # },
     # 'd1': {
     #     ZONENAME: "",
     #     DESCRIPTION: 'description',
     #     EXAMINATION: 'examine',
     #     SOLVED: False,
-    #     UP: 'up', 'north',
-    #     DOWN: 'down', 'south',
-    #     LEFT: 'left', 'west',
-    #     RIGHT: 'right', 'east'
+    #     ITEMLIST = [],
+    #     NORTH: 'north',
+    #     SOUTH: 'south',
+    #     EAST: 'east',
+    #     WEST: 'west',
     # },
     'd2': {
         ZONENAME: "outside",
         DESCRIPTION: 'Outside Cave Entrance',
         EXAMINATION: """North of you, the cave mount beckons""",
         SOLVED: False,
-        UP: 'c2',
-        DOWN: '',
-        LEFT: '',
-        RIGHT: ''
+        # ITEMLIST: [],
+        NORTH: 'c2',
+        SOUTH: '',
+        EAST: '',
+        WEST: '',
     },
     # 'd3': {
     #     ZONENAME: "",
     #     DESCRIPTION: 'description',
     #     EXAMINATION: 'examine',
     #     SOLVED: False,
-    #     UP: 'up', 'north',
-    #     DOWN: 'down', 'south',
-    #     LEFT: 'left', 'west',
-    #     RIGHT: 'right', 'east'
+    #     ITEMLIST = [],
+    #     NORTH: 'north',
+    #     SOUTH: 'south',
+    #     EAST: 'east',
+    #     WEST: 'west',
     # },
     # 'd4': {
     #     ZONENAME: "",
     #     DESCRIPTION: 'description',
     #     EXAMINATION: 'examine',
     #     SOLVED: False,
-    #     UP: 'up', 'north',
-    #     DOWN: 'down', 'south',
-    #     LEFT: 'left', 'west',
-    #     RIGHT: 'right', 'east'
+    #     ITEMLIST = [],
+    #     NORTH: 'north',
+    #     SOUTH: 'south',
+    #     EAST: 'east'
+    #     WEST: 'west',
     # }
 }
+
+# two_word_movement = ["move north", "move n", "move south", "move s", "move east", "move e", "move west", "move w"]
 
 ###### GAME INTERACTIVITY ######
 def print_location():
@@ -271,33 +299,50 @@ def prompt():
     print("\n" + "==============================")
     print("what would you like to do?")
     action = input("> ")
-    acceptable_actions = ["move", "go", "travel", "walk", "quit", "examine", "inspect", "interact", "look", "help"]
+
+    acceptable_actions = ["quit", "q", "move", "look", "help", "search", "move north", "move n", "move south", "move s", "move east", "move e", "move west", "move w"]
     while action.lower() not in acceptable_actions:
         print('Unknown action, try again. Not sure of what to do? Use "help" to find out!\n')
         action = input("> ")
-    if action.lower() == "quit":
+    if action.lower() in ["quit", "q"]:
         sys.exit()
-    elif action.lower() in ["move", "go", "travel", "walk"]:
+    elif action.lower() in ["move"]:
         player_move(action.lower())
-    elif action.lower() in ["examine", "inspect", "interact", "look"]:
+    elif action.lower() in ["move north", "move n"]:
+        destination = zonemap[myPlayer.location][NORTH]
+        movement_handler(destination)    
+    elif action.lower() in ["move south", "move s"]:
+        destination = zonemap[myPlayer.location][SOUTH]
+        movement_handler(destination)    
+    elif action.lower() in ["move east", "move e"]:
+        destination = zonemap[myPlayer.location][WEST]
+        movement_handler(destination)    
+    elif action.lower() in ["move west", "move w"]:
+        destination = zonemap[myPlayer.location][EAST]
+        movement_handler(destination)
+    elif action.lower() in ["look"]:
         player_examine(action.lower())
     elif action.lower() in ["help"]:
         player_help(action.lower())
+    elif action.lower() in ["search"]:
+        player_search(action.lower())
+    elif action.lower() in ["pickup"]:
+        player_pickup(action.lower())
 
 def player_move(myAction):
     ask = "Where would you like to move to?\n"
-    dest = input(ask)
-    if dest in ['up', 'north']:
-        destination = zonemap[myPlayer.location][UP]
+    dest = input(ask + "> ")
+    if dest in ['north', 'n']:
+        destination = zonemap[myPlayer.location][NORTH]
         movement_handler(destination)        
-    if dest in ['down', 'south']:
-        destination = zonemap[myPlayer.location][DOWN]
+    if dest in ['south', 's']:
+        destination = zonemap[myPlayer.location][SOUTH]
         movement_handler(destination)        
-    if dest in ['left', 'west']:
-        destination = zonemap[myPlayer.location][LEFT]
+    if dest in ['east', 'e']:
+        destination = zonemap[myPlayer.location][EAST]
         movement_handler(destination)        
-    if dest in ['right', 'east']:
-        destination = zonemap[myPlayer.location][RIGHT]
+    if dest in ['west', 'w']:
+        destination = zonemap[myPlayer.location][WEST]
         movement_handler(destination)        
 
 def movement_handler(destination):
@@ -313,6 +358,19 @@ def player_examine(action):
 
 def player_help(action):
     print("You can try to 'move' or 'examine' at this time.")
+
+def player_search(action):
+    # if item is in room,
+        print(len(str(zonemap[myPlayer.location][ITEMLIST].items())))
+    # else print no items are in this area
+
+def player_pickup(action):
+    item = zonemap[myPlayer.location][ITEMLIST].items()
+    if len(item) == 0:
+        print("Doesn't look like there's anything to pick up.")
+    elif len(zonemap[myPlayer.location][ITEMLIST]) > 0:
+        zonemap[myPlayer.inventory].append(item)
+        print("Acquired " + item[name])
 
 ###### GAME FUNCTIONALITY ######
 def main_game_loop():
@@ -338,11 +396,11 @@ def start_game():
     for character in question2:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.02)
+        time.sleep(0.002)
     for character in question2added:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.02)
+        time.sleep(0.002)
     player_job = input("> ")
     valid_jobs = ['warrior', 'mage', 'priest', 'archer', 'bard']
     if player_job.lower() in valid_jobs:
@@ -377,7 +435,7 @@ def start_game():
     for character in question3:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.05)
+        time.sleep(0.005)
     
     speech1 = "Welcome to this fantasy world!\n"
     speech2 = "Safe travels to you, friend!\n"
@@ -386,19 +444,19 @@ def start_game():
     for character in speech1:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.02)
+        time.sleep(0.002)
     for character in speech2:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.02)
+        time.sleep(0.002)
     for character in speech3:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.02)
+        time.sleep(0.002)
     for character in speech4:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.02)
+        time.sleep(0.002)
     input("> ")
 
     os.system('clear')
