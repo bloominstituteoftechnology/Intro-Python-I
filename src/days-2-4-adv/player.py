@@ -61,7 +61,9 @@ class Player:
         if len(self.inventory) == 0:
             print('No items exist in your inventory')
         else:
-            print(self.inventory)
+            print('Inventory:')
+            for item in self.inventory:
+                print(f'Item: {item}')
     
     def change_class(self):
         pass
@@ -71,7 +73,41 @@ class Player:
             print('No items were discovered')
         for item in self.currentRoom.items:
             print(f'Item: {item.name}')
+
+    def look_for_enemies(self):
+        pass
     
+    def add_item(self):
+        itemName = input(f"""
+        What item would you like to grab out of this room?
+        {self.look_for_items()}
+        """)
+        for index, item in enumerate(self.currentRoom.items):
+            if itemName.lower() == item.name.lower():
+                self.inventory[item.name] = []
+                self.inventory[item.name].append(item)
+                print_format_string('success', f'You grabbed {item}')
+                self.currentRoom.remove_item(index)
+                return
+    
+        print_format_string('error', 'No such item in this room')
+
+    def drop_item(self):
+        self.get_inventory()
+        itemName = input(f"""
+        What item from your inventory would you like to drop?
+        """).lower()
+        if itemName in self.inventory:
+            if len(self.inventory[itemName]) == 0:
+                delattr(self.inventory, itemName)
+                print_format_string('error', f'That item does not exist in your inventory')
+            else:
+                print_format_string('success', f'You dropped {itemName}')
+                self.currentRoom.add_item(self.inventory[itemName][0])
+                self.inventory[itemName] = self.inventory[itemName][1:]
+        else:
+            print_format_string('error', 'No item goes by that name')
+        
     @classmethod
     def create_player(cls):
 
