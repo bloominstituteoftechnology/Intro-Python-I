@@ -54,6 +54,7 @@ player1 = Player(input('Enter player name: '), room['outside'])
 #
 # If the user enters "q", quit the game.
 
+# Add functionality to the main loop that prints out all the items that are visible to the player when they are in that room.
 
 while True:
     print(player1.location.name + '\n'+ player1.location.description)
