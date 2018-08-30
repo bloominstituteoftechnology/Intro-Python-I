@@ -99,6 +99,12 @@ def getCommand(player, *args):
     else:
         printErrorString('Better get the heck outta here! Not a valid get command, boss')
 
+def dropCommand(player, *args):
+    if player.inventory[int(args[1])]:
+        player.location.items.append(player.inventory[int(args[1])])
+        print('You dropped {}!'.format(player.inventory[int(args[1])].name))
+        player.inventory.pop(int(args[1]))
+
 def viewInventory(player, *args):
     print('\nINVENTORY: ')
     index = 0
@@ -117,6 +123,7 @@ commands['look'] = lookCommand
 commands['get'] = getCommand
 commands['i'] = viewInventory
 commands['inventory'] = viewInventory
+commands['drop'] = dropCommand
 
 commandsHelp = {}
 commandsHelp['n'] = "Move North"
