@@ -108,7 +108,7 @@ while True:
 
         #FIRST check to see if the 2 word input requirement is *NOT* met:
         #   1. Check if the first word of the input is *NOT* (take or drop)  *AND*
-        #   2. Check if the second word of the input is *NOT* in the (player.room or room)
+        #   2. Check if the second word of the input is *NOT* in the (player.room or player)
         if not ( ( inp[0] == 'take' or inp[0] == 'drop' ) and ( inp[1] in player.room.getItemsList() or inp[1] in player.getItemsList() ) ):
             printRedMsg(invalid_command_msg)
         
