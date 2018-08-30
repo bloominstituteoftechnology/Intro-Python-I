@@ -41,10 +41,16 @@ class Room():
         self.items.append(item)
 
     def removeItem(self, item):
+        self.items.remove(item)
+    
+    def findItemByName(self, item):
         if len(self.items) > 0:
             for i in self.items:
-              if i.name == item:
-                    self.items.remove(i)
-        else:
-            print('This room does not have any items')
-    
+                if i.name == item:
+                    return i
+
+    def listOfItems(self):
+        if len(self.items) < 1:
+            return ' '
+        for i in self.items:
+            return f'{i.name}'
