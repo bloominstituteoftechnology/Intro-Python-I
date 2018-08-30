@@ -1,10 +1,10 @@
 class Room:
-    def __init__(self, name, description, is_lit, items=[], adjacent_rooms={}):
+    def __init__(self, name, description, is_lit, items=None, adjacent_rooms=None):
         self.name = name
         self.description = description
         self.is_lit = is_lit
-        self.items = items
-        self.adjacent_rooms = adjacent_rooms
+        self.items = [] if items is None else items
+        self.adjacent_rooms = {} if adjacent_rooms is None else adjacent_rooms
 
     def add_item(self, item):
         self.items.append(item)
@@ -22,9 +22,9 @@ class Room:
         print(f"\nInside the room, you see the following items: {', '.join(item.name for item in self.items)}")
 
 class Player:
-    def __init__(self, room, items=[]):
+    def __init__(self, room, items=None):
         self.room = room
-        self.items = items
+        self.items = [] if items is None else items
         self.score = 0
 
     def get(self, item):
