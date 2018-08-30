@@ -1,4 +1,7 @@
+from player import Player
+from intro import Intro
 from room import Room
+
 
 # Declare all the rooms
 
@@ -39,9 +42,32 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+
 # Write a loop that:
 #
+while True:
+
+    Intro.start()
+    inp = input('<Create your character> with Name, Job, and Location set to outside: ')
+    if inp == "q":
+        break
+    # All logic required to create new character with custom job title and set location to outside default with Player class
+    elif inp == "yes":
+        charName = input("Please enter your name: ")
+        charJob = input("Please create your own job title: ")
+        charLocation = input("Set your location to outside: ")
+        if charLocation != "outside":
+            input('Please set your location to outside" ')
+        elif charLocation == "outside":
+            newPlayer = Player(charName, charJob, charLocation)
+            print("Your character's name is {}, job title is {} and location is {}".format(newPlayer.name, newPlayer.job, newPlayer.location))
+            Intro.characterCreated(newPlayer.name)
+        if newPlayer.location == "outside":
+            print("Choose to proceed in which direction?")
+            if()
+
 # * Prints the current room name
+
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 #

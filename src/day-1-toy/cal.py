@@ -7,6 +7,8 @@
 # If the user specifies two command line arguments, month and year, then draw
 # the calendar for that month.
 
+
+
 # Stretch goal: if the user doesn't specify anything on the command line, show
 # the calendar for the current month. See the 'datetime' module.
 
@@ -14,3 +16,7 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+c = calendar.TextCalendar(calendar.MONDAY)
+f = c.formatmonth(2099, 10)
+print(f)
