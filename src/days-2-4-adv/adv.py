@@ -63,6 +63,7 @@ def helpCommands():
     east = Move East
     west = Move West
     help = See this menu
+    score = Show player score
     show = Show items in a Room
     take/get *item* = Pick up Item from Room
     drop *item = Drop Item in the Room
@@ -116,7 +117,7 @@ while True:
                     if item.name == newMessage[1]:
                         player.room.items.remove(item)
                         player.items.append(item)
-                        item.on_take()
+                        item.on_take(player)
                     else:
                         print("{} is not in the room.".format(newMessage[1]))
             elif (newMessage[0] == "drop"):
@@ -138,6 +139,8 @@ while True:
         elif (newMessage[0] == "show"):
             player.room.showItems()
             suppressRoomPrint = True
+        elif (newMessage[0] == "score"):
+            player.getScore()
         else:
             print("Not a valid option, enter 'help' for a list of all options.")
     else:

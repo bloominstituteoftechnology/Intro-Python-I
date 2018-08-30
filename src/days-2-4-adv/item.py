@@ -3,7 +3,7 @@ class Item():
         self.name = name
         self.description = description
 
-    def on_take(self):
+    def on_take(self, player):
         print("You have picked up the {}.".format(self.name))
 
     def on_drop(self, room):
@@ -15,9 +15,11 @@ class Treasure(Item):
     def __init__(self, name, description, value):
         super().__init__(name, description)
         self.value = value
+        self.taken = False
 
-    def on_take(self):
+    def on_take(self, player):
         print("You have picked up the {}.".format(self.name))
+        player.score += self.value
 
 
 class LightSource(Item):
