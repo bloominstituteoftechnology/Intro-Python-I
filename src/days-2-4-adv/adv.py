@@ -91,7 +91,7 @@ room['overlook'].items.append(treasure1)
 
 # adding lamp
 lamp = LightSource("lamp", "good light source")
-room["foyer"].items.append(lamp)
+room["outside"].items.append(lamp)
 
 # ---------------------Initializing Player/Room--------------
 player = Player(room['outside'])
@@ -104,7 +104,10 @@ while True:
         suppressRoomPrint = False
     else:
         print("\n----------------Treasure Game----------------")
-        print("You are at {}.".format(player.room.getDescription()))
+        if (player.room.isLight) or (lamp in player.room.items) or (lamp in player.items):
+            print("You are at {}.".format(player.room.getDescription()))
+        else:
+            print("It's pitch black in here!")
     message = input("\nWhere do you want to go? (north/south/east/west): ")
     if message == 'quit':
         print("Game over")
@@ -114,13 +117,18 @@ while True:
         newMessage = message.split(" ")
         if len(newMessage) > 1:
             if (newMessage[0] == "take" or newMessage[0] == "get"):
-                for item in player.room.items:
-                    if item.name == newMessage[1]:
-                        player.room.items.remove(item)
-                        player.items.append(item)
-                        item.on_take(player)
-                    else:
-                        print("{} is not in the room.".format(newMessage[1]))
+                if (player.room.isLight) or (lamp in player.items) or (lamp in player.room.items):
+                    for item in player.room.items:
+                        if item.name == newMessage[1]:
+                            player.room.items.remove(item)
+                            player.items.append(item)
+                            item.on_take(player)
+                        else:
+                            print("{} is not in the room.".format(
+                                newMessage[1]))
+                else:
+                    print("The room is dark, how're you gonna pick up the {}".format(
+                        newMessage[1]))
             elif (newMessage[0] == "drop"):
                 for item in player.items:
                     if item.name == newMessage[1]:
@@ -146,7 +154,6 @@ while True:
             print("Not a valid option, enter 'help' for a list of all options.")
     else:
         if hasattr(player.room, message[0] + '_to'):
-            # print("Worked!")
             player.room = getattr(player.room, message[0] + '_to')
         elif hasattr(player.room, message[0] + '_to') == False:
             print("That doesn't lead anywhere, please choose another direction.")
