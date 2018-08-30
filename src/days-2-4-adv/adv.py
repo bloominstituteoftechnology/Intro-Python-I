@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Item
+from item import Treasure
 import textwrap
 
 # Declare all the rooms
@@ -14,14 +15,16 @@ room = {
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
                     passages run north and east.""",
-                    [Item("Umbrella", """This will protect against suppressive waterpower""")]),
+                    [Item("Umbrella", """This will protect against suppressive waterpower"""),
+                    Treasure("Briefcase", """An Ominous Black Briefcase with
+                    gold light emanating from inside""", 666)]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""", [Item("Axe",
-"""Heeeerrre's Johnny!"""), Item("Native American Artifact", """Legend says this
+"""Heeeerrre's Johnny!"""), Treasure("Native American Artifact", """Legend says this
 artifact allows the possessor to communicate telepathically with the ghost of
-Scatman Crothers""")]),
+Scatman Crothers""", 1980)]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", [Item("Torch", """Batteries
@@ -30,7 +33,8 @@ included"""), Item("Wet Mud", """Gross!""")]),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", [Item("Empty Treasure Chest",
-"A big box that once held great treasure"), Item("Scribbled Note", """A note
+"A big box that once held great treasure"), Treasure("Gold Coin",
+"""All that's left...""", 1), Item("Scribbled Note", """A note
 containing a famous director's explanation of a mysterious hotel room...""")]),
 }
 
@@ -82,14 +86,14 @@ def lookCommand(player, *args):
         print('\nRoom contains:')
         index = 0
         for item in player.location.items:
-            print('\n-- ({}) {}: {} --\n'.format(index, item.name, item.description))
+            print(f'\n-- ({index}) {item} --\n')
             index += 1
         return True
     elif args[1] == 'inside':
         print('\nINVENTORY: ')
         index = 0
         for item in player.inventory:
-            print(f'\n-- ({index}) {item.name}: {item.description} --\n')
+            print(f'\n-- ({index}) {item} --\n')
             index += 1
         return True
 
@@ -107,19 +111,12 @@ def dropCommand(player, *args):
         print('You dropped {}!'.format(player.inventory[int(args[1])].name))
         player.inventory.pop(int(args[1]))
 
-'''def viewInventory(player, *args):
-    print('\nINVENTORY: ')
-    index = 0
-    for item in player.inventory:
-        print(f'\n-- ({index}) {item.name}: {item.description} --\n')
-        index += 1
-'''
 def  viewCommand(player, *args):
     if args[0] == 'i' or args[0] == 'inventory':
         print('\nINVENTORY: ')
         index = 0
         for item in player.inventory:
-            print(f'\n-- ({index}) {item.name}: {item.description} --\n')
+            print(f'\n-- ({index}) {item} --\n')
             index += 1
         return True
     elif args[0] == 'score':
@@ -135,6 +132,7 @@ commands['w'] = moveCommand
 commands['l'] = lookCommand
 commands['look'] = lookCommand
 commands['get'] = getCommand
+commands['take'] = getCommand
 commands['i'] = viewCommand
 commands['inventory'] = viewCommand
 commands['score'] = viewCommand
@@ -164,6 +162,7 @@ player1 = Player(room['outside'], 0, [Item('Pen', 'A mighty instrument to influe
 suppressRoomPrint = False
 
 #Prints, current room name, description and waits for user input
+print(Treasure('Gold', 'Dublooons!', 9001))
 while(True):
     if suppressRoomPrint:
         suppressRoomPrint = False
