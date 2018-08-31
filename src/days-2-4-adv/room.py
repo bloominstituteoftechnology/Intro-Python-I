@@ -10,6 +10,8 @@ class Room:
         self.s_to = None
         self.w_to = None
         self.items = items
+    def __str__(self):
+        return self.items
     def getRoomInDirection(self, direction):
         if direction == 'north':
             return self.n_to
@@ -21,9 +23,9 @@ class Room:
             return self.w_to
         else:
             return None
-    def display_items(self):
-        for item in self.items:
-            item
+    # def display_items(self):
+    #     for item in self.items:
+    #         item
     def add_item(self, item):
         self.items.append(item)
     def remove_item(self, item):
