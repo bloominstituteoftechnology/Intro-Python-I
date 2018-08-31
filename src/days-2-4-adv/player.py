@@ -12,14 +12,13 @@ class Player:
     #     return("Current Location: {}".format(self.location))
     # def __repr__(self):
     #     return("Current Location: {}".format(self.location))
-    def dropItem(self, item):
-        item.on_drop()
+    # def dropItem(self, currentItem):
+    #     currentItem.on_drop()
     def addItem(self, currentItem):
-        print(currentItem)
         self.items.append(currentItem.name)
-    def removeItem(self, item):
-        self.items.remove(item)
-    def findItemByName(self, name):
+    def removeItem(self, currentItem):
+        self.items.remove(currentItem)
+    def findItemByName(self, currentItem):
         for item in self.items:
-            if item.name.lower() == name.lower():
+            if currentItem == item.lower():
                 return item

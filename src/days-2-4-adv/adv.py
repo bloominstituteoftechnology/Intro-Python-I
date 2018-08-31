@@ -62,40 +62,54 @@ room['outside'].addItem(lattern)
 
 player = Player(room['outside'])
 ast = "\n*********************************************\n"
+
+
+
+##### Game Loop Starts Below
 while True:
     print (f"{ast}You are at the {player.location.name.upper()}\n   {player.location.description}{ast}")
-    inp = input(">>> ENTER YOUR COMMAND: ").lower()
-    if inp == "q":
+    inp = input(">>> ENTER YOUR COMMAND: ").lower().split(" ", 1)
+    inpArg1 = inp[0]
+    inpArg2 = None
+    if len(inp) > 1:    
+        inpArg2 = inp[1]
+    if inpArg1 == "quit" or inpArg1 == "q":
         break
-    if inp == "n" or inp == "e" or inp == "s" or inp == "w":
-        newRoom = player.location.getRoomDirection(inp)
+    if inpArg1 == "n" or inpArg1 == "e" or inpArg1 == "s" or inpArg1 == "w":
+        newRoom = player.location.getRoomDirection(inpArg1)
         if newRoom == None:
             print ("You can not move in that direction.")
         else:
             player.changeLocation(newRoom)
-    if inp == "inventory" or inp == "i":
+    if inpArg1 == "inventory" or inpArg1 == "i":
         print(f"Your inventory contains: {player.items}")
-    if inp == "look" or inp == "l":
+    if inpArg1 == "look" or inpArg1 == "l":
         print(f"The {player.location} contains: {player.location.items}")
-    if "pick-up" or "p" in inp:
-        currentItem = inp.split(" ")
-        if len(currentItem) <= 1:
+
+
+    if inpArg1 == "pick-up" or inpArg1 == "p":
+        if inpArg2 == None:
             print("error")
         else:
-            currentItem = currentItem[1]
+            currentItem = inpArg2
+            # currentItem = currentItem[1]
             # print(room['outside'].addItem(currentItem))
-            # player.location.removeItem(currentItem)
             currentItem = player.location.findItemByName(currentItem)
-            player.addItem(currentItem)
-            player.location.removeItem(currentItem)
-    
-    # if "zzz" or "z" in inp:
-    #     currentItem = inp.split(" ")
-    #     if len(currentItem) <= 1:
-    #         print("error")
-    #     else:
-    #         currentItem = currentItem[1]
-    #         # currentItem = player.findItemByName(currentItem)
-    #         player.removeItem(currentItem)
-    #         # player.dropItem(currentItem)
-    #         player.location.addItem(currentItem)
+            if currentItem == None:
+                print("error2")
+            else:
+                player.addItem(currentItem)
+                player.location.removeItem(currentItem)
+
+
+    if inpArg1 == "drop" or inpArg1 == "d":
+        if inpArg2 == None:
+            print("error4")
+        else:
+            currentItem = inpArg2
+            currentItem = player.findItemByName(currentItem)
+            if currentItem == None:
+                print("error5")
+            else:
+                player.removeItem(currentItem)
+                player.location.addItem(currentItem)

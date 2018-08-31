@@ -27,10 +27,10 @@ class Room:
         return f"{self.name}"
     def __repr__(self):
         return f"{self.name}"
-    def addItem(self, item):
-        self.items.append(item)
-    def removeItem(self, item):
-        self.items.remove(item)
+    def addItem(self, currentItem):
+        self.items.append(currentItem)
+    def removeItem(self, currentItem):
+        self.items.remove(currentItem)
     def findItemByName(self, name):
         for item in self.items:
             if item.name.lower() == name.lower():
