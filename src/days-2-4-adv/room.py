@@ -3,7 +3,7 @@
 
 
 class Room():
-    def __init__(self, name, description, items):
+    def __init__(self, name, description, items, is_light):
         self.name = name
         self.description = description
         self.n_to = None
@@ -11,6 +11,7 @@ class Room():
         self.w_to = None
         self.e_to = None
         self.items = items
+        self.is_light = is_light
 
     def getRoomInDirection(self, direction):
         if direction == "n":
