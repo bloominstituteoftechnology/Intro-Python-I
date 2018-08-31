@@ -173,6 +173,7 @@ def  viewCommand(player, *args):
             print("It's pitch black!")
             return True
 
+#Prints the games opening title sequence
 def printGameOpener():
     openingStrings = [" _______             __                                   ",
     "/       \           /  |                                  ",
