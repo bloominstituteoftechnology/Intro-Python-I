@@ -80,11 +80,17 @@ item_nonexist = "Sorry that item doesn't exist"
 # Game Loop
 ###########
 while True:
-    # Messages during each loop: where they are and what's in the room
-    print("\n\n\nYou are currently in the {}".format(player.room.name))
-    print("\n{}".format(player.room.description))
-    print("\n\nThis room has the following items: ")
-    player.room.displayItems()
+
+    if (player.room.is_light or player.has_light):
+        
+        # Messages during each loop: where they are and what's in the room
+        print("\n\n\nYou are currently in the {}".format(player.room.name))
+        print("\n{}".format(player.room.description))
+        print("\n\nThis room has the following items: ")
+        player.room.displayItems()
+
+    else:
+        print("It's really dark in here!!!")
 
     # Grab user input and clear screen
     inp = input(user_prompt_msg).split(' ')
