@@ -5,6 +5,8 @@
 # name: the waypoint name
 #
 # Make up three entries of various values.
+dir(dict)
+help(dict)
 
 waypoints = [
     {
@@ -26,4 +28,19 @@ waypoints = [
 
 # Write a loop that prints out all the field values for all the waypoints
 
+def myFunc(myArray):
+    for index in myArray:
+        print(index["name"], index["lat"], index["lon"])
+        # print(index["lat"])
+        # print(index["lon"])
+        # print(index["name"])
+
+myFunc(waypoints)
+
 # Add a new waypoint to the list
+
+waypoints.append({
+    "lat": 123,
+    "lon": 654,
+    "name": "home"
+})
