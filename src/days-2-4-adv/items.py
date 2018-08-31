@@ -13,7 +13,7 @@ class Items:
 
 
 class Food(Items):
-    def __init__(self, name, description, itemType, heal, weight):
+    def __init__(self, name, description, itemType, weight, heal):
         Items.__init__(self, name, description, itemType, weight)
         self.heal = heal  # random.randint(health[0], health[1])
         self.currentHeal = self.heal
