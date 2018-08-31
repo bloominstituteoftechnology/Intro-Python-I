@@ -22,6 +22,7 @@ def parseInput(*args):
     elif command1 in {"look", "l"}: look(player, args)
     elif command1 in {"score", "s"}: player.getScore()
     elif command1 in {"pickup", "p"}: player.pickupItem(args)
+    elif command1 in {"drop", "d"}: player.dropItem(args)
     elif command1 in {"q", "quit"}: quitGame()
     elif command1 in {"h", "help"}: help()
 
@@ -42,6 +43,12 @@ def look(character, *args):
         if nextRoom is not None:
             nextRoom.roomInfo()
 
+def checkLights(player):
+    if player.location.isLit or player.hasLight():
+        player.location.roomInfo()
+    else:
+        print("Its pitch black!")
+
 def help():
     print("--------------------")
     print("Commands:")
@@ -51,6 +58,7 @@ def help():
 #Start game
 # name = input("What is your name?")
 while gameRunning:
-    player.location.roomInfo()
+    print('')
+    checkLights(player)
     inputList = input(">>> ").split(" ")
     parseInput(inputList)

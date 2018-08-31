@@ -1,9 +1,10 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
 class Room:
-   def __init__(self,name, description, inventory = None):
+   def __init__(self,name, description, inventory = None, isLit = True):
       self.name = name
       self.description = description
+      self.isLit = isLit
       if inventory != None: self.inventory = inventory
       else: self.inventory = {}
 
@@ -30,7 +31,7 @@ class Room:
          endString = ""
          if numItems > 1: endString = "s"
          print(f"Around the room you see {numItems} item{endString}: ")
-         for key, value in self.inventory.items():
+         for value in self.inventory.values():
             value.itemInfo()
       else: 
          print("This room is otherwise empty")

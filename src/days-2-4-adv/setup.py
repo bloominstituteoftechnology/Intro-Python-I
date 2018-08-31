@@ -1,5 +1,5 @@
 from room import Room
-from item import Item, Treasure
+from item import Item, Treasure, LightSource
 
 commandsHelp = {
 "n" : "Go North",
@@ -47,13 +47,16 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+#set light sources
+room["foyer"].isLit = False
 #declare all items
 item = {
    "coin" : Treasure("Coin", "A shiny golden coin"),
    "scepter": Treasure("Scepter", "A short silver staff with a huge sapphire inlaid on top", 1000),
-   "necklace" : Treasure("Necklace", "A heavy gold necklace set with 3 large diamonds surrounded by smaller rubies", 500)
-
+   "necklace" : Treasure("Necklace", "A heavy gold necklace set with 3 large diamonds surrounded by smaller rubies", 500),
+   "torch" : LightSource("Torch", "An excellent source of light")
 }
-room["overlook"].inventory["coin"] = item["coin"]
+room["foyer"].inventory["coin"] = item["coin"]
 room["treasure"].inventory["scepter"] = item["scepter"]
 room["overlook"].inventory["necklace"] = item["necklace"]
+room["outside"].inventory["torch"] = item["torch"]

@@ -9,6 +9,7 @@ class Character:
       self.damage = damage
       self.accuracy = 50
       self.location = room
+      self.inventory = {}
 
    def attack(self, character):
       #run an accuracy check before causing damage
@@ -27,6 +28,12 @@ class Character:
       if self.hp <= 0:
          print("%s died!", self.name)
          self.location = None
+   
+   def hasLight(self):
+      for item in self.inventory.values():
+         if item.isLight : return True
+      return False
+
 
 
 ########################## Player
@@ -34,7 +41,6 @@ class Character:
 class Player(Character):
    def __init__(self, room, name = "Saxon", description = "Me", hp = 3, damage = 1, accuracy = 50, score = 0):
       Character.__init__(self, room, name, description, hp, damage, accuracy)
-      self.inventory = {}
       self.score = 0
 
    def viewInventory(self):
@@ -47,20 +53,25 @@ class Player(Character):
       elif commands[1] in self.location.inventory: 
          item = commands[1]
          self.inventory[item] = self.location.inventory[item]
-         print(f"you picked up the {item}")
+         print(f"You picked up the {item}")
          self.location.inventory.pop(item)
          if self.inventory[item].firstPickup:
             self.score += self.inventory[item].value
             self.inventory[item].firstPickup = False
 
       else: print("item does not exist")
-   
-   def dropItem(self, item):
-      #remove from inventory
-      self.inventory.pop(item)
-      #put in room
-      self.location.inventory.append(item)
-   
+
+
+   def dropItem(self, commands):
+      if len(commands) == 1: print("What do you want to drop?")
+      elif len(self.inventory) == 0: print("Nothing to drop.")
+      elif commands[1] in self.inventory:
+         item = commands[1]
+         self.location.inventory[item] = self.inventory[item]
+         self.inventory.pop(item)
+         print(f"You dropped the {item}")
+
+
    def getScore(self):
       print(f"Your Score: {self.score}")
 

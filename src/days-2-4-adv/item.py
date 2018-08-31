@@ -7,6 +7,7 @@ class Item:
       self.weight = 1
       self.firstPickup = True
       self.value = 0
+      self.isLight = False
    
    def itemInfo(self):
       print(f"a {self.name}")
@@ -21,3 +22,9 @@ class Treasure(Item):
    
    def onDrop(self):
       pass
+
+class LightSource(Item):
+   def __init__(self, name, description):
+      Item.__init__(self, name, description)
+      self.isLight = True
+   
