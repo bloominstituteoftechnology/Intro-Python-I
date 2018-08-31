@@ -1,8 +1,22 @@
+from item import Item
+#Declare all the items
+item = {
+    'rock': Item('rock', 'rock with the shape and size of an orange'),
+    'log': Item('log', 'a small wooden log'), 
+    'rope': Item('rope', '30 ft of rope'),
+    'lamp': Item('lamp', 'a small oil lamp'),
+    'chair': Item('chair', 'generic chair'),
+    'hat': Item('hat', 'a rain hat'),
+    'hiking_pole': Item('hiking pole', 'a pole you use as a walking stick while hiking'),
+    'treasure_chest': Item('treasure chest', 'a big treasure chest'),
+    'shovel': Item('shovel', 'a big gardening shovel')
+}
+
 from room import Room
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", ["rock", "log", "rope"]),
+                     "North of you, the cave mount beckons", [item['rock'], "log", "rope"]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", ["lamp", "chair"]),
@@ -19,19 +33,8 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", ["treasure chest", "shovel"]),
 }
 
-from item import Item
-#Declare all the items
-item = {
-    'rock': Item('rock', 'rock with the shape and size of an orange'),
-    'log': Item('log', 'a small wooden log'), 
-    'rope': Item('rope', '30 ft of rope'),
-    'lamp': Item('lamp', 'a small oil lamp'),
-    'chair': Item('chair', 'generic chair'),
-    'hat': Item('hat', 'a rain hat'),
-    'hiking_pole': Item('hiking pole', 'a pole you use as a walking stick while hiking'),
-    'treasure_chest': Item('treasure chest', 'a big treasure chest'),
-    'shovel': Item('shovel', 'a big gardening shovel')
-}
+
+
 
 # Link rooms together
 room['outside'].n_to = room['foyer']
@@ -61,7 +64,7 @@ player1 = Player(input('\n'+'>>>Enter player name: '), room['outside'])
 
 while True:
     print('\n'+'Location Name: '+ player1.location.name + '\n'+ 'Location Description: '+ player1.location.description, '\n')
-    print("Items in the room: ", *player1.location.items,'\n')
+    print("Items in the room: ", player1.location.items[0].name,'\n')
 
     command = input('>>>Next move: ').split(' ')
     validDirections = ['n', 's', 'e', 'w']
