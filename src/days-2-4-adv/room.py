@@ -3,6 +3,7 @@
 
 class Room:
     def __init__(self, name, description):
+        # super().__init__
         self.name = name
         self.description = description
         self.items = []
@@ -10,6 +11,7 @@ class Room:
         self.e_to = None
         self.s_to = None
         self.w_to = None
+        
     def getRoomDirection(self, direction):
         if direction == "n":
             return self.n_to
@@ -21,10 +23,10 @@ class Room:
             return self.w_to
         else:
             return None
-    # def __str__(self):
-    #     return f"{self.items}"
-    # def __repr__(self):
-    #     return f"{self.items}"
+    def __str__(self):
+        return f"{self.name}"
+    def __repr__(self):
+        return f"{self.name}"
     def addItem(self, item):
         self.items.append(item)
     def removeItem(self, item):

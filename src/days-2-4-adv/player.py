@@ -14,8 +14,9 @@ class Player:
     #     return("Current Location: {}".format(self.location))
     def dropItem(self, item):
         item.on_drop()
-    def addItem(self, item):
-        self.items.append(item)
+    def addItem(self, currentItem):
+        print(currentItem)
+        self.items.append(currentItem.name)
     def removeItem(self, item):
         self.items.remove(item)
     def findItemByName(self, name):

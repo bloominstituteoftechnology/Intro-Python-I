@@ -52,13 +52,15 @@ room['treasure'].s_to = room['narrow']
 #
 # If the user enters "q", quit the game.
 
-gold = Item("Gold", "The warm glow is enticing.")
-axe = Item("Battle Axe", "Close quarters weapon.")
+gold = Item("gold")
+axe = Item("axe")
+lattern = Item("lattern")
 
 room['outside'].addItem(gold)
+room['outside'].addItem(lattern)
 
 
-player = Player(room['outside'], axe)
+player = Player(room['outside'])
 ast = "\n*********************************************\n"
 while True:
     print (f"{ast}You are at the {player.location.name.upper()}\n   {player.location.description}{ast}")
@@ -74,5 +76,26 @@ while True:
     if inp == "inventory" or inp == "i":
         print(f"Your inventory contains: {player.items}")
     if inp == "look" or inp == "l":
-        print(f"{room.items}")
-
+        print(f"The {player.location} contains: {player.location.items}")
+    if "pick-up" or "p" in inp:
+        currentItem = inp.split(" ")
+        if len(currentItem) <= 1:
+            print("error")
+        else:
+            currentItem = currentItem[1]
+            # print(room['outside'].addItem(currentItem))
+            # player.location.removeItem(currentItem)
+            currentItem = player.location.findItemByName(currentItem)
+            player.addItem(currentItem)
+            player.location.removeItem(currentItem)
+    
+    # if "zzz" or "z" in inp:
+    #     currentItem = inp.split(" ")
+    #     if len(currentItem) <= 1:
+    #         print("error")
+    #     else:
+    #         currentItem = currentItem[1]
+    #         # currentItem = player.findItemByName(currentItem)
+    #         player.removeItem(currentItem)
+    #         # player.dropItem(currentItem)
+    #         player.location.addItem(currentItem)
