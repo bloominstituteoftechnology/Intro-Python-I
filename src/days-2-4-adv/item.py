@@ -1,32 +1,34 @@
-# Add an `Item` class in a file `item.py`.
-
-# This will be the _base class_ for specialized item types to be declared
-# later.
-
-# The item should have `name` and `description` attributes.
-
-# Hint: the name should be one word for ease in parsing later.
-
 class Item:
+    """Item base class."""
     def __init__(self, name, description):
         self.name = name
         self.description = description
-    
-    def __repr__(self):
-        return self.name
+
+    def on_take(self, player):
+        """Called every time the player takes an item."""
+        pass
+
+    def __str__(self):
+        """Convert to string."""
+        return self.description
 
 class Treasure(Item):
+    """A treasure that adds to your score the first time you pick it up."""
     def __init__(self, name, description, value):
-        Item.__init__(self, name, description)
         self.value = value
-        self.dropped = False
+        self.picked_up = False
+        super().__init__(name, description)
 
-    def on_take(self):
-        return self.value
+    def on_take(self, player):
+        super().on_take(player)
 
-    def on_drop(self):
-        return self.value
+        if not self.picked_up:
+            player.score += self.value
+            print(f"You get {self.value} points!")
+            self.picked_up = True
 
 class LightSource(Item):
+    """An item that casts light."""
     def __init__(self, name, description):
-        Item.__init__(self, name, description)
+        super().__init__(name, description)
+        self.lightsource = True
