@@ -111,7 +111,8 @@ def battle(player, monster):
         elif action == 'q':
             # todo return from whence player came
             print("You run away!!!!")
-            room[player.location] = room['foyer']
+            # !changing room makes it so east doesn't work
+            # room[player.location] = room['foyer']
             return True
     print("You have died:(")
     return False
