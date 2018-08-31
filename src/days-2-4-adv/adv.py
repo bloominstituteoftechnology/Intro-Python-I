@@ -4,6 +4,7 @@ from item import Item
 from item import Treasure
 from item import LightSource
 import textwrap
+import time
 
 # Declare all the rooms
 
@@ -155,6 +156,93 @@ def  viewCommand(player, *args):
         print('\nSCORE: ')
         print(f'Player1: {player1.score}')
         return True
+    elif args[0] == 'opener':
+        printGameOpener()
+        return True
+    elif args[0] == 'survey':
+        light_sources = [item for item in player.inventory if isinstance(item, LightSource)]
+        is_light = player.location.is_light or len(light_sources) > 0
+        if is_light:
+            print('\nRoom contains:')
+            index = 0
+            for item in player.location.items:
+                print(f'\n-- ({index}) {item} --\n')
+                index += 1
+            return True
+        else:
+            print("It's pitch black!")
+            return True
+
+def printGameOpener():
+    openingStrings = [" _______             __                                   ",
+    "/       \           /  |                                  ",
+    "$$$$$$$  | __    __ $$ |  ______                          ",
+    "$$ |__$$ |/  |  /  |$$ | /      \                         ",
+    "$$    $$/ $$ |  $$ |$$ |/$$$$$$  |                        ",
+    "$$$$$$$/  $$ |  $$ |$$ |$$ |  $$ |                        ",
+    "$$ |      $$ \__$$ |$$ |$$ |__$$ |                        ",
+    "$$ |      $$    $$/ $$ |$$    $$/                         ",
+    "$$/        $$$$$$/  $$/ $$$$$$$/                          ",
+    "                        $$ |                              ",
+    "                        $$ |                              ",
+    "                        $$/                               ",
+    "  ______   __        __            __                     ",
+    " /      \ /  |      /  |          /  |                    ",
+    "/$$$$$$  |$$ |____  $$/  _______  $$/  _______    ______  ",
+    "$$ \__$$/ $$      \ /  |/       \ /  |/       \  /      \ ",
+    "$$      \ $$$$$$$  |$$ |$$$$$$$  |$$ |$$$$$$$  |/$$$$$$  |",
+    " $$$$$$  |$$ |  $$ |$$ |$$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |",
+    "/  \__$$ |$$ |  $$ |$$ |$$ |  $$ |$$ |$$ |  $$ |$$ \__$$ |",
+    "$$    $$/ $$ |  $$ |$$ |$$ |  $$ |$$ |$$ |  $$ |$$    $$ |",
+    " $$$$$$/  $$/   $$/ $$/ $$/   $$/ $$/ $$/   $$/  $$$$$$$ |",
+    "                                                /  \__$$ |",
+    "                                                $$    $$/ ",
+    "                                                 $$$$$$/  ",
+    "\n",
+    '                                               ______',
+    '            _                 _ __...----~~~~~ _',
+    '           //   ___...--- ~~~ \\       .      //  \|/',
+    '   __..--_// ~~~        .     _\\   .         \\_     .',
+    '        //\\\    \|/.        //\\\           ///\\ .',
+    '       //-\-\\              //-/-\\         //-/-\\',
+    '      //\_-_/\\            //\_-_/\\    .  //\_-_/\\',
+    '  .    /\ @ /\              /\\_//\         /\\_//\     .',
+    '      /\ \_/ /\            /\ \O/ /\       /\.\=/./\ ',
+    '     /__\_\_/__\     .    /__\_\_/__\     /__\_\_/__\ ',
+    '    /___________\        /___________\   /___________\  .',
+    '   (   _____/:_) )      (  _______/:_)) ((_:\_______  )',
+    '    \_(_:\______/        \_(_:\______/   \______/:_)_/   \|/',
+    '                          (',
+    '    .                      ) /( ( (  .    .',
+    '             /\   .       )\ )\  /(         /\    /\ ',
+    '            /=/           \(/ _\/ /(        \=\  /=/   .',
+    '     .     /=/___       ()__)/ /(__()   .    \=\/=/',
+    '          /=/////\\         (_)             __\=|/',
+    '          \_\////_(_                       ////(_)\  .',
+    "          //////   _\       .             _)_\\\\\\\ ",
+    '          \///(.  _\                     /_   .)\\\\\ ',
+    '   .       (:) | _\              __     __/___o/\\\\\\_    .',
+    "        ___(:) ' \___ .__/\/\___/_/    /         \\\\\\\ ",
+    '       /   (:)       \   \  /         /(*)(*)(*)(*\\\\\\\ ',
+    '      /  _ (:)     _  \  / /          | _  _  _  _ \\\\\\',
+    '     /  / \__   __/ \  \/ /           |/_\/_\/_\/_\/_\/_|',
+    '     (  \ |       |__\   /   .         \_/\_/\_/\_/\_/\/  .',
+    '      \  \|       |   \_/              |/_\/_\/_\/_\/_\|',
+    '       \  |_______|/   \               |\_/\_/\_/\_/\_/|',
+    '  .     \/         \   /         .    /              jro\   .',
+    '        /           \ /              /(*)(*)(*)(*)(*)(*)(\ ',
+    '        \___________//   .           \___________________/',
+    '     .                       \|/ .             .            .',
+    '',
+    '                    "Remember: When you have reached the',
+    '                    end you have only just begun."',
+    '',
+    '                        ASCII ART CREDIT: Jonathon R. Oglesbee',
+    '\n']
+    for string in openingStrings:
+        print(string)
+        time.sleep(.0500)
+
 
 commands = {}
 commands['n'] = moveCommand
@@ -168,6 +256,7 @@ commands['take'] = getCommand
 commands['i'] = viewCommand
 commands['inventory'] = viewCommand
 commands['score'] = viewCommand
+commands['opener'] = viewCommand
 commands['drop'] = dropCommand
 
 commandsHelp = {}
@@ -198,6 +287,7 @@ while(True):
     if suppressRoomPrint:
         suppressRoomPrint = False
     else:
+        printGameOpener()
         print("Welcome to the game you are...")
         print(room['outside'])
     inputList = input('>>> ').split(' ')
