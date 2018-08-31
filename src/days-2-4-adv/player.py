@@ -2,13 +2,13 @@
 # currently.
 
 class Player:
-    def __init__(self, name, startLocation, inventory):
+    def __init__(self, name, startLocation):
         self.name = name
         self.location = startLocation
-        self.inventory = inventory
+        self.items = []
     def change_location(self, newLocation):
         self.location = newLocation
-    def __repr__(self):
-        return "Current Location: {}".format(self.location)
-    def __str__(self):
-        return "Current Location: {}".format(self.location)
+    def addItem(self, item):
+        self.items.append(item)
+    def removeItem(self, item):
+        self.items.remove(item)
