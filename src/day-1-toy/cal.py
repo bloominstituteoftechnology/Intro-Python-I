@@ -14,3 +14,11 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+from datetime import datetime
+
+cal = calendar.TextCalendar(firstweekday=0)
+if len(sys.argv) >=3 and (1 <= int(sys.argv[1]) <= 9999) and (1 <= int(sys.argv[2]) <= 12)  :
+     cal.prmonth(int(sys.argv[1]), int(sys.argv[2]))
+else:
+    cal.prmonth(datetime.today().year, datetime.today().month)
