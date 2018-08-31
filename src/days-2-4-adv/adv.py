@@ -62,7 +62,6 @@ player1 = Player(input('\n'+'>>>Enter player name: '), room['outside'])
 while True:
     print('\n'+'Location Name: '+ player1.location.name + '\n'+ 'Location Description: '+ player1.location.description, '\n')
     print("Items in the room: ", *player1.location.items,'\n')
-    # print('Player Inventory: ', player1.inventory)
 
     command = input('>>>Next move: ').split(' ')
     validDirections = ['n', 's', 'e', 'w']
@@ -101,7 +100,8 @@ while True:
     if command[0] == 'i' or 'inventory':
         print('Player Inventory: ', player1.inventory)
     
-        
+    if command[0] == 'score':
+        print('Player Score: ', player1.score)
 
 
     

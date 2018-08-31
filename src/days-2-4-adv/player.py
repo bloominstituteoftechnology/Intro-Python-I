@@ -5,12 +5,15 @@
 # The inventory can also be a list of items "in" the player, similar to how Items can be in a Room.
 
 class Player:
-    def __init__(self, playerName, startLocation, inventory = None):
+    def __init__(self, playerName, startLocation, inventory = None, score = None):
         self.name = playerName
         self.location = startLocation
         if inventory is None:
             inventory = []
         self.inventory = inventory
+        if score is None:
+            score = 0
+        self.score = score
 
     def __repr__(self):
         # return f'Player({self.name!r}, {self.location!r}'
