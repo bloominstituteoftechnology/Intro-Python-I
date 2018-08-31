@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 from item import Item
 from item import Treasure
+from item import LightSource
 import os
 
 
@@ -16,7 +17,7 @@ items['gloves'] = Item(
     'gloves', 'good to keep warm, climb and not leave fingerprints')
 items['hammer'] = Item(
     'hammer', 'good for building stuff, breaking stuff and of course a weapon')
-items['flashlight'] = Item('flashlight', 'light source and a weapon')
+items['flashlight'] = LightSource('flashlight', 'light source and a weapon')
 items['carabiner'] = Item('carabiner', 'good for climbing and hanging')
 items['rope'] = Item('rope', 'good for climbing and hanging and a weapon')
 items['snowboard'] = Item('snowboard', 'in case you have to jet')
@@ -35,20 +36,20 @@ items['titanium'] = Treasure(
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [items['rocks'], items['gloves']]),
+                     "North of you, the cave mount beckons", [items['rocks'], items['gloves'], items['flashlight']], True),
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [items['hammer'], items['flashlight']]),
+passages run north and east.""", [items['hammer'], items['rope']], False),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [items['carabiner'], items['rope'], items['snowboard']]),
+the distance, but there is no way across the chasm.""", [items['carabiner'],  items['snowboard']], True),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", [items['mushies'], items['mollys'], items['hashies'], items['tent']]),
+to north. The smell of gold permeates the air.""", [items['mushies'], items['mollys'], items['hashies'], items['tent']], False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [items['gold'], items['silver'], items['titanium']]),
+earlier adventurers. The only exit is to the south.""", [items['gold'], items['silver'], items['titanium']], False),
 }
 
 
