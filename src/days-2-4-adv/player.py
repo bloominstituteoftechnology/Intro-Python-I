@@ -1,6 +1,7 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 from item import Treasure
+from item import LightSource
 
 class Player:
 
@@ -9,6 +10,7 @@ class Player:
         self.room = start_room  # instance variable
         self.items = []
         self.score = 0
+        self.has_light = False
 
     # Get it to print nicely
     def __repr__(self):
@@ -35,14 +37,28 @@ class Player:
                 item.is_taken = True
             else:
                 print(f'You already had this item before... no points')
+        
+        #Else check if it's a LightSource
+        elif isinstance(item, LightSource):
+            self.has_light = True
 
         self.items.append(item)
 
     def removeItem(self, item):
+
         if len(self.items) > 0:
+            
+            #Go through the item list and remove the right one
             for i in self.items:
                 if i.name == item:
                     self.items.remove(i)
+            
+            #Check to see if any player items are LightSources
+            if [i for i in item if isinstance(i, LightSource)]:
+                self.has_light = True
+            else:
+                self.has_light = False
+                
         else:
             print('Item not available to remove!')
 
