@@ -38,3 +38,9 @@ class Player():
     
     def getInventoryString(self):
         return ", ".join([item.name for item in self.items])
+    
+    def hasLight(self, light):
+        if len(self.items) > 0:
+            for i in self.items:
+                if isinstance(i, light):
+                    return True

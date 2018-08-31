@@ -27,3 +27,10 @@ class Treasure(Item):
         return self.value
     def on_drop(self):
         return self.value
+
+class LightSource(Item):
+    def __init__(self, name, description):
+        Item.__init__(self, name, description)
+    def on_drop(self):
+        print("It's not wise to drop your source of light!")
+    
