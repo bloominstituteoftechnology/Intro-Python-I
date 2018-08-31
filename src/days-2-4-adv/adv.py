@@ -41,7 +41,8 @@ to north. The smell of gold permeates the air.""",
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
-                     [items['diamond'], items['revivepotion'], items['excalibur'], items['aegis'], items['mjolnir']]),
+                     [items['diamond'], items['revivepotion'], items['excalibur'], items['aegis'], items['mjolnir']],
+                     False),
 }
 # Game variables
 suppressRoomPrint = False
@@ -156,8 +157,6 @@ while True:
         else:
             index = itemList.index(inputList[1])
             player.location.receiveItem(player.inventory[index])
-            if (isinstance(player.inventory[index], LightSource)):
-                print("It's not wise to drop your source of light!")
             player.dropItem(index)
         suppressRoomPrint=True
 
