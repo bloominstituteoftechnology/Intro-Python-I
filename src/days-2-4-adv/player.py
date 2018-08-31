@@ -19,6 +19,9 @@ class Player:
     
     def addItems(self, items):
         self.inventory.extend(items)
+    
+    def removeItem(self, item):
+        self.inventory.remove(item)
 
 
     
