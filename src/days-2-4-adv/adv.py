@@ -5,7 +5,9 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [], True),
+                     "North of you, the cave mouth beckons",
+                     [],
+                     True),
 
     'foyer':    Room("Foyer", 
                     """Dim light filters in from the south. Dusty passages run north and east.""",
@@ -66,7 +68,7 @@ while True:
     # Prints the current room name, description, and items if is_light
     print('\n ====================================================================================')
     if p1.location.is_light or 'lamp' in p1.inventory:
-        print(f'\033[95m\n{p1.location.name}\033[0m\n{p1.location.description}')
+        print(f'\nn{p1.location.name}\033[0m\n{p1.location.description}')
         print(f'\033[1m\nRoom contains: {p1.location.itemList}\033[0m') if len(p1.location.itemList) > 0 else None
     else: print('\nIt\'s pitch black! A light source is needed.')
     # User input is received below
@@ -135,7 +137,7 @@ while True:
     else:
         printErrorString('\nInvalid entry, try again')
     # Checks if player has 'treasure' in inventory
-    if p1.score > 10:
+    if p1.score >= 10:
         printWinString(f'\n{p1.name} you have won the game!')
         printWinString(f'\nYour final score was {p1.score}!\n')
         break
