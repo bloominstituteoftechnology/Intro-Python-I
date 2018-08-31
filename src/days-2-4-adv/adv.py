@@ -76,8 +76,6 @@ monster.take('knife')
 monster.take('largeTreasureChest')
 
 # set up some helper functions
-
-
 def checkInventory(item):
     inv = player.getInventory()
     if (inv.keys()):
@@ -86,6 +84,8 @@ def checkInventory(item):
                 return True
     return False
 
+def printBorder():
+    print('\n------------------------------------------------------------')
 
 def battle(player, monster):
     print("\n\nYou've confronted a monster")
@@ -133,6 +133,8 @@ def battle(player, monster):
 # CLEAR SCREEN
 os.system('cls') if sys.platform.startswith('win') else os.system('clear')
 print("Welcome to the grand adventure!!  Press 'h' at any time for help.\n\n")
+
+# CREATE PLAYER
 player_name = input("\nEnter your name: ")
 player = Player(player_name, 'outside', 100)
 player.equip(item_dict['fist'])
@@ -140,6 +142,7 @@ player.equip(item_dict['fist'])
 while True:
     # what player sees in the room
     # isinstance(variable, LightSource)
+    printBorder()
     if room[player.location].is_light or checkInventory('lamp'):
         if (room[player.location].is_occupied):
             battleResults = battle(player, monster)
@@ -161,6 +164,7 @@ while True:
         print("You can't even see the hand in front of your face!")
     # shows items in the room, if there are any
     # input
+    printBorder()
     inp = input("\nEnter a command: ")
 
     if inp == 'q' or inp == 'quit':
