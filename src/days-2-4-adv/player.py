@@ -6,6 +6,7 @@ class Player():
         self.name = name
         self.items = []
         self.items = starterItems
+        self.score = 0
     def change_location(self, new_location):
         self.location = new_location
     def __repr__(self):
@@ -15,6 +16,10 @@ class Player():
 
     def addItem(self, item):
         self.items.append(item)
+        if hasattr(item, "value") and item.score_counter > 0:
+            scoreGain = int(item.on_take())
+            self.score += scoreGain
+            print (f"\nPicking up this treasure has added {item} {item.on_take()} to your score!\n")
 
     def removeItem(self, item):
         self.items.remove(item)
