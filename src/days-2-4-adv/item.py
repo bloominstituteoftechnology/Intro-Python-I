@@ -12,7 +12,7 @@ class Item():
     def onTake(self):
         pass
 
-    def onDrop():
+    def onDrop(self):
         pass
 
 
@@ -24,3 +24,16 @@ class Treasure(Item):
 
     def onTake(self):
         pass
+
+    def onDrop(self):
+        pass
+
+class LightSource(Item):
+    def __init__(self, name, description):
+        super().__init__(name, description)
+
+    def onTake(self):
+        pass
+
+    def onDrop(self):
+        print("It's not wise do drop your source of light!")
