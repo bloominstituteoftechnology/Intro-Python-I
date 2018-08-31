@@ -8,9 +8,9 @@ class Player:
         self.curRoom = curRoom
         self.inventory = []
     def __repr__(self):
-        return f'Player {self.name}, {self.curRoom}'
+        return f'Player {self.name}, {self.curRoom}, {self.inventory}'
     def __str__(self):
-        return f'Player {self.name}, {self.curRoom}'
+        return f'Player {self.name}, {self.curRoom}, {self.inventory}'
     def change_location(self, newRoom):
         self.curRoom = newRoom
     def add_item(self, item):
