@@ -1,21 +1,18 @@
-from classes import Room
-from classes import Item
-from classes import Treasure
-from classes import LightSource
+from classes import Item, Treasure, LightSource, Room
 
-item = {
+items = {
     'knife': Item('knife'),
     'coin': Treasure('coin', 75),
     'shield': Item('shield'),
     'lamp': LightSource('lamp')
 }
 
-room = {
+rooms = {
     'outside':  Room(
                     "Outside Cave Entrance",
                     "North of you, the cave mount beckons.",
                     True,
-                    [item['knife'], item['shield'], item['lamp']],
+                    [items['knife'], items['shield'], items['lamp']],
                     {'n': 'foyer', 's': None, 'w': None, 'e': None},
                     ),
 
@@ -47,7 +44,7 @@ room = {
                     "Treasure Chamber",
                     """You've found the long-lost treasure chamber! Sadly, it has already been almost completely emptied by earlier adventurers. The only exit is to the south.""",
                     False,
-                    [item['coin']],
+                    [items['coin']],
                     {'n': None, 's': 'narrow', 'w': 'foyer', 'e': None},
                     )
 }
