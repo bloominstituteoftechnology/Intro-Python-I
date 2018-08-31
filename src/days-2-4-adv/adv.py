@@ -98,7 +98,8 @@ while True:
         elif command[1] not in item:
             print('That item doesn\'t exist.')
     
-
+    if command[0] == 'i' or 'inventory':
+        print('Player Inventory: ', player1.inventory)
     
         
 
