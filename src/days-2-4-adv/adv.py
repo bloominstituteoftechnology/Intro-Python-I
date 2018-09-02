@@ -56,10 +56,19 @@ myPlayer = Player(room['outside'])
 wordwrapLimit = 30
 
 while True:
-  currentLocation = "\n\n".join(["", textwrap.fill(f"You are now in the {myPlayer.room.name}.", wordwrapLimit), textwrap.fill(myPlayer.room.description, wordwrapLimit)])
+  currentRoom = myPlayer.room;
+  locationText = "\n\n".join(["", textwrap.fill(f"You are now in the {currentRoom.name}.", wordwrapLimit), textwrap.fill(currentRoom.description, wordwrapLimit)])
 
-  print(currentLocation)
+  print(locationText)
 
-  inp = input("\nWhere do you want to go (n/e/s/w): ")
+  inp = input("\nWhere do you want to go? ")
   if inp == "q":
     break
+  elif inp == "n" or inp == "e" or inp == "s" or inp == "w":
+    nextRoom = currentRoom[f"{inp}_to"]
+    if isinstance(nextRoom, Room):
+      myPlayer.setRoom(nextRoom)
+    else:
+      print("\n\nYOU CANNOT GO THERE, so...")
+  else:
+    print("Please enter a direction (n/e/s/w). Or enter q to QUIT.")
