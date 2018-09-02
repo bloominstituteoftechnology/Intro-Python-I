@@ -1,4 +1,6 @@
+import textwrap
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,6 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+myPlayer = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +52,14 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+wordwrapLimit = 30
+
+while True:
+  currentLocation = "\n\n".join(["", textwrap.fill(f"You are now in the {myPlayer.room.name}.", wordwrapLimit), textwrap.fill(myPlayer.room.description, wordwrapLimit)])
+
+  print(currentLocation)
+
+  inp = input("\nWhere do you want to go (n/e/s/w): ")
+  if inp == "q":
+    break
