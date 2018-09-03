@@ -1,6 +1,7 @@
 import textwrap
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -23,6 +24,9 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+# Add items to room
+room['outside'].items = [
+  Item('shoes', 'A pair of ostrich shoes.'), Item('slippers', 'A pair of Local Motion slippers.')]
 
 # Link rooms together
 
@@ -40,7 +44,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-myPlayer = Player(room['outside'])
+my_player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -53,22 +57,33 @@ myPlayer = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-wordwrapLimit = 30
+WORD_WRAP_LIMIT = 30
+is_hiding_room_description = False
 
 while True:
-  currentRoom = myPlayer.room;
-  locationText = "\n\n".join(["", textwrap.fill(f"You are now in the {currentRoom.name}.", wordwrapLimit), textwrap.fill(currentRoom.description, wordwrapLimit)])
+    current_room = my_player.room
+    if is_hiding_room_description == False:
+      locationText = "\n\n".join(["", textwrap.fill(f"You are now in the {current_room.name}.", WORD_WRAP_LIMIT), textwrap.fill(current_room.description, WORD_WRAP_LIMIT)])
+      is_hiding_room_description = True
+      print(locationText)
 
-  print(locationText)
-
-  inp = input("\nWhere do you want to go? ")
-  if inp == "q":
-    break
-  elif inp == "n" or inp == "e" or inp == "s" or inp == "w":
-    nextRoom = currentRoom[f"{inp}_to"]
-    if isinstance(nextRoom, Room):
-      myPlayer.setRoom(nextRoom)
+    inp = input("\nWhere do you want to go? ")
+    if inp == "q":
+        break
+    elif inp == "n" or inp == "e" or inp == "s" or inp == "w":
+        next_room = current_room[f"{inp}_to"]
+        if isinstance(next_room, Room):
+            my_player.set_room(next_room)
+            is_hiding_room_description = False
+        else:
+            print("\n\nYOU CANNOT GO THERE, so...")
+    elif inp == "look":
+        if (len(current_room.items) == 0):
+            print("\n\nYou see nothing here.")
+        else:
+            print("\n\nYou see the following items:")
+            for item in current_room.items:
+                print(f"{item.name.upper()} - {item.description}")
+            is_hiding_room_description = True
     else:
-      print("\n\nYOU CANNOT GO THERE, so...")
-  else:
-    print("Please enter a direction (n/e/s/w). Or enter q to QUIT.")
+      print("Please enter a direction (n/e/s/w). Or enter q to QUIT.")
