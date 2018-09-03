@@ -72,7 +72,7 @@ elif inp == 'C' or inp == 'c':
 
 
 def lookCommand(player, *args):
-    if len(args) == 1:
+    if len(args) == 1 and args[0] == 'look':
       return False
     elif args[1] in validDirection:
       lookRoom = user_character.location.getRoomInDirection(args[1])
@@ -98,22 +98,24 @@ def moveCommand(player, *args):
     return False
   
 def itemCommand(user_character, *args):
+  
   if (args[0] == 'get' or args[0] == 'take'):
     item = user_character.location.findItem(args[1])
     print(item)
     if item == None:
       printErrorString('\nitem is not available in this room.\n')
     else:
-      user_character.addItem(args[1])
+      user_character.addItem(item)
+      user_character.location.removeItem(item)
       print(f'{args[1]} added to your inventory\n')
     return True
-  elif args[0] == 'drop':
-    if len(args) > 1:
-      user_character.removeItem(args[1])
-      print(f'\n{args[1]} has been removed from your inventory\n')
+  elif args[0] == 'drop': 
+    for item in user_character.inventory:
+      if item.name == args[1]:
+        user_character.location.addItem(item)
+        user_character.removeItem(item)
+        print(f'\n{args[1]} has been removed from your inventory\n')
       return True
-    else:
-      print(f'{args[1]} does not exist in your inventory.')  
 
 commands = {}
 commands['n'] = moveCommand

@@ -42,18 +42,14 @@ class Room:
     for i in self.items:
       if i.name == name:
         return i
-    return None  
+      else:
+        print('Sorry, I cannot find that item')  
   
   def addItem(self, item):
     self.items.append(item)
  
   def removeItem(self, item):
-    if len(self.items) > 0:
-      for i in self.items:
-        if i.name == item:
-          self.items.remove(i)
-    else:
-      print('that item is not in your room')
+    self.items.remove(item)
       
     
     
