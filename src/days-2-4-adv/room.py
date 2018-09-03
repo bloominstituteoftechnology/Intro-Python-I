@@ -9,5 +9,13 @@ class Room:
         self.s_to = None
         self.w_to = None
         self.items = []
+    def take_item(self, item_name):
+        index = 0
+        for item in self.items:
+            if item.name.upper() == item_name.upper():
+                taken = self.items.pop(index)
+                return taken
+            index += 1
+        return None
     def __getitem__(self, key):
       return getattr(self, key)

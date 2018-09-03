@@ -25,6 +25,7 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 # Add items to room
+
 room['outside'].items = [
   Item('shoes', 'A pair of ostrich shoes.'), Item('slippers', 'A pair of Local Motion slippers.')]
 
@@ -44,6 +45,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
 my_player = Player(room['outside'])
 
 # Write a loop that:
@@ -59,31 +61,53 @@ my_player = Player(room['outside'])
 
 WORD_WRAP_LIMIT = 30
 is_hiding_room_description = False
+DIRECTION_COMMANDS = ["n", "e", "s", "w"]
 
 while True:
     current_room = my_player.room
     if is_hiding_room_description == False:
-      locationText = "\n\n".join(["", textwrap.fill(f"You are now in the {current_room.name}.", WORD_WRAP_LIMIT), textwrap.fill(current_room.description, WORD_WRAP_LIMIT)])
+      locationText = "\n".join(["", textwrap.fill(f"You are now in the {current_room.name.upper()}.", WORD_WRAP_LIMIT), textwrap.fill(current_room.description, WORD_WRAP_LIMIT)])
       is_hiding_room_description = True
       print(locationText)
 
-    inp = input("\nWhere do you want to go? ")
-    if inp == "q":
+    inputs = input("\n>>> ").split(" ")
+    verb = inputs[0]
+    if verb == "q":
         break
-    elif inp == "n" or inp == "e" or inp == "s" or inp == "w":
-        next_room = current_room[f"{inp}_to"]
+    elif verb in DIRECTION_COMMANDS:
+        next_room = current_room[f"{verb}_to"]
         if isinstance(next_room, Room):
             my_player.set_room(next_room)
             is_hiding_room_description = False
         else:
-            print("\n\nYOU CANNOT GO THERE, so...")
-    elif inp == "look":
+            print("\nYOU CANNOT GO THERE, so...")
+    elif verb == "look":
         if (len(current_room.items) == 0):
-            print("\n\nYou see nothing here.")
+            print("\nYou see nothing here.")
         else:
-            print("\n\nYou see the following items:")
+            print("\nYou see the following items:")
             for item in current_room.items:
                 print(f"{item.name.upper()} - {item.description}")
             is_hiding_room_description = True
+    elif verb == "i" or verb == "inventory":
+        my_player.show_inventory()    
+    elif len(inputs) == 2:
+        obj_name = inputs[1]
+        if verb == "take" or verb == "get":
+            taken = current_room.take_item(obj_name)
+            if taken == None:
+                print(f"{obj_name.capitalize()} ain't here.")   
+            else:
+                my_player.items.append(taken)
+                print(f"You take the {obj_name}.")
+        elif verb == "drop":
+            dropped = my_player.drop_item(obj_name)
+            if dropped == None:
+                print(f"You don't have {obj_name}.")   
+            else:
+                current_room.items.append(dropped)
+                print(f"You drop the {obj_name}")
+        else:
+            print("You can't do that.")
     else:
-      print("Please enter a direction (n/e/s/w). Or enter q to QUIT.")
+      print("Please type a command. Or enter q to QUIT.")
