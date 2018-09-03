@@ -50,11 +50,8 @@ def printErrorString(errorString):
   global noPrint
   noPrint = True
 
-#
-# Main
-#
 
-# Make a new player object that is currently in the 'outside' room.
+
 validDirection = ['n', 's', 'e', 'w']
 noPrint = False
 current_room = room['outside']
@@ -67,6 +64,24 @@ if inp == 'JJ':
 elif inp == 'C' or inp == 'c':
   user_character = Player(input("Please enter your characters name: "), start_room = room['outside'])
   print('Welcome, {}!'.format(user_character.name))
+
+
+def lookCommand(player, *args):
+    if len(args) == 1:
+      return False
+    elif args[1] in validDirection:
+      lookRoom = user_character.location.getRoomInDirection(args[1])
+      if lookRoom == None:
+        printErrorString('\nThere is nothing to see in that direction\n')
+        return True
+      else:
+        print(f'To the {args[1]} you see {lookRoom.name}.\n')
+        return True
+    else:
+      print('\nNot sure where you are trying to look...\n')
+      return True
+
+
 
 while True:
   if noPrint:
@@ -93,16 +108,8 @@ while True:
       user_character.changeLocation(newRoom)
   
   elif inplist[0] == 'look':
-    if len(inplist) == 1:
-      print(f'\nWhere would you like to look? (please specify look and direction)\n')
-      noPrint = True
-    elif inplist[1] in validDirection:
-      lookRoom = user_character.location.getRoomInDirection(inplist[1])
-      if lookRoom == None:
-        printErrorString('\nThere is nothing to see in that direction\n')
-      else:
-        print(f'To the {inplist[1]} you see {lookRoom.name}.\n')
-        noPrint = True
+    noPrint = lookCommand(player, *inplist)
+    
   else:
     printErrorString("\nI don't understand your command\n")
     
