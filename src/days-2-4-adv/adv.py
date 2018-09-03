@@ -45,11 +45,17 @@ room['foyer'].connectRooms(room['narrow'], 'e')
 room['narrow'].connectRooms(room['treasure'], 'n')
 
 
+def printErrorString(errorString):
+  print("\n{}\n".format(errorString))
+  global noPrint
+  noPrint = True
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+validDirection = ['n', 's', 'e', 'w']
 noPrint = False
 current_room = room['outside']
 user_character = player['default_character']
@@ -59,10 +65,8 @@ if inp == 'JJ':
   user_character == player['default_character']
   print(user_character)
 elif inp == 'C' or inp == 'c':
-  char_name = inp("Please enter your characters name: ")  
-  player[char_name] = Player(name = char_name.name, start_room = room['outside'])
-  user_character = player[char_name]
-
+  user_character = Player(input("Please enter your characters name: "), start_room = room['outside'])
+  print('Welcome, {}!'.format(user_character.name))
 
 while True:
   if noPrint:
@@ -71,22 +75,37 @@ while True:
     print("  \n---- You are at the {} ----\n".format(current_room.name))
     print("    {}".format(current_room.description))
   inp = input("What is your input: ")
-  if inp == 'q':
+  inplist = inp.split(' ')
+  print(f'Your input has {len(inplist)} arguments')
+  for arg in inplist:
+    print(arg)
+
+  if inplist[0] == 'q':
     print("See ya!")
     break
-  if inp == "n" or inp == "s" or inp == "w" or inp == "e":
-    current_room = user_character.location.getRoomInDirection(inp)
 
-  if inp == "n" or inp == "s" or inp == "w" or inp == "e":
-    newRoom = user_character.location.getRoomInDirection(inp)
+  if inplist[0] in validDirection:
+    current_room = user_character.location.getRoomInDirection(inplist[0])
+    newRoom = user_character.location.getRoomInDirection(inplist[0])
     if newRoom == None:
-      print("\nYou cannot go that way.\n")
-      noPrint = True
+      printErrorString('You cannot go that way')
     else:
       user_character.changeLocation(newRoom)
+  
+  elif inplist[0] == 'look':
+    if len(inplist) == 1:
+      print(f'\nWhere would you like to look? (please specify look and direction)\n')
+      noPrint = True
+    elif inplist[1] in validDirection:
+      lookRoom = user_character.location.getRoomInDirection(inplist[1])
+      if lookRoom == None:
+        printErrorString('\nThere is nothing to see in that direction\n')
+      else:
+        print(f'To the {inplist[1]} you see {lookRoom.name}.\n')
+        noPrint = True
   else:
-    print("\nI don't understand your command\n")
-    noPrint = True
+    printErrorString("\nI don't understand your command\n")
+    
 
 
   # elif inp == 'n' and current_room == room['outside']:
