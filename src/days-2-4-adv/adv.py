@@ -75,11 +75,36 @@ def lookCommand(player, *args):
         printErrorString('\nThere is nothing to see in that direction\n')
         return True
       else:
-        print(f'To the {args[1]} you see {lookRoom.name}.\n')
+        print(f'\nTo the {args[1]} you see {lookRoom.name}.\n')
         return True
     else:
       print('\nNot sure where you are trying to look...\n')
       return True
+
+def moveCommand(player, direction):
+  global current_room
+  current_room = user_character.location.getRoomInDirection(inplist[0])
+  global newRoom
+  newRoom = user_character.location.getRoomInDirection(inplist[0])
+  if newRoom == None:
+    printErrorString('You cannot go that way')
+  else:
+    user_character.changeLocation(newRoom)
+    return False
+
+commands = {}
+commands['n'] = moveCommand
+commands['s'] = moveCommand
+commands['e'] = moveCommand
+commands['w'] = moveCommand
+commands['look'] = lookCommand
+
+commandsHelp = {}
+commandsHelp['n'] = 'move north'
+commandsHelp['s'] = 'move south'
+commandsHelp['e'] = 'move east'
+commandsHelp['w'] = 'move west'
+commandsHelp['look'] = 'look somewhere'
 
 
 
@@ -98,18 +123,11 @@ while True:
   if inplist[0] == 'q':
     print("See ya!")
     break
-
-  if inplist[0] in validDirection:
-    current_room = user_character.location.getRoomInDirection(inplist[0])
-    newRoom = user_character.location.getRoomInDirection(inplist[0])
-    if newRoom == None:
-      printErrorString('You cannot go that way')
-    else:
-      user_character.changeLocation(newRoom)
-  
-  elif inplist[0] == 'look':
-    noPrint = lookCommand(player, *inplist)
-    
+  elif inplist[0] == 'help':
+    for command in commandsHelp:
+      print(f'{command} -- {commandsHelp[command]}')
+  elif inplist[0] in commands:
+    noPrint = commands[inplist[0]](user_character, *inplist)
   else:
     printErrorString("\nI don't understand your command\n")
     
