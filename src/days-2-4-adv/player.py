@@ -3,6 +3,7 @@
 class Player:
     def __init__(self, room):
         self.room = room
+        self.items = []
     def set_room(self, room):
         self.room = room
     def __getitem__(self, key):
