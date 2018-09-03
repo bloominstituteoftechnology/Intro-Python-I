@@ -5,10 +5,13 @@ class Room:
   def __init__(self, name, description):
     self.name = name 
     self.description = description
+    self.items = []
     self.n_to = None
     self.s_to = None
     self.e_to = None
     self.w_to = None
+  def __str__(self):
+    return f'\n---You are at the {self.name}---\n\n{self.description}\n Items in Area:\n{self.items}'
   def getRoomInDirection(self, direction):
     if direction == 'n':
       return self.n_to
@@ -35,6 +38,22 @@ class Room:
       destinationRoom.e_to = self
     else:
       print("invalid direction")
+  def findItem(self, name):
+    for i in self.items:
+      if i.name == name:
+        return i
+    return None  
+  
+  def addItem(self, item):
+    self.items.append(item)
+ 
+  def removeItem(self, item):
+    if len(self.items) > 0:
+      for i in self.items:
+        if i.name == item:
+          self.items.remove(i)
+    else:
+      print('that item is not in your room')
       
     
     

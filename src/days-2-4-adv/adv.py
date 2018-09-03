@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -44,6 +45,10 @@ room['foyer'].connectRooms(room['overlook'], 'n')
 room['foyer'].connectRooms(room['narrow'], 'e')
 room['narrow'].connectRooms(room['treasure'], 'n')
 
+rock = Item('rock', 'large, grey boulder near the entrance to the cave.')
+
+room['outside'].addItem(rock)
+
 
 def printErrorString(errorString):
   print("\n{}\n".format(errorString))
@@ -81,16 +86,34 @@ def lookCommand(player, *args):
       print('\nNot sure where you are trying to look...\n')
       return True
 
-def moveCommand(player, direction):
+def moveCommand(player, *args):
   global current_room
-  current_room = user_character.location.getRoomInDirection(inplist[0])
+  current_room = user_character.location.getRoomInDirection(args[0])
   global newRoom
-  newRoom = user_character.location.getRoomInDirection(inplist[0])
+  newRoom = user_character.location.getRoomInDirection(args[0])
   if newRoom == None:
     printErrorString('You cannot go that way')
   else:
     user_character.changeLocation(newRoom)
     return False
+  
+def itemCommand(user_character, *args):
+  if (args[0] == 'get' or args[0] == 'take'):
+    item = user_character.location.findItem(args[1])
+    print(item)
+    if item == None:
+      printErrorString('\nitem is not available in this room.\n')
+    else:
+      user_character.addItem(args[1])
+      print(f'{args[1]} added to your inventory\n')
+    return True
+  elif args[0] == 'drop':
+    if len(args) > 1:
+      user_character.removeItem(args[1])
+      print(f'\n{args[1]} has been removed from your inventory\n')
+      return True
+    else:
+      print(f'{args[1]} does not exist in your inventory.')  
 
 commands = {}
 commands['n'] = moveCommand
@@ -98,6 +121,9 @@ commands['s'] = moveCommand
 commands['e'] = moveCommand
 commands['w'] = moveCommand
 commands['look'] = lookCommand
+commands['get'] = itemCommand
+commands['take'] = itemCommand
+commands['drop'] = itemCommand
 
 commandsHelp = {}
 commandsHelp['n'] = 'move north'
@@ -112,8 +138,7 @@ while True:
   if noPrint:
     noPrint = False
   else:
-    print("  \n---- You are at the {} ----\n".format(current_room.name))
-    print("    {}".format(current_room.description))
+    print(current_room)
   inp = input("What is your input: ")
   inplist = inp.split(' ')
   print(f'Your input has {len(inplist)} arguments')
@@ -123,6 +148,18 @@ while True:
   if inplist[0] == 'q':
     print("See ya!")
     break
+    
+ 
+
+  elif (inplist[0] == 'inventory' or inplist[0] == 'items'):
+    print('\n--Your Inventory--\n')
+    if len(user_character.inventory) > 0:
+      for item in user_character.inventory:
+        print(f'item --{item}\n')
+        noPrint = True
+    else:
+      printErrorString('\nYour inventory is empty.\n')     
+
   elif inplist[0] == 'help':
     for command in commandsHelp:
       print(f'{command} -- {commandsHelp[command]}')
@@ -130,28 +167,3 @@ while True:
     noPrint = commands[inplist[0]](user_character, *inplist)
   else:
     printErrorString("\nI don't understand your command\n")
-    
-
-
-  # elif inp == 'n' and current_room == room['outside']:
-  #   current_room = room['outside'].n_to
-  # elif inp == 's' and current_room == room['outside']:
-  #   print("Can not go any further South.")
-  # elif inp == 'e' and current_room == room['outside']:
-  #   current_room = room['outside'].s_to
-  # elif inp == 'me':
-  #   print(player[player_name])
-    
-
-    
-
-
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
