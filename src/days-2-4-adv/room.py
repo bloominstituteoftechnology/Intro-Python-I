@@ -1,7 +1,7 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
 class Room:
-    def __init__(self, name, description):
+    def __init__(self, name, description, is_light = True):
         self.name = name
         self.description = description
         self.n_to = None
@@ -9,6 +9,7 @@ class Room:
         self.s_to = None
         self.w_to = None
         self.items = []
+        self.is_light = is_light
     def take_item(self, item_name):
         index = 0
         for item in self.items:
@@ -19,5 +20,7 @@ class Room:
         return None
     def add_item(self, item):
         self.items.append(item)
+    def turn_off_light(self):
+        self.is_light = False
     def __getitem__(self, key):
       return getattr(self, key)

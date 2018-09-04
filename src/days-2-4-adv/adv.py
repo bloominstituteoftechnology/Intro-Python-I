@@ -33,13 +33,15 @@ room['outside'].add_item(Item('slippers', 'A pair of Local Motion slippers.'))
 
 # Add treasures to rooms
 
-room['treasure'].add_item(Treasure('ramen', 'A delicious bowl of ramen.', 1000))
-room['treasure'].add_item(Treasure('contract', 'A signed contract with WME.', 50))
-room['overlook'].add_item(Treasure('meatball', 'A very valuable meatball', 250))
+room['narrow'].add_item(Treasure('ramen', 'A delicious bowl of ramen.', 1000))
+room['narrow'].add_item(Treasure('contract', 'A signed contract with WME.', 50))
+room['overlook'].add_item(Treasure('meatball', 'A very valuable meatball.', 250))
 
-# Add lightsource to room
+# Add lightsource to room and turn off light in narrow and treasure rooms
 
 room['foyer'].add_item(LightSource('lamp', 'A discount lava lamp from LampsPlus.'))
+room['narrow'].turn_off_light()
+room['treasure'].turn_off_light()
 
 # Link rooms together
 
@@ -77,10 +79,32 @@ DIRECTION_COMMANDS = ["n", "e", "s", "w"]
 
 while True:
     current_room = my_player.room
+
+    room_is_lit = False
+    room_has_lightsource = False
+    player_has_lightsource = False
+    for item in current_room.items:
+        if isinstance(item, LightSource):
+            room_has_lightsource = True
+    for item in my_player.items:
+        if isinstance(item, LightSource):
+            player_has_lightsource = True
+    if current_room.is_light == True or room_has_lightsource == True or player_has_lightsource == True:
+        room_is_lit = True;
+
     if is_hiding_room_description == False:
-      locationText = "\n".join(["", textwrap.fill(f"You are now in the {current_room.name.upper()}.", WORD_WRAP_LIMIT), textwrap.fill(current_room.description, WORD_WRAP_LIMIT)])
-      is_hiding_room_description = True
-      print(locationText)
+        if room_is_lit == True:
+            locationText = "\n".join(["", textwrap.fill(f"You are now in the {current_room.name.upper()}.", WORD_WRAP_LIMIT), textwrap.fill(current_room.description, WORD_WRAP_LIMIT)])
+            print(locationText)
+            if (len(current_room.items) == 0):
+                print("\nYou see nothing here.")
+            else:
+                print("\nYou see the following items:")
+                for item in current_room.items:
+                    print(f"{item.name.upper()} - {item.description}")
+        else:
+            print("It's pitch black!")
+        is_hiding_room_description = True
 
     inputs = input("\n>>> ").split(" ")
     verb = inputs[0]
@@ -93,26 +117,21 @@ while True:
             is_hiding_room_description = False
         else:
             print("\nYOU CANNOT GO THERE, so...")
-    elif verb == "look":
-        if (len(current_room.items) == 0):
-            print("\nYou see nothing here.")
-        else:
-            print("\nYou see the following items:")
-            for item in current_room.items:
-                print(f"{item.name.upper()} - {item.description}")
-            is_hiding_room_description = True
     elif verb == "i" or verb == "inventory":
         my_player.show_inventory()    
     elif verb == "score":
-        my_player.show_score()   
+        my_player.show_score()             
     elif len(inputs) == 2:
         obj_name = inputs[1]
         if verb == "take" or verb == "get":
-            taken = current_room.take_item(obj_name)
-            if taken == None:
-                print(f"{obj_name.capitalize()} ain't here.")   
+            if room_is_lit == True:
+                taken = current_room.take_item(obj_name)
+                if taken == None:
+                    print(f"{obj_name.capitalize()} ain't here.")   
+                else:
+                    my_player.add_item(taken)
             else:
-                my_player.add_item(taken)
+                print("Good luck finding that in the dark!")
         elif verb == "drop":
             dropped = my_player.drop_item(obj_name)
             if dropped == None:
