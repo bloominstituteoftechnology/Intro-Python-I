@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Item
+from item import Food
 
 # Declare all the rooms
 
@@ -46,8 +47,11 @@ room['foyer'].connectRooms(room['narrow'], 'e')
 room['narrow'].connectRooms(room['treasure'], 'n')
 
 rock = Item('rock', 'large, grey boulder near the entrance to the cave.')
+pizza = Food('pizza', 'pepperoni pizza', 1000)
 
 room['outside'].addItem(rock)
+room['foyer'].addItem(pizza)
+
 
 
 def printErrorString(errorString):
@@ -107,7 +111,11 @@ def itemCommand(user_character, *args):
     else:
       user_character.addItem(item)
       user_character.location.removeItem(item)
-      print(f'{args[1]} added to your inventory\n')
+      print(f'{args[1]} added to your inventory\n.')
+      for item in user_character.inventory:
+        if item.name == args[1]:
+          print(item.getDescription())
+
     return True
   elif args[0] == 'drop': 
     for item in user_character.inventory:
