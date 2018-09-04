@@ -3,6 +3,7 @@ from room import Room
 from player import Player
 from item import Item
 from treasure import Treasure
+from lightsource import LightSource
 
 # Declare all the rooms
 
@@ -35,6 +36,10 @@ room['outside'].add_item(Item('slippers', 'A pair of Local Motion slippers.'))
 room['treasure'].add_item(Treasure('ramen', 'A delicious bowl of ramen.', 1000))
 room['treasure'].add_item(Treasure('contract', 'A signed contract with WME.', 50))
 room['overlook'].add_item(Treasure('meatball', 'A very valuable meatball', 250))
+
+# Add lightsource to room
+
+room['foyer'].add_item(LightSource('lamp', 'A discount lava lamp from LampsPlus.'))
 
 # Link rooms together
 
@@ -114,7 +119,6 @@ while True:
                 print(f"You don't have {obj_name}.")   
             else:
                 current_room.add_item(dropped)
-                print(f"You drop the {obj_name}")
         else:
             print("You can't do that.")
     else:

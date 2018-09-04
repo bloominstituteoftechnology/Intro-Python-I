@@ -12,6 +12,7 @@ class Player:
         for item in self.items:
             if item.name.upper() == item_name.upper():
                 dropped = self.items.pop(index)
+                dropped.on_drop()
                 return dropped
             index += 1
         return None

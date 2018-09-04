@@ -5,3 +5,6 @@ class Item:
     def on_take(self):
         print(f"You take the {self.name}.")
         return None
+    def on_drop(self):
+        print(f"You dropped the {self.name}.")
+        return None
