@@ -91,6 +91,8 @@ while True:
             is_hiding_room_description = True
     elif verb == "i" or verb == "inventory":
         my_player.show_inventory()    
+    elif verb == "score":
+        my_player.show_score()   
     elif len(inputs) == 2:
         obj_name = inputs[1]
         if verb == "take" or verb == "get":

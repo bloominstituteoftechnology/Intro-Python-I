@@ -4,6 +4,7 @@ class Player:
     def __init__(self, room):
         self.room = room
         self.items = []
+        self.score = 0
     def set_room(self, room):
         self.room = room
     def drop_item(self, item_name):
@@ -21,5 +22,7 @@ class Player:
             print("\nYou have the following items:")
             for item in self.items:
                 print(f"{item.name.upper()} - {item.description}")
+    def show_score(self):
+      print(f"\nYou have {self.score} points.")
     def __getitem__(self, key):
         return getattr(self, key)
