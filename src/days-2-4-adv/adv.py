@@ -108,7 +108,6 @@ while True:
                 print(f"{obj_name.capitalize()} ain't here.")   
             else:
                 my_player.add_item(taken)
-                print(f"You take the {obj_name}.")
         elif verb == "drop":
             dropped = my_player.drop_item(obj_name)
             if dropped == None:

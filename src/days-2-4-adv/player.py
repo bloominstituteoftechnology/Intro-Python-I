@@ -26,5 +26,8 @@ class Player:
       print(f"\nYou have {self.score} points.")
     def add_item(self, item):
         self.items.append(item)
+        points = item.on_take()
+        if points != None:
+            self.score += points
     def __getitem__(self, key):
         return getattr(self, key)
