@@ -2,6 +2,7 @@ import textwrap
 from room import Room
 from player import Player
 from item import Item
+from treasure import Treasure
 
 # Declare all the rooms
 
@@ -26,8 +27,14 @@ earlier adventurers. The only exit is to the south."""),
 
 # Add items to room
 
-room['outside'].items = [
-  Item('shoes', 'A pair of ostrich shoes.'), Item('slippers', 'A pair of Local Motion slippers.')]
+room['outside'].add_item(Item('shoes', 'A pair of ostrich shoes.'))
+room['outside'].add_item(Item('slippers', 'A pair of Local Motion slippers.'))
+
+# Add treasures to rooms
+
+room['treasure'].add_item(Treasure('ramen', 'A delicious bowl of ramen.', 1000))
+room['treasure'].add_item(Treasure('contract', 'A signed contract with WME.', 50))
+room['overlook'].add_item(Treasure('meatball', 'A very valuable meatball', 250))
 
 # Link rooms together
 
@@ -100,14 +107,14 @@ while True:
             if taken == None:
                 print(f"{obj_name.capitalize()} ain't here.")   
             else:
-                my_player.items.append(taken)
+                my_player.add_item(taken)
                 print(f"You take the {obj_name}.")
         elif verb == "drop":
             dropped = my_player.drop_item(obj_name)
             if dropped == None:
                 print(f"You don't have {obj_name}.")   
             else:
-                current_room.items.append(dropped)
+                current_room.add_item(dropped)
                 print(f"You drop the {obj_name}")
         else:
             print("You can't do that.")

@@ -17,5 +17,7 @@ class Room:
                 return taken
             index += 1
         return None
+    def add_item(self, item):
+        self.items.append(item)
     def __getitem__(self, key):
       return getattr(self, key)

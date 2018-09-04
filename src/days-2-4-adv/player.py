@@ -24,5 +24,7 @@ class Player:
                 print(f"{item.name.upper()} - {item.description}")
     def show_score(self):
       print(f"\nYou have {self.score} points.")
+    def add_item(self, item):
+        self.items.append(item)
     def __getitem__(self, key):
         return getattr(self, key)
