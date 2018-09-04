@@ -1,2 +1,34 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+class Player:
+    def __init__(self, room):
+        self.room = room
+        self.items = []
+        self.score = 0
+    def set_room(self, room):
+        self.room = room
+    def drop_item(self, item_name):
+        index = 0
+        for item in self.items:
+            if item.name.upper() == item_name.upper():
+                dropped = self.items.pop(index)
+                dropped.on_drop()
+                return dropped
+            index += 1
+        return None
+    def show_inventory(self):
+        if len(self.items) == 0:
+            print("\nYou having nothing on you.")
+        else:
+            print("\nYou have the following items:")
+            for item in self.items:
+                print(f"{item.name.upper()} - {item.description}")
+    def show_score(self):
+      print(f"\nYou have {self.score} points.")
+    def add_item(self, item):
+        self.items.append(item)
+        points = item.on_take()
+        if points != None:
+            self.score += points
+    def __getitem__(self, key):
+        return getattr(self, key)
