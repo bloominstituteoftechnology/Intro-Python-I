@@ -9,10 +9,11 @@ import os
 
 
 # Print out the platform from sys:
-print()
+for com in sys.argv:
+    print(com)
 
 # Print out the Python version from sys:
-print()
+print(sys.platform)
 
 
 
@@ -21,10 +22,10 @@ print()
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
 # Print the current process ID
-print()
+print(sys.getwindowsversion())
 
 # Print the current working directory (cwd):
-print()
+print(sys.path)
 
 # Print your login name
 print()
