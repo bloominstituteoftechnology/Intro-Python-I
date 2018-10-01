@@ -1,51 +1,63 @@
-from room import Room
+from dicts import items, rooms
+from classes import Room, Player, Item, Treasure, LightSource
 
-# Declare all the rooms
+def printErrorString(errorString):
+    print(f'\x1b[1;31;40m\n{errorString}\x1b[0m')
 
-room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+player = Player(rooms['outside'])
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
-
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
-
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
-}
-
-
-# Link rooms together
-
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
-
-#
-# Main
-#
-
-# Make a new player object that is currently in the 'outside' room.
-
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+while True:
+    print("\nYou are in the {}.".format(player.room.name))
+    if player.room.is_lit or player.check_for_light():
+        print(player.room.description)
+        if player.room.items:
+            player.room.inventory()
+    else:
+        printErrorString("It's pitch black!")
+    inp = input("\n>>> ").split(" ")
+    if 1 <= len(inp) <= 2:
+        command = inp[0]
+        target = inp[1] if len(inp) == 2 else None
+        if command == "quit":
+            printErrorString("YOU HAVE DIED.\n")
+            break
+        elif command == "score":
+            player.score_report()
+        elif command == "items":
+            if player.items:
+                player.inventory()
+            else:
+                printErrorString("You have no items.")
+        elif command in ['n', 's', 'e', 'w']:
+            if player.room.adjacent_rooms[command] == None:
+                printErrorString("You cannot move that way.")
+            else:
+                player.room = rooms[player.room.adjacent_rooms[command]]
+        elif command == "get":
+            if not player.room.is_lit and not player.check_for_light():
+                printErrorString("Good luck finding that in the dark!")
+            elif not player.room.items:
+                printErrorString("There is nothing for you to take.")
+            elif not player.room.check_for_item(target):
+                printErrorString("That item is not present.")
+            else:
+                new_item = items[target]
+                player.room.remove_item(new_item)
+                player.get(new_item)
+                if isinstance(new_item, Treasure):
+                    if not new_item.picked_up:
+                        player.score += new_item.value
+                        new_item.on_take()
+        elif command == "drop":
+            if not player.items:
+                printErrorString("You have no items.")
+            elif not player.check_for_item(target):
+                printErrorString("You have no such item.")
+            else:
+                dropped_item = items[target]
+                player.drop(dropped_item)
+                player.room.add_item(dropped_item)
+                if isinstance(dropped_item, LightSource):
+                    dropped_item.on_drop()
+        else:
+            printErrorString("I did not recognize that command.")
