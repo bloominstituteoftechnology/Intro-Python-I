@@ -9,10 +9,11 @@ import os
 
 
 # Print out the platform from sys:
-print()
+for arg in sys.argv:
+    print(arg)
 
 # Print out the Python version from sys:
-print()
+print(sys.platform)
 
 
 
