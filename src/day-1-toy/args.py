@@ -55,8 +55,8 @@ print(f3(8))     # Should print 9
 
 #def f4(...
 def f4(**kwargs):
-    for key,value in kwargs.items():
-        print()
+    for key in kwargs:
+        print(f'key {key}, value: {kwargs[key]}')
 # Should print
 # key: a, value: 12
 # key: b, value: 30
@@ -74,4 +74,4 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+f4(**d)
