@@ -14,3 +14,35 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+from datetime import datetime 
+# def drawCalendar(year = None, month= None):
+#     cal = calendar.TextCalendar(calendar.SUNDAY)
+#     print("once")
+#     if month is None or year is None:
+#         now = datetime.now()
+#         print( type(now.year), type(now.month))
+#         return cal.prmonth(now.year, now.month)
+#     else:
+#         return cal.prmonth(year, month)
+
+
+# print(drawCalendar())
+# print(drawCalendar(year = 2018, month = 9))
+
+def drawCalendar(*args):
+    cal = calendar.TextCalendar(calendar.SUNDAY)
+    print("once")
+    if len(args) < 2:
+        now = datetime.now()
+        print( type(now.year), type(now.month))
+        return cal.prmonth(now.year, now.month)
+    else:
+        return cal.prmonth(args[0], args[1])
+
+
+print(drawCalendar())
+print(drawCalendar(2018, 9))
+
+
+
