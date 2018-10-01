@@ -14,3 +14,11 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+def draw_calendar(month, year):
+    new = calendar.TextCalendar()
+    cal = new.formatmonth(int(year), int(month))
+    print(cal)
+
