@@ -10,3 +10,6 @@ print('X is %d, Y is %.2f, Z is "%s"' % (x, y, z))
 
 
 # Use the 'format' string method to print the same thing
+sent = f"X is {x}, Y is {y}, Z is {z}"
+
+print(sent)
