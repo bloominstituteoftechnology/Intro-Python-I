@@ -33,6 +33,7 @@ room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
 
 room['overlook'].s_to = room['foyer']
+room['overlook'].add_room_item(Item('Sword', 'A very shiny sword'))
 
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
@@ -90,8 +91,9 @@ def handle_complex_command(words):
     if words[0].upper() == 'TAKE' or words[0].upper() == 'GET':
         item = list(filter(lambda i: i.name.upper() == words[1].upper(), p.c_room.items))[0]
         if item:
-            p.items.get_item(item)
-            p.c_room.items.remove(item)
+            p.get_item(item)
+            p.c_room.remove_room_item(item)
+            error = f'You take the {item.name} and continue on'
         else:
             error = "There is no such item"
     else:
@@ -102,7 +104,7 @@ while playing:
     if show_description:
         print(p.c_room.location)
         print(p.c_room.description)
-        p.c_room.list_items()
+        p.c_room.list_room_items()
     show_description = True
     direction = input('Enter a command: ')
     words = direction.split()
