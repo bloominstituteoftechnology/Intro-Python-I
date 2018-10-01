@@ -1,6 +1,10 @@
 import os
+
 # Use open to open file "foo.txt" for reading
-o = open(os.path.abspath("foo.txt"), "r")
+cwd = os.getcwd()
+files = os.listdir(cwd)
+print(files)
+o = open("src/day-1-toy/foo.txt", "r")
 # Print all the lines in the file
 print(o.read())
 # Close the file
