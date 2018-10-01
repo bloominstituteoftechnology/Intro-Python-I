@@ -27,3 +27,7 @@ print(x)
 print(len(x))
 
 # Using a for loop, print all the element values multiplied by 1000
+
+hi = array ([3,6,9])
+hi/3
+print(hi)
