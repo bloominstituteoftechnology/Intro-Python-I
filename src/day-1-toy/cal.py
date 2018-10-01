@@ -14,3 +14,24 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+c = calendar.TextCalendar()
+
+if len(sys.argv) == 1:
+  print("You entered no month or year, so we'll assume you mean this month and year\n")
+  month = datetime.datetime.now().month
+  year = datetime.datetime.now().year
+  str = c.formatmonth(year,month)
+  print(str)
+
+elif len(sys.argv) == 2:
+  print("You entered 1 input value..Please enter two value, the month and the year!\n")
+
+elif len(sys.argv) == 3:
+  print("You entered 3 values! Hooray \n")
+  month = int(sys.argv[1])
+  year = int(sys.argv[2])
+  str = c.formatmonth(year,month)
+  print(str)
