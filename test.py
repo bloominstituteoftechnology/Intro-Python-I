@@ -1,7 +1,3 @@
-x = 7
+import os
 
-print(type(x))
-
-x = str(x)
-
-print(type(x))
+print(os.getgid())
