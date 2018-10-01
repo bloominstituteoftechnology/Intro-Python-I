@@ -57,19 +57,6 @@ print(f3(8))     # Should print 9
 # https://www.digitalocean.com/community/tutorials/how-to-use-args-and-kwargs-in-python-3
 # kwargs means key word arguments
 
-
-# practice
-def print_kwargs(**kwargs):
-    print(kwargs)
-
-print_kwargs(kwargs_1="Shark", kwargs_2=4.5, kwargs_3=True)
-
-def print_values(**kwargs):
-    for key, value in kwargs.items():
-        print("The value of {} is {}".format(key, value))
-
-print_values(my_name="Sammy", your_name="Casey")
-
 def f4(**kwargs):
     for key, value in kwargs.items():
         print("key: {key}, value: {kwargs[key]}".format(key,value))
