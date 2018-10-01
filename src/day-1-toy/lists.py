@@ -8,22 +8,23 @@ y = [8, 9, 10]
 
 # Change x so that it is [1, 2, 3, 4]
 # [command here]
+x.append(4)
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
-# [command here]
+x += y
 print(x)
 
-# Change x so that it is [1, 2, 3, 4, 9, 10]
-# [command here]
-print(x)
+# # Change x so that it is [1, 2, 3, 4, 9, 10]
 
-# Change x so that it is [1, 2, 3, 4, 9, 99, 10]
-# [command here]
-print(x)
+# print(x)
 
-# Print the length of list x
-# [command here]
-print(len(x))
+# # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
+# # [command here]
+# print(x)
 
-# Using a for loop, print all the element values multiplied by 1000
+# # Print the length of list x
+# # [command here]
+# print(len(x))
+
+# # Using a for loop, print all the element values multiplied by 1000
