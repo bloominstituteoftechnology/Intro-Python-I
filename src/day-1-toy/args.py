@@ -17,7 +17,11 @@ def f2(*args):
     for arg in args
         x+=arg
     return x
-
+# idk about this one fam
+# 
+# 
+# 
+# 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
 print(f2(1, 4, -12))            # Should print -7
