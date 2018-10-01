@@ -1,3 +1,4 @@
 import os
 
-print(os.getgid())
+print(os.getgid()), 
+
