@@ -26,7 +26,7 @@ print(w)
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-# y = [if(i % 2 == 0) for i in x]
+y = [if(i % 2 == 0) for i in x]
 
 print(y)
 
