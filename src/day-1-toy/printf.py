@@ -5,6 +5,11 @@ z = "I like turtles!"
 # Using the printf operator (%), print the following feeding in the values of x,
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
+def printf(format, *values):
+    # mock a printf
+    print(format % values)
 
+printf("x is %i, y is %f, z is %s", x, y , z)
 
 # Use the 'format' string method to print the same thing
+print(f"x is {x}, y is {y}, z is {z}")

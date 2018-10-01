@@ -5,6 +5,8 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 #def f1(...
+def f1(x, y):
+    return x + y
 
 print(f1(1, 2))
 
@@ -12,6 +14,22 @@ print(f1(1, 2))
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # def f2(...
+
+def f2(*numbers):
+    """
+    1. check whether the input contains list
+    2. if not iterate all arguments
+    """
+    sum = 0
+
+    if type(numbers[0]) is list:
+        for number in numbers[0]:
+            sum += number
+    else:
+        for number in numbers:
+            sum += number
+
+    return sum 
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -29,9 +47,15 @@ print(f2(a))    # Should print 22
 
 #def f3(...
 
+
+def f3(x, y = 0):
+    if y is 0:
+        return x + 1
+
+    return x + y
+
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
-
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
 # prints ouf the keys and values like so:
@@ -43,6 +67,14 @@ print(f3(8))     # Should print 9
 
 #def f4(...
 
+def f4(*args, **kargs):
+    if args:
+        print(args[0])
+    else:
+        print(", "
+            .join(f"{key}: {value}" for key, value in kargs.items())
+        )
+    
 # Should print
 # key: a, value: 12
 # key: b, value: 30
