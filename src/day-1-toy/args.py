@@ -8,7 +8,7 @@
 
 print(f1(1, 2))
 
-# Write a function f2 that takes any number of iteger arguments and prints the
+# Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # def f2(...
@@ -34,7 +34,7 @@ print(f3(8))     # Should print 9
 
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
-# prints ouf the keys and values like so:
+# prints out the keys and values like so:
 #
 # key: foo, value: bar
 # key: baz, value: 12
