@@ -19,7 +19,9 @@ print(f1(1, 2))
 def f2(args)
 
 total=0
-for arg in args
+for arg in args:
+    total+=arg:
+    return total
 
 
 print(f2(1))                    # Should print 1
