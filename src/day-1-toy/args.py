@@ -4,7 +4,12 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-#def f1(...
+# def f1(...
+
+
+def f1(x, y):
+    return x + y
+
 
 print(f1(1, 2))
 
@@ -27,7 +32,7 @@ print(f2(a))    # Should print 22
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments. Google "python default arguments" for a hint.
 
-#def f3(...
+# def f3(...
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -41,7 +46,7 @@ print(f3(8))     # Should print 9
 #
 # Google "python keyword arguments".
 
-#def f4(...
+# def f4(...
 
 # Should print
 # key: a, value: 12
