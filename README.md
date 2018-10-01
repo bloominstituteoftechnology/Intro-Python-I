@@ -1,4 +1,5 @@
-# Start
+# Start here
+
 # Intro to Python
 
 ## Goals
