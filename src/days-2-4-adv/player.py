@@ -5,12 +5,12 @@ class Player():
         self.c_room = c_room
         self.items = items
 
-    def __update_room__(self, room):
+    def update_room(self, room):
         self.c_room = room
 
-    def __get_item__(self, item):
+    def get_item(self, item):
         self.items.append(item)
 
-    def __list_items__(self):
+    def list_items(self):
         for i in self.items:
             print(i)
