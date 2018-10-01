@@ -59,16 +59,16 @@ while playing:
         print(p.c_room.description)
     show_description = True
     direction = input('Choose a direction to continue (N, E, S, W): ')
-    if str(direction) == 'N' and hasattr(p.c_room, 'n_to'):
+    if str(direction).upper() == 'N' and hasattr(p.c_room, 'n_to'):
         p.__update_room__(p.c_room.n_to)
-    elif str(direction) == 'E' and hasattr(p.c_room, 'e_to'):
+    elif str(direction).upper() == 'E' and hasattr(p.c_room, 'e_to'):
         p.__update_room__(p.c_room.e_to)
-    elif str(direction) == 'S' and hasattr(p.c_room, 's_to'):
+    elif str(direction).upper() == 'S' and hasattr(p.c_room, 's_to'):
         p.__update_room__(p.c_room.s_to)
-    elif str(direction) == 'W' and hasattr(p.c_room, 'w_to'):
+    elif str(direction).upper() == 'W' and hasattr(p.c_room, 'w_to'):
         p.__update_room__(p.c_room.w_to)
-    elif str(direction) == 'q' or str(direction) == 'Q':
-        print("Goodbye")
+    elif str(direction).upper() == 'Q':
+        print("Better luck next time!")
         playing = False
     else:
         print("I'm sorry, that command is invalid, please input another")
