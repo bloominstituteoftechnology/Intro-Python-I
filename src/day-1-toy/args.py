@@ -4,14 +4,20 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-#def f1(...
+
+
+    
 
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of iteger arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
-# def f2(...
+def f2(*args):
+    init=1 
+    for num in args:
+       init += num
+       return init
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
