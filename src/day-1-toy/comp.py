@@ -13,7 +13,7 @@ print(y)
 y = []
 
 for x in range(10):
-    y.append(x***3)
+    y.append(x**3)
 
 print(y)
 
