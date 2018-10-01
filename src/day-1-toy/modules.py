@@ -1,6 +1,4 @@
 import sys
-
-
 # Module "sys"
 #
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
