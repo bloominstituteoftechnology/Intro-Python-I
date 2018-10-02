@@ -53,7 +53,7 @@ player1 = Player(playername,room['outside'])
 #
 # If the user enters "q", quit the game.
 while True:
-    print(f'You find yourself {player1.room.name})
+    print(f'You find yourself {player1.room.name}')
     print(player1.room.description)
 
     move = input('\n Where to next?: ')
@@ -61,3 +61,29 @@ while True:
     if move == 'q':
         print('yeah text adventurers are dumb')
         break
+
+    if move == 'n':
+        if hasattr(player1.room, 'n_to'):
+            player1.room = player1.room.n_to
+        else:
+            print('you went the wrong way')
+
+    if move == 's':
+        if hasattr(player1.room, 's_to'):
+            player1.room = player1.room.s_to
+        else:
+            print('you went the wrong way')
+
+    if move == 'e':
+        if hasattr(player1.room, 'e_to'):
+            player1.room = player1.room.e_to
+        else:
+            print('you went the wrong way')
+
+    if move == 'w':
+        if hasattr(player1.room, 'w_to'):
+            player1.room = player1.room.w_to
+        else:
+            print('you went the wrong way')
+    else:
+        print('dude just play the game right I dont just cant deal rn')
