@@ -1,2 +1,4 @@
 # Write Hello, world
-print("Hello, world")
+
+import hello
+print(hello)
