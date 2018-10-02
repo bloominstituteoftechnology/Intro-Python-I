@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 
+
 class AdventureDone(Exception): pass
 
 # Declare all the rooms
@@ -53,21 +54,52 @@ currentPlayer = Player(playerName)
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-print(room[currentPlayer.room].n_to.name)
 def TextEval(text):
     if text == "q":
         raise AdventureDone
     elif text =="n":
-        room[currentPlayer.room].n_to
+      if hasattr(room[currentPlayer.room], 'n_to'):
+          currentPlayer.room = room[currentPlayer.room].n_to.key
+          return False
+      else:
+        print("Invalid Direction")
+        return True
+    elif text =="w":
+      if hasattr(room[currentPlayer.room], 'w_to'):
+          currentPlayer.room = room[currentPlayer.room].w_to.key
+          return False
+      else:
+        print("Invalid Direction")
+        return True
+    elif text =="e":
+      if hasattr(room[currentPlayer.room], 'e_to'):
+          currentPlayer.room = room[currentPlayer.room].e_to.key
+          return False
+      else:
+        print("Invalid Direction")
+        return True
+    elif text =="s":
+      if hasattr(room[currentPlayer.room], 's_to'):
+          currentPlayer.room = room[currentPlayer.room].s_to.key
+          return False
+      else:
+        print("Invalid Direction")
+        return True
+    else:
+      print("Invalid Direction")
+      return True
 
-print(f"Welcome {currentPlayer.name}, pick a direction or use q to quite")
+print(f"Welcome {currentPlayer.name}, pick a direction or use q to quit")
+
 try:
     while True:
-      print(f"{currentPlayer.name} is located in {room[currentPlayer.room].name}")
-      print(room[currentPlayer.room].description)
-      playerInput = input("Please select a direction:")
-      TextEval(playerInput.lower())
-      break
+        awaitValidDirection = True
+        print("\n")
+        print(f"{currentPlayer.name} is located in {room[currentPlayer.room].name}")
+        print(room[currentPlayer.room].description)
+        while awaitValidDirection:
+          playerInput = input("Please select a direction:")
+          awaitValidDirection = TextEval(playerInput.lower())
 
 except AdventureDone:
     print('See you next adventure')
