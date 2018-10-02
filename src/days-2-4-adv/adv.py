@@ -50,6 +50,7 @@ choice_direction = {"n": "north", "s": "south", "e": "east", "w": "west"}
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(room['outside'])
+direction = Player(input("Where would you like to go?"))
 # Write a loop that:
 while True:
     print(p)
@@ -57,6 +58,9 @@ while True:
     if cmd == "q":
         break
     elif cmd == "n" or cmd == "s" or cmd == "w" or cmd == "e"
+if "n"
+    player["currentRoom"] = (room[Room[f"{cmd_to}"]])
+    print(f"You are in {vars(player.currentRoom)}")
 
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
