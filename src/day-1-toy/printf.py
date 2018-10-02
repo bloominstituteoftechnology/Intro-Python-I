@@ -6,5 +6,8 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
+print("x is %x" % z)
+
+# print("x")
 
 # Use the 'format' string method to print the same thing

@@ -5,14 +5,22 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 #def f1(...
+def f1(a,b):
+    return(a+b)
 
 print(f1(1, 2))
 
-# Write a function f2 that takes any number of iteger arguments and prints the
+# Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # def f2(...
+def f2(*args):
+    sum = 0
+    for num in args:
+        sum += num
+    print(sum)
 
+#QQQQQQQQQQQQQQQ?: I get these right, except that the function returns "None" after the sum.
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
 print(f2(1, 4, -12))            # Should print -7
@@ -21,7 +29,8 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 a = [7, 6, 5, 4]
 
 # What thing do you have to add to make this work?
-print(f2(a))    # Should print 22
+for num in a
+    print(f2(a))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the

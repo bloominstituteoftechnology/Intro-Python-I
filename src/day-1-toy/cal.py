@@ -1,9 +1,16 @@
 # Use the 'calendar' module to draw calendars to the console
 # https://docs.python.org/3.6/library/calendar.html
 #
+import calendar
+
+a = calendar.calendar(6)
+
+print(a)
+
 # Use the sys module to look for command line arguments in the `argv` list
 # variable.
 #
+
 # If the user specifies two command line arguments, month and year, then draw
 # the calendar for that month.
 
@@ -14,3 +21,8 @@
 # docs for the calendar module closely.
 
 import sys
+
+
+print(sys.argv)
+
+if len(sys.argv) == 2 #just print the specified month
