@@ -6,27 +6,28 @@ from item import Treasure, LightSource
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", True),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", True),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", False),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", True),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", True),
 }
 
 
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
+room['outside'].add_room_item(LightSource('Lantern', 'A source of light in the dark'))
 
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -100,16 +101,19 @@ def handle_complex_command(words):
     global rooms
     global p
     if words[0].upper() == 'TAKE' or words[0].upper() == 'GET':
-        if len(p.c_room.items) > 0:
-            item = list(filter(lambda i: i.name.upper() == words[1].upper(), p.c_room.items))
-            if len(item) > 0:
-                p.get_item(item[0])
-                p.c_room.remove_room_item(item[0])
-                error = item[0].on_take(p)
-            else:
-                error = "There is no such item in this room"
+        if p.c_room.is_light is False and any(isinstance(item, LightSource) for item in p.items) is False:
+            error = "Good luck finding that in the dark!"
         else:
-            error = "There are no items in this room"
+            if len(p.c_room.items) > 0:
+                item = list(filter(lambda i: i.name.upper() == words[1].upper(), p.c_room.items))
+                if len(item) > 0:
+                    p.get_item(item[0])
+                    p.c_room.remove_room_item(item[0])
+                    error = item[0].on_take(p)
+                else:
+                    error = "There is no such item in this room"
+            else:
+                error = "There are no items in this room"
     elif words[0].upper() == 'DROP':
         if len(p.items) > 0:
             item = list(filter(lambda i: i.name.upper() == words[1].upper(), p.items))
@@ -128,9 +132,12 @@ while playing:
     print('')
     print('')
     if show_description:
-        print(p.c_room.location)
-        print(p.c_room.description)
-        p.c_room.list_room_items()
+        if p.c_room.is_light or any(isinstance(x, LightSource) for x in p.items):
+            print(p.c_room.location)
+            print(p.c_room.description)
+            p.c_room.list_room_items()
+        else:
+            print("It's pitch black!")
     show_description = True
     direction = input('Enter a command: ')
     if direction == "":
