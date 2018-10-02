@@ -25,8 +25,8 @@ waypoints = [
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
-for key, val in waypoints.items():
-    print(key,"=>")
+for key in waypoints:
+    print(key)
 
 # Add a new waypoint to the list
 a = {
@@ -35,5 +35,5 @@ a = {
     "name": "the moon"
 }
 
-waypoints + a
+waypoints.append(a)
 
