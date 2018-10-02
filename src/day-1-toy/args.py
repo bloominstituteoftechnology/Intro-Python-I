@@ -16,8 +16,8 @@ print(f1(1, 2))
 # def f2(...
 def f2(*args):
     sum = 0
-    for arg in args:
-        sum += arg
+    for i in args:
+        sum += i
     print(sum)
 
 print(f2(1))                    # Should print 1
