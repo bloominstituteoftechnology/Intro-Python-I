@@ -35,4 +35,6 @@ print_tuple(t)  # Prints 1 2 5 7 99, one per line
 
 # Declare a tuple of 1 element then print it
 u = (1)  # What needs to be added to make this work?
+# a comma has to be entered in for it to work. 
+# u = (1,) will work without the try and except and only a for loop. 
 print_tuple(u)
