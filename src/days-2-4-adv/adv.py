@@ -60,12 +60,30 @@ while True:
         print("\nYour Journey has ended")
         break
     elif direction == 'n':
-        if not hasattr(player.currentRoom, 'n_to'):
+        if not hasattr(player.currentRoom.n_to, 'name'):
          print('\n Dead End')
         else:
             player.currentRoom = player.currentRoom.n_to 
-     elif direction == 's':
+            print(f"""{player.currentRoom.name}:
+            {player.currentRoom.description}""")
+    elif direction == 's':
         if not hasattr(player.currentRoom, 's_to'):
          print('\n Dead End')
         else:
-            player.currentRoom = player.currentRoom.s_to           
+            player.currentRoom = player.currentRoom.s_to
+            print(f"""{player.currentRoom.name}:
+            {player.currentRoom.description}""")
+    elif direction == 'w':
+        if not hasattr(player.currentRoom, 'w_to'):
+         print('\n Dead End')
+        else:
+            player.currentRoom = player.currentRoom.w_to 
+            print(f"""{player.currentRoom.name}:
+            {player.currentRoom.description}""")  
+    elif direction == 'e':
+        if not hasattr(player.currentRoom, 'e_to'):
+         print('\n Dead End')
+        else:
+            player.currentRoom = player.currentRoom.e_to   
+            print(f"""{player.currentRoom.name}:
+            {player.currentRoom.description}""")        
