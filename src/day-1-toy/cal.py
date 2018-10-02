@@ -35,7 +35,7 @@ def drawCalendar(*args):
     print("once")
     if len(args) < 2:
         now = datetime.now()
-        print( type(now.year), type(now.month))
+        #print( type(now.year), type(now.month))
         return cal.prmonth(now.year, now.month)
     else:
         return cal.prmonth(args[0], args[1])
