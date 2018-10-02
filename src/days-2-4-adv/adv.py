@@ -62,6 +62,7 @@ error = False
 def handle_error():
     global error
     if error:
+        print('')
         print(error)
         error = None
         global show_description
@@ -69,7 +70,7 @@ def handle_error():
 
 def handle_simple_command(word):
     global error
-    if str(word).upper() == 'N' and hasattr(p.c_room, 'n_to'):
+    if (str(word).upper() == 'N' or str(word).upper() == 'NORTH') and hasattr(p.c_room, 'n_to'):
         p.update_room(p.c_room.n_to)
     elif str(word).upper() == 'E' and hasattr(p.c_room, 'e_to'):
         p.update_room(p.c_room.e_to)
@@ -116,6 +117,8 @@ def handle_complex_command(words):
 
 
 while playing:
+    print('')
+    print('')
     if show_description:
         print(p.c_room.location)
         print(p.c_room.description)
