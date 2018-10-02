@@ -11,6 +11,15 @@ class Player():
     def get_item(self, item):
         self.items.append(item)
 
+    def drop_item(self, item):
+        self.c_room.add_room_item(item)
+        self.items.remove(item)
+
     def list_player_items(self):
-        for i in self.items:
-            print(i)
+        return self.items
+
+    def player_has_items(self):
+        if len(self.items) > 0:
+            return True
+        else:
+            return False

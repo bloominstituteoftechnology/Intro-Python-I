@@ -68,6 +68,7 @@ def handle_error():
         show_description = False
 
 def handle_simple_command(word):
+    global error
     if str(word).upper() == 'N' and hasattr(p.c_room, 'n_to'):
         p.update_room(p.c_room.n_to)
     elif str(word).upper() == 'E' and hasattr(p.c_room, 'e_to'):
@@ -76,12 +77,19 @@ def handle_simple_command(word):
         p.update_room(p.c_room.s_to)
     elif str(word).upper() == 'W' and hasattr(p.c_room, 'w_to'):
         p.update_room(p.c_room.w_to)
+    elif str(word).upper() == 'I' or str(word).upper() == 'INVENTORY':
+        if p.player_has_items():
+            error = "What would you like to do next?"
+            for i in p.list_player_items():
+                print(i)
+        else:
+            error = 'You do not have any items'
+
     elif str(word).upper() == 'Q':
         print("Better luck next time!")
         global playing
         playing = False
     else:
-        global error
         error = "That is not a valid direction or command"
 
 def handle_complex_command(words):
@@ -96,6 +104,13 @@ def handle_complex_command(words):
             error = f'You take the {item.name} and continue on'
         else:
             error = "There is no such item"
+    elif words[0].upper() == 'DROP':
+        item = list(filter(lambda i: i.name.upper() == words[1].upper(), p.items))[0]
+        if item:
+            p.drop_item(item)
+            error = f'You drop the {item.name} and continue on'
+        else:
+            error = "No such item found"
     else:
         error = "That command is invalid. please try again"
 
