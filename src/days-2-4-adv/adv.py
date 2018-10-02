@@ -54,5 +54,12 @@ players = {
 #
 # If the user enters "q", quit the game.
 
+
 while True:
-    print()
+    print(players['player 1'].location)
+    for key in room:
+        if key == players['player 1'].location:
+            print (room[key].description)
+    # cmd = input ("-> ")
+    # if cmd == "n"
+    break
