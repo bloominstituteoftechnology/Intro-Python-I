@@ -21,11 +21,6 @@ waypoints = [
         "lat": 43,
         "lon": -122,
         "name": "a third place"
-    },
-    {
-        "lat": 62,
-        "lon": -215,
-        "name": "the fourth place"
     }
 ]
 
@@ -33,3 +28,4 @@ waypoints = [
 for i in waypoints:
     print(i.values())
 # Add a new waypoint to the list
+waypoints.append(dict({"lat": 62, "lon": -215, "name": "the fourth place" }))
