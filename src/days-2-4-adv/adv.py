@@ -63,53 +63,47 @@ def current(location):
 location = players['player 1'].location
 current(location)
 cmd = input("Heading Towards -> ")
+
 while True:
     if cmd == "q":
         break
+    cmd = input("Heading Towards -> ")
     if (location == 'outside'):
         if cmd == "n":
             location = 'foyer'
             current(location)
-            cmd = input("Heading Towards -> ")
         else:
             print('The movement is not allowed.')
     if (location == 'foyer'):
         if cmd == "n":
             location = 'overlook'
             current(location)
-            cmd = input("Heading Towards -> ")
         elif cmd == 's':
             location = 'outside'
             current(location)
-            cmd = input("Heading Towards -> ")
         elif cmd == 'e':
             location = 'narrow'
-            current(location)
-            cmd = input("Heading Towards -> ")
+            current(location) 
         else:
             print('The movement is not allowed.')
     if (location == 'overlook'):
         if cmd == 's':
             location = 'foyer'
             current(location)
-            cmd = input("Heading Towards -> ")
         else:
             print('The movement is not allowed.')
     if (location == 'narrow'):
         if cmd == 'w':
             location = 'foyer'
-            current(location)
-            cmd = input("Heading Towards -> ")
+            current(location)   
         elif cmd == 'n':
             location = 'treasure'
-            current(location)
-            cmd = input("Heading Towards -> ")
+            current(location) 
         else:
             print('The movement is not allowed.')
     if (location == 'treasure'):
         if cmd == 's':
             location = 'narrow'
             current(location)
-            cmd = input("Heading Towards -> ")
         else:
             print('The movement is not allowed.')
