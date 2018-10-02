@@ -5,19 +5,17 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 def f1(x,y):
-    return x * y
+    return x + y
 
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of iteger arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
-def f2(ItemA, *argv):
-    this = ItemA
-    more = argv
+def f2(*args):
     sum = 0
-    for each in argv:
-        sum + int(each)
+    for each in args:
+        sum = sum + int(each)
     return sum
     
     
@@ -30,43 +28,46 @@ def f2(ItemA, *argv):
 a = [7, 6, 5, 4]
 
 # What thing do you have to add to make this work?
-print(f2(a))    # Should print 22
+print(f2(*a))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments. Google "python default arguments" for a hint.
 
-# #def f3(...
+def f3(x, y=1):
+    return x+y
 
-# print(f3(1, 2))  # Should print 3
-# print(f3(8))     # Should print 9
+print(f3(1, 2))  # Should print 3
+print(f3(8))     # Should print 9
 
 
-# # Write a function f4 that accepts an arbitrary number of keyword arguments and
-# # prints ouf the keys and values like so:
-# #
-# # key: foo, value: bar
-# # key: baz, value: 12
-# #
-# # Google "python keyword arguments".
+# Write a function f4 that accepts an arbitrary number of keyword arguments and
+# prints ouf the keys and values like so:
+#
+# key: foo, value: bar
+# key: baz, value: 12
+#
+# Google "python keyword arguments".
 
-# #def f4(...
+def f4(**kwargs):
+    for key in kwargs:
+        print("key %s, value %s" %(key,kwargs[key]))
 
-# # Should print
-# # key: a, value: 12
-# # key: b, value: 30
-# f4(a=12, b=30)
+# Should print
+# key: a, value: 12
+# key: b, value: 30
+f4(a=12, b=30)
 
-# # Should print
-# # key: city, value: Berkeley
-# # key: population, value: 121240
-# # key: founded, value: "March 23, 1868"
-# f4(city="Berkeley", population=121240, founded="March 23, 1868")
+# Should print
+# key: city, value: Berkeley
+# key: population, value: 121240
+# key: founded, value: "March 23, 1868"
+f4(city="Berkeley", population=121240, founded="March 23, 1868")
 
-# d = {
-#     "monster": "goblin",
-#     "hp": 3
-# }
+d = {
+    "monster": "goblin",
+    "hp": 3
+}
 
-# # What thing do you have to add to make this work?
-# f4(d)
+# What thing do you have to add to make this work?
+f4(**d)

@@ -13,9 +13,10 @@ print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # [command here]
-x.append(8)
-x.append(9)
-x.append(10)
+# x.append(8)
+# x.append(9)
+# x.append(10)
+x.extend(y)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
@@ -34,5 +35,6 @@ print(len(x))
 
 # Using a for loop, print all the element values multiplied by 1000
 
-#not finding how to do this without assigning.
+for num in x:
+    print(num * 1000)
     
