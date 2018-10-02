@@ -4,10 +4,10 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-def f1(x , y):
+
+def f1(x, y):
     return x + y
 
-    
 
 print(f1(1, 2))
 

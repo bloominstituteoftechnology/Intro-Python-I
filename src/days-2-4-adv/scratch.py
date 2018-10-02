@@ -1,7 +1,22 @@
-from .player import Player
 
-# Declare all the rooms
+class Player():
+    def __init__(self,name):
+        self.name = name
+        self.currentRoom= ""
+    def __str__(self):
+        return f"\n{self.currentRoom}\n{priorRoom} - {self.losses} - {self.ties}\n"
 
+
+
+class Room():
+    def __init__(myRoom,name,description):
+        myRoom.name = name
+        myRoom.description = description
+        myRoom.currentRoom= 0
+        myRoom.priorRoom = 0
+
+    def __str__(myRoom):
+        return f"\n{myRoom.name}\n{myRoom.currentRoom} - {myRoom.priorRoom}\n"
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
@@ -20,46 +35,6 @@ to north. The smell of gold permeates the air."""),
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
-
-
-# Link rooms together
-
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
-
-#
-# Main
-#
-
-# Make a new player object that is currently in the 'outside' room.
-
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
-
-
-class Room():
-    def __init__(myRoom,name,description):
-        myRoom.name = name
-        myRoom.description = description
-        myRoom.currentRoom= 0
-        myRoom.priorRoom = 0
-
-    def __str__(myRoom):
-        return f"\n{myRoom.name}\n{myRoom.currentRoom} - {myRoom.priorRoom}\n"
 
 
 
@@ -86,4 +61,3 @@ currentRoom = player.room
 
     else:
         print('Please try again.')
-
