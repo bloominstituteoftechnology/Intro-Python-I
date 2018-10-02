@@ -6,4 +6,8 @@ class Room:
         self.description=description
         self.inventory=[]
     def __str__(self):
-        return f'name: {self.name}\ndescription: {self.description}'
+        itemArr=[]
+        for item in self.inventory:
+            itemArr.extend(item.name)
+        itemArr=', '.join(itemArr)
+        return f'name: {self.name}\ndescription: {self.description}\nitems available: {itemArr}'

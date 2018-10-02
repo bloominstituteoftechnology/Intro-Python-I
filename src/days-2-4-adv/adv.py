@@ -35,11 +35,11 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 #Declare items
 item={
-    'sword':Item('sword','Just a basic sword to hack at monsters with ... nothing fancy.'),
-    'candle':Item('candle','Useful for keeping the Boogeyman at bay.'),
-    'rock':Item('rock','A big rock ... not useful at all.'),
-    'sandwich':Item('sandwich','Sustenance for when you get hungry later.'),
-    'lasso':Item('lasso', 'Not sure if it makes people tell the truth or makes one go Indiana Jones.')
+    'sword':Item('sword',"""Just a basic sword to hack at monsters with ... nothing fancy."""),
+    'candle':Item('candle',"""Useful for keeping the Boogeyman at bay."""),
+    'rock':Item('rock',"""A big rock ... not useful at all."""),
+    'sandwich':Item('sandwich',"""Sustenance for when you get hungry later."""),
+    'lasso':Item('lasso', """Not sure if it makes people tell the truth or makes one go Indiana Jones.""")
 }
 room['outside'].inventory.append(item['sword'])
 room['foyer'].inventory.append(item['candle'])
