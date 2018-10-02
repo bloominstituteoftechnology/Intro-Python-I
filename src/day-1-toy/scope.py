@@ -5,8 +5,9 @@
 x = 12
 
 def changeX():
-    x = 99
-    global x = x
+    y = 99
+    global x 
+    x = y
 
 changeX()
 
@@ -20,6 +21,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()
@@ -29,3 +31,5 @@ def outer():
     print(y)
 
 outer()
+
+# completed
