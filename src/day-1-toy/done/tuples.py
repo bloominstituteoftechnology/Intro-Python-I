@@ -26,7 +26,8 @@ def print_tuple(a):
     if type(a) is list:
         for x in a:
             print(x)
-    else:
+    else: 
+        #or have x =(1,)
         print(a)
 
 t = (1, 2, 5, 7, 99)

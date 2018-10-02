@@ -10,6 +10,7 @@ import os
 
 # Print out the platform from sys:
 print(sys.getwindowsversion())
+print(sys.platform())
 
 # Print out the Python version from sys:
 print(sys.version_info)
