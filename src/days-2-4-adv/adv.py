@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -39,6 +40,8 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+player = Player(room['outside'])
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +52,38 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    invalid_move = '\nYou shall not pass!'
+
+    print(f'\nLocation: {player.location.name}')
+    print(f'{player.location.description}')
+
+    answer = input("\nWhich way will you go? n, s, e, w. \nIt's not to late to turn back. Press q to quit\n")
+
+    if answer == "q":
+        print("Perhaps it is for the best.")
+        break
+
+    if answer == "n":
+        if not hasattr(player.location.n_to, 'name'):
+            print(invalid_move)
+        else:
+            player.location = player.location.n_to
+
+    if answer == "s":
+        if not hasattr(player.location.s_to, 'name'):
+            print(invalid_move)
+        else:
+            player.location = player.location.s_to
+
+    if answer == "e":
+        if not hasattr(player.location.e_to, 'name'):
+            print(invalid_move)
+        else:
+            player.location = player.location.e_to
+    if answer == "w":
+        if not hasattr(player.location.w_to, 'name'):
+            print(invalid_move)
+        else:
+            player.location = player.location.w_to
