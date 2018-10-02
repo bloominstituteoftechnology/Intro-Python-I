@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,7 +39,9 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+print("🎮  Welcome to Adventure beta v 0.1")
+player = Player(name = input("📝  Please enter your name: \n"), location = 'outside')
+print(f"👋  Hi, { player.name }! You are at 🏠 { room[player.location].get_room() } now")
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +52,61 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+"""
+Warning for wrong direction
+"""
+def wrong_direction():
+    print("\n⚠️  The direction you have chosen is not accessible!\n")
+
+"""
+Initialise location
+"""
+location = room['outside']
+number_round = 1
+
+while True:
+    """
+    Game started
+    """
+    print (f"\n--- Round {number_round} ---\n")
+    print("ℹ️\n\nPlease enter n/e/s/w to pick a direction,\nd for description of current location,\nq for quitting the game\n")
+
+    """
+    Get user input
+    """
+    cmd = input("➡️  ")
+    
+    """
+    Process user input
+    """
+
+    if cmd is "q":
+        break
+    elif cmd is "n":
+        if hasattr(location,'n_to'):
+            location = location.n_to
+        else:
+            wrong_direction()
+    elif cmd is "e":
+        if hasattr(location,'e_to'):
+            location = location.e_to
+        else:
+            wrong_direction()
+    elif cmd is "s":
+        if hasattr(location,'s_to'):
+            location = location.s_to
+        else:
+            wrong_direction()
+    elif cmd is "w":
+        if hasattr(location,'w_to'):
+            location = location.w_to
+        else:
+            wrong_direction()
+    elif cmd is "d":
+        location.print_description()
+
+    """
+    Update program
+    """
+    player.update_location(location.get_room())
+    number_round += 1
