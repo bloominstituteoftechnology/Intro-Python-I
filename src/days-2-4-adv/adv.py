@@ -35,9 +35,10 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-
 # Make a new player object that is currently in the 'outside' room.
 Will=Player('outside')
+roomkeys=room.keys()
+print(roomkeys)
 # Write a loop that:
 #
 # * Prints the current room name
@@ -48,3 +49,28 @@ Will=Player('outside')
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+while True:
+    print(room[Will.location].name)
+    print(room[Will.location].description)
+    cmd=input('-->')
+    next_location=''
+    if cmd=='n':
+        if hasattr(room[Will.location],'n_to'):
+            next_location=room[Will.location].n_to
+    elif cmd=='e':
+        if hasattr(room[Will.location],'e_to'):
+            next_location=room[Will.location].e_to
+    elif cmd=='s':
+        if hasattr(room[Will.location],'s_to'):
+            next_location=room[Will.location].s_to
+    elif cmd=='w':
+        if hasattr(room[Will.location],'w_to'):
+            next_location=room[Will.location].w_to
+    elif cmd=='q':
+        break
+    if next_location!='':
+        for key in roomkeys:
+            if room[key]==next_location:
+                Will.travel(key)
+    else:
+        print('Player is unable to move in that direction.')
