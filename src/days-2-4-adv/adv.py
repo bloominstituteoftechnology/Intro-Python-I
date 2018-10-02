@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -36,6 +37,12 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+
+print(room['outside'])
+print(room['foyer'])
+print(room['overlook'])
+print(room['narrow'])
+print(room['treasure'])
 
 # Make a new player object that is currently in the 'outside' room.
 

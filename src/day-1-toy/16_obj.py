@@ -32,7 +32,6 @@ w=Waypoint("Catacombs", 41.70505, -121.51521)
 # Without changing the following line, how can you make it print into something
 # more human-readable?
 print(w)
-
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 g=Geocache("Newberry Views", 1.5, 2, 44.052137, -121.41556)
 # Print it--also make this print more nicely
