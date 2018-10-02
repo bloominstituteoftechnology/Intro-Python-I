@@ -69,6 +69,26 @@ def handle_error():
         global show_description
         show_description = False
 
+def list_exits():
+    global show_description
+    global error
+    exits = []
+    if p.c_room.is_light is False and any(isinstance(item, LightSource) for item in p.items) is False:
+        error = "It's too dark to see an exit. Try going back the way you came!"
+    else:
+        if hasattr(p.c_room, 'n_to'):
+            exits.append('(N)orth')
+        if hasattr(p.c_room, 'e_to'):
+            exits.append('(E)ast')
+        if hasattr(p.c_room, 's_to'):
+            exits.append('(S)outh')
+        if hasattr(p.c_room, 'w_to'):
+            exits.append('(W)est')
+        print('This room has exits to the: ')
+        for exit in exits:
+            print(exit)
+    show_description = False
+
 def handle_simple_command(word):
     global error
     if (str(word).upper() == 'N' or str(word).upper() == 'NORTH') and hasattr(p.c_room, 'n_to'):
@@ -79,6 +99,8 @@ def handle_simple_command(word):
         p.update_room(p.c_room.s_to)
     elif str(word).upper() == 'W' and hasattr(p.c_room, 'w_to'):
         p.update_room(p.c_room.w_to)
+    elif str(word).upper() == 'EXITS':
+        list_exits()
     elif str(word).upper() == 'I' or str(word).upper() == 'INVENTORY':
         if p.player_has_items():
             print('Your inventory:')
