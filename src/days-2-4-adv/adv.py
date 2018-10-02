@@ -42,7 +42,7 @@ room['treasure'].s_to = room['narrow']
 class Player():
     def __init__ (self, name, room):
         self.name = name
-        self.room = 'outside'
+        self.room = room
     def printRoom(self):
         return (self.room)
 # Write a loop that:
@@ -57,5 +57,18 @@ class Player():
 # If the user enters "q", quit the game.
 
 while True:
-    p = Player
+    p = Player("Kairi", "outside")
     print (p.printRoom())
+    cmd = input("What do you want to do? You can: move n, move e, move s, move w, press q to quit: ")
+    if cmd == "q":
+        break
+    elif cmd == "n":
+        p.room = room[p.room].cmd_to
+    elif cmd == "n":
+        p.room = room[p.room].cmd_to
+    elif cmd == "n":
+        p.room = room[p.room].cmd_to
+    elif cmd == "n":
+        p.room = room[p.room].cmd_to
+    else:
+        print("Invalid choice")
