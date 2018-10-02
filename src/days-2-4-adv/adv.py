@@ -41,11 +41,11 @@ item={
     'sandwich':Item('sandwich',"""Sustenance for when you get hungry later."""),
     'lasso':Item('lasso', """Not sure if it makes people tell the truth or makes one go Indiana Jones.""")
 }
-room['outside'].inventory.append(item['sword'])
-room['foyer'].inventory.append(item['candle'])
-room['overlook'].inventory.append(item['rock'])
-room['narrow'].inventory.append(item['sandwich'])
-room['treasure'].inventory.append(item['lasso'])
+room['outside'].inventory.append('sword')
+room['foyer'].inventory.append('candle')
+room['overlook'].inventory.append('rock')
+room['narrow'].inventory.append('sandwich')
+room['treasure'].inventory.append('lasso')
 #
 # Main
 #
@@ -64,9 +64,16 @@ roomkeys=room.keys()
 # If the user enters "q", quit the game.
 while True:
     print(room[Will.location])
-    cmd=input('-->')
+    cmd=input('-->').lower()
     if len(cmd.split())==2:
-        print(cmd)
+        cmd=cmd.split()
+        if cmd[0]=='get':
+            if cmd[1] in room[Will.location].inventory:
+                room[Will.location].inventory.remove(cmd[1])
+                Will.pickup(cmd[1])
+                print(f'Picked up a {cmd[1]}')
+            else:
+                print(f'Cannot find {cmd[1]} in {room[Will.location].name}')
     else:
         next_location=''
         if cmd=='n':
