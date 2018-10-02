@@ -18,12 +18,14 @@ print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # [command here]
-x.pop(5);
+x.pop(5); # uses the index
+# x.remove(8); # uses the actual value
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # [command here]
-x.extend([99,10]);
+# x.extend([99,10]);
+x.insert(5, 99)
 x.pop(6);
 print(x)
 

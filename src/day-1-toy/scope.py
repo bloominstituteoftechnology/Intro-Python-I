@@ -18,11 +18,9 @@ print(x)
 
 def outer():
     y = 120
-
     def inner():
         nonlocal y
         y = 999
-
     inner()
     print(y)
 outer()   

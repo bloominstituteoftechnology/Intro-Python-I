@@ -26,7 +26,7 @@ waypoints = [
 
 # Write a loop that prints out all the field values for all the waypoints
 for key in waypoints:
-    print(key)
+    print(key.items())
 
 # Add a new waypoint to the list
 a = {
