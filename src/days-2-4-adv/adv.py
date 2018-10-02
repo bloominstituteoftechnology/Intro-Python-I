@@ -80,7 +80,7 @@ room['beach'].e_to = room['lighthouse']
 # If the user enters "q", quit the game.
 
 # Player init
-player = Player('Grant', room['outside'], ["iron chestplate"])
+player = Player('Hanzo', room['outside'], ["iron chestplate"])
 
 # Input loop
 while True:
