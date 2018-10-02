@@ -34,6 +34,8 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 room['treasure'].n_to = room['kitchen']
+room['kitchen'].e_to = room['prison']
+room['prison'].n_to = room['coward']
 # Main
 
 
