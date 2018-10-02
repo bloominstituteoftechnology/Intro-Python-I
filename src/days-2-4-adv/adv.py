@@ -1,5 +1,6 @@
-from room import Room
 from player import Player
+from room import Room
+
 
 # Declare all the rooms
 
@@ -22,7 +23,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -37,22 +37,47 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-
-print('Welcome! Are you ready to embark on an adventure?')
-name = input("What is your name?")
-player = Player(name, room['outside'])
-
+print()
+print("\nWelcome! Are you ready to embark on an adventure?")
+name = input(" What is your name?   ")
+room = room['outside']
+player = Player(name, room)
+print()
 print(f'Welcome, {player.name}!\n Lets begin the journey!')
-
-# Make a new player object that is currently in the 'outside' room.
+print()
+print("To play this game, use the buttons n, e, w, and s. \n\n n = North \n e = East \n w = West \n s = South \n q = Quit")
+print()
+print("The ultimate goal of this game is get to the treasure before anyone else gets to it.")
+print("Be careful to not fall to your death!")
 
 # Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+
+while True:
+    print(f'Current Room: {player.room.name}...')
+    print(player.room.description)
+    print()
+    cmd = input("Enter the Next Direction --->")
+
+    if cmd == "q":
+        break
+    elif cmd == "n":
+        if hasattr(player.room.n_to, 'name'):
+            player.room = player.room.n_to
+        else:
+            print("You cannot go this way!! Try again")
+    elif cmd == "s":
+        if hasattr(player.room.s_to, 'name'):
+            player.room = player.room.s_to
+        else:
+            print("You cannot go this way!! Try again")
+    elif cmd == "e":
+        if hasattr(player.room.e_to, 'name'):
+            player.room = player.room.e_to
+        else:
+            print("You cannot go this way!! Try again")
+    elif cmd == "w":
+        if hasattr(player.room.w_to, 'name'):
+            player.room = player.room.w_to
+        else:
+            print("You cannot go this way!! Try again")
+
