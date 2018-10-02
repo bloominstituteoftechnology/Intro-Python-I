@@ -19,5 +19,5 @@ import calendar
 
 print(sys)
 
-c = calendar.TextCalendar(calendar.THURSDAY)
+c = calendar.TextCalendar(calendar.SUNDAY)
 print(c.formatmonth(2018,10))
