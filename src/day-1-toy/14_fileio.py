@@ -14,7 +14,7 @@ foo.close()
 bar = open("bar.txt", "w")
 
 # Use the write() method to write three lines to the file
-# lines = ["line 1\n", "line 2\n", "line 3"]
+# ines = ["line 1\n", "line 2\n", "line 3"]
 
 # bar.writelines(lines)
 
