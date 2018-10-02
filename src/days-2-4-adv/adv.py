@@ -54,7 +54,7 @@ p = Player(room["outside"])
 playerName = input('Player Name: ')
 
 while True: 
-    print(p.currentRoom.name) 
+    print(f"{playerName} is currently at the {p.currentRoom.name}") 
     print(p.currentRoom.description)
     cmd = input("What would you like to do? ")
     print(cmd)
@@ -81,4 +81,4 @@ while True:
     elif cmd.upper() == "Q" or cmd.upper() == "QUIT":
         break
     else:
-        print("Command not valid.")
+        print("That is not a valid command!")
