@@ -8,3 +8,5 @@ class Player:
         return f'location: {self.location}'
     def travel(self,location):
         self.location=location
+    def pickup(self,item):
+        self.inventory.append(item)
