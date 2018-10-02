@@ -13,3 +13,14 @@ class Room():
     def __repr__(self):
         return f"location: {self.location}, message: {self.message}"
 
+    def direction(self, direction):
+        if direction == "n":
+            return self.n_to
+        elif direction == "s":
+            return self.s_to
+        elif direction == "e":
+            return self.e_to
+        elif direction == "w":
+            return self.w_to
+        else:
+            return "None"
