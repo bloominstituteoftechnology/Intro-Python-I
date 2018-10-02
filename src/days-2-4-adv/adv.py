@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -39,13 +41,43 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+p = Player(input('What is your name?'), room['outside'])
+
 # Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
+while True:
+    currentRoom = p.currentRoom
+    description = p.currentRoom.description
+    def printErr():
+        print('You\'ve run into a brick wall! Try another direction')
+    # * Prints the current room name
+    # * Prints the current description (the textwrap module might be useful here).
+    print('Where you are: ', currentRoom.name, ', What you see:', textwrap.fill(description))
+    cmd = input('==>')
 # * Waits for user input and decides what to do.
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
+    if cmd.upper() == 'N':
+        if hasattr(currentRoom, 'n_to'):
+            p.currentRoom = currentRoom.n_to
+        else:
+            printErr()
+    elif cmd.upper() == 'S':
+        if hasattr(currentRoom, 's_to'):
+            p.currentRoom = currentRoom.s_to
+        else:
+            printErr()
+    elif cmd.upper() == 'E':
+        if hasattr(currentRoom, 'e_to'):
+            p.currentRoom = currentRoom.e_to
+        else:
+            printErr()
+    elif cmd.upper() == 'W':
+        if hasattr(currentRoom, 'w_to'):
+            p.currentRoom = currentRoom.w_to
+        else:
+            printErr()
 #
 # If the user enters "q", quit the game.
+    elif cmd.upper() == 'Q':
+        break;
