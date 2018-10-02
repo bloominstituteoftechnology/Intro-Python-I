@@ -5,7 +5,7 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     """North of you, the cave mount beckons"""),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = {}
+player = Player(room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -52,8 +52,31 @@ player = {}
 # If the user enters "q", quit the game.
 
 while True:
+    invalid = "You cannot go in that direction."
+
+    print(f"{player.room.name}: {player.room.description}")
     cmd = input("Which direction do you want to go: N, S, E, or W?")
     if cmd == "q":
         break
+    elif cmd == 'n':
+        if hasattr(player.room, 'n_to'):
+            player.goToRoom(player.room.n_to)
+        else:
+            print(invalid)
+    elif cmd == 's':
+        if hasattr(player.room, 's_to'):
+            player.goToRoom(player.room.s_to)
+        else:
+            print(invalid)
+    elif cmd == 'e':
+        if hasattr(player.room, 'e_to'):
+            player.goToRoom(player.room.e_to)
+        else:
+            print(invalid)
+    elif cmd == 'w':
+        if hasattr(player.room, 'w_to'):
+            player.goToRoom(player.room.w_to)
+        else:
+            print(invalid)
     else:
-        print(cmd)
+        print('Please enter N, S, E, or W; Press q to quit')
