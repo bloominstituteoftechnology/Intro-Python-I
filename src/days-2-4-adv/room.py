@@ -2,10 +2,11 @@
 # description attributes.
 
 class Room:
-    def __init__(self, name, description, abr):
+    def __init__(self, name, description, abr, items):
         self.name = name
         self.description = description
         self.abr = abr
+        self.items = items
         self.n_to = None
         self.w_to = None
         self.s_to = None
