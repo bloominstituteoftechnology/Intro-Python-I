@@ -10,3 +10,5 @@ class Player():
         self.room = newRoom
     def addObject(self, newObject):
         self.object = newObject
+    def dropObject(self):
+        self.object = 'nothing'

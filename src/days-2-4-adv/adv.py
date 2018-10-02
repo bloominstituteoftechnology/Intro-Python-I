@@ -26,7 +26,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-room['outside'].object = 'compass'
+room['outside'].object = 'a compass'
 
 #
 # Main
@@ -41,12 +41,14 @@ while True:
     if cmd == "q":
         break
     elif cmd == "me":
-        print(f'\n--You currently have a {p.object}')
+        print(f'\n--You currently have {p.object}')
     elif cmd == "room":
-        print(f"\n--The room contains a {p.room.object}")
+        print(f"\n--The room contains {p.room.object}")
     elif cmd == "get":
         p.addObject(p.room.object)
         p.room.removeObject()
+    elif cmd == "drop":
+        p.dropObject()
     elif cmd == "n":
         # cmdName = cmd + "_to"
         # print(cmdName)
@@ -61,7 +63,7 @@ while True:
     elif cmd == "e": 
         p.changeRoom(p.room.e_to)
     elif cmd == "help":
-        print("\nlist of commands: \n'n' to go north\n'e' to go east\n's' to go south\n'w' to go west\n'q' to exit\n ")
+        print("\nlist of commands:\n'n' to go north\n'e' to go east\n's' to go south\n'w' to go west\n'q' to exit\n'room' list object in room\n 'me' list objects you have \n 'get' pick up object from room \n 'drop' drop object")
     else: 
         print('not a valid command')
 # Write a loop that:
