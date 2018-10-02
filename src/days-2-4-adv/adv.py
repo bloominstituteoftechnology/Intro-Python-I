@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+sean = Player(room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +49,8 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+print (f"""
+    {sean.startRoom.name}:
+    {sean.startRoom.description}
+    """)
