@@ -6,6 +6,6 @@ class Player:
         self.room = room
         
     def getRoom(self):
-        print('##################################')
+        print(75 * '#')
         print('You are in: ' + self.room.name)
-        print('Direction: ' + self.room.description)
+        print('Directions: ' + self.room.description)

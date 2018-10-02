@@ -63,16 +63,16 @@ class Main:
                     print(getattr(player1.room, keyPress).abr)
                     room[getattr(player1.room, keyPress).abr]
                 except AttributeError:
-                    print('---> Impossible to go to that direction! Choose different one.\n')
+                    print('\n---> Impossible to go to that direction! Choose different one.\n')
                     player1.getRoom()
                 except KeyError:
-                    print('---> Impossible to go to that direction! Choose different one.\n')
+                    print('\n---> Impossible to go to that direction! Choose different one.\n')
                     player1.getRoom()
                 else:
                     player1.room = room[getattr(player1.room, keyPress).abr]
                     player1.getRoom()
             else:
-                print('Game over!')
+                print('\nGame over!')
 
 game1 = Main()
 game1.start()
