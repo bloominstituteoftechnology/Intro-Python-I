@@ -22,6 +22,13 @@ class Player(object):
             self.roomKey = "narrow"
         elif room == "Treasure Chamber":
             self.roomKey = "treasure"
+        elif room == "Prison":
+            self.roomKey = "prison"
+        elif room == "Cowards Forest":
+            self.roomKey = "coward"
+        elif room == "Kitchen":
+            self.roomKey = "kitchen"
+        
         self.currentRoom = room
 
         return "Changing rooms..."

@@ -18,6 +18,11 @@ to north. The smell of gold permeates the air."""),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
+    'prison' : Room('Prison', """You will have to fight your way out of the prison if you wish to go north.
+     If you wish not to fight run left or right"""),
+    'coward': Room("Cowards Forest", """You coward! You ran from the fight. Now the goblins have been alerted.  """),
+    'kitchen' : Room ('Kitchen', """Welcome to the kitchen """)
+
 }
 # Link rooms together
 room['outside'].n_to = room['foyer']
@@ -28,6 +33,7 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+room['treasure'].n_to = room['kitchen']
 # Main
 
 
