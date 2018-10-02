@@ -12,5 +12,19 @@
 
 # Hint: this should be about 15 lines of code. No loops are required. Read the
 # docs for the calendar module closely.
+import calendar
+from datetime import datetime 
 
-import sys
+def drawCalendar(*args):
+    cal = calendar.TextCalendar(calendar.SUNDAY)
+    print("once")
+    if len(args) < 2:
+        now = datetime.now()
+        print( type(now.year), type(now.month))
+        return cal.prmonth(now.year, now.month)
+    else:
+        return cal.prmonth(args[0], args[1])
+
+
+print(drawCalendar())
+print(drawCalendar(2018, 9))
