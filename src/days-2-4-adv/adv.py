@@ -7,7 +7,7 @@ room = {
 passages run north and east."""),
 
     'b2':  Room("Blue Objective",
-                    "North of you, the cave mount beckons"),
+                "North of you, the cave mount beckons"),
 
     'b-needles': Room("Blue Needles", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -17,7 +17,14 @@ the distance, but there is no way across the chasm."""),
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
+    'b-door':    Room("Front Door of Blue", """Dim light filters in from the south. Dusty
+passages run north and east."""),
+
     'b-street': Room("Blue Pink Street", """A steep cliff appears before you, falling
+into the darkness. Ahead to the north, a light flickers in
+the distance, but there is no way across the chasm."""),
+
+    'b-nerd': Room("Blue Pink 3 Nerd Ledge", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
@@ -28,9 +35,17 @@ to north. The smell of gold permeates the air."""),
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 
+    'p2-door': Room("Pink Tower's Front Door", """You've found the long-lost treasure
+chamber! Sadly, it has already been completely emptied by
+earlier adventurers. The only exit is to the south."""),
+
     'p3': Room("On top of Pink Tower", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
+
+    'r-nerd': Room("Red Pink 3 Nerd Ledge", """A steep cliff appears before you, falling
+into the darkness. Ahead to the north, a light flickers in
+the distance, but there is no way across the chasm."""),
 
     'r-street': Room("Red Pink Street", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -43,6 +58,9 @@ earlier adventurers. The only exit is to the south."""),
     'r-eli': Room("Red Eli", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
+
+    'r-door':    Room("Front Door of Red", """Dim light filters in from the south. Dusty
+passages run north and east."""),
 
     'r1': Room("Red Basement", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -80,6 +98,10 @@ earlier adventurers. The only exit is to the south."""),
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 
+    'b-car': Room("Carbine side of Blue Base", """You've found the long-lost treasure
+chamber! Sadly, it has already been completely emptied by
+earlier adventurers. The only exit is to the south."""),
+
     'b-bubble': Room("Blue Carbine Bubble", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
@@ -92,22 +114,65 @@ earlier adventurers. The only exit is to the south."""),
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 
+    'r-car': Room("Carbine side of Red Base", """You've found the long-lost treasure
+chamber! Sadly, it has already been completely emptied by
+earlier adventurers. The only exit is to the south."""),
+
     'r-bubble': Room("Red Carbine Bubble", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-
+print(room["r-bubble"])
 # Link rooms together
+# All paths from blue perspective!
+# Blue 2 Paths
+room['b2'].w_to = room['b-door']
+room['b2'].a_to = room['b-needles']
+room['b2'].s_to = room['b1']
+room['b2'].d_to = room['b-car']
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+#Blue Needles Paths
+room['b-needles'].w_to = room['p-slide']
+room['b-needles'].s_to = room['b2']
+room['b-needles'].d_to = room['b-eli']
+#Blue Street Paths
+room['b-street'].w_to = room['p2']
+room['b-street'].s_to = room['b-needles']
+room['b-street'].a_to = room['b-nerd']
+room['b-street'].d_to = room['p1']
+#Pink 2 Paths
+room['p2'].w_to = room['r-street']
+room['p2'].s_to = room['b-street']
+room['p2'].d_to = room['p2-door']
+#Red Street Paths
+room['r-street'].w_to = room['r-needles']
+room['r-street'].s_to = room['p2']
+room['r-street'].a_to = room['r-nerd']
+room['r-street'].d_to = room['p1']
+#Red Needles Paths
+room['r-needles'].w_to = room['r2']
+room['r-needles'].s_to = room['r-street']
+room['r-needles'].d_to = room['r-eli']
+#Red 2 Paths
+room['r2'].w_to = room['r1']
+room['r2'].a_to = room['r-needles']
+room['r2'].s_to = room['r-door']
+room['r2'].d_to = room['r-car']
+#Red 1 Paths
+room['r1'].w_to = room['r2']
+room['r1'].a_to = room['r-eli']
+room['r1'].s_to = room['r-door']
+#Red Eli Paths
+room['r-eli'].w_to = room['r1']
+room['r-eli'].a_to = room['r-needles']
+room['r-eli'].s_to = room['p1']
+
+
+
+
+
+
 
 #
 # Main
