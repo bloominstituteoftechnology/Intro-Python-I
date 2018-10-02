@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -51,3 +52,17 @@ player = Player(room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# print(player.currentRoom.name) # prints out: Outside Cave Entrance
+
+over = False
+
+while not over:
+    print(player.currentRoom.name)
+    for line in textwrap.wrap(player.currentRoom.description):
+            print(line)
+    cmd = input('-> ')
+    if cmd == 'q':
+        over = True
+        print('GAME OVER')
+
