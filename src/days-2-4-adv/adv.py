@@ -1,30 +1,33 @@
 from room import Room
 
 
+
 class Player():
     def __init__(self, name):
         self.name = name
         self.health = 100
         self.mana = 50
-        self.currentRoom = 'foyer'
+        self.currentRoom = room['outside']
+        self.badMove = '==You abruptly realize it is impossible to continue in this direction, turn around, and stride confidently back from whence you came.=='
     def __str__(self):
-        return f'{self.name}\n Health: {self.health} - Mana: {self.mana} - Room: {self.currentRoom}'
+        return f'\n{self.name}\n Health: {self.health} - Mana: {self.mana} - Room: {self.currentRoom.name}'
     def playerMove(self, direction):
         if direction == 'n':
-            self.currentRoom = room[self.currentRoom].n_to
+            self.currentRoom = self.currentRoom.n_to
         elif direction == 's': 
             self.currentRoom = self.currentRoom.s_to
         elif direction == 'e': 
             self.currentRoom = self.currentRoom.e_to
         elif direction == 'w': 
             self.currentRoom = self.currentRoom.w_to
+  
 
 # Declare all the rooms
 
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons."),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -61,15 +64,37 @@ p = Player(input("What is your name?"))
 
 while True: 
     print(p)
-    cmd = input("What's your next move?(n, s, e, w)")
+    print(p.currentRoom)
+    cmd = input("\nWhat's your next move?(n, s, e, w)\n")
     
     if cmd == 'q':
         break
     elif cmd == 'n':
-        print("you are moving north")
-        p.playerMove('n')
+        print('\n==You stride confidently north.==')
+        try: 
+            p.playerMove('n')
+        except: 
+            print(p.badMove)
+    elif cmd == 's':
+        print('\n==You stride confidently south.==')
+        try: 
+            p.playerMove('s')
+        except: 
+            print(p.badMove)
+    elif cmd == 'e':
+        print('\n==You stride confidently east.==')
+        try: 
+            p.playerMove('e')
+        except: 
+            print(p.badMove)        
+    elif cmd == 'w':
+        print('\n==You stride confidently west.==')
+        try: 
+            p.playerMove('w')
+        except: 
+            print(p.badMove)        
     else:
-        print("You have entered an incorrect command.")
+        print("\n==You wander aimlessly like a fool and will surely be eaten by goblins if don't pick a direction soon.==")
 
 
 

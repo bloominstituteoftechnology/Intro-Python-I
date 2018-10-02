@@ -5,5 +5,5 @@ class Room():
         self.name = name
         self.description = description 
     def __str__(self):
-        return f'You have entered the {self.name}. {self.description}'
+        return f'\n==You find yourself in the {self.name}. {self.description}=='
 
