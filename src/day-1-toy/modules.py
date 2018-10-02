@@ -12,7 +12,7 @@ import os
 print(sys.platform)
 
 # Print out the Python version from sys:
-print(sys.version)
+print(sys.version_info)
 
 
 
