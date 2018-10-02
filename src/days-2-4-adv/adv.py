@@ -54,9 +54,13 @@ while True:
     print(f'\nLocation: {player.location.name}')
     print(f'{player.location.description}')
 
-    player_input = input(f'Which direction does {player.name} go?   ')
+    player_input = input(f'\nWhich direction does {player.name} go?   ')
 
-    if player_input[0].lower() == "q":
+    if len(player_input) < 1:
+        print('\nControls: N,S,E,W to move to a different room. Q to quit')
+    elif player_input[0].lower() == "q":
         break
-    if player_input[0].lower() =="n" or player_input[0].lower() =="s" or player_input[0].lower() =="w" or player_input[0].lower() =="e":
+    elif player_input[0].lower() =="n" or player_input[0].lower() =="s" or player_input[0].lower() =="w" or player_input[0].lower() =="e":
         player.change_location(player_input[0])
+    else:
+        print('\nControls: N,S,E,W to move to a different room. Q to quit')

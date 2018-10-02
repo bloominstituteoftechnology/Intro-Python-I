@@ -15,6 +15,6 @@ class Player:
     def change_location(self, direction):
         new_location = self.location.next_room(direction)
         if new_location == None:
-            print("There is nothing in that direction")
+            print("\nThere is nothing in that direction")
         else:
             self.location = new_location
