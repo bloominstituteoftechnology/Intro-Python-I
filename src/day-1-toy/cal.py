@@ -16,6 +16,9 @@
 import sys
 import calendar
 from datetime import datetime 
+
+args = len(sys.argv)
+print(args,"args")
 # def drawCalendar(year = None, month= None):
 #     cal = calendar.TextCalendar(calendar.SUNDAY)
 #     print("once")
@@ -32,7 +35,6 @@ from datetime import datetime
 
 def drawCalendar(*args):
     cal = calendar.TextCalendar(calendar.SUNDAY)
-    print("once")
     if len(args) < 2:
         now = datetime.now()
         #print( type(now.year), type(now.month))
