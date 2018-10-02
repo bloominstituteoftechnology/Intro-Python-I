@@ -1,10 +1,10 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     """North of you, the cave mount beckons"""),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -35,8 +35,8 @@ room['treasure'].s_to = room['narrow']
 
 #
 # Main
-#
-
+player = Player(input("what is your name?"))
+print(f'Welcome {player.name}, you begin your journey  {player.room}!')
 # Make a new player object that is currently in the 'outside' room.
 
 # Write a loop that:
@@ -44,7 +44,19 @@ room['treasure'].s_to = room['narrow']
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
+
+
+def move_room():
+    cmd = input("-> ")
+    print(f'Your current position is in {player.room}. {room.description}')
+
+
+while True:
+    agent_choice = get_random_direction()
+    print(p)
+    cmd = input("-> ")
+
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
