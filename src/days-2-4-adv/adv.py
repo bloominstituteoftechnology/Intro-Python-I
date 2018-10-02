@@ -80,13 +80,14 @@ def handle_simple_command(word):
         p.update_room(p.c_room.w_to)
     elif str(word).upper() == 'I' or str(word).upper() == 'INVENTORY':
         if p.player_has_items():
-            error = "What would you like to do next?"
             print('Your inventory:')
             for i in p.list_player_items():
                 print(i)
+            error = "What would you like to do next?"
         else:
             error = 'You do not have any items'
-
+    elif str(word).upper() == 'SCORE':
+        error = f'Your score is: {p.score}'
     elif str(word).upper() == 'Q':
         print("Better luck next time!")
         global playing

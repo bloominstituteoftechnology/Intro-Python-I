@@ -4,6 +4,7 @@ class Player():
     def __init__(self, c_room):
         self.c_room = c_room
         self.items = []
+        self.score = 0
 
     def update_room(self, room):
         self.c_room = room
