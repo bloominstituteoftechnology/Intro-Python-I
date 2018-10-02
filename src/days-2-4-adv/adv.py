@@ -37,12 +37,57 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+
+def change_rooms(Player, direction):
+    direction = direction.lower()
+    try:
+        if direction == "n":
+            return Player.room_change(room[Player.currentRoom].n_to.name)
+        elif direction == "s":
+            return Player.room_change(room[Player.currentRoom].s_to.name)
+        elif direction == "e":
+            return Player.room_change(room[Player.currentRoom].e_to.name)
+        elif direction == "w":
+            return Player.room_change(room[Player.currentRoom].w_to.name)
+    except:
+        return "You can not go in that direction!"
+# end of change_rooms function 
+
+    # if Player.currentRoom == 'outside':
+    #     if direction == "n":
+    #         Player.room_change(room[Player.currentRoom])
+    #     else:
+    #         return "You can not go in that direction!"
+    # elif self.currentRoom == 'foyer':
+    #     if direction == "w":
+    #         return "You can not go in that direction!"
+    # elif self.currentRoom == 'overlook':
+    #     if direction == "s":
+    #         return "You can not go in that direction!"
+    # elif self.currentRoom == 'narrow':
+    #     if direction == "e":
+    #         return "You can not go in that direction!"
+    # elif self.currentRoom == 'treasure':
+    #     if direction == "s":
+    #         pass
+    #     else:
+    #         return "You can not go in that direction!"
+
 # Make a new player object that is currently in the 'outside' room.
 jonathan = Player("Jonathan", 'outside') 
 # Write a loop that:
+directions = ["n", "s", "e", "w"]
 while True:
     print (f"Current room {jonathan.currentRoom}")
     print(f"Room description {room[jonathan.currentRoom].description}")
+    option = input("Enter q to quit, n to go North s to go South e to go East w to go West")
+    option = option.lower() 
+    if option == "q":
+        print("Exiting the game!")
+        break
+    elif directions.count(option) > 0:
+        #method / function call. 
+        change_rooms(jonathan, option)
     break
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
