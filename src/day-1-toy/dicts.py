@@ -21,11 +21,6 @@ waypoints = [
         "lat": 60,
         "lon": 90,
         "name": "Yenisey River, in Russia"
-    },
-    {
-        "lat": -39,
-        "lon": -62,
-        "name": "Punta Alta, Argentina"
     }
 ]
 
@@ -36,3 +31,9 @@ def loopfunc(list):
             print(key, ': ', i[key])
 
 # Add a new waypoint to the list
+
+waypoints.append({
+    "lat": -39,
+    "lon": -62,
+    "name": "Punta Alta, Argentina"
+})
