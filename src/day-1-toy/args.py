@@ -32,7 +32,11 @@ print(f2(*a))    # Should print 22
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments. Google "python default arguments" for a hint.
 
-#def f3(...
+def f3(a, b=None):
+    if b is None:
+        return a+1
+    else:
+        return a + b
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -46,7 +50,9 @@ print(f3(8))     # Should print 9
 #
 # Google "python keyword arguments".
 
-#def f4(...
+def f4(**kwargs):
+    for key, value in kwargs.items():
+        print(key, value)
 
 # Should print
 # key: a, value: 12
@@ -65,4 +71,4 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+f4(**d)

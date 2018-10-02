@@ -39,6 +39,12 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+class Player():
+    def __init__ (self, name, room):
+        self.name = name
+        self.room = 'outside'
+    def printRoom(self):
+        return (self.room)
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +55,7 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    p = Player
+    print (p.printRoom())

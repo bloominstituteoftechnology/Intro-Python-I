@@ -14,7 +14,7 @@ print(a[2:4])
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
 print(a[1:6])
-
+# print(a[1:])
 # Output every element except the last one: [2, 4, 1, 7, 9]
 print(a[0:5])
 
