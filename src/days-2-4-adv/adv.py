@@ -4,8 +4,7 @@ from player import Player
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -58,15 +57,21 @@ p = Player('Minnie')
 #
 # If the user enters "q", quit the game.
 
+def current(location):
+    for key in room:
+        if key == location:
+            print("Current Location: " + room[key].name)
+            print(room[key].description)
+
 while True:
     print("Hello")
+    print(f"You are currently" + currentLocation)
     cmd = input("-> ")
-    print(f"You are currently outside")
-    currentLocation = room['outside']
     if cmd == "q":
         break
     elif cmd == "n":
-        currentLocation.room['outside'].n_to = room['foyer']
+        currentLocation = room['foyer']
+        print(f"You are currently" + currentLocation)
     # elif cmd == "s"
     # elif cmd == "e"
     # elif cmd == "w"
