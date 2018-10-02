@@ -3,5 +3,5 @@
 class Player():
     def __init__ (self, room):
         self.room = room
-    def printRoom(self):
+    def __str__(self):
         return (self.room)

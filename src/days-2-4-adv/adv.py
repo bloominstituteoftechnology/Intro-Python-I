@@ -1,5 +1,5 @@
 from room import Room
-from player import player
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-p = Player(room['outside'])
+p = Player('outside')
 # Write a loop that:
 #
 # * Prints the current room name
@@ -52,17 +52,15 @@ p = Player(room['outside'])
 # If the user enters "q", quit the game.
 
 while True:
-    print (p.printRoom())
+    print (p.__str__())
     cmd = input("What do you want to do? You can: move n, move e, move s, move w, press q to quit: ")
     if cmd == "q":
         break
     elif cmd == "n":
-        print (room[p.room].n_to)
         p.room = room[p.room].n_to
         for key in room:
-            for i in key:
-                if p.room == key:
-                    print (key, key[i])
+            if p.room == key:
+                print (str(key))
     elif cmd == "e":
         p.room = room[p.room].e_to
         if p.room == key:
