@@ -48,7 +48,7 @@ waypoints = [
 
 # Add a new waypoint to the list
 waypoints.append(    {
-        "Lat": 28.3852,
+        "at": 28.3852,
         "Lon": 81.5639,
         "name": "Disney World",
     })
