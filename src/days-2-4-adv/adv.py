@@ -40,7 +40,8 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 name = input("What is your name? ")
 p = Player(name, room['outside'])
-print(f'Hello, {p.name} – your current location is {p.room}.')
+
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -53,22 +54,33 @@ print(f'Hello, {p.name} – your current location is {p.room}.')
 # If the user enters "q", quit the game.
 
 
-# while True:
-#     agent_choice = get_random_rps()
-#     print(p)
-#     cmd = input("-> ")
-#     if cmd == "q":
-#         break
-#     elif cmd == "r" or cmd == "p" or cmd == "s":
-#       result = eval_rps(cmd, agent_choice)
-#       print(f"You chose {choice_dictionary[cmd]}")
-#       print(f"Computer chose {choice_dictionary[agent_choice]}")
-#       p.addResult(result)
-#       if result == 1:
-#           print("You win!")
-#       elif result == 0:
-#           print("Tie")
-#       else:
-#           print("You lose")
-#     else:
-#         print("I did not understand that command.")
+while True:
+    invalid = "You took a wrong turn! Try another direction."
+
+    print(f'Hello, {p.name} – your current location is {p.room}.')
+
+    cmd = input("Please choose a direction (n, s, e, or w): ")
+    if cmd == "q":
+        break
+    elif cmd == "n":
+        if hasattr(p.room, 'n_to'):
+            p.changeRooms(p.room.n_to)
+        else:
+            print(invalid)
+    elif cmd == "s":
+        if hasattr(p.room, 's_to'):
+            p.changeRooms(p.room.s_to)
+        else:
+            print(invalid)
+    elif cmd == "e":
+        if hasattr(p.room, 'e_to'):
+            p.changeRooms(p.room.e_to)
+        else:
+            print(invalid)
+    elif cmd == "w":
+        if hasattr(p.room, 'w_to'):
+            p.changeRooms(p.room.w_to)
+        else:
+            print(invalid)
+    else:
+        print("Please choose a direction (n, s, e, w) or press q to quit")
