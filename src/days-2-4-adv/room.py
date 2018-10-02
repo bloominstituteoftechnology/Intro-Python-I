@@ -6,7 +6,7 @@ class Room:
         self.name = name
         self.description = description
     def __str__(self):
-        return f"\n{self.name}\n{self.location}"
+        return f"\n{self.name}\n{self.description}"
 
 # room['outside'].n_to = room['foyer']
 # room['foyer'].s_to = room['outside']
