@@ -5,7 +5,3 @@ class Room:
     def __init__(self, name, description):
         self.name = name
         self.description = description
-    # def printName(self):
-    #     print(self.name)
-    # def printDesc(self):
-    #     print(self.description)

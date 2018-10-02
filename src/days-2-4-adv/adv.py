@@ -56,29 +56,34 @@ playerName = input('Player Name: ')
 while True: 
     print(f"{playerName} is currently at the {p.currentRoom.name}") 
     print(p.currentRoom.description)
-    cmd = input("What would you like to do? ")
-    print(cmd)
+    cmd = input("What would you like to do? => ")
+    print('\n')
     if cmd.upper() == "N" or cmd.upper() == "NORTH":
         if hasattr(p.currentRoom, "n_to"):
             p.currentRoom = p.currentRoom.n_to
         else:
             print("You can't go that way!")
+            print('\n')
     elif cmd.upper() == "E" or cmd.upper() == "EAST":
         if hasattr(p.currentRoom, "e_to"):
             p.currentRoom = p.currentRoom.e_to
         else:
             print("You can't go that way!")
+            print('\n')
     elif cmd.upper() == "S" or cmd.upper() == "SOUTH":
         if hasattr(p.currentRoom, "s_to"):
             p.currentRoom = p.currentRoom.s_to
         else:
             print("You can't go that way!")
+            print('\n')
     elif cmd.upper() == "W" or cmd.upper() == "WEST":
         if hasattr(p.currentRoom, "w_to"):
             p.currentRoom = p.currentRoom.w_to
         else:
             print("You can't go that way!")
+            print('\n')
     elif cmd.upper() == "Q" or cmd.upper() == "QUIT":
         break
     else:
         print("That is not a valid command!")
+        print('\n')
