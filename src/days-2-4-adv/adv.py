@@ -18,7 +18,6 @@ room = {
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
-room['outside'].newName = "new name"
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
@@ -26,6 +25,8 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+room['outside'].object = 'compass'
 
 #
 # Main
@@ -35,14 +36,21 @@ room['treasure'].s_to = room['narrow']
 p = Player(input("What is your name? "), room["outside"])
 
 while True: 
-    print(f"\nYou, {p.name}, are now {p.room.name}. {p.room.description}. \nWhat would you like to do?\nType 'help' for list of commands. ")
+    print(f"\nYou, {p.name}, are now {p.room.name}. {p.room.description}. \nType 'help' for list of commands. \nWhat would you like to do?")
     cmd = input(f'\n {p.name} ->')
     if cmd == "q":
         break
+    elif cmd == "me":
+        print(f'\n--You currently have a {p.object}')
+    elif cmd == "room":
+        print(f"\n--The room contains a {p.room.object}")
+    elif cmd == "get":
+        p.addObject(p.room.object)
+        p.room.removeObject()
     elif cmd == "n":
-        cmdName = cmd + "_to"
-        print(cmdName)
-        print(p.room)
+        # cmdName = cmd + "_to"
+        # print(cmdName)
+        # print(p.room)
         # hasattr
         # getattr(p.room, cmdName)
         p.changeRoom(p.room.n_to)
@@ -55,7 +63,7 @@ while True:
     elif cmd == "help":
         print("\nlist of commands: \n'n' to go north\n'e' to go east\n's' to go south\n'w' to go west\n'q' to exit\n ")
     else: 
-        print('command not valid')
+        print('not a valid command')
 # Write a loop that:
 #
 # * Prints the current room name
