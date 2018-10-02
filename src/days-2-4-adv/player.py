@@ -4,6 +4,6 @@ class Player:
     def __init__(self,currentLocation):
         self.location=currentLocation
     def __str__(self):
-        return f'{self.location}'
+        return f'location: {self.location}'
     def travel(self,location):
         self.location=location

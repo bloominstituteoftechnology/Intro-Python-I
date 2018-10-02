@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 # Declare all the rooms
 
 room = {
@@ -49,8 +50,7 @@ roomkeys=room.keys()
 #
 # If the user enters "q", quit the game.
 while True:
-    print(room[Will.location].name)
-    print(room[Will.location].description)
+    print(room[Will.location])
     cmd=input('-->')
     next_location=''
     if cmd=='n':
@@ -70,6 +70,7 @@ while True:
     if next_location!='':
         for key in roomkeys:
             if room[key]==next_location:
+                print(f'Moving {cmd} you arrive at:')
                 Will.travel(key)
     else:
         print('Error: Player is unable to move in that direction.')
