@@ -86,7 +86,7 @@ while True:
             current(location)
         else:
             print('The movement is not allowed.')
-    if (location == 'outlook'):
+    if (location == 'overlook'):
         if cmd == 's':
             location = 'foyer'
             current(location)
