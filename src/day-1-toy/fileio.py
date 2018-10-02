@@ -13,7 +13,7 @@ b = open('bar.txt', 'w')
 # Use the write() method to write three lines to the file
 b.write("""
 Colorless hillside
-A spanish, cunning fly stands
+A cunning, spanish fly stands
 in spite of the pond
 """)
 

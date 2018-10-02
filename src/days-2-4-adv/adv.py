@@ -81,6 +81,7 @@ def handle_simple_command(word):
     elif str(word).upper() == 'I' or str(word).upper() == 'INVENTORY':
         if p.player_has_items():
             error = "What would you like to do next?"
+            print('Your inventory:')
             for i in p.list_player_items():
                 print(i)
         else:

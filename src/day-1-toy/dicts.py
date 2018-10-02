@@ -25,11 +25,17 @@ waypoints = [
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
+# def print_values(a):
+#     """prints all the values of a dict in a list"""
+#     for x in a:
+#         for y in x:
+#             print(x[y])
+
 def print_values(a):
-    """prints all the values of a dict in a list"""
+    """ prints key value pairs for all dicts"""
     for x in a:
         for y in x:
-            print(x[y])
+            print(f'{y}: {x[y]}')
 
 print_values(waypoints)
 
