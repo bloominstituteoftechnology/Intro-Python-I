@@ -90,6 +90,10 @@ while True:
                 next_location=room[Will.location].w_to
         elif cmd=='q':
             break
+        elif cmd=='i':
+            print(Will.i())
+        elif cmd=='inventory':
+            print(Will.inventory())
         if next_location!='':
             for key in roomkeys:
                 if room[key]==next_location:
