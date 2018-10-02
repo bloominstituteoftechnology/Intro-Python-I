@@ -1,14 +1,17 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 
+
 class Player(object):
     def __init__(self, name, currentRoom, roomKey):
         self.name = name
         self.currentRoom = currentRoom
         self.roomKey = roomKey
+
     def __repr__(self):
         return f"{self.name} currently in room {self.currentRoom}"
-    def room_change (self, room):
+
+    def room_change(self, room):
         if room == "Outside Cave Entrance":
             self.roomKey = "outside"
         elif room == "Foyer":
@@ -20,5 +23,5 @@ class Player(object):
         elif room == "Treasure Chamber":
             self.roomKey = "treasure"
         self.currentRoom = room
-        
+
         return "Changing rooms..."

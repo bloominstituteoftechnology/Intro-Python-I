@@ -1,7 +1,6 @@
 from room import Room
 from player import Player
 # Declare all the rooms
-
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
@@ -20,10 +19,7 @@ to north. The smell of gold permeates the air."""),
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
-
-
 # Link rooms together
-
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -32,10 +28,7 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
-
-#
 # Main
-#
 
 
 def change_rooms(Player, direction):
@@ -45,31 +38,31 @@ def change_rooms(Player, direction):
             return Player.room_change(room[Player.roomKey].n_to.name)
         elif direction == "s":
             return Player.room_change(room[Player.roomKey].s_to.name)
-            
+
         elif direction == "e":
             return Player.room_change(room[Player.roomKey].e_to.name)
         elif direction == "w":
             return Player.room_change(room[Player.roomKey].w_to.name)
     except:
         return "You can not go in that direction!"
-# end of change_rooms function 
+# end of change_rooms function
+
 
 # Make a new player object that is currently in the 'outside' room.
-jonathan = Player("Jonathan", 'Outside Cave Entrance', "outside") 
+jonathan = Player("Jonathan", 'Outside Cave Entrance', "outside")
 # Write a loop that:
 directions = ["n", "s", "e", "w"]
 while True:
-    print (f"Current room {jonathan.currentRoom}")
+    print(f"Current room {jonathan.currentRoom}")
     print(f"Room description {room[jonathan.roomKey].description}")
-    option = input("Enter q to quit, n to go North s to go South e to go East w to go West")
-    option = option.lower() 
+    option = input(
+        "Enter q to quit, n to go North s to go South e to go East w to go West")
+    option = option.lower()
     if option == "q":
         print("Exiting the game!")
         break
     elif directions.count(option) > 0:
-        #method / function call. 
         print(change_rooms(jonathan, option))
-    #break
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
