@@ -1,6 +1,21 @@
 from room import Room
 from player import Player
 
+class Player():
+    def __init__(self, name, location):
+        self.name = name
+        self.location = location
+    def __str__(self):
+        return f"\n{self.name}\n{self.location}"
+
+class Room:
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
+    def __str__(self):
+        return f"\n{self.name}\n{self.description}"
+
+
 # Declare all the rooms
 
 room = {
@@ -40,7 +55,11 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = Player(room['outside'])
+# player = Player(room['outside'])
+# print(player.currentRoom.description)
+players = {
+    'player 1': Player("Francis", "outside")
+}
 
 # Write a loop that:
 #
@@ -52,3 +71,26 @@ player = Player(room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+def current(location):
+    for key in room:
+        if key == location:
+            print("Current location: " + room[key].name)
+            print (room[key].description)
+
+location = players['player 1'].location
+current(location)
+cmd =input("where are you going? ->")
+while True:
+    cmd = input("-> ")
+    if cmd == "q":
+        break
+    if (location == 'outside'):
+        if cmd == "n":
+            location = 'foyer'
+            current(location)
+            cmd =input("where are you going? ->")
+        else:
+            print('You cannot go there! Try again!')
+    else:
+        print("I did not understand that command.")
