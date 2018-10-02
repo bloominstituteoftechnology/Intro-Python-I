@@ -28,4 +28,3 @@ print(os.getcwd())
 
 # Print your login name
 print(os.getlogin())
-

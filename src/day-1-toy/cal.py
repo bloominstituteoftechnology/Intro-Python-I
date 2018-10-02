@@ -14,3 +14,24 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+year = input('Enter year: ')
+month = input('Enter month: ')
+current = datetime.datetime.now()
+
+if not year and not month:
+    year = current.year
+    month = current.month
+elif not year:
+    year = current.year
+    month = int(month)
+elif not month:
+    year = int(year)
+    month = current.month
+else:
+    year = int(year)
+    month = int(month)
+
+print(calendar.month(year, month))
