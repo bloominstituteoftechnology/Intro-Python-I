@@ -66,12 +66,14 @@ while not over:
     # check for valid command
     if len(cmd) > 2 or len(cmd) < 1:
         print("I'm sorry, didn't understand that command")
-    # if user enters 'q', quit the game.
+    # if length of command is valid (1)
     elif len(cmd) == 1:
+        # if user enters 'q', quit the game
         if cmd == 'q':
             over = True
             print('GAME OVER')
-    else:
-        print('Unrecognized command.')
+         # else, command length is valid but command value is not recognized
+        else:
+            print('Unrecognized command.')
     
 
