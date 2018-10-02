@@ -4,7 +4,8 @@ def is_even(num):
         return True
 # Read a number from the keyboard
 num = input("Enter a number: ")
-
+print ("Your number is",num)
+type(num)
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 
 def is_even_or_odd():
