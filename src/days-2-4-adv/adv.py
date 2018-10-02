@@ -54,38 +54,56 @@ players = {
 #
 # If the user enters "q", quit the game.
 
-# location = players['player 1'].location
-# print("Current Location: " + location)
-
-location = players['player 1'].location
-
-while True:
+def current(location):
     for key in room:
         if key == location:
             print("Current Location: " + room[key].name)
             print (room[key].description)
+
+location = players['player 1'].location
+current(location)
+
+while True:
     cmd = input ("-> ")
     if cmd == "q":
         break
     if (location == 'outside'):
         if cmd == "n":
             location = 'foyer'
-            for key in room:
-                if key == location:
-                    print("Current Location: " + room[key].name)
-                    print (room[key].description)
+            current(location)
             cmd = input ("-> ")
         else:
             print('The movement is not allowed.')
-    # if (location == 'foyer'):
-    #     if cmd == "n":
-    #         location = 'overlook'
-    #         print("Current Location: " + location)
-    #     elif cmd == 's':
-    #         location = 'outside'
-    #         print("Current Location: " + location)
-    #     elif cmd == 'e':
-    #         location = 'narrow'
-    #         print("Current Location: " + location)
-    #     elif cmd == 'w':
-    #         print('The movement is not allowed.')
+    if (location == 'foyer'):
+        if cmd == "n":
+            location = 'overlook'
+            current(location)
+        elif cmd == 's':
+            location = 'outside'
+            current(location)
+        elif cmd == 'e':
+            location = 'narrow'
+            current(location)
+        else:
+            print('The movement is not allowed.')
+    if (location == 'outlook'):
+        if cmd == 's':
+            location = 'foyer'
+            current(location)
+        elif cmd != 's':
+            print('The movement is not allowed.')
+    if (location == 'narrow'):
+        if cmd == 'w':
+            location = 'foyer'
+            current(location)
+        elif cmd == 'n':
+            location = 'treasure'
+            current(location)
+        elif cmd != 'w' or cmd != 'n':
+            print('The movement is not allowed.')
+    if (location == 'treasure'):
+        if cmd == 's':
+            location = 'narrow'
+            current(location)
+        elif cmd != 's':
+            print('The movement is not allowed.')
