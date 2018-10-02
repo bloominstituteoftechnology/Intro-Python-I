@@ -5,13 +5,8 @@ num = input("Enter a number: ")
 
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 def is_even(num):
-    if (num % 2 == 0):
-        return True
+    if(int(num)%2 == 0):
+        print("even!")
     else:
-        return False
-
-if (True): 
-    print("even")
-else:
-    print("odd")
-    
+        print("odd!")
+is_even(num)

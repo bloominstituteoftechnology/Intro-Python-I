@@ -24,8 +24,6 @@ dictionary = [
     }
 ]
 
-
-
 waypoints = [
     {
         "lat": 43,
@@ -45,7 +43,15 @@ waypoints = [
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
-for i in waypoints:
-    print(i)
+# for i in waypoints:
+#     print(i)
 
 # Add a new waypoint to the list
+waypoints.append(    {
+        "Lat": 28.3852,
+        "Lon": 81.5639,
+        "name": "Disney World",
+    })
+
+for i in waypoints:
+    print(i)
