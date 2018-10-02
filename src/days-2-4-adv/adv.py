@@ -1,13 +1,13 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, a huge ugly house sits creepily"),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+    'spoopy':   Room("Heckin Spoopy Manor", """This place is spoopy as heck. Weird hallways run north and east. 
+    But like.. I duno why you would stay"""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -24,12 +24,12 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
+room['outside'].n_to = room['spoopy']
+room['spoopy'].s_to = room['outside']
+room['spoopy'].n_to = room['overlook']
+room['spoopy'].e_to = room['narrow']
+room['overlook'].s_to = room['spoopy']
+room['narrow'].w_to = room['spoopy']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+me = Player(room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +49,63 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+print (f"""
+    {me.currentRoom.name}:
+
+    {me.currentRoom.description}
+    """)
+while True:
+    cmd = input("which way?-> ")
+    if cmd == "q":
+        print ("""
+    ~~~~ until tomorrow ~~~~
+        """)
+        break
+    if cmd == "n":
+        if hasattr(me.currentRoom.n_to, "name"):
+            me.currentRoom = me.currentRoom.n_to
+            print (f"""
+    {me.currentRoom.name}:
+
+    {me.currentRoom.description}
+    """)
+        else:
+            print ("""
+    Yo you cant go that way dog, duh, ya dingus
+            """)
+    elif cmd == "e":
+        if hasattr(me.currentRoom.e_to, "name"):
+            me.currentRoom = me.currentRoom.e_to
+            print (f"""
+    {me.currentRoom.name}:
+
+    {me.currentRoom.description}
+    """)
+        else:
+            print ("""
+    Yo you cant go that way dog, duh, ya dingus
+            """)
+    elif cmd == "s":
+        if hasattr(me.currentRoom.s_to, "name"):
+            me.currentRoom = me.currentRoom.s_to
+            print (f"""
+    {me.currentRoom.name}:
+
+    {me.currentRoom.description}
+    """)
+        else:
+            print ("""
+    Yo you cant go that way dog, duh, ya dingus
+            """)
+    elif cmd == "w":
+        if hasattr(me.currentRoom.w_to, "name"):
+            me.currentRoom = me.currentRoom.w_to
+            print (f"""
+    {me.currentRoom.name}:
+
+    {me.currentRoom.description}
+    """)
+        else:
+            print ("""
+    Yo you cant go that way dog, duh, ya dingus
+            """)

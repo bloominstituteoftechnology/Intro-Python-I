@@ -8,4 +8,7 @@ z = "I like turtles!"
 print ('x is %s, y is %s, z is %r' %(x, round(y,2), z))
 
 # Use the 'format' string method to print the same thing
-print ("x is {!s}, y is {!s}, z is {!r}").format(x, round(y,2), z)
+print ("x is {!s}, y is {!s}, z is {!r}".format(x, round(y,2), z))
+
+print (f"x is {x}, y is {round(y,2)}, z is '{z}'")
+

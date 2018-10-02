@@ -15,3 +15,5 @@ here's
 """)
 # Close the file
 f2.close()
+f2 = open("bar.txt")
+print (f2.read())
