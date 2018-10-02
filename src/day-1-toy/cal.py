@@ -15,3 +15,13 @@
 
 import sys
 import calendar
+import datetime
+
+if(len(sys.argv) > 2):
+    month = sys.argv[1]
+    year = sys.argv[2]
+    c = calendar.TextCalendar(calendar.SUNDAY)
+    str = c.formatmonth(year, month)
+    print(str)
+
+
