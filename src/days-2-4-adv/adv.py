@@ -52,3 +52,74 @@ room['treasure'].s_to = room['narrow']
  while True:
      print(room['name'])
      print(room['description'])
+
+
+     
+     
+     def eval_nesw(player_cmd, current_location):
+    if player_cmd == "n":
+        if current_location == "outside":
+            return -1
+        elif current_location == "foyer":
+            return 1
+        elif current_location == "overlook":
+            return 0
+        elif current_location == "narrow":
+            return 0
+        elif current_location == "treasure":
+            return 0
+    elif player_cmd == "e":
+        if current_location == "outside":
+            return -1
+        elif current_location == "foyer":
+            return 1
+        elif current_location == "overlook":
+            return 0
+        elif current_location == "narrow":
+            return 0
+        elif current_location == "treasure":
+            return 0
+    elif player_cmd == "s":
+        if current_location == "outside":
+            return -1
+        elif current_location == "foyer":
+            return 1
+        elif current_location == "overlook":
+            return 0
+        elif current_location == "narrow":
+            return 0
+        elif current_location == "treasure":
+            return 0
+    elif player_cmd == "w":
+        if current_location == "outside":
+            return -1
+        elif current_location == "foyer":
+            return 1
+        elif current_location == "overlook":
+            return 0
+        elif current_location == "narrow":
+            return 0
+        elif current_location == "treasure":
+            return 0
+
+choice_dictionary = {"n": "north", "e": "east", "s": "south", "w": "west"}
+p = Player(input("What is your name? "))
+
+while True:
+    player_choice = get_random_rps()
+    print(p)
+    cmd = input("-> ")
+    if cmd == "q":
+        break
+    elif cmd == "n" or cmd == "e" or cmd == "s" or cmd == "w":
+      result = eval_nesw(cmd, player_choice)
+      print(f"You chose {choice_dictionary[cmd]}")
+      p.addResult(result)
+      if result == 1:
+          print("You win!")
+      elif result == 0:
+          print("Tie")
+      else:
+          print("You lose")
+    else:
+        print("I did not understand that command.")
