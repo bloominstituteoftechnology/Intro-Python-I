@@ -38,7 +38,6 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 Will=Player('outside')
 roomkeys=room.keys()
-print(roomkeys)
 # Write a loop that:
 #
 # * Prints the current room name
@@ -73,4 +72,4 @@ while True:
             if room[key]==next_location:
                 Will.travel(key)
     else:
-        print('Player is unable to move in that direction.')
+        print('Error: Player is unable to move in that direction.')
