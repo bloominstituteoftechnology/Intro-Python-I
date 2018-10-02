@@ -1,10 +1,11 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     """North of you, the cave mount beckons"""),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -39,6 +40,8 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+p = Player(room['outside'])
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +52,31 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    print(f'Hello, adventurer, you are currently in {p.room}.')
+    cmd = input('What is your next move? \n')
+    if cmd == 'q':
+        break
+    elif cmd == 'n':
+        if hasattr(p.room, 'n_to'):
+            p.move(p.room.n_to)
+        else:
+            print('That is to the void, please try another direction.')
+    elif cmd == 's':
+        if hasattr(p.room, 's_to'):
+            p.move(p.room.s_to)
+        else:
+            print('That is to the void, please try another direction.')
+    elif cmd == 'e':
+        if hasattr(p.room, 'e_to'):
+            p.move(p.room.e_to)
+        else:
+            print('That is to the void, please try another direction.')
+    elif cmd == 'w':
+        if hasattr(p.room, 'w_to'):
+            p.move(p.room.w_to)
+        else:
+            print('That is to the void, please try another direction.')
+    else:
+        print('That is not a valid command. Please try again.')
