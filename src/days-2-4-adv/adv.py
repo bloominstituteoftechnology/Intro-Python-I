@@ -3,6 +3,8 @@ from player import Player
 import textwrap
 # Declare all the rooms
 
+# {outside: {name: "", desc: ""}}
+
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
@@ -39,8 +41,8 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+s  = Player(room["outside"])
 d = Player(input("Where do you want to go? "))
-s  = {Player("outside")}
 # Write a loop that:
 
 # * Prints the current room name
@@ -54,17 +56,17 @@ s  = {Player("outside")}
 
 direction_dictionary = {"n": "north", "s": "south", "w": "west", "e": "east" }
 
-
-
-
-
-
 while True: 
-    print(d)
+    # print(vars(d))
     cmd = input("->")
     if cmd == "q":
         break
     elif cmd == "n" or cmd == "s" or cmd == "w" or cmd == "e":
-        print(f"You are currently in {s}")
+
+if "n" 
+     s["currentRoom"] = (room[Room[f"{cmd}_to"]])
+
+
+        print(f"You are currently in {vars(s.currentRoom)}")
 
 
