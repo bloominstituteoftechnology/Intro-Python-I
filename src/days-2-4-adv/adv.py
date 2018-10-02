@@ -4,28 +4,21 @@ from player import Player
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
 
-    'foyer':    Room("Inside the Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+    'foyer': Room("Inside the Foyer", """Dim light filters in from the south. Dusty passages run north and east."""),
 
-    'overlook': Room("Inside the Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+    'overlook': Room("Inside the Grand Overlook", """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."""),
 
-    'narrow':   Room("In a Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+    'narrow':   Room("In a Narrow Passage", """The narrow passage bends here from west to north. The smell of gold permeates the air."""),
 
-    'treasure': Room("in the Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+    'treasure': Room("in the Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."""),
 }
-
 
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
+room['outside'].newName = "new name"
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
@@ -39,19 +32,30 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-p = Player(input("What is your name? "), "outside")
-
+p = Player(input("What is your name? "), room["outside"])
 
 while True: 
-    print(p)
-    print(f"\nYou, {p.name}, are currently {room[p.room].name}. {room[p.room].description}. What would you like to do?\nType 'help' for list of commands. ")
+    print(f"\nYou, {p.name}, are now {p.room.name}. {p.room.description}. \nWhat would you like to do?\nType 'help' for list of commands. ")
     cmd = input(f'\n {p.name} ->')
     if cmd == "q":
         break
+    elif cmd == "n":
+        cmdName = cmd + "_to"
+        print(cmdName)
+        print(p.room)
+        # hasattr
+        # getattr(p.room, cmdName)
+        p.changeRoom(p.room.n_to)
+    elif cmd == "s": 
+        p.changeRoom(p.room.s_to)
+    elif cmd == "w": 
+        p.changeRoom(p.room.w_to)
+    elif cmd == "e": 
+        p.changeRoom(p.room.e_to)
     elif cmd == "help":
         print("\nlist of commands: \n'n' to go north\n'e' to go east\n's' to go south\n'w' to go west\n'q' to exit\n ")
     else: 
-        print('did not understand command')
+        print('command not valid')
 # Write a loop that:
 #
 # * Prints the current room name
