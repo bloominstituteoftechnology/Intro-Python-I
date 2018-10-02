@@ -5,3 +5,5 @@ class Player:
         self.location=currentLocation
     def __str__(self):
         return f'{self.location}'
+    def travel(self,location):
+        self.location=location
