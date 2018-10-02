@@ -59,7 +59,7 @@ while True:
 
     print(f'Hello, {p.name} – your current location is {p.room}.')
 
-    cmd = input("Please choose a direction (n, s, e, or w): ")
+    cmd = input("Please choose a direction (n, s, e, or w), or press q to quit: ")
     if cmd == "q":
         break
     elif cmd == "n":
@@ -83,4 +83,4 @@ while True:
         else:
             print(invalid)
     else:
-        print("Please choose a direction (n, s, e, w) or press q to quit")
+        print("Please choose a valid direction (n, s, e, w) or press q to quit")
