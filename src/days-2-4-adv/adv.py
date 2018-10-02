@@ -75,29 +75,31 @@ while True:
             else:
                 print(f'Cannot find {cmd[1]} in {room[Will.location].name}')
     else:
-        next_location=''
-        if cmd=='n':
-            if hasattr(room[Will.location],'n_to'):
-                next_location=room[Will.location].n_to
-        elif cmd=='e':
-            if hasattr(room[Will.location],'e_to'):
-                next_location=room[Will.location].e_to
-        elif cmd=='s':
-            if hasattr(room[Will.location],'s_to'):
-                next_location=room[Will.location].s_to
-        elif cmd=='w':
-            if hasattr(room[Will.location],'w_to'):
-                next_location=room[Will.location].w_to
+        if cmd=='n' or cmd=='e' or cmd=='s' or cmd=='w':
+            next_location=''
+            if cmd=='n':
+                if hasattr(room[Will.location],'n_to'):
+                    next_location=room[Will.location].n_to
+            elif cmd=='e':
+                if hasattr(room[Will.location],'e_to'):
+                    next_location=room[Will.location].e_to
+            elif cmd=='s':
+                if hasattr(room[Will.location],'s_to'):
+                    next_location=room[Will.location].s_to
+            elif cmd=='w':
+                if hasattr(room[Will.location],'w_to'):
+                    next_location=room[Will.location].w_to
+            if next_location!='':
+                for key in roomkeys:
+                    if room[key]==next_location:
+                        print(f'Moving {cmd} you arrive at:')
+                        Will.travel(key)
+            else:
+                print('Error: Player is unable to move in that direction.')
         elif cmd=='q':
             break
         elif cmd=='i':
             print(Will.i())
         elif cmd=='inventory':
             print(Will.inventory())
-        if next_location!='':
-            for key in roomkeys:
-                if room[key]==next_location:
-                    print(f'Moving {cmd} you arrive at:')
-                    Will.travel(key)
-        else:
-            print('Error: Player is unable to move in that direction.')
+            
