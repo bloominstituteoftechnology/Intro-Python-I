@@ -4,5 +4,6 @@ class Room:
     def __init__(self,name,description):
         self.name=name
         self.description=description
+        self.inventory=[]
     def __str__(self):
         return f'name: {self.name}\ndescription: {self.description}'
