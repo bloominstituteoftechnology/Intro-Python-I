@@ -1,5 +1,6 @@
 from room import Room
-
+from player import Player
+import textwrap
 # Declare all the rooms
 
 room = {
@@ -24,23 +25,41 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['outside'].connecting('n', room['foyer'])
+room['foyer'].connecting('s', room['outside'])
+room['foyer'].connecting('n', room['overlook'])
+room['foyer'].connecting('e', room['narrow'])
+room['overlook'].connecting('s', room['foyer'])
+room['narrow'].connecting('w', room['foyer'])
+room['narrow'].connecting('n', room['treasure'])
+room['treasure'].connecting('s', room['narrow'])
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+p=Player(room['outside'].name)
 
 # Write a loop that:
-#
+
+direction = "What direction do you want to move towards?"
+
+while True:
+        print(p.room_name())
+        print(room[p.room].text)
+        print(direction)
+        cmd = input("-> ")
+        if cmd == "q":
+                print('You choose to quit.')
+                break
+        elif cmd == "n" or cmd == "s" or cmd == "e" or cmd == "w":
+                nextroom = room[p.room].next_d
+                p.room=nextroom
+        else:
+                print("I did not understand that command.")        
+
+
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
