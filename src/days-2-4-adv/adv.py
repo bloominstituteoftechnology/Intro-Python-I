@@ -53,16 +53,25 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-# print(player.currentRoom.name) # prints out: Outside Cave Entrance
-
 over = False
 
 while not over:
-    print(player.currentRoom.name)
+    # print current room name
+    print('ROOM: ', player.currentRoom.name)
+    # print current description
     for line in textwrap.wrap(player.currentRoom.description):
-            print(line)
-    cmd = input('-> ')
-    if cmd == 'q':
-        over = True
-        print('GAME OVER')
+        print('DESCRIPTION: ', line)
+    # wait for user input
+    cmd = input('-> ').lower()
+    # check for valid command
+    if len(cmd) > 2 or len(cmd) < 1:
+        print("I'm sorry, didn't understand that command")
+    # if user enters 'q', quit the game.
+    elif len(cmd) == 1:
+        if cmd == 'q':
+            over = True
+            print('GAME OVER')
+    else:
+        print('Unrecognized command.')
+    
 
