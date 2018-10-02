@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -38,7 +38,9 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+name = input("What is your name? ")
+p = Player(name, {room['outside']})
+print(p)
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +51,24 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+# while True:
+#     agent_choice = get_random_rps()
+#     print(p)
+#     cmd = input("-> ")
+#     if cmd == "q":
+#         break
+#     elif cmd == "r" or cmd == "p" or cmd == "s":
+#       result = eval_rps(cmd, agent_choice)
+#       print(f"You chose {choice_dictionary[cmd]}")
+#       print(f"Computer chose {choice_dictionary[agent_choice]}")
+#       p.addResult(result)
+#       if result == 1:
+#           print("You win!")
+#       elif result == 0:
+#           print("Tie")
+#       else:
+#           print("You lose")
+#     else:
+#         print("I did not understand that command.")
