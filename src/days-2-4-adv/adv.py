@@ -131,11 +131,18 @@ room['b2'].w_to = room['b-door']
 room['b2'].a_to = room['b-needles']
 room['b2'].s_to = room['b1']
 room['b2'].d_to = room['b-car']
-
+#Blue 1 Paths
+room['r1'].w_to = room['b-door']
+room['r1'].a_to = room['b-eli']
+room['r1'].s_to = room['b2']
 #Blue Needles Paths
 room['b-needles'].w_to = room['p-slide']
 room['b-needles'].s_to = room['b2']
 room['b-needles'].d_to = room['b-eli']
+#Blue Eli Paths
+room['b-eli'].w_to = room['p1']
+room['b-eli'].a_to = room['b-needles']
+room['b-eli'].s_to = room['b1']
 #Blue Street Paths
 room['b-street'].w_to = room['p2']
 room['b-street'].s_to = room['b-needles']
@@ -167,7 +174,29 @@ room['r1'].s_to = room['r-door']
 room['r-eli'].w_to = room['r1']
 room['r-eli'].a_to = room['r-needles']
 room['r-eli'].s_to = room['p1']
+#Pink 1 Paths 
+room['p1'].w_to = room['r-eli']
+room['p1'].s_to = room['b-eli']
+room['p1'].d_to = room['mid1']
+#Blue Carbine Side Paths
+room['b-car'].w_to = room['car2']
+room['b-car'].a_to = room['b2']
+room['b-car'].d_to = room['b-toilet']
+#Carbine 2 Paths
+room['car2'].w_to = room['r-car']
+room['car2'].s_to = room['b-car']
+room['car2'].a_to = room['car1']
+#Carbine 1 Paths
+room['car1'].w_to = room['r-door']
+room['car1'].s_to = room['b-door']
+room['car1'].a_to = room['mid1']
+#Bottom Middle Paths
+room['mid1'].w_to = room['r-door']
+room['mid1'].s_to = room['b-door']
+room['mid1'].a_to = room['p1']
+room['mid1'].d_to = room['car1']
 
+#Slide/ Car 3/ P3 / Bubble & Car 1 Paths not added/complete yet due to height/drop/pathing limitations currently
 
 
 
