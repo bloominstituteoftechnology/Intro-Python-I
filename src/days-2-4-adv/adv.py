@@ -65,25 +65,28 @@ roomkeys=room.keys()
 while True:
     print(room[Will.location])
     cmd=input('-->')
-    next_location=''
-    if cmd=='n':
-        if hasattr(room[Will.location],'n_to'):
-            next_location=room[Will.location].n_to
-    elif cmd=='e':
-        if hasattr(room[Will.location],'e_to'):
-            next_location=room[Will.location].e_to
-    elif cmd=='s':
-        if hasattr(room[Will.location],'s_to'):
-            next_location=room[Will.location].s_to
-    elif cmd=='w':
-        if hasattr(room[Will.location],'w_to'):
-            next_location=room[Will.location].w_to
-    elif cmd=='q':
-        break
-    if next_location!='':
-        for key in roomkeys:
-            if room[key]==next_location:
-                print(f'Moving {cmd} you arrive at:')
-                Will.travel(key)
+    if len(cmd.split())==2:
+        print(cmd)
     else:
-        print('Error: Player is unable to move in that direction.')
+        next_location=''
+        if cmd=='n':
+            if hasattr(room[Will.location],'n_to'):
+                next_location=room[Will.location].n_to
+        elif cmd=='e':
+            if hasattr(room[Will.location],'e_to'):
+                next_location=room[Will.location].e_to
+        elif cmd=='s':
+            if hasattr(room[Will.location],'s_to'):
+                next_location=room[Will.location].s_to
+        elif cmd=='w':
+            if hasattr(room[Will.location],'w_to'):
+                next_location=room[Will.location].w_to
+        elif cmd=='q':
+            break
+        if next_location!='':
+            for key in roomkeys:
+                if room[key]==next_location:
+                    print(f'Moving {cmd} you arrive at:')
+                    Will.travel(key)
+        else:
+            print('Error: Player is unable to move in that direction.')
