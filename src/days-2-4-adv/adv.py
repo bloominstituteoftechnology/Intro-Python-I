@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Treasure, LightSource
 
 # Declare all the rooms
 
@@ -33,7 +33,7 @@ room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
 
 room['overlook'].s_to = room['foyer']
-room['overlook'].add_room_item(Item('Sword', 'A very shiny sword'))
+room['overlook'].add_room_item(Treasure('Sword', 'A very shiny sword', 500))
 
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
@@ -100,20 +100,26 @@ def handle_complex_command(words):
     global rooms
     global p
     if words[0].upper() == 'TAKE' or words[0].upper() == 'GET':
-        item = list(filter(lambda i: i.name.upper() == words[1].upper(), p.c_room.items))[0]
-        if item:
-            p.get_item(item)
-            p.c_room.remove_room_item(item)
-            error = f'You take the {item.name} and continue on'
+        if len(p.c_room.items) > 0:
+            item = list(filter(lambda i: i.name.upper() == words[1].upper(), p.c_room.items))
+            if len(item) > 0:
+                p.get_item(item[0])
+                p.c_room.remove_room_item(item[0])
+                error = item[0].on_take(p)
+            else:
+                error = "There is no such item in this room"
         else:
-            error = "There is no such item"
+            error = "There are no items in this room"
     elif words[0].upper() == 'DROP':
-        item = list(filter(lambda i: i.name.upper() == words[1].upper(), p.items))[0]
-        if item:
-            p.drop_item(item)
-            error = f'You drop the {item.name} and continue on'
+        if len(p.items) > 0:
+            item = list(filter(lambda i: i.name.upper() == words[1].upper(), p.items))
+            if len(item):
+                p.drop_item(item[0])
+                error = item[0].on_drop()
+            else:
+                error = "You're not holding an item with that name"
         else:
-            error = "No such item found"
+            error = "You're not holding any items"
     else:
         error = "That command is invalid. please try again"
 

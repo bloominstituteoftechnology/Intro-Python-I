@@ -16,6 +16,12 @@ class Player():
         self.c_room.add_room_item(item)
         self.items.remove(item)
 
+    def add_score(self, score):
+        self.score += score
+
+    def get_score(self):
+        return self.score
+
     def list_player_items(self):
         return self.items
 
