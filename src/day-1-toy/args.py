@@ -50,7 +50,12 @@ print(f3(8))     # Should print 9
 #
 # Google "python keyword arguments".
 
-#def f4(...
+def f4(**kwargs):
+    for arg in kwargs:
+      key = arg
+      value = kwargs[arg]
+      text = ('key: %s, value: %s' %(key, value))
+      print(text)
 
 # Should print
 # key: a, value: 12
@@ -69,4 +74,4 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+f4(monster=d)
