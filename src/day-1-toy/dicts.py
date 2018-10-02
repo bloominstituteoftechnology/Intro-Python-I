@@ -28,7 +28,7 @@ waypoints = [
 
 for place in waypoints:
     for key, value in place.items():
-        print(value)
+        print(f'{key}:{value}')
 
 # Add a new waypoint to the list
 waypoints.append({
