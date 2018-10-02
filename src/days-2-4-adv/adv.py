@@ -37,6 +37,11 @@ room['treasure'].s_to = room['narrow']
 room['treasure'].n_to = room['kitchen']
 room['kitchen'].e_to = room['prison']
 room['prison'].n_to = room['coward']
+
+#Weapons  
+weapons = {
+    
+}
 # Main
 
 rooms = ["outside", "foyer", "overlook", "narrow", "treasure", "kitchen", "prison"]
