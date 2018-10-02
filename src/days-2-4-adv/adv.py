@@ -1,12 +1,13 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
                     "North of you, the cave mount beckons",
-                    ["golden cup"]),
+                    [Item("golden cup", "a shimmering goblet studded with jewels")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""",
@@ -15,7 +16,7 @@ passages run north and east.""",
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
-                    ["long sword"]),
+                    [Item("long sword", "a sharp, heavy blade")]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""",
@@ -25,22 +26,23 @@ to north. The smell of gold permeates the air.""",
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. There is a bookshelf along the north wall. The only exposed 
 exit is to the south. """,
-                    ['leather-bound book']),
+                    [Item("leather-bound book", "a mysterious tome with missing pages")]),
     
     'hidden': Room("Hidden Room", """You've found a tiny, musty, hidden room 
     behind a bookshelf. Exits are to the west and south. A bright, revolving 
     light appears west.""",
-                    ["pile of gold coins", "lit candle"]),
+                    [Item("pile of gold coins", "maybe they're real gold"), 
+                    Item("lit candle", "a burning flame to help in the dark night")]),
     
     'lighthouse': Room("Glimmering Lighthouse", """A tall, white-and-red 
     lighthouse stands towering above you. The door is locked. Paths lead 
     east, and west to a beach.""", 
-                    ["broken mirror"]),
+                    [Item("broken mirror", "sharp edges and big cracks")]),
     
     'beach': Room("Sandy Beach", """A broad sandy beach lies before you. 
     Sea shells are scattered around. The ocean looks cold and uninviting. 
     The only exit is east.""", 
-                    ["conch shell"])
+                    [Item("conch shell", "a pale shell with an opening")])
 }
 
 
@@ -80,7 +82,7 @@ room['beach'].e_to = room['lighthouse']
 # If the user enters "q", quit the game.
 
 # Player init
-player = Player('Hanzo', room['outside'], ["iron chestplate"])
+player = Player('Hanzo', room['outside'], [Item("iron chestplate", "a durable armor piece")])
 
 # Input loop
 while True:
@@ -102,36 +104,45 @@ while True:
             player.currentRoom = currentRoom.n_to
         else:
             printNoMove()
-    if cmd.upper() == 'S' or cmd.upper() == 'SOUTH':
+    elif cmd.upper() == 'S' or cmd.upper() == 'SOUTH':
         if hasattr(currentRoom, 's_to'):
             player.currentRoom = currentRoom.s_to
         else:
             printNoMove()
-    if cmd.upper() == 'E' or cmd.upper() == 'EAST':
+    elif cmd.upper() == 'E' or cmd.upper() == 'EAST':
         if hasattr(currentRoom, 'e_to'):
             player.currentRoom = currentRoom.e_to
         else:
             printNoMove()
-    if cmd.upper() == 'W' or cmd.upper() == 'WEST':
+    elif cmd.upper() == 'W' or cmd.upper() == 'WEST':
         if hasattr(currentRoom, 'w_to'):
             player.currentRoom = currentRoom.w_to
         else:
             printNoMove()
-    if cmd.upper() == 'INV' or cmd.upper() == 'I':
+    elif cmd.upper() == 'INV' or cmd.upper() == 'I':
         if len(player.inventory) > 0:
-            print("You have: ", player.inventory)
+            print("You have:")
+            for item in player.inventory:
+                print(item.name)
         else:
             print("You do not have any items besides the shirt on your back.")
-    if "TAKE" in cmd.upper():
-        if cmd[5:] in currentRoom.inventory:
-            player.inventory.append(cmd[5:])
-            currentRoom.inventory.remove(cmd[5:])
-            print("You have taken the %s" % cmd[5:])
-        else:
-            print("Sorry, %s, that item is not in this room." % player.name)
-    if "DROP" in cmd.upper():
-        player.inventory.remove(cmd[5:])
-        currentRoom.inventory.append(cmd[5:])
-        print("You have dropped the %s." % cmd[5:])
-    if cmd.upper() == 'Q':
+    elif "TAKE" in cmd.upper():
+        for item in currentRoom.inventory:
+            if cmd[5:] in item.name:
+                player.inventory.append(item)
+                currentRoom.inventory.remove(item)
+                print("You have taken the %s" % item.name)
+            else:
+                print("Sorry, %s, that item is not in this room." % player.name)
+    elif "DROP" in cmd.upper():
+        for item in player.inventory:
+            if cmd[5:] in item.name:
+                player.inventory.remove(item)
+                currentRoom.inventory.append(item)
+                print("You have dropped the %s." % item.name)
+            else:
+                print("You are not carrying that item.")
+    elif cmd.upper() == 'Q' or cmd.upper() == 'QUIT':
         break
+    else:
+        print("That command is not valid.")
