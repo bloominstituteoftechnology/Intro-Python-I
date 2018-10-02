@@ -11,3 +11,20 @@ class Room:
         self.w_to = None
         self.s_to = None
         self.e_to = None
+
+    def room_items(self):
+        print('This room contains: ')
+        if len(self.items) is not 0:
+            for i, item in enumerate(self.items):
+                print(str(i) + ' -> ' + item)
+        else:
+            print('There are no items in this room!')
+
+    def delete_item(self, index):
+        if len(self.items) is 0:
+            print('The room is totally empty!')
+        else:
+            del self.items[index]
+
+    def dropped_item(self, item):
+        self.items.append(item)
