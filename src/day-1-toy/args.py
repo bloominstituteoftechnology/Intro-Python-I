@@ -45,6 +45,10 @@ def f3(x, y=None):
         return x + y
 
 
+# def f3(x, y=1):
+#     return x+y
+
+
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
 
@@ -60,6 +64,7 @@ print(f3(8))     # Should print 9
 def f4(**kwargs):
     for key in kwargs:
         print("key: %s, value: %s" % (key, kwargs[key]))
+
 
 # Should print
 # key: a, value: 12
