@@ -133,9 +133,12 @@ while playing:
         p.c_room.list_room_items()
     show_description = True
     direction = input('Enter a command: ')
-    words = direction.split()
-    if len(words) == 1:
-        handle_simple_command(words[0])
+    if direction == "":
+        error = "You must input a command"
     else:
-        handle_complex_command(words)
+        words = direction.split()
+        if len(words) == 1:
+            handle_simple_command(words[0])
+        else:
+            handle_complex_command(words)
     handle_error()
