@@ -51,6 +51,6 @@ extraWaypoint = {
 }
 
 waypoints.append(extraWaypoint)
-for i in waypoints:
-    for x in i:
-        print(i[x])
+for place in waypoints:
+    for x in place:
+        print(x, ':', place[x])
