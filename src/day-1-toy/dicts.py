@@ -29,8 +29,18 @@ waypoints = [
 for x in waypoints:
     for y in x.values():
         print(y)
-#     print(x.values())
-# for place in waypoints:
-#     for k, v in place.items():
-#         print('{}: {}'.format(k, v))
+
+
 # Add a new waypoint to the list
+
+new_waypoint = {
+    "lat": 90,
+    "lon": -1,
+    "name": "a fourth place"
+}
+
+waypoints.append(new_waypoint)
+
+for place in waypoints:
+    for k, v in place.items():
+        print('{}: {}'.format(k, v))
