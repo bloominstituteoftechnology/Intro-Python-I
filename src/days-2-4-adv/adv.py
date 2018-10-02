@@ -53,9 +53,9 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-over = False
+game_over = False
 
-while not over:
+while not game_over:
     # print current room name
     print('ROOM: ', player.currentRoom.name)
     # print current description
@@ -70,7 +70,7 @@ while not over:
     elif len(cmd) == 1:
         # if user enters 'q', quit the game
         if cmd == 'q':
-            over = True
+            game_over = True
             print('GAME OVER')
          # else, command length is valid but command value is not recognized
         else:
