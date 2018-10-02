@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import random 
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -38,6 +39,7 @@ room['kitchen'].e_to = room['prison']
 room['prison'].n_to = room['coward']
 # Main
 
+rooms = ["outside", "foyer", "overlook", "narrow", "treasure", "kitchen", "prison"]
 
 def change_rooms(Player, direction):
     direction = direction.lower()
