@@ -3,11 +3,12 @@
 
 
 class Player():
-    def __init__(self, name):
+    def __init__(self, name, CurrentRoom):
         self.name = name
         self.wins = 0
         self.losses = 0
         self.skill = 0
+        self.CurrentRoom = CurrentRoom
 
     def __str__(self):
         return f"\n{self.name}\n{self.wins} - {self.losses}\n {self.name} has a skill rating of: {self.skill} "

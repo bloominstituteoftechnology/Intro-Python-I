@@ -1,5 +1,6 @@
 from room import Room
-
+from player import Player
+import textwrap
 # Declare all the rooms
 
 room = {
@@ -123,7 +124,7 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-print(room["r-bubble"])
+# print(room['r-bubble'])
 # Link rooms together
 # All paths from blue perspective!
 # Blue 2 Paths
@@ -136,7 +137,7 @@ room['r1'].w_to = room['b-door']
 room['r1'].a_to = room['b-eli']
 room['r1'].s_to = room['b2']
 #Blue Needles Paths
-room['b-needles'].w_to = room['p-slide']
+room['b-needles'].w_to = room['b-street']
 room['b-needles'].s_to = room['b2']
 room['b-needles'].d_to = room['b-eli']
 #Blue Eli Paths
@@ -208,7 +209,12 @@ room['mid1'].d_to = room['car1']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = {
+    "Justin": Player(
+        room['b2']
+    )
+}
+print(player)
 # Write a loop that:
 #
 # * Prints the current room name
