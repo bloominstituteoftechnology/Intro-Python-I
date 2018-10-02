@@ -12,13 +12,12 @@ print(f1(1, 2))
 # Write a function f2 that takes any number of iteger arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
-def f2(ItemA, *args):
+def f2(ItemA, *argv):
     this = ItemA
-    more = args
+    more = argv
     sum = 0
-    for more in args:
-        sum + int(more)
-
+    for each in argv:
+        sum + int(each)
     return sum
     
     
