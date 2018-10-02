@@ -1,6 +1,26 @@
 from room import Room
 
+
+class Player():
+    def __init__(self, name):
+        self.name = name
+        self.health = 100
+        self.mana = 50
+        self.currentRoom = 'foyer'
+    def __str__(self):
+        return f'{self.name}\n Health: {self.health} - Mana: {self.mana} - Room: {self.currentRoom}'
+    def playerMove(self, direction):
+        if direction == 'n':
+            self.currentRoom = room[self.currentRoom].n_to
+        elif direction == 's': 
+            self.currentRoom = self.currentRoom.s_to
+        elif direction == 'e': 
+            self.currentRoom = self.currentRoom.e_to
+        elif direction == 'w': 
+            self.currentRoom = self.currentRoom.w_to
+
 # Declare all the rooms
+
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -36,6 +56,30 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+p = Player(input("What is your name?"))
+
+
+while True: 
+    print(p)
+    cmd = input("What's your next move?(n, s, e, w)")
+    
+    if cmd == 'q':
+        break
+    elif cmd == 'n':
+        print("you are moving north")
+        p.playerMove('n')
+    else:
+        print("You have entered an incorrect command.")
+
+
+
+
+
+
+
+
+
+
 
 # Make a new player object that is currently in the 'outside' room.
 
