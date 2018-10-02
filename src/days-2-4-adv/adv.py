@@ -74,6 +74,13 @@ while True:
                 print(f'Picked up a {cmd[1]}')
             else:
                 print(f'Cannot find {cmd[1]} in {room[Will.location].name}')
+        elif cmd[0]=='drop':
+            if cmd[1] in Will.possessions:
+                Will.drop(cmd[1])
+                room[Will.location].inventory.append(cmd[1])
+                print(f'Dropped a {cmd[1]}')
+            else:
+                print(f'You do not have a {cmd[1]} to drop.')
     else:
         if cmd=='n' or cmd=='e' or cmd=='s' or cmd=='w':
             next_location=''
