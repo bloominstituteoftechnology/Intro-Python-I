@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player(room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -50,3 +50,22 @@ room['treasure'].s_to = room['narrow']
 #
 # If the user enters "q", quit the game.
 
+while True: 
+    print("Begin your journey")
+    print("Chose your direction by pressing n for North, s for South, e for East, w for West, or you can chose q and end your journey now")
+
+    direction = input("\n Which way? \n Or do you want to quit?")
+
+    if direction == 'q':
+        print("\nYour Journey has ended")
+        break
+    elif direction == 'n':
+        if not hasattr(player.currentRoom, 'n_to'):
+         print('\n Dead End')
+        else:
+            player.currentRoom = player.currentRoom.n_to 
+     elif direction == 's':
+        if not hasattr(player.currentRoom, 's_to'):
+         print('\n Dead End')
+        else:
+            player.currentRoom = player.currentRoom.s_to           
