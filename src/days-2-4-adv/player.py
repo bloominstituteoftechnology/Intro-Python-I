@@ -16,3 +16,5 @@ class Player:
     def inventory(self):
         itemArr=', '.join(self.possessions)
         return f'Items currently in possession: {itemArr}'
+    def drop(self,item):
+        self.possessions.remove(item)
