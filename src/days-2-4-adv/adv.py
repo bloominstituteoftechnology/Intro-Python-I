@@ -35,10 +35,9 @@ room['treasure'].s_to = room['narrow']
 
 #
 # Main
-player = Player(input("what is your name?"))
-print(f'Welcome {player.name}, you begin your journey  {player.room}!')
-# Make a new player object that is currently in the 'outside' room.
 
+# Make a new player object that is currently in the 'outside' room.
+p = Player(room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -46,18 +45,41 @@ print(f'Welcome {player.name}, you begin your journey  {player.room}!')
 # * Waits for user input and decides what to do.
 
 
-def move_room():
-    cmd = input("-> ")
-    print(f'Your current position is in {player.room}. {room.description}')
-
-
-while True:
-    agent_choice = get_random_direction()
-    print(p)
-    cmd = input("-> ")
-
-
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
+
+
+while True:
+    cmd = input("which way do you want to go?")
+    if cmd == "q":
+        print(""" QUIT """)
+        break
+    if cmd == "n":
+        if hasattr(p.currentRoom.n_to, "name"):
+            p.currentRoom = p.currentRoom.n_to
+            print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
+        else:
+            print("You cant go there")
+    elif cmd == "e":
+        if hasattr(p.currentRoom.e_to, "name"):
+            p.currentRoom = p.currentRoom.e_to
+            print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
+        else:
+            print("You cant go there")
+    elif cmd == "s":
+        if hasattr(p.currentRoom.s_to, "name"):
+            p.currentRoom = p.currentRoom.s_to
+            print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
+        else:
+            print("You cant go there")
+    elif cmd == "w":
+        if hasattr(p.currentRoom.w_to, "name"):
+            p.currentRoom = p.currentRoom.w_to
+            print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
+        else:
+            print("You cant go there")
