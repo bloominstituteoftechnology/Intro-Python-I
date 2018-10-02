@@ -63,12 +63,21 @@ while True:
     if cmd == "q":
         break
     elif cmd == "n":
-        p.room = room[p.room].cmd_to
-    elif cmd == "n":
-        p.room = room[p.room].cmd_to
-    elif cmd == "n":
-        p.room = room[p.room].cmd_to
-    elif cmd == "n":
-        p.room = room[p.room].cmd_to
+        p.room = room[p.room].n_to
+        for key in room:
+            if p.room == key:
+                print (key)
+    elif cmd == "e":
+        p.room = room[p.room].e_to
+        if p.room == key:
+                print (key)
+    elif cmd == "s":
+        p.room = room[p.room].s_to
+        if p.room == key:
+                print (key)
+    elif cmd == "w":
+        p.room = room[p.room].w_to
+        if p.room == key:
+                print (key)
     else:
         print("Invalid choice")
