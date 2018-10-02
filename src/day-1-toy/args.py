@@ -15,10 +15,12 @@ print(f1(1, 2))
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # def f2(...
-def f2(*args)
+def f2(*args):
     sum = 0
     for n in args:
-        sum = sum + n
+        sum += n
+    return sum
+
 
 print(f2(1))  # Should print 1
 print(f2(1, 3))  # Should print 4
@@ -35,6 +37,12 @@ print(f2(*a))  # Should print 22
 # arguments. Google "python default arguments" for a hint.
 
 # def f3(...
+def f3(oneNum, twoNum=None):
+    if oneNum and twoNum:
+        return oneNum + twoNum
+    if oneNum:
+        return oneNum + 1
+
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))  # Should print 9
@@ -49,6 +57,10 @@ print(f3(8))  # Should print 9
 # Google "python keyword arguments".
 
 # def f4(...
+def f4(**kwargs):
+    for key, value in kwargs.items():
+        print(f"key: {key}, value: {value}")
+
 
 # Should print
 # key: a, value: 12
@@ -59,9 +71,9 @@ f4(a=12, b=30)
 # key: city, value: Berkeley
 # key: population, value: 121240
 # key: founded, value: "March 23, 1868"
-f4(city="Berkeley", population=121240, founded="March 23, 1868")
+f4(city="Berkeley", population=121_240, founded="March 23, 1868")
 
 d = {"monster": "goblin", "hp": 3}
 
 # What thing do you have to add to make this work?
-f4(d)
+f4(**d)
