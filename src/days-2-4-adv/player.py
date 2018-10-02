@@ -7,6 +7,7 @@ class Player(object):
         self.name = name
         self.currentRoom = currentRoom
         self.roomKey = roomKey
+        self.items = []
 
     def __repr__(self):
         return f"{self.name} currently in room {self.currentRoom}"

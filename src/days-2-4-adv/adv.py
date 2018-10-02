@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
-import random 
+from weapon import Weapon
+import random
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -19,10 +20,10 @@ to north. The smell of gold permeates the air."""),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
-    'prison' : Room('Prison', """You will have to fight your way out of the prison if you wish to go north.
+    'prison': Room('Prison', """You will have to fight your way out of the prison if you wish to go north.
      If you wish not to fight run left or right"""),
     'coward': Room("Cowards Forest", """You coward! You ran from the fight. Now the goblins have been alerted.  """),
-    'kitchen' : Room ('Kitchen', """Welcome to the kitchen """)
+    'kitchen': Room('Kitchen', """Welcome to the kitchen """)
 
 }
 # Link rooms together
@@ -38,13 +39,15 @@ room['treasure'].n_to = room['kitchen']
 room['kitchen'].e_to = room['prison']
 room['prison'].n_to = room['coward']
 
-#Weapons  
+# Weapons
 weapons = {
-    
+ 
 }
 # Main
 
-rooms = ["outside", "foyer", "overlook", "narrow", "treasure", "kitchen", "prison"]
+rooms = ["outside", "foyer", "overlook",
+         "narrow", "treasure", "kitchen", "prison"]
+
 
 def change_rooms(Player, direction):
     direction = direction.lower()
