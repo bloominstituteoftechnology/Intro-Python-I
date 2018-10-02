@@ -17,15 +17,30 @@ import sys
 import calendar
 import datetime
 
-if(len(sys.argv) == 2):
-    month = sys.argv[1]
-    year = sys.argv[2]
+# if(len(sys.argv) == 2):
+#     month = sys.argv[1]
+#     year = sys.argv[2]
 
-    c = calendar.TextCalendar(calendar.SUNDAY)
-    str = c.formatmonth(year, month)
-    print(str)
+#     c = calendar.TextCalendar(calendar.SUNDAY)
+#     str = c.formatmonth(year, month)
+#     print(str)
+# else:
+#     date = datetime.datetime.now()
+
+
+def calMonth(m,y):
+  cal = calendar.TextCalendar().formatmonth(y,m)
+  return cal
+
+
+if len(sys.argv) > 2:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
 else:
-    date = datetime.datetime.now()
+    month = datetime.now().month
+    year =datetime.now().year
+
+print(calMonth(month,year))
 
 
 
