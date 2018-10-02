@@ -9,3 +9,6 @@ print(f"x is {x}, y is {y}, z is \"{z}\"")
 
 # Use the 'format' string method to print the same thing
 print("x is {x}, y is {y}, z is '{z}'".format(x=10, y=2.24552, z="I like turtles!"))
+
+# Use the printf operator and the 'format' string method and see what happens
+print(f"x is {x}, y is {y}, z is \"{z}\"".format(x=10, y=2.24552, z="I like turtles!"))
