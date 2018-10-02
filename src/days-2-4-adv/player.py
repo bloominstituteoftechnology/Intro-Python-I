@@ -9,7 +9,7 @@ class Player:
     def get_item(self, item):
         self.inventory.append(item)
     
-    def drop_item(self, item):
+    def drop_item(self, index):
         if len(self.inventory) is 0:
             print('Oops, your inventory is totally empty!')
         else:
