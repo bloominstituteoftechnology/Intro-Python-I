@@ -54,12 +54,38 @@ players = {
 #
 # If the user enters "q", quit the game.
 
+# location = players['player 1'].location
+# print("Current Location: " + location)
+
+location = players['player 1'].location
 
 while True:
-    print(players['player 1'].location)
     for key in room:
-        if key == players['player 1'].location:
+        if key == location:
+            print("Current Location: " + room[key].name)
             print (room[key].description)
-    # cmd = input ("-> ")
-    # if cmd == "n"
-    break
+    cmd = input ("-> ")
+    if cmd == "q":
+        break
+    if (location == 'outside'):
+        if cmd == "n":
+            location = 'foyer'
+            for key in room:
+                if key == location:
+                    print("Current Location: " + room[key].name)
+                    print (room[key].description)
+            cmd = input ("-> ")
+        else:
+            print('The movement is not allowed.')
+    # if (location == 'foyer'):
+    #     if cmd == "n":
+    #         location = 'overlook'
+    #         print("Current Location: " + location)
+    #     elif cmd == 's':
+    #         location = 'outside'
+    #         print("Current Location: " + location)
+    #     elif cmd == 'e':
+    #         location = 'narrow'
+    #         print("Current Location: " + location)
+    #     elif cmd == 'w':
+    #         print('The movement is not allowed.')
