@@ -19,9 +19,10 @@ from datetime import datetime
 
 
 def calMonth(m,y):
-  
   cal = calendar.TextCalendar().formatmonth(y,m)
   return cal
+
+
 if len(sys.argv) > 2:
     month = int(sys.argv[1])
     year = int(sys.argv[2])

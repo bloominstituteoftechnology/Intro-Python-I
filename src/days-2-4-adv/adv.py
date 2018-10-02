@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -21,7 +22,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -36,8 +36,10 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+playerName = input("Please input a name:")
 
 # Make a new player object that is currently in the 'outside' room.
+currentPlayer = Player(playerName)
 
 # Write a loop that:
 #
@@ -49,3 +51,11 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+# def TextEval(text):
+
+print(f"Welcome {currentPlayer.name}")
+while True:
+    print(f"{currentPlayer.name} is located in {room[currentPlayer.room].name}")
+    print(room[currentPlayer.room].description)
+    print(room["outside"].n_to.name)
+    break
