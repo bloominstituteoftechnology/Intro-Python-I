@@ -1,7 +1,10 @@
 from room import Room
 from player import Player
+import textwrap
 
 # Declare all the rooms
+
+# {outside: {name: "", desc: ""}}
 
 room = {
     "outside": Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
@@ -45,43 +48,9 @@ room["treasure"].s_to = room["narrow"]
 # Main
 #
 
-choice_direction = {"n": "north", "s": "south", "e": "east", "w": "west"}
-
 # Make a new player object that is currently in the 'outside' room.
-name = input("What is your name? ")
-player = Player(name, room["outside"])
+
 # Write a loop that:
-while True:
-    wrong_dir = "Cannot go this way!"
-
-    print(f"Hello, {player.name} your current location is {player.room}")
-
-    cmd = input("-> Please pick a direction (n, s, e, w)")
-
-    if cmd == "q":
-        break
-    elif cmd == "n":
-        if hasattr(player.room, "n_to"):
-            player.changeRooms(player.room.n_to)
-        else:
-            print(wrong_dir)
-    elif cmd == "s":
-        if hasattr(player.room, "s_to"):
-            player.changeRooms(player.room.s_to)
-        else:
-            print(wrong_dir)
-    elif cmd == "e":
-        if hasattr(player.room, "e_to"):
-            player.changeRooms(player.room.e_to)
-        else:
-            print(wrong_dir)
-    elif cmd == "w":
-        if hasattr(player.room, "w_to"):
-            player.changeRooms(player.room.w_to)
-        else:
-            print(wrong_dir)
-    else:
-        print("Choose n, s, w, or e or q for quit")
 
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
@@ -91,3 +60,27 @@ while True:
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+# d = Player(input("Where do you want to go? "))
+
+s = Player(room["outside"])
+direction_dictionary = {"n": "north", "s": "south", "w": "west", "e": "east"}
+
+while True:
+    # print(vars(d))
+    print(f"You are currently in {s.currentRoom.name}")
+    cmd = input("->")
+
+    if cmd == "q":
+        break
+    # elif s.currentRoom[f"{cmd}_to"] == False:
+    #     print("Cant' go that way")
+    elif cmd == "n" or cmd == "s" or cmd == "w" or cmd == "e":
+        s.currentRoom = getattr(s.currentRoom, f"{cmd}_to")
+        # getattr(s["currentRoom"], cmd)
+        # [f"{cmd}_to"]
+        print(f"You are currently in {s.currentRoom.name}")
+        print(f"Description: {s.currentRoom.description}")
+    else:
+        print("invalid input")
+    # s.currentRoom[`${cmd}_to`]
+    # if cmd:
