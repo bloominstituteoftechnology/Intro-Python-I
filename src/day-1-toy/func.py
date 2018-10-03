@@ -10,4 +10,4 @@ def is_even(x):
     else: 
         print('Odd')
 
-is_even(int(num))
+is_even(num)
