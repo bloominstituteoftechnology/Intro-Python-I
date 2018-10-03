@@ -52,33 +52,95 @@ play = True
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+def currentLocation():
+    print(f"""
+    ~~~~~~~ You Have Entered ~~~~~~~ 
+    {player.room.place}
+    """)
+
+    print(f"""
+    ~~~~~~~ Hint ~~~~~~~ 
+    {player.room.description}
+
+    """)
+
+
+def inputError():
+    print(f"""
+
+    ~~~~~~~ You Hit A Wall ~~~~~~~ 
+    Nowhere To Go, Try Another Direction
+
+    """)
+
+
+def lookAhead():
+    print(f"""
+
+    ~~~~~~~ What Lies Ahead ~~~~~~~ 
+    {player.nextRoom}
+
+    """)
+
+
+
 while play:
-    print(player.room.place)
-    print(player.room.description)
-    def error():
-        print('~~~ Nowhere To Go, Try Another Direction ~~~')
-    cmd = input('Where do you want to go? -> ')
-    if cmd == 'q':
-        break
-    elif cmd == 'n':
-        if player.room.n_to:
-            player.room = player.room.n_to
+
+    cmd = input('Where Shall You Go? -> ').lower().split(" ")
+
+    if len(cmd) == 1:
+        if cmd[0] == 'q':
+            break
+        elif cmd[0] == 'n':
+            if player.room.n_to is not None:
+                player.updateRoom(player.room.n_to)
+                currentLocation()
+            else:
+                inputError()
+        elif cmd[0] == 's':
+            if player.room.s_to is not None:
+                player.updateRoom(player.room.s_to)
+                currentLocation()
+            else:
+                inputError()
+        elif cmd[0] == 'e':
+            if player.room.e_to is not None:
+                player.updateRoom(player.room.e_to)
+                currentLocation()
+            else:
+                inputError()
+        elif cmd[0] == 'w':
+            if player.room.w_to is not None:
+                player.updateRoom(player.room.w_to)
+                currentLocation()
+            else:
+                inputError()
         else:
-            error()
-    elif cmd == 's':
-        if player.room.s_to:
-            player.room = player.room.s_to
-        else:
-            error()
-    elif cmd == 'e':
-        if player.room.e_to:
-            player.room = player.room.e_to
-        else:
-            error()
-    elif cmd == 'w':
-        if player.room.w_to:
-            player.room = player.room.w_to
-        else:
-            error()
-    else:
-        print('Movement Not Allowed')
+            if cmd[0] == "ln":
+                if player.room.n_to is not None:
+                    player.lookNextRoom(player.room.n_to)
+                    lookAhead()
+                else:
+                    inputError()
+            elif cmd[0] == "ls":
+                if player.room.s_to is not None:
+                    player.lookNextRoom(player.room.s_to)
+                    lookAhead()
+                else:
+                    inputError()
+            elif cmd[0] == "le":
+                if player.room.e_to is not None:
+                    player.lookNextRoom(player.room.e_to)
+                    lookAhead()
+                else:
+                    inputError()
+            elif cmd[0] == "lw":
+                if player.room.w_to is not None:
+                    player.lookNextRoom(player.room.w_to)
+                    lookAhead()
+                else:
+                    inputError()
+            else:
+                print('Movement Not Allowed')
