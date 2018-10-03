@@ -3,14 +3,15 @@
 
 
 class Room():
-    def __init__(self, name, description):
+    def __init__(self, label, name, description):
         self.name = name
+        self.label = label
         self.description = description
         self.w_to = None
         self.a_to = None
         self.s_to = None
         self.d_to = None
-        
+
     def directedRoom(self, direction):
         if direction == "w":
             return self.w_to
@@ -22,3 +23,7 @@ class Room():
             return self.d_to
         else:
             return None
+
+    
+    def __repr__(self):
+        return f'{self.name}: {self.description}'

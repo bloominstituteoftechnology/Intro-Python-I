@@ -26,7 +26,7 @@ class Player():
 
 
     def movement(self, direction):
-        print(self.currentRoom)
+        # print("hiiii", self.currentRoom)
         nextRoom = self.currentRoom.directedRoom(direction)
         if nextRoom is not None:
             self.currentRoom = nextRoom
