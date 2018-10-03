@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -49,3 +51,31 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True: 
+    print(f'Hello, you are currently in {p.room}')
+    cmd = input('What is your next move? \n')
+    if cmd == 'q':
+        break
+    elif cmd == 'n':
+        if hasattr(p.room, 'n_to'):
+            p.move(p.room.n_to)
+        else: 
+            print('That is void, try another direction')
+    elif cmd == 's':
+        if hasattr(p.room, 's_to'):
+            p.move(p.room.s_to)
+        else: 
+            print('That is void, try another direction')
+    elif cmd == 'e':
+        if hasattr(p.room, 'e_to'):
+            p.move(p.room.e_to)
+        else: 
+            print('That is void, try another direction')
+    elif cmd == 'w':
+        if hasattr(p.room, 'w_to'):
+            p.move(p.room.w_to)
+        else: 
+            print('That is void, try another direction')
+    else:
+        print('This is not a valid command')

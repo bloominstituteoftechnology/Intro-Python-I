@@ -8,7 +8,7 @@ class Room:
         self.items = []
 
     def __str__(self):
-        return f'{self.name}: {self.desc}'
+        return f'\n {self.name} \n {self.desc} \n'
 
     def add_item(self, item):
         self.items.append(item)
