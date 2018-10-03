@@ -17,7 +17,7 @@ class Player(object):
         print(f"newRoom === {newRoom}") #sole purpose of this line is for debugging
         if newRoom is not None:
             self.currentRoom = newRoom
-            return "Changing rooms..."
+            return f"Changing rooms...{ self.currentRoom.revealItems()}"
         else:
             return "You cannot go into that direction!"
     

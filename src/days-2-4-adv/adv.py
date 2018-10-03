@@ -78,7 +78,6 @@ while True:
         print("Exiting the game!")
         break
     elif directions.count(option) > 0:
-        print(f"direction chosen === {option}\n\n")  # This line is for debugging
         print(player.room_change(option))
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
