@@ -50,8 +50,7 @@ room['treasure'].inventory.append('lasso')
 # Main
 #
 # Make a new player object that is currently in the 'outside' room.
-player=Player(input('What is your name?\n'),room['outside'])
-print(f'Hello, {player.name}')
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -63,24 +62,15 @@ print(f'Hello, {player.name}')
 #
 # If the user enters "q", quit the game.
 def game():
-    print (player.current_location)
+    player=Player(input('What is your name?\n'),room['outside'])
+    print(f'Hello, {player.name}\n{player.current_location}')
     while True:
         cmd=input('-->').lower().split()
         if len(cmd)==2:
             if cmd[0]=='get':
-                if cmd[1] in room[player.location].inventory:
-                    room[player.location].inventory.remove(cmd[1])
-                    player.pickup(cmd[1])
-                    print(f'Picked up a {cmd[1]}')
-                else:
-                    print(f'Cannot find {cmd[1]} in {room[player.location].name}')
+                print(player.pickup(cmd[1]))
             elif cmd[0]=='drop':
-                if cmd[1] in player.possessions:
-                    player.drop(cmd[1])
-                    room[player.location].inventory.append(cmd[1])
-                    print(f'Dropped a {cmd[1]}')
-                else:
-                    print(f'You do not have a {cmd[1]} to drop.')
+                print(player.drop(cmd[1]))
             else:
                 print('Invalid command.')
         elif len(cmd)==1:
