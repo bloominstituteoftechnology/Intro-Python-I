@@ -25,3 +25,12 @@ class Room:
                 return self.w_to
         else:
             print('You cannot move in that direction')
+    def remove_item(self, item):
+        chosen = ''
+        for items in self.items:
+            if items == item:
+                chosen = item
+        self.items.remove(chosen)
+    def add_item(self, item):
+        self.items.append(item)
+        

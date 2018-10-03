@@ -23,7 +23,18 @@ class Player:
             if items == item:
                 chosen = item
         self.items.append(chosen)
+        self.room.remove_item(chosen)
         print(f'Current inventory: {self.items}')
+        # remove the item from the room
+    def remove_item(self, item):
+        chosen = ''
+        for items in self.items:
+            if items == item:
+                chosen = item
+        self.items.remove(chosen)
+        self.room.add_item(chosen)
+        print(f'Current inventory: {self.items}')
+
     
     
 

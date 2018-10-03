@@ -77,4 +77,12 @@ while True:
         if cmds[1] in valid_directions:
             player.look(cmds[1])
     if cmds[0] == "get":
-        player.get_item(cmds[1])
+        if cmds[1]:
+            player.get_item(cmds[1])
+        else:
+            print('Please specify which item to get from inventory')
+    if cmds[0] == "drop":
+        if cmds[1]:
+            player.remove_item(cmds[1])
+        else:
+            print('Please specify which item to remove from inventory')
