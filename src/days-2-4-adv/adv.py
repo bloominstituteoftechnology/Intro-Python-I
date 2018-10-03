@@ -1,6 +1,9 @@
 from room import Room
-
+from player import Player
+import textwrap
 # Declare all the rooms
+
+# {outside: {name: "", desc: ""}}
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -40,7 +43,7 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 
 # Write a loop that:
-#
+
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
@@ -49,3 +52,26 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+# d = Player(input("Where do you want to go? "))
+
+s  = Player(room["outside"])
+direction_dictionary = {"n": "north", "s": "south", "w": "west", "e": "east" }
+
+while True: 
+    # print(vars(d))
+    print(f"You are currently in {s.currentRoom.name}")
+    cmd = input("->")
+    
+    if cmd == "q":
+        break
+    elif cmd == "n" or cmd == "s" or cmd == "w" or cmd == "e":
+        s.currentRoom = getattr(s.currentRoom, f"{cmd}_to")
+        # getattr(s["currentRoom"], cmd)
+        # [f"{cmd}_to"]        
+        print(f"You are currently in {s.currentRoom.name}")
+        print(f"Description: {s.currentRoom.description}")
+    else: 
+        print("invalid input") 
+    # s.currentRoom[`${cmd}_to`]
+    # if cmd:
+

@@ -4,9 +4,8 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-#def f1(...
-
-print(f1(1, 2))
+# def f1(x,y)
+# print(f1(1, 2))
 
 # Write a function f2 that takes any number of iteger arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
@@ -30,7 +29,7 @@ print(f2(a))    # Should print 22
 #def f3(...
 
 print(f3(1, 2))  # Should print 3
-print(f3(8))     # Should print 9
+print(f3(8))     # Sho-uld print 9
 
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
