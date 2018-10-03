@@ -49,8 +49,7 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-name = raw_input('Please Enter Your Name: ')
-player = Player(name, 'outside')
+player = Player(input("What is your name? "), room['outside'])
 while True:
-    print('Welcome %s! You are in room %s.'%(player.name,player.room))
-    user_selection = raw_input('What direction would you like to go?')
+    print(player.currentRoom.name + "\n" + player.currentRoom.description)
+    command = input("-> ")
