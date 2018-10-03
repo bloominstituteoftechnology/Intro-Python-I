@@ -20,7 +20,7 @@ class Player:
         if len(self.inventory) is not 0:
             print('\nYour inventory contains: ')
             for i, item in enumerate(self.inventory):
-                print(' --> ' + item.name + ': ' + item.description)
+                print(str(i) + ' --> ' + item.name + ': ' + item.description)
         else:
             print('\nYou are broke. Nothing in the bag!!!')
         

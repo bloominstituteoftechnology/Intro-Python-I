@@ -16,7 +16,7 @@ class Room:
         if len(self.items) is not 0:
             print('\nThis room contains: ')
             for i, item in enumerate(self.items):
-                print(' -> ' + item.name + ': ' + item.description)
+                print(str(i) + ' -> ' + item.name + ': ' + item.description)
         else:
             print('\nThere are no items in this room!')
 
