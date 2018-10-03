@@ -53,8 +53,24 @@ Minion1 = Player(room['outside'])
 while True:
     print(f'Current room: {Minion1.roomLocation.name}...')
     print(f'{Minion1.roomLocation.description}\n')
-    cmd = input("What would you like to do next?\n ->")
+    cmd = input("Where would you like to go next?\n ->")
     if cmd == 'q':
         break
+    elif cmd == 'n':
+        if Minion1.roomLocation is not None:
+            Minion1.roomLocation = Minion1.roomLocation.n_to
+        else: print(Minion1.cannotMove)
+    elif cmd == 's':
+        if Minion1.roomLocation.s_to is not None:
+            Minion1.roomLocation = Minion1.roomLocation.s_to
+        else: print(Minion1.cannotMove)
+    elif cmd == 'e':
+        if Minion1.roomLocation.e_to is not None:
+            Minion1.roomLocation = Minion1.roomLocation.e_to
+        else: print(Minion1.cannotMove)
+    elif cmd == 'w':
+        if Minion1.roomLocation.w_to is not None:
+            Minion1.roomLocation = Minion1.roomLocation.w_to
+        else: print(Minion1.cannotMove)
     else:
-        print(cmd)
+        print("Your request was not recognized.")

@@ -5,3 +5,7 @@ class Room:
     def __init__(self, name, description):
         self.name = name
         self.description = description 
+        self.n_to = None # North to
+        self.s_to = None # South to
+        self.e_to = None # East to
+        self.w_to = None # West to
