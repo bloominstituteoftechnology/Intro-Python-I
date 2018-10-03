@@ -4,43 +4,44 @@ from player import Player
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside cave entrance': Room("Outside Cave Entrance",
+    "North of you, the cave mount beckons"),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+    'foyer': Room("Foyer", """Dim light filters in from the south.
+    Dusty passages run north and east."""),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+    'grand overlook': Room("Grand Overlook", """A steep cliff appears before you,
+    falling into the darkness. Ahead to the north,
+    a light flickers in the distance,
+    but there is no way across the chasm."""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+    'narrow passage': Room("Narrow Passage", """The narrow passage bends here
+    from west to north. The smell of gold permeates the air."""),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+    'treasure chamber': Room("Treasure Chamber", """You've found the long-lost treasure chamber!
+    Sadly, it has already been completely emptied by
+    earlier adventurers. The only exit is to the south."""),
 }
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['outside cave entrance'].n_to = room['foyer']
+room['foyer'].s_to = room['outside cave entrance']
+room['foyer'].n_to = room['grand overlook']
+room['foyer'].e_to = room['narrow passage']
+room['grand overlook'].s_to = room['foyer']
+room['narrow passage'].w_to = room['foyer']
+room['narrow passage'].n_to = room['treasure chamber']
+room['treasure chamber'].s_to = room['narrow passage']
 
-# print('check attribute', room['outside'].n_to.place)
+# print('check attribute', room['outside cave entrance'].n_to.place)
 
 #
 # Main
 #
 
-# Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
+# Make a new player object that is currently in the 'outside cave entrance' room.
+player = Player(room['outside cave entrance'])
 play = True
 # Write a loop that:
 #
@@ -90,16 +91,14 @@ def brickWall(type):
         Action Not Allowed
 
         Allowed Actions:
-        - n: move north
-        - s: move south
-        - e: move east
-        - w: move west
+        n: move north      ln: look north
+        s: move south      ls: look south
+        e: move east       le: look east
+        w: move west       lw: look west
 
-        - ln: look north
-        - ls: look south
-        - le: look east
-        - lw: look west
-
+        look: check room
+        get: get item
+        drop: drop item
         """)
 
 
@@ -146,30 +145,54 @@ while play:
             else:
                 brickWall('m')
         # looking ahead
-        else:
-            if cmd[0] == "ln":
-                if player.room.n_to is not None:
-                    player.lookNextRoom(player.room.n_to)
-                    lookAhead()
-                else:
-                    brickWall('l')
-            elif cmd[0] == "ls":
-                if player.room.s_to is not None:
-                    player.lookNextRoom(player.room.s_to)
-                    lookAhead()
-                else:
-                    brickWall('l')
-            elif cmd[0] == "le":
-                if player.room.e_to is not None:
-                    player.lookNextRoom(player.room.e_to)
-                    lookAhead()
-                else:
-                    brickWall('l')
-            elif cmd[0] == "lw":
-                if player.room.w_to is not None:
-                    player.lookNextRoom(player.room.w_to)
-                    lookAhead()
-                else:
-                    brickWall('l')
+        elif cmd[0] == "ln":
+            if player.room.n_to is not None:
+                player.lookNextRoom(player.room.n_to)
+                lookAhead()
             else:
-                brickWall('e')
+                brickWall('l')
+        elif cmd[0] == "ls":
+            if player.room.s_to is not None:
+                player.lookNextRoom(player.room.s_to)
+                lookAhead()
+            else:
+                brickWall('l')
+        elif cmd[0] == "le":
+            if player.room.e_to is not None:
+                player.lookNextRoom(player.room.e_to)
+                lookAhead()
+            else:
+                brickWall('l')
+        elif cmd[0] == "lw":
+            if player.room.w_to is not None:
+                player.lookNextRoom(player.room.w_to)
+                lookAhead()
+            else:
+                brickWall('l')
+        # items
+        elif cmd[0] == "look":
+            if player.room.place.lower() == 'outside cave entrance':
+                print(player.items)
+                print(player.room)
+                print(room['outside cave entrance'].items)
+            elif player.room.place.lower() == 'foyer':
+                print(player.items)
+                print(player.room)
+                print(room['foyer'].items)
+            elif player.room.place.lower() == 'narrow passage':
+                print(player.items)
+                print(player.room)
+                print(room['narrow passage'].items)
+            elif player.room.place.lower() == 'treasure chamber':
+                print(player.items)
+                print(player.room)
+                print(room['treasure chamber'].items)
+
+        elif cmd[0] == "get":
+            #do something
+            print("do")
+        elif cmd[0] == "drop":
+            #do something
+            print("do")
+        else:
+            brickWall('e')

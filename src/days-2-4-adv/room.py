@@ -2,6 +2,9 @@
 # description attributes.
 
 class Room:
+
+  items = []
+
   def __init__(self, place, description):
     self.place = place
     self.description = description
