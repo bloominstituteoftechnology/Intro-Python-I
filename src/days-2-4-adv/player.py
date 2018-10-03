@@ -12,7 +12,7 @@ class Player:
     def add_item(self, item):
         return self.items.append(item)
     
-    def view_items(self):
+    def inventory(self):
         return f'You have the following items: {self.items}'
 
     def to(self, location):

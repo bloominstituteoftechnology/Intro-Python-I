@@ -65,9 +65,10 @@ while True:
     if len(cmd) == 1:
         # if cmd[0] == 'v':
         #     player.location.view_items
-        # if cmd[0] == 'i':
-        #     player.view_items
-        if cmd[0] == 'q':
+        if cmd[0] == 'i':
+            print(dir(player))
+            player.inventory
+        elif cmd[0] == 'q':
             break
         elif cmd[0] == "n":
             if hasattr( player.location , 'n_to' ):
@@ -90,4 +91,9 @@ while True:
             else:
                 print('The movement is not allowed.')
     elif len(cmd) > 1 and len(cmd) < 3:
-        print('stop')
+        if cmd[0] == 'get' or cmd[0] == 'take':
+            if cmd[1] in player.location.items:
+                player.add_item(player.location.items[0])
+                player.location.items.pop()
+            else:
+                print('The item is not available for pick up.')
