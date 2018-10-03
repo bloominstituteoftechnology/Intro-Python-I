@@ -12,20 +12,6 @@ class Room (object):
         self.e_to = e_to
         self.w_to = w_to
         self.directions = [] 
-        # if len(self.name) > 0 : 
-        #     self.__get_directions()
-    # def __get_directions (self):
-    #     print("getting Directions")
-    #     directions = []
-    #     if self.n_to is not None:
-    #         directions.append("n")
-    #     if self.s_to is not None:
-    #         directions.append("s")
-    #     if self.e_to is not None:
-    #         directions.append("e")
-    #     if self.w_to is not None:
-    #         directions.append("w")
-    #     self.directions = directions
 
     def __str__(self):
         return f"Room Name: {self.name}\n\n, Room description: {self.description}\n\n directions available include {self.directions}"
@@ -33,7 +19,7 @@ class Room (object):
         items = []
         for item in self.items:
             items.append((item.name, f"description {item.description}"))
-        return (f"This room includes the following: {items}\n\n")
+        return (f"This room includes the following: {items}\n\n to pick up these items use keyword grab item_name\n\n")
     def change_room(self, option):
         if option == "n" and self.n_to is not None:
             return self.n_to
@@ -45,3 +31,18 @@ class Room (object):
             return self.e_to
         else:
             return None
+    #
+    def removeItem(self,item):
+        if self.items.count(item) > 0:
+            self.items.remove(item)
+            return(f"{item.name} has been removed from the {self.name}\n\n to drop an item use drop item_name\n \n to check your inventory use  i\n\n")
+        else:
+            return None
+
+    #
+    #
+    #
+    #
+    #
+    #
+    #

@@ -65,7 +65,7 @@ directions = {"n", "s", "e", "w"}
 # Write a loop that:
 directions = ["n", "s", "e", "w"]
 # "i"  should allow one to check inventory. 
-moves = ["look", "drop", "get"]
+moves = ["drop", "grab"]
 suppressRoomPrint = False
 player = Player(input("What is your name? "), room['outside'])
 print("Starting game:\n\n options -> Enter q to quit, n to go North s to go South e to go East w to go West\n\n i should allow you to check your inventory")
@@ -73,12 +73,17 @@ while True:
     print(f"{player.currentRoom}")
     option = input(
         "option ->")
-    option = option.lower()
-    if option == "q":
+    option = option.lower().split(" ")
+    if option[0] == "q":
         print("Exiting the game!")
         break
-    elif directions.count(option) > 0:
-        print(player.room_change(option))
+    elif directions.count(option[0]) > 0:
+        print(player.room_change(option[0]))
+    elif moves.count(option[0]) > 0:
+        if option[0] == 'grab':
+            print(player.grabItem(items[option[1]]))
+        elif option[0] == 'drop':
+            pass
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.

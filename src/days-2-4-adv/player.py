@@ -20,7 +20,21 @@ class Player(object):
             return f"Changing rooms...{ self.currentRoom.revealItems()}"
         else:
             return "You cannot go into that direction!"
-    
+    #
+    def grabItem(self, item):
+        if item.name == 'coins':
+            successful = self.currentRoom.removeItem(item)
+            if successful is not None:
+                self.points += 25
+                return f"You collected coins and added 25 points to your score. Your current score is {self.points}"
+        else: 
+           successful = self.currentRoom.removeItem(item)
+           if successful is not None:
+            self.items.append(item)
+            return f"You collected the {item.name}\n"
+    #
+    #
+    #
     #
 
         
