@@ -93,14 +93,15 @@ while True:
                 print('\nThe movement is not allowed.')
     elif len(cmd) > 1 and len(cmd) < 3:
         if cmd[0] == 'get' or cmd[0] == 'take':
-            item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.room.items))
+            item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.room.items))[0]
             if item in player.room.items:
                 player.add_item(item)
-                player.room.remove(item)
+                player.room.remove_item(item)
             else:
                 print('\nThe item is not available for pick up.')
         if cmd[0] == 'drop' or cmd[0] == 'remove':
             item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.items))[0]
+            print(item)
             if item in player.items:
                 player.items.remove(item)
                 player.room.add_item(item)
