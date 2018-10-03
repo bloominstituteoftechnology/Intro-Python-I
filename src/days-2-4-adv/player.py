@@ -7,9 +7,9 @@ class Player:
         self.name = name
         self.items = items
     def enter(self, direction):
-        room = self.currentRoom.getRoom(direction)
+        room = self.startRoom.getRoom(direction)
         if room is not None:
-            self.currentRoom = room
+            self.startRoom = room
             print (f"""
     {room.name}:
     {room.description}
