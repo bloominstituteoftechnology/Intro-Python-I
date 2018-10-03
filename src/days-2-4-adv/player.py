@@ -3,9 +3,8 @@
 
 class Player:
 
-  nextRoom = None
-
   def __init__(self, room):
+    self.nextRoom = None
     self.room = room
     self.items = []
   
