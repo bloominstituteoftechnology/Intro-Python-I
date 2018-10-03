@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 import os
 
+
 # Declare all the rooms
 
 room = {
@@ -34,6 +35,8 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
+
 #
 # Main
 #
@@ -44,7 +47,10 @@ choice_dictionary = {"n": "North", "s": "South", "e": "East", "w": "West", "u": 
 
 # Make a new player object that is currently in the 'outside' room.
 
-p = Player('Minnie', room["outside"])
+playername = input("Enter Your Name: ")
+
+
+p = Player(playername, room["outside"])
 
 # clearTerminal = os.system("clear")
 
@@ -73,21 +79,156 @@ def current(location):
     
 
 while True:
-    currentLocation = p.location
+    CRED = '\033[91m'
+    CBLACK = '\033[0;30m'
+    CGREEN = '\033[0;32m'
+    CBLUE = '\033[0;34m'
     currentPlayer = p.name
-    print(f"\n\n\n\n\nYou are currently in the great " + p.location.name)
-    print("\n" + currentPlayer +"\n    Enter 'N' to go North \n    Enter 'Q' to Quit \n")
+    currentLocation = p.location
+    print(f"\nYou are currently in the great " + p.location.name + "\n\n" + p.location.description)
+    
+
+    if hasattr(p.location, "S_to"):
+        print("\n\n    'S' to" + str(p.location.s_to))
+        if hasattr(p.location, "e_to"):
+            print("    'E' to" + str(p.location.e_to))
+            if hasattr(p.location, "n_to"):
+                print("    'N' to" + str(p.location.n_to))
+                if hasattr(p.location, "w_to"):
+                    print("    'W' to" + str(p.location.w_to))
+    elif hasattr(p.location, "w_to"):
+        print("\n\n    'W' to" + str(p.location.w_to))
+        if hasattr(p.location, "n_to"):
+            print("    'N' to" + str(p.location.n_to))
+            if hasattr(p.location, "e_to"):
+                print("    'E' to" + str(p.location.e_to))
+                if hasattr(p.location, "s_to"):
+                    print("    'S' to" + str(p.location.s_to))
+    elif hasattr(p.location, "e_to"):
+        print("\n\n    'E' to" + str(p.location.e_to))
+        if hasattr(p.location, "s_to"):
+            print("    'S' to" + str(p.location.s_to))
+            if hasattr(p.location, "w_to"):
+                print("    'W' to" + str(p.location.w_to))
+                if hasattr(p.location, "n_to"):
+                    print("    'N' to" + str(p.location.n_to))
+    elif hasattr(p.location, "n_to"):
+        print("\n\n    'N' to" + str(p.location.n_to))
+        if hasattr(p.location, "e_to"):
+            print("    'E' to" + str(p.location.e_to))
+            if hasattr(p.location, "s_to"):
+                print("    'S' to" + str(p.location.s_to))
+                if hasattr(p.location, "w_to"):
+                    print("    'W' to" + str(p.location.w_to))
+    else:
+
+        if hasattr(p.location, "S_to"):
+            print("\n\n    'S' to" + str(p.location.s_to))
+            if hasattr(p.location, "e_to"):
+                print("    'E' to" + str(p.location.e_to))
+                if hasattr(p.location, "n_to"):
+                    print("    'N' to" + str(p.location.n_to))
+                    if hasattr(p.location, "w_to"):
+                        print("    'W' to" + str(p.location.w_to))
+        elif hasattr(p.location, "w_to"):
+            print("\n\n    'W' to" + str(p.location.w_to))
+            if hasattr(p.location, "n_to"):
+                print("    'N' to" + str(p.location.n_to))
+                if hasattr(p.location, "e_to"):
+                    print("    'E' to" + str(p.location.e_to))
+                    if hasattr(p.location, "s_to"):
+                        print("    'S' to" + str(p.location.s_to))
+        elif hasattr(p.location, "e_to"):
+            print("\n\n    'E' to" + str(p.location.e_to))
+            if hasattr(p.location, "s_to"):
+                print("    'S' to" + str(p.location.s_to))
+                if hasattr(p.location, "w_to"):
+                    print("    'W' to" + str(p.location.w_to))
+                    if hasattr(p.location, "n_to"):
+                        print("    'N' to" + str(p.location.n_to))
+        elif hasattr(p.location, "n_to"):
+            print("\n\n    'N' to" + str(p.location.n_to))
+            if hasattr(p.location, "e_to"):
+                print("    'E' to" + str(p.location.e_to))
+                if hasattr(p.location, "s_to"):
+                    print("    'S' to" + str(p.location.s_to))
+                    if hasattr(p.location, "w_to"):
+                        print("    'W' to" + str(p.location.w_to)) 
+
+    print("\n\n")
     cmd = input("-> ")
     if cmd == "q":
         os.system("clear")
         break
     elif cmd.upper() == 'N':
+        os.system("clear")
+        print(currentPlayer + ",")
+
+        # if p.location == room['treasure']:
+        #     break
+
         if hasattr(p.location, 'n_to'):
             p.location = currentLocation.n_to
+            # if hasattr(p.location, 's_to'):
+            #     print("\n     Enter "S" to go Souther")
+            # else:
+            #     return
         else:
             os.system("clear")
-            print(f"\n\n\nYou ran into a wall GAME OVER\n\n\n")
-            break
+            print("\n    You Can't Go Any Farther North, Go Another Direction \n\n")
+            if hasattr(p.location, "S_to"):
+                print("\n\n    'S' to" + str(p.location.s_to))
+                if hasattr(p.location, "e_to"):
+                    print("    'E' to" + str(p.location.e_to))
+                    if hasattr(p.location, "n_to"):
+                        print("    'N' to" + str(p.location.n_to))
+                        if hasattr(p.location, "w_to"):
+                            print("    'W' to" + str(p.location.w_to))
+            elif hasattr(p.location, "w_to"):
+                print("\n\n    'W' to" + str(p.location.w_to))
+                if hasattr(p.location, "n_to"):
+                    print("    'N' to" + str(p.location.n_to))
+                    if hasattr(p.location, "e_to"):
+                        print("    'E' to" + str(p.location.e_to))
+                        if hasattr(p.location, "s_to"):
+                            print("    'S' to" + str(p.location.s_to))
+            elif hasattr(p.location, "e_to"):
+                print("\n\n    'E' to" + str(p.location.e_to))
+                if hasattr(p.location, "s_to"):
+                    print("    'S' to" + str(p.location.s_to))
+                    if hasattr(p.location, "w_to"):
+                        print("    'W' to" + str(p.location.w_to))
+                        if hasattr(p.location, "n_to"):
+                            print("    'N' to" + str(p.location.n_to))
+            else:
+                print("\n\n    'N' to" + str(p.location.n_to))
+                if hasattr(p.location, "e_to"):
+                    print("    'E' to" + str(p.location.e_to))
+                    if hasattr(p.location, "s_to"):
+                        print("    'S' to" + str(p.location.s_to))
+                        if hasattr(p.location, "w_to"):
+                            print("    'W' to" + str(p.location.w_to)) 
+    elif cmd.upper() == 'E':
+        print(currentPlayer + ",")
+        if hasattr(p.location, 'e_to'):
+            p.location = currentLocation.e_to
+        else:
+            os.system("clear")
+            print("\n    You Can't Go Any Farther East, Go Another Direction \n\n")
+    elif cmd.upper() == 'S':
+        print(currentPlayer + ",")
+        if hasattr(p.location, 's_to'):
+            p.location = currentLocation.s_to
+        else:
+            os.system("clear")
+            print("\n    You Can't Go Any Farther Sorth, Go Another Direction \n\n")
+    elif cmd.upper() == 'W':
+        print(currentPlayer + ",")
+        if hasattr(p.location, 'w_to'):
+            p.location = currentLocation.w_to
+        else:
+            os.system("clear")
+            print("\n    You Can't Go Any Farther West, Go Another Direction \n\n")
             # print(f"\n You are currently in the grand " + p.location.name)
     # elif cmd == "n":
     #     print(f"You are currently " + currentLocation.name)
@@ -98,7 +239,11 @@ while True:
     # elif cmd == "w"
     # elif cmd == "u"
     # elif cmd == "d"
+    # elif p.location == room['treasure']:
+    #     pass
     else:
-        print("Movement Not Allowed")
+        print("Key Not Allowed")
+
+    
     
 
