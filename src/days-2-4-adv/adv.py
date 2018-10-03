@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 import textwrap
+from item import Item, Weapon
 
 # Declare all the rooms
 
@@ -55,11 +56,10 @@ room['treasure'].s_to = room['narrow']
 
 # Items 
 wep = Weapon("sword", "a valerian steel sword", 200)
-room['overlook'].contents.append(wep)
+room['overlook'].items.append(wep)
 
 wep = Weapon("bow", "an elvish bow with sharp arrows", 100)
-room['narrow'].contents.append(wep)
-
+room['narrow'].items.append(wep)
 
 valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
                     "forward": "n", "backwards": "s", "right": "e", "left": "w"}
