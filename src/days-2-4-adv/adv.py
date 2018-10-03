@@ -84,7 +84,14 @@ while True:
                 p.playerGet(cmd[1])
                 p.currentRoom.items = None 
             else:
-                print(f"\n== There are no items called {cmd[1]}. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")
+                print(f"\n== There are no items in the room called {cmd[1]}. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")
+        elif cmd[0] == 'drop':
+            if cmd[1] in p.items:
+                p.playerDrop(cmd[1])
+                p.currentRoom.items = item[cmd[1]]
+            else:
+                print(f"\n== There are no items in your sack called {cmd[1]}. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")            
+
         else:
             print("\n== Nothing you are saying makes sense. Insanity is looming just beyond another fawlty keystroke. ==")
 
