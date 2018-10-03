@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 import textwrap
 
 # Declare all the rooms
@@ -23,7 +24,14 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+item = {
+    'twine': Item("twine", "a ball of tightly wound twine."),
+    'scissors': Item("scissors", "a pair of sewing shears."),
+    'coins': Item("coins", "a handful of gold coins"),
+    'meatloaf': Item("meatloaf", "a fragrant meatloaf, still warm.")
+}
 
+itemList = item.keys()
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -39,45 +47,35 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+suppressRoomPrint = False
+
 # Make a new player object that is currently in the 'outside' room.
 
-p = Player(input('What is your name?'), room['outside'])
+p = Player(input('What is your name? '), room['outside'])
 
 # Write a loop that:
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
+                    "forward": "n", "backwards": "s", "right": "e", "left": "w"}
+
+player = Player(input("What is your name? "), room['outside'])
+print(player.currentRoom)
+
 while True:
-    currentRoom = p.currentRoom
-    description = p.currentRoom.description
-    def printErr():
-        print('You\'ve run into a brick wall! Try another direction')
-    # * Prints the current room name
-    # * Prints the current description (the textwrap module might be useful here).
-    print('Where you are: ', currentRoom.name, ', What you see:', textwrap.fill(description))
-    cmd = input('==>')
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-    if cmd.upper() == 'N':
-        if hasattr(currentRoom, 'n_to'):
-            p.currentRoom = currentRoom.n_to
+    cmds = input("-> ").lower().split(" ")
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            break
+        elif cmds[0] in valid_directions:
+            player.travel(valid_directions[cmds[0]])
+        elif cmds[0] == "look":
+            player.look()
         else:
-            printErr()
-    elif cmd.upper() == 'S':
-        if hasattr(currentRoom, 's_to'):
-            p.currentRoom = currentRoom.s_to
+            print("I did not understand that command.")
+    else:
+        if cmds[0] == "look":
+            if cmds[1] in valid_directions:
+                player.look(valid_directions[cmds[1]])
+        elif cmds[0] == "get":
+            
         else:
-            printErr()
-    elif cmd.upper() == 'E':
-        if hasattr(currentRoom, 'e_to'):
-            p.currentRoom = currentRoom.e_to
-        else:
-            printErr()
-    elif cmd.upper() == 'W':
-        if hasattr(currentRoom, 'w_to'):
-            p.currentRoom = currentRoom.w_to
-        else:
-            printErr()
-#
-# If the user enters "q", quit the game.
-    elif cmd.upper() == 'Q':
-        break;
+            print("I did not understand that command.")
