@@ -5,6 +5,7 @@ class Player:
         self.name = name
         self.currentRoom = currentRoom
         self.inventory = []
+
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
@@ -12,6 +13,7 @@ class Player:
             print(f"\n\nYou are in: {nextRoom}")
         else:
             print("\n\nYou cannot move in that direction.")
+
     def look(self, direction=None):
         if direction is None:
             print(f"\n\nYou are in: {self.currentRoom}")
@@ -21,7 +23,12 @@ class Player:
                 print(f"\n\nYou see: {nextRoom}")
             else:
                 print("\n\nThere is nothing there.")
+
     def pickUpItem(self, item):
         self.inventory.append(item)
+
     def dropItem(self, item):
         self.inventory.remove(item)
+
+    def seeInventory(self):
+        print(f"Your inventory includes:\n    {self.inventory}")
