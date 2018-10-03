@@ -6,7 +6,6 @@ class Player():
         self.items = items
     def printRoom(self, room):
         print (self.room)
-        return (self.room)
     def printItems(self, items):
         for item in items:
             print (item)

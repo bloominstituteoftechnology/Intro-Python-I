@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = Player(room['outside'], ["flashlight", "first-aid kit", "rock"])
+player = Player(room.get("outside", 'outside'), ["flashlight", "first-aid kit", "rock"])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -52,18 +52,30 @@ player = Player(room['outside'], ["flashlight", "first-aid kit", "rock"])
 # If the user enters "q", quit the game.
 
 while True:
-    print (str(player.printRoom(player.room)))
-    cmd = input("-What do you want to do? You can: move n, move e, move s, move w, press q to quit: \n-Pess i to view items \n -> " )
+    player.printRoom(player.room)
+    cmd = input("-What do you want to do? You can: move 'n', move 'e', move 's', move 'w', press 'q' to quit \n-Pess 'i' to view item \n -> " )
     if cmd == "q":
         break
     elif cmd == "n":
-        player.room = room[player.room].n_to
+        if hasattr(player.room, 'n_to'):
+            player.room(player.room.n_to)
+        else:
+            print ("There is no room that way")
     elif cmd == "e":
-        player.room = room[player.room].e_to
+        if hasattr(player.room, 'e_to'):
+            player.room(player.room.e_to)
+        else:
+            print ("There is no room that way")
     elif cmd == "s":
-        player.room = room[player.room].s_to
+        if hasattr(player.room, 's_to'):
+            player.room(player.room.s_to)
+        else:
+            print ("There is no room that way")
     elif cmd == "w":
-        player.room = room[player.room].w_to
+        if hasattr(player.room, 'w_to'):
+            player.room(player.room.w_to)
+        else:
+            print ("There is no room that way")
     elif cmd == "i":
         player.printItems(player.items)
     else:
