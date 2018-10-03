@@ -1,25 +1,28 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",
+                [Item("STICK", "It's a stick, and it's awesome!")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", []),
+
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", []),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", []),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", []),
 }
 
 
@@ -39,7 +42,8 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-p = Player(room["outside"])
+player = Player(input("What is your name? => "),room["outside"])
+print(player.currentRoom)
 # Write a loop that:
 #
 # * Prints the current room name
@@ -51,39 +55,29 @@ p = Player(room["outside"])
 #
 # If the user enters "q", quit the game.
 
-playerName = input('Player Name: ')
+suppressRoomPrint = False
+
+validDirections = {"N": "N", "NORTH": "N", "S": "S", "SOUTH": "S", "E": "E", "EAST": "E", "W": "W", "WEST": "W"}
 
 while True: 
-    print(f"{playerName} is currently at the {p.currentRoom.name}") 
-    print(p.currentRoom.description)
-    cmd = input("What would you like to do? => ")
-    print('\n')
-    if cmd.upper() == "N" or cmd.upper() == "NORTH":
-        if hasattr(p.currentRoom, "n_to"):
-            p.currentRoom = p.currentRoom.n_to
+    cmds = input("What would you like to do? => ").upper().split(" ")
+    if len(cmds) == 1:
+        if cmds[0] in validDirections:
+            player.travel(validDirections[cmds[0]])
+        elif cmds[0] == "LOOK":
+            player.look()            
+        elif cmds[0] == "Q" or cmds[0] == "QUIT":
+            break
         else:
-            print("You can't go that way!")
+            print("That doesn't work please try a different command!")
             print('\n')
-    elif cmd.upper() == "E" or cmd.upper() == "EAST":
-        if hasattr(p.currentRoom, "e_to"):
-            p.currentRoom = p.currentRoom.e_to
-        else:
-            print("You can't go that way!")
-            print('\n')
-    elif cmd.upper() == "S" or cmd.upper() == "SOUTH":
-        if hasattr(p.currentRoom, "s_to"):
-            p.currentRoom = p.currentRoom.s_to
-        else:
-            print("You can't go that way!")
-            print('\n')
-    elif cmd.upper() == "W" or cmd.upper() == "WEST":
-        if hasattr(p.currentRoom, "w_to"):
-            p.currentRoom = p.currentRoom.w_to
-        else:
-            print("You can't go that way!")
-            print('\n')
-    elif cmd.upper() == "Q" or cmd.upper() == "QUIT":
-        break
     else:
-        print("That is not a valid command!")
-        print('\n')
+        if cmds[0] == "LOOK":
+            if cmds[1] in validDirections:
+                player.look(validDirections[cmds[1]])
+        elif cmds[0] == "TAKE":
+            if cmds[1] in player.currentRoom.items:
+                cmds[1].takeItem(player)
+                print(f"You have taken {cmds[1]}!")
+        else:
+            print("That doesn't work please try a different command!")
