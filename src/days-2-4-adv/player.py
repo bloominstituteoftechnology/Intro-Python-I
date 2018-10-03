@@ -36,7 +36,9 @@ class Player:
             if element.name[0]==item:
                 self.possessions.remove(element)
                 self.current_location.inventory.append(element)
-                element.on_drop()
+                warning=element.on_drop()
+                if warning is not None:
+                    print(f'{warning}')
                 return f'{self.name} dropped a {item}'
         return f'You do not have a {item} to drop.'
     def get_score(self):

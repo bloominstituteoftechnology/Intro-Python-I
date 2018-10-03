@@ -19,3 +19,8 @@ class Treasure(Item):
             return self.value
         else:
             return None
+class LightSource(Item):
+    def __init__(self,name,description):
+        super().__init__(name,description)
+    def on_drop(self):
+        return "It's not wise to drop your source of light!"

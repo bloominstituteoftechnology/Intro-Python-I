@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item,Treasure
+from item import Item,Treasure,LightSource
 # Declare all the rooms
 
 room = {
@@ -36,14 +36,12 @@ room['treasure'].s_to = room['narrow']
 #Declare items
 item={
     'sword':Item('sword',"""Just a basic sword to hack at monsters with ... nothing fancy."""),
-    'candle':Item('candle',"""Useful for keeping the Boogeyman at bay."""),
     'rock':Item('rock',"""A big rock ... not useful at all."""),
     'sandwich':Item('sandwich',"""Sustenance for when you get hungry later."""),
     'lasso':Item('lasso', """Not sure if it makes people tell the truth or makes one go Indiana Jones.""")
 }
 #put items in rooms
 room['outside'].inventory.append(item['sword'])
-room['foyer'].inventory.append(item['candle'])
 room['overlook'].inventory.append(item['rock'])
 room['narrow'].inventory.append(item['sandwich'])
 room['treasure'].inventory.append(item['lasso'])
@@ -59,6 +57,11 @@ room['foyer'].inventory.append(treasure['diamond'])
 room['narrow'].inventory.append(treasure['gold'])
 room['overlook'].inventory.append(treasure['pearl'])
 #
+#declare lightsources
+lightsource={
+    'candle':LightSource('candle',"""Useful for keeping the Boogeyman at bay.""")
+}
+room['outside'].inventory.append(lightsource['candle'])
 # Main
 #
 # Make a new player object that is currently in the 'outside' room.
