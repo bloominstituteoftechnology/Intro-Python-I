@@ -24,7 +24,7 @@ class Room:
         if len(self.items) is 0:
             print('\nThe room is totally empty!')
         else:
-            del self.items[index].name
+            del self.items[index]
 
     def dropped_item(self, item):
         self.items.append(item)
