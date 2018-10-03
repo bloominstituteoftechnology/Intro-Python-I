@@ -1,5 +1,7 @@
+# https://goodcode.io/articles/python-dict-object/
 
-class Room:
+
+class Item:
     def __init__(self, name, description):
         self.name = name
         self.description = description

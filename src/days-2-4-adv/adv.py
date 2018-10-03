@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 # Declare all the rooms
 
 room = {
@@ -21,6 +22,11 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+item = {
+    'a': Item("AXE", """Glowing axe of a great lost warrior"""),
+    'm': Item("MAGIC WAND", """Heavy with power"""),
+    'c': Item("CLOAK", """Invisibility"""),
+}
 
 # Link rooms together
 

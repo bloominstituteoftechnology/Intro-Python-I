@@ -1,5 +1,6 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+from item import Item
 
 
 class Player:
@@ -8,4 +9,4 @@ class Player:
         self.items = [None]
 
     def get(self, item):
-        self.items.append(item)
+        self.items.append(Item['name'])
