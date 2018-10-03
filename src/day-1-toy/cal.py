@@ -14,3 +14,16 @@
 # docs for the calendar module closely.
 
 import sys
+import datetime
+import calendar
+
+if len(sys.argv) >= 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+else:
+    now = datetime.date.today()
+    month = int(now.month)
+    year = int(now.year)
+
+cal = calendar.TextCalendar()
+print(cal.formatmonth(year, month))
