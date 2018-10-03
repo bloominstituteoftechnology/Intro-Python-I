@@ -6,25 +6,25 @@ from items import Item
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons", 
-                     [Item("Map of the Location")]),
+                     [Item("Map", "Map of the Location")]),
  
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""",
-[Item("Coin of the Treasure")]),
+[Item("Coin", "Coin of the Treasure")]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
-[Item("Photo of the deceased owner")]),
+[Item("Photo", "Photo of the deceased owner")]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""",
-[Item("Backpack belonging to other Adventurers")]),
+[Item("Backpack", "Backpack belonging to other Adventurers")]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
-[Item("List of different treasure spots left by the other adventurers")]),
+[Item("List", "List of different treasure spots left by the other adventurers")]),
 }
 
 # Link rooms together
@@ -42,7 +42,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'], [Item("Map of the Location")])
+player = Player(room['outside'], [Item("Map", "Map of the Location")])
 # Write a loop that:
 #
 # * Prints the current room name
