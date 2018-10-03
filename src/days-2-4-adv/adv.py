@@ -54,7 +54,17 @@ print(player.currentRoom)
 
 # Write a loop that:
 
-choice_dictionary = {"n": "north", "s":"south", "e": "east", "w":"west"}
+# * Prints the current room name
+
+# * Prints the current description (the textwrap module might be useful here).
+# * Waits for user input and decides what to do.
+#
+# If the user enters a cardinal direction, attempt to move to the room there.
+# Print an error message if the movement isn't allowed.
+#
+# If the user enters "q", quit the game.
+
+directions = {"n": "north", "s":"south", "e": "east", "w":"west"}
 
 
 playing = True
@@ -66,15 +76,28 @@ while(playing):
     if cmd == "q":
         break
 
-    # elif command == "n" or command == "s" or command == "e" or command == "w":
+    elif cmd == "n":
+        if player.currentRoom.n_to is not None:
+            player.currentRoom = player.currentRoom.n_to
+        else:  
+            print("Your chosen direction is not an option.")
+    elif cmd == "s":
+        if player.currentRoom.s_to is not None:
+            player.currentRoom = player.currentRoom.s_to
+        else:  
+            print("Your chosen direction is not an option.")
+    elif cmd == "e":
+        if player.currentRoom.e_to is not None:
+            player.currentRoom = player.currentRoom.e_to
+        else:  
+            print("Your chosen direction is not an option.")
+    elif cmd == "w":
+        if player.currentRoom.w_to is not None:
+            player.currentRoom = player.currentRoom.w_to
+        else:  
+            print("Your chosen direction is not an option.")
+    else:  
+        print("That command is not reconized by this program")
 
 
-# * Prints the current room name
 
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
