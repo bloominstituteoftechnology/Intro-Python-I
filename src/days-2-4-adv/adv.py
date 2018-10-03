@@ -41,8 +41,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-s  = Player(room["outside"])
-d = Player(input("Where do you want to go? "))
+
 # Write a loop that:
 
 # * Prints the current room name
@@ -53,7 +52,9 @@ d = Player(input("Where do you want to go? "))
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+# d = Player(input("Where do you want to go? "))
 
+s  = Player(room["outside"])
 direction_dictionary = {"n": "north", "s": "south", "w": "west", "e": "east" }
 
 while True: 
@@ -61,12 +62,14 @@ while True:
     cmd = input("->")
     if cmd == "q":
         break
-    elif cmd == "n" or cmd == "s" or cmd == "w" or cmd == "e":
-
-if "n" 
-     s["currentRoom"] = (room[Room[f"{cmd}_to"]])
-
-
-        print(f"You are currently in {vars(s.currentRoom)}")
-
+    # elif cmd == "n" or cmd == "s" or cmd == "w" or cmd == "e":
+    
+    if cmd:
+        s.currentRoom = getattr(s.currentRoom, f"{cmd}_to")
+        # getattr(s["currentRoom"], cmd)
+        # [f"{cmd}_to"]
+        
+        
+        print(f"You are currently in {s.currentRoom.name}")
+        print(f"Description: {s.currentRoom.description}")
 
