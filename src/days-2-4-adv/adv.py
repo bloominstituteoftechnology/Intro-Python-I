@@ -40,6 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 print()
 print("\nWelcome! Are you ready to embark on an adventure?")
+print("=========================================================")
 name = input(" What is your name?   ")
 room = room['outside']
 items = []
@@ -47,20 +48,39 @@ player = Player(name, room, items )
 print()
 print(f'Welcome, {player.name}!\n Lets begin the journey!')
 print()
-print("To play this game, use the buttons n, e, w, and s. \n\n n = North \n e = East \n w = West \n s = South \n q = Quit")
+print("To play this game, use the buttons n, e, w, and s for direction. \n\n n = North \n e = East \n w = West \n s = South \n q = Quit")
+print("=========================================================")
+print()
+print("There are items in each room that can be collected.") 
+print("You can only take one item from room at a time ")
+print("To take item ---- use command 'get [item you choose]'-----")
+print("To drop an item ---- use the command 'drop [item you choose]'------- ")
+print("You can drop an item anywhere, but can only pick up an item if it is present in the room")
+print("You can check your inventory at any point in time by using command 'inventory'")
+print("=========================================================")
+print()
+print("You can look around your surrounding without leaving a room.")
+print("To do that, just add look before a direction")
+print("=========================================================")
 print()
 print("The ultimate goal of this game is get to the treasure before anyone else gets to it.")
 print("Be careful to not fall to your death!")
+print()
+print("=========================================================")
+print("LET'S BEGIN!")
+print("=========================================================")
 
 # Write a loop that:
 
 while True:
+    print()
     print(f'Current Room: {player.room.name}...')
     print(player.room.description)
     print()
-    print('As you go along you can pick up items and add them to your inventory!')
+    print("=========================================================")
     print(f'The items in this room are:{player.room.items}')
-    print('Which ones do you want to pick up! You can only choose one per room.')
+    print("=========================================================")
+   
     cmds = input("What's Next? -->  ").split(' ')
 
     error = "You cannot go this way!! Try again"
@@ -68,6 +88,10 @@ while True:
     if len(cmds) == 1:
         if cmds[0] == "q":
             break
+        elif cmds[0] == "inventory":
+            print('=========================================================')
+            print(f'Inventory: {player.items}')
+            print('=========================================================')
         elif cmds[0] in valid_directions:
             player.travel(cmds[0]) 
         else:
@@ -86,3 +110,4 @@ while True:
             player.remove_item(cmds[1])
         else:
             print('Please specify which item to remove from inventory')
+    
