@@ -40,7 +40,6 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -53,27 +52,28 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-game_over = False
 
-while not game_over:
-    # print current room name
-    print('ROOM: ', player.currentRoom.name)
-    # print current description
-    for line in textwrap.wrap(player.currentRoom.description):
-        print('DESCRIPTION: ', line)
-    # wait for user input
-    cmd = input('-> ').lower()
-    # check for valid command
-    if len(cmd) > 2 or len(cmd) < 1:
-        print("I'm sorry, didn't understand that command")
-    # if length of command is valid (1)
-    elif len(cmd) == 1:
-        # if user enters 'q', quit the game
-        if cmd == 'q':
-            game_over = True
-            print('GAME OVER')
-         # else, command length is valid but command value is not recognized
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
+                    "forward": "n", "backwards": "s", "right": "e", "left": "w"}
+
+player = Player(input("What is your name? "), room['outside'])
+print(player.currentRoom)
+
+while True:
+    cmds = input("-> ").lower().split(" ")
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            print("Game Over")
+            break
+        elif cmds[0] in valid_directions:
+            player.travel(valid_directions[cmds[0]])
+        elif cmds[0] == "look":
+            player.look()
         else:
-            print('Unrecognized command.')
-    
-
+            print("I did not understand that command.")
+    else:
+        if cmds[0] == "look":
+            if cmds[1] in valid_directions:
+                player.look(valid_directions[cmds[1]])
+        else:
+            print("I did not understand that command.")
