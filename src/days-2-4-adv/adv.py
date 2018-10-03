@@ -11,14 +11,15 @@ items = {
     "bat": Item("bat", "Use this to knock down or hit with manually droppable item"),
     "gun": Item("gun", "Shoot with this manually droppable item"),
     "extinguisher": Item("extinguisher", "Put out fires or use as a decoy, manually droppable item"),
-    "coins": Item("coins", "coins count as points, every room has coins This item cannot be mannually dropped")
+    "coins": Item("coins", "coins count as points, every room has coins This item cannot be mannually dropped"),
+    "flashlight": Item("flashlight", "The flashlight helps you see better but can also be used as a weapon careful if you use it as a weapon it may not work anymore as a visual aid."),
 }
 room = {
     'outside':  Room("outside",
                      "Outside Cave Entrance North of you, the cave mount beckons", [items["coins"]]),
 
     'foyer':    Room("foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [items["coins"]]),
+passages run north and east.""", [items["coins"], items["flashlight"]]),
 
     'overlook': Room("overlook", """Grand Overlook A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
