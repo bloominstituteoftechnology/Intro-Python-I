@@ -26,19 +26,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
 [Item("List of different treasure spots left by the other adventurers")]),
 }
-#Create item dictionary
-# item = {
-#     "Map": Item("Map of the Location"),
-
-#     "Coin": Item("Coin of the Treasure"),
-
-#     "Photo": Item("Photo of the deceased owner"),
-
-#     "Backpack": Item("Backpack belonging to other Adventurers"), 
-
-#     "List": Item("List of different treasure spots left by the other adventurers")
-# }
-
 
 # Link rooms together
 

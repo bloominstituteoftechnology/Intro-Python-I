@@ -1,0 +1,84 @@
+//adv.py
+from room import Room 
+from player import player
+
+
+room = {
+    'outside':  Room("Outside Cave Entrance",
+                     "North of you, the cave mount beckons"),
+
+    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
+passages run north and east."""),
+
+    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
+into the darkness. Ahead to the north, a light flickers in
+the distance, but there is no way across the chasm."""),
+
+    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
+to north. The smell of gold permeates the air."""),
+
+    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
+chamber! Sadly, it has already been completely emptied by
+earlier adventurers. The only exit is to the south."""),
+}
+
+room['outside'].n_to = room['foyer']
+room['foyer'].s_to = room['outside']
+room['foyer'].n_to = room['overlook']
+room['foyer'].e_to = room['narrow']
+room['overlook'].s_to = room['foyer']
+room['narrow'].w_to = room['foyer']
+room['narrow'].n_to = room['treasure']
+room['treasure'].s_to = room['narrow']
+
+player = Player(room['outside']) //where the player will start the game. 
+
+while True: 
+        print("Welcome, begin you journey")
+        nav = input('\n to navigate use the n, s, w, and e, keys. If you want to quit your journey pres q')
+
+        if nav == 'q':
+            print('journey has ended') //beginning will say this in the terminal
+            break
+            elif nav == 'n': // if nav is equal to 'n'
+                if not hasattr(player.currentRoom.n_to, 'name'): //if nav doesn't equal 'n' then return dead end
+                print('dead end')
+                else: 
+                    player.currentRoom = player.currentRoom.n_to // if nav does equal 'n' return the player.currentRoom.n_to which is the next room. 
+                    print(f"""{player.currentRoom.name}:         //just printing out the name of the room and the description along with it. 
+                     {player.currentRoom.description} """)
+            elif nav == 's': 
+                if not hasattr(player.currentRoom.s_to, 'name'):
+                print('dead end')
+                else: 
+                    player.currentRoom = player.currentRoom.s_to
+                    print(f"""{player.currentRoom.name}:
+                     {player.currentRoom.description} """)
+            elif nav == 'w': 
+                if not hasattr(player.currentRoom.w_to, 'name'):
+                print('dead end')
+                else: 
+                    player.currentRoom = player.currentRoom.w_to
+                    print(f"""{player.currentRoom.name}:
+                     {player.currentRoom.description} """)    
+            elif nav == 'e': 
+                if not hasattr(player.currentRoom.e_to, 'name'):
+                print('dead end')
+                else: 
+                    player.currentRoom = player.currentRoom.e_to
+                    print(f"""{player.currentRoom.name}:
+                     {player.currentRoom.description} """)   
+//room.py
+class Room: 
+        def __init__(self, name, description): 
+            self.name = name
+            self.description = description
+            self.n_to = None
+            self.s_to = None
+            self.w_to = None
+            self.e_to = None
+
+//player.py
+class Player: 
+        def __init__(self, currentRoom): 
+            self.currentRoom = currentRoom

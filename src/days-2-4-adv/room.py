@@ -16,7 +16,8 @@ class Room:
     def printDesc(self):
         print(self.description)
     def printItems(self):
-        print(self.items)
+            for item in self.items:
+                print(item.name)
 
 
 
