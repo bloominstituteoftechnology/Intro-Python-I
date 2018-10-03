@@ -46,7 +46,11 @@ class Player(object):
                 return f"You have dropped the {item.name} in the {self.currentRoom}"
             else:
                 return (f"You do not have that item in your inventory\n  use option i to view your inventory")
-            
+    def showInventory(self):
+        items = []
+        for item in self.items:
+            items.append((item.name, item.description)) 
+        return items
 
     #
     #

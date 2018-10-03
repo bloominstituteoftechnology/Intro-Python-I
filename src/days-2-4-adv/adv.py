@@ -78,6 +78,8 @@ while True:
     if option[0] == "q":
         print("Exiting the game!")
         break
+    elif option[0] == "i":
+        print(f"You currently have in your inventory the following items: {player.showInventory()}")
     elif directions.count(option[0]) > 0:
         print(player.room_change(option[0]))
     elif moves.count(option[0]) > 0:
