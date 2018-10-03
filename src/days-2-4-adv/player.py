@@ -8,13 +8,18 @@ class Player():
     def changeRoom(self, direction):
         next_room = self.room.getRoomInDirection(direction)
         if next_room == None:
-            print("There is nothing there.")
+            print(f"\nLocation unchanged. There is nothing {direction}.")
         else: 
             self.room = next_room
-            print(self.room)
+            print(f'\nYou are currently: \n{self.room}')
+    def lookRoom(self, direction):
+        next_room = self.room.getRoomInDirection(direction)
+        if next_room == None:
+            print(f"\nThere is nothing {direction}.")
+        else: 
+            print(f'\nGoing {direction} will take you to: \n{next_room}')
     def playerItems(self):
         Items.getItems(self, self.name)
-        # print(f"\n you currently have {self.items}")
     def addObject(self, newObject):
         self.object = newObject
     def dropObject(self):

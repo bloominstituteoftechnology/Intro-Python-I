@@ -50,20 +50,21 @@ valid_commands = {
 }
 
 commands_help = [
-    {"me": "returns the items that you have"},
     {"n": "moves to the north"},
     {"e": "moves to the east"},
-    {"w": "moves to the west"},
     {"s": "moves to the south"},
+    {"w": "moves to the west"},
+    {"me": "returns the items that you have"},
     {"room": "returns item in the room"},
     {"get <item>": "picks up item in the room"},
     {"drop <item>": "drops item in the room"},
+    {"back": "exits help menu"},
     {"q": "exits program"}
 ]
 
 p = Player(input("What is your name? "), room["outside"])
 
-print(p.room) # this comes from the __str__ statement
+print(f'\nYou are currently: \n{p.room}') # this comes from the __str__ statement
 
 while True: 
     cmds = input(f'\n-->').lower().split(" ")
@@ -73,10 +74,12 @@ while True:
             break
         elif cmd == "me":
             p.playerItems()
-            # print(f'\n--You currently have {p.object}')
+        elif cmd == "back":
+            print(p.room)
         elif cmd == "room":
             p.room.roomItems()
-            # print(f"\n--The room contains {p.room.object}")
+        elif cmd == "look":
+            print(p.room)
         elif cmd == "get":
             p.addObject(p.room.object)
             p.room.removeObject()
@@ -89,3 +92,7 @@ while True:
             p.changeRoom(valid_directions[cmd])
         else: 
             print('not a valid command')
+    else: 
+        if cmds[0] == "look": 
+            if cmds[1] in valid_directions:
+                p.lookRoom(valid_directions[cmds[1]])

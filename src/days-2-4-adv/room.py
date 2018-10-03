@@ -10,7 +10,7 @@ class Room():
         self.w_to = None
         Items.__init__(self, items=None)
     def __str__(self):
-        return f'\n You are currently {self.name}\n\n   {self.description}'
+        return f'\n{self.name}\n\n   {self.description}'
     def roomItems(self):
         Items.getItems(self, self.name)
     def removeObject(self):
