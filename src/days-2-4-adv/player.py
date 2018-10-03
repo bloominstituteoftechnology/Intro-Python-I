@@ -6,27 +6,26 @@ class Player():
         self.items = []
         self.score = 0
 
-    def update_room(self, room):
-        self.c_room = room
+    def update_room(self, dir):
+        n_room = self.c_room.get_room(dir)
+        if n_room is not None:
+          self.c_room = n_room
+          print(n_room)
 
-    def get_item(self, item):
-        self.items.append(item)
-
-    def drop_item(self, item):
-        self.c_room.add_room_item(item)
-        self.items.remove(item)
-
-    def add_score(self, score):
-        self.score += score
-
-    def get_score(self):
-        return self.score
-
-    def list_player_items(self):
-        return self.items
-
-    def player_has_items(self):
-        if len(self.items) > 0:
-            return True
+    def look(self, dir=None):
+      if dir is None:
+        print(self.c_room)
+      else:
+        n_room = self.c_room.get_room(dir)
+        if n_room is not None:
+          n_room.examine()
         else:
-            return False
+          print("There is no room there")
+
+    def list_items(self):
+      if len(self.items) > 0:
+        print('You are currently carrying: ')
+        for item in self.items:
+          print(item)
+      else:
+        print("You are not currently carrying anything, try (look)ing for items in rooms")

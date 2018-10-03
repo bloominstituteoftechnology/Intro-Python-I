@@ -5,7 +5,10 @@ class Item():
         self.obtained = False
 
     def __str__(self):
-        return f'{self.name}: {self.description}'
+        return f'{self.name}'
+
+    def examine(self):
+        return f'{self.__str__}: {self.description}'
 
     def on_take(self, player):
         self.obtained = True
