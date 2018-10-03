@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-
+from item import Item
 # Declare all the rooms
 
 room = {
@@ -34,6 +34,12 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+# Place some items in the rooms
+
+room['outside'].addItem(Item('meat', 'a pile of rancid meat. The smell is unbearable.'))
+room['foyer'].addItem(Item('gauntlets', 'a pair of gauntlets, well worn but still usable'))
+room['overlook'].addItem(Item('torch', 'a torch to light the way'))
+
 #
 # Main
 #
@@ -56,7 +62,8 @@ plyr = Player(name, room['outside'])
 
 print(f'You find yourself just {plyr.current_room.location} with no memory of how you got here. {plyr.current_room.description}. ')
 while True:
-    cmd = input('\n How should we proceed? -> ').lower().split(' ')
+    cmd = input(' How should we proceed? -> ').lower().split(' ')
+    print(f'{len(cmd)}')
     if len(cmd) == 1:
         if cmd[0] == 'q':
             print('\n Knew you didnt have the constitution for this...')

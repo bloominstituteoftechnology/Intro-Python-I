@@ -10,7 +10,7 @@ class Room():
         self.w_to = None
         self.items = []
     def __str__(self):
-        return f'\n You have entered the {self.location} \n {self.description} \n '
+        return f'\n You have entered the {self.location} \n {self.description} \n As you look around you notice a {self.items.name} in the {self.location} '
     def getRoom(self, direction):
         if direction == 'n':
             return self.n_to

@@ -4,6 +4,7 @@ class Player():
     def __init__(self, name, current_room):
         self.name = name
         self.current_room = current_room
+        self.inventory = []
     def travel(self, direction):
         nextRoom = self.current_room.getRoom(direction)
         if nextRoom is not None:
@@ -11,4 +12,7 @@ class Player():
             print(nextRoom)
         else:
             print('You are filled with an overwhelming sense of dread and quickly reconsider your decision.')
-    
+    def addItem(self, item):
+        self.inventory.append(item)
+        self.current_room.remove(item)
+        print(f'You have picked up the {item}.')
