@@ -4,6 +4,7 @@ class Player:
     def __init__(self, name, currentRoom):
         self.name = name
         self.currentRoom = currentRoom
+        self.inventory = []
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:

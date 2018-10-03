@@ -59,12 +59,14 @@ valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
 player = Player(input("What is your name? "), room['outside'])
 print(player.currentRoom)
 
-while True:
+game_over = False
+
+while not game_over:
     cmds = input("-> ").lower().split(" ")
     if len(cmds) == 1:
         if cmds[0] == "q":
             print("Game Over")
-            break
+            game_over = True
         elif cmds[0] in valid_directions:
             player.travel(valid_directions[cmds[0]])
         elif cmds[0] == "look":
