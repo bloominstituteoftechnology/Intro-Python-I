@@ -14,15 +14,15 @@ class Room:
 
     def room_items(self):
         if len(self.items) is not 0:
-            print('This room contains: ')
+            print('\nThis room contains: ')
             for i, item in enumerate(self.items):
                 print(str(i) + ' -> ' + item)
         else:
-            print('There are no items in this room!')
+            print('\nThere are no items in this room!')
 
     def delete_item(self, index):
         if len(self.items) is 0:
-            print('The room is totally empty!')
+            print('\nThe room is totally empty!')
         else:
             del self.items[index]
 

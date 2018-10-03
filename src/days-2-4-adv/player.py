@@ -11,18 +11,17 @@ class Player:
     
     def drop_item(self, index):
         if len(self.inventory) is 0:
-            print('Oops, your inventory is totally empty!')
+            print('\nOops, your inventory is totally empty!')
         else:
             del self.inventory[index]
 
     def check_inventory(self):
-        
         if len(self.inventory) is not 0:
-            print('Your inventory contains: ')
+            print('\nYour inventory contains: ')
             for i, item in enumerate(self.inventory):
                 print(str(i) + ' --> ' + item)
         else:
-            print('You are broke. Nothing in the bag!!!')
+            print('\nYou are broke. Nothing in the bag!!!')
         
     def getRoom(self):
         print(75 * '#')
