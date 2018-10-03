@@ -26,7 +26,7 @@ class Player:
         item_arr=', '.join(item_arr)
         return f'Items currently in possession: {item_arr}'
     def inventory(self):
-        self.i()
+        return self.i()
     def drop(self,item):
         for element in self.possessions:
             if element.name[0]==item:
