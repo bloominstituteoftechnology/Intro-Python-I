@@ -53,38 +53,38 @@ while True:
         if cmd[0] == 'q':
             break
         elif cmd[0] == 'n':
-            print('\n==You stride confidently north.==')
+            print('\n== You stride confidently north. ==')
             try: 
                 p.playerMove('n')
             except: 
                 print(p.badMove)
         elif cmd[0] == 's':
-            print('\n==You stride confidently south.==')
+            print('\n== You stride confidently south. ==')
             try: 
                 p.playerMove('s')
             except: 
                 print(p.badMove)
         elif cmd[0] == 'e':
-            print('\n==You stride confidently east.==')
+            print('\n== You stride confidently east. ==')
             try: 
                 p.playerMove('e')
             except: 
                 print(p.badMove)
         elif cmd[0] == 'w':
-            print('\n==You stride confidently west.==')
+            print('\n== You stride confidently west. ==')
             try: 
                 p.playerMove('w')
             except: 
                 print(p.badMove)
         else:
-            print("\n==You wander aimlessly like a fool and will surely be eaten by goblins if you don't pick a direction soon.==")
+            print("\n== You wander aimlessly like a fool and will surely be eaten by goblins if you don't pick a direction soon. ==")
     else:
         if cmd[0] == 'get':
             if cmd[1] == p.currentRoom.items.name.lower():
                 p.playerGet(cmd[1])
                 p.currentRoom.items = None 
             else:
-                print("\n==There are no items. You gawk vacantly into the distance like one who has seen far too many dragons in their days.==")
+                print(f"\n== There are no items called {cmd[1]}. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")
         else:
-            print("\n==Nothing you are saying makes sense. Insanity is looming just beyond another fawlty keystroke.==")
+            print("\n== Nothing you are saying makes sense. Insanity is looming just beyond another fawlty keystroke. ==")
 
