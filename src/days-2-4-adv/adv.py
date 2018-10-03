@@ -22,17 +22,57 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+suppressRoomPrint = False
+validDirections = ["n", "s", "e", "w"]
+
+
+def moveCommand(player, *args):
+    newRoom = player.location.getRoomInDirection(args[0])
+    if newRoom == None:
+        printErrorString("Dead end!")
+    else:
+        player.change_location(newRoom)
+    return False
+ def lookCommand(player, *args):
+    """
+    Returns suppressRoomString value
+    """
+    if not (args[0] == "l" or args[0] == "look"):
+        printErrorString("That is not a look command")
+    elif len(args) == 1:
+        return False
+    elif args[1] in validDirections:
+        lookRoom = player.location.getRoomInDirection(args[1])
+        if lookRoom is not None:
+            print (lookRoom)
+        else:
+            printErrorString("Dead end!")
+        return True
+ def printErrorString(errorString):
+    print(f'{errorString}')
+    global suppressRoomPrint
+    suppressRoomPrint = True
+
+commands = {}
+commands["n"] = moveCommand
+commands["s"] = moveCommand
+commands["e"] = moveCommand
+commands["w"] = moveCommand
+commands["l"] = lookCommand
+commands["look"] = lookCommand
+
+commandsHelp = {}
+commandsHelp["n"] = "Move North"
+commandsHelp["s"] = "Move South"
+commandsHelp["e"] = "Move East"
+commandsHelp["w"] = "Move West"
+commandsHelp["l"] = "Look somewhere"
+
+
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+
 
 #
 # Main
@@ -40,7 +80,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = Player(room['outside'])
+
 
 # Write a loop that:
 #
@@ -53,37 +93,25 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-while True:
-    invalid_move = '\nYou shall not pass!'
+room['outside'].connectRooms(room['foyer'], "n")
+room['foyer'].connectRooms(room['overlook'], "n")
+room['foyer'].connectRooms(room['narrow'], "e")
+room['narrow'].connectRooms(room['treasure'], "n")
 
-    print(f'\nLocation: {player.location.name}')
-    print(f'{player.location.description}')
-
-    answer = input("\nWhich way will you go? n, s, e, w. \nIt's not to late to turn back. Press q to quit\n")
-
-    if answer == "q":
-        print("Perhaps it is for the best.")
+player = Player(input("\nWhat is your name?: ") , room['outside'])
+ print (f"Salutations, {player.name}!\n")
+ while True:
+    if suppressRoomPrint:
+        suppressRoomPrint = False
+    else:
+        print(f'{player.location.title}')
+    inputList = input(">>> ").split(" ")
+    if inputList[0] == "q":
         break
-
-    if answer == "n":
-        if not hasattr(player.location.n_to, 'name'):
-            print(invalid_move)
-        else:
-            player.location = player.location.n_to
-
-    if answer == "s":
-        if not hasattr(player.location.s_to, 'name'):
-            print(invalid_move)
-        else:
-            player.location = player.location.s_to
-
-    if answer == "e":
-        if not hasattr(player.location.e_to, 'name'):
-            print(invalid_move)
-        else:
-            player.location = player.location.e_to
-    if answer == "w":
-        if not hasattr(player.location.w_to, 'name'):
-            print(invalid_move)
-        else:
-            player.location = player.location.w_to
+    elif inputList[0] in commands:
+        suppressRoomPrint = commands[inputList[0]](player, *inputList)
+    elif inputList[0] == "help":
+        for command in commandsHelp:
+            print (f"{command} - {commandsHelp[command]}")
+    else:
+        printErrorString("That command does not exist")
