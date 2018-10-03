@@ -12,7 +12,7 @@ class Player():
         self.items = items
 
     def __str__(self):
-        return f'\nPlayer Name: {self.name}\nHealth: {self.health} - Mana: {self.mana} - Room: {self.currentRoom.name} - Items: {self.items}'
+        return f'\nPlayer Name: {self.name}\nRoom: {self.currentRoom.name}\nHealth: {self.health} - Mana: {self.mana} - Items: {self.items}'
 
     def playerMove(self, direction):
         if direction == 'n':

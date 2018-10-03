@@ -40,37 +40,37 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 
-p = Player(input("What is your name?"), room['outside'])
+p = Player(input("What is your name? "), room['outside'])
 
 validCmds = ['n', 's', 'e', 'w', 'get']
 
 while True:
     print(p)
     print(p.currentRoom)
-    cmd = input("\nWhat's your next move, pal?(n, s, e, w, get [item])\n").lower().split(" ")
+    cmd = input("\nWhat's your next move, pal? (Actions: n, s, e, w, get [item])\n").lower().split(" ")
     
     if len(cmd) == 1:
         if cmd[0] == 'q':
             break
-        elif cmd == 'n':
+        elif cmd[0] == 'n':
             print('\n==You stride confidently north.==')
             try: 
                 p.playerMove('n')
             except: 
                 print(p.badMove)
-        elif cmd == 's':
+        elif cmd[0] == 's':
             print('\n==You stride confidently south.==')
             try: 
                 p.playerMove('s')
             except: 
                 print(p.badMove)
-        elif cmd == 'e':
+        elif cmd[0] == 'e':
             print('\n==You stride confidently east.==')
             try: 
                 p.playerMove('e')
             except: 
                 print(p.badMove)
-        elif cmd == 'w':
+        elif cmd[0] == 'w':
             print('\n==You stride confidently west.==')
             try: 
                 p.playerMove('w')
@@ -82,9 +82,9 @@ while True:
         if cmd[0] == 'get':
             if cmd[1] == p.currentRoom.items.name.lower():
                 p.playerGet(cmd[1])
+                p.currentRoom.items = None 
             else:
-                print("\n==You gawk vacantly into the distance like one who has seen far too many dragons in their days.==")
-                print(p.currentRoom.items.name)
+                print("\n==There are no items. You gawk vacantly into the distance like one who has seen far too many dragons in their days.==")
         else:
-            print("\n==You gawk vacantly into the distance like one who has seen far too many dragons in their days.==")
+            print("\n==Nothing you are saying makes sense. Insanity is looming just beyond another fawlty keystroke.==")
 

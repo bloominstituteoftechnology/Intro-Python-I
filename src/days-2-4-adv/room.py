@@ -8,7 +8,7 @@ class Room():
 
     def __str__(self):
         if self.items is None:
-            return f'\n==You find yourself in the {self.name}. {self.description} There are no items in this room.=='
+            return f'\n==You find yourself in the {self.name}. {self.description} \nThere are no items in this room.=='
         else:
             return f'\n==You find yourself in the {self.name}. {self.description} \nYou see a {self.items.name}! {self.items.description}=='
 
