@@ -53,8 +53,10 @@ player = Player(input("What is your character's name?   "), room['outside'], [])
 while True:
     print(f'\nLocation: {player.location.name}')
     print(f'{player.location.description}')
+    if len(player.location.items) > 0:
+        player.location.print_items()
 
-    player_input = input(f'\nWhich direction does {player.name} go?   ')
+    player_input = input(f'\nWhat does {player.name} do?   ')
 
     if len(player_input) < 1:
         print('\nControls: N,S,E,W to move to a different room. Q to quit')

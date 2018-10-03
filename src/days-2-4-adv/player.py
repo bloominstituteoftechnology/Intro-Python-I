@@ -2,7 +2,7 @@
 # currently.
 
 class Player:
-    def __init__(self, name, location=None, inventory):
+    def __init__(self, name, location, inventory):
         self.name = name
         self.location = location
         self.inventory = inventory
@@ -21,4 +21,4 @@ class Player:
             self.location = new_location
 
     def take_item(self, item):
-        self.inventory.append(item)        
+        self.inventory.append(item)

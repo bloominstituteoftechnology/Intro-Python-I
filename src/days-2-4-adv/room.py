@@ -26,5 +26,8 @@ class Room:
         else:
             return None
 
+    def print_items(self):
+        print(f"You find {self.items} in this room!")
+
     def remove_item(self, items):
         self.items.remove(item)
