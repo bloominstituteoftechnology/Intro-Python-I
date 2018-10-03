@@ -41,11 +41,23 @@ item={
     'sandwich':Item('sandwich',"""Sustenance for when you get hungry later."""),
     'lasso':Item('lasso', """Not sure if it makes people tell the truth or makes one go Indiana Jones.""")
 }
+#put items in rooms
 room['outside'].inventory.append(item['sword'])
 room['foyer'].inventory.append(item['candle'])
 room['overlook'].inventory.append(item['rock'])
 room['narrow'].inventory.append(item['sandwich'])
 room['treasure'].inventory.append(item['lasso'])
+#Declare treasures
+treasure={
+    'diamond':Treasure('diamond',"""Diamond's are a girl's best friend""",1000),
+    'gold':Treasure('gold',"""A piece of gold that cursed Captain Barbossa's crew""",800),
+    'pearl':Treasure('pearl',"""Who would have thought something so valuable could come from something so small.""",900)
+}
+
+#put treasures in rooms
+room['foyer'].inventory.append(treasure['diamond'])
+room['narrow'].inventory.append(treasure['gold'])
+room['overlook'].inventory.append(treasure['pearl'])
 #
 # Main
 #
