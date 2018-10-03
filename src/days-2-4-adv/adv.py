@@ -56,28 +56,15 @@ while True:
     print(f'Current Room: {player.room.name}...')
     print(player.room.description)
     print()
-    cmd = input("Enter the Next Direction --->")
+    cmds = input("What's Next? -->  ").split(' ')
 
-    if cmd == "q":
-        break
-    elif cmd == "n":
-        if hasattr(player.room.n_to, 'name'):
-            player.room = player.room.n_to
+    error = "You cannot go this way!! Try again"
+    valid_directions = ["n", "e", "w", "s"]
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            break
+        elif cmds[0] in valid_directions:
+            player.travel(cmds[0]) 
         else:
-            print("You cannot go this way!! Try again")
-    elif cmd == "s":
-        if hasattr(player.room.s_to, 'name'):
-            player.room = player.room.s_to
-        else:
-            print("You cannot go this way!! Try again")
-    elif cmd == "e":
-        if hasattr(player.room.e_to, 'name'):
-            player.room = player.room.e_to
-        else:
-            print("You cannot go this way!! Try again")
-    elif cmd == "w":
-        if hasattr(player.room.w_to, 'name'):
-            player.room = player.room.w_to
-        else:
-            print("You cannot go this way!! Try again")
-
+            print("The command entered does not exist.")
+            print()

@@ -5,3 +5,10 @@ class Player:
     def __init__(self, name, room):
         self.name = name
         self.room = room
+    def travel(self, direction):
+        new_room = self.room.get_rooms(direction)
+        if new_room:
+            self.room = new_room
+
+        
+        
