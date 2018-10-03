@@ -18,8 +18,8 @@ class Room:
     def __init__(self, name, description, inventory):
         self.name = name
         self.description = description
-        self.inventory = inventory.split(" ")
-        #self.inventory = self.inventory.extend(inventory.split(" "))
+        inv = inventory.split(" ")
+        self.inventory = [*inv]
         self.n_to = None
         self.s_to = None
         self.e_to = None
@@ -41,9 +41,7 @@ class Room:
             return None
 
     def removeItem(self, item):
-        if len(self.inventory) > 0:
-            if item in self.inventory:
-                self.inventory = self.inventory.remove(item)
+                self.inventory.remove(item)
 
     def addItem(self, item):
-        self.inventory = self.inventory.append(item)
+                self.inventory.append(item)

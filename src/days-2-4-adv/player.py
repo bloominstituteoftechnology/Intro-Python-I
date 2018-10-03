@@ -38,9 +38,10 @@ class Player:
                 print("\n\nThere is nothing there.")
 
     def pickUpItem(self, item):
-        if not type(self.currentRoom.inventory) == None:
+        if len(self.currentRoom.inventory) > 0:
             if item in self.currentRoom.inventory:
                 self.inventory.append(item)
+                self.currentRoom.removeItem(item)
                 print(f"\n\nYou have picked up the: {item}")
         else:
             print("\n\nThat item is not contained in this room.")
@@ -49,6 +50,7 @@ class Player:
         if len(self.inventory) > 0:
             if item in self.inventory:
                 self.inventory.remove(item)
+                self.currentRoom.addItem(item)
                 print(f"\n\nYou have dropped the: {item}")
         else:
             print("\n\nThat item is not contained in your inventory.")

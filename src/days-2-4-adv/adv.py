@@ -42,7 +42,7 @@ valid_items = {"katana": "katana", "spear": "spear", "broadsword": "broadsword",
 
 nameInput = input("\n\nHello adventurer! Please enter your name: ")
 player = Player(nameInput, room['outside'])
-print(f"\n\n{player.currentRoom}\n\nWhich direction do you want to go: N, S, E, or W?")
+print(f"\n\n{player.currentRoom}")
 
 while True:
     cmds = input("\n-> ").lower().split(" ")
@@ -64,10 +64,8 @@ while True:
         elif cmds[0] == "get" or cmds[0] == "take":
             if cmds[1] in valid_items:
                 player.pickUpItem(valid_items[cmds[1]])
-                player.currentRoom.removeItem(valid_items[cmds[1]])
         elif cmds[0] == "drop":
             if cmds[1] in valid_items:
                 player.dropItem(valid_items[cmds[1]])
-                player.currentRoom.addItem(valid_items[cmds[1]])
         else:
             print("\n\nI did not understand that command; Press q to quit")
