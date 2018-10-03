@@ -2,9 +2,10 @@
 # currently.
 
 class Player:
-    def __init__(self, name, location=None):
+    def __init__(self, name, location=None, inventory):
         self.name = name
         self.location = location
+        self.inventory = inventory
 
     def __str__(self):
         return self.name
@@ -18,3 +19,6 @@ class Player:
             print("\nThere is nothing in that direction")
         else:
             self.location = new_location
+
+    def take_item(self, item):
+        self.inventory.append(item)        

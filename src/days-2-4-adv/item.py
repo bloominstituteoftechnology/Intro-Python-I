@@ -4,5 +4,9 @@ from player import Player
     def __init__(self, name, description):
         self.name = name
         self.description = description
-     def take_item(self):
+
+    def __str__(self):
+        return f"{self.name}"
+
+    def item_taken(self):
         print(f"{self.name} has been added to your inventory!")
