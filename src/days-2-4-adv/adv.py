@@ -45,11 +45,25 @@ print(room['narrow'])
 print(room['treasure'])
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
+player = Player(input("What is your name? "))
 # Write a loop that:
-#
+
+choice_dictionary = {"n": "north", "s":"south", "e": "east", "w":"west"}
+
+
+playing = True
+
+while(playing):
+    print(f"Room: {player.room}")
+
+    command = input("->")
+    if command == "q":
+        break
+    elif command == "n" or command == "s" or command == "e" or command == "w":
+
+
 # * Prints the current room name
-print(f"{Room.location})
+
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 #

@@ -4,8 +4,8 @@ class Player():
     def __init__(self, name, room):
         self.name = name
         self.room = room
-        self.score = 0
 
-p = Player("Cat", "Room 1")
-print(p.name)
-print(p.room) 
+    def __str__(self):
+        return f"\n{self.room}\n"
+
+
