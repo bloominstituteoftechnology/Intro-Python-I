@@ -26,3 +26,9 @@ class Room():
             return self.w_to
         else: 
             return name
+    def dropItem(self, oldItem):
+        Items.dropItem(self, oldItem)
+        Items.getItems(self, self.name)
+    def addItem(self, newItem):
+        Items.addItem(self, newItem)
+        Items.getItems(self, self.name)

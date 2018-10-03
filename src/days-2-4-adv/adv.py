@@ -96,3 +96,12 @@ while True:
         if cmds[0] == "look": 
             if cmds[1] in valid_directions:
                 p.lookRoom(valid_directions[cmds[1]])
+        if cmds[0] == "get":
+            if cmds[1] in p.room.items:
+                p.addItem(cmds[1])
+                p.room.dropItem(cmds[1])
+                print(p.room)
+        if cmds[0] == "drop":
+            if cmds[1] in p.items:
+                p.dropItem(cmds[1])
+                p.room.addItem(cmds[1])
