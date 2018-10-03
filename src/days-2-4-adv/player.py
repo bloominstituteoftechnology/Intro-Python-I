@@ -18,6 +18,9 @@ class Player:
             if element.name[0]==item:
                 self.current_location.inventory.remove(element)
                 self.possessions.append(element)
+                value=element.on_take()
+                if value is not None:
+                    self.score+=value
                 return f'{self.name} picked up a {item}'
         return f'Cannot find {item} in {self.current_location.name}'
     def i(self):

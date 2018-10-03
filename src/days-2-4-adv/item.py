@@ -16,4 +16,4 @@ class Treasure(Item):
             self.picked_up=True
             return self.value
         else:
-            return 0
+            return None
