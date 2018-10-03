@@ -1,11 +1,12 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
  
 room = {
     'outside':  Room('Outside Cave Entrance',
-                     'North of you, the cave mount beckons', 'outside', ['key']),
+                     'North of you, the cave mount beckons', 'outside', [Item('key', 'Looks like it is used to open the cave entrance')]),
 
     'foyer':    Room('Foyer', '''Dim light filters in from the south. Dusty
 passages run north and east.''', 'foyer', []),
@@ -19,7 +20,7 @@ to north. The smell of gold permeates the air.''', 'narrow', []),
 
     'treasure': Room('Treasure Chamber', '''You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.''', 'treasure', []),
+earlier adventurers. The only exit is to the south.''', 'treasure', ['treasure']),
 }
 
 
@@ -40,9 +41,8 @@ room['treasure'].s_to = room['narrow']
 class Main:
     def start(self):
 # Make a new player object that is currently in the 'outside' room.
-        player1 = Player(input('Provide your name, hero: '), room['outside'], ['pocket knife'])
+        player1 = Player(input('\nProvide your name, hero: '), room['outside'], [Item('toothpick', 'Can be useful')])
         print('\nHello ' + player1.name + '!!!!!!\n')
-        player1.getRoom()
 # Write a loop that:
 #
 # * Prints the current room name
@@ -57,15 +57,16 @@ class Main:
         move = ''
 
         while move != 'q':
-            move = input('\n---> What is your next move, ' + player1.name + ': NORTH(n), SOUTH(s), EAST(e) OR WEST(w) || QUIT(q) the game || INVENTORY(i) || CHECK(c) the room: ')
+            player1.getRoom()
+            move = input('\n---> What is your next move, ' + player1.name + ': NORTH(n), SOUTH(s), EAST(e) OR WEST(w) \n|| QUIT(q) the game || INVENTORY(i) || CHECK(c) the room: ')
             
             if move != 'q':
                 
                 if move == 'i':
                     player1.check_inventory()
-                    decision = input('\n==> DROP(d) item, PASS(p)\n')
+                    dropDecision = input('\n==> DROP(d) item, PASS(p)\n')
                     
-                    if decision == 'd':
+                    if dropDecision == 'd':
                         number = input('--> Item number: ')
                         try:
                             int(number)
@@ -76,8 +77,7 @@ class Main:
                             player1.room.dropped_item(player1.inventory[int(number)])
                             player1.drop_item(int(number))
 
-                        player1.room.room_items()
-                        player1.check_inventory()
+                        
                 elif move == 'c':
                     player1.room.room_items()
                     addDecision = input('\n==> ADD(a) item, PASS(p)')
@@ -93,7 +93,6 @@ class Main:
                             player1.room.delete_item(int(itemNumber))
                 
                 else:
-
                     keyPress = move + '_to'
                 
                     try:
@@ -108,6 +107,7 @@ class Main:
                     else:
                         player1.room = room[getattr(player1.room, keyPress).abr]
                         player1.getRoom()
+
             else:
                 print('\nGame over!')
 

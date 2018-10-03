@@ -1,6 +1,7 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 class Player:
+    
     def __init__(self, name, room, inventory):
         self.name = name
         self.room = room
@@ -11,7 +12,7 @@ class Player:
     
     def drop_item(self, index):
         if len(self.inventory) is 0:
-            print('\nOops, your inventory is totally empty!')
+            print('\nOops, nothing to drop, your inventory is totally empty!')
         else:
             del self.inventory[index]
 
@@ -19,7 +20,7 @@ class Player:
         if len(self.inventory) is not 0:
             print('\nYour inventory contains: ')
             for i, item in enumerate(self.inventory):
-                print(str(i) + ' --> ' + item)
+                print(' --> ' + item.name + ': ' + item.description)
         else:
             print('\nYou are broke. Nothing in the bag!!!')
         

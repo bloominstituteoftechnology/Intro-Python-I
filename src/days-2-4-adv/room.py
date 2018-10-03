@@ -16,7 +16,7 @@ class Room:
         if len(self.items) is not 0:
             print('\nThis room contains: ')
             for i, item in enumerate(self.items):
-                print(str(i) + ' -> ' + item)
+                print(' -> ' + item.name + ': ' + item.description)
         else:
             print('\nThere are no items in this room!')
 
@@ -24,7 +24,7 @@ class Room:
         if len(self.items) is 0:
             print('\nThe room is totally empty!')
         else:
-            del self.items[index]
+            del self.items[index].name
 
     def dropped_item(self, item):
         self.items.append(item)
