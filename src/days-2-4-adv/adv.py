@@ -39,12 +39,13 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(room['outside'])
-player.add_item('rock')
 
-gold = Item('gold', '10 gold')
+gold = Item('gold coins', '10 gold')
 pebble = Item('pebble')
 silver = Item('silver', '5 silver')
+rock = Item('rock')
 
+player.add_item(rock)
 room['outside'].add_item(pebble)
 room['outside'].add_item(silver)
 room['foyer'].add_item(silver)
@@ -63,7 +64,7 @@ room['narrow'].add_item('bones')
 # If the user enters "q", quit the game.
 
 while True:
-    print(f'\nHello, you are currently at {player.location}.')
+    print(f'\nHello, you are currently at {player.room}.')
     cmd = input("Press N, E, S or W to move.\nPress Q at any time to exit.\nPress I to view inventory.\nEnter get/take item_name to add item to inventory.\nEnter drop/remove item_name to remove item from inventory\n-> ").lower().split()
     if len(cmd) == 1:
         if cmd[0] == 'i' or cmd[0] == 'inventory':
@@ -71,35 +72,37 @@ while True:
         elif cmd[0] == 'q':
             break
         elif cmd[0] == "n":
-            if hasattr( player.location , 'n_to' ):
-                player.to(player.location.n_to)
+            if hasattr( player.room , 'n_to' ):
+                player.to(player.room.n_to)
             else:
                 print('\nThe movement is not allowed.')
         elif cmd[0] == 's':
-            if hasattr( player.location , 's_to' ):
-                player.to(player.location.s_to)
+            if hasattr( player.room , 's_to' ):
+                player.to(player.room.s_to)
             else:
                 print('\nThe movement is not allowed.')
         elif cmd[0] == 'e':
-            if hasattr( player.location , 'e_to' ):
-                player.to(player.location.e_to)
+            if hasattr( player.room , 'e_to' ):
+                player.to(player.room.e_to)
             else:
                 print('\nThe movement is not allowed.')
         elif cmd[0] == 'w':
-            if hasattr( player.location , 'w_to' ):
-                player.to(player.location.w_to)
+            if hasattr( player.room , 'w_to' ):
+                player.to(player.room.w_to)
             else:
                 print('\nThe movement is not allowed.')
     elif len(cmd) > 1 and len(cmd) < 3:
         if cmd[0] == 'get' or cmd[0] == 'take':
-            if cmd[1] in player.location.items:
-                player.add_item(player.location.items[0])
-                player.location.items.remove_item(cmd[1])
+            item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.room.items))
+            if item in player.room.items:
+                player.add_item(item)
+                player.room.remove(item)
             else:
                 print('\nThe item is not available for pick up.')
-        elif cmd[0] == 'drop' or cmd[0] == 'remove':
-            if cmd[1] in player.items:
-                player.remove_item(cmd[1])
-                player.location.items.add_item(cmd[1])
+        if cmd[0] == 'drop' or cmd[0] == 'remove':
+            item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.items))[0]
+            if item in player.items:
+                player.items.remove(item)
+                player.room.add_item(item)
             else:
                 print('\nYou do not have that item in your inventory.')

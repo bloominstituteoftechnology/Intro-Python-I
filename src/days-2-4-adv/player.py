@@ -2,12 +2,12 @@
 # currently.
 
 class Player:
-    def __init__(self, location, items=[]):
-        self.location = location
+    def __init__(self, room, items=[]):
+        self.room = room
         self.items = items
     
     def __str__(self):
-        return f'{self.location}'
+        return f'{self.room}'
 
     def add_item(self, item):
         self.items.append(item)
@@ -19,5 +19,5 @@ class Player:
     def inventory(self):
         print(f'\nYou have the following items: {self.items}')
 
-    def to(self, location):
-        self.location = location
+    def to(self, room):
+        self.room = room
