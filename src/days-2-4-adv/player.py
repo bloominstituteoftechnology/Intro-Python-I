@@ -1,11 +1,11 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 class Player():
-    def __init__(self, name, room):
+    def __init__(self, name, currentRoom):
         self.name = name
-        self.room = room
+        self.currentRoom = currentRoom
 
-    def __str__(self):
-        return f"\n{self.room}\n"
+    # def travel(self, direction)
+    #     nextRoom = self.currentRoom.
 
 

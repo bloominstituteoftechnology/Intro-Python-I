@@ -1,5 +1,8 @@
+import textwrap
+
 from room import Room
 from player import Player
+
 
 # Declare all the rooms
 
@@ -45,7 +48,10 @@ print(room['narrow'])
 print(room['treasure'])
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(input("What is your name? "))
+player = Player(input("What is your name? "), room["outside"])
+
+print(player.currentRoom)
+
 # Write a loop that:
 
 choice_dictionary = {"n": "north", "s":"south", "e": "east", "w":"west"}
@@ -54,12 +60,12 @@ choice_dictionary = {"n": "north", "s":"south", "e": "east", "w":"west"}
 playing = True
 
 while(playing):
-    print(f"Room: {player.room}")
+    print(player.currentRoom.name + "\n" + player.currentRoom.description)
 
-    command = input("->")
-    if command == "q":
-        break
-    elif command == "n" or command == "s" or command == "e" or command == "w":
+    # command = input("->")
+    # if command == "q":
+    #     break
+    # elif command == "n" or command == "s" or command == "e" or command == "w":
 
 
 # * Prints the current room name
