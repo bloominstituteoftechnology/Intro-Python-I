@@ -5,5 +5,8 @@ class Room:
         self.name = name
         self.description = description
         self.is_light = False
-
+        self.n_to = None
+        self.e_to = None
+        self.s_to = None
+        self.w_to = None
         self.contents = []
