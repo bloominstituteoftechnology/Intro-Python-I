@@ -2,6 +2,7 @@ import textwrap
 
 from room import Room
 from player import Player
+from item import Item
 
 
 # Declare all the rooms
@@ -36,6 +37,26 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+
+# Declare all items
+item = {
+    'axe':  Item("Axe", """You may use the axe to cut down trees and brush."""),
+
+    'bow':    Item("Bow and Arrows", """You may use the bow and arrow for hunting."""),
+
+    'compass': Item("Compass", """Use the compass to find your way."""),
+
+    'map':   Item("Map", """The map will guide you to the treasure."""),
+
+    'keys': Item("Keys", """Find which key opens the treasure chest."""),
+
+    'knife': Item("Knife", """The knife is a versatile tool for carving and self-defense."""),
+
+    'scroll': Item("Scroll", """Read the ancient scroll to learn the secrets of the wizards."""),
+
+    'iphone': Item("Iphone", """You now have an iphone, you probably don't want to play this game anymore."""),
+}
 
 #
 # Main

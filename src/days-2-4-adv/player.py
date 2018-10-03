@@ -6,7 +6,7 @@ class Player():
         self.currentRoom = currentRoom
         self.items = []
 
-    # deal with items
+    # deal with items by player
     def addItem(self, item):
         self.items.append(item)
 

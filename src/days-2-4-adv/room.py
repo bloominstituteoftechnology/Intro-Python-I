@@ -14,6 +14,10 @@ class Room():
     def __str__(self):
         return f"\n\n{self.name}\n\n   {self.description}\n"
 
+    # deal with items in rooms
+    def addItem(self, item):
+        self.items.append(item)
+
     # def direction(self, direction):
     #     if direction == "n":
     #         return self.n_to
