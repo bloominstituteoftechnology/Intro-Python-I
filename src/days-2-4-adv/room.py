@@ -17,7 +17,7 @@ class Room:
         print(self.description)
     def printItems(self):
             for item in self.items:
-                print(item.name)
+                print(item.name, "--", item.description)
 
 
 
