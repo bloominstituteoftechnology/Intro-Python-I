@@ -8,9 +8,12 @@ class Player:
     
     def __str__(self):
         return f'{self.location}'
+
+    def add_item(self, item):
+        return self.items.append(item)
     
     def view_items(self):
-        return f'{self.items}'
+        return f'You have the following items: {self.items}'
 
     def to(self, location):
         self.location = location

@@ -11,9 +11,7 @@ class Room:
         return f'{self.name}:\n{self.description}.\n\nItems available in room: {self.items}\n'
 
     def add_item(self, item):
-        print(item)
         return self.items.append(item)
 
     def view_items(self):
-
         return f'Items available in room: {self.items}'
