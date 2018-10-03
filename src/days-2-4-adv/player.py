@@ -9,3 +9,10 @@ class Player:
         self.score = 0
     def increaseScore(self, value):
         self.score += value
+    def printInv(self):
+        if len(self.inventory) > 0:
+            print("You have:")
+            for item in self.inventory:
+                print(item.name, ":", item.description)
+        else:
+            print("You do not have any items besides the shirt on your back.")
