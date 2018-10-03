@@ -6,6 +6,10 @@ from item import Item
 class AdventureDone(Exception):
     pass
 
+
+directionFunctions = {"n": 'n_to', "north": 'n_to', "s": 's_to',
+                      "south": 's_to', "e": 'e_to', "east": 'e_to', "w": 'w_to', "west": 'w_to'}
+
 # Declare all the rooms
 
 
@@ -59,6 +63,16 @@ currentPlayer = Player(playerName, room['outside'])
 # If the user enters "q", quit the game.
 
 
+def DirectionEval(direction):
+    if hasattr(currentPlayer.room, directionFunctions[direction]):
+        currentPlayer.room = getattr(
+            currentPlayer.room, directionFunctions[direction])
+        return False
+    else:
+        print("Invalid Direction")
+        return True
+
+
 def ItemEval(item, itemsList):
     return next((y for y in itemsList if y.name.lower() == item), None)
 
@@ -67,34 +81,8 @@ def TextEval(text):
     print(text)
     if text == "q" or text == "quit":
         raise AdventureDone
-    elif text == "n" or text == "north":
-        if hasattr(currentPlayer.room, 'n_to'):
-            currentPlayer.room = currentPlayer.room.n_to
-            return False
-        else:
-            print("Invalid Direction")
-            return True
-    elif text == "w" or text == "west":
-        if hasattr(currentPlayer.room, 'w_to'):
-            currentPlayer.room = currentPlayer.room.w_to
-            return False
-        else:
-            print("Invalid Direction")
-            return True
-    elif text == "e" or text == "east":
-        if hasattr(currentPlayer.room, 'e_to'):
-            currentPlayer.room = currentPlayer.room.e_to
-            return False
-        else:
-            print("Invalid Direction")
-            return True
-    elif text == "s" or text == "south":
-        if hasattr(currentPlayer.room, 's_to'):
-            currentPlayer.room = currentPlayer.room.s_to
-            return False
-        else:
-            print("Invalid Direction")
-            return True
+    elif text in directionFunctions.keys():
+        return DirectionEval(text)
     elif "grab" in text or "take" in text:
         splitCommand = text.split()
         itemObj = ItemEval(splitCommand[1], currentPlayer.room.items)
@@ -115,8 +103,8 @@ def TextEval(text):
             return False
         print('That object can not be dropped')
         return True
-    elif text == "h":
-        print("Valid commands are: h, north, west, south, east, inventory grab, and drop")
+    elif text == "h" or text == "help":
+        print("Valid commands are: (h)elp, (q)uit (n)orth, (w)est, (s)outh, (e)ast, (i)nventory, grab, and drop")
         return True
     elif text == "i" or text == "inventory":
         if len(currentPlayer.items) > 0:
