@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 import textwrap
+import time
 
 # Declare all the rooms
 
@@ -59,8 +60,12 @@ while True:
     currentRoom = p.currentRoom
 
     def error():
+        time.sleep(2)
         print('You cannot go in that direction! Try another direction!')
-    print('Your location is: ', currentRoom)
+    time.sleep(1)
+    print('Your location is: ') 
+    time.sleep(1)
+    print(currentRoom)
 
     cmd = input('=>')
 
@@ -87,4 +92,5 @@ while True:
     elif cmd.upper() == 'Q':
         break
     else:
+        time.sleep(1)
         print('You can only go north, south, east or west! Try going somewhere!')
