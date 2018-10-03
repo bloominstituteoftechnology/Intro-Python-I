@@ -37,6 +37,18 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+# declare items
+
+items = {
+    'sword':  Item("Axe", """Use this to fight your enemies"""),
+     'bow':    Item("Bow and Arrows", """Use this to fight your enemies from afar"""),
+     'map':   Item("Map", """Use this to find the treasure"""),
+     'compass': Item("Compass", """Use this to figure out where you are going"""),
+     'key': Item("Key", """use this to open the treasure chest"""),
+}
+
+
+
 # Make a new player object that is currently in the 'outside' room.
 
 me = Player("sean",room['outside'])

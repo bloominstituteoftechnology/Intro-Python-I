@@ -10,6 +10,8 @@ class Room:
         self.s_to = None
         self.w_to = None
         self.e_to = None
+    def addItem(self, items):
+        self.items.append(item)
     def getRoom(self, direction):
         if direction == "n":
             return self.n_to
