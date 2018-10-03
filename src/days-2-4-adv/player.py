@@ -23,14 +23,12 @@ class Player:
                     self.score+=value
                 return f'{self.name} picked up a {item}'
         return f'Cannot find {item} in {self.current_location.name}'
-    def i(self):
+    def inventory(self):
         item_arr=[]
         for item in self.possessions:
             item_arr.extend(item.name)
         item_arr=', '.join(item_arr)
         return f'Items currently in possession: {item_arr}'
-    def inventory(self):
-        return self.i()
     def drop(self,item):
         for element in self.possessions:
             if element.name[0]==item:
