@@ -41,11 +41,11 @@ item={
     'sandwich':Item('sandwich',"""Sustenance for when you get hungry later."""),
     'lasso':Item('lasso', """Not sure if it makes people tell the truth or makes one go Indiana Jones.""")
 }
-room['outside'].inventory.append('sword')
-room['foyer'].inventory.append('candle')
-room['overlook'].inventory.append('rock')
-room['narrow'].inventory.append('sandwich')
-room['treasure'].inventory.append('lasso')
+room['outside'].inventory.append(item['sword'])
+room['foyer'].inventory.append(item['candle'])
+room['overlook'].inventory.append(item['rock'])
+room['narrow'].inventory.append(item['sandwich'])
+room['treasure'].inventory.append(item['lasso'])
 #
 # Main
 #

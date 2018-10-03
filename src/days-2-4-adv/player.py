@@ -13,22 +13,24 @@ class Player:
             self.current_location=next_room
             return f'Moving {direction} you arrive at: {self.current_location.name}\n{self.current_location}'      
     def pickup(self,item):
-        if item in self.current_location.inventory:
-            self.current_location.inventory.remove(item)
-            self.possessions.append(item)
-            return f'{self.name} Picked up a {item}'
-        else:
-            return f'Cannot find {cmd[1]} in {self.current_location.name}'
+        for element in self.current_location.inventory:
+            if element.name[0]==item:
+                self.current_location.inventory.remove(element)
+                self.possessions.append(element)
+                return f'{self.name} picked up a {item}'
+        return f'Cannot find {item} in {self.current_location.name}'
     def i(self):
-        item_arr=', '.join(self.possessions)
+        item_arr=[]
+        for item in self.possessions:
+            item_arr.extend(item.name)
+        item_arr=', '.join(item_arr)
         return f'Items currently in possession: {item_arr}'
     def inventory(self):
-        item_arr=', '.join(self.possessions)
-        return f'Items currently in possession: {item_arr}'
+        self.i()
     def drop(self,item):
-        if item in self.possessions:
-            self.possessions.remove(item)
-            self.current_location.inventory.append(item)
-            return f'{self.name} Dropped a {item}'
-        else:
-            return f'You do not have a {item} to drop.'
+        for element in self.possessions:
+            if element.name[0]==item:
+                self.possessions.remove(element)
+                self.current_location.inventory.append(element)
+                return f'{self.name} dropped a {item}'
+        return f'You do not have a {item} to drop.'
