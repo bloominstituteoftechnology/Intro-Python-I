@@ -27,7 +27,9 @@ class Room:
             return None
 
     def print_items(self):
-        print(f"You find {self.items} in this room!")
+        for item in self.items:
+            print(f"You find a {item} in this room!")
 
-    def remove_item(self, items):
+    def remove_item(self, item):
+        print(f"You have picked up the {self.items[0]}")
         self.items.remove(item)

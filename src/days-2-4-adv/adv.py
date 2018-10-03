@@ -62,7 +62,10 @@ while True:
         print('\nControls: N,S,E,W to move to a different room. Q to quit')
     elif player_input[0].lower() == "q":
         break
-    elif player_input[0].lower() =="n" or player_input[0].lower() =="s" or player_input[0].lower() =="w" or player_input[0].lower() =="e":
+    elif player_input[0].lower() == "n" or player_input[0].lower() == "s" or player_input[0].lower() == "w" or player_input[0].lower() == "e":
         player.change_location(player_input[0])
+    elif player_input[0].lower() == "t":
+        player.take_item(player.location.items[0])
+        player.location.remove_item(player.location.items[0])
     else:
         print('\nControls: N,S,E,W to move to a different room. Q to quit')
