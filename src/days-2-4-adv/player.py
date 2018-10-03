@@ -3,33 +3,24 @@
 
 
 class Player(object):
-    def __init__(self, name, currentRoom, roomKey):
+    def __init__(self, name, currentRoom, items = []):
         self.name = name
         self.currentRoom = currentRoom
-        self.roomKey = roomKey
-        self.items = []
+        self.items = items
+        self.points = 0 
 
-    def __repr__(self):
-        return f"{self.name} currently in room {self.currentRoom}"
+    def __str__(self):
+        return f"{self.name} \n\ncurrently in room {self.currentRoom}\n"
+    
+    def room_change(self, direction):
+        newRoom = self.currentRoom.change_room(direction)
+        print(f"newRoom === {newRoom}") #sole purpose of this line is for debugging
+        if newRoom is not None:
+            self.currentRoom = newRoom
+            return "Changing rooms..."
+        else:
+            return "You cannot go into that direction!"
+    
+    #
 
-    def room_change(self, room):
-        if room == "Outside Cave Entrance":
-            self.roomKey = "outside"
-        elif room == "Foyer":
-            self.roomKey = "foyer"
-        elif room == "Grand Overlook":
-            self.roomKey = "overlook"
-        elif room == "Narrow Passage":
-            self.roomKey = "narrow"
-        elif room == "Treasure Chamber":
-            self.roomKey = "treasure"
-        elif room == "Prison":
-            self.roomKey = "prison"
-        elif room == "Cowards Forest":
-            self.roomKey = "coward"
-        elif room == "Kitchen":
-            self.roomKey = "kitchen"
         
-        self.currentRoom = room
-
-        return "Changing rooms..."

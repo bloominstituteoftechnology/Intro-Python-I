@@ -4,27 +4,36 @@ from weapon import Weapon
 from item import Item
 import random
 # Declare all the rooms
+items = {
+    "shovel": Item("shovel", "Use this to dig or hit with manually droppable item"),
+    "sword": Item("sword", "Use this to chop or slice manually droppable item"),
+    "spells": Item("spells", "Book of spells manually droppable item"),
+    "bat": Item("bat", "Use this to knock down or hit with manually droppable item"),
+    "gun": Item("gun", "Shoot with this manually droppable item"),
+    "extinguisher": Item("extinguisher", "Put out fires or use as a decoy, manually droppable item"),
+    "coins": Item("coins", "coins count as points, every room has coins This item cannot be mannually dropped")
+}
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", []),
+    'outside':  Room("outside",
+                     "Outside Cave Entrance North of you, the cave mount beckons", [items["coins"]]),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", []),
+    'foyer':    Room("foyer", """Dim light filters in from the south. Dusty
+passages run north and east.""", [items["coins"]]),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
+    'overlook': Room("overlook", """Grand Overlook A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [items["spells"]]),
+the distance, but there is no way across the chasm.""", [items["spells"],items["coins"]]),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", []),
+    'narrow':   Room("narrow", """The narrow passage bends here from west
+to north. The smell of gold permeates the air.""", [items["coins"]]),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
+    'treasure': Room("treasure", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""",[items["gun"]]),
+earlier adventurers. The only exit is to the south.""", [items["gun"],items["coins"]]),
     'prison': Room('Prison', """You will have to fight your way out of the prison if you wish to go north.
-     If you wish not to fight run left or right""", [items["bat"]]),
-    'coward': Room("Cowards Forest", """You coward! You ran from the fight. Now the goblins have been alerted.  """, [items["shovel"]]),
-    'kitchen': Room('Kitchen', """Welcome to the kitchen """, [items["sword"]])
+     If you wish not to fight run left or right""", [items["bat"],items["coins"]]),
+    'coward': Room("coward", """You have entered Cowards Forest. You coward! You ran from the fight. Now the goblins have been alerted.  """, [items["shovel"]]),
+    'kitchen': Room('Kitchen', """Welcome to the kitchen """, [items["sword"],items["coins"]])
 
 }
 # Link rooms together
@@ -41,55 +50,36 @@ room['kitchen'].e_to = room['prison']
 room['prison'].n_to = room['coward']
 
 # Weapons
-weapons = {
- 
-}
 
-items = {
-    "shovel": Item("shovel", "Use this to dig or hit with"),
-    "sword" : Item("sword", "Use this to chop or slice"),
-    "spells": Item ("spells", "Book of spells"),
-    "bat" : Item("bat", "Use this to knock down or hit with"),
-    "gun" : Item("gun", "Shoot with this"),
-}
+
 # Main
 
 rooms = ["outside", "foyer", "overlook",
          "narrow", "treasure", "kitchen", "prison"]
 
-
-def change_rooms(Player, direction):
-    direction = direction.lower()
-    try:
-        if direction == "n":
-            return Player.room_change(room[Player.roomKey].n_to.name)
-        elif direction == "s":
-            return Player.room_change(room[Player.roomKey].s_to.name)
-
-        elif direction == "e":
-            return Player.room_change(room[Player.roomKey].e_to.name)
-        elif direction == "w":
-            return Player.room_change(room[Player.roomKey].w_to.name)
-    except:
-        return "You can not go in that direction!"
-# end of change_rooms function
-
+directions = {"n", "s", "e", "w"}
+# set of  directions want to key them to the direction.
 
 # Make a new player object that is currently in the 'outside' room.
-jonathan = Player("Jonathan", 'Outside Cave Entrance', "outside")
+
 # Write a loop that:
 directions = ["n", "s", "e", "w"]
+# "i"  should allow one to check inventory. 
+moves = ["look", "drop", "get"]
+suppressRoomPrint = False
+player = Player(input("What is your name? "), room['outside'])
+print("Starting game:\n\n options -> Enter q to quit, n to go North s to go South e to go East w to go West\n\n i should allow you to check your inventory")
 while True:
-    print(f"Current room {jonathan.currentRoom}")
-    print(f"Room description {room[jonathan.roomKey].description}")
+    print(f"{player.currentRoom}")
     option = input(
-        "Enter q to quit, n to go North s to go South e to go East w to go West")
+        "option ->")
     option = option.lower()
     if option == "q":
         print("Exiting the game!")
         break
     elif directions.count(option) > 0:
-        print(change_rooms(jonathan, option))
+        print(f"direction chosen === {option}\n\n")  # This line is for debugging
+        print(player.room_change(option))
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
