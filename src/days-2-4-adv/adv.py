@@ -11,7 +11,7 @@ class AdventureDone(Exception):
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", 'outside', [Item("Fish", "Test"), Item("death", "test")]),
+                     "North of you, the cave mount beckons", 'outside', [Item("Cake", "Test"), Item("death", "test")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", 'foyer'),
@@ -59,8 +59,8 @@ currentPlayer = Player(playerName, room['outside'])
 # If the user enters "q", quit the game.
 
 
-def ItemEval(item):
-    return next((y for y in currentPlayer.room.items if y.name.lower() == item), None)
+def ItemEval(item, itemsList):
+    return next((y for y in itemsList if y.name.lower() == item), None)
 
 
 def TextEval(text):
@@ -95,15 +95,37 @@ def TextEval(text):
         else:
             print("Invalid Direction")
             return True
-    elif "grab" in text:
+    elif "grab" in text or "take" in text:
         splitCommand = text.split()
-        itemObj = ItemEval(splitCommand[1])
+        itemObj = ItemEval(splitCommand[1], currentPlayer.room.items)
         if itemObj is not None:
             currentPlayer.items.append(itemObj)
             currentPlayer.room.items.remove(itemObj)
             print(f'You have grabbed {itemObj.name}')
             return False
         print('That object can not be grabbed')
+        return True
+    elif "drop" in text:
+        splitCommand = text.split()
+        itemObj = ItemEval(splitCommand[1], currentPlayer.items)
+        if itemObj is not None:
+            currentPlayer.items.remove(itemObj)
+            currentPlayer.room.items.append(itemObj)
+            print(f'You have dropped {itemObj.name}')
+            return False
+        print('That object can not be dropped')
+        return True
+    elif text == "h":
+        print("Valid commands are: h, north, west, south, east, inventory grab, and drop")
+        return True
+    elif text == "i" or text == "inventory":
+        if len(currentPlayer.items) > 0:
+            itemSTR = "Your inventory contains:"
+            for item in currentPlayer.items:
+                itemSTR = itemSTR+" " + item.name
+            print(itemSTR)
+        else:
+            print("Your inventory is empty!")
         return True
     else:
         print("Invalid Direction")
@@ -127,7 +149,7 @@ try:
             print(itemSTR)
 
         while awaitValidDirection:
-            playerInput = input("Please select a direction:")
+            playerInput = input("Please input a command:")
             awaitValidDirection = TextEval(playerInput.lower())
 
 except AdventureDone:
