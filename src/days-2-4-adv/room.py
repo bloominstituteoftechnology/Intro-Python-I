@@ -18,6 +18,14 @@ class Room():
     def addItem(self, items):
         self.items.append(item)
 
+    def removeItem(self, item):
+        if len(self.items) > 0:
+            for i in self.items:
+                if i.name == item:
+                    self.items.remove(i)
+        else:
+            print("That item is not available")
+
     # def direction(self, direction):
     #     if direction == "n":
     #         return self.n_to
