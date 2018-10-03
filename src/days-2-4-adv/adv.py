@@ -39,7 +39,6 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -51,37 +50,26 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
+                    "forward": "n", "backwards": "s", "right": "e", "left": "w"}
+
+player = Player(input("What is your name? "), room['outside'])
+print(player.currentRoom)
+
 while True:
-    invalid_move = '\nYou can\'t go there!'
-
-    print(f'\nLocation: {player.currentRoom.name}')
-    print(f'{player.currentRoom.description}')
-
-    cmd = input("\nChoose a direction: n, s, e, w. \nPress q to quit\n")
-
-    if cmd == "q":
-        print("Quitting is for losers")
-        break
-
-    elif cmd == "n":
-        if not hasattr(player.currentRoom.n_to, 'name'):
-            print(invalid_move)
+    cmds = input("-> ").lower().split(" ")
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            break
+        elif cmds[0] in valid_directions:
+            player.travel(valid_directions[cmds[0]])
+        elif cmds[0] == "look":
+            player.look()
         else:
-            player.currentRoom = player.currentRoom.n_to
-
-    elif cmd == "s":
-        if not hasattr(player.currentRoom.s_to, 'name'):
-            print(invalid_move)
+            print("I did not understand that command.")
+    else:
+        if cmds[0] == "look":
+            if cmds[1] in valid_directions:
+                player.look(valid_directions[cmds[1]])
         else:
-            player.currentRoom = player.currentRoom.s_to
-
-    elif cmd == "e":
-        if not hasattr(player.currentRoom.e_to, 'name'):
-            print(invalid_move)
-        else:
-            player.currentRoom = player.currentRoom.e_to
-    elif cmd == "w":
-        if not hasattr(player.currentRoom.w_to, 'name'):
-            print(invalid_move)
-        else:
-            player.currentRoom = player.currentRoom.w_to
+            print("I did not understand that command.")
