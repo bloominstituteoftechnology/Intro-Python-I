@@ -72,18 +72,12 @@ while True:
     cmds = input(f'\n-->').lower().split(" ")
     if len(cmds) == 1: 
         cmd = cmds[0]
-        if cmd == "q":
-            break
+        if cmd in valid_directions: 
+            p.changeRoom(valid_directions[cmd])
         elif cmd == "me":
             p.playerItems()
-        elif cmd == "command":
-            print('command is not a command it is a header')
-        elif cmd == "back":
-            print(p.room)
         elif cmd == "room":
             p.room.roomItems()
-        elif cmd == "look":
-            print(p.room)
         elif cmd == "get":
             p.addObject(p.room.object)
             p.room.removeObject()
@@ -92,8 +86,12 @@ while True:
         elif cmd == "help":
             for c in commands_help:
                 print(dict(c))            
-        elif cmd in valid_directions: 
-            p.changeRoom(valid_directions[cmd])
+        elif cmd == "command":
+            print('command is not a command it is a header')
+        elif cmd == "q":
+            break
+        elif cmd == "back" || cmd == "look":
+            print(p.room)
         else: 
             print('not a valid command')
     else: 
