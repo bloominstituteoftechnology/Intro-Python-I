@@ -1,13 +1,17 @@
+import textwrap
 from room import Room
 from player import Player
-import textwrap
 # Declare all the rooms
 
 room = {
-    'b1':    Room("Blue Basement", textwrap.wrap("This is where Blue team spawns. Another popular name for this location is Blue Objective because it is where the flag would appear in CTF & where you plant the bomb on Assault", width=10)),
+    'b1':    Room("Blue Basement",
+                  """This is Blue Basement. Another typical spawn point for the blue team.
+                  There is pretty good cover and a BR (Battle-Rifle) respawns here."""),
 
     'b2':  Room("Blue Objective",
-                "North of you, the cave mount beckons"),
+                """This is where Blue team spawns. Another popular name for 
+    this location is Blue Objective as it is where the flag would 
+    appear in CTF & where you plant the bomb on Assault"""),
 
     'b-needles': Room("Blue Needles", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -204,16 +208,31 @@ print(room['b1'].description)
 #
 # Main
 #
-
+valid_directions = {"w": "w", "a": "a", "s": "s", "d":"d",  "forward": "w", "left": "a" ,"backwards": "s", "right": "d"  }
 # Make a new player object that is currently in the 'outside' room.
-player = {
-    "Justin": Player(
-        'Justin',
-        'b2'
+player = Player(input("What is your name? "), 'b2')
 
-    )
-}
-print(player["Justin"].currentRoom)
+currentRoomDesc = room[player.currentRoom].description
+
+while True: 
+    commands = input("-> ").lower().split(" ")
+    if len(commands) == 1:
+        if commands[0] == "q":
+            break
+        elif commands[0] in valid_directions:
+            player.movement(valid_directions[commands[0]])
+        elif commands[0] == "look()":
+            player.look()
+        else:
+            print("Please enter a valid command.")    
+    else:
+        if commands[0] == "look":
+            if commands[1] in valid_directions:
+                player.look(valid_directions[commands[1]])
+            else:
+                print("Please enter a valid command.")
+    print(player.currentRoom)
+    print(currentRoomDesc)
 # Write a loop that:
 #
 # * Prints the current room name
