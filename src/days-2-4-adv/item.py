@@ -2,9 +2,8 @@ from room import Room
 from player import Player
 
 class Item:
-    def __init__(self, name, description):
+    def __init__(self, name):
         self.name = name
-        self.description = description
     def takeItem(self, player):
             player.items.append(self)
             player.currentRoom.items.remove(self)

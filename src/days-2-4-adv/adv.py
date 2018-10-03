@@ -7,7 +7,7 @@ from item import Item
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons",
-                [Item("STICK", "It's a stick, and it's awesome!")]),
+                [Item("STICK")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", []),
@@ -42,7 +42,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(input("What is your name? => "),room["outside"])
+player = Player(input("What is your name? => "),room["outside"], [])
 print(player.currentRoom)
 # Write a loop that:
 #
@@ -65,7 +65,14 @@ while True:
         if cmds[0] in validDirections:
             player.travel(validDirections[cmds[0]])
         elif cmds[0] == "LOOK":
-            player.look()            
+            player.look()
+        elif cmds[0] == "INV":
+            print(f"This is what you have in your inventory: ")
+            if len(player.items) > 0:
+                for item in player.items:
+                    print(item.name)
+            else:
+                print("Your inventory is empty.")
         elif cmds[0] == "Q" or cmds[0] == "QUIT":
             break
         else:
@@ -76,8 +83,14 @@ while True:
             if cmds[1] in validDirections:
                 player.look(validDirections[cmds[1]])
         elif cmds[0] == "TAKE":
-            if cmds[1] in player.currentRoom.items:
-                cmds[1].takeItem(player)
-                print(f"You have taken {cmds[1]}!")
+            for item in player.currentRoom.items:
+                if cmds[1] in item.name:
+                    item.takeItem(player)
+                    print(f"You have taken {cmds[1]}!\n")
+        elif cmds[0] == "DROP":
+            for item in player.items:
+                if cmds[1] in item.name:
+                    item.dropItem(player)
+                    print(f"You have dropped {cmds[1]}!\n")
         else:
             print("That doesn't work please try a different command!")
