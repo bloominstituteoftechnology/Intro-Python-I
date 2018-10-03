@@ -61,12 +61,11 @@ room['narrow'].add_item('bones')
 
 while True:
     print(f'\nHello, you are currently at {player.location}.')
-    cmd = input("Press N, E, S or W to move.\nPress Q at any time to exit.\nPree I to view inventory.\n-> ").lower().split()
+    cmd = input("Press N, E, S or W to move.\nPress Q at any time to exit.\nPress I to view inventory.\n-> ").lower().split()
     if len(cmd) == 1:
         # if cmd[0] == 'v':
         #     player.location.view_items
         if cmd[0] == 'i':
-            print(dir(player))
             player.inventory
         elif cmd[0] == 'q':
             break
@@ -94,6 +93,12 @@ while True:
         if cmd[0] == 'get' or cmd[0] == 'take':
             if cmd[1] in player.location.items:
                 player.add_item(player.location.items[0])
-                player.location.items.pop()
+                player.location.items.remove(cmd[1])
             else:
                 print('The item is not available for pick up.')
+        elif cmd[0] == 'drop':
+            if cmd[1] in player.items:
+                player.remove_item(cmd[1])
+                player.location.items.append(cmd[1])
+            else:
+                print('\nYou do not have that item in your inventory.')
