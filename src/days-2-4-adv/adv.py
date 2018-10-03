@@ -67,13 +67,40 @@ def currentLocation():
     """)
 
 
-def inputError():
-    print(f"""
+def brickWall(type):
 
-    ~~~~~~~ You Hit A Wall ~~~~~~~ 
-    Nowhere To Go, Try Another Direction
+    if type == 'm':
+        print(f"""
 
-    """)
+        ~~~~~~~ You Hit A Wall ~~~~~~~ 
+        Nowhere To Go, Try Another Direction
+
+        """)
+    elif type == 'l':
+        print(f"""
+
+        ~~~~~~~ Nothing Ahead ~~~~~~~ 
+        Nothing Ahead, Try Another Direction
+
+        """)
+    elif type == 'e':
+        print(f"""
+
+        ~~~~~~~ Not Allowed ~~~~~~~ 
+        Action Not Allowed
+
+        Allowed Actions:
+        - n: move north
+        - s: move south
+        - e: move east
+        - w: move west
+
+        - ln: look north
+        - ls: look south
+        - le: look east
+        - lw: look west
+
+        """)
 
 
 def lookAhead():
@@ -93,54 +120,56 @@ while play:
     if len(cmd) == 1:
         if cmd[0] == 'q':
             break
+        # movement
         elif cmd[0] == 'n':
             if player.room.n_to is not None:
                 player.updateRoom(player.room.n_to)
                 currentLocation()
             else:
-                inputError()
+                brickWall('m')
         elif cmd[0] == 's':
             if player.room.s_to is not None:
                 player.updateRoom(player.room.s_to)
                 currentLocation()
             else:
-                inputError()
+                brickWall('m')
         elif cmd[0] == 'e':
             if player.room.e_to is not None:
                 player.updateRoom(player.room.e_to)
                 currentLocation()
             else:
-                inputError()
+                brickWall('m')
         elif cmd[0] == 'w':
             if player.room.w_to is not None:
                 player.updateRoom(player.room.w_to)
                 currentLocation()
             else:
-                inputError()
+                brickWall('m')
+        # looking ahead
         else:
             if cmd[0] == "ln":
                 if player.room.n_to is not None:
                     player.lookNextRoom(player.room.n_to)
                     lookAhead()
                 else:
-                    inputError()
+                    brickWall('l')
             elif cmd[0] == "ls":
                 if player.room.s_to is not None:
                     player.lookNextRoom(player.room.s_to)
                     lookAhead()
                 else:
-                    inputError()
+                    brickWall('l')
             elif cmd[0] == "le":
                 if player.room.e_to is not None:
                     player.lookNextRoom(player.room.e_to)
                     lookAhead()
                 else:
-                    inputError()
+                    brickWall('l')
             elif cmd[0] == "lw":
                 if player.room.w_to is not None:
                     player.lookNextRoom(player.room.w_to)
                     lookAhead()
                 else:
-                    inputError()
+                    brickWall('l')
             else:
-                print('Movement Not Allowed')
+                brickWall('e')
