@@ -41,7 +41,6 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-p = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -54,30 +53,23 @@ p = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
+valid_directions = {'n': 'n', 's': 's', 'e': 'e', 'w': 'w', 'forward': 'n', 'backwards': 's', 'right': 'e', 'left': 'w'}
+
+p = Player(input('What is your name? \n'), room['outside'])
+print(p.room)
+
 while True:
-    print(f'Hello, adventurer, you are currently in {p.room}.')
-    cmd = input('What is your next move? \n')
-    if cmd == 'q':
-        break
-    elif cmd == 'n':
-        if hasattr(p.room, 'n_to'):
-            p.move(p.room.n_to)
+    cmd = input('-> ').lower().split(' ')
+    if len(cmd) == 1:
+        if cmd[0] == 'q':
+            break
+        elif cmd[0] in valid_directions:
+            p.move(valid_directions[cmd[0]])
         else:
-            print('That is to the void, please try another direction.')
-    elif cmd == 's':
-        if hasattr(p.room, 's_to'):
-            p.move(p.room.s_to)
-        else:
-            print('That is to the void, please try another direction.')
-    elif cmd == 'e':
-        if hasattr(p.room, 'e_to'):
-            p.move(p.room.e_to)
-        else:
-            print('That is to the void, please try another direction.')
-    elif cmd == 'w':
-        if hasattr(p.room, 'w_to'):
-            p.move(p.room.w_to)
-        else:
-            print('That is to the void, please try another direction.')
+            print('That is not a valid command. Please try again.')
     else:
-        print('That is not a valid command. Please try again.')
+        if cmd[0] == 'look':
+            if cmd[1] in valid_directions:
+                p.look(valid_directions[cmd[1]])
+        else:
+            print('That is not a valid command. Please try again.')
