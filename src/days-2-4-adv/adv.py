@@ -62,9 +62,10 @@ playing = True
 while(playing):
     print(player.currentRoom.name + "\n" + player.currentRoom.description)
 
-    # command = input("->")
-    # if command == "q":
-    #     break
+    cmd = input("-> ")
+    if cmd == "q":
+        break
+
     # elif command == "n" or command == "s" or command == "e" or command == "w":
 
 
