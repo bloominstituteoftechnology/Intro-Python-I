@@ -27,11 +27,16 @@ class Player(object):
             if successful is not None:
                 self.points += 25
                 return f"You collected coins and added 25 points to your score. Your current score is {self.points}"
+            else:
+                return f"You have collected all of the coins this room has to offer."
         else: 
-           successful = self.currentRoom.removeItem(item)
-           if successful is not None:
-            self.items.append(item)
-            return f"You collected the {item.name}\n"
+            successful = self.currentRoom.removeItem(item)
+            if successful is not None:
+                self.items.append(item)
+                return f"You collected the {item.name}\n"
+            else:
+                return f"That item is not available in this room."
+
     #
     #
     #
