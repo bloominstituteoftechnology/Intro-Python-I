@@ -8,4 +8,16 @@ class Room():
         self.s_to = None
         self.e_to = None
         self.w_to = None
-    
+    def __str__(self):
+        return f'\n You have entered the {self.location} \n {self.description} \n '
+    def getRoom(self, direction):
+        if direction == 'n':
+            return self.n_to
+        elif direction == 's':
+            return self.s_to
+        elif direction == 'e':
+            return self.e_to
+        elif direction == 'w':
+            return self.w_to
+        else:
+            return None

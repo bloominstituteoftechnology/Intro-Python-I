@@ -52,36 +52,47 @@ plyr = Player(name, room['outside'])
 #
 # If the user enters "q", quit the game.
 #
-def err_catch():
-    print('You are filled with an overwhelming sense of dread and quickly reconsider your decision.')
+# def err_catch():
+#     print('')
 
-print(f'You find yourself just {plyr.current_room.location} with no memory of how you got here. {plyr.current_room.description} ')
+print(f'You find yourself just {plyr.current_room.location} with no memory of how you got here. {plyr.current_room.description}. ')
 while True:
-    cmd = input('How should we proceed? \n')
-    if cmd ==  'q':
-        print('\n Knew you didnt have the constitution for this...')
-        break
-    elif cmd == 'n':
-        if hasattr(plyr.current_room.n_to, 'location'):
-            plyr.current_room = plyr.current_room.n_to
-            print(f'You have entered the {plyr.current_room.location}. \n{plyr.current_room.description} ')
+    cmd = input('\n How should we proceed? -> ').lower().split(' ')
+    if len(cmd) == 1:
+        if cmd[0] == 'q':
+            print('\n Knew you didnt have the constitution for this...')
+            break
+        elif cmd[0] in ['n', 's', 'e', 'w']:
+            plyr.travel(cmd[0])
         else:
-            err_catch()
-    elif cmd == 's':
-        if hasattr(plyr.current_room.s_to, 'location'):
-            plyr.current_room = plyr.current_room.s_to
-            print(f'You have entered the {plyr.current_room.location}. \n{plyr.current_room.description} ')
-        else:
-            err_catch()
-    elif cmd == 'e':
-        if hasattr(plyr.current_room.e_to, 'location'):
-            plyr.current_room = plyr.current_room.e_to
-            print(f'You have entered the {plyr.current_room.location}. \n{plyr.current_room.description} ')
-        else:
-            err_catch()
-    elif cmd == 'w':
-        if hasattr(plyr.current_room.w_to, 'location'):
-            plyr.current_room = plyr.current_room.w_to
-            print(f'You have entered the {plyr.current_room.location}. \n{plyr.current_room.description} ')
-        else:
-            err_catch()
+            print('Thats not right...')
+    else:
+        print('Get and Drop abilities coming soon!')
+
+    # if cmd ==  'q':
+    #     print('\n Knew you didnt have the constitution for this...')
+    #     break
+    # elif cmd == 'n':
+    #     if hasattr(plyr.current_room.n_to, 'location'):
+    #         plyr.current_room = plyr.current_room.n_to
+    #         print(f'You have entered the {plyr.current_room.location}. \n{plyr.current_room.description} ')
+    #     else:
+    #         err_catch()
+    # elif cmd == 's':
+    #     if hasattr(plyr.current_room.s_to, 'location'):
+    #         plyr.current_room = plyr.current_room.s_to
+    #         print(f'You have entered the {plyr.current_room.location}. \n{plyr.current_room.description} ')
+    #     else:
+    #         err_catch()
+    # elif cmd == 'e':
+    #     if hasattr(plyr.current_room.e_to, 'location'):
+    #         plyr.current_room = plyr.current_room.e_to
+    #         print(f'You have entered the {plyr.current_room.location}. \n{plyr.current_room.description} ')
+    #     else:
+    #         err_catch()
+    # elif cmd == 'w':
+    #     if hasattr(plyr.current_room.w_to, 'location'):
+    #         plyr.current_room = plyr.current_room.w_to
+    #         print(f'You have entered the {plyr.current_room.location}. \n{plyr.current_room.description} ')
+    #     else:
+    #         err_catch()
