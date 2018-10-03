@@ -62,25 +62,26 @@ room["treasure"].s_to = room["narrow"]
 # If the user enters "q", quit the game.
 # d = Player(input("Where do you want to go? "))
 
-s = Player(room["outside"])
-direction_dictionary = {"n": "north", "s": "south", "w": "west", "e": "east"}
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
+                    "forward": "n", "backwards": "s", "right": "e", "left": "w"}
+
+player = Player(input("What is your name? "), room['outside'])
+print(player.currentRoom)
 
 while True:
-    # print(vars(d))
-    print(f"You are currently in {s.currentRoom.name}")
-    cmd = input("->")
-
-    if cmd == "q":
-        break
-    # elif s.currentRoom[f"{cmd}_to"] == False:
-    #     print("Cant' go that way")
-    elif cmd == "n" or cmd == "s" or cmd == "w" or cmd == "e":
-        s.currentRoom = getattr(s.currentRoom, f"{cmd}_to")
-        # getattr(s["currentRoom"], cmd)
-        # [f"{cmd}_to"]
-        print(f"You are currently in {s.currentRoom.name}")
-        print(f"Description: {s.currentRoom.description}")
+    cmds = input("-> ").lower().split(" ")
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            break
+        elif cmds[0] in valid_directions:
+            player.travel(valid_directions[cmds[0]])
+        elif cmds[0] == "look":
+            player.look()
+        else:
+            print("I did not understand that command.")
     else:
-        print("invalid input")
-    # s.currentRoom[`${cmd}_to`]
-    # if cmd:
+        if cmds[0] == "look":
+            if cmds[1] in valid_directions:
+                player.look(valid_directions[cmds[1]])
+        else:
+            print("I did not understand that command.")
