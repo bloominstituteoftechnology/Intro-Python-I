@@ -4,10 +4,8 @@ import random
 
 
 class Room:
-  def __init__(self, room_type):
-    self.self = self
-    self.room_type = room_type
-    self.containsItem = self.hasItem()
+	def __init__(self, room_type, room_descr):
+		self.self = self
+		self.room_type = room_type
+		self.room_descr = room_descr
 
-  def hasItem():
-    return bool(random.getrandbits(1))
