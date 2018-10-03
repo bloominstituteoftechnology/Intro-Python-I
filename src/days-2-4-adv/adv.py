@@ -13,8 +13,8 @@ room = {
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+    'narrow':   Room("Narrow Hallway", """This narrow hallway bends here from west
+    to north. The smell of gold permeates the air, which is kinda gross. Metallic and stuff."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-me = Player(room['outside'])
+me = Player("trev", room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -53,6 +53,8 @@ print (f"""
     {me.currentRoom.name}:
 
     {me.currentRoom.description}
+
+    Pick a direction to start (n, s, e, w)
     """)
 while True:
     cmd = input("which way?-> ")
@@ -61,51 +63,7 @@ while True:
     ~~~~ until tomorrow ~~~~
         """)
         break
-    if cmd == "n":
-        if hasattr(me.currentRoom.n_to, "name"):
-            me.currentRoom = me.currentRoom.n_to
-            print (f"""
-    {me.currentRoom.name}:
-
-    {me.currentRoom.description}
-    """)
-        else:
-            print ("""
-    Yo you cant go that way dog, duh, ya dingus
-            """)
-    elif cmd == "e":
-        if hasattr(me.currentRoom.e_to, "name"):
-            me.currentRoom = me.currentRoom.e_to
-            print (f"""
-    {me.currentRoom.name}:
-
-    {me.currentRoom.description}
-    """)
-        else:
-            print ("""
-    Yo you cant go that way dog, duh, ya dingus
-            """)
-    elif cmd == "s":
-        if hasattr(me.currentRoom.s_to, "name"):
-            me.currentRoom = me.currentRoom.s_to
-            print (f"""
-    {me.currentRoom.name}:
-
-    {me.currentRoom.description}
-    """)
-        else:
-            print ("""
-    Yo you cant go that way dog, duh, ya dingus
-            """)
-    elif cmd == "w":
-        if hasattr(me.currentRoom.w_to, "name"):
-            me.currentRoom = me.currentRoom.w_to
-            print (f"""
-    {me.currentRoom.name}:
-
-    {me.currentRoom.description}
-    """)
-        else:
-            print ("""
-    Yo you cant go that way dog, duh, ya dingus
-            """)
+    if cmd is "n" or "s" or "e" or "w":
+        me.enter(cmd)
+    
+        
