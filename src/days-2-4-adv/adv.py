@@ -37,10 +37,22 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
+                    "forward": "n", "backwards": "s", "right": "e", "left": "w"}
+
+print(room['outside'])
+print(room['foyer'])
+print(room['overlook'])
+print(room['naroow'])
+print(room['treasure'])
 
 # Make a new player object that is currently in the 'outside' room.
 
+player = Player(input("What is your name? "), room['outside'])
+print(player.currentRoom)
+
 # Write a loop that:
+    
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
@@ -50,3 +62,21 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    cmds = input("-> ").lower().split(" ")
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            break
+        elif cmds[0] in valid_directions:
+            player.travel(valid_directions[cmds[0]])
+        elif cmds[0] == "look":
+            player.look()
+        else:
+            print("I did not understand that command.")
+    else:
+        if cmds[0] == "look":
+            if cmds[1] in valid_directions:
+                player.look(valid_directions[cmds[1]])
+        else:
+            print("I did not understand that command.")

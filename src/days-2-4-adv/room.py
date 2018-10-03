@@ -2,25 +2,23 @@
 # description attributes.
 
 class Room:
-    def __init__(room, name, description):
-        room.name = name
-        room.description = description
-
-    # not @classmethod: call a method on an instance
-    # room = Room(...)
-    # room.create(...)
-    #
-    # @classmethod: call a method on a class
-    # Room.create(...)
-    @classmethod
-    def create(cls, name, kind):
-        if kind == "outside":
-            return OutsideRoom(name, description)
-        elif kind == "foyer":
-            return FoyerRoom(name, description)
-        elif kind == "overlook":
-            return OverlookRoom(name, description)
-        elif kind == "narrow":
-            return NarrowRoom(name, description)
-        elif kind == "treasure":
-            return TreasureRoom(name, description)
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
+        self.n_to = None
+        self.s_to = None
+        self.e_to = None
+        self.w_to = None
+    def __str__(self):
+        return f"\n\n{self.name}\n\n   {self.description}\n"
+    def getRoomInDirection(self, direction):
+        if direction == "n":
+            return self.n_to
+        elif direction == "s":
+            return self.s_to
+        elif direction == "e":
+            return self.e_to
+        elif direction == "w":
+            return self.w_to
+        else:
+            return None

@@ -2,24 +2,22 @@
 # currently.
 
 class Player:
-    def __init__(player, name):
-        player.name = name
-
-    def greet(player):
-        print(f"{player.name} greeted you")
-
-    # not @classmethod: call a method on an instance
-    # player = Player(...)
-    # player.create(...)
-    #
-    # @classmethod: call a method on a class
-    # Player.create(...)
-    @classmethod
-    def create(cls, name, kind):
-        if kind == "hunter":
-            return PlayerType1(name)
-        elif kind == "mage":
-            return PlayerType2(name)
+    def __init__(self, name, currentRoom):
+        self.name = name
+        self.currentRoom = currentRoom
+    def travel(self, direction):
+        nextRoom = self.currentRoom.getRoomInDirection(direction)
+        if nextRoom is not None:
+            self.currentRoom = nextRoom
+            print(nextRoom)
         else:
-            # cls = Player
-            return cls(name)
+            print("You cannot move in that direction.")
+    def look(self, direction=None):
+        if direction is None:
+            print(self.currentRoom)
+        else:
+            nextRoom = self.currentRoom.getRoomInDirection(direction)
+            if nextRoom is not None:
+                print(nextRoom)
+            else:
+                print("There is nothing there.")
