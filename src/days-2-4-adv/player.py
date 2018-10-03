@@ -2,5 +2,6 @@
 # currently.
 
 class Player:
+    cannotMove = 'You cannot move in that direction.'
     def __init__(self, roomLocation):
         self.roomLocation = roomLocation
