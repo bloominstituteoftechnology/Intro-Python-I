@@ -10,10 +10,10 @@ class Treasure(Item):
     def __init__(self,name,description,value):
         super().__init__(name,description)
         self.value=value
-        self.picked_up=false
+        self.picked_up=False
     def on_take(self):
-        if self.picked_up==false:
+        if self.picked_up==False:
             self.picked_up=True
-            return 1
+            return self.value
         else:
             return 0
