@@ -34,6 +34,9 @@ room['narrow passage'].w_to = room['foyer']
 room['narrow passage'].n_to = room['treasure chamber']
 room['treasure chamber'].s_to = room['narrow passage']
 
+# initial items
+room['treasure chamber'].items.extend(['Treasure Chest Full of Gold'])
+
 # print('check attribute', room['outside cave entrance'].n_to.place)
 
 #
@@ -96,6 +99,7 @@ def brickWall(type):
         e: move east       le: look east
         w: move west       lw: look west
 
+        bag: check your bag
         look: check room
         get: get item
         drop: drop item
@@ -128,6 +132,66 @@ def checkForItems(location):
                 {item}
             """)
 
+def checkBag():
+
+    if len(player.items) == 0:
+        print(f"""
+
+        ~~~~~~~ You Have No Items ~~~~~~~ 
+
+        """)
+    elif len(player.items) > 0:
+        print(f"""
+
+        ~~~~~~~ Items in Your Bag ~~~~~~~""")
+        for item in player.items:
+            print(f"""
+              {item}
+            """)
+
+def getItems(location):
+    if len(room[location].items) == 0:
+        print(f"""
+
+        ~~~~~~~ {room[location].place} Has No Items ~~~~~~~ 
+
+        """)
+    elif len(room[location].items) > 0:
+        player.items.extend(room[location].items)
+        room[location].items.clear()
+        print(f"""
+
+        ~~~~~~~ You Have Aquired ~~~~~~~""")
+
+        for item in player.items:
+            print(f"""
+            {item}""")
+
+        print(f"""
+        ~~~~~~~ From {room[location].place} Room ~~~~~~~
+        """)
+
+def dropItems(location):
+    if len(player.items) == 0:
+        print(f"""
+
+        ~~~~~~~ You Have No Items ~~~~~~~ 
+
+        """)
+    elif len(player.items) > 0:
+        room[location].items.extend(player.items)
+        player.items.clear()
+        print(f"""
+
+        ~~~~~~~ You Have Dropped ~~~~~~~""")
+
+        for item in room[location].items:
+            print(f"""
+            {item}""")
+
+        print(f"""
+        ~~~~~~~ To {room[location].place} Room ~~~~~~~
+        """)
 
 while play:
 
@@ -136,6 +200,7 @@ while play:
     if len(cmd) == 1:
         if cmd[0] == 'q':
             break
+
         # movement
         elif cmd[0] == 'n':
             if player.room.n_to is not None:
@@ -161,6 +226,7 @@ while play:
                 currentLocation()
             else:
                 brickWall('m')
+
         # looking ahead
         elif cmd[0] == "ln":
             if player.room.n_to is not None:
@@ -186,7 +252,10 @@ while play:
                 lookAhead()
             else:
                 brickWall('l')
-        # items
+
+        # item actions
+        elif cmd[0] == "bag":
+            checkBag()
         elif cmd[0] == "look":
             if player.room.place.lower() == 'outside cave entrance':
                 checkForItems('outside cave entrance')
@@ -202,12 +271,35 @@ while play:
 
             elif player.room.place.lower() == 'treasure chamber':
                 checkForItems('treasure chamber')
-
         elif cmd[0] == "get":
-            #do something
-            print("do")
+            if player.room.place.lower() == 'outside cave entrance':
+                getItems('outside cave entrance')
+
+            elif player.room.place.lower() == 'foyer':
+                getItems('foyer')
+
+            elif player.room.place.lower() == 'grand overlook':
+                getItems('grand overlook')
+
+            elif player.room.place.lower() == 'narrow passage':
+                getItems('narrow passage')
+
+            elif player.room.place.lower() == 'treasure chamber':
+                getItems('treasure chamber')
         elif cmd[0] == "drop":
-            #do something
-            print("do")
+            if player.room.place.lower() == 'outside cave entrance':
+                dropItems('outside cave entrance')
+
+            elif player.room.place.lower() == 'foyer':
+                dropItems('foyer')
+
+            elif player.room.place.lower() == 'grand overlook':
+                dropItems('grand overlook')
+
+            elif player.room.place.lower() == 'narrow passage':
+                dropItems('narrow passage')
+
+            elif player.room.place.lower() == 'treasure chamber':
+                dropItems('treasure chamber')
         else:
             brickWall('e')

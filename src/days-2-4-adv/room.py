@@ -3,9 +3,8 @@
 
 class Room:
 
-  items = []
-
   def __init__(self, place, description):
+    self.items = []
     self.place = place
     self.description = description
     self.n_to = None

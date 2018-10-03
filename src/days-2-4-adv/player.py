@@ -4,10 +4,10 @@
 class Player:
 
   nextRoom = None
-  items = []
 
   def __init__(self, room):
     self.room = room
+    self.items = []
   
   def updateRoom(self, room):
     self.room = room
