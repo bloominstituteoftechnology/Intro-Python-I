@@ -29,11 +29,13 @@ validDirections = ["n", "s", "e", "w"]
 def moveCommand(player, *args):
     newRoom = player.location.getRoomInDirection(args[0])
     if newRoom == None:
-        printErrorString("Dead end!")
+        printErrorString("You shall not pass!")
     else:
         player.change_location(newRoom)
     return False
- def lookCommand(player, *args):
+
+
+def lookCommand(player, *args):
     """
     Returns suppressRoomString value
     """
@@ -41,17 +43,30 @@ def moveCommand(player, *args):
         printErrorString("That is not a look command")
     elif len(args) == 1:
         return False
+        elif args[1] == "here":
+        print(player.location.description +
+              "\n\nThere are the following items here: " + player.location.items)
     elif args[1] in validDirections:
         lookRoom = player.location.getRoomInDirection(args[1])
         if lookRoom is not None:
-            print (lookRoom)
+            print('\n' + lookRoom.description + '\n' + lookRoom.items + '\n')
         else:
-            printErrorString("Dead end!")
+            printErrorString("You shall not pass!")
         return True
- def printErrorString(errorString):
+
+
+def takeItemCommand(player, *args):
+    if not (args[0] == "g" or args[0] == "get"):
+        printErrorString("That is not a get command")
+    elif len(args) == 1:
+        return False
+
+
+def printErrorString(errorString):
     print(f'{errorString}')
     global suppressRoomPrint
     suppressRoomPrint = True
+
 
 commands = {}
 commands["n"] = moveCommand
@@ -61,26 +76,35 @@ commands["w"] = moveCommand
 commands["l"] = lookCommand
 commands["look"] = lookCommand
 
-commandsHelp = {}
-commandsHelp["n"] = "Move North"
-commandsHelp["s"] = "Move South"
-commandsHelp["e"] = "Move East"
-commandsHelp["w"] = "Move West"
-commandsHelp["l"] = "Look somewhere"
-
-
+commands["take"] =
 
 # Link rooms together
 
+room['outside'].n_to = room['foyer']
+room['foyer'].s_to = room['outside']
+room['foyer'].n_to = room['overlook']
+room['foyer'].e_to = room['narrow']
+room['overlook'].s_to = room['foyer']
+room['narrow'].w_to = room['foyer']
+room['narrow'].n_to = room['treasure']
+room['treasure'].s_to = room['narrow']
 
+# Adding some items
+
+t = Treasure("coins", "Shiny coins", 100)
+room['overlook'].contents.append(t)
+
+t = Treasure("silver", "Tarnished silver", 200)
+room['treasure'].contents.append(t)
+
+l = LightSource("lamp", "Brass lamp")
+room['foyer'].contents.append(l)
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
-
 
 # Write a loop that:
 #
@@ -93,25 +117,21 @@ commandsHelp["l"] = "Look somewhere"
 #
 # If the user enters "q", quit the game.
 
-room['outside'].connectRooms(room['foyer'], "n")
-room['foyer'].connectRooms(room['overlook'], "n")
-room['foyer'].connectRooms(room['narrow'], "e")
-room['narrow'].connectRooms(room['treasure'], "n")
 
-player = Player(input("\nWhat is your name?: ") , room['outside'])
- print (f"Salutations, {player.name}!\n")
- while True:
+player = Player(input("\nWhat is your name?: "), room['outside'])
+
+print(f"Welcome, {player.name}!\n")
+
+while True:
     if suppressRoomPrint:
         suppressRoomPrint = False
     else:
-        print(f'{player.location.title}')
-    inputList = input(">>> ").split(" ")
+        print(f'{player.location.title}\n')
+     inputList = input("> ").split(" ")
     if inputList[0] == "q":
         break
     elif inputList[0] in commands:
         suppressRoomPrint = commands[inputList[0]](player, *inputList)
-    elif inputList[0] == "help":
-        for command in commandsHelp:
-            print (f"{command} - {commandsHelp[command]}")
+
     else:
         printErrorString("That command does not exist")
