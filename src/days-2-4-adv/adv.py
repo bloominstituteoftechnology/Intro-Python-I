@@ -51,10 +51,13 @@ player = Player(input("What is your name? "), room['outside'])
 #
 # If the user enters "q", quit the game.
 
+suppressRoomPrint = False
 
 while True:
-    print(player.currentRoom.name + "\n" + player.currentRoom.description + "\n")
-
+    if suppressRoomPrint:
+        suppressRoomPrint = False
+    else:
+        print(player.currentRoom)
     cmd = input("INPUT HERE:")
     if cmd == 'q':
         break
@@ -62,24 +65,29 @@ while True:
         if player.currentRoom.n_to is not None:
             player.currentRoom = player.currentRoom.n_to
         else:
-            print("direction locked")
+            print("You cannot move in that direction")
+            suppressRoomPrint = True
     elif cmd == 's':
         if player.currentRoom.s_to is not None:
             player.currentRoom = player.currentRoom.s_to
         else:
-            print("direction locked")
+            print("You cannot move in that direction")
+            suppressRoomPrint = True
     elif cmd == 'w':
         if player.currentRoom.w_to is not None:
             player.currentRoom = player.currentRoom.w_to
         else:
-            print("direction locked")
+            print("You cannot move in that direction")
+            suppressRoomPrint = True
     elif cmd == 'e':
         if player.currentRoom.e_to is not None:
             player.currentRoom = player.currentRoom.e_to
         else:
-            print("direction locked")
+            print("You cannot move in that direction")
+            suppressRoomPrint = True
     else:
         print("need valid command")
+        suppressRoomPrint = True
        
        
        

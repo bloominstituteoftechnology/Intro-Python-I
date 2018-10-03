@@ -8,4 +8,7 @@ class Room:
         self.s_to = None
         self.e_to = None
         self.w_to = None
-#THIS MAKES THE ROOM CLASS THAT DEFINES THE ATTRIBUTES OF A ROOM
+#THIS MAKES THE ROOM CLASS THAT DEFINES THE ATTRIBUTES OF A ROOM        
+    def __str__(self):
+        return f"\n\{self.name}\n\n    {self.description}\n"
+#THIS CREATES A STRING THAT PRINTS IN EACH ROOM
