@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
+player = Player(input("What is your name? "), room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -50,21 +51,39 @@ player = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
+
 while True:
-    locked = 'No Entry'
+    print(player.currentRoom.name + "\n" + player.currentRoom.description + "\n")
 
-    print(f'{player.room.name}: {player.room.description}')
-
-    cmd = input('Which way would you like to go?')
+    cmd = input("INPUT HERE:")
     if cmd == 'q':
         break
-    elif cmd == 'n'
-        move north
-    elif cmd == 's'
-        move south
-    elif cmd == 'e'
-        move east
-    elif cmd == 'w'
-        move west
+    elif cmd == 'n':
+        if player.currentRoom.n_to is not None:
+            player.currentRoom = player.currentRoom.n_to
+        else:
+            print("direction locked")
+    elif cmd == 's':
+        if player.currentRoom.s_to is not None:
+            player.currentRoom = player.currentRoom.s_to
+        else:
+            print("direction locked")
+    elif cmd == 'w':
+        if player.currentRoom.w_to is not None:
+            player.currentRoom = player.currentRoom.w_to
+        else:
+            print("direction locked")
+    elif cmd == 'e':
+        if player.currentRoom.e_to is not None:
+            player.currentRoom = player.currentRoom.e_to
+        else:
+            print("direction locked")
     else:
-        print('need valid command')
+        print("need valid command")
+       
+       
+       
+       
+       
+       
+       
