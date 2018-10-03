@@ -106,6 +106,7 @@ while True:
                 else:
                     time.sleep(1)
                     print('\nI cannot understand. Let\'s continue!')
+                    continue
             else:
                 time.sleep(1)
                 print('You can only go north, south, east or west! Try going somewhere!')
