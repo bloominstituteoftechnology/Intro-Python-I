@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
-                    "forward": "n", "backwards": "s", "right": "e", "left": "w"}
+                    "forward": "n", "backward": "s", "right": "e", "left": "w"}
 # Make a new player object that is currently in the 'outside' room.
 player = Player(input("What is your name? "), room['outside'])
 print(player.currentRoom)
