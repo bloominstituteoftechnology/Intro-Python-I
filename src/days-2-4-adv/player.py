@@ -36,6 +36,17 @@ class Player(object):
                 return f"You collected the {item.name}\n"
             else:
                 return f"That item is not available in this room."
+    def dropItem(self, item):
+        if item.name == 'coins':
+            return f"Coins cannot be dropped"
+        elif self.items.count(item) > 0:
+            if self.items.count(item) > 0:
+                self.currentRoom.addItem(item)
+                self.items.remove(item)
+                return f"You have dropped the {item.name} in the {self.currentRoom}"
+            else:
+                return (f"You do not have that item in your inventory\n  use option i to view your inventory")
+            
 
     #
     #

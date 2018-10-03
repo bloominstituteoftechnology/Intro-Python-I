@@ -84,7 +84,12 @@ while True:
         if option[0] == 'grab':
             print(player.grabItem(items[option[1]]))
         elif option[0] == 'drop':
-            pass
+            itemsAvaliable = list(items.keys())
+            if itemsAvaliable.count(option[1]) > 0:
+                print(player.dropItem(items[option[1]]))
+            else:
+                print("That item doesn't exist.")
+
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.

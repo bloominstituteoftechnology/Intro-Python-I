@@ -38,6 +38,9 @@ class Room (object):
             return(f"{item.name} has been removed from the {self.name}\n\n to drop an item use drop item_name\n \n to check your inventory use  i\n\n")
         else:
             return None
+    def addItem(self, item):
+        self.items.append(item)
+        
 
     #
     #
