@@ -1,15 +1,19 @@
-from room import Room, room
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+
+
 class Player():
-    def __init__(self, name):
+    def __init__(self, name, currentRoom, items=None):
         self.name = name
         self.health = 100
         self.mana = 50
-        self.currentRoom = room['outside']
+        self.currentRoom = currentRoom
         self.badMove = '==You abruptly realize it is impossible to continue in this direction, turn around, and stride confidently back from whence you came.=='
+        self.items = items
+
     def __str__(self):
-        return f'\n{self.name}\n Health: {self.health} - Mana: {self.mana} - Room: {self.currentRoom.name}'
+        return f'\nPlayer Name: {self.name}\n Health: {self.health} - Mana: {self.mana} - Room: {self.currentRoom.name} - Items: {self.items}'
+
     def playerMove(self, direction):
         if direction == 'n':
             self.currentRoom = self.currentRoom.n_to
@@ -19,19 +23,13 @@ class Player():
             self.currentRoom = self.currentRoom.e_to
         elif direction == 'w': 
             self.currentRoom = self.currentRoom.w_to
+    
+    def playerGet(self, item):
+        self.items = item
 
 
 
 
-# Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
 
 
