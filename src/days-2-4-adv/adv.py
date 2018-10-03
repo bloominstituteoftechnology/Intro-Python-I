@@ -1,27 +1,37 @@
+import random
 from room import Room
 from player import Player
+
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", items),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", items),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", items),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", items),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", items),
 }
 
+# Items - suppose to have different items in different rooms
+items = {
+    "1": "AK47",
+    "2": "M416",
+    "3": "M16A4",
+    "4": "AWM",
+    "5": "First Aid Kit"
+}
 
 # Link rooms together
 
@@ -55,7 +65,7 @@ print(f"👋  Hi, { player.name }! You've started your adventure at 🏠 { playe
 # Initialise number of round
 number_round = 1
 
-# Check valid direction
+# Valid direction
 valid_directions = {
     "n": "n",
     "e": "e",
@@ -65,10 +75,10 @@ valid_directions = {
 
 while True:
     """
-    Game started
+    Each new round
     """
     print (f"\n--- Round {number_round} ---\n")
-    print("ℹ️\n\nPlease enter n/e/s/w to pick a direction,\nd for description of current location,\nq for quitting the game\n")
+    print("ℹ️\n\nPlease enter n/e/s/w to pick a direction,\nenter d for description of current location,\nenter q for quitting the game,\nenter i for checking items\n")
 
     """
     Get user input
@@ -78,15 +88,17 @@ while True:
     """
     Process user input
     """
-
     if cmd is "q":
         break
     if cmd is "d":
         player.location.print_description()
+    if cmd is "i":
+        player.get_item()
     elif cmd in valid_directions:
         player.travel(valid_directions[cmd])
+        player.location.generate_items(player)
 
     """
-    Update program
+    End this round
     """
     number_round += 1

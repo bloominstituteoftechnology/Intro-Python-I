@@ -1,10 +1,12 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
+import random
 
 class Room:
-    def __init__ (self, name, description):
+    def __init__ (self, name, description, items = []):
         self.name = name
         self.description = description
+        self.items = items  
         self.n_to = None 
         self.e_to = None
         self.s_to = None 
@@ -28,3 +30,9 @@ class Room:
         else:
             print("\n⚠️  The direction you have chosen is not accessible!\n")
             return None
+
+    def generate_items(self, player):
+        if random.random() > 0.5:
+            random_item = self.items[str(random.randint(0,len(self.items)))]
+            player.add_item(random_item)
+            print(f"🔫  You have found a {random_item}")
