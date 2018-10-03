@@ -1,61 +1,88 @@
 from room import Room
 from player import Player
+from item import Item
 import textwrap
-# Declare all the rooms
 
+# Declare all the items
+
+sword=Item('sword','It is magical sword with interesting powers')
+knife=Item('knife','It is an ancient knife with speed and power')
+arrow=Item('arrow','Bow and arrow are a deadly combination')
+coins=Item('coins','Coins can buy you other items')
+
+
+
+# Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",[sword]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", [knife,coins]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""",[arrow,coins]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""",[knife,coins]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""",[sword,coins]),
 }
 
 
 # Link rooms together
 
-room['outside'].connecting('n', room['foyer'])
-room['foyer'].connecting('s', room['outside'])
-room['foyer'].connecting('n', room['overlook'])
-room['foyer'].connecting('e', room['narrow'])
-room['overlook'].connecting('s', room['foyer'])
-room['narrow'].connecting('w', room['foyer'])
-room['narrow'].connecting('n', room['treasure'])
-room['treasure'].connecting('s', room['narrow'])
-
+room['outside'].n_to = room['foyer']
+room['foyer'].s_to = room['outside']
+room['foyer'].n_to = room['overlook']
+room['foyer'].e_to = room['narrow']
+room['overlook'].s_to = room['foyer']
+room['narrow'].w_to = room['foyer']
+room['narrow'].n_to = room['treasure']
+room['treasure'].s_to = room['narrow']
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-p=Player(room['outside'].name)
+p=Player(input('What is your name?'),room['outside'])
 
 # Write a loop that:
 
-direction = "What direction do you want to move towards?"
+direction = "What direction would you like to walk in?[n,s,e,w or q to quit]"
+print(f'Hello {p.name},Your current location is:{p.currentRoom.name} and it has items: {p.currentRoom.showItems()}')
+print(f'{p.currentRoom.text}')
+print(direction)
 
-while True:
-        print(p.room_name())
-        print(room[p.room].text)
-        print(direction)
-        cmd = input("-> ")
-        if cmd == "q":
-                print('You choose to quit.')
-                break
-        elif cmd == "n" or cmd == "s" or cmd == "e" or cmd == "w":
-                nextroom = room[p.room].next_d
-                p.room=nextroom
+
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w","forward": "n", "backwards": "s", "right": "e", "left": "w"}
+
+while True:        
+        cmds = input("-> ").lower().split(' ')
+        print(cmds[1])
+        cmd=cmds[0]
+        print(cmd[0])
+        if len(cmd)==1:
+                cm=cmd[0]
+                print(cm)
+                if cm == "q":
+                        print('You choose to quit.')
+                        break
+                elif cm in valid_directions:
+                        print('inside valid')
+                        p.travel(cm)
+                elif cm =="t" or cm =="g":
+                        print(cmds[1])
+                        result=p.currentRoom.getItem(cmds[1])
+                        if result!=None:
+                                p.items.append(result)
+                                p.currentRoom.removeItem(cmds[1])
+                                print(f'p.currentRoom.showItems()')
+                else:
+                        print('I cannot understand your command')
         else:
                 print("I did not understand that command.")        
 

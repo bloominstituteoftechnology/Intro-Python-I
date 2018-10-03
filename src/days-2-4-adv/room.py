@@ -1,35 +1,40 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
-import textwrap
 
 class Room():
-        def __init__(self, name, text):
+        def __init__(self, name, text, items):
                 self.name=name.split(' ', 1)[0].lower()     
                 self.text=text
-                self.next_d=None
+                self.n_to=None
+                self.s_to=None
+                self.e_to=None
+                self.w_to=None
+                self.items=items
 
-        def text_descr(self):
-                return f'{textwrap.fill({self.text}, 35)}'       
+        
+        
+        def __str__(self):
+                return f'{self.name} {self.text}'
 
-        def connecting(self, direction, next_destination):
-                if self.name =='outside' and direction =='n':
-                        self.next_d=next_destination.name
-                elif self.name =='foyer' and direction =='s':
-                        self.next_d=next_destination.name
-                elif self.name =='foyer' and direction =='n':
-                         self.next_d=next_destination.name
-                elif self.name =='foyer' and direction =='e':
-                         self.next_d=next_destination.name
-                elif self.name =='overlook' and direction =='s':
-                         self.next_d=next_destination.name
-                elif self.name =='narrow' and direction =='w':
-                         self.next_d=next_destination.name
-                elif self.name =='treasure' and direction =='s':
-                         self.next_d=next_destination.name
+        def showItems(self):
+                if (self.items):
+                        for i in self.items:
+                                return(f'{i.name}')
+
+        def addItem(self,item):
+                self.items.append(item)
+
+        def getItem(self, item):
+                if(self.items):
+                        for i in self.item:
+                                if i==item:
+                                        return i   
                 else:
-                         self.next_d=self.name
-                    
-    
-                    
-    
+                        return None
 
+        def removeItem(self, item):
+                self.items.remove(item)
+
+                
+                    
+                            
