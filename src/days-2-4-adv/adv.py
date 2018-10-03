@@ -49,18 +49,40 @@ room["treasure"].s_to = room["narrow"]
 choice_direction = {"n": "north", "s": "south", "e": "east", "w": "west"}
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
-direction = Player(input("Where would you like to go?"))
+name = input("Where would you like to go?")
+player = Player(name, room['outside'])
 # Write a loop that:
 while True:
-    print(p)
-    cmd = input("-> ")
+    wrong_dir = "Cannot go this way!"
+
+    print(f"Hello, {player.name} your current location is {player.room}")
+
+    cmd = input("-> Please pick a direction (n, s, e, w)")
+
     if cmd == "q":
         break
-    elif cmd == "n" or cmd == "s" or cmd == "w" or cmd == "e"
-if "n"
-    player["currentRoom"] = (room[Room[f"{cmd_to}"]])
-    print(f"You are in {vars(player.currentRoom)}")
+    elif cmd == "n":
+        if hasattr(player.room, 'n_to'):
+            player.changeRooms(player.room.n_to)
+        else:
+            print(wrong_dir)
+    elif cmd == "s":
+        if hasattr(player.room, 's_to'):
+            player.changeRooms(player.room.s_to)
+        else:
+            print(wrong_dir)
+    elif cmd == "e":
+        if hasattr(player.room, 'e_to')
+            player.changeRooms(player.room.e_to)
+        else:
+            print(wrong_dir)
+    elif cmd == "w":
+        if hasattr(player.room, 'w_to')
+            player.changeRooms(player.room.w_to)
+        else:
+            print(wrong_dir)
+    else:
+        print("Choose n, s, w, or e or q for quit")    
 
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
@@ -70,6 +92,3 @@ if "n"
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-text = textwrap.wrap(Room(), width=50)
-    for lines in text:
-        print(lines)
