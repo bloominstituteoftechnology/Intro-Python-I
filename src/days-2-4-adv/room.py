@@ -5,6 +5,26 @@ class Room:
         self.name=name
         self.description=description
         self.inventory=[]
+        self.n_to=None
+        self.s_to=None
+        self.e_to=None
+        self.w_to=None
     def __str__(self):
         itemArr=', '.join(self.inventory)
-        return f'name: {self.name}\ndescription: {self.description}\nitems available: {itemArr}'
+        return f'Current Location:\nname: {self.name}\ndescription: {self.description}\nitems available: {itemArr}'
+    def get_next_room(self,direction):
+        next_location=''
+        if direction=='n':
+            if hasattr(self,'n_to'):
+                next_location=self.n_to
+        elif direction=='e':
+            if hasattr(self,'e_to'):
+                next_location=self.e_to
+        elif direction=='s':
+            if hasattr(self,'s_to'):
+                next_location=self.s_to
+        elif direction=='w':
+            if hasattr(self,'w_to'):
+                next_location=self.w_to
+        return next_location
+                

@@ -50,8 +50,8 @@ room['treasure'].inventory.append('lasso')
 # Main
 #
 # Make a new player object that is currently in the 'outside' room.
-Will=Player('outside')
-roomkeys=room.keys()
+player=Player(input('What is your name?\n'),room['outside'])
+print(f'Hello, {player.name}')
 # Write a loop that:
 #
 # * Prints the current room name
@@ -62,51 +62,38 @@ roomkeys=room.keys()
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-while True:
-    print(room[Will.location])
-    cmd=input('-->').lower()
-    if len(cmd.split())==2:
-        cmd=cmd.split()
-        if cmd[0]=='get':
-            if cmd[1] in room[Will.location].inventory:
-                room[Will.location].inventory.remove(cmd[1])
-                Will.pickup(cmd[1])
-                print(f'Picked up a {cmd[1]}')
+def game():
+    print (player.current_location)
+    while True:
+        cmd=input('-->').lower().split()
+        if len(cmd)==2:
+            if cmd[0]=='get':
+                if cmd[1] in room[player.location].inventory:
+                    room[player.location].inventory.remove(cmd[1])
+                    player.pickup(cmd[1])
+                    print(f'Picked up a {cmd[1]}')
+                else:
+                    print(f'Cannot find {cmd[1]} in {room[player.location].name}')
+            elif cmd[0]=='drop':
+                if cmd[1] in player.possessions:
+                    player.drop(cmd[1])
+                    room[player.location].inventory.append(cmd[1])
+                    print(f'Dropped a {cmd[1]}')
+                else:
+                    print(f'You do not have a {cmd[1]} to drop.')
             else:
-                print(f'Cannot find {cmd[1]} in {room[Will.location].name}')
-        elif cmd[0]=='drop':
-            if cmd[1] in Will.possessions:
-                Will.drop(cmd[1])
-                room[Will.location].inventory.append(cmd[1])
-                print(f'Dropped a {cmd[1]}')
+                print('Invalid command.')
+        elif len(cmd)==1:
+            if cmd[0]=='n' or cmd[0]=='e' or cmd[0]=='s' or cmd[0]=='w':
+                print(player.travel(cmd[0]))
+            elif cmd[0]=='q':
+                break
+            elif cmd[0]=='i':
+                print(player.i())
+            elif cmd[0]=='inventory':
+                print(player.inventory())
             else:
-                print(f'You do not have a {cmd[1]} to drop.')
-    else:
-        if cmd=='n' or cmd=='e' or cmd=='s' or cmd=='w':
-            next_location=''
-            if cmd=='n':
-                if hasattr(room[Will.location],'n_to'):
-                    next_location=room[Will.location].n_to
-            elif cmd=='e':
-                if hasattr(room[Will.location],'e_to'):
-                    next_location=room[Will.location].e_to
-            elif cmd=='s':
-                if hasattr(room[Will.location],'s_to'):
-                    next_location=room[Will.location].s_to
-            elif cmd=='w':
-                if hasattr(room[Will.location],'w_to'):
-                    next_location=room[Will.location].w_to
-            if next_location!='':
-                for key in roomkeys:
-                    if room[key]==next_location:
-                        print(f'Moving {cmd} you arrive at:')
-                        Will.travel(key)
-            else:
-                print('Error: Player is unable to move in that direction.')
-        elif cmd=='q':
-            break
-        elif cmd=='i':
-            print(Will.i())
-        elif cmd=='inventory':
-            print(Will.inventory())
-            
+                print('Invalid command.')
+        else:
+            print('Invalid command')
+game()
