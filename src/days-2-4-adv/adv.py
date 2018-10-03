@@ -111,6 +111,23 @@ def lookAhead():
     """)
 
 
+def checkForItems(location):
+
+    if len(room[location].items) == 0:
+        print(f"""
+
+        ~~~~~~~ {room[location].place} Has No Items ~~~~~~~ 
+
+        """)
+    elif len(room[location].items) > 0:
+        print(f"""
+
+        ~~~~~~~ Items in {room[location].place} ~~~~~~~""")
+        for item in room[location].items:
+            print(f"""
+                {item}
+            """)
+
 
 while play:
 
@@ -172,21 +189,19 @@ while play:
         # items
         elif cmd[0] == "look":
             if player.room.place.lower() == 'outside cave entrance':
-                print(player.items)
-                print(player.room)
-                print(room['outside cave entrance'].items)
+                checkForItems('outside cave entrance')
+
             elif player.room.place.lower() == 'foyer':
-                print(player.items)
-                print(player.room)
-                print(room['foyer'].items)
+                checkForItems('foyer')
+
+            elif player.room.place.lower() == 'grand overlook':
+                checkForItems('grand overlook')
+
             elif player.room.place.lower() == 'narrow passage':
-                print(player.items)
-                print(player.room)
-                print(room['narrow passage'].items)
+                checkForItems('narrow passage')
+
             elif player.room.place.lower() == 'treasure chamber':
-                print(player.items)
-                print(player.room)
-                print(room['treasure chamber'].items)
+                checkForItems('treasure chamber')
 
         elif cmd[0] == "get":
             #do something
