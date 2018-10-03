@@ -10,8 +10,8 @@ class Room():
         self.s_to = None
         self.w_to = None
 
-    def __repr__(self):
-        return f"location: {self.name}, message: {self.description}"
+    def __str__(self):
+        return f"\n\n{self.name}\n\n   {self.description}\n"
 
     # def direction(self, direction):
     #     if direction == "n":
