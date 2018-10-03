@@ -51,6 +51,14 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+# Add some items
+
+# Items 
+wep = Weapon("sword", "a valerian steel sword", 200)
+room['overlook'].contents.append(wep)
+
+wep = Weapon("bow", "an elvish bow with sharp arrows", 100)
+room['narrow'].contents.append(wep)
 
 
 valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
@@ -63,10 +71,13 @@ game_over = False
 
 while not game_over:
     cmds = input("-> ").lower().split(" ")
+    # if command length is == 1
     if len(cmds) == 1:
+        print(cmds[0])
+        # if user enters 'q' quit the game
         if cmds[0] == "q":
-            print("Game Over")
             game_over = True
+        # if command is found in valid-directins dictionary, travel
         elif cmds[0] in valid_directions:
             player.travel(valid_directions[cmds[0]])
         elif cmds[0] == "look":
