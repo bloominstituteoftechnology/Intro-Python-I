@@ -1,6 +1,7 @@
 import textwrap
 from player import Player
 from room import Room
+from item import Item
 
 # Declare all the rooms
 
@@ -35,6 +36,14 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+#items
+item = {
+    'dagger': Item("Dagger",
+    "Pointy end goes in target")
+}
+
+room['outside'].items.append('dagger')
+
 #
 # Main
 #
@@ -56,12 +65,22 @@ direction = ("n", "e", "s", "w")
 
 while True:
 
-    print(f'{} \n {}' (p.currentRoom.name, p.currentRoom.description))
-    cmd = input("-->")
-    if cmd == "q":
-        break
-    elif cmd in direction:
-        if p.currentRoom.'{cmd!s}'+_to is not None:
-            player.currentRoom = p.currentRoom.'{cmd!s}'+_to
-    else:
-        print(f"What do you mean by {cmd!s}, {p.name!s}?")
+    print(f'\n {p.currentRoom.name!s} \n \n {p.currentRoom.description!s}')
+    if len(p.currentRoom.items) > 0:
+        print(f'{p.currentRoom.items}')
+    cmds = input("-->").lower().split(" ")
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            break
+        elif cmds in direction:
+            p.move(cmds[0])
+        else:
+            print(f"What do you mean by {cmd!s}, {p.name!s}?")
+    elif len(cmds) > 1:
+        if cmds[0] == "get" or "take":
+            if cmds[1] in p.currentRoom.items:
+                p.currentRoom.items.remove(cmds[1])
+                p.items.append(cmds[1])
+            else:
+                print(f"There's no {cmds[1]!s} here.")
+

@@ -9,4 +9,4 @@ class Room:
         self.e_to = None
         self.s_to = None
         self.w_to = None
-        self.contents = []
+        self.items = []
