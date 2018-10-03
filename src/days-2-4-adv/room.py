@@ -42,15 +42,18 @@ class Room():
       if self.is_light or has_light:
         exits = []
         if self.n_to is not None:
-          exits.push('(N)orth')
+          exits.append('(N)orth')
         if self.e_to is not None:
-          exits.push('(E)ast')
+          exits.append('(E)ast')
         if self.s_to is not None:
-          exits.push('(S)outh')
+          exits.append('(S)outh')
         if self.w_to is not None:
-          exits.push('(W)est')
+          exits.append('(W)est')
         print('The current exits are: ')
         for exit in exits:
           print(exit)
       else:
         print("It's too dark to see any exits, trying going back the way you came!")
+
+    def add_item(self, item):
+      self.items.append(item)

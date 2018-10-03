@@ -27,12 +27,14 @@ earlier adventurers. The only exit is to the south.""", True),
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
+room['outside'].add_item(LightSource('Lantern', 'A source of light in the dark'))
 
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
 
 room['overlook'].s_to = room['foyer']
+room['overlook'].add_item(Treasure('Sword', 'A very shiny sword', 500))
 
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
@@ -57,60 +59,6 @@ p = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
-def handle_complex_command(words):
-    global error
-    global rooms
-    global p
-    if words[0].upper() == 'TAKE' or words[0].upper() == 'GET':
-        if p.c_room.is_light is False and any(isinstance(item, LightSource) for item in p.items) is False:
-            error = "Good luck finding that in the dark!"
-        else:
-            if len(p.c_room.items) > 0:
-                item = list(filter(lambda i: i.name.upper() == words[1].upper(), p.c_room.items))
-                if len(item) > 0:
-                    p.get_item(item[0])
-                    p.c_room.remove_room_item(item[0])
-                    error = item[0].on_take(p)
-                else:
-                    error = "There is no such item in this room"
-            else:
-                error = "There are no items in this room"
-    elif words[0].upper() == 'DROP':
-        if len(p.items) > 0:
-            item = list(filter(lambda i: i.name.upper() == words[1].upper(), p.items))
-            if len(item):
-                p.drop_item(item[0])
-                error = item[0].on_drop()
-            else:
-                error = "You're not holding an item with that name"
-        else:
-            error = "You're not holding any items"
-    else:
-        error = "That command is invalid. please try again"
-
-
-# while playing:
-#     print('')
-#     print('')
-#     if show_description:
-#         if p.c_room.is_light or any(isinstance(x, LightSource) for x in p.items):
-#             print(p.c_room.location)
-#             print(p.c_room.description)
-#             p.c_room.list_room_items()
-#         else:
-#             print("It's pitch black!")
-#     show_description = True
-#     direction = input('Enter a command: ')
-#     if direction == "":
-#         error = "You must input a command"
-#     else:
-#         words = direction.split()
-#         if len(words) == 1:
-#             handle_simple_command(words[0])
-#         else:
-#             handle_complex_command(words)
-#     handle_error()
-
 valid_directions = {"n": "n", "e": "e", "s": "s", "w": "w",
                     "north": "n", "east": "east", "west": "west", "south": "south"}
 
@@ -128,9 +76,16 @@ while True:
     elif command[0] == 'i' or command[0] == 'inventory':
       p.list_items()
     elif command[0] == 'exits':
-      p.c_room.list_exits()
+      p.c_room.list_exits(p.has_light_item())
     elif command[0] == 'score':
       print(f'Your current score is: {p.score}')
+    else:
+      print("I don't understand that command")
+  elif len(command) == 2:
+    if command[0] == 'take' or command[0] == 'get':
+      p.take_item(command[1])
+    elif command[0] == 'drop':
+      p.drop_item(command[1])
     else:
       print("I don't understand that command")
   else:
