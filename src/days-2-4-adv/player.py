@@ -2,6 +2,8 @@
 # currently.
 
 class Player():
-    def __init__(self,startRoom):
-        self.currentRoom = startRoom
-        self.description = []
+    def __init__(self, name, currentRoom):
+        self.name = name
+        self.currentRoom = currentRoom
+    def __str__(self):
+        return f"\n{self.name}\n{self.currentRoom}"

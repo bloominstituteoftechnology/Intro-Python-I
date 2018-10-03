@@ -1,20 +1,6 @@
 from room import Room
 from player import Player
-
-class Player():
-    def __init__(self, name, location):
-        self.name = name
-        self.location = location
-    def __str__(self):
-        return f"\n{self.name}\n{self.location}"
-
-class Room:
-    def __init__(self, name, description):
-        self.name = name
-        self.description = description
-    def __str__(self):
-        return f"\n{self.name}\n{self.description}"
-
+import textwrap
 
 # Declare all the rooms
 
@@ -57,40 +43,48 @@ room['treasure'].s_to = room['narrow']
 
 # player = Player(room['outside'])
 # print(player.currentRoom.description)
-players = {
-    'player 1': Player("Francis", "outside")
-}
+p = Player(input('What is your name?'), room['outside'])
 
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
 
-def current(location):
-    for key in room:
-        if key == location:
-            print("Current location: " + room[key].name)
-            print (room[key].description)
-
-location = players['player 1'].location
-current(location)
-cmd =input("where are you going? ->")
 while True:
-    cmd = input("-> ")
-    if cmd == "q":
-        break
-    if (location == 'outside'):
-        if cmd == "n":
-            location = 'foyer'
-            current(location)
-            cmd =input("where are you going? ->")
+    currentRoom = p.currentRoom
+
+    def error():
+        print('You cannot go in that direction! Try another direction!')
+    print('Your location is: ', currentRoom)
+
+    cmd = input('=>')
+
+    if cmd.upper() == 'N':
+        if hasattr(currentRoom, 'n_to'):
+            p.currentRoom = currentRoom.n_to
         else:
-            print('You cannot go there! Try again!')
+            error()
+    elif cmd.upper() == 'S':
+        if hasattr(currentRoom, 's_to'):
+            p.currentRoom = currentRoom.s_to
+        else:
+            error()
+    elif cmd.upper() == 'W':
+        if hasattr(currentRoom, 'w_to'):
+            p.currentRoom = currentRoom.w_to
+        else:
+            error()
+    elif cmd.upper() == 'E':
+        if hasattr(currentRoom, 'e_to'):
+            p.currentRoom = currentRoom.e_to
+        else:
+            error()
+    elif cmd.upper() == 'Q':
+        break
     else:
-        print("I did not understand that command.")
+        print('You can only go north, south, east or west! Try going somewhere!')
