@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from items import Item
 # Declare all the rooms
 
 room = {
@@ -62,47 +63,5 @@ while True:
     Quitting
         """)
         break
-    if cmd == "n":
-        if hasattr(me.startRoom.n_to, "name"):
-            me.startRoom = me.startRoom.n_to
-            print (f"""
-    {me.startRoom.name}:
-    {me.startRoom.description}
-    """)
-        else:
-            print ("""
-    Cannot go there
-            """)
-    elif cmd == "e":
-        if hasattr(me.startRoom.e_to, "name"):
-            me.startRoom = me.startRoom.e_to
-            print (f"""
-    {me.startRoom.name}:
-    {me.startRoom.description}
-    """)
-        else:
-            print ("""
-    Cannot go there
-            """)
-    elif cmd == "s":
-        if hasattr(me.startRoom.s_to, "name"):
-            me.startRoom = me.startRoom.s_to
-            print (f"""
-    {me.startRoom.name}:
-    {me.startRoom.description}
-    """)
-        else:
-            print ("""
-    Cannot go there
-            """)
-    elif cmd == "w":
-        if hasattr(me.startRoom.w_to, "name"):
-            me.startRoom = me.startRoom.w_to
-            print (f"""
-    {me.startRoom.name}:
-    {me.startRoom.description}
-    """)
-        else:
-            print ("""
-    Cannot go there
-          """)
+    if cmd is "n" or "s" or "e" or "w":
+        me.enter(cmd)

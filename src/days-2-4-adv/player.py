@@ -6,3 +6,15 @@ class Player:
         self.startRoom = startRoom
         self.name = name
         self.items = items
+    def enter(self, direction):
+        room = self.currentRoom.getRoom(direction)
+        if room is not None:
+            self.currentRoom = room
+            print (f"""
+    {room.name}:
+    {room.description}
+    """)
+        else:
+            print (f"""
+    Cannot go there
+            """)
