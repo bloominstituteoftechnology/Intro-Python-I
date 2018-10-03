@@ -44,7 +44,8 @@ room['treasure'].s_to = room['narrow']
 
 # player = Player(room['outside'])
 # print(player.currentRoom.description)
-p = Player(input('What is your name?'), room['outside'])
+
+p = Player(input('\n\n\n\n\nWhat is your name?'), room['outside'])
 
 # Write a loop that:
 #
@@ -57,40 +58,72 @@ p = Player(input('What is your name?'), room['outside'])
 # If the user enters "q", quit the game.
 
 while True:
-    currentRoom = p.currentRoom
+    time.sleep(1)
+    cmd = input('\n\n\n\n\nYou are in the main menu. Are you ready? \n=>')
 
-    def error():
+    if cmd.upper() == 'YES':
+        while True:
+            currentRoom = p.currentRoom
+            def error():
+                time.sleep(2)
+                print('\nYou cannot go in that direction! Try another direction!')
+            time.sleep(2)
+            print('\n\n\nYour location is: ') 
+            time.sleep(1)
+            print(currentRoom)
+            time.sleep(1)
+            cmd = input('\n\n\nWhere do you want to go?\n=>')
+
+            if cmd.upper() == 'N':
+                if hasattr(currentRoom, 'n_to'):
+                    p.currentRoom = currentRoom.n_to
+                else:
+                    error()
+            elif cmd.upper() == 'S':
+                if hasattr(currentRoom, 's_to'):
+                    p.currentRoom = currentRoom.s_to
+                else:
+                    error()
+            elif cmd.upper() == 'W':
+                if hasattr(currentRoom, 'w_to'):
+                    p.currentRoom = currentRoom.w_to
+                else:
+                    error()
+            elif cmd.upper() == 'E':
+                if hasattr(currentRoom, 'e_to'):
+                    p.currentRoom = currentRoom.e_to
+                else:
+                    error()
+            elif cmd.upper() == 'Q':
+                time.sleep(1)
+                cmd = input('\n\n\nAre you sure you want to quit the game?\n=>')
+                if cmd.upper() == 'YES':
+                    time.sleep(1)
+                    print('Goodbye!')
+                    break
+                elif cmd.upper() == 'NO':
+                    continue
+                else:
+                    time.sleep(1)
+                    print('\nI cannot understand. Let\'s continue!')
+            else:
+                time.sleep(1)
+                print('You can only go north, south, east or west! Try going somewhere!')
+
+    elif cmd.upper() == 'NO':
         time.sleep(2)
-        print('You cannot go in that direction! Try another direction!')
-    time.sleep(1)
-    print('Your location is: ') 
-    time.sleep(1)
-    print(currentRoom)
-
-    cmd = input('=>')
-
-    if cmd.upper() == 'N':
-        if hasattr(currentRoom, 'n_to'):
-            p.currentRoom = currentRoom.n_to
-        else:
-            error()
-    elif cmd.upper() == 'S':
-        if hasattr(currentRoom, 's_to'):
-            p.currentRoom = currentRoom.s_to
-        else:
-            error()
-    elif cmd.upper() == 'W':
-        if hasattr(currentRoom, 'w_to'):
-            p.currentRoom = currentRoom.w_to
-        else:
-            error()
-    elif cmd.upper() == 'E':
-        if hasattr(currentRoom, 'e_to'):
-            p.currentRoom = currentRoom.e_to
-        else:
-            error()
+        print('Are you afraid?')
+        time.sleep(1) 
     elif cmd.upper() == 'Q':
+        time.sleep(2)
+        print('\n\n\nGoodbye')
+        time.sleep(2) 
+        print('coward...\n\n\n\n\n')
+        time.sleep(1) 
         break
     else:
-        time.sleep(1)
-        print('You can only go north, south, east or west! Try going somewhere!')
+        time.sleep(2) 
+        print('\nI cannot understand you!')
+        time.sleep(1) 
+        print('\Yes or no?')
+        time.sleep(2) 
