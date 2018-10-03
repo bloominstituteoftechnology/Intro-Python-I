@@ -14,6 +14,14 @@ items = {
     "extinguisher": Item("extinguisher", "Put out fires or use as a decoy, manually droppable item"),
     "coins": Item("coins", "coins count as points, every room has coins This item cannot be mannually dropped"),
     "flashlight": Item("flashlight", "The flashlight helps you see better but can also be used as a weapon careful if you use it as a weapon it may not work anymore as a visual aid."),
+    "key": Item("key", "Master key that can unlock anything might be worth holding on to."),
+    "scub": Item("scuba", "Scuba Mask allows you to breathe under water for extended periods of time.")
+
+}
+treasures = {
+    "gold": Treasure(1000, "gold", "Chest full of Gold. The chest features 1000 points worth of gold. You will need a master key to unlock it!"),
+    "silver": Treasure(500, "silver", "500 points worth of valuable silver at the bottom of the pool. YOu will need a scuba mask due the pool being 50 feet deep. Silvers at the bottom."),
+    "wallet": Treasure (250, "wallet", "You have found the kings wallet featuring 250 points")
 }
 room = {
     'outside':  Room("outside",
