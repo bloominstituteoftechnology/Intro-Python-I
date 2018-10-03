@@ -26,53 +26,53 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-room['outside'].object = 'a compass'
+# room['outside'].object = 'a compass'
+room['outside'].items = ['a compass', 'grass']
+# room['treasure'].object = 'a note'
 
-#
-# Main
-#
+valid_directions = {
+    "n": "n", 
+    "north": "n", 
+    "e": "e", 
+    "east": "e", 
+    "s": "s", 
+    "south": "s", 
+    "w": "w", 
+    "west": "w" 
+}
 
-# Make a new player object that is currently in the 'outside' room.
+valid_commands = {
+    "me": "me",
+    "room": "room",
+    "get": "get",
+    "drop": "drop",
+    "look": "look",
+}
+
 p = Player(input("What is your name? "), room["outside"])
 
+print(p.room) # this comes from the __str__ statement
+
 while True: 
-    print(f"\nYou, {p.name}, are now {p.room.name}. {p.room.description}. \nType 'help' for list of commands. \nWhat would you like to do?")
-    cmd = input(f'\n {p.name} ->')
-    if cmd == "q":
-        break
-    elif cmd == "me":
-        print(f'\n--You currently have {p.object}')
-    elif cmd == "room":
-        print(f"\n--The room contains {p.room.object}")
-    elif cmd == "get":
-        p.addObject(p.room.object)
-        p.room.removeObject()
-    elif cmd == "drop":
-        p.dropObject()
-    elif cmd == "n":
-        # cmdName = cmd + "_to"
-        # print(cmdName)
-        # print(p.room)
-        # hasattr
-        # getattr(p.room, cmdName)
-        p.changeRoom(p.room.n_to)
-    elif cmd == "s": 
-        p.changeRoom(p.room.s_to)
-    elif cmd == "w": 
-        p.changeRoom(p.room.w_to)
-    elif cmd == "e": 
-        p.changeRoom(p.room.e_to)
-    elif cmd == "help":
-        print("\nlist of commands:\n'n' to go north\n'e' to go east\n's' to go south\n'w' to go west\n'q' to exit\n'room' list object in room\n 'me' list objects you have \n 'get' pick up object from room \n 'drop' drop object")
-    else: 
-        print('not a valid command')
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+    cmds = input(f'\n-->').lower().split(" ")
+    if len(cmds) == 1: 
+        cmd = cmds[0]
+        if cmd == "q":
+            break
+        elif cmd == "me":
+            p.playerItems()
+            # print(f'\n--You currently have {p.object}')
+        elif cmd == "room":
+            p.room.roomItems()
+            # print(f"\n--The room contains {p.room.object}")
+        elif cmd == "get":
+            p.addObject(p.room.object)
+            p.room.removeObject()
+        elif cmd == "drop":
+            p.dropObject()
+        elif cmd == "help":
+            print("\nlist of commands:\n'n' to go north\n'e' to go east\n's' to go south\n'w' to go west\n'q' to exit\n'room' list object in room\n 'me' list objects you have \n 'get' pick up object from room \n 'drop' drop object")
+        elif cmd in valid_directions: 
+            p.changeRoom(valid_directions[cmd])
+        else: 
+            print('not a valid command')
