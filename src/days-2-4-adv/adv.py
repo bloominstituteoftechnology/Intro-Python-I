@@ -62,13 +62,26 @@ room["treasure"].s_to = room["narrow"]
 # If the user enters "q", quit the game.
 # d = Player(input("Where do you want to go? "))
 
-valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
-                    "forward": "n", "backwards": "s", "right": "e", "left": "w"}
+valid_directions = {
+    "n": "n",
+    "s": "s",
+    "e": "e",
+    "w": "w",
+    "forward": "n",
+    "backwards": "s",
+    "right": "e",
+    "left": "w",
+}
 
-player = Player(input("What is your name? "), room['outside'])
+player = Player(input("What is your name? "), room["outside"])
 print(player.currentRoom)
 
 while True:
+    # Imagine the player types in "take coins"
+    # line 74 will take that input, output a string,
+    # make it lowercase, and then split it between the
+    # space character
+    # Ultimately cmds == ['take', 'coins']
     cmds = input("-> ").lower().split(" ")
     if len(cmds) == 1:
         if cmds[0] == "q":
@@ -83,5 +96,18 @@ while True:
         if cmds[0] == "look":
             if cmds[1] in valid_directions:
                 player.look(valid_directions[cmds[1]])
+            elif cmds[1] == "room":
+                # Give description of room, including items in it
+        elif cmds[0] == "take":
+            player.take_item(itemObjectHere)
         else:
             print("I did not understand that command.")
+
+if (cmds[0] === 'look') {
+    if (cmds[1]hasProp) {
+        player.look(blah)
+    }
+}
+else if (cmds[0] === take) {
+    player.take_item()
+}

@@ -4,6 +4,8 @@ class Player:
     def __init__(self, name, currentRoom):
         self.name = name
         self.currentRoom = currentRoom
+        self.items = []
+
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
@@ -11,6 +13,7 @@ class Player:
             print(nextRoom)
         else:
             print("You cannot move in that direction.")
+
     def look(self, direction=None):
         if direction is None:
             print(self.currentRoom)
@@ -20,3 +23,7 @@ class Player:
                 print(nextRoom)
             else:
                 print("There is nothing there.")
+
+    def take_item(self, item):
+        self.items.append(item)
+        pass
