@@ -36,95 +36,68 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
+# Valid directions
 
-# Make a new player object that is currently in the 'outside' room.
-
-# player = Player(room['outside'])
-# print(player.currentRoom.description)
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
+                    "forward": "n", "backwards": "s", "right": "e", "left": "w"}
 
 p = Player(input('\n\n\n\n\nWhat is your name?'), room['outside'])
-
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
 
 while True:
     time.sleep(1)
     cmd = input('\n\n\n\n\nYou are in the main menu. Are you ready? \n=>')
 
     if cmd.upper() == 'YES':
+        time.sleep(2)
+        print('\n\n\nYour location is: ') 
+        time.sleep(1)
+        print(p.currentRoom)
         while True:
-            currentRoom = p.currentRoom
-            def error():
-                time.sleep(2)
-                print('\nYou cannot go in that direction! Try another direction!')
-            time.sleep(2)
-            print('\n\n\nYour location is: ') 
             time.sleep(1)
-            print(currentRoom)
-            time.sleep(1)
-            cmd = input('\n\n\nWhere do you want to go?\n=>')
-
-            if cmd.upper() == 'N':
-                if hasattr(currentRoom, 'n_to'):
-                    p.currentRoom = currentRoom.n_to
-                else:
-                    error()
-            elif cmd.upper() == 'S':
-                if hasattr(currentRoom, 's_to'):
-                    p.currentRoom = currentRoom.s_to
-                else:
-                    error()
-            elif cmd.upper() == 'W':
-                if hasattr(currentRoom, 'w_to'):
-                    p.currentRoom = currentRoom.w_to
-                else:
-                    error()
-            elif cmd.upper() == 'E':
-                if hasattr(currentRoom, 'e_to'):
-                    p.currentRoom = currentRoom.e_to
-                else:
-                    error()
-            elif cmd.upper() == 'Q':
-                time.sleep(1)
-                cmd = input('\n\n\nAre you sure you want to quit the game?\n=>')
-                if cmd.upper() == 'YES':
-                    time.sleep(1)
-                    print('Goodbye!')
-                    break
-                elif cmd.upper() == 'NO':
-                    continue
+            cmds = input('\n\n\nWhat do you want to do?\n=>').lower().split(" ")
+            if len(cmds) == 1:
+                if cmds[0] in valid_directions:
+                    time.sleep(2)
+                    p.travel(valid_directions[cmds[0]])
+                elif cmds[0].upper() == 'Q':
+                    # time.sleep(1)
+                    cmd = input('\n\n\nAre you sure you want to quit the game?\n=>')
+                    if cmd.upper() == 'YES':
+                        # time.sleep(1)
+                        print('Goodbye!')
+                        break
+                    elif cmd.upper() == 'NO':
+                        continue
+                    else:
+                        # time.sleep(1)
+                        print('\nI cannot understand. Let\'s continue!')
+                        continue
                 else:
                     time.sleep(1)
-                    print('\nI cannot understand. Let\'s continue!')
-                    continue
-            else:
-                time.sleep(1)
-                print('You can only go north, south, east or west! Try going somewhere!')
+                    print('You can only go north, south, east or west! Try going somewhere!')
+            elif len(cmds) == 2:
+                if cmds[0] == "look":
+                    if cmds[1] in valid_directions:
+                        time.sleep(2)
+                        p.look(valid_directions[cmds[1]])
+                else:
+                    time.sleep(1)
+                    print('I did not understand that command!')
 
     elif cmd.upper() == 'NO':
-        time.sleep(2)
+        # time.sleep(2)
         print('Are you afraid?')
-        time.sleep(1) 
+        # time.sleep(1) 
     elif cmd.upper() == 'Q':
-        time.sleep(2)
+        # time.sleep(2)
         print('\n\n\nGoodbye')
-        time.sleep(2) 
+        # time.sleep(2) 
         print('coward...\n\n\n\n\n')
-        time.sleep(1) 
+        # time.sleep(1) 
         break
     else:
-        time.sleep(2) 
+        # time.sleep(2) 
         print('\nI cannot understand you!')
-        time.sleep(1) 
+        # time.sleep(1) 
         print('\Yes or no?')
-        time.sleep(2) 
+        # time.sleep(2) 

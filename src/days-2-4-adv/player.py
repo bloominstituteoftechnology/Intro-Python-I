@@ -5,5 +5,16 @@ class Player():
     def __init__(self, name, currentRoom):
         self.name = name
         self.currentRoom = currentRoom
-    def __str__(self):
-        return f"\n{self.name}\n{self.currentRoom}"
+    def travel(self, direction):
+        nextRoom = self.currentRoom.getRoomInDirection(direction)
+        if nextRoom is not None:
+            self.currentRoom = nextRoom
+            print(nextRoom)
+        else:
+            print("You cannot move in that direction.")
+    def look(self, direction):
+        nextRoom = self.currentRoom.getRoomInDirection(direction)
+        if nextRoom is not None:
+            print(nextRoom)
+        else:
+            print("There is notheing there.")    
