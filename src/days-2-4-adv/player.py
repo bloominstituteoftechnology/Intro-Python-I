@@ -2,8 +2,11 @@
 # currently.
 
 class Player:
-    def __init__(self, name, location):
-        self.name = name
+    def __init__(self, location):
         self.location = location
+    
+    def to(self, location):
+        self.location = location
+
     def __str__(self):
-        return f"\n{self.name}\n{self.location}"
+        return f'{self.location}'

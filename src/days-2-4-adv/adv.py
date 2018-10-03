@@ -21,7 +21,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -39,9 +38,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-players = {
-    'player 1': Player("Francis", "outside")
-}
+player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -54,69 +51,28 @@ players = {
 #
 # If the user enters "q", quit the game.
 
-def current(location):
-    for key in room:
-        if key == location:
-            print("Current Location: " + room[key].name)
-            print (room[key].description)
-
-location = players['player 1'].location
-current(location)
-
 while True:
-    if (location == 'outside'):
-        cmd = input("Heading Towards -> ")
-        if cmd == "q":
-            break
-        if cmd == "n":
-            location = 'foyer'
-            current(location)
-        else:
-            print('The movement is not allowed.')
-    if (location == 'foyer'):
-        cmd = input("Heading Towards -> ")
-        if cmd == "q":
-            break
-        if cmd == "n":
-            location = 'overlook'
-            current(location)
-        elif cmd == 's':
-            location = 'outside'
-            current(location)
-        elif cmd == 'e':
-            location = 'narrow'
-            current(location) 
-        else:
-            print('The movement is not allowed.')
-    if (location == 'overlook'):
-        cmd = input("Heading Towards -> ")
-        if cmd == "q":
-            break
-        if cmd == 's':
-            location = 'foyer'
-            current(location)
-        else:
-            print('The movement is not allowed.')
-    if (location == 'narrow'):
-        cmd = input("Heading Towards -> ")
-        if cmd == "q":
-            break
-        if cmd == 'w':
-            location = 'foyer'
-            current(location)   
-        elif cmd == 'n':
-            location = 'treasure'
-            current(location) 
-        else:
-            print('The movement is not allowed.')
-    if (location == 'treasure'):
-        cmd = input("Heading Towards -> ")
-        if cmd == "q":
-            break
-        if cmd == 's':
-            location = 'narrow'
-            current(location)
-        else:
-            print('The movement is not allowed.')
-    if cmd == "q":
+    print(f'Hello, you are currently at {player.location}.')
+    cmd = input("Heading Towards N, E, S or W ?-> ")
+    if cmd == 'q':
         break
+    elif cmd == "n":
+        if hasattr( player.location , 'n_to' ):
+            player.to(player.location.n_to)
+        else:
+            print('The movement is not allowed.')
+    elif cmd == 's':
+        if hasattr( player.location , 's_to' ):
+            player.to(player.location.s_to)
+        else:
+            print('The movement is not allowed.')
+    elif cmd == 'e':
+        if hasattr( player.location , 'e_to' ):
+            player.to(player.location.e_to)
+        else:
+            print('The movement is not allowed.')
+    elif cmd == 'w':
+        if hasattr( player.location , 'w_to' ):
+            player.to(player.location.w_to)
+        else:
+            print('The movement is not allowed.')
