@@ -98,16 +98,17 @@ while True:
                 player.look(valid_directions[cmds[1]])
             elif cmds[1] == "room":
                 # Give description of room, including items in it
+                player.look()
         elif cmds[0] == "take":
             player.take_item(itemObjectHere)
         else:
             print("I did not understand that command.")
 
-if (cmds[0] === 'look') {
-    if (cmds[1]hasProp) {
-        player.look(blah)
-    }
-}
-else if (cmds[0] === take) {
-    player.take_item()
-}
+# if (cmds[0] === 'look') {
+#     if (cmds[1]hasProp) {
+#         player.look(blah)
+#     }
+# }
+# else if (cmds[0] === take) {
+#     player.take_item()
+# }

@@ -4,4 +4,4 @@ class Item:
         self.description = description
 
     def __str__(self):
-        return self.description
+        return f"\n\n{self.item}\n\n   {self.description}\n"
