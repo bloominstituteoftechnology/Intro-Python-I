@@ -7,8 +7,8 @@ class Player:
         self.location = location
 
     def print_location(self):
-        print(f"🤓  Hey {self.name}, you are at 🏠 { self.location } now")
+        print(f"🤓  Hey {self.name}, you are at 🏠 { self.location.get_room() } now")
 
-    def update_location(self, new_location):
-        self.location = new_location
+    def travel(self, direction):
+        self.location = self.location.get_paths(direction) or self.location
         self.print_location()
