@@ -4,7 +4,7 @@ from player import Player
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
+    'outside':  Room("Outside a Cave Entrance",
                      "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-name = input('What do ye call yourself?')
+name = input('What do ye call yourself? \n')
 plyr = Player(name, room['outside'])
 # Write a loop that:
 #
@@ -52,11 +52,36 @@ plyr = Player(name, room['outside'])
 #
 # If the user enters "q", quit the game.
 #
+def err_catch():
+    print('You are filled with an overwhelming sense of dread and quickly reconsider your decision.')
 
-
+print(f'You find yourself just {plyr.current_room.location} with no memory of how you got here. {plyr.current_room.description} ')
 while True:
-    print(f'You are currently located {plyr.current_room}')
     cmd = input('How should we proceed? \n')
     if cmd ==  'q':
+        print('\n Knew you didnt have the constitution for this...')
         break
-    
+    elif cmd == 'n':
+        if hasattr(plyr.current_room.n_to, 'location'):
+            plyr.current_room = plyr.current_room.n_to
+            print(f'You have entered the {plyr.current_room.location}. \n{plyr.current_room.description} ')
+        else:
+            err_catch()
+    elif cmd == 's':
+        if hasattr(plyr.current_room.s_to, 'location'):
+            plyr.current_room = plyr.current_room.s_to
+            print(f'You have entered the {plyr.current_room.location}. \n{plyr.current_room.description} ')
+        else:
+            err_catch()
+    elif cmd == 'e':
+        if hasattr(plyr.current_room.e_to, 'location'):
+            plyr.current_room = plyr.current_room.e_to
+            print(f'You have entered the {plyr.current_room.location}. \n{plyr.current_room.description} ')
+        else:
+            err_catch()
+    elif cmd == 'w':
+        if hasattr(plyr.current_room.w_to, 'location'):
+            plyr.current_room = plyr.current_room.w_to
+            print(f'You have entered the {plyr.current_room.location}. \n{plyr.current_room.description} ')
+        else:
+            err_catch()
