@@ -8,7 +8,7 @@ class Room():
         self.e_to = None
         self.s_to = None
         self.w_to = None
-        Items.__init__(self, items=None)
+        Items.__init__(self, self.name, items=None)
     def __str__(self):
         return f'\n{self.name}\n\n   {self.description}'
     def roomItems(self):
@@ -28,7 +28,7 @@ class Room():
             return name
     def dropItem(self, oldItem):
         Items.dropItem(self, oldItem)
-        Items.getItems(self, self.name)
+        # Items.getItems(self, self.name)
     def addItem(self, newItem):
         Items.addItem(self, newItem)
-        Items.getItems(self, self.name)
+        # Items.getItems(self, self.name)

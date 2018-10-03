@@ -4,7 +4,7 @@ class Player():
     def __init__(self, name, room):
         self.name = name
         self.room = room
-        Items.__init__(self, ['knife'])
+        Items.__init__(self, self.name, ['knife'])
     def changeRoom(self, direction):
         next_room = self.room.getRoomInDirection(direction)
         if next_room == None:
@@ -20,13 +20,9 @@ class Player():
             print(f'\nGoing {direction} will take you to: \n{next_room}')
     def playerItems(self):
         Items.getItems(self, self.name)
-    # def addObject(self, newObject):
-    #     self.object = newObject
-    # def dropObject(self):
-    #     self.object = 'nothing'
     def addItem(self, newItem):
         Items.addItem(self, newItem)
-        Items.getItems(self, self.name)
+        # Items.getItems(self, self.name)
     def dropItem(self, newItem):
         Items.dropItem(self, newItem)
-        Items.getItems(self, self.name)
+        # Items.getItems(self, self.name)

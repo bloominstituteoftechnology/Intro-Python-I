@@ -50,10 +50,12 @@ valid_commands = {
 }
 
 commands_help = [
+    {"command": "does this action"},
     {"n": "moves to the north"},
     {"e": "moves to the east"},
     {"s": "moves to the south"},
     {"w": "moves to the west"},
+    {"look <direction>": "preview move to <direction>"},
     {"me": "returns the items that you have"},
     {"room": "returns item in the room"},
     {"get <item>": "picks up item in the room"},
@@ -74,6 +76,8 @@ while True:
             break
         elif cmd == "me":
             p.playerItems()
+        elif cmd == "command":
+            print('command is not a command it is a header')
         elif cmd == "back":
             print(p.room)
         elif cmd == "room":
