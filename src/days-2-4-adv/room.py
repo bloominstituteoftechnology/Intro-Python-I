@@ -9,3 +9,11 @@ class Room:
 		self.room_type = room_type
 		self.room_descr = room_descr
 
+	def getRoomType(self):
+		return self.room_type
+	
+	def getRoomDescription(self):
+		return self.room_descr
+
+	
+
