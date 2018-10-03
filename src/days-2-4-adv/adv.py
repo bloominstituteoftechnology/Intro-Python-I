@@ -1,4 +1,5 @@
-from .player import Player
+from player import Player
+from room import Room
 
 # Declare all the rooms
 
@@ -33,6 +34,28 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
+item = {
+    'sword':  Item("sword",
+                     "slay the creeps using the sword."),
+
+    'ax':    Item("ax",
+                        """crush them with the ax"""),
+
+    'torch': Item("torch",
+                        """Find your way!"""),
+
+    'amulet':   Item("amulet",
+                         """Stop spells"""),
+
+}
+
+item['outside'].n_to = Item['foyer']
+item['foyer'].s_to = Item['outside']
+item['narrow'].n_to = Item['overlook']
+item['foyer'].e_to = Item['narrow']
+
+
 #
 # Main
 #
@@ -51,39 +74,55 @@ room['treasure'].s_to = room['narrow']
 # If the user enters "q", quit the game.
 
 
-class Room():
-    def __init__(myRoom,name,description):
-        myRoom.name = name
-        myRoom.description = description
-        myRoom.currentRoom= 0
-        myRoom.priorRoom = 0
-
-    def __str__(myRoom):
-        return f"\n{myRoom.name}\n{myRoom.currentRoom} - {myRoom.priorRoom}\n"
 
 
 
-print(room['outside'])
-currentRoom = player.room
 
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
+                    "forward": "n", "backwards": "s", "right": "e", "left": "w"}
 
+player = Player(input("What is your name? "), room['outside'])
 
-    print(f'{currentRoom.name}\n{currentRoom.description}')
+#print(player.currentRoom)
 
-    command = input('Command> ')
-
-    if command == 'q' or command == 'quit' or command == 'exit':
-        done = True
-
-    elif command in ['n', 's', 'e', 'w']:
-        directionAttribute = command + '_to'
-
-        if hasattr(currentRoom, directionAttr):
-            player.room = getattr(currentRoom, directionAttr)
-
+while True:
+    cmds = input("-> ").lower().split(" ")
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            break
+        elif cmds[0] in valid_directions:
+            player.travel(valid_directions[cmds[0]])
+        elif cmds[0] == "look":
+            player.look()
         else:
-            print("Can't go that way.")
-
+            print("I did not understand that cmds.")
     else:
-        print('Please try again.')
+
+        if cmds[0] == "look":
+            if cmds[1] in valid_directions:
+                player.look(valid_directions[cmds[1]])
+    else:
+        if cmds[0] == ('get' or 'take'):
+        if cmds[1] not in item:
+            print('That item doesn\'t exist.')
+        if cmds[1] not in player.location.items:
+            print('That item isn\'t in the room.')
+        if cmds[1] in player.location.items:
+            print('ITS WORKING ')
+            player.location.removeItem(f'{cmds[1]}')
+            player.addItems([cmds[1]])
+    
+    if cmds[0] == 'drop':
+        if cmds[1] in player.inventory:
+            print(player.inventory)
+            player.removeItem('rock')
+            player.location.addItems([cmds[1]])
+        elif cmds[1] in item:
+            print('You don\'t have that item in your inventory.')
+        elif cmds[1] not in item:
+            print('That item doesn\'t exist.')
+    
+    if cmds[0] == 'i' or 'inventory':
+        print('Player Inventory: ', player.inventory)
+            print("I did not understand that cmds.")
 

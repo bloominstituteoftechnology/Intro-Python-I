@@ -1,15 +1,32 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
-class Player():
-    def __init__(self,name):
+class Player:
+    def __init__(self, name, currentRoom, inventory):
         self.name = name
-        self.currentRoom= ""
-    def __str__(self):
-        return f"\n{self.currentRoom}\n{priorRoom} - {self.losses} - {self.ties}\n"
-    def roomMove(self, move):
-        if result == 1:
-            self.wins += 1
-        elif result == 0:
-            self.ties += 1
-        elif result == -1:
-            self.losses += 1
+        self.currentRoom = currentRoom
+        inventory = None
+        if (inventory is None )
+            inventory = []
+            self.inventory = inventory
+    def travel(self, direction):
+        nextRoom = self.currentRoom.getRoomInDirection(direction)
+        if nextRoom is not None:
+            self.currentRoom = nextRoom
+            print(nextRoom)
+        else:
+            print("You cannot move in that direction.")
+    def look(self, direction=None):
+        if direction is None:
+            print(self.currentRoom)
+        else:
+            nextRoom = self.currentRoom.getRoomInDirection(direction)
+            if nextRoom is not None:
+                print(nextRoom)
+            else:
+                print("There is nothing there.")
+
+    def addItems(self, items):
+        self.inventory.extend(items)
+
+    def removeItem(self, item):
+        self.inventory.remove(item)

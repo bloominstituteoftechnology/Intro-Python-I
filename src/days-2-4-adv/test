@@ -1,10 +1,9 @@
-
 class Player():
     def __init__(self,name):
         self.name = name
         self.currentRoom= ""
     def __str__(self):
-     return f"\n{self.currentRoom}\n{self.priorRoom} - {self.losses} - {self.ties}\n"
+     return f"\n{self.name}\n{self.currentRoom}\n"
 
 
 
@@ -15,8 +14,7 @@ class Room():
         myRoom.currentRoom= 0
         myRoom.priorRoom = 0
 
-    def __str__(myRoom):
-        return f"\n{myRoom.name}\n{myRoom.currentRoom} - {myRoom.priorRoom}\n"
+
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
@@ -36,28 +34,4 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-
-
-print(room['outside'])
-currentRoom = player.room
-
-
-
-print(f'{currentRoom.name}\n{currentRoom.description}')
-
-command = input('Command> ')
-
-if command == 'q' or command == 'quit' or command == 'exit':
-    done = True
-
-elif command in ['n', 's', 'e', 'w']:
-    directionAttribute = command + '_to'
-
-    if hasattr(currentRoom, directionAttr):
-    player.room = getattr(currentRoom, directionAttr)
-
-    else:
-        print("Can't go that way.")
-
-else:
-        print('Please try again.')
+print(room[Room])
