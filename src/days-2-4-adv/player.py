@@ -15,6 +15,7 @@ class Player:
         if next_room:
             self.room = next_room
             print(next_room)
+            next_room.room_items()
         else:
             print('That is not a valid direction.')
 
@@ -26,7 +27,26 @@ class Player:
             print('There is nothing there')
 
     def get_item(self, item):
-        self.items.append(item)
+        if len(self.room.items) > 0:
+            found_item = list(filter(lambda i: i.name.lower() == item, self.room.items))
+            if len(found_item) > 0:
+                self.items.append(found_item[0])
+                self.room.remove_item(found_item[0])
+            else:
+                print('There is no such item, please try again.')
 
     def drop_item(self, item):
         self.items.remove(item)
+
+    def list_items(self):
+        if self.has_items():
+            print('Your inventory:')
+            for i in self.items:
+                print(i)
+        else:
+            print('Your inventory is empty.')
+
+    def has_items(self):
+        if len(self.items) > 0:
+            return True
+        return False

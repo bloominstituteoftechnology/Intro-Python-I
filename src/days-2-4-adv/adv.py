@@ -34,6 +34,8 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+room['outside'].add_item(Item('Backpack', 'A backpack to hold your items'))
+room['treasure'].add_item(Item('Sword', 'A rusty sword.'))
 
 #
 # Main
@@ -57,6 +59,7 @@ valid_directions = {'n': 'n', 's': 's', 'e': 'e', 'w': 'w', 'forward': 'n', 'bac
 
 p = Player(input('What is your name? \n'), room['outside'])
 print(p.room)
+p.room.room_items()
 
 while True:
     cmd = input('-> ').lower().split(' ')
@@ -71,5 +74,7 @@ while True:
         if cmd[0] == 'look':
             if cmd[1] in valid_directions:
                 p.look(valid_directions[cmd[1]])
+        elif cmd[0] == 'get' or cmd[0] == 'take':
+            p.get_item(cmd[1])
         else:
             print('That is not a valid command. Please try again.')
