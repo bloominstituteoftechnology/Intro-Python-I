@@ -6,6 +6,8 @@ class Item:
         return f'name:{self.name}\ndescription:{self.description}'
     def on_take(self):
         return None
+    def on_drop(self):
+        return None
 class Treasure(Item):
     def __init__(self,name,description,value):
         super().__init__(name,description)
