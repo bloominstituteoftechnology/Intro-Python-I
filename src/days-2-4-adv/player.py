@@ -51,7 +51,9 @@ class Player(object):
         for item in self.items:
             items.append((item.name, item.description)) 
         return items
-
+    #
+    def currentScore(self):
+        return f"Your current score is {self.points}"
     #
     #
     #

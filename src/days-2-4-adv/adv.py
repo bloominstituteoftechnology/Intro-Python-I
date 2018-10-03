@@ -69,9 +69,9 @@ directions = ["n", "s", "e", "w"]
 moves = ["drop", "grab"]
 suppressRoomPrint = False
 player = Player(input("What is your name? "), room['outside'])
-print("Starting game:\n\n options -> Enter q to quit, n to go North s to go South e to go East w to go West\n\n i should allow you to check your inventory")
+print("Starting game:\n\n options -> Enter q to quit,\n score to view currentScore\n n to go North\n s to go South\n e to go East\n w to go West\n\n i should allow you to check your inventory\n\n")
 while True:
-    print(f"{player.currentRoom}")
+    print(f"{player.currentRoom}\n\n")
     option = input(
         "option ->")
     option = option.lower().split(" ")
@@ -79,7 +79,9 @@ while True:
         print("Exiting the game!")
         break
     elif option[0] == "i":
-        print(f"You currently have in your inventory the following items: {player.showInventory()}")
+        print(f"You currently have in your inventory the following items: {player.showInventory()}\n\n")
+    elif option[0] == "score":
+        print(player.currentScore())
     elif directions.count(option[0]) > 0:
         print(player.room_change(option[0]))
     elif moves.count(option[0]) > 0:
@@ -90,7 +92,7 @@ while True:
             if itemsAvaliable.count(option[1]) > 0:
                 print(player.dropItem(items[option[1]]))
             else:
-                print("That item doesn't exist.")
+                print(f"That item doesn't exist.\n\n")
 
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).

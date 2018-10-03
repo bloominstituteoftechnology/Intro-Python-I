@@ -14,7 +14,7 @@ class Room (object):
         self.directions = [] 
 
     def __str__(self):
-        return f"Room Name: {self.name}\n\n, Room description: {self.description}\n\n directions available include {self.directions}"
+        return f"Room Name: {self.name}\n\n, Room description: {self.description}\n\n"
     def revealItems(self):
         items = []
         for item in self.items:
@@ -40,7 +40,7 @@ class Room (object):
             return None
     def addItem(self, item):
         self.items.append(item)
-        
+
 
     #
     #
