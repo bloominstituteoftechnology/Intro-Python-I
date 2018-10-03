@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+import os
 
 # Declare all the rooms
 
@@ -43,7 +44,11 @@ choice_dictionary = {"n": "North", "s": "South", "e": "East", "w": "West", "u": 
 
 # Make a new player object that is currently in the 'outside' room.
 
-p = Player('Minnie')
+p = Player('Minnie', room["outside"])
+
+# clearTerminal = os.system("clear")
+
+
 
 
 # Write a loop that:
@@ -63,15 +68,31 @@ def current(location):
             print("Current Location: " + room[key].name)
             print(room[key].description)
 
+
+    
+    
+
 while True:
-    print("Hello")
-    print(f"You are currently" + currentLocation)
+    currentLocation = p.location
+    currentPlayer = p.name
+    print(f"\n\n\n\n\nYou are currently in the great " + p.location.name)
+    print("\n" + currentPlayer +"\n    Enter 'N' to go North \n    Enter 'Q' to Quit \n")
     cmd = input("-> ")
     if cmd == "q":
+        os.system("clear")
         break
-    elif cmd == "n":
-        currentLocation = room['foyer']
-        print(f"You are currently" + currentLocation)
+    elif cmd.upper() == 'N':
+        if hasattr(p.location, 'n_to'):
+            p.location = currentLocation.n_to
+        else:
+            os.system("clear")
+            print(f"\n\n\nYou ran into a wall GAME OVER\n\n\n")
+            break
+            # print(f"\n You are currently in the grand " + p.location.name)
+    # elif cmd == "n":
+    #     print(f"You are currently " + currentLocation.name)
+    #     currentLocation = currentLocation.n_to
+    #     print(f"You are currently " + currentLocation.name)
     # elif cmd == "s"
     # elif cmd == "e"
     # elif cmd == "w"
