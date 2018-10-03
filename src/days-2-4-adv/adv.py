@@ -49,6 +49,18 @@ valid_commands = {
     "look": "look",
 }
 
+commands_help = [
+    {"me": "returns the items that you have"},
+    {"n": "moves to the north"},
+    {"e": "moves to the east"},
+    {"w": "moves to the west"},
+    {"s": "moves to the south"},
+    {"room": "returns item in the room"},
+    {"get <item>": "picks up item in the room"},
+    {"drop <item>": "drops item in the room"},
+    {"q": "exits program"}
+]
+
 p = Player(input("What is your name? "), room["outside"])
 
 print(p.room) # this comes from the __str__ statement
@@ -71,7 +83,8 @@ while True:
         elif cmd == "drop":
             p.dropObject()
         elif cmd == "help":
-            print("\nlist of commands:\n'n' to go north\n'e' to go east\n's' to go south\n'w' to go west\n'q' to exit\n'room' list object in room\n 'me' list objects you have \n 'get' pick up object from room \n 'drop' drop object")
+            for c in commands_help:
+                print(dict(c))            
         elif cmd in valid_directions: 
             p.changeRoom(valid_directions[cmd])
         else: 
