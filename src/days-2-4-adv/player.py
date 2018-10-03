@@ -5,3 +5,7 @@
 class Player:
     def __init__(self, currentRoom):
         self.currentRoom = currentRoom
+        self.items = [None]
+
+    def get(self, item):
+        self.items.append(item)

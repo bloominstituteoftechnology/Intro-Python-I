@@ -56,28 +56,28 @@ print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
 
 while True:
     cmd = input("which way do you want to go?")
-    if cmd == "q":
+    if cmd.upper() == "Q":  # written this way so input is same case
         print(""" QUIT """)
         break
-    if cmd == "n":
+    if cmd.upper() == "N":
         if hasattr(p.currentRoom.n_to, "name"):
             p.currentRoom = p.currentRoom.n_to
             print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
         else:
             print("You cant go there")
-    elif cmd == "e":
+    elif cmd.upper() == "E":
         if hasattr(p.currentRoom.e_to, "name"):
             p.currentRoom = p.currentRoom.e_to
             print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
         else:
             print("You cant go there")
-    elif cmd == "s":
+    elif cmd.upper() == "S":
         if hasattr(p.currentRoom.s_to, "name"):
             p.currentRoom = p.currentRoom.s_to
             print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
         else:
             print("You cant go there")
-    elif cmd == "w":
+    elif cmd.upper() == "W":
         if hasattr(p.currentRoom.w_to, "name"):
             p.currentRoom = p.currentRoom.w_to
             print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
