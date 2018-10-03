@@ -89,3 +89,5 @@ while True:
                 player.to(player.location.w_to)
             else:
                 print('The movement is not allowed.')
+    elif len(cmd) > 1 and len(cmd) < 3:
+        print('stop')
