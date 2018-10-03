@@ -14,4 +14,4 @@ class Room:
         return self.items.append(item)
 
     def view_items(self):
-        return f'Items available in room: {self.items}'
+        return f'\nItems available in room: {self.items}'

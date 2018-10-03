@@ -2,9 +2,9 @@
 # currently.
 
 class Player:
-    def __init__(self, location, items):
+    def __init__(self, location, items=[]):
         self.location = location
-        self.items = []
+        self.items = items
     
     def __str__(self):
         return f'{self.location}'
@@ -14,10 +14,10 @@ class Player:
 
     def remove_item(self, item):
         self.items.remove(item)
-        return f'You have dropped {item}'
+        print (f'\nYou have dropped {item}')
     
     def inventory(self):
-        return f'You have the following items: {self.items}'
+        print(f'\nYou have the following items: {self.items}')
 
     def to(self, location):
         self.location = location
