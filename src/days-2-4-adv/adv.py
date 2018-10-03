@@ -41,9 +41,10 @@ room['treasure'].s_to = room['narrow']
 
 #
 # Main
-
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
+                    "forward": "n", "backwards": "s", "right": "e", "left": "w"}
 # Make a new player object that is currently in the 'outside' room.
-p = Player(room['outside'])
+player = Player(room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -57,35 +58,22 @@ p = Player(room['outside'])
 # If the user enters "q", quit the game.
 
 
-print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
-
+print(f"""{player.currentRoom.name}: {player.currentRoom.description}""")
 
 while True:
-    cmd = input("which way do you want to go?")
-    if cmd.upper() == "Q":  # written this way so input is same case
-        print(""" QUIT """)
-        break
-    if cmd.upper() == "N":
-        if hasattr(p.currentRoom.n_to, "name"):
-            p.currentRoom = p.currentRoom.n_to
-            print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
+    cmds = input("-> ").lower().split(" ")
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            break
+        elif cmds[0] in valid_directions:
+            player.travel(valid_directions[cmds[0]])
+        # elif cmds[0] == "look":
+        #     player.look()
         else:
-            print("You cant go there")
-    elif cmd.upper() == "E":
-        if hasattr(p.currentRoom.e_to, "name"):
-            p.currentRoom = p.currentRoom.e_to
-            print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
-        else:
-            print("You cant go there")
-    elif cmd.upper() == "S":
-        if hasattr(p.currentRoom.s_to, "name"):
-            p.currentRoom = p.currentRoom.s_to
-            print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
-        else:
-            print("You cant go there")
-    elif cmd.upper() == "W":
-        if hasattr(p.currentRoom.w_to, "name"):
-            p.currentRoom = p.currentRoom.w_to
-            print(f"""{p.currentRoom.name}: {p.currentRoom.description}""")
-        else:
-            print("You cant go there")
+            print("I did not understand that command.")
+    # else:
+    #     if cmds[0] == "look":
+    #         if cmds[1] in valid_directions:
+    #             player.look(valid_directions[cmds[1]])
+    #     else:
+    #         print("I did not understand that command.")
