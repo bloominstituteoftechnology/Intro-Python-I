@@ -68,3 +68,6 @@ while True:
         else:
             print("The command entered does not exist.")
             print()
+    if cmds[0] == "look":
+        if cmds[1] in valid_directions:
+            player.look(cmds[1])

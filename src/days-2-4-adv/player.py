@@ -9,6 +9,13 @@ class Player:
         new_room = self.room.get_rooms(direction)
         if new_room:
             self.room = new_room
+    def look(self, direction):
+        new_room = self.room.get_rooms(direction)
+        if new_room:
+            print(f'LOOKING into the {new_room.name}')
+        else:
+            print('Your nose in a brick wall man! Chose another direction to look at before you embarass yourself!')
+    
 
         
         
