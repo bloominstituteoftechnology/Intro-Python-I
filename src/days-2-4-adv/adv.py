@@ -82,6 +82,8 @@ def game():
                 print(player.i())
             elif cmd[0]=='inventory':
                 print(player.inventory())
+            elif cmd[0]=='score':
+                print(player.get_score())
             else:
                 print('Invalid command.')
         else:

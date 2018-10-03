@@ -5,6 +5,7 @@ class Player:
         self.name=name
         self.current_location=current_location
         self.possessions=[]
+        self.score=0
     def travel(self,direction):
         next_room=self.current_location.get_next_room(direction)
         if next_room==None:
@@ -34,3 +35,5 @@ class Player:
                 self.current_location.inventory.append(element)
                 return f'{self.name} dropped a {item}'
         return f'You do not have a {item} to drop.'
+    def get_score(self):
+        return f"{self.name}'s score:{self.score}"
