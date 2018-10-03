@@ -1,4 +1,17 @@
 # Write a class to hold player information, e.g. what room they are in currently.
+from item import Item
+
+items = {
+    'katana': Item("Katana", """An extremely sharp single-edged sword"""),
+
+    'spear': Item("Spear", """A wooden spear, useful for fishing"""),
+
+    'broadsword': Item("Broadsword", """A heavy two-handed sword"""),
+
+    'scimitar': Item("Scimitar", """A short curved blade, perfect for self-defense"""),
+
+    'club': Item("Club", """A crudely fashioned club"""),
+}
 
 class Player:
     def __init__(self, name, currentRoom):
@@ -25,10 +38,26 @@ class Player:
                 print("\n\nThere is nothing there.")
 
     def pickUpItem(self, item):
-        self.inventory.append(item)
+        if not type(self.currentRoom.inventory) == None:
+            if item in self.currentRoom.inventory:
+                self.inventory.append(item)
+                print(f"\n\nYou have picked up the: {item}")
+        else:
+            print("\n\nThat item is not contained in this room.")
 
     def dropItem(self, item):
-        self.inventory.remove(item)
+        if len(self.inventory) > 0:
+            if item in self.inventory:
+                self.inventory.remove(item)
+                print(f"\n\nYou have dropped the: {item}")
+        else:
+            print("\n\nThat item is not contained in your inventory.")
 
     def seeInventory(self):
-        print(f"Your inventory includes:\n    {self.inventory}")
+        if len(self.inventory) > 0:
+            print("Your inventory includes:\n")
+            for item in self.inventory:
+                print(f"{items[item].name}:    {items[item].description}")
+        else:
+            print("There are no items in your inventory.")
+        

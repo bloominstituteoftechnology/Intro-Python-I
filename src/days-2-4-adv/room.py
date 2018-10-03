@@ -19,13 +19,14 @@ class Room:
         self.name = name
         self.description = description
         self.inventory = inventory.split(" ")
+        #self.inventory = self.inventory.extend(inventory.split(" "))
         self.n_to = None
         self.s_to = None
         self.e_to = None
         self.w_to = None
 
     def __str__(self):
-        return f"{self.name}\n\n   {self.description}"
+        return f"~~ {self.name} ~~\n\n   {self.description}\n\n   Visible items: {self.inventory}"
 
     def getRoomInDirection(self, direction):
         if direction == "n":
@@ -40,7 +41,9 @@ class Room:
             return None
 
     def removeItem(self, item):
-        self.inventory = self.inventory.append(item)
+        if len(self.inventory) > 0:
+            if item in self.inventory:
+                self.inventory = self.inventory.remove(item)
 
     def addItem(self, item):
-        self.inventory = self.inventory.remove(item)
+        self.inventory = self.inventory.append(item)

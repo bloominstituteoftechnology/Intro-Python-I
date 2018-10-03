@@ -34,14 +34,15 @@ room['treasure'].s_to = room['narrow']
 # Main
 
 valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
-                    "forward": "n", "backwards": "s", "right": "e", "left": "w"}
+                    "north": "n", "south": "s", "east": "e", "west": "w",
+                    "forward": "n", "backward": "s", "right": "e", "left": "w"}
 
 valid_items = {"katana": "katana", "spear": "spear", "broadsword": "broadsword",
                     "scimitar": "scimitar", "club": "club"}
 
 nameInput = input("\n\nHello adventurer! Please enter your name: ")
 player = Player(nameInput, room['outside'])
-print(f"\n\n{player.currentRoom}")
+print(f"\n\n{player.currentRoom}\n\nWhich direction do you want to go: N, S, E, or W?")
 
 while True:
     cmds = input("\n-> ").lower().split(" ")
