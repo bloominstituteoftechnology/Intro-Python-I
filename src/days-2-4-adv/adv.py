@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-p = Player('outside')
+player = Player(room['outside'], ["flashlight", "first-aid kit", "rock"])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -52,26 +52,20 @@ p = Player('outside')
 # If the user enters "q", quit the game.
 
 while True:
-    print (p.__str__())
-    cmd = input("What do you want to do? You can: move n, move e, move s, move w, press q to quit: ")
+    print (str(player.printRoom(player.room)))
+    cmd = input("-What do you want to do? You can: move n, move e, move s, move w, press q to quit: \n-Pess i to view items \n -> " )
     if cmd == "q":
         break
     elif cmd == "n":
-        p.room = room[p.room].n_to
-        for key in room:
-            if p.room == key:
-                print (str(key))
+        player.room = room[player.room].n_to
     elif cmd == "e":
-        p.room = room[p.room].e_to
-        if p.room == key:
-                print (key)
+        player.room = room[player.room].e_to
     elif cmd == "s":
-        p.room = room[p.room].s_to
-        if p.room == key:
-                print (key)
+        player.room = room[player.room].s_to
     elif cmd == "w":
-        p.room = room[p.room].w_to
-        if p.room == key:
-                print (key)
+        player.room = room[player.room].w_to
+    elif cmd == "i":
+        player.printItems(player.items)
     else:
         print("Invalid choice")
+        cmd
