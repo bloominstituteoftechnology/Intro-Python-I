@@ -68,10 +68,15 @@ player = Player(room['outside'], [Item("Map of the Location")])
 # If the user enters "q", quit the game.
 
 while True: 
-    print("Begin your journey")
-    print("Chose your direction by pressing n for North, s for South, e for East, w for West, or you can chose q and end your journey now")
+    currentRoom = player.currentRoom
 
-    direction = input("-->  ").toLower().split(" ")
+    print("\n")
+    currentRoom.printName()
+    currentRoom.printDesc()
+    currentRoom.printItems()
+    print("\n")
+
+    direction = input("-->  ")
 
     if direction == 'q':
         print("\nYour Journey has ended")
@@ -81,26 +86,18 @@ while True:
          print('\n Dead End')
         else:
             player.currentRoom = player.currentRoom.n_to 
-            print(f"""{player.currentRoom.name}:
-            {player.currentRoom.description}""")
     elif direction == 's':
         if not hasattr(player.currentRoom.s_to, 'name'):
          print('\n Dead End')
         else:
             player.currentRoom = player.currentRoom.s_to
-            print(f"""{player.currentRoom.name}:
-            {player.currentRoom.description}""")
     elif direction == 'w':
         if not hasattr(player.currentRoom.w_to, 'name'):
          print('\n Dead End')
         else:
             player.currentRoom = player.currentRoom.w_to 
-            print(f"""{player.currentRoom.name}:
-            {player.currentRoom.description}""")  
     elif direction == 'e':
         if not hasattr(player.currentRoom.e_to, 'name'):
          print('\n Dead End')
         else:
-            player.currentRoom = player.currentRoom.e_to   
-            print(f"""{player.currentRoom.name}:
-            {player.currentRoom.description}""")        
+            player.currentRoom = player.currentRoom.e_to        

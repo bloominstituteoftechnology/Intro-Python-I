@@ -11,5 +11,12 @@ class Room:
         self.e_to = None
         self.w_to = None
 
+    def printName(self):
+        print(self.name)
+    def printDesc(self):
+        print(self.description)
+    def printItems(self):
+        print(self.items)
+
 
 
