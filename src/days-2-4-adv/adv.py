@@ -1,3 +1,5 @@
+import os
+
 from room import Room
 from player import Player
 # Declare all the rooms
@@ -38,8 +40,10 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-name = input("What is your name? ")
-p = Player(name, room['outside'])
+
+p = Player(input("What is your name? "), room['outside'])
+os.system("clear")
+print(f'Hello, {p.name} – your journey begins... {p.current_room}')
 
 
 # Write a loop that:
@@ -55,32 +59,14 @@ p = Player(name, room['outside'])
 
 
 while True:
-    invalid = "You took a wrong turn! Try another direction."
-
-    print(f'Hello, {p.name} – your current location is {p.room}.')
-
-    cmd = input("Please choose a direction (n, s, e, or w), or press q to quit: ")
-    if cmd == "q":
-        break
-    elif cmd == "n":
-        if hasattr(p.room, 'n_to'):
-            p.changeRooms(p.room.n_to)
-        else:
-            print(invalid)
-    elif cmd == "s":
-        if hasattr(p.room, 's_to'):
-            p.changeRooms(p.room.s_to)
-        else:
-            print(invalid)
-    elif cmd == "e":
-        if hasattr(p.room, 'e_to'):
-            p.changeRooms(p.room.e_to)
-        else:
-            print(invalid)
-    elif cmd == "w":
-        if hasattr(p.room, 'w_to'):
-            p.changeRooms(p.room.w_to)
-        else:
-            print(invalid)
+    cmds = input("enter a command-> ").lower().split(" ")
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            os.system("clear")
+            break
+        elif cmds[0] == "n" or cmds[0] == "s" or cmds[0] == "e" or cmds[0] == "w":
+            os.system("clear")
+            p.travel(cmds[0])
     else:
-        print("Please choose a valid direction (n, s, e, w) or press q to quit")
+        os.system("clear")
+        print("Invalid command, ye dog!")
