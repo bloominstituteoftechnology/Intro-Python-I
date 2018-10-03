@@ -13,8 +13,8 @@ class Room:
         self.e_to = None
 
     def room_items(self):
-        print('This room contains: ')
         if len(self.items) is not 0:
+            print('This room contains: ')
             for i, item in enumerate(self.items):
                 print(str(i) + ' -> ' + item)
         else:

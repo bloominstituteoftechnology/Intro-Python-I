@@ -5,21 +5,21 @@ from player import Player
  
 room = {
     'outside':  Room('Outside Cave Entrance',
-                     'North of you, the cave mount beckons', 'outside'),
+                     'North of you, the cave mount beckons', 'outside', ['key']),
 
     'foyer':    Room('Foyer', '''Dim light filters in from the south. Dusty
-passages run north and east.''', 'foyer'),
+passages run north and east.''', 'foyer', []),
 
     'overlook': Room('Grand Overlook', '''A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.''', 'overlook'),
+the distance, but there is no way across the chasm.''', 'overlook', []),
 
     'narrow':   Room('Narrow Passage', '''The narrow passage bends here from west
-to north. The smell of gold permeates the air.''', 'narrow'),
+to north. The smell of gold permeates the air.''', 'narrow', []),
 
     'treasure': Room('Treasure Chamber', '''You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.''', 'treasure'),
+earlier adventurers. The only exit is to the south.''', 'treasure', []),
 }
 
 
@@ -40,8 +40,8 @@ room['treasure'].s_to = room['narrow']
 class Main:
     def start(self):
 # Make a new player object that is currently in the 'outside' room.
-        player1 = Player('Das', room['outside'])
-        print('Hello ' + player1.name + '!!!!!!')
+        player1 = Player('Das', room['outside'], ['pocket knife', 'baseball bat'])
+        print('\nHello ' + player1.name + '!!!!!!\n')
         player1.getRoom()
 # Write a loop that:
 #
@@ -55,22 +55,50 @@ class Main:
 # If the user enters 'q', quit the game.
 
         move = ''
+
         while move != 'q':
-            move = input('---> What is your next move, ' + player1.name + ': NORTH(n), SOUTH(s), EAST(e) OR WEST(w) or QUIT(q) the game: ')
+            move = input('\n---> What is your next move, ' + player1.name + ': NORTH(n), SOUTH(s), EAST(e) OR WEST(w) || QUIT(q) the game || INVENTORY(i): ')
+            
             if move != 'q':
-                keyPress = move + '_to'
-                try:
-                    print(getattr(player1.room, keyPress).abr)
-                    room[getattr(player1.room, keyPress).abr]
-                except AttributeError:
-                    print('\n---> Impossible to go to that direction! Choose different one.\n')
-                    player1.getRoom()
-                except KeyError:
-                    print('\n---> Impossible to go to that direction! Choose different one.\n')
-                    player1.getRoom()
+                
+                if move == 'i':
+                    player1.room.room_items()
+                    player1.check_inventory()
+                    decision = input('\n==> ADD(a) item, DROP(d) item, PASS(p)\n')
+                    
+                    if decision == 'a' or decision == 'd':
+                        number = input('--> Item number: ')
+                        try:
+                            int(number)
+                        except ValueError:
+                            print('There is no item with that number!')
+                        if decision == 'a':
+                            if int(number) <= (len(player1.room.items) - 1):
+                                player1.get_item(player1.room.items[int(number)])
+                                player1.room.delete_item(int(number))
+                        else:
+                            player1.room.dropped_item(player1.inventory[int(number)])
+                            player1.drop_item(int(number))
+
+                        player1.room.room_items()
+                        player1.check_inventory()
+
                 else:
-                    player1.room = room[getattr(player1.room, keyPress).abr]
-                    player1.getRoom()
+
+                    keyPress = move + '_to'
+                
+                    try:
+                        print(getattr(player1.room, keyPress).abr)
+                        room[getattr(player1.room, keyPress).abr]
+                    except AttributeError:
+                        print('\n---> Impossible to go to that direction! Choose different one.\n')
+                        player1.getRoom()
+                    except KeyError:
+                        print('\n---> Impossible to go to that direction! Choose different one.\n')
+                        player1.getRoom()
+                    else:
+                        player1.room = room[getattr(player1.room, keyPress).abr]
+                        player1.getRoom()
             else:
                 print('\nGame over!')
 

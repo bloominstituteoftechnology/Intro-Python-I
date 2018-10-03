@@ -16,10 +16,11 @@ class Player:
             del self.inventory[index]
 
     def check_inventory(self):
-        print('Your inventory contains: ')
+        
         if len(self.inventory) is not 0:
+            print('Your inventory contains: ')
             for i, item in enumerate(self.inventory):
-                print(str(i) + '->' + item)
+                print(str(i) + ' --> ' + item)
         else:
             print('You are broke. Nothing in the bag!!!')
         
