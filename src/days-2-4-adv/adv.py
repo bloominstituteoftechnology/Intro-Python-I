@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -36,9 +37,12 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-
+class Main:
+    def start(self)
 # Make a new player object that is currently in the 'outside' room.
-
+        player1 = Player('Alex', room['outside'])
+        print('Welcome' + player1.name + '...')
+        player1.getRoom()
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +53,57 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+while True:
+    def printNoMove():
+        print("You can't go that way.")
+
+    currentRoom = player1.currentRoom
+
+    print('\n')
+    currentRoom.printName()
+    currentRoom.printDescription()
+    currentRoom.printContents()
+    print('\n')
+
+    cmd = input('What would you like to do' + player1.name + '?')
+
+    if cmd.upper() == 'N' or cmd.upper() == 'NORTH':
+        if hasattr(currentRoom, 'n_to'):
+            player1.currentRoom = currentRoom.n_to
+        else:
+            printNoMove()
+    elif cmd.upper() == 'W' or cmd.upper() == 'WEST':
+        if hasattr(currentRoom, 'w_to'):
+            player1.currentRoom = currentRoom.w_to
+        else:
+            printNoMove()
+    elif cmd.upper() == 'S' or cmd.upper() == 'SOUTH':
+        if hasattr(currentRoom, 's_to'):
+            player1.currentRoom = currentRoom.s_to
+        else:
+            printNoMove()
+    elif cmd.upper() == 'E' or cmd.upper() == 'EAST':
+        if hasattr(currentRoom, 'e_to'):
+            player1.currentRoom = currentRoom.e_to
+        else:
+            printNoMove()
+    elif cmd.upper() == 'I' or cmd.upper() == 'INVENTORY':
+        if len(self.inventory) > 0:
+            print('You have the following items:')
+            for item in player1.inventory:
+                print(item.name)
+        else:
+            print('You do not have any items.')
+    elif 'GRAB' in cmd.upper():
+        for item in currentRoom.inventory:
+            if cmd[5:] in item.name:
+                player1.inventory.append(item)
+                currentRoom.inventory.remove(item)
+                print('You grabbed the' + item.name + '.')
+            else:
+                print('There is no such item here.')
+    elif cmd.upper() == 'Q' or cmd.upper() == 'QUIT':
+        print('See you next time...')
+        
+game1 = Main()
+game1.start()
