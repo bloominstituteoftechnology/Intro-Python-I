@@ -36,7 +36,13 @@ class Player:
                 print('There is no such item, please try again.')
 
     def drop_item(self, item):
-        self.items.remove(item)
+        if len(self.items) > 0:
+            found_item = list(filter(lambda i: i.name.lower() == item, self.items))
+            if len(found_item) > 0:
+                self.items.remove(found_item[0])
+                self.room.add_item(found_item[0])
+            else:
+                print('There is no such item, please try again.')
 
     def list_items(self):
         if self.has_items():

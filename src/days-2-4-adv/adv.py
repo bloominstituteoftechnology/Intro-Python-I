@@ -56,6 +56,7 @@ room['treasure'].add_item(Item('Sword', 'A rusty sword.'))
 # If the user enters "q", quit the game.
 
 valid_directions = {'n': 'n', 's': 's', 'e': 'e', 'w': 'w', 'forward': 'n', 'backwards': 's', 'right': 'e', 'left': 'w'}
+valid_utilities = {'i': 'i', 'inventory': 'i'}
 
 p = Player(input('What is your name? \n'), room['outside'])
 print(p.room)
@@ -68,6 +69,8 @@ while True:
             break
         elif cmd[0] in valid_directions:
             p.move(valid_directions[cmd[0]])
+        elif cmd[0] in valid_utilities:
+            p.list_items()
         else:
             print('That is not a valid command. Please try again.')
     else:
@@ -76,5 +79,7 @@ while True:
                 p.look(valid_directions[cmd[1]])
         elif cmd[0] == 'get' or cmd[0] == 'take':
             p.get_item(cmd[1])
+        elif cmd[0] == 'drop':
+            p.drop_item(cmd[1])
         else:
             print('That is not a valid command. Please try again.')
