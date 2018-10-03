@@ -10,7 +10,7 @@ class Player:
         return f'{self.location}'
 
     def add_item(self, item):
-        return self.items.append(item)
+        self.items.append(item)
 
     def remove_item(self, item):
         self.items.remove(item)

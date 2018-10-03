@@ -2,7 +2,7 @@
 # description attributes.
 
 class Room:
-    def __init__(self, name, description, items):
+    def __init__(self, name, description):
         self.name = name
         self.description = description
         self.items = []
@@ -11,7 +11,7 @@ class Room:
         return f'{self.name}:\n{self.description}.\n\nItems available in room: {self.items}\n'
 
     def add_item(self, item):
-        return self.items.append(item)
+        self.items.append(item)
 
-    def view_items(self):
-        return f'\nItems available in room: {self.items}'
+    def remove_item(self, item):
+        self.items.remove(item)

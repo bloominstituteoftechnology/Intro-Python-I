@@ -5,21 +5,21 @@ from item import Item
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", []),
+                     "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", []),
+passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", []),
+the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", []),
+to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", []),
+earlier adventurers. The only exit is to the south."""),
 }
 
 # Link rooms together
@@ -42,8 +42,12 @@ player = Player(room['outside'])
 player.add_item('rock')
 
 gold = Item('gold', '10 gold')
-room['outside'].add_item('pebble')
-room['foyer'].add_item('silver')
+pebble = Item('pebble')
+silver = Item('silver', '5 silver')
+
+room['outside'].add_item(pebble)
+room['outside'].add_item(silver)
+room['foyer'].add_item(silver)
 room['overlook'].add_item(gold)
 room['narrow'].add_item('bones')
 
@@ -62,8 +66,6 @@ while True:
     print(f'\nHello, you are currently at {player.location}.')
     cmd = input("Press N, E, S or W to move.\nPress Q at any time to exit.\nPress I to view inventory.\nEnter get/take item_name to add item to inventory.\nEnter drop/remove item_name to remove item from inventory\n-> ").lower().split()
     if len(cmd) == 1:
-        # if cmd[0] == 'v':
-        #     player.location.view_items
         if cmd[0] == 'i' or cmd[0] == 'inventory':
             player.inventory()
         elif cmd[0] == 'q':
@@ -92,12 +94,12 @@ while True:
         if cmd[0] == 'get' or cmd[0] == 'take':
             if cmd[1] in player.location.items:
                 player.add_item(player.location.items[0])
-                player.location.items.remove(cmd[1])
+                player.location.items.remove_item(cmd[1])
             else:
                 print('\nThe item is not available for pick up.')
         elif cmd[0] == 'drop' or cmd[0] == 'remove':
             if cmd[1] in player.items:
                 player.remove_item(cmd[1])
-                player.location.items.append(cmd[1])
+                player.location.items.add_item(cmd[1])
             else:
                 print('\nYou do not have that item in your inventory.')
