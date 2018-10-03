@@ -13,4 +13,19 @@
 # Hint: this should be about 15 lines of code. No loops are required. Read the
 # docs for the calendar module closely.
 
+import calendar
 import sys
+import datetime
+
+now=datetime.datetime.now()
+cal= calendar.TextCalendar(firstweekday=0)
+arg= sys.argv
+
+if(len(arg)==3):
+
+    print(cal.formatmonth(int(arg[2]), int(arg[1])))
+    # this reverses the order of args, assuming user enters month and then year.
+
+else:
+    print(cal.formatmonth(int(now.year),int(now.month)))
+
