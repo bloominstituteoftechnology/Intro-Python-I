@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-
+from items import Item
 # Declare all the rooms
 
 room = {
@@ -21,6 +21,11 @@ to north. The smell of gold permeates the air."""),
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
+
+items = {
+    'dagger': Item("dagger", "a small dull blade. It's practically useless"),
+}
+room['outside'].addItem(items['dagger'])
 
 suppressRoomPrint = False
 validDirections = ["n", "s", "e", "w"]
@@ -43,23 +48,51 @@ def lookCommand(player, *args):
         printErrorString("That is not a look command")
     elif len(args) == 1:
         return False
-        elif args[1] == "here":
-        print(player.location.description +
-              "\n\nThere are the following items here: " + player.location.items)
+    elif args[1] == "here":
+        print('\n' + player.location.description +
+              "\n\nYou see the following items: " + player.location.listOfItems() + '\n')
     elif args[1] in validDirections:
         lookRoom = player.location.getRoomInDirection(args[1])
         if lookRoom is not None:
-            print('\n' + lookRoom.description + '\n' + lookRoom.items + '\n')
+            print('\n' + lookRoom.description + '\n')
         else:
-            printErrorString("You shall not pass!")
+            printErrorString("You cannot go that way.")
         return True
 
 
 def takeItemCommand(player, *args):
+    itemToGet = player.location.findItemByName(args[1])
     if not (args[0] == "g" or args[0] == "get"):
         printErrorString("That is not a get command")
     elif len(args) == 1:
         return False
+    elif itemToGet is not None:
+        player.addItem(itemToGet)
+        player.location.removeItem(itemToGet)
+        print(f'\n {player.name} has retrieved {itemToGet}.\n')
+        player.getInventoryString()
+    else:
+        printErrorString(f'There is no {args[1]} to take\n')
+
+
+def dropItemCommand(player, *args):
+    itemToDrop = player.findItemByName(args[1])
+    print(itemToDrop)
+    if not (args[0] == "d" or args[0] == "drop"):
+        printErrorString("That is not a drop command")
+    elif len(args) == 1:
+        return False
+    elif itemToDrop is not None:
+        player.removeItem(itemToDrop)
+        player.location.addItem(itemToDrop)
+        print(f'\n {player.name} has dropped {itemToDrop}.\n')
+    else:
+        printErrorString(f'\nThere is no {args[1]} to drop.\n')
+
+
+def inventoryCommand(player, *args):
+    print(f'\nYou currently have these items in your inventory:\n' +
+          player.getInventoryString() + '\n')
 
 
 def printErrorString(errorString):
@@ -76,7 +109,10 @@ commands["w"] = moveCommand
 commands["l"] = lookCommand
 commands["look"] = lookCommand
 
-commands["take"] =
+commands["get"] = takeItemCommand
+commands["drop"] = dropItemCommand
+commands["i"] = inventoryCommand
+commands["inventory"] = inventoryCommand
 
 # Link rooms together
 
@@ -89,16 +125,6 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-# Adding some items
-
-t = Treasure("coins", "Shiny coins", 100)
-room['overlook'].contents.append(t)
-
-t = Treasure("silver", "Tarnished silver", 200)
-room['treasure'].contents.append(t)
-
-l = LightSource("lamp", "Brass lamp")
-room['foyer'].contents.append(l)
 
 #
 # Main
@@ -118,7 +144,7 @@ room['foyer'].contents.append(l)
 # If the user enters "q", quit the game.
 
 
-player = Player(input("\nWhat is your name?: "), room['outside'])
+player = Player(input("\nWhat is your name?: "), room['outside'], [])
 
 print(f"Welcome, {player.name}!\n")
 
@@ -126,8 +152,8 @@ while True:
     if suppressRoomPrint:
         suppressRoomPrint = False
     else:
-        print(f'{player.location.title}\n')
-     inputList = input("> ").split(" ")
+        print(f'Current location: {player.location.title}\n')
+    inputList = input("> ").split(" ")
     if inputList[0] == "q":
         break
     elif inputList[0] in commands:

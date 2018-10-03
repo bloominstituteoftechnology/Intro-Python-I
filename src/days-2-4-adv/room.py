@@ -1,18 +1,12 @@
-# Implement a class to hold room information. This should have name and
-# description attributes.
-
-
 class Room():
-    def __init__(self, name, description):
-        self.name = name
+    def __init__(self, title, description):
+        self.title = title
         self.description = description
         self.n_to = None
         self.s_to = None
         self.w_to = None
         self.e_to = None
-
-    def __str__(self):
-        return f"\n\n{self.name}\n\n  {self.description}\n"
+        self.items = []
 
     def getRoomInDirection(self, direction):
         if direction == "n":
@@ -26,10 +20,20 @@ class Room():
         else:
             return None
 
-  def addItem(self, item):
+    def addItem(self, item):
         self.items.append(item)
-     def removeItem(self, item):
+
+    def removeItem(self, item):
+        self.items.remove(item)
+
+    def findItemByName(self, item):
         if len(self.items) > 0:
             for i in self.items:
-              if i.name == item:
-                    self.items.remove(i)
+                if i.name == item:
+                    return i
+
+    def listOfItems(self):
+        if len(self.items) < 1:
+            return ' '
+        for i in self.items:
+            return f'{i.name}'
