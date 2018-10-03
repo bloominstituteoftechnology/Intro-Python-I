@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 # Declare all the rooms
 
 room = {
@@ -20,6 +21,18 @@ to north. The smell of gold permeates the air."""),
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
+#Create item dictionary
+item = {
+    "Map": Item("Map of the Location"),
+
+    "Coin": Item("Coin of the Treasure"),
+
+    "Photo": Item("Photo of the deceased owner"),
+
+    "Backpack": Item("Backpack belonging to other Adventurers"), 
+
+    "List": Item("List of different treasure spots left by the other adventurers")
+}
 
 
 # Link rooms together
@@ -32,6 +45,14 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+#Link items to rooms
+
+item['Map'].link_to = room['outside']
+item["Coin"].link_to = room['foyer']
+item['Photo'].link_to = room['overlook']
+item['Backpack'].link_to = room['narrow']
+item['List'].link_to = room['treasure']
 
 #
 # Main
@@ -54,7 +75,7 @@ while True:
     print("Begin your journey")
     print("Chose your direction by pressing n for North, s for South, e for East, w for West, or you can chose q and end your journey now")
 
-    direction = input("\n Which way? \n Or do you want to quit?")
+    direction = input("\n Which way? \n Or do you want to quit?\n -->  ").toLower().split(" ")
 
     if direction == 'q':
         print("\nYour Journey has ended")
