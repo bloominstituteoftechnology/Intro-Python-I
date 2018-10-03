@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from weapon import Weapon
+from item import Item
 import random
 # Declare all the rooms
 room = {
@@ -42,6 +43,14 @@ room['prison'].n_to = room['coward']
 # Weapons
 weapons = {
  
+}
+
+items = {
+    "shovel": Item("shovel", "Use this to dig or hit with"),
+    "sword" : Item("sword", "Use this to chop or slice"),
+    "spells": Item ("spells", "Book of spells"),
+    "bat" : Item("bat", "Use this to knock down or hit with"),
+    "gun" : Item("gun", "Shoot with this"),
 }
 # Main
 
