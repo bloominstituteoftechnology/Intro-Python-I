@@ -8,14 +8,17 @@ y = [8, 9, 10]
 
 # Change x so that it is [1, 2, 3, 4]
 # [command here]
+x.append(4)
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # [command here]
+x.extend(y)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # [command here]
+x.remove(8)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
