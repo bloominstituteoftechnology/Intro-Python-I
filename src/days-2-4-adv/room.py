@@ -8,6 +8,7 @@ class Room():
         self.s_to = None
         self.e_to = None
         self.w_to = None
+        self.items = []
     def __str__(self):
         return f'\n You have entered the {self.location} \n {self.description} \n '
     def getRoom(self, direction):
@@ -21,3 +22,7 @@ class Room():
             return self.w_to
         else:
             return None
+    def addItem(self, item):
+        self.items.append(item)
+    def removeItem(self, item):
+        self.items.remove(item)

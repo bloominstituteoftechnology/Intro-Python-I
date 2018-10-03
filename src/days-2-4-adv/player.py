@@ -11,3 +11,4 @@ class Player():
             print(nextRoom)
         else:
             print('You are filled with an overwhelming sense of dread and quickly reconsider your decision.')
+    

@@ -52,8 +52,7 @@ plyr = Player(name, room['outside'])
 #
 # If the user enters "q", quit the game.
 #
-# def err_catch():
-#     print('')
+
 
 print(f'You find yourself just {plyr.current_room.location} with no memory of how you got here. {plyr.current_room.description}. ')
 while True:
@@ -68,6 +67,9 @@ while True:
             print('Thats not right...')
     else:
         print('Get and Drop abilities coming soon!')
+
+
+
 
     # if cmd ==  'q':
     #     print('\n Knew you didnt have the constitution for this...')
