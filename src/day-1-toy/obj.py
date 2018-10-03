@@ -38,6 +38,8 @@
 # # Print it--also make this print more nicely
 # print(g)
 
+
+
 # Make a class LatLon that can be passed parameters `lat` and `lon` to the
 # constructor
 class LatLon(object):

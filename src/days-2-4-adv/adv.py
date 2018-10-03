@@ -4,7 +4,7 @@ from room import Room
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     """North of you, the cave mount beckons"""),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player(room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +49,22 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    locked = 'No Entry'
+
+    print(f'{player.room.name}: {player.room.description}')
+
+    cmd = input('Which way would you like to go?')
+    if cmd == 'q':
+        break
+    elif cmd == 'n'
+        move north
+    elif cmd == 's'
+        move south
+    elif cmd == 'e'
+        move east
+    elif cmd == 'w'
+        move west
+    else:
+        print('need valid command')
