@@ -61,6 +61,7 @@ room['treasure'].inventory.append(item['lasso'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+valid_directions={'n':'n','s':'s','e':'e','w':'w'}
 def game():
     player=Player(input('What is your name?\n'),room['outside'])
     print(f'Hello, {player.name}\n{player.current_location}')
@@ -74,8 +75,8 @@ def game():
             else:
                 print('Invalid command.')
         elif len(cmd)==1:
-            if cmd[0]=='n' or cmd[0]=='e' or cmd[0]=='s' or cmd[0]=='w':
-                print(player.travel(cmd[0]))
+            if cmd[0] in valid_directions:
+                print(player.travel(valid_directions[cmd[0]]))
             elif cmd[0]=='q':
                 break
             elif cmd[0]=='i':

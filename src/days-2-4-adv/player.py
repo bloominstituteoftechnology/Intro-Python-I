@@ -36,4 +36,4 @@ class Player:
                 return f'{self.name} dropped a {item}'
         return f'You do not have a {item} to drop.'
     def get_score(self):
-        return f"{self.name}'s score:{self.score}"
+        return f'{self.name}\'s score:{self.score}'
