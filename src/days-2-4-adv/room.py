@@ -12,7 +12,8 @@ class Room():
         self.e_to = None
         self.w_to = None
     def __str__(self):
-        return f'\n\n{self.name}\n\n {self.description}\n\n {self.items}'
+        current_items = ', '.join(item.name for item in self.items)
+        return f'\n\n{self.name}\n\n {self.description}\n\n You find the following items within... {current_items}'
     def getRoomInDirection(self, direction):
         if direction == "n":
             return self.n_to
