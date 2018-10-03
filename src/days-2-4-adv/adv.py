@@ -127,22 +127,27 @@ while True:
         else:
             print("You do not have any items besides the shirt on your back.")
     elif "TAKE" in cmd.upper():
+        isInInv = False
         for item in currentRoom.inventory:
             if cmd[5:] in item.name:
+                isInInv = True
                 player.inventory.append(item)
                 currentRoom.inventory.remove(item)
                 print("You have taken the %s" % item.name)
-            else:
+            if not isInInv:
                 print("Sorry, %s, that item is not in this room." % player.name)
     elif "DROP" in cmd.upper():
+        isInInv = False
         for item in player.inventory:
             if cmd[5:] in item.name:
+                isInInv = True
                 player.inventory.remove(item)
                 currentRoom.inventory.append(item)
                 print("You have dropped the %s." % item.name)
-            else:
-                print("You are not carrying that item.")
+        if not isInInv:
+            print("You are not carrying that item.")
     elif cmd.upper() == 'Q' or cmd.upper() == 'QUIT':
+        print("Thanks for playing.")
         break
     else:
         print("That command is not valid.")
