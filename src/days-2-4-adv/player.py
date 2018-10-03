@@ -17,6 +17,7 @@ class Player:
     def add_item(self, item):
         if item not in self.items:
             self.items.append(item)
+            print(f"🔫  You have found a {item}")
             
     def get_item(self):
         print(f"{ self.items }")

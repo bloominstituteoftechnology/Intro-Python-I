@@ -3,6 +3,17 @@ from room import Room
 from player import Player
 
 
+# Items - suppose to have different items in different rooms
+items_dic = {
+    "1": "AK47",
+    "2": "M416",
+    "3": "M16A4",
+    "4": "AWM",
+    "5": "First Aid Kit"
+}
+
+items = [items_dic[item] for item in items_dic]
+
 # Declare all the rooms
 
 room = {
@@ -22,15 +33,6 @@ to north. The smell of gold permeates the air.""", items),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", items),
-}
-
-# Items - suppose to have different items in different rooms
-items = {
-    "1": "AK47",
-    "2": "M416",
-    "3": "M16A4",
-    "4": "AWM",
-    "5": "First Aid Kit"
 }
 
 # Link rooms together
@@ -84,19 +86,49 @@ while True:
     Get user input
     """
     cmd = input("➡️  ")
-    
+    cmd_tokens = cmd.split(' ') or []
+
     """
     Process user input
     """
-    if cmd is "q":
-        break
-    if cmd is "d":
-        player.location.print_description()
-    if cmd is "i":
-        player.get_item()
-    elif cmd in valid_directions:
-        player.travel(valid_directions[cmd])
-        player.location.generate_items(player)
+    while len(cmd_tokens) > 0 and cmd_tokens[0] is not '':
+        token = cmd_tokens[0]
+        # hotkeys command
+        if len(token) is 1:
+            if token == "q":
+                break
+            if token == "d":
+                player.location.print_description()
+            if token == "i":
+                player.get_item()
+            elif token in valid_directions:
+                player.travel(valid_directions[token])
+                player.location.generate_items(player)
+        # words command
+        else:
+            if len(cmd_tokens) > 1:
+                next_token = cmd_tokens[1] 
+            else:
+                break
+            if token == "get":
+                if next_token in player.location.items:
+                    player.add_item(next_token)
+                    # remove item in room instance
+                    player.location.items.remove(next_token)
+                else:
+                    print(f"⚠️  {next_token} is not in {player.location.name}")
+            elif token == "drop":
+                if next_token in player.items:
+                    # remove item in player instance
+                    player.items.remove(next_token)
+                else:
+                    print(f"⚠️  {player.name}  does not have {next_token}")
+            else:
+                print(f"⚠️  Input command is not found")
+            # remove item command in token list
+            cmd_tokens.pop(1)
+        # remove first item
+        cmd_tokens.pop(0)
 
     """
     End this round

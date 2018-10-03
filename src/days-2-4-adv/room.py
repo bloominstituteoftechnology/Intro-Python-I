@@ -33,6 +33,5 @@ class Room:
 
     def generate_items(self, player):
         if random.random() > 0.5:
-            random_item = self.items[str(random.randint(0,len(self.items)))]
+            random_item = self.items[random.randint(0, len(self.items) - 1)]
             player.add_item(random_item)
-            print(f"🔫  You have found a {random_item}")
