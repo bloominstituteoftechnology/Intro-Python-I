@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 
 # Declare all the rooms
 
@@ -35,7 +35,9 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 room['outside'].add_item(Item('Backpack', 'A backpack to hold your items'))
-room['treasure'].add_item(Item('Sword', 'A rusty sword.'))
+room['treasure'].add_item(Treasure('Diamond', 'A shiny diamond.', 75))
+room['overlook'].add_item(Treasure('Map', 'A map with an X. Could it be treasure?', 20))
+room['narrow'].add_item(Treasure('Silver', 'A silver bar.', 25))
 
 #
 # Main
@@ -71,6 +73,8 @@ while True:
             p.move(valid_directions[cmd[0]])
         elif cmd[0] in valid_utilities:
             p.list_items()
+        elif cmd[0] == 'score':
+            print(p.score)
         else:
             print('That is not a valid command. Please try again.')
     else:

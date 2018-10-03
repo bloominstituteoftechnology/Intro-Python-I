@@ -8,6 +8,7 @@ class Player:
     def __init__(self, name, room):
         self.name = name
         self.room = room
+        self.score = 0
         self.items = []
 
     def move(self, direction):
@@ -32,6 +33,7 @@ class Player:
             if len(found_item) > 0:
                 self.items.append(found_item[0])
                 self.room.remove_item(found_item[0])
+                found_item[0].on_take(self)
             else:
                 print('There is no such item, please try again.')
 
