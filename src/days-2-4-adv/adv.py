@@ -47,7 +47,7 @@ validCmds = ['n', 's', 'e', 'w', 'get']
 while True:
     print(p)
     print(p.currentRoom)
-    cmd = input("\nWhat's your next move?(n, s, e, w, get [item])\n").lower().split(" ")
+    cmd = input("\nWhat's your next move, pal?(n, s, e, w, get [item])\n").lower().split(" ")
     
     if len(cmd) == 1:
         if cmd[0] == 'q':
@@ -69,30 +69,22 @@ while True:
             try: 
                 p.playerMove('e')
             except: 
-                print(p.badMove)        
+                print(p.badMove)
         elif cmd == 'w':
             print('\n==You stride confidently west.==')
             try: 
                 p.playerMove('w')
             except: 
-                print(p.badMove)        
+                print(p.badMove)
         else:
             print("\n==You wander aimlessly like a fool and will surely be eaten by goblins if you don't pick a direction soon.==")
     else:
         if cmd[0] == 'get':
-            p.playerGet(cmd[1])
+            if cmd[1] == p.currentRoom.items.name.lower():
+                p.playerGet(cmd[1])
+            else:
+                print("\n==You gawk vacantly into the distance like one who has seen far too many dragons in their days.==")
+                print(p.currentRoom.items.name)
         else:
-            print("\n==You gawk vacantly into the distance like one who has seen far too many dragons in his days.")
+            print("\n==You gawk vacantly into the distance like one who has seen far too many dragons in their days.==")
 
-# Make a new player object that is currently in the 'outside' room.
-
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
