@@ -59,17 +59,19 @@ direction_dictionary = {"n": "north", "s": "south", "w": "west", "e": "east" }
 
 while True: 
     # print(vars(d))
+    print(f"You are currently in {s.currentRoom.name}")
     cmd = input("->")
+    
     if cmd == "q":
         break
-    # elif cmd == "n" or cmd == "s" or cmd == "w" or cmd == "e":
-    
-    if cmd:
+    elif cmd == "n" or cmd == "s" or cmd == "w" or cmd == "e":
         s.currentRoom = getattr(s.currentRoom, f"{cmd}_to")
         # getattr(s["currentRoom"], cmd)
-        # [f"{cmd}_to"]
-        
-        
+        # [f"{cmd}_to"]        
         print(f"You are currently in {s.currentRoom.name}")
         print(f"Description: {s.currentRoom.description}")
+    else: 
+        print("invalid input") 
+    # s.currentRoom[`${cmd}_to`]
+    # if cmd:
 
