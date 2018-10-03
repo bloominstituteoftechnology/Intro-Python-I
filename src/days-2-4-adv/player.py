@@ -4,16 +4,26 @@ class Player:
     def __init__(self, name, currentRoom):
         self.name = name
         self.currentRoom = currentRoom
+        self.items = []
+
     def enter(self, direction):
         room = self.currentRoom.getRoom(direction)
         if room is not None:
             self.currentRoom = room
-            print (f"""
-    {room.name}:
-
-    {room.description}
-    """)
+            print (f"\n{room.name}:\n\n{room.description}\n")
         else:
-            print (f"""
-    Yo you cant go that way dog, duh, ya dingus
-            """)
+            print ("\nYo you cant go that way dog, duh, ya dingus\n")
+
+    def itemHandler(self, cmd, item):
+        if cmd == "pickup" and item not in self.items:
+            if self.currentRoom.toggleItem(cmd, item) is not None:
+                self.items.append(self.currentRoom.toggleItem(cmd, item))
+                print (f"\npicked up this {item}\n")
+            else:
+                print ("\njust can't do that\n")
+        elif cmd == "drop" and item in self.items:
+            if self.currentRoom.toggleItem(cmd, item) is not None:
+                self.items.remove(self.currentRoom.toggleItem(cmd, item))
+                print (f"\nwho needs this {item} anyway\n")
+        else: 
+            print ("\njust can't do that\n")

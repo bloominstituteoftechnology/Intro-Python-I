@@ -4,10 +4,29 @@ class Room:
     def __init__(self, name, description, *item):
         self.name = name
         self.description = description
+        self.items = [*item]
         self.n_to = None
         self.s_to = None
         self.w_to = None
         self.e_to = None
+    def getItem(self):
+        if len(self.items) != 0:
+            print ("you see some thing/s on a the ground... a..\n")
+            for item in self.items:
+                print (f"{item}\n")
+        else:
+            print ("nothing to take here\n")
+
+    def toggleItem(self, cmd, item):
+        if cmd == "pickup" and item in self.items:
+            self.items.remove(item)
+            return item
+        elif cmd == "drop" and item not in self.items:
+            self.items.append(item)
+            return item
+        else:
+            return None
+
     def getRoom(self, direction):
         if direction == "n":
             return self.n_to
