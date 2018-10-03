@@ -18,7 +18,7 @@ room = {
                      "North of you, the cave mount beckons", 'outside', [Item("Cake", "Test"), Item("death", "test")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", 'foyer'),
+passages run north and east.""", 'foyer', [Item("test", "test")]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -139,6 +139,5 @@ try:
         while awaitValidDirection:
             playerInput = input("Please input a command:")
             awaitValidDirection = TextEval(playerInput.lower())
-
 except AdventureDone:
     print('See you next adventure')
