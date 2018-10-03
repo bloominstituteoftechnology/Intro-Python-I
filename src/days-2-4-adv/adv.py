@@ -1,47 +1,58 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                    "North of you, the cave mount beckons",
-                    [Item("golden cup", "a shimmering goblet studded with jewels")]),
+                    "   North of you, the cave mount beckons",
+                    [Treasure("golden cup", "a shimmering goblet studded with jewels", 100)]),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""",
+    'foyer':    Room("Foyer", 
+    """    Dim light filters in from the south. 
+    Dusty passages run north and east.""",
                     []),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""",
+    'overlook': Room("Grand Overlook", 
+    """    A steep cliff appears before you, 
+    falling into the darkness. Ahead to the north, 
+    a light flickers in the distance, but there 
+    is no way across the chasm.""",
                     [Item("long sword", "a sharp, heavy blade")]),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""",
+    'narrow':   Room("Narrow Passage", 
+    """    The narrow passage bends here from west
+    to north. The smell of gold permeates the air.""",
                     []),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. There is a bookshelf along the north wall. The only exposed 
-exit is to the south. """,
+    'treasure': Room("Treasure Chamber", 
+    """    You've found the long-lost treasure
+    chamber! Sadly, it has already been completely 
+    emptied by earlier adventurers. There is a 
+    bookshelf along the north wall. The only exposed 
+    exit is to the south. """,
                     [Item("leather-bound book", "a mysterious tome with missing pages")]),
     
-    'hidden': Room("Hidden Room", """You've found a tiny, musty, hidden room 
-    behind a bookshelf. Exits are to the west and south. A bright, revolving 
-    light appears west.""",
-                    [Item("pile of gold coins", "maybe they're real gold"), 
+    'hidden': Room("Hidden Room", 
+    """    You've found a tiny, musty, hidden room 
+    behind a bookshelf. Exits are to the west 
+    and south. A bright, revolving light appears west.""",
+                    [Treasure("pile of silver coins", "maybe they're real silver", 100), 
                     Item("lit candle", "a burning flame to help in the dark night")]),
     
-    'lighthouse': Room("Glimmering Lighthouse", """A tall, white-and-red 
-    lighthouse stands towering above you. The door is locked. Paths lead 
-    east, and west to a beach.""", 
-                    [Item("broken mirror", "sharp edges and big cracks")]),
+    'lighthouse': Room("Glimmering Lighthouse", 
+    """    A tall, white-and-red lighthouse 
+    stands towering above you. The door is 
+    locked. Paths lead east, and west to a beach.""", 
+                    [Item("broken mirror", "sharp edges and big cracks"),
+                    Treasure("shiny ruby", "a deep red precious stone", 200)]),
     
-    'beach': Room("Sandy Beach", """A broad sandy beach lies before you. 
-    Sea shells are scattered around. The ocean looks cold and uninviting. 
-    The only exit is east.""", 
+    'beach': Room("Sandy Beach", 
+    """    A broad sandy beach lies before you. 
+    Sea shells are scattered around. 
+    The ocean looks cold and uninviting. 
+    the only exit is east.""", 
                     [Item("conch shell", "a pale shell with an opening")])
 }
 
@@ -81,49 +92,67 @@ room['beach'].e_to = room['lighthouse']
 #
 # If the user enters "q", quit the game.
 
-# Player init
-player = Player('Hanzo', room['outside'], [Item("iron chestplate", "a durable armor piece")])
 
+# initialize player
+playerName = input("""================================================
+What is your name? """)
+player = Player(playerName, room['outside'], [Item("iron chestplate", "a durable armor piece")])
+
+suppressRoomPrint = False
 # Input loop
 while True:
     def printNoMove():
         print('\nSorry, %s, you cannot move in that direction.' % player.name)
+        print()
+
+    def treasureOnTake(treasure):
+        if not treasure.takenAlready:
+            player.increaseScore(treasure.value)
 
     currentRoom = player.currentRoom
 
-    print('\n')
-    currentRoom.printName()
-    currentRoom.printDesc()
-    currentRoom.printInv()
-    print('\n')
+    if suppressRoomPrint:
+        suppressRoomPrint = False
+    else:
+        print("------------------------------------------------")
+        currentRoom.printName()
+        currentRoom.printDesc()
+        print()
+        currentRoom.printInv()
+        print()
 
-    cmd = input("What would you like to do, %s? " % player.name)
+    cmd = input("""================================================
+What would you like to do, %s? """ % player.name)
 
     if cmd.upper() == 'N' or cmd.upper() == 'NORTH':
         if hasattr(currentRoom, 'n_to'):
             player.currentRoom = currentRoom.n_to
         else:
             printNoMove()
+            suppressRoomPrint = True
     elif cmd.upper() == 'S' or cmd.upper() == 'SOUTH':
         if hasattr(currentRoom, 's_to'):
             player.currentRoom = currentRoom.s_to
         else:
             printNoMove()
+            suppressRoomPrint = True
     elif cmd.upper() == 'E' or cmd.upper() == 'EAST':
         if hasattr(currentRoom, 'e_to'):
             player.currentRoom = currentRoom.e_to
         else:
             printNoMove()
+            suppressRoomPrint = True
     elif cmd.upper() == 'W' or cmd.upper() == 'WEST':
         if hasattr(currentRoom, 'w_to'):
             player.currentRoom = currentRoom.w_to
         else:
             printNoMove()
+            suppressRoomPrint = True
     elif cmd.upper() == 'INV' or cmd.upper() == 'I':
         if len(player.inventory) > 0:
             print("You have:")
             for item in player.inventory:
-                print(item.name)
+                print(item.name, ":", item.description)
         else:
             print("You do not have any items besides the shirt on your back.")
     elif "TAKE" in cmd.upper():
@@ -133,9 +162,14 @@ while True:
                 isInInv = True
                 player.inventory.append(item)
                 currentRoom.inventory.remove(item)
-                print("You have taken the %s" % item.name)
-            if not isInInv:
-                print("Sorry, %s, that item is not in this room." % player.name)
+                
+                if isinstance(item, Treasure):
+                    treasureOnTake(item)
+                    item.on_take()
+                else:
+                    item.on_take()
+        if not isInInv:
+            print("Sorry, %s, that item is not in this room." % player.name)
     elif "DROP" in cmd.upper():
         isInInv = False
         for item in player.inventory:
@@ -146,8 +180,22 @@ while True:
                 print("You have dropped the %s." % item.name)
         if not isInInv:
             print("You are not carrying that item.")
+    elif cmd.upper() == "SCORE":
+        print("Your score: %s" % player.score)
     elif cmd.upper() == 'Q' or cmd.upper() == 'QUIT':
-        print("Thanks for playing.")
+        print("\nThanks for playing.\n")
         break
+    elif cmd.upper() == 'H' or cmd.upper() == 'HELP':
+        print("""Commands:
+    'n' or 'north' to move north
+    's' or 'south' to move south
+    'e' or 'east' to move east
+    'w' or 'west' to move west
+    'i' or 'inv' to look in inventory
+    'score' for score
+    'take <item>' to take
+    'drop <item>' to drop
+    'q' or 'quit' to quit
+    'h' or 'help' for help""")
     else:
         print("That command is not valid.")

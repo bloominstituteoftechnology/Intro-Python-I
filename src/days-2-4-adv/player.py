@@ -6,3 +6,6 @@ class Player:
         self.name = name
         self.currentRoom = currentRoom
         self.inventory = inventory
+        self.score = 0
+    def increaseScore(self, value):
+        self.score += value
