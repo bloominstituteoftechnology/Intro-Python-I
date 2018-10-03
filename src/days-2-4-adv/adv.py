@@ -3,8 +3,7 @@ from player import Player
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside':  Room("Outside Cave Entrance","North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -38,7 +37,9 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-sean = Player(room['outside'])
+
+me = Player("sean",room['outside'])
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -51,6 +52,57 @@ sean = Player(room['outside'])
 # If the user enters "q", quit the game.
 
 print (f"""
-    {sean.startRoom.name}:
-    {sean.startRoom.description}
+    {me.startRoom.name}:
+    {me.startRoom.description}
     """)
+while True:
+    cmd = input("which way?-> ")
+    if cmd == "q":
+        print ("""
+    Quitting
+        """)
+        break
+    if cmd == "n":
+        if hasattr(me.startRoom.n_to, "name"):
+            me.startRoom = me.startRoom.n_to
+            print (f"""
+    {me.startRoom.name}:
+    {me.startRoom.description}
+    """)
+        else:
+            print ("""
+    Cannot go there
+            """)
+    elif cmd == "e":
+        if hasattr(me.startRoom.e_to, "name"):
+            me.startRoom = me.startRoom.e_to
+            print (f"""
+    {me.startRoom.name}:
+    {me.startRoom.description}
+    """)
+        else:
+            print ("""
+    Cannot go there
+            """)
+    elif cmd == "s":
+        if hasattr(me.startRoom.s_to, "name"):
+            me.startRoom = me.startRoom.s_to
+            print (f"""
+    {me.startRoom.name}:
+    {me.startRoom.description}
+    """)
+        else:
+            print ("""
+    Cannot go there
+            """)
+    elif cmd == "w":
+        if hasattr(me.startRoom.w_to, "name"):
+            me.startRoom = me.startRoom.w_to
+            print (f"""
+    {me.startRoom.name}:
+    {me.startRoom.description}
+    """)
+        else:
+            print ("""
+    Cannot go there
+          """)
