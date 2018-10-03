@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 from weapon import Weapon
 from item import Item
+from item import Treasure
 import random
 # Declare all the rooms
 items = {
