@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -80,3 +81,20 @@ while True:
                 player.look(valid_directions[cmds[1]])
         else:
             print("I did not understand that command.")
+
+item = {
+    'sword':  Item("Broadsword",
+                     "Slay thine enemies with the mighty Broadsword."),
+
+    'shield':    Item("Shield", 
+                        """Holdfast to the iron shield and stand guard against enemy attacks."""),
+
+    'potionH': Item("Health Potion", 
+                        """Drink it's contents and live to fight another day!"""),
+
+    'potionM':   Item("Mana Potion",
+                         """Stay in the fight by quenching your thirst for power!"""),
+
+    'goblet': Item("Goblet of Invulnerability",
+                         """As long as this item is equipped death shall be a stranger to you"""),
+}
