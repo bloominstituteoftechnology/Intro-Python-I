@@ -42,7 +42,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'], [Item("map", "map of the Location")])
+player = Player(room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -55,35 +55,49 @@ player = Player(room['outside'], [Item("map", "map of the Location")])
 # If the user enters "q", quit the game.
 
 while True:
-
     currentRoom = player.currentRoom
-    items = player.items
-
     print("\n")
+    print("=====================================================")
     currentRoom.printName()
     currentRoom.printDesc()
+    print("-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-")
     currentRoom.printItems()
+    print("=====================================================")
+    print("=====================================================")
+    print(len(player.items))
     print("\n")
+    print("What direction will you choose?")
+
+    # items.menu()
+    # print("\n")
 
     direction = input("--> ").lower().split(" ")
+    print(direction)
+    print(len(direction))
+    if len(direction) > 1:
+    
+        if len(direction) > 1 and (direction[0] == "add"):
+            itemToAdd = currentRoom.find(direction[1])
+            if itemToAdd == None:
+                print("No item by that name")
+            else:
+                print("add")
+                player.add(itemToAdd)
 
-    if len(direction) == 1:
+        if len(direction) > 1 and (direction[0] == "remove"):
+            print(player.items)
+            itemToRemove = player.find(direction[1])
+            if itemToRemove == None:
+                print("No item to remove")
+            else:
+                print("removed")
+                player.removeItem(itemToRemove)
+    else:
+
         if direction[0] == 'q':
             print("\nYour Journey has ended")
             break
 
-        elif len(direction) > 1 and (location[0] == "add"):
-            itemToAdd = currentRoom.find(direction[1])
-            if itemToAdd is not None:
-                player.add(itemToAdd)
-                print("added")
-            else:
-                print("No item by that name")
-        elif len(direction) > 1 and (location[0] == "remove"):
-            itemToRemove = player.items(direction[1])
-            if itemToRemove is not None:
-                player.remove(itemToRemove)
-                print("removed")
         elif direction[0] == 'n':
             if not hasattr(player.currentRoom.n_to, 'name'):
                 print('\n Dead End')

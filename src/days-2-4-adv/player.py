@@ -3,15 +3,31 @@
 
 
 class Player: 
-    def __init__(self, currentRoom, items):
+    def __init__(self, currentRoom):
         self.currentRoom = currentRoom
-        self.items = items
+        self.items = []
     def add(self, item):
         self.items.append(item)
-    def remove(self, item):
+    def removeItem(self, item):
         if len(self.items) > 0:
             for i in self.items:
-                if i.name == item:
+                if i == item:
                     self.items.remove(i)
         else:
             print("item not avalible")
+    def find(self, name):
+        for item in self.items:
+            if item.name.lower() == name.lower():
+                return item
+        return None 
+    def menu(self):
+        if len(self.items) > 0:
+            print(f"Items avliable:{self.items}")
+        else:
+            print("No items")
+
+
+    #add a menu so that the player can see what they have in their inventory
+    # def menu(self):
+    #     for item in self.items:
+    #         print(item.name)
