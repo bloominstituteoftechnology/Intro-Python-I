@@ -73,33 +73,71 @@ player = Player(input("\nWhat is your name? "), room["outside"])
 
 print(f"Welcome, {player.name}\n")
 
-
 valid_directions = {"n": "north", "s":"south", "e": "east", "w":"west"}
 
-
+suppressRoomPrint = False
 
 playing = True
 
 while(playing):
-
-    print(player.currentRoom.name + "\n" + player.currentRoom.description)
-
-    cmds = input("-> ").split(" ")
-
-    if len(cmds) == 1:
-        if cmds[0] == "q":
-            break
-        elif cmds[0] in valid_directions:
-            player.travel(valid_directions[cmds[0]])
-        elif cmds[0] == "look":
-            player.look()
-        else:
-            print("Command is not recognized.")
+    if suppressRoomPrint:
+        suppressRoomPrint = False
     else:
-        if cmds[0] == "look":
-            if cmds[1] in valid_directions:
-                player.look(valid_directions[cmds[1]])
+        print(player.currentRoom)
+
+    cmds = input("-> ").split(" ") # this allows us to separate commands
+
+    if cmds[0] == "q":
+        break
+
+    elif cmds[0] == "n":
+        if player.currentRoom.n_to is not None:
+            player.currentRoom = player.currentRoom.n_to
+        else:  
+            print("Your chosen direction is not an option.")
+    elif cmds[0] == "s":
+        if player.currentRoom.s_to is not None:
+            player.currentRoom = player.currentRoom.s_to
+        else:  
+            print("Your chosen direction is not an option.")
+    elif cmds[0] == "e":
+        if player.currentRoom.e_to is not None:
+            player.currentRoom = player.currentRoom.e_to
+        else:  
+            print("Your chosen direction is not an option.")
+    elif cmds[0] == "w":
+        if player.currentRoom.w_to is not None:
+            player.currentRoom = player.currentRoom.w_to
+        else:  
+            print("Your chosen direction is not an option.")
+
+    # elif cmds[0] in valid_directions:
+    #     player.travel(valid_directions[cmds[0]])
+
+    elif cmds[0] == "look":
+            player.look()
+
+    elif len(cmds) >1 and (cmds[0] == "get" or cmds[0] == "take"):
+        itemToGet = player.findItemByName(cmds[1])
+        if itemToGet is not None:
+            player.addItem(itemToGet)
+            room.addItem(itemToGet)
         else:
-            print("Command is not recognized")
+            print("That item is not in this room.")
+
+    elif len(cmds) >1 and cmds[0] == "drop":
+        itemToDrop = player.findItemByName(cmds[1])
+        if itemToGet is not None:
+            player.removeItem(itemToGet)
+            room.addItem(itemToGet)
+        else:
+            print(f"You have no {cmds[1]}.")
+    
+    elif cmds[0] == "inventory":
+        print(player.getInventoryString())
+
+    else:
+        print("Command is not recognized.")
+
 
 

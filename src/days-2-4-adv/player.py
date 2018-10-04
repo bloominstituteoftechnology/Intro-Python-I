@@ -9,32 +9,25 @@ class Player():
     def __repr__(self):
         return f"Current Room: {self.currentRoom}"
 
-    def travel(self, direction):
-        nextRoom = self.currentRoom.getRoomInDirection(direction)
-        if nextRoom is not None:
-            self.currentRoom = nextRoom
-            print(nextRoom)
-        else:
-            print("You cannot move in that direction.")
-    def look(self, direction=None):
-        if direction is None:
-            print(self.currentRoom)
-        else:
-            nextRoom - self.currentRoom.getRoomInDirection(direction)
-            if nextRoom is not None:
-                print(nextRoom)
-            else: 
-                print("There is nothing there.")
+    def travel(self, newRoom):
+        self.currentRoom = newRoom
 
+    def __repr__(self):
+        return "Current Location: {}".format(self.currentRoom)
 
     # deal with items by player
+
+    def findItemByName(self, name):
+        for item in self.items:
+            if item.name == name:
+                return item
+        return None
+
     def addItem(self, item):
         self.items.append(item)
 
     def removeItem(self, item):
-        if len(self.items) > 0:
-            for i in self.items:
-                if i.name == item:
-                    self.items.remove(i)
-        else:
-            print("That item is not available")
+        self.items.remove(item)
+
+    def getInventoryString(self):
+        return "' ".join({item.name for item in self.items})
