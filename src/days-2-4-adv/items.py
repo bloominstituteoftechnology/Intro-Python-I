@@ -5,4 +5,3 @@ class Item:
         self.points = points
     def pointsIn(self):
         return self.points
-    
