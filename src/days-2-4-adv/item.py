@@ -31,7 +31,8 @@ class Treasure(Item):
         super().on_drop()
 
 class LightSource(Item):
-    def __init__(self, name):
+    def __init__(self, name, description):
+        Item.__init__(self, name, description)
         self.name = name
     
     def __repr__(self):
