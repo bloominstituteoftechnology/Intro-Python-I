@@ -18,10 +18,8 @@ class Room:
             print ("nothing to take here\n")
 
     def toggleItem(self, cmd, item):
-        print (f"{item} 1")
         if cmd == "pickup" and item in self.items:
             self.items.remove(item)
-            print (f"{item} 2")
             return item
         elif cmd == "drop" and item not in self.items:
             self.items.append(item)

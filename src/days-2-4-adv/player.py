@@ -17,13 +17,13 @@ class Player:
     def itemHandler(self, cmd, item):
         if cmd == "pickup" and item not in self.items:
             if self.currentRoom.toggleItem(cmd, item) is not None:
-                self.items.append(self.currentRoom.toggleItem(cmd, item))
+                self.items.append(item)
                 print (f"\npicked up this {item}\n")
             else:
-                print ("\njust can't do that\n")
+                print ("\nthat isn't in this room\n")
         elif cmd == "drop" and item in self.items:
             if self.currentRoom.toggleItem(cmd, item) is not None:
-                self.items.remove(self.currentRoom.toggleItem(cmd, item))
+                self.items.remove(item)
                 print (f"\nwho needs this {item} anyway\n")
         else: 
-            print ("\njust can't do that\n")
+            print ("\ncan't drop whatcha don't have\n")
