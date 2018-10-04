@@ -73,11 +73,17 @@ while True:
             player.travel(valid_directions[cmds[0]])
         elif cmds[0] == "look":
             player.look()
+        elif cmds[0] == "inventory" or cmds[0] == "i":
+            player.checkInventory()
         else:
             print("I did not understand that command.")
     else:
         if cmds[0] == "look":
             if cmds[1] in valid_directions:
                 player.look(valid_directions[cmds[1]])
+        elif cmds[0] == "take" or cmds[0] == "get":
+                player.takeItem(player.currentRoom.removeItem(cmds[1]))
+        elif cmds[0] == "drop":
+                player.currentRoom.addItem(player.dropItem(cmds[1]))
         else:
             print("I did not understand that command.")

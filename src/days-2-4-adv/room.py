@@ -10,7 +10,7 @@ class Room:
         self.e_to = None
         self.w_to = None
     def __str__(self):
-        return f"\n\n{self.name}\n\n   {self.description}\n\n   This room contains:\n{self.checkItems()}\n"
+        return f"\n\n{self.name}\n\n   {self.description}\n\n   This room contains:\n\n{self.checkItems()}\n"
     def getRoomInDirection(self, direction):
         if direction == "n":
             return self.n_to
@@ -25,6 +25,12 @@ class Room:
     def checkItems(self):
         items = ""
         for i in self.items:
-            items += f"   {i.name}\n"
+            items += f"   {i.name}: {i.description}\n"
         return items
-        
+    def removeItem(self, item):
+        for i in self.items:
+            if i.name == item:
+                self.items.remove(i)
+                return i
+    def addItem(self, item):
+        self.items.append(item)
