@@ -2,9 +2,10 @@
 # currently.
 
 class Player:
-    def __init__(self, room, items=[]):
+    def __init__(self, room, items=[], score=0):
         self.room = room
         self.items = items
+        self.score = score
     
     def __str__(self):
         return f'{self.room}'
