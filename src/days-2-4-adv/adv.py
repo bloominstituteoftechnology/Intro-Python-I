@@ -80,6 +80,7 @@ valid_directions={'n':'n','s':'s','e':'e','w':'w'}
 def game():
     player=Player(input('What is your name?\n'),room['outside'])
     print(f'Hello, {player.name}\n{player.current_location}')
+    player.is_there_light()
     while True:
         cmd=input('-->').lower().split()
         if len(cmd)==2:
