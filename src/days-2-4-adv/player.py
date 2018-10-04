@@ -6,5 +6,21 @@ class Player:
         self.name = name
         self.currentRoom = currentRoom
 
-
-
+    def look(self, direction):
+        nextRoom = None
+        if direction == "n":
+            if self.currentRoom.n_to is not None:
+                nextRoom = self.currentRoom.n_to
+        elif direction == "s":
+            if self.currentRoom.s_to is not None:
+                nextRoom = self.currentRoom.s_to
+        elif direction == "e":
+            if self.currentRoom.e_to is not None:
+                nextRoom = self.currentRoom.e_to
+        elif direction == "w":
+            if self.currentRoom.w_to is not None:
+                nextRoom = self.currentRoom.w_to
+        if nextRoom is not None:
+            print(nextRoom)
+        else:
+            print("There is nothing there.")
