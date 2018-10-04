@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(input("What is your name? "), room['outside'])
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -51,90 +51,114 @@ player = Player(input("What is your name? "), room['outside'])
 #
 # If the user enters "q", quit the game.
 
-suppressRoomPrint = False
+
+#FIRST IMPLEMENTATION
+# player = Player(input("What is your name? "), room['outside'])
+# suppressRoomPrint = False
+
+# while True:
+#     if suppressRoomPrint:
+#         suppressRoomPrint = False
+#     else:
+#         print(player.currentRoom)
+# #THIS WILL TO SEE IF TRUE OR FALSE
+# #IF FALSE WILL PRINT THE CURRENT ROOM AND INFO
+# #IF TRUE WILL NOT PRINT ROOM AND INFO
+#     cmds = input("INPUT HERE:").split(" ")
+#     print(cmds)
+# #THIS WILL TAKE THE PLAYERS INPUT AFTER THE COLON
+# #AND THEN IT WILL SPLIT EACH INPUT AFTER SPACES INTO 
+# #INDIVIDUAL INPUTS
+#     if len(cmds) == 1:
+#         if cmds[0] == 'q':
+#             break
+#         elif cmds[0] == 'n':
+#             if player.currentRoom.n_to is not None:
+#                 player.currentRoom = player.currentRoom.n_to
+#             else:
+#                 print("You cannot move in that direction")
+#                 suppressRoomPrint = True
+# #IF THERE IS ONLY 1 INPUT AND IT IS ONE OF THESE LETTERS
+# #IT WILL SET THE CURRENTROOM ATTR TO DIRECTION
+# #OR ELSE IT WILL PRINT THE YOU CANNOT MSG
+#         elif cmds[0] == 's':
+#             if player.currentRoom.s_to is not None:
+#                 player.currentRoom = player.currentRoom.s_to
+#             else:
+#                 print("You cannot move in that direction")
+#                 suppressRoomPrint = True
+#         elif cmds[0] == 'w':
+#             if player.currentRoom.w_to is not None:
+#                 player.currentRoom = player.currentRoom.w_to
+#             else:
+#                 print("You cannot move in that direction")
+#                 suppressRoomPrint = True
+#         elif cmds[0] == 'e':
+#             if player.currentRoom.e_to is not None:
+#                 player.currentRoom = player.currentRoom.e_to
+#             else:
+#                 print("You cannot move in that direction")
+#                 suppressRoomPrint = True
+#         else:
+#             print("need valid command")
+#             suppressRoomPrint = True
+#     else:
+#         if cmds[0] == "look":
+#             if cmds[1] == "n":
+#                 if player.currentRoom.n_to is not None:
+#                     print(f"\nin '{cmds[1]}' direction:", player.currentRoom.n_to)
+#                     suppressRoomPrint = True
+#                 else:
+#                     print("There is nothing to look at")
+#                     suppressRoomPrint = True
+#             elif cmds[1] == "s":
+#                 if player.currentRoom.s_to is not None:
+#                     print(f"\nin '{cmds[1]}' direction:", player.currentRoom.s_to)
+#                     suppressRoomPrint = True
+#                 else:
+#                     print("There is nothing to look at")
+#                     suppressRoomPrint = True
+#             elif cmds[1] == "w":
+#                 if player.currentRoom.w_to is not None:
+#                     print(f"\nin '{cmds[1]}' direction:", player.currentRoom.w_to)
+#                     suppressRoomPrint = True
+#                 else:
+#                     print("There is nothing to look at")
+#                     suppressRoomPrint = True
+#             elif cmds[1] == "e":
+#                 if player.currentRoom.e_to is not None:
+#                     print(f"\nin '{cmds[1]}' direction:", player.currentRoom.e_to)
+#                     suppressRoomPrint = True
+#                 else:
+#                     print("There is nothing to look at")
+#                     suppressRoomPrint = True
+#         else:
+#             print("need valid commands")
+#             suppressRoomPrint = True
+
+
+#2ND IMPLEMENTATION
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
+                    "north": "n", "south": "s", "east": "e", "west": "w",
+                    "forward": "n", "backward": "s", "right": "e", "left": "w"}
+
+player = Player(input("What is your name? "), room['outside'])
+print(f"\n{player.currentRoom}")
 
 while True:
-    if suppressRoomPrint:
-        suppressRoomPrint = False
-    else:
-        print(player.currentRoom)
-#THIS WILL TO SEE IF TRUE OR FALSE
-#IF FALSE WILL PRINT THE CURRENT ROOM AND INFO
-#IF TRUE WILL NOT PRINT ROOM AND INFO
-    cmds = input("INPUT HERE:").split(" ")
-    print(cmds)
-#THIS WILL TAKE THE PLAYERS INPUT AFTER THE COLON
-#AND THEN IT WILL SPLIT EACH INPUT AFTER SPACES INTO 
-#INDIVIDUAL INPUTS
+    cmds = input("\nINPUT HERE:").lower().split(" ")
     if len(cmds) == 1:
-        if cmds[0] == 'q':
+        if cmds[0] == "q":
             break
-        elif cmds[0] == 'n':
-            if player.currentRoom.n_to is not None:
-                player.currentRoom = player.currentRoom.n_to
-            else:
-                print("You cannot move in that direction")
-                suppressRoomPrint = True
-#IF THERE IS ONLY 1 INPUT AND IT IS ONE OF THESE LETTERS
-#IT WILL SET THE CURRENTROOM ATTR TO DIRECTION
-#OR ELSE IT WILL PRINT THE YOU CANNOT MSG
-        elif cmds[0] == 's':
-            if player.currentRoom.s_to is not None:
-                player.currentRoom = player.currentRoom.s_to
-            else:
-                print("You cannot move in that direction")
-                suppressRoomPrint = True
-        elif cmds[0] == 'w':
-            if player.currentRoom.w_to is not None:
-                player.currentRoom = player.currentRoom.w_to
-            else:
-                print("You cannot move in that direction")
-                suppressRoomPrint = True
-        elif cmds[0] == 'e':
-            if player.currentRoom.e_to is not None:
-                player.currentRoom = player.currentRoom.e_to
-            else:
-                print("You cannot move in that direction")
-                suppressRoomPrint = True
+        elif cmds[0] in valid_directions:
+            player.travel(valid_directions[cmds[0]])
+        elif cmds[0] == "look":
+            player.look()
         else:
-            print("need valid command")
-            suppressRoomPrint = True
+            print("\nneed valid commands")
     else:
         if cmds[0] == "look":
-            if cmds[1] == "n":
-                if player.currentRoom.n_to is not None:
-                    print(f"\nin '{cmds[1]}' direction:", player.currentRoom.n_to)
-                    suppressRoomPrint = True
-                else:
-                    print("There is nothing to look at")
-                    suppressRoomPrint = True
-            elif cmds[1] == "s":
-                if player.currentRoom.s_to is not None:
-                    print(f"\nin '{cmds[1]}' direction:", player.currentRoom.s_to)
-                    suppressRoomPrint = True
-                else:
-                    print("There is nothing to look at")
-                    suppressRoomPrint = True
-            elif cmds[1] == "w":
-                if player.currentRoom.w_to is not None:
-                    print(f"\nin '{cmds[1]}' direction:", player.currentRoom.w_to)
-                    suppressRoomPrint = True
-                else:
-                    print("There is nothing to look at")
-                    suppressRoomPrint = True
-            elif cmds[1] == "e":
-                if player.currentRoom.e_to is not None:
-                    print(f"\nin '{cmds[1]}' direction:", player.currentRoom.e_to)
-                    suppressRoomPrint = True
-                else:
-                    print("There is nothing to look at")
-                    suppressRoomPrint = True
+            if cmds[1] in valid_directions:
+                player.look(valid_directions[cmds[1]])
         else:
-            print("need valid commands")
-            suppressRoomPrint = True
-        
-       
-       
-       
-       
-       
+            print("\nneed valid commands")
