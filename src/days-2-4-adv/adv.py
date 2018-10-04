@@ -9,21 +9,6 @@ incinerator = Room("Grand Incinerator", """A hot, dark room barely lit by flame 
 chapel = Room("The Passage Chapel", """Idols and iconography cover every inch of the chapel.""", {"l":office, "f":pendulum})
 pendulum = Room("The Pendulum", """You've reached the Pendulum. Conditioned air envelopes you.  The doors lock behind you.  You see the key-switch ahead and you know what you must do.""", {"b":chapel})
 
-room = {
-	# 'laboratory':  Room("Gnarly Laboratory", "The lab has a faint smell of iron and ammonia. Flickering light overhead half-illuminates a gnarly scene.", {"f":office}),
-
-	# 'office':    Room("C-Suite Office", """The executive offices, of course, are empty.  Everyone in C-Suite managed to escape.""", {"b":laboratory, "f":laboratory, "r":chapel}),
-
-	# 'incinerator': Room("Grand Incinerator", """A hot, dark room barely lit by flame peaking out of the incinerator.""", {"b":office}),
-
-	'chapel':   Room("The Passage Chapel", """Idols and iconography cover every inch of the chapel.""", {"l":office, "f":pendulum}),
-
-	'pendulum': Room("The Pendulum", """You've reached the Pendulum. Conditioned air envelopes you.  The doors lock behind you.  You see the key-switch ahead and you know what you must do.""", {"b":chapel}),
-}
-
-
-
-
 # Link rooms together
 
 # room['laboratory'].f_to = room['office']
@@ -65,14 +50,22 @@ def detectCMD(room,cmd):
 	else:
 		print(f'{cmd} is not an optional command.')
 
-uD = Player(input('What is your name, punk...   '))
-
-while True:
-	cmd = input('\n\n\To make a move type a direction: "f", "b", "l", or "r"')
-	# move = detectCMD(cmd)
-	print(move)
+uD = Player(input('What is your name, punk...   '), laboratory)
 
 
+class Main():
+  def __init__(self):
+
+  
+
+  def gameLoop():
+  unicornDown = Player(input('What is your name, punk...   '), laboratory)
+  print(f"Ok, {unicornDown.sayName()}, you're in the {unicornDown.getCurrentRoom()}.  We need to get to the Pendulum quick!")
+  print("\n\nSo, let's make a move:")
+  while True:
+    cmd = input('\n\n\To make a move type a direction: "f", "b", "l", or "r": \n')
+    # move = detectCMD(cmd)
+    print(move)
 
 
 

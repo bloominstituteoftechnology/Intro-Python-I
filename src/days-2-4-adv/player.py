@@ -2,9 +2,9 @@
 # currently.
 
 class Player:
-	def __init__(self, name):
+	def __init__(self, name, current_room):
 		self.name = name
-		self.current_room = 'laboratory'
+		self.current_room = current_room
 
 	def sayName(self):
 		return self.name

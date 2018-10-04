@@ -4,11 +4,12 @@ import random
 
 
 class Room:
-	def __init__(self, room_type, room_descr):
-		self.self = self
+	def __init__(self, room_type, room_descr, room_moves):
 		self.room_type = room_type
 		self.room_descr = room_descr
     self.room_moves = room_moves
+  
+  notAMove = f"That is not a room adjoined to {self.room_type}"
 
 	def getRoomType(self):
 		return self.room_type
@@ -20,15 +21,10 @@ class Room:
     print(self.room_moves)
     return self.room_moves
 
-  # def detectMove(self, room, cmd):
-	# if cmd == 'f' or 'b' or 'l' or 'r':
-	# 	if cmd == room.f_to:
-	# 		return f
-	# 	elif cmd == b:
-	# 		return b_to
-	# 	elif cmd == l:
-	# 		return l_to
-	# 	elif cmd == r:
-	# 		return r_to
-	# else:
-	# 	print(f'{cmd} is not an optional command.')
+  def getNextRoom(self, cmd):
+  
+  def checkIfRoomMove(self,cmd):
+    for next in room_moves:
+      return room_moves[cmd] if (cmd in room_moves) else notAMove
+
+
