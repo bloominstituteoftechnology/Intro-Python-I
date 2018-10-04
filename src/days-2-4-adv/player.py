@@ -36,7 +36,7 @@ class Player():
     def printInventory(self):
         print("You have collected: \n")
         for item in self.items:
-            print(f"  {item.name}: {item.description}\n)
+            print(f"  {item.name}: {item.description}\n")
 
     # deal with items by player
 
