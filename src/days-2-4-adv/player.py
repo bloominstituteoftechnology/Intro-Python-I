@@ -2,12 +2,11 @@
 # currently.
 
 class Player:
-    def __init__(self, name, startRoom, items):
+    def __init__(self, name, startRoom):
         self.startRoom = startRoom
         self.name = name
-        self.items = items
-    def addItem(self, items):
-        self.items.append(item)
+        self.inventory = []
+
     def enter(self, direction):
         room = self.startRoom.getRoom(direction)
         if room is not None:
@@ -20,3 +19,8 @@ class Player:
             print (f"""
     Cannot go there
             """)
+    def addItem(self, item):
+        self.inventory.append(item)
+        self.startRoom.removeItem(item)
+        print(f'You have picked up the {item.name}.')
+

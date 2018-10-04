@@ -2,16 +2,15 @@
 # description attributes.
 
 class Room:
-    def __init__(self, name, description, items):
+    def __init__(self, name, description):
         self.name = name
         self.description = description
-        self.items = items
+        self.items = []
         self.n_to = None
         self.s_to = None
         self.w_to = None
         self.e_to = None
-    def addItem(self, items):
-        self.items.append(item)
+
     def getRoom(self, direction):
         if direction == "n":
             return self.n_to
@@ -23,3 +22,18 @@ class Room:
             return self.w_to
         else:
             return None  
+    def addItem(self, item):
+        self.items.append(item)
+    def removeItem(self, item):
+        
+        if len(self.items) > 0:
+            self.items.remove(item)
+        else:
+            print('No items to drop')
+        
+    def selectItem(self, name):
+        for item in self.items:
+            if item.name.lower() == name.lower():
+                return item
+        return None
+            

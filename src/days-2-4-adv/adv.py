@@ -39,19 +39,14 @@ room['treasure'].s_to = room['narrow']
 
 # declare items
 
-items = {
-    'sword':  Item("Axe", """Use this to fight your enemies"""),
-     'bow':    Item("Bow and Arrows", """Use this to fight your enemies from afar"""),
-     'map':   Item("Map", """Use this to find the treasure"""),
-     'compass': Item("Compass", """Use this to figure out where you are going"""),
-     'key': Item("Key", """use this to open the treasure chest"""),
-}
-
+room['outside'].addItem(Item('sword', 'a sword for slashing'))
+room['foyer'].addItem(Item('shield', 'a sheild for protection'))
+room['overlook'].addItem(Item('compass', 'a compass to show the direction'))
 
 
 # Make a new player object that is currently in the 'outside' room.
-
-me = Player("sean",room['outside'])
+name = input('Who are you? \n')
+me = Player(name ,room['outside'])
 
 # Write a loop that:
 #
@@ -77,3 +72,18 @@ while True:
         break
     if cmd is "n" or "s" or "e" or "w":
         me.enter(cmd)
+    else:
+        if cmd[0] == 'get':
+            itemToAdd = me.startRoom.selectItem(cmd[1])
+            if itemToAdd == None:
+                print('Item is not here')
+            else:
+                me.addItem(itemToAdd)
+        elif cmd[0] == 'drop':
+            itemToDrop = me.selectItem(cmd[1])
+            if itemToDrop is None:
+                print('You dont have that item')
+            else:
+                me.removeItem(itemToDrop)
+        else:
+             print('Cannot do that...')
