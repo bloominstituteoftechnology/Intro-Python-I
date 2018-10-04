@@ -2,7 +2,6 @@
 # currently.
 
 class Player:
-
   def __init__(self, room):
     self.nextRoom = None
     self.room = room

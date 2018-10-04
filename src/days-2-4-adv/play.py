@@ -6,9 +6,7 @@ import PlayerActions
 play = True
 
 while play:
-
     cmd = input('Where Shall You Go? -> ').lower().split(" ")
-
     if len(cmd) == 1:
         if cmd[0] == 'q':
             break
@@ -68,6 +66,7 @@ while play:
         # item PlayerActions
         elif cmd[0] == "bag":
             PlayerActions.checkBag()
+        
         elif cmd[0] == "look":
             if PlayerActions.player.room.place.lower() == 'outside cave entrance':
                 PlayerActions.checkForItems('outside cave entrance')
@@ -86,6 +85,7 @@ while play:
 
             elif PlayerActions.player.room.place.lower() == 'secret room':
                 PlayerActions.checkForItems('secret room')
+
         elif cmd[0] == "get":
             if PlayerActions.player.room.place.lower() == 'outside cave entrance':
                 PlayerActions.getItems('outside cave entrance')
@@ -104,6 +104,7 @@ while play:
 
             elif PlayerActions.player.room.place.lower() == 'secret room':
                 PlayerActions.getItems('secret room')
+
         elif cmd[0] == "drop":
             if PlayerActions.player.room.place.lower() == 'outside cave entrance':
                 PlayerActions.dropItems('outside cave entrance')
