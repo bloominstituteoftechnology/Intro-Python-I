@@ -13,14 +13,21 @@ class Room:
         if len(self.items) != 0:
             print ("you see some thing/s on a the ground... a..\n")
             for item in self.items:
-                print (f"{item}\n")
+                print (f"{item.name}\n")
         else:
             print ("nothing to take here\n")
 
     def toggleItem(self, cmd, item):
-        if cmd == "pickup" and item in self.items:
-            self.items.remove(item)
-            return item
+        if cmd == "pickup":
+            for each in self.items:
+                if each.name == item:
+                    global removingItem
+                    removingItem = each
+            if removingItem.name == item:
+                self.items.remove(removingItem)
+                print (removingItem.name)
+                print(self.items)
+                return removingItem
         elif cmd == "drop" and item not in self.items:
             self.items.append(item)
             return item

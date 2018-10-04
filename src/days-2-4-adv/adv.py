@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 # Declare all the rooms
 
 room = {
@@ -7,7 +8,7 @@ room = {
                      "North of you, a huge ugly house sits creepily"),
 
     'spoopy':   Room("Heckin Spoopy Manor", """This place is spoopy as heck. Weird hallways run north and east. 
-But like.. I duno why you would stay""", "rubber duck", "rope"),
+But like.. I duno why you would stay""", Item("duck", "it's made of rubber, a lil weird"), Item("rope", "this seems chill")),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -18,7 +19,7 @@ to north. The smell of gold permeates the air, which is kinda gross. Metallic an
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", "dusty shoe"),
+earlier adventurers. The only exit is to the south.""", Item("dusty shoe", "this thing is gross")),
 }
 
 
@@ -62,6 +63,6 @@ while True:
     elif cmd[0] == "pickup" or cmd[0] == "drop":
         player.itemHandler(cmd[0], cmd[1])
     else:
-        print ("\nPlease enter a valid direction (n, s, e, w)\n")
+        print ("\nPlease enter a valid command (n, s, e, w, pickup itemname, drop itemname)\n")
     
         
