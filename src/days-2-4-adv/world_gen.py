@@ -1,59 +1,19 @@
 from room import Room
-from random import choice
+from random import choice, shuffle
 from room_list import rooms
+from item_list import starter_lantern, items
 
 min_room_count = 20
 dungeon = [ [None for n in range(10)] for i in range(10)]
 dungeon_data = [ [None for n in range(10)] for i in range(10)]
 
-def world_gen():
-    """
-    creates a room and inserts it at roughly center, south most position, and places
-    data in the same spot in mirror array
-    then passes the data to kick off construction
-    when finished, returns the initial room that's connected to the others
-    """
-    dungeon[9][5] = Room(start_room['name'], start_room['description'], start_room['is_light'])
-    dungeon_data[9][5] = start_room
-    construct_rooms(start_room, 9, 5)
-    return dungeon[9][5]
-
-def construct_rooms(c_room, pos_x, pos_y):
-    """
-    takes the data for the last room created and it's position,
-    then for each exit, filters for rooms with matching exit,
-    then filters out those that won't connect to rooms around it
-    from the remaining rooms it chooses one randomly, puts it in position
-    then passes it to function to attach to surrounding rooms
-    then calls construct room on the newly created room
-    """
-    global min_room_count
-    if min_room_count > 0:
-        for exit in c_room['exits']:
-            fit_x = None
-            fit_y = None
-            if exit == 'n':
-                fit_x = pos_x - 1
-                fit_y = pos_y
-            elif exit == 'e':
-                fit_x = pos_x
-                fit_y = pos_y + 1
-            elif exit == 's':
-                fit_x = pos_x + 1
-                fit_y = pos_y
-            elif exit == 'w':
-                fit_x = pos_x
-                fit_y = pos_y - 1
-            a_rooms = [r for r in rooms if exit in rooms[r]['exits_for']]
-            if len(a_rooms) > 0:
-                a_rooms = [room for room in a_rooms if room_fits(room, fit_x, fit_y)]
-                if len(a_rooms) > 0:
-                    chosen_room = rooms[choice(a_rooms)]
-                    dungeon_data[fit_x][fit_y] = chosen_room
-                    dungeon[fit_x][fit_y] = Room(chosen_room['name'], chosen_room['description'], chosen_room['is_light'])
-                    attach_rooms(dungeon[fit_x][fit_y], fit_x, fit_y)
-                    min_room_count -= 1
-                    construct_rooms(chosen_room, fit_x, fit_y)
+start_room = {
+    'name': 'Outside Cave Entrance',
+    'description': 'North of you, the cave mount beckons',
+    'is_light': True,
+    'exits': ('n',),
+    'exits_for': ('s',)
+}
 
 def room_fits(c_room, pos_x, pos_y):
     """
@@ -122,13 +82,60 @@ def attach_rooms(room, x, y):
             room.w_to = dungeon[x][y-1]
             dungeon[x][y-1].e_to = room
 
-start_room = {
-    'name': 'Outside Cave Entrance',
-    'description': 'North of you, the cave mount beckons',
-    'is_light': True,
-    'exits': ('n',),
-    'exits_for': ('s',)
-}
+def construct_rooms(c_room, pos_x, pos_y):
+    """
+    takes the data for the last room created and it's position,
+    then for each exit, filters for rooms with matching exit,
+    then filters out those that won't connect to rooms around it
+    from the remaining rooms it chooses one randomly, puts it in position
+    then passes it to function to attach to surrounding rooms
+    then calls construct room on the newly created room
+    """
+    global min_room_count
+    if min_room_count > 0:
+        for exit in c_room['exits']:
+            fit_x = None
+            fit_y = None
+            if exit == 'n':
+                fit_x = pos_x - 1
+                fit_y = pos_y
+            elif exit == 'e':
+                fit_x = pos_x
+                fit_y = pos_y + 1
+            elif exit == 's':
+                fit_x = pos_x + 1
+                fit_y = pos_y
+            elif exit == 'w':
+                fit_x = pos_x
+                fit_y = pos_y - 1
+            a_rooms = [r for r in rooms if exit in rooms[r]['exits_for']]
+            if len(a_rooms) > 0:
+                a_rooms = [room for room in a_rooms if room_fits(room, fit_x, fit_y)]
+                if len(a_rooms) > 0:
+                    chosen_room = rooms[choice(a_rooms)]
+                    dungeon_data[fit_x][fit_y] = chosen_room
+                    new_room = Room(chosen_room['name'], chosen_room['description'], chosen_room['is_light'])
+                    dungeon[fit_x][fit_y] = new_room
+                    attach_rooms(new_room, fit_x, fit_y)
+                    if chosen_room['has_treasure']:
+                        shuffle(items)
+                        dungeon[fit_x][fit_y].add_item(items.pop())
+                    min_room_count -= 1
+                    construct_rooms(chosen_room, fit_x, fit_y)
+
+
+def world_gen():
+    """
+    creates a room and inserts it at roughly center, south most position, and places
+    data in the same spot in mirror array
+    then passes the data to kick off construction
+    when finished, returns the initial room that's connected to the others
+    """
+    dungeon[9][5] = Room(start_room['name'], start_room['description'], start_room['is_light'])
+    dungeon[9][5].add_item(starter_lantern)
+    dungeon_data[9][5] = start_room
+    construct_rooms(start_room, 9, 5)
+    return dungeon[9][5]
 
 # Using another list of rooms, old list below
 # rooms = {
