@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -33,12 +34,6 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
-
-# Make a new player object that is currently in the 'outside' room.
-
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +44,43 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+print('Welcome player!')
+name = input('What is your name?  ')
+player = Player(name, room['outside'])
+
+while True:
+    player.printStatus()
+    cmd = input("\nWhat do you want to do? ").lower()
+
+    if cmd == 'q':
+        break
+    elif cmd == 'help':
+        print('======================================================')
+        print('Press "n, e, w, s" to move North, East, West, or South')
+        print('Press "q" to quit')
+        print('======================================================')
+    elif cmd == 'n':
+        if player.location.n_to == None:
+            if player.location.name == 'Grand Overlook':
+                print('You\'ve walked off the cliff and fallen to your death!')
+                break
+            print('Whoops, there\'s a wall there!')
+        else:
+            player.location = player.location.n_to
+    elif cmd == 'e':
+        if player.location.e_to == None:
+            print('Whoops, there\'s a wall there!')
+        else:
+            player.location = player.location.e_to
+    elif cmd == 'w':
+        if player.location.w_to == None:
+            print('Whoops, there\'s a wall there!')
+        else:
+            player.location = player.location.w_to
+    elif cmd == 's':
+        if player.location.s_to == None:
+            print('Whoops, there\'s a wall there!')
+        else:
+            player.location = player.location.s_to
+    else:
+        print('Not a valid command')
