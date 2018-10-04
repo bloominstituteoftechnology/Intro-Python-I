@@ -21,8 +21,11 @@ class Player():
     def print_status(self):
         print(f"Your name is {self.name}, your strength is {self.strength}")
 
+    def print_current_room(self):
+        print(f"Hey {self.name}, you are currently in the {self.current_room}")
+
     def print_inventory(self):
-        print("Your backpack contains...")
+        print("\nYour backpack contains...")
         for item in self.items:
             print(f" {item.name}: {item.description} \n")
 

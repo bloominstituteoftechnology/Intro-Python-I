@@ -12,10 +12,18 @@ cat = Item("cat", "a clever little creature")
 
 hat = Item("hat", "a work of fine haberdashery")
 
+necklace = Item("necklace", "a simple trinket")
+
+owl = Item("owl", "a wise old bird")
+
+shoes = Item("shoes", "gotta wear something on them feets")
+
 
 # Declare all the treasures
 
 ruby = Treasure("ruby", "a beautiful gem", 100)
+sapphire = Treasure("sapphire", "a beautiful gem", 200)
+emerald = Treasure("emerald", "a beautiful gem", 300)
 
 
 # Declare all the rooms
@@ -60,13 +68,19 @@ player_starting_items = [hat]
 
 room['outside'].add_item(sword)
 room['foyer'].add_item(cat)
+room['foyer'].add_item(ruby)
+room['overlook'].add_item(shoes)
+room['overlook'].add_item(owl)
+room['narrow'].add_item(necklace)
+room['narrow'].add_item(sapphire)
+room['treasure'].add_item(emerald)
 
 # Make a new player object that is currently in the 'outside' room.
 
 
 p = Player(input("What is your name? "),
            room['outside'], player_starting_items)
-os.system("clear")
+# os.system("clear")
 print(f'Hello, {p.name} – your journey begins... {p.current_room}')
 
 
@@ -86,28 +100,31 @@ while True:
     cmds = input("enter a command-> ").lower().split(" ")
     if len(cmds) == 1:
         if cmds[0] == "q":
-            os.system("clear")
+            # os.system("clear")
             break
         elif cmds[0] == "n" or cmds[0] == "s" or cmds[0] == "e" or cmds[0] == "w":
-            os.system("clear")
+            # os.system("clear")
             p.travel(cmds[0])
         elif cmds[0] == "i" or cmds[0] == "inventory":
-            os.system("clear")
+            # os.system("clear")
             p.print_inventory()
-            print(
-                f'Hello, {p.name} – you are currently in the {p.current_room}')
+            # print(
+            #     f'Hello, {p.name} – you are currently in the {p.current_room}')
         elif cmds[0] == "status":
-            os.system("clear")
+            # os.system("clear")
             p.print_status()
-            print(
-                f'Hello, {p.name} – you are currently in the {p.current_room}')
+            # print(
+            #     f'Hello, {p.name} – you are currently in the {p.current_room}')
         elif cmds[0] == "score":
-            os.system("clear")
+            # os.system("clear")
             p.print_score()
-            print(
-                f'Hello, {p.name} – you are currently in the {p.current_room}')
+            # print(
+            #     f'Hello, {p.name} – you are currently in the {p.current_room}')
+        elif cmds[0] == "location":
+            # os.system("clear")
+            p.print_current_room()        
         else:
-            os.system("clear")
+            # os.system("clear")
             print("Invalid command, ye dog!")
     else:
         if cmds[0] == "take":

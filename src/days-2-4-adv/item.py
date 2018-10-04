@@ -17,4 +17,4 @@ class Treasure(Item):
         self.value = value
 
     def on_drop(self):
-        print(f"You have dropped this {self.name}.")
+        print(f"You have dropped the {self.name}.")
