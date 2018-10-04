@@ -71,7 +71,7 @@ while True:
         elif player_input[0].lower() == "z":
             player.get_score()
         else:
-            print('\nControls: N,S,E,W to move to a different room. T to take an item. D to drop an item. I to view your inventory. Q to quit')
+            print('\nControls: \nN,S,E,W to move to a different room. \nTake ___ to take an item. \nDrop ___ to drop an item. \nI to view your inventory. \nZ to view score \nQ to quit')
 
     if len(player_input_args) == 2:
         if player_input[0].lower() == "t" or player_input[0].lower() == "take":
@@ -79,6 +79,11 @@ while True:
             if taking_item == None:
                 print(f"You couldn't find a {player_input_args[1]}")
             else:
+                if hasattr(taking_item, 'value'):
+                    player.add_to_score(taking_item.value)
+                    if taking_item.value > 0:
+                        print(f"You gained {taking_item.value} points for finding the {taking_item.name}")
+                    taking_item.remove_value()
                 player.take_item(taking_item)
                 player.location.remove_item(taking_item)
 
