@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -21,6 +23,13 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+item = {
+    'dagger': Item("Dagger", """Stabby McStabberson."""),
+
+    'sword': Item("Fire Sword", """A red flame emanates from its blade."""),
+
+    'axe': Item("Golden Axe", """Looks expensive. Maybe you should sell it instead.""")
+}
 
 # Link rooms together
 
@@ -38,6 +47,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +59,20 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+quit = False
+
+while not quit:
+    print("\n" + player.currentRoom.name + "\n" +
+          "\n" + player.currentRoom.description + "\n" + "")
+    cmd = input("=> ")
+    if cmd == "q":
+        quit = True
+    elif cmd == "n":
+        player.currentRoom = player.currentRoom.n_to
+    elif cmd == "s":
+        player.currentRoom = player.currentRoom.s_to
+    elif cmd == "e":
+        player.currentRoom = player.currentRoom.e_to
+    elif cmd == "w":
+        player.currentRoom = player.currentRoom.w_to
