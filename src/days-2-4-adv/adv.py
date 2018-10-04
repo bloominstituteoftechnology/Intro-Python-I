@@ -239,7 +239,7 @@ while True:
             break
         elif commands[0] in valid_directions:
             player.movement(valid_directions[commands[0]])
-        elif commands[0] == "look()":
+        elif commands[0] == "look":
             player.look()
         else:
             print("Please enter a valid command.")
@@ -247,8 +247,10 @@ while True:
         if commands[0] == "look":
             if commands[1] in valid_directions:
                 player.look(valid_directions[commands[1]])
+            
             else:
                 print("Please enter a valid command.")
+        
     # print(player.currentRoom)
     # print(currentRoomDesc)
 # Write a loop that:

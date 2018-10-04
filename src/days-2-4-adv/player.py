@@ -46,5 +46,5 @@ class Player():
             else:
                 print("Just a wall. Try elsewhere")        
 
-    def pickUpItem(self, weapon):
-        if command = "w"
+    # def pickUpItem(self, weapon):
+    #     if command = "w"
