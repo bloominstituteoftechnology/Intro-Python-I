@@ -41,7 +41,7 @@ class Room:
 
     def room_items(self):
         if len(self.items) > 0:
-            print('Items:')
+            print('Items in room:')
             for i in self.items:
                 print(i)
         else:

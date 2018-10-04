@@ -32,14 +32,19 @@ class Player:
             print('There is nothing there')
 
     def get_item(self, item):
-        if len(self.room.items) > 0:
-            found_item = list(filter(lambda i: i.name.lower() == item, self.room.items))
-            if len(found_item) > 0:
-                self.items.append(found_item[0])
-                self.room.remove_item(found_item[0])
-                found_item[0].on_take(self)
-            else:
-                print('There is no such item, please try again.')
+        if self.has_light_source() or self.room.has_light_source() or self.room.lit:
+            if len(self.room.items) > 0:
+                found_item = list(filter(lambda i: i.name.lower() == item, self.room.items))
+                if len(found_item) > 0:
+                    self.items.append(found_item[0])
+                    self.room.remove_item(found_item[0])
+                    found_item[0].on_take(self)
+                    print(f'You picked up a {found_item[0].name}. \n')
+                    self.room.room_items()
+                else:
+                    print('There is no such item, please try again.')
+        else:
+            print('Good luck finding that in the dark!')
 
     def drop_item(self, item):
         if len(self.items) > 0:
@@ -48,6 +53,8 @@ class Player:
                 if found_item[0].on_drop():
                     self.items.remove(found_item[0])
                     self.room.add_item(found_item[0])
+                    print(f'You dropped a {found_item[0].name}. \n')
+                    self.room.room_items()
             else:
                 print('There is no such item, please try again.')
 
