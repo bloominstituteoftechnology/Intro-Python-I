@@ -3,8 +3,6 @@
 class Room:
     def __init__(self, name, description, items):
 
-        items = ["magical sword", "gold coin", "dragon egg", "health bottle"]
-
         self.name = name
         self.description = description
         self.n_to = None
@@ -27,3 +25,7 @@ class Room:
             return self.w_to
         else:
             return None
+
+    def remove_item(self, item):  # doesn't refer to line 12
+        self.items = None  # refers to line 12
+        return item  # doesn't refer to line 12

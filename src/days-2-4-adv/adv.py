@@ -1,37 +1,48 @@
 from room import Room
 from player import Player
-import textwrap
+from item import Item
 
-# Declare all the rooms
-
-# {outside: {name: "", desc: ""}}
+item = {
+    "coin": Item("coin", "Circular, Shiny and Round"),
+    "map": Item("map", "Helps you find your way"),
+}
+# cdms = input("->").split(' ')
+# # the user inputted 'take coin'
+# cdms = ['take', coin']
+# item[cdms[1]]  #  Item("coin", "Circular, Shiny and Round")
+# item[cdms[1]]  #  Item("coin", "Circular, Shiny and Round")
 
 room = {
-    "outside": Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    "outside": Room(
+        "Outside Cave Entrance", "North of you, the cave mount beckons", item["thing"]
+    ),
     "foyer": Room(
         "Foyer",
         """Dim light filters in from the south. Dusty
 passages run north and east.""",
+        None,
     ),
     "overlook": Room(
         "Grand Overlook",
         """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
+        None,
     ),
     "narrow": Room(
         "Narrow Passage",
         """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""",
+        None,
     ),
     "treasure": Room(
         "Treasure Chamber",
         """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
+        None,
     ),
 }
-
 
 # Link rooms together
 
@@ -44,23 +55,6 @@ room["narrow"].w_to = room["foyer"]
 room["narrow"].n_to = room["treasure"]
 room["treasure"].s_to = room["narrow"]
 
-#
-# Main
-#
-
-# Make a new player object that is currently in the 'outside' room.
-
-# Write a loop that:
-
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
-# d = Player(input("Where do you want to go? "))
 
 valid_directions = {
     "n": "n",
@@ -82,6 +76,8 @@ while True:
     # make it lowercase, and then split it between the
     # space character
     # Ultimately cmds == ['take', 'coins']
+    print(f"Room Inventory: {player.currentRoom.items}")
+    print(f"Inventory: {player.inventory}")
     cmds = input("-> ").lower().split(" ")
     if len(cmds) == 1:
         if cmds[0] == "q":
@@ -100,15 +96,16 @@ while True:
                 # Give description of room, including items in it
                 player.look()
         elif cmds[0] == "take":
-            player.take_item(itemObjectHere)
+            """
+            TODO:
+            * Return 'You don't see that item here' if cdms[1] is an item
+            that doesn't exist in the items dictionary OR is an item that is 
+            not in the room (hint: see hasattr())
+            * Ensure the item removed from the current room is the same item
+            being picked up by the player.
+            """
+            player.take_item(item[cmds[1]])
+            player.currentRoom.remove_item(cmds[1])
         else:
             print("I did not understand that command.")
 
-# if (cmds[0] === 'look') {
-#     if (cmds[1]hasProp) {
-#         player.look(blah)
-#     }
-# }
-# else if (cmds[0] === take) {
-#     player.take_item()
-# }
