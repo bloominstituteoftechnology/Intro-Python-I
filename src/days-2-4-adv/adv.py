@@ -107,7 +107,6 @@ while True:
         print(player.room_change(option[0]))
     elif moves.count(option[0]) > 0:
         if len(option) > 1:
-
             if option[0] == 'grab':
                 if player.looked:
                 #check what type of instance the item is.
