@@ -14,3 +14,10 @@
 # docs for the calendar module closely.
 
 import sys
+
+import calendar
+
+print(sys)
+
+c = calendar.TextCalendar(calendar.SUNDAY)
+print(c.formatmonth(2018,10))
