@@ -51,19 +51,15 @@ class Player:
     def get_score(self):
         return f'{self.name}\'s score:{self.score}'
     def is_there_light(self):
-        checked=0
         if self.current_location.is_light==True:
-            checked+=1
+            return "The room is bright."
         else:
-            for item in self.possessions:
-                if isinstance(item,LightSource):
-                    checked+=1
             for item in self.current_location.inventory:
                 if isinstance(item,LightSource):
-                    checked+=1
-        if checked==0:
-            self.can_see=False
-            return "It's pitch black!"
-        else:
-            self.can_see=True
-            return None
+                    return "There's a light source illuminating the room."
+            for item in self.possessions:
+                if isinstance(item,LightSource):
+                    return "Your light source illuminates the room." 
+        self.can_see=False
+        return "It's pitch black!"
+        
