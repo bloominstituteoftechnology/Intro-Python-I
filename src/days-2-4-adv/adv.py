@@ -55,6 +55,7 @@ commands_help = [
     {"e": "moves to the east"},
     {"s": "moves to the south"},
     {"w": "moves to the west"},
+    {"score": "displays score"},
     {"look <direction>": "preview move to <direction>"},
     {"me": "returns the items that you have"},
     {"room": "returns item in the room"},
@@ -67,9 +68,9 @@ commands_help = [
 p = Player(input("What is your name? "), room["outside"])
 
 print(f'\nYou are currently: \n{p.room}') # this comes from the __str__ statement
-
 while True: 
-    cmds = input(f'\n-->').lower().split(" ")
+    print("_________________________________________________")
+    cmds = input(f'\n--> ').lower().split(" ")
     if len(cmds) == 1: 
         cmd = cmds[0]
         if cmd in valid_directions: 
@@ -109,3 +110,4 @@ while True:
             if cmds[1] in p.items:
                 p.dropItem(cmds[1])
                 p.room.addItem(cmds[1])
+            
