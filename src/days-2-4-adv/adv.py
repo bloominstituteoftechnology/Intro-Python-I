@@ -1,5 +1,6 @@
-from room import Room,room
+from room import Room, room
 from player import Player
+from item import Item, item
 import time
 # Declare all the rooms
 
@@ -18,37 +19,44 @@ player = Player(input("What is your name?\n-> "), room['outside'], [])
 # If the user enters "q", quit the game.
 
 while True:
-    print (f"You are at: {player.room.name}")
+    print (f"\nYou are at: {player.room.name}")
     print (player.room.description)
-    cmd = input(f"\n-What do you want to do, {player.name}? You can: move 'n', move 'e', move 's', move 'w', press 'q' to quit  \n-Press 'i' to view items and 'd' to drop items and 'g' to get items  \n-> ")
+    cmd = input(f"""\n-What do you want to do, {player.name}? You can: move 'n', move 'e', move 's', move 'w', press 'q' to quit 
+    \n-Press 'i' to view items and 'drop' to drop items and 'get' to get items \n-Type 'score' to view score\n-> """)
     if cmd == "q":
         break
     elif cmd == "n":
         if hasattr(player.room, 'n_to'):
            player.room = player.room.n_to
+           player.items = player.items.n_to
         else:
             print ("There is no room that way")
     elif cmd == "e":
         if hasattr(player.room, 'e_to'):
             player.room = player.room.e_to
+            player.items = player.items.e_to
         else:
             print ("There is no room that way")
     elif cmd == "s":
         if hasattr(player.room, 's_to'):
            player.room = player.room.s_to
+           player.items = player.items.s_to
         else:
             print ("There is no room that way")
     elif cmd == "w":
         if hasattr(player.room, 'w_to'):
            player.room = player.room.w_to
+           player.items = player.items.w_to
         else:
             print ("There is no room that way")
     elif cmd == "i":
         player.printItems(player.items)
-    elif cmd == "d":
+    elif cmd == "drop":
         player.drop(player.items)
-    elif cmd == "g":
-        player.get(player.room.items)
+    elif cmd == "get":
+        player.get(item[player.room])
+    elif cmd == "score":
+        print (player.score)
     else:
         print("Invalid choice")
         cmd
