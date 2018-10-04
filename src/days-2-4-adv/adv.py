@@ -1,6 +1,8 @@
 from room import Room
 from player import Player
 from items import Item
+from items import Treasure
+from items import LightSource
 # Declare all the rooms
 
 room = {
@@ -25,7 +27,19 @@ earlier adventurers. The only exit is to the south."""),
 items = {
     'dagger': Item("dagger", "a small dull blade. It's practically useless"),
 }
+
+treasure = {
+    'potion': Treasure("healing potion", "Can restore HP and MP", 1000),
+    'book': Treasure("book", "The Necronomicon", 50),
+    'ribbon': Treasure("ribbon", "give immunity to all status effects", 200)
+}
+
+
+
 room['outside'].addItem(items['dagger'])
+room['treasure'].addItem(treasure['potion'])
+room['overlook'].addItem(treasure['book'])
+room['foyer'].addItem(treasure['ribbon'])
 
 suppressRoomPrint = False
 validDirections = ["n", "s", "e", "w"]
@@ -69,7 +83,7 @@ def takeItemCommand(player, *args):
     elif itemToGet is not None:
         player.addItem(itemToGet)
         player.location.removeItem(itemToGet)
-        print(f'\n {player.name} has retrieved {itemToGet}.\n')
+        print(f'\n{player.name} has retrieved {itemToGet}.\n')
         player.getInventoryString()
     else:
         printErrorString(f'There is no {args[1]} to take\n')
@@ -85,7 +99,7 @@ def dropItemCommand(player, *args):
     elif itemToDrop is not None:
         player.removeItem(itemToDrop)
         player.location.addItem(itemToDrop)
-        print(f'\n {player.name} has dropped {itemToDrop}.\n')
+        print(f'\n{player.name} has dropped {itemToDrop}.\n')
     else:
         printErrorString(f'\nThere is no {args[1]} to drop.\n')
 
@@ -93,6 +107,9 @@ def dropItemCommand(player, *args):
 def inventoryCommand(player, *args):
     print(f'\nYou currently have these items in your inventory:\n' +
           player.getInventoryString() + '\n')
+
+def scoreCommand(player, *args):
+    print(f'\nYour current score is {player.score}.\n')
 
 
 def printErrorString(errorString):
@@ -113,6 +130,7 @@ commands["get"] = takeItemCommand
 commands["drop"] = dropItemCommand
 commands["i"] = inventoryCommand
 commands["inventory"] = inventoryCommand
+commands["score"] = scoreCommand
 
 # Link rooms together
 
