@@ -58,38 +58,81 @@ while True:
         suppressRoomPrint = False
     else:
         print(player.currentRoom)
-    cmd = input("INPUT HERE:")
-    if cmd == 'q':
-        break
-    elif cmd == 'n':
-        if player.currentRoom.n_to is not None:
-            player.currentRoom = player.currentRoom.n_to
+#THIS WILL TO SEE IF TRUE OR FALSE
+#IF FALSE WILL PRINT THE CURRENT ROOM AND INFO
+#IF TRUE WILL NOT PRINT ROOM AND INFO
+    cmds = input("INPUT HERE:").split(" ")
+    print(cmds)
+#THIS WILL TAKE THE PLAYERS INPUT AFTER THE COLON
+#AND THEN IT WILL SPLIT EACH INPUT AFTER SPACES INTO 
+#INDIVIDUAL INPUTS
+    if len(cmds) == 1:
+        if cmds[0] == 'q':
+            break
+        elif cmds[0] == 'n':
+            if player.currentRoom.n_to is not None:
+                player.currentRoom = player.currentRoom.n_to
+            else:
+                print("You cannot move in that direction")
+                suppressRoomPrint = True
+#IF THERE IS ONLY 1 INPUT AND IT IS ONE OF THESE LETTERS
+#IT WILL SET THE CURRENTROOM ATTR TO DIRECTION
+#OR ELSE IT WILL PRINT THE YOU CANNOT MSG
+        elif cmds[0] == 's':
+            if player.currentRoom.s_to is not None:
+                player.currentRoom = player.currentRoom.s_to
+            else:
+                print("You cannot move in that direction")
+                suppressRoomPrint = True
+        elif cmds[0] == 'w':
+            if player.currentRoom.w_to is not None:
+                player.currentRoom = player.currentRoom.w_to
+            else:
+                print("You cannot move in that direction")
+                suppressRoomPrint = True
+        elif cmds[0] == 'e':
+            if player.currentRoom.e_to is not None:
+                player.currentRoom = player.currentRoom.e_to
+            else:
+                print("You cannot move in that direction")
+                suppressRoomPrint = True
         else:
-            print("You cannot move in that direction")
-            suppressRoomPrint = True
-    elif cmd == 's':
-        if player.currentRoom.s_to is not None:
-            player.currentRoom = player.currentRoom.s_to
-        else:
-            print("You cannot move in that direction")
-            suppressRoomPrint = True
-    elif cmd == 'w':
-        if player.currentRoom.w_to is not None:
-            player.currentRoom = player.currentRoom.w_to
-        else:
-            print("You cannot move in that direction")
-            suppressRoomPrint = True
-    elif cmd == 'e':
-        if player.currentRoom.e_to is not None:
-            player.currentRoom = player.currentRoom.e_to
-        else:
-            print("You cannot move in that direction")
+            print("need valid command")
             suppressRoomPrint = True
     else:
-        print("need valid command")
-        suppressRoomPrint = True
-       
-       
+        if cmds[0] == "look":
+            if cmds[1] == "n":
+                if player.currentRoom.n_to is not None:
+                    print(f"\nin '{cmds[1]}' direction:", player.currentRoom.n_to)
+                    suppressRoomPrint = True
+                else:
+                    print("There is nothing to look at")
+                    suppressRoomPrint = True
+            elif cmds[1] == "s":
+                if player.currentRoom.s_to is not None:
+                    print(f"\nin '{cmds[1]}' direction:", player.currentRoom.s_to)
+                    suppressRoomPrint = True
+                else:
+                    print("There is nothing to look at")
+                    suppressRoomPrint = True
+            elif cmds[1] == "w":
+                if player.currentRoom.w_to is not None:
+                    print(f"\nin '{cmds[1]}' direction:", player.currentRoom.w_to)
+                    suppressRoomPrint = True
+                else:
+                    print("There is nothing to look at")
+                    suppressRoomPrint = True
+            elif cmds[1] == "e":
+                if player.currentRoom.e_to is not None:
+                    print(f"\nin '{cmds[1]}' direction:", player.currentRoom.e_to)
+                    suppressRoomPrint = True
+                else:
+                    print("There is nothing to look at")
+                    suppressRoomPrint = True
+        else:
+            print("need valid commands")
+            suppressRoomPrint = True
+        
        
        
        
