@@ -18,7 +18,7 @@ room = {
                      "North of you, the cave mount beckons", 'outside', [Treasure("Cake", "Test", 100), Treasure("death", "test", 1)]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", 'foyer', [Item("test", "test")]),
+passages run north and east.""", 'foyer', [Treasure("test", "test", 2)]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -92,6 +92,8 @@ def TextEval(text):
         if itemObj is not None:
             currentPlayer.items.append(itemObj)
             currentPlayer.room.items.remove(itemObj)
+            itemObj.onTake(currentPlayer)
+            itemObj.pickedup = True
             print(f'You have grabbed {itemObj.name}')
             return False
         print('That object can not be grabbed')
