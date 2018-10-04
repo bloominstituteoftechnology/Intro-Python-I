@@ -91,6 +91,8 @@ while True:
                 p.showItems()
         elif cmd =="drop":
                 itemDropped=p.removeItem(cmds[1])
+        elif cmd =="score":
+                print(f'Your score is:{p.score}')
         else:
                 print('I cannot understand your command')
 
