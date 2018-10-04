@@ -10,6 +10,10 @@ class Player:
 
     def get_item(self, item):
         self.inventory.append(item)
+        if item.name == 'treasure':
+            self.score += 1000
+        else:
+            self.score += 100
     
     def drop_item(self, index):
         if len(self.inventory) is 0:
