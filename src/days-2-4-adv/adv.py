@@ -63,6 +63,7 @@ plyr = Player(name, room['outside'])
 print(f'You find yourself just {plyr.current_room.location} with no memory of how you got here. {plyr.current_room.description}. ')
 while True:
     cmd = input(' How should we proceed? -> ').lower().split(' ')
+    print(f'{cmd}')
     print(f'{len(cmd)}')
     if len(cmd) == 1:
         if cmd[0] == 'q':
@@ -73,7 +74,16 @@ while True:
         else:
             print('Thats not right...')
     else:
-        print('Get and Drop abilities coming soon!')
+        if cmd[0] == 'get':
+            itemToAdd = plyr.current_room.selectItem(cmd[1])
+            if itemToAdd == None:
+                print('No item like that here')
+            else:
+                # print(f'You picked up {itemToAdd.name}')
+                plyr.addItem(itemToAdd)
+            # plyr.addItem(cmd[1])
+        else:
+            print('Get and Drop abilities coming soon!')
 
 
 

@@ -14,5 +14,5 @@ class Player():
             print('You are filled with an overwhelming sense of dread and quickly reconsider your decision.')
     def addItem(self, item):
         self.inventory.append(item)
-        self.current_room.remove(item)
-        print(f'You have picked up the {item}.')
+        self.current_room.removeItem(item)
+        print(f'You have picked up the {item.name}.')
