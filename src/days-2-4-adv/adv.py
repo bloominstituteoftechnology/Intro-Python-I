@@ -49,3 +49,83 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+#  while True:
+#      print(room['name'])
+#      print(room['description'])
+
+def eval_nesw(player_cmd, current_location):
+    if player_cmd == "n":
+        if current_location == "outside":
+            return current_location == room['foyer']
+            print("You are now in the Foyer")
+        elif current_location == "foyer":
+            return current_location == room['overlook']
+            print("You are now in the Grand Overlook")
+        elif current_location == "overlook":
+            print("You ran into a wall, try a different direction")
+        elif current_location == "narrow":
+            return current_location == room['treasure']
+            print("You are now in the Treasure Chamber")
+        elif current_location == "treasure":
+            print("You ran into a wall, try a different direction")
+    elif player_cmd == "e":
+        if current_location == "outside":
+            print("You ran into a wall, try a different direction")
+        elif current_location == "foyer":
+            return current_location == room['narrow']
+            print("You are now in the Narrow Passage")
+        elif current_location == "overlook":
+            print("You ran into a wall, try a different direction")
+        elif current_location == "narrow":
+            print("You ran into a wall, try a different direction")
+        elif current_location == "treasure":
+            print("You ran into a wall, try a different direction")
+    elif player_cmd == "s":
+        if current_location == "outside":
+            print("You ran into a wall, try a different direction")
+        elif current_location == "foyer":
+            return current_location == room['outside']
+            print("You are now in the Outside Cave Entrance")
+        elif current_location == "overlook":
+            return current_location == room['foyer']
+            print("You are now in the Foyer")
+        elif current_location == "narrow":
+            print("You ran into a wall, try a different direction")
+        elif current_location == "treasure":
+            return current_location == room['narrow']
+            print("You are now in the Narrow Passage")
+    elif player_cmd == "w":
+        if current_location == "outside":
+            print("You ran into a wall, try a different direction") 
+        elif current_location == "foyer":
+            print("You ran into a wall, try a different direction") 
+        elif current_location == "overlook":
+            print("You ran into a wall, try a different direction") 
+        elif current_location == "narrow":
+            return currrent_location == room['foyer']
+            print("You are now in the Foyer")
+        elif current_location == "treasure":
+            print("You ran into a wall, try a different direction") 
+
+choice_dictionary = {"n": "north", "e": "east", "s": "south", "w": "west"}
+p = Player(input("What is your name? "))
+
+while True:
+    player_choice = get_random_rps()
+    print(p)
+    cmd = input("-> ")
+    if cmd == "q":
+        break
+    elif cmd == "n" or cmd == "e" or cmd == "s" or cmd == "w":
+      result = eval_nesw(cmd, player_choice)
+      print(f"You chose {choice_dictionary[cmd]}")
+      p.addResult(result)
+      if result == 1:
+          print("You win!")
+      elif result == 0:
+          print("Tie")
+      else:
+          print("You lose")
+    else:
+        print("I did not understand that command.")
