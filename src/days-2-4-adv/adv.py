@@ -103,12 +103,20 @@ What is your name? """)
 player = Player(playerName, room['outside'], [Item("iron chestplate", "a durable armor piece", 20)])
 
 # initialize monsters
-monsters = [Monster("vampire", "a pale being\n with long fangs and a black cape. He sparkles.", room[f"{random.choice(roomList)}"], [Item("skating magazine", "with photos of gnarly tricks", 5)])]
+monsters = [Monster("vampire", "a pale being\n with long fangs and a black cape. He sparkles.", room[f"{random.choice(roomList)}"], [Item("skating magazine", "with photos of gnarly tricks", 5)], 15),
+            Monster("mutant squirrel", "a \nferocious, slobbering bundle of radioactive fur.", room[f"{random.choice(roomList)}"], [Item("acorns", "some tree seeds", 5)], 10)]
 
 
 suppressRoomPrint = False
 # Input loop
 while True:
+    if player.health <= 0:
+        print("YOU ARE DEAD!")
+        break
+    if len(monsters) == 0:
+        print("Congratulations, you won!")
+        break
+
     def printNoMove():
         print('\nSorry, %s, you cannot move in that direction.' % player.name)
         print()
@@ -130,6 +138,9 @@ while True:
             if hasattr(monster.currentRoom, randMove):
                 monster.currentRoom = getattr(monster.currentRoom, randMove)
 
+    def monsterAttacks(monster):
+        player.health -= monster.attack
+        print(f"You have taken {monster.attack} damage from the \n{monster.name}. Your health is now {player.health}.")
 
     playerHasLight = False
     roomHasLight = False
@@ -161,6 +172,11 @@ while True:
 What would you like to do, %s? """ % player.name)
 
     moveMonsters()
+    willItAttack = random.randint(0, 20)
+    for monster in monsters:
+        if monster.currentRoom == currentRoom:
+            if willItAttack <= 10:
+                monsterAttacks(monster)
 
     if cmd.upper() == 'N' or cmd.upper() == 'NORTH':
         if hasattr(currentRoom, 'n_to'):
@@ -292,11 +308,20 @@ What would you like to do, %s? """ % player.name)
         for monster in monsters:
             if cmd[7:] in monster.name.lower():
                 monster.health -= maxDmg
-                print(f"You hurt the {monster.name} by {maxDmg}")
+                print(f"You hurt the {monster.name} by {maxDmg}.")
                 if monster.health <= 0:
                     print(f"You have killed the {monster.name}!")
+                    while len(monster.inventory) > 0:
+                        for item in monster.inventory:
+                            currentRoom.inventory.append(item)
+                            monster.inventory.remove(item)
                     monsters.remove(monster)
-
+                else:
+                    willItAttack = random.randint(0, 20)
+                    if willItAttack <= 10:
+                        monsterAttacks(monster)
+    elif cmd.upper() == "HEALTH":
+        print(f"Your health: {player.health}")
     elif cmd.upper() == 'Q' or cmd.upper() == 'QUIT':
         print("\nThanks for playing.\n")
         break
@@ -307,6 +332,7 @@ What would you like to do, %s? """ % player.name)
     'e' or 'east' to move east
     'w' or 'west' to move west
     'i' or 'inv' to look in inventory
+    'health' for health
     'look' or 'look <direction>' to get description of a room
     'score' for score
     'take <item>' to take
