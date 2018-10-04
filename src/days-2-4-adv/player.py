@@ -29,8 +29,13 @@ class Player(object):
     #
     
     def grabItem(self, item, value = 0, treasure = False):
+        print(item.name, value, treasure)
         able_to_see = self.currentRoom.is_light
-        if able_to_see:
+        has_light = False 
+        for item in self.items:
+            if(isinstance(item, LightSource)):
+                has_light = True
+        if has_light or able_to_see:
             if item.name == 'coins':
                 successful = self.currentRoom.removeItem(item)
                 if successful is not None:
@@ -40,8 +45,14 @@ class Player(object):
                     return f"You have collected all of the coins this room has to offer."
             else: 
                 successful = self.currentRoom.removeItem(item)
+                print(successful, item.name,"success?")
                 if successful is not None:
+                    if value > 0 and self.treasures.count(item.name) == 0: 
+                        self.points += value 
+                        print(f"This item is worth {value} points. Your total score is now {self.points}\n\n")
                     if treasure:
+                        print(self.treasures)
+                        self.toCollect -=1
                         self.treasures.append(item.name)
                     # if(isinstance(item, Item)):
                     #     print("this is a regular item")
@@ -50,9 +61,8 @@ class Player(object):
                     # elif(isinstance(item, LightSource)):
                     #     print("this is a light source")
                     self.items.append(item)
-                    if value > 0 and self.treasures.count(item.name) == 0: 
-                        self.points += value 
-                        print(f"This item is worth {value} points. Your total score is now {self.points}\n\n")
+                    print(item.name, "collected")
+                    
                     return f"You collected the {item.name}\n"
                 else:
                     return f"That item is not available in this room."

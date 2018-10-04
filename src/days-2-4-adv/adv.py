@@ -29,7 +29,7 @@ items = {
 treasures = {
     "gold": Treasure(1000, "gold", "Chest full of Gold. The chest features 1000 points worth of gold. You will need a master key to unlock it!"),
     "silver": Treasure(500, "silver", "500 points worth of valuable silver at the bottom of the pool. YOu will need a scuba mask due the pool being 50 feet deep. Silvers at the bottom."),
-    "wallet": Treasure (250, "wallet", "You have found the kings wallet featuring 250 points")
+    "wallet": Treasure (250, "wallet", "You have found the kings wallet featuring 250 points"),
 }
 
 room = {
