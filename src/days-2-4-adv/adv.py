@@ -90,7 +90,7 @@ while True:
                 print('Your inventory has')
                 p.showItems()
         elif cmd =="drop":
-                p.removeItem(cmds[1])    
+                itemDropped=p.removeItem(cmds[1])
         else:
                 print('I cannot understand your command')
 

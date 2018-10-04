@@ -14,6 +14,15 @@ class Player():
         def addItem(self, item):
                 self.items.append(item)
                 print(f'You have a new item added to your list: {item} ')
+
+        def removeItem(self, item):
+                if len(self.items) > 0:
+                        for i in self.items:
+                                if i==item:
+                                        self.items.remove(i)
+                                        print(f'{item} dropped from inventory')        
+                else:
+                        print('The item you are trying to drop is not present in your inventory')
         
         def showItems(self):
                 if len(self.items) > 0:
