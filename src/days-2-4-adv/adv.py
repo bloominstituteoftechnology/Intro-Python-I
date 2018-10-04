@@ -35,7 +35,7 @@ to north. The smell of gold permeates the air.""",[item['knife'], item['coins']]
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""",[item['sword'], item['coins']]),
+earlier adventurers. The only exit is to the south.""",[item['gold'], item['silver']]),
 }
 
 
@@ -98,6 +98,8 @@ while True:
                 p.showItems()
         elif cmd =="drop":
                 itemDropped=p.removeItem(cmds[1])
+                if itemDropped ==True:
+                        item[cmds[1]].on_drop()
         elif cmd =="score":
                 print(f'Your score is:{p.score}')
         else:
