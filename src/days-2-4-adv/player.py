@@ -14,6 +14,13 @@ class Player():
         def addItem(self, item):
                 self.items.append(item)
                 print(f'You have a new item added to your list: {item} ')
+        
+        def showItems(self):
+                if len(self.items) > 0:
+                        for i in self.items:
+                                print(f'{i}')  
+                else:
+                        print(f'No items')    
 
         def travel(self, direction):
                 nextRoom = None

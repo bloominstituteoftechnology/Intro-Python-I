@@ -52,9 +52,9 @@ p=Player(input('\nWhat is your name?'),room['outside'])
 
 # Write a loop that:
 
-direction = "\nWhat direction would you like to walk in?[n,s,e,w or q to quit]\nYou could also enter commands like take sword or get coins to grab the availabe items in the room"
+direction = "\nWhat direction would you like to walk in?[n,s,e,w or q to quit]\nYou could also enter commands like take sword or get coins to grab the availabe items in the room\n to view your items or inventory type i or inventory"
 
-print(f'\nYour current location is:{p.currentRoom.name}.')
+print(f'\nYour current location is:{p.currentRoom.name}')
 print('\nItems availabe in this room are:\n') 
 p.currentRoom.showItems()
 print(f'{p.currentRoom.text}')
@@ -86,7 +86,11 @@ while True:
                                 print(f'{result} successfuly removed from the room')
                 else:
                         print(f'Item not availabe')
-        #elif cmd == "drop" or                 
+        elif cmd == "inventory" or cmd =="i":
+                print('Your inventory has')
+                p.showItems()
+        elif cmd =="drop":
+                p.removeItem(cmds[1])    
         else:
                 print('I cannot understand your command')
 

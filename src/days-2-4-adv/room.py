@@ -39,6 +39,7 @@ class Room():
                         for i in self.items:
                                 if i.name == item:
                                         self.items.remove(i)
+                                    
                 else:
                         print('Item not available to remove!')
             
