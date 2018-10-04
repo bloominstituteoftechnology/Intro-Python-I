@@ -1,6 +1,8 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
-
+from item import LightSource 
+from item import Treasure
+from item import Item
 
 class Player(object):
     def __init__(self, name, currentRoom, items = []):

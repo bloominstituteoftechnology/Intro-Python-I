@@ -75,21 +75,21 @@ room['prison'].n_to = room['coward']
 
 
 
-directions = {"n", "s", "e", "w"}
+directions = ["n", "s", "e", "w"]
 # set of  directions want to key them to the direction.
 
 # Make a new player object that is currently in the 'outside' room.
 
 # Write a loop that:
-directions = ["n", "s", "e", "w"]
+
 # "i"  should allow one to check inventory. 
 moves = ["drop", "grab", "look"]
 suppressRoomPrint = False
 player = Player(input("What is your name? "), room['outside'])
 print("Starting game:\n\n options -> Enter q to quit,\n score to view currentScore\n n to go North\n s to go South\n e to go East\n w to go West\n\n i should allow you to check your inventory\n\n")
 while True:
-    sleep(7)
-    os.system('cls') #clears out previous input. 
+    #sleep(20) #implement for production currently commented out for development purposes.
+    #os.system('cls') #clears out previous input. 
     print(f"{player.currentRoom}\n\n")
     option = input(
         "option ->")
@@ -97,6 +97,8 @@ while True:
     if option[0] == "q":
         print("Exiting the game!")
         break
+    elif option[0] == "d":
+        print(player.currentRoom.getDirections())
     elif option[0] == "i":
         print(f"You currently have in your inventory the following items: {player.showInventory()}\n\n")
     elif option[0] == "score":
@@ -105,15 +107,32 @@ while True:
         print(player.room_change(option[0]))
     elif moves.count(option[0]) > 0:
         if option[0] == 'grab':
-            print(player.grabItem(items[option[1]]))
+            #check what type of instance the item is.
+            if list(items.keys()).count(option[1]) > 0:
+                print("grabbing")
+                print(player.grabItem(items[option[1]]))
+            elif list(lights.keys()).count(option[1]) > 0:
+                print("grabbing")
+                print(player.grabItem(lights[option[1]]))
+            elif list(treasures.keys()).count(option[1]) > 0:
+                print("grabbing")
+                print(player.grabItem(treasures[option[1]]))
         elif option[0] == 'drop':
-            itemsAvaliable = list(items.keys())
+            itemsAvaliable = list(items.keys()) + list(treasures.keys()) + list(lights.keys())
             if itemsAvaliable.count(option[1]) > 0:
-                print(player.dropItem(items[option[1]]))
+                # check what type of instance the item is 
+                # alternatively could have done a isinstance but would have required more lines of code.
+                if list(items.keys()).count(option[1]) > 0:
+                    print(player.dropItem(items[option[1]]))
+                elif list(lights.keys()).count(option[1]) > 0:
+                    print(player.dropItem(lights[option[1]]))
+                elif list(treasures.keys()).count(option[1]) > 0:
+                    print(player.dropItem(treasures[option[1]]))
             else:
                 print(f"That item doesn't exist.\n\n")
         elif option[0] == 'look':
             print(player.lookAround())
+            #sleep(10)
 
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
