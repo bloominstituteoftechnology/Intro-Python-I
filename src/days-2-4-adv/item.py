@@ -23,3 +23,13 @@ class Treasure(Item):
 
     def remove_value(self):
         self.value = 0
+
+class Light_Source(Item):
+    def __init__(self, name):
+        super().__init__(name)
+
+    def __str__(self):
+        return self.name
+
+    def light_up(self):
+        print(f"The {self.name} lights up the room!")

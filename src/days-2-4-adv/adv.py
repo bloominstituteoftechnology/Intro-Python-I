@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item, Treasure
+from item import Item, Treasure, Light_Source
 # Declare all the rooms
 
 room = {
@@ -15,7 +15,7 @@ into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""", []),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", [Treasure(2, 'potato')]),
+to north. The smell of gold permeates the air.""", [Light_Source('flashlight')]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -89,7 +89,7 @@ while True:
 
         elif player_input[0].lower() == "d" or player_input[0].lower() == "drop":
             dropped_item = player.find_item(player_input_args[1])
-            if dropped_item == None:
+            if dropped_item.name == None:
                 print(f"You dont have a {player_input_args[1]} to drop!")
             else:
                 player.drop_item(dropped_item)
