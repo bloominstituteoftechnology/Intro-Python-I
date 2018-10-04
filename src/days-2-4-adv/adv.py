@@ -75,12 +75,14 @@ print(player.currentRoom)
 game_over = False
 
 while not game_over:
+    White ="\[\033[0;37m\]"
     cmds = input("-> ").lower().split(" ")
     # if command length is == 1
     if len(cmds) == 1:
         # print(cmds[0]) -- this just prints the command given
         # if user enters 'q' quit the game
         if cmds[0] == "q":
+            print(f"{White} Game Over!")
             game_over = True
         # if command is found in valid-directions dictionary, travel
         elif cmds[0] in valid_directions:
