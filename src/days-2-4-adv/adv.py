@@ -67,28 +67,30 @@ suppressRoomPrint = False
 validDirections = {"N": "N", "NORTH": "N", "S": "S", "SOUTH": "S", "E": "E", "EAST": "E", "W": "W", "WEST": "W"}
 
 while True: 
-    cmds = input("What would you like to do? => ").upper().split(" ")
+    cmds = input(f"What would you like to do {player.name}? => ").upper().split(" ")
     if len(cmds) == 1:
         if cmds[0] in validDirections:
             player.travel(validDirections[cmds[0]])
         elif cmds[0] == "LOOK":
             player.look()
         elif cmds[0] == "INV" or cmds[0] == "I":
-            print("-----------------------------------------------------")
-            print(f"This is what you have in your inventory: ")
+            print("\n-----------------------------------------------------")
+            print(f"\n    This is what you have in your inventory: ")
             if len(player.items) > 0:
                 for item in player.items:
-                    print(item.name)
+                    print(f"\n    {item.name}")
+                    print("\n-----------------------------------------------------")
             else:
-                print("Your inventory is empty.")
-            print("-----------------------------------------------------")
+                print("\n    Your inventory is empty.")
+                print("\n-----------------------------------------------------")
         elif cmds[0] == "SCORE":
-            print(f"{player.name}'s current score is: {player.score} ")
+            print(f"    {player.name}'s current score is: {player.score} ")
         elif cmds[0] == "Q" or cmds[0] == "QUIT":
             break
         else:
-            print("That doesn't work please try a different command!")
-            print('\n')
+            print("\n-----------------------------------------------------")
+            print("\n    That doesn't work please try a different command!")
+            print("\n-----------------------------------------------------")
     else:
         if cmds[0] == "LOOK":
             if cmds[1] in validDirections:
@@ -97,11 +99,15 @@ while True:
             for item in player.currentRoom.items:
                 if cmds[1] in item.name:
                     item.takeItem(player)
-                    print(f"\n    You have taken the {cmds[1]}!\n")
+                    print("\n-----------------------------------------------------")
+                    print(f"\n    You have taken the {cmds[1]}!")
+                    print("\n-----------------------------------------------------")
         elif cmds[0] == "DROP":
             for item in player.items:
                 if cmds[1] in item.name:
                     item.dropItem(player)
-                    print(f"\n    You have dropped the {cmds[1]}!\n")
+                    print("\n-----------------------------------------------------")
+                    print(f"\n    You have dropped the {cmds[1]}!")
+                    print("\n---------------------------------------------------")
         else:
             print("That doesn't work please try a different command!")
