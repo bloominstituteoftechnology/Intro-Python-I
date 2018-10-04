@@ -6,6 +6,7 @@ class Player:
         self.currentRoom = currentRoom
         self.items = []
         self.score = 0
+
     def move(self, direction):
         if direction == "n":
             if self.currentRoom.n_to is not None:
@@ -27,3 +28,12 @@ class Player:
                 self.currentRoom = self.currentRoom.w_to
             else:
                 print("Where do you think you're going?")
+
+    def getItem(self, item):
+        self.items.append(item)
+        print(f"You got a {item!s}")
+
+    def dropItem(self, item):
+        self.items.remove(item)
+        print(f"You dropped a {item!s}")
+

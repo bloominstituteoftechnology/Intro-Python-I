@@ -10,3 +10,11 @@ class Room:
         self.s_to = None
         self.w_to = None
         self.items = []
+    def addItem(self,item):
+        self.items.append(item)
+    def removeItem(self,item):
+        self.items.remove(item)
+    def findItemByName(self,name):
+        for item in self.items:
+            if item.name.lower() == name.lower():
+                return item

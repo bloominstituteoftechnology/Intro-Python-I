@@ -38,11 +38,11 @@ room['treasure'].s_to = room['narrow']
 
 #items
 item = {
-    'dagger': Item("Dagger",
-    "Pointy end goes in target")
+    'walrus': Item("walrus",
+    "What a thick boy!")
 }
 
-room['outside'].items.append('dagger')
+room['outside'].items.append(item['walrus'])
 
 #
 # Main
@@ -62,12 +62,12 @@ p = Player(input("What is your name? "), room['outside'])
 # If the user enters "q", quit the game.
 
 direction = ("n", "e", "s", "w")
-
 while True:
 
     print(f'\n {p.currentRoom.name!s} \n \n {p.currentRoom.description!s}')
     if len(p.currentRoom.items) > 0:
-        print(f'{p.currentRoom.items}')
+        for item in p.currentRoom.items:
+            print(f'You see a {item.name!s}')
     cmds = input("-->").lower().split(" ")
     if len(cmds) == 1:
         if cmds[0] == "q":
@@ -75,12 +75,15 @@ while True:
         elif cmds in direction:
             p.move(cmds[0])
         else:
-            print(f"What do you mean by {cmd!s}, {p.name!s}?")
+            print(f"What do you mean by {cmds!s}, {p.name!s}?")
     elif len(cmds) > 1:
         if cmds[0] == "get" or "take":
-            if cmds[1] in p.currentRoom.items:
-                p.currentRoom.items.remove(cmds[1])
-                p.items.append(cmds[1])
+            itemTaken = p.currentRoom.findItemByName(" ".join(cmds[1:]))
+            if itemTaken is not None:
+                p.getItem(itemTaken.name)
+                p.currentRoom.removeItem(itemTaken)
             else:
-                print(f"There's no {cmds[1]!s} here.")
+                item = " ".join(cmds[1:])
+                print(f"There is no {item!s} here.")
+        
 
