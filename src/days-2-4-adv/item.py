@@ -8,20 +8,22 @@ class Item:
     def __init__(self, name, description):
         self.name = name
         self.description = description
-    def take_item(self, player):
-        pass
+    def __str__(self):
+        return self.name
+    def __repr__(self):
+        return self.name
     
 
-class Weapon(Item):
-    # Weapon that increases the players power score upon picking up
-    def __init__(self, name, description, value):
-        self.value = value
-        self.was_picked_up = False
-        super().__init__(name, description)
-    # pass in the player and if was picked up add the value of the item to the players power
-    def take_item(self, player):
-        super().take_item(player)
-        if not self.was_picked_up:
-            player.power += self.value
-            print(f"You just got {self.value} power points.")
-            self.was_picked_up = True
+# class Weapon(Item):
+#     # Weapon that increases the players power score upon picking up
+#     def __init__(self, name, description, value):
+#         self.value = value
+#         self.was_picked_up = False
+#         super().__init__(name, description)
+#     # pass in the player and if was picked up add the value of the item to the players power
+#     def take_item(self, player):
+#         super().take_item(player)
+#         if not self.was_picked_up:
+#             player.power += self.value
+#             print(f"You just got {self.value} power points.")
+#             self.was_picked_up = True

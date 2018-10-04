@@ -1,11 +1,12 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 class Player:
-    def __init__(self, name, currentRoom):
+    def __init__(self, name, currentRoom, startingItems=[]):
         self.name = name
         self.currentRoom = currentRoom
-        self.inventory = []
-    # travel method
+        self.items = startingItems
+        self.power = 0
+    # travel method when called takes user to new room
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
@@ -23,3 +24,16 @@ class Player:
                 print(nextRoom)
             else:
                 print("There is nothing there.")
+    def printInventory(self):
+        print("\nYou are carrying:\n")
+        for item in self.items:
+            print(f"  ~~ {item.name} ~~\n")
+    def addItem(self, item):
+        self.items.append(item)
+    def removeItem(self, item):
+        self.items.remove(item)
+    def getItemByName(self, name):
+        for item in self.items:
+            if item.name.lower() == name.lower():
+                return item
+        return None

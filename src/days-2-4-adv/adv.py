@@ -1,7 +1,7 @@
 from room import Room
 from player import Player
 import textwrap
-from item import Item, Weapon
+from item import Item
 
 # Declare all the rooms
 
@@ -55,16 +55,17 @@ room['treasure'].s_to = room['narrow']
 # Add some items
 
 # Items 
-wep = Weapon("sword", "a valerian steel sword", 200)
-room['overlook'].items.append(wep)
+wep1 = Item("sword", "a valerian steel sword")
+wep2 = Item("bow", "an elvish bow with sharp arrows")
 
-wep = Weapon("bow", "an elvish bow with sharp arrows", 100)
-room['narrow'].items.append(wep)
+playerStartingItems = [wep1]
+room["outside"].addItem(wep2)
 
 valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
                     "forward": "n", "backwards": "s", "right": "e", "left": "w"}
 
-player = Player(input("What is your name? "), room['outside'])
+player = Player(input("What is your name? "), room['outside'], playerStartingItems)
+print(player.items)
 print(player.currentRoom)
 
 game_over = False
@@ -73,20 +74,38 @@ while not game_over:
     cmds = input("-> ").lower().split(" ")
     # if command length is == 1
     if len(cmds) == 1:
-        print(cmds[0])
+        # print(cmds[0]) -- this just prints the command given
         # if user enters 'q' quit the game
         if cmds[0] == "q":
             game_over = True
-        # if command is found in valid-directins dictionary, travel
+        # if command is found in valid-directions dictionary, travel
         elif cmds[0] in valid_directions:
             player.travel(valid_directions[cmds[0]])
         elif cmds[0] == "look":
             player.look()
+        elif cmds[0] == "inventory":
+            player.printInventory()
         else:
             print("I did not understand that command.")
     else:
         if cmds[0] == "look":
             if cmds[1] in valid_directions:
                 player.look(valid_directions[cmds[1]])
+        elif cmds[0] == "take":
+            currentRoom = player.currentRoom
+            wantedItem = currentRoom.getItemByName(cmds[1])
+            if wantedItem is not None:    
+                player.addItem(wantedItem)
+                player.currentRoom.removeItem(wantedItem)
+            else:
+                print("You cannot see that item")
+        elif cmds[0] == "drop":
+            currentRoom = player.currentRoom
+            discardedItem = player.getItemByName(cmds[1])
+            if discardedItem is not None:
+                player.removeItem(discardedItem)
+                player.currentRoom.addItem(discardedItem)
+            else:
+                print("You are not holding that item")
         else:
             print("I did not understand that command.")
