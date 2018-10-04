@@ -4,34 +4,31 @@ import random
 
 
 class Room:
-# notAMove = f"That is not a room adjoined to this one"
-	def __init__(self, room_type, room_descr):
-		self.room_type = room_type
-		self.room_descr = room_descr
-		self.room_moves = {}
-		self.room_item = None
+    # notAMove = f"That is not a room adjoined to this one"
+    def __init__(self, room_type, room_descr):
+        self.room_type = room_type
+        self.room_descr = room_descr
+        self.room_moves = {}
+        self.room_item = None
 
-	def setRoomMoves(self,moves):
-		self.room_moves = moves
+    def setRoomMoves(self, moves):
+        self.room_moves = moves
 
-	def getRoomType(self):
-		return self.room_type
-	
-	def getRoomDescription(self):
-		return self.room_descr
+    def getRoomType(self):
+        return self.room_type
 
-	def getRoomMoves(self):
-		for room in self.room_moves:
-			return room
+    def getRoomDescription(self):
+        return self.room_descr
 
-	def checkIfRoomMove(self,cmd):
-		return self.room_moves[cmd] if (cmd in self.room_moves) else False	
-	
-	def getRoomItem(self):
-		return self.room_item
+    def getRoomMoves(self):
+        for room in self.room_moves:
+            return room
 
-	def setRoomItem(self, item):
-		self.room_item = item
+    def checkIfRoomMove(self, cmd):
+        return self.room_moves[cmd] if (cmd in self.room_moves) else False
 
-	
+    def setRoomItem(self, item):
+        self.room_item = item
 
+    def getRoomItem(self):
+        return self.room_item if (self.room_item is not None) else False
