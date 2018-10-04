@@ -15,4 +15,16 @@ class Player():
     def addItem(self, item):
         self.inventory.append(item)
         self.current_room.removeItem(item)
-        print(f'You have picked up the {item.name}.')
+        print(f'You have picked up the {item.name}. It is {item.description}')
+    def selectItem(self, name):
+        for item in self.inventory:
+            if item.name.lower() == name.lower():
+                return item
+        return None
+    def removeItem(self, item):
+        if len(self.inventory) > 0:
+            self.inventory.remove(item)
+            self.current_room.items.append(item)
+            print(f'You dropped the {item.name}')
+        else:
+            print('No items to drop')
