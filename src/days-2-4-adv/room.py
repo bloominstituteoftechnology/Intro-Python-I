@@ -2,14 +2,29 @@
 # description attributes.
 
 class Room:
-    def __init__(self, name, description):
+    def __init__(self, name, description, inventory=[]):
         self.name = name
         self.description = description
         self.n_to = None
         self.s_to = None
         self.e_to = None
         self.w_to = None
+        self.inventory = inventory
 
     def printRoom(self):
         print("Current location: ", self.name)
         print(self.description)
+        if len(self.inventory) > 0:
+            print('\nOn the ground you see: ')
+            for item in self.inventory:
+                print(item.name, ': ', item.description)
+
+    def contains(self, item):
+        for thing in self.inventory:
+            return item.name == thing.name
+
+    def addItem(self, item):
+        self.inventory.append(item)
+
+    def removeItem(self, item):
+        self.inventory.remove(item)
