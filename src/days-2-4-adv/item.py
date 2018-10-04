@@ -12,4 +12,4 @@ class Item:
         print(f"{self.name} has been added to your inventory!")
 
     def item_dropped(self):
-        print(f"{self.name} has been dropped to your inventory!")
+        print(f"{self.name} has been dropped!")

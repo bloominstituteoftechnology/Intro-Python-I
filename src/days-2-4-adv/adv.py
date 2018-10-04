@@ -57,20 +57,34 @@ while True:
         player.location.print_items()
 
     player_input = input(f'\nWhat does {player.name} do?   ')
+    player_input_args = player_input.split(' ')
 
-    if len(player_input) < 1:
-        print('\nControls: N,S,E,W to move to a different room. P to pick up an item. I to view your inventory. Q to quit')
-    elif player_input[0].lower() == "q":
-        break
-    elif player_input[0].lower() == "n" or player_input[0].lower() == "s" or player_input[0].lower() == "w" or player_input[0].lower() == "e":
-        player.change_location(player_input[0])
-    elif player_input[0].lower() == "t" or player_input[0].lower() == "p":
-        if len(player.location.items) > 0:
-            player.take_item(player.location.items[0])
-            player.location.remove_item(player.location.items[0])
+    if len(player_input_args) == 0:
+        print('\nControls: N,S,E,W to move to a different room. T to take an item. D to drop an item. I to view your inventory. Q to quit')
+
+    if len(player_input_args) == 1:
+        if player_input[0].lower() == "q":
+            break
+        elif player_input[0].lower() == "n" or player_input[0].lower() == "s" or player_input[0].lower() == "w" or player_input[0].lower() == "e":
+            player.change_location(player_input[0])
+        elif player_input[0].lower() == "i":
+                player.view_inventory()
         else:
-            print("There are nothing you can pick up in this room")
-    elif player_input[0].lower() == "i":
-        player.view_inventory()
-    else:
-        print('\nControls: N,S,E,W to move to a different room. Q to quit')
+            print('\nControls: N,S,E,W to move to a different room. T to take an item. D to drop an item. I to view your inventory. Q to quit')
+
+    if len(player_input_args) == 2:
+        if player_input[0].lower() == "t" or player_input[0].lower() == "take":
+            taking_item = player.location.find_item(player_input_args[1])
+            if taking_item == None:
+                print(f"You couldn't find a {player_input[1]}")
+            else:
+                player.take_item(taking_item)
+                player.location.remove_item(taking_item)
+
+        elif player_input[0].lower() == "d" or player_input[0].lower() == "drop":
+            dropped_item = player.find_item(player_input_args[1])
+            if dropped_item == None:
+                print(f"You dont have a {player_input_args[1]} to drop!")
+            else:
+                player.drop_item(dropped_item)
+                player.location.add_item(dropped_item)

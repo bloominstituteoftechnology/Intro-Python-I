@@ -23,7 +23,16 @@ class Player:
     def take_item(self, item):
         self.inventory.append(item)
 
+    def drop_item(self, item):
+        self.inventory.remove(item)
+
     def view_inventory(self):
         print(f"{self.name} is currently holding:")
         for item in self.inventory:
-            print(f"{item}")
+            print(f"{item.capitalize()}")
+
+    def find_item(self, input_item):
+        for item in self.inventory:
+            if item.lower() == input_item.lower():
+                return item
+            return None
