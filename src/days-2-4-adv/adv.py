@@ -57,15 +57,15 @@ room['treasure'].s_to = room['narrow']
 def eval_nesw(player_cmd, current_location):
     if player_cmd == "n":
         if current_location == "outside":
-            return room['outside'].n_to
+            return current_location == room['foyer']
             print("You are now in the Foyer")
         elif current_location == "foyer":
-            return room['foyer'].n_to
+            return current_location == room['overlook']
             print("You are now in the Grand Overlook")
         elif current_location == "overlook":
             print("You ran into a wall, try a different direction")
         elif current_location == "narrow":
-            return room['narrow'].n_to
+            return current_location == room['treasure']
             print("You are now in the Treasure Chamber")
         elif current_location == "treasure":
             print("You ran into a wall, try a different direction")
@@ -73,7 +73,7 @@ def eval_nesw(player_cmd, current_location):
         if current_location == "outside":
             print("You ran into a wall, try a different direction")
         elif current_location == "foyer":
-            return room['foyer'].e_to
+            return current_location == room['narrow']
             print("You are now in the Narrow Passage")
         elif current_location == "overlook":
             print("You ran into a wall, try a different direction")
@@ -85,16 +85,16 @@ def eval_nesw(player_cmd, current_location):
         if current_location == "outside":
             print("You ran into a wall, try a different direction")
         elif current_location == "foyer":
-            return room['foyer'].s_to
+            return current_location == room['outside']
             print("You are now in the Outside Cave Entrance")
         elif current_location == "overlook":
-            return room['overlook'].s_to
+            return current_location == room['foyer']
             print("You are now in the Foyer")
         elif current_location == "narrow":
             print("You ran into a wall, try a different direction")
         elif current_location == "treasure":
-            return room['treasure'].s_to
-            print("You are now in the Treasure Chamber")
+            return current_location == room['narrow']
+            print("You are now in the Narrow Passage")
     elif player_cmd == "w":
         if current_location == "outside":
             print("You ran into a wall, try a different direction") 
@@ -103,7 +103,7 @@ def eval_nesw(player_cmd, current_location):
         elif current_location == "overlook":
             print("You ran into a wall, try a different direction") 
         elif current_location == "narrow":
-            return room['narrow'].w_to
+            return currrent_location == room['foyer']
             print("You are now in the Foyer")
         elif current_location == "treasure":
             print("You ran into a wall, try a different direction") 
