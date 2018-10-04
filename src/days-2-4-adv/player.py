@@ -34,6 +34,7 @@ class Player():
 
     def add_item(self, item):
         self.items.append(item)
+        item.on_take()
 
     def remove_item(self, item):
         self.items.remove(item)

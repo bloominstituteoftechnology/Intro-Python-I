@@ -139,11 +139,11 @@ while True:
                 p.current_room.remove_item(item_to_take)
                 score_added = int(item_to_take.on_take()) 
                 p.score += score_added
-                print(f"You have picked up {item_to_take.name} and gained {score_added} points!")
+                print(f"You have taken {item_to_take.name} and gained {score_added} points!")
             elif item_to_take is not None:
                 p.add_item(item_to_take)
                 p.current_room.remove_item(item_to_take)
-                print(f"You have picked up {item_to_take.name}")
+                # print(f"You have picked up {item_to_take.name}")
             else:
                 print("You do not see that item.")
         elif cmds[0] == "drop":
