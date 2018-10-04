@@ -38,9 +38,12 @@ class Player:
                 if each.name == item:
                     global current
                     current = each
-            current2 = self.currentRoom.toggleItem(cmd, current)
-            if current2 is not None:
-                self.items.remove(current)
-                print (f"\nwho needs this {current.name} anyway\n")
-            else: 
+            if "current" not in globals():
                 print ("\ncan't drop whatcha don't have\n")
+            else:
+                current2 = self.currentRoom.toggleItem(cmd, current)
+                if current2 is not None:
+                    self.items.remove(current)
+                    print (f"\nwho needs this {current.name} anyway\n")
+                else: 
+                    print ("\ncan't drop whatcha don't have\n")

@@ -23,10 +23,10 @@ class Room:
                 if each.name == item:
                     global removingItem
                     removingItem = each
-            if removingItem.name == item:
+            if "removingItem" not in globals():
+                return None
+            elif removingItem.name == item:
                 self.items.remove(removingItem)
-                print (removingItem.name)
-                print(self.items)
                 return removingItem
         elif cmd == "drop" and item not in self.items:
             self.items.append(item)

@@ -19,7 +19,7 @@ to north. The smell of gold permeates the air, which is kinda gross. Metallic an
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", Item("dusty shoe", "this thing is gross")),
+earlier adventurers. The only exit is to the south.""", Item("dusty-shoe", "this thing is gross")),
 }
 
 
