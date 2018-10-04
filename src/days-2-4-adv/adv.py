@@ -1,31 +1,26 @@
+import textwrap
 from room import Room
 from player import Player
-
-
-
+from item import Treasure, LightSource
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons",
-    "Jar of Fairies"),
+                     "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""",
-"Magic Roomba"),
+passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""",
-"A golden septor"),
+the distance, but there is no way across the chasm."""),
 
-    'narrow': Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""",),
+    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
+to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""",),
+chamber! The only exit is to the south."""),
 }
 
 
@@ -40,57 +35,56 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+room['outside'].is_light = True
+room['foyer'].is_light = True
+
+# Add some items
+
+t = Treasure("coins", "Shiny coins", 100)
+room['overlook'].contents.append(t)
+
+t = Treasure("jewels", "Jewels! Beautiful Jewels ", 200)
+room['treasure'].contents.append(t)
+
+l = LightSource("jar", "Jar of Fairies")
+room['foyer'].contents.append(l)
+
+def tryDirection(d, currentRoom):
+    """
+    Try to move a direction, or print an error if the player can't go that way.
+
+    Returns the room the player has moved to (or the same room if the player
+    didn't move).
+    """
+    attrib = d + '_to'
+
+    # See if the room has the destination attribute
+    if hasattr(currentRoom, attrib):
+        # If so, return its value (the next room)
+        return getattr(currentRoom, attrib)
+
+    # Otherwise print an error and stay in the same room
+    print("You can't go that way")
+
+    return currentRoom
+
+def find_item(name, currentRoom):
+    """
+    Search the current room to see if we can locate the treasure in question.
+    """
+    for i in currentRoom.contents:
+        if i.name == name:
+            return i
+
+    return None
+
 #
 # Main
 #
-valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
-	                "north": "n", "south": "s", "east": "e", "west": "w",
-                    "forward": "n", "backward": "s", "right": "e", "left": "w"}
 
-valid_items = {"Jar of Fairies":"Jar of Fairies","Magic Roomba":"Magic Roomba","A golden septor":"A golden septor"}
-
-name = input("\nWhat's your name?:")
-player = Player(name , room['outside'])
-print(f"\n\n{player.currentRoom}")
-
-while True:
-    cmds = input("\n-> ").lower().split(" ")
-    if len(cmds) == 1:
-        if cmds[0] == "q":
-           break
-        
-        elif cmds[0] in valid_directions:
-            player.travel(valid_directions[cmds[0]])
-        elif cmds[0] == "look":
-             player.seeInventory()
-        else:
-         print("\n\nI did not understand that command; Press q to quit")
-    else:
-        if cmds[0] == "look":
-            if cmds[1] in valid_directions:
-                player.look(valid_directions[cmds[1]])
-        elif cmds[0] == "get" or cmds[0] == "take":
-            if cmds[1] in valid_items:
-                player.pickUpItem(valid_items[cmds[1]])
-        elif cmds[0] == "drop":
-            if cmds[1] in valid_items:
-                player.dropItem(valid_items[cmds[1]])
-        else:
-            print("\n\nI did not understand that command; Press q to quit") 
-
-
-
-
-
-
-
-
-
-# Make a new player object that is currently in the 'outside' 
-# room.
-# name = input("\nWhat's your name?:")
-# player = Player(input("\nWhat's your name?:"),room['outside'],[])
-
+# Make a new player object that is currently in the 'outside' room.
+# player = Player(input("What is your name young soul? "), room['outside'])
+player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -103,91 +97,117 @@ while True:
 #
 # If the user enters "q", quit the game.
 
-# while True:
+done = False
+
+while not done:
+    # Make a list of all the items the player has (or are in the room) that are
+    # light sources:
+    light_sources = [item for item in player.contents + player.currentRoom.contents
+                     if isinstance(item, LightSource) and item.lightsource]
+
+    is_light = player.currentRoom.is_light or len(light_sources) > 0
+
+    if is_light:
+        # Print the room name
+        print("\n{}\n".format(player.currentRoom.name))
+
+        # Print the room description
+        for line in textwrap.wrap(player.currentRoom.description):
+            print(line)
+
+        # Print any items found in the room
+        if len(player.currentRoom.contents) > 0:
+            print("\nYou also see:\n")
+            for i in player.currentRoom.contents:
+                print("     " + str(i))
+    else:
+        print("\nIt's dark AHHHHHH!\n")
+
+    # User prompt
+    s = input("\nPlease say a command: ").strip().lower().split()
+
+    if len(s) > 2 or len(s) < 1:
+        print("I don't understand your nonsense")
+        continue
+
+    # Intransitive verbs
+    if len(s) == 1:
+        if s[0] == "quit" or s[0] == "q":
+            done = True
+        elif s[0] == "inventory" or s[0] == "i":
+            if len(player.contents) == 0:
+                print("There's nothing in your hand ding dong.")
+            else:
+                print("You are carrying the\n")
+                for i in player.contents:
+                    print(f"    {i}")
+
+        elif s[0] == "score":
+            print(f"Your score is currently {player.score}.")
+
+        elif s[0] in ["n", "s", "w", "e"]:
+            player.currentRoom = tryDirection(s[0], player.currentRoom)
+        else:
+            print("Unknown command {}".format(' '.join(s)))
     
-       
-        
+    # Transitive verbs
+    elif len(s) == 2:
+        if s[0] == 'get' or s[0] == 'take':
+            if is_light:
+                item = find_item(s[1], player.currentRoom)
+                if item == None:
+                    print("I don't see what you're looking for.")
+                else:
+                    # Notify the item that it's about to be taken
+                    item.on_take(player)
 
-#     print(f'\nRoom: {player.currentRoom.name}')
-#     print(f'{player.currentRoom.description}')
-#     player.currentRoom.printInv()
+                    # Move from room to player
+                    player.currentRoom.contents.remove(item)
+                    player.contents.append(item)
+                    print(f"{item}: has been retrieved.")
+            else:
+                print("Good luck finding that in the dark.")
 
-   
+        elif s[0] == 'drop':
+            item = find_item(s[1], player)
+            if item == None:
+                print("You're not carrying that.")
+            else:
+                # Move from player to room
+                player.contents.remove(item)
+                player.currentRoom.contents.append(item)
+                print(f"{item}: dropped.")
+        else:
+            print("Unknown command {}".format(' '.join(s)))
 
-#     suppressRoomPrint = False
 
-#     directions = {"N": "N", "NORTH": "N", "S": "S", "SOUTH": "S",
-#      "E": "E", "EAST": "E", "W": "W", "WEST": "W"}
 
-#     cmds = input("\nWhere to now? \n Or will you quit like a chicken? Press Q to QUIT\n").upper().split(" ")
-#     if len(cmds) == 1:
-#         if cmds[0] in directions:
-#                     player.travel(directions[cmds[0]])
-#         elif cmds[0] == "LOOK":
-#             player.look()
-#         elif cmds[0] == "INV":
-#             print(f"Here you go!: ")
-#             if len(player.items) > 0:
-#                 for item in player.items:
-#                     print(item.name)
-#             else:
-#                 print("Nothing in here.")
-#         elif cmds[0] == "Q" or cmds[0] == "QUIT":
-#             break
-#         else:
-#             print("Nope try again!")
-#             print('\n')
-#     else:
-#         if cmds[0] == "LOOK":
-#             if cmds[1] in directions:
-#                 player.look(directions[cmds[1]])
-#         elif cmds[0] == "TAKE":
-#             for item in player.currentRoom.items:
-#                 if cmds[1] in item.name:
-#                     item.takeItem(player)
-#                     print(f"You have taken {cmds[1]}!\n")
-#         elif cmds[0] == "DROP":
-#             for item in player.items:
-#                 if cmds[1] in item.name:
-#                     item.dropItem(player)
-#                     print(f"You have dropped {cmds[1]}!\n")
-#         else:
-#             print("Nope! Try again")
 
-    
-    # if answer == "q":
-    #     print("Get outta here!!")
-    #     break
 
-    # if answer == ""
 
-    # if answer == "n":
-    #     if not hasattr(player.currentRoom,'n_to'):
-    #         print(error)
-    #     else:
-    #         player.currentRoom = player.currentRoom.n_to
 
-    
-    # if answer == "s":
-    #     if not hasattr(player.currentRoom,'s_to'):
-    #         print(error)
-    #     else:
-    #         player.currentRoom = player.currentRoom.s_to
 
-    
 
-    # if answer == "e":
-    #     if not hasattr(player.currentRoom,'e_to'):
-    #         print(error)
-    #     else:
-    #         player.currentRoom = player.currentRoom.e_to
 
-    
-    # if answer == "w":
-    #     if not hasattr(player.currentRoom,'w_to'):
-    #         print(error)
-    #     else:
-    #         player.currentRoom = player.currentRoom.w_to
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
    
