@@ -1,4 +1,4 @@
 class Item(object):
-    def __init__(self, name, location):
+    def __init__(self, name, description):
         self.name = name
-        self.location = location
+        self.description = description

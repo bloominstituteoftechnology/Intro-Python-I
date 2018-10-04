@@ -27,14 +27,21 @@ earlier adventurers. The only exit is to the south."""),
 
 items = {
     'backpack': Item('an empty backpack', " that you set down"),
-    'Lumière': Item('a Lumière', " lighting the room"),
+    'Lumière': Item('Lumière', " lighting the room"),
     'parachute': Item('a parachute', " but you don't use it"),
     'dust': Item('some dust', " but what can you do.."),
-    'chest': Item('a treasure chest', " that's also empty"),
+    'chest': Item('an empty treasure chest', " that's also empty"),
 
 }
 
-
+items['backpack'].n_to = items['Lumière']
+items['Lumière'].s_to = items['backpack']
+items['Lumière'].n_to = items['parachute']
+items['Lumière'].e_to = items['dust']
+items['parachute'].s_to = items['Lumière']
+items['dust'].w_to = items['Lumière']
+items['dust'].n_to = items['chest']
+items['chest'].s_to = items['dust']
 
 
 
@@ -62,7 +69,7 @@ choice_dictionary = {"n": "North", "s": "South", "e": "East", "w": "West", "u": 
 # Make a new player object that is currently in the 'outside' room.
 
 playername = input("Enter Your Name: ")
-currentItem = items["backpack"].name
+currentItem = items["backpack"]
 
 
 p = Player(playername, room["outside"], currentItem)
@@ -101,8 +108,16 @@ while True:
     currentPlayer = p.name
     currentLocation = p.location
     currentItem = p.item
-    print(f"" + CBLUE + "\nYou are currently in the great " + p.location.name + "\n\n" + p.location.description + "\nAnd you have " + p.item + CBLACK)
-    
+    itemDescription = currentItem.description
+    inventory = ["a few nickels", "a few dimes"]
+    print(f"" + CBLUE + "\nYou are currently in the great " + p.location.name + "\n\n" + p.location.description + "\n\nYou find " + p.item.name + currentItem.description + CBLACK)
+
+    # if inventory:
+    #     for each in inventory:
+    #         print(inventory[each])
+    # else:
+    #     print(" ")
+            
 
     if hasattr(p.location, "S_to"):
         print("\n\n    'S' to" + str(p.location.s_to))
@@ -181,11 +196,13 @@ while True:
         os.system("clear")
         print(currentPlayer + ",")
 
-        if p.location == room['treasure']:
-            break
+        # if p.location == room['treasure']:
+        #     break
 
         if hasattr(p.location, 'n_to'):
             p.location = currentLocation.n_to
+            p.item = currentItem.n_to
+
             # if hasattr(p.location, 's_to'):
             #     print("\n     Enter "S" to go Souther")
             # else:
@@ -229,6 +246,7 @@ while True:
         print(currentPlayer + ",")
         if hasattr(p.location, 'e_to'):
             p.location = currentLocation.e_to
+            p.item = currentItem.e_to
         else:
             os.system("clear")
             print("\n    You Can't Go Any Farther East, Go Another Direction \n\n")
@@ -236,6 +254,7 @@ while True:
         print(currentPlayer + ",")
         if hasattr(p.location, 's_to'):
             p.location = currentLocation.s_to
+            p.item = currentItem.s_to
         else:
             os.system("clear")
             print("\n    You Can't Go Any Farther South, Go Another Direction \n\n")
@@ -243,6 +262,7 @@ while True:
         print(currentPlayer + ",")
         if hasattr(p.location, 'w_to'):
             p.location = currentLocation.w_to
+            p.item = currentItem.w_to
         else:
             os.system("clear")
             print("\n    You Can't Go Any Farther West, Go Another Direction \n\n")
@@ -259,7 +279,42 @@ while True:
     # elif p.location == room['treasure']:
     #     pass
     else:
-        print("Key Not Allowed")
+        sentence = cmd
+        split = sentence.split()
+        length = len(split)
+        # if cmd == "inventory":
+        #     for each in inventory:
+        #         print(each)
+
+        if " " in cmd:
+            if length == 2:
+                for word in split:
+                    if word == "get":
+                        if currentItem:
+                            inventory.append(currentItem.name)
+                            # inventory.update({p.item.name: p.item.description})
+                            print("Item Taken!")
+                            print(f"You got a new item, you now have " + inventory[(len(inventory) - 1)] + "\n\nInventory:")
+                            for item in inventory:
+                                print(item)
+
+                    elif word == "take":
+                        if currentItem:
+                            inventory.append(currentItem.name)
+                            print("Item Secured!")
+                            print(f"You took a new item, you now have " + inventory[(len(inventory) - 1)] + "\n\nInventory:")
+                            for item in inventory:
+                                print(item)
+
+                        print(len(inventory))
+                        # print(inventory[0])
+                        # print(inventory[1])
+                    # else:
+                    #     print("Please Refrase Request")
+                # for word in split:
+                #     if word == 
+        else:
+            print("Not Allowed")
 
     
     
