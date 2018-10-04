@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 
 
 class AdventureDone(Exception):
@@ -15,7 +15,7 @@ directionFunctions = {"n": 'n_to', "north": 'n_to', "s": 's_to',
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", 'outside', [Item("Cake", "Test"), Item("death", "test")]),
+                     "North of you, the cave mount beckons", 'outside', [Treasure("Cake", "Test", 100), Treasure("death", "test", 1)]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", 'foyer', [Item("test", "test")]),
@@ -83,6 +83,9 @@ def TextEval(text):
         raise AdventureDone
     elif text in directionFunctions.keys():
         return DirectionEval(text)
+    elif "score" in text:
+        print(currentPlayer.score)
+        return True
     elif "grab" in text or "take" in text:
         splitCommand = text.split()
         itemObj = ItemEval(splitCommand[1], currentPlayer.room.items)
@@ -104,7 +107,7 @@ def TextEval(text):
         print('That object can not be dropped')
         return True
     elif text == "h" or text == "help":
-        print("Valid commands are: (h)elp, (q)uit (n)orth, (w)est, (s)outh, (e)ast, (i)nventory, grab, and drop")
+        print("Valid commands are: (h)elp, (q)uit (n)orth, (w)est, (s)outh, (e)ast, (i)nventory, score, grab, and drop")
         return True
     elif text == "i" or text == "inventory":
         if len(currentPlayer.items) > 0:

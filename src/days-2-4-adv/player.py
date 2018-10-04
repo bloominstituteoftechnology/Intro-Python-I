@@ -5,6 +5,6 @@
 class Player:
     def __init__(self, name, room):
         self.name = name
-        self.xp = 0
+        self.score = 0
         self.room = room
         self.items = []
