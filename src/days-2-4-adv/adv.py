@@ -48,14 +48,14 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-p=Player(input('What is your name?'),room['outside'])
+p=Player(input('\nWhat is your name?'),room['outside'])
 
 # Write a loop that:
 
-direction = "What direction would you like to walk in?[n,s,e,w or q to quit]-you could also enter commands like take sword or get coins to grab the vailabe items in the room"
+direction = "\nWhat direction would you like to walk in?[n,s,e,w or q to quit]\nYou could also enter commands like take sword or get coins to grab the availabe items in the room"
 
-print(f'Your current location is:{p.currentRoom.name}.')
-print('Items availabe in this room:') 
+print(f'\nYour current location is:{p.currentRoom.name}.')
+print('\nItems availabe in this room are:\n') 
 p.currentRoom.showItems()
 print(f'{p.currentRoom.text}')
 print(direction)
@@ -85,7 +85,8 @@ while True:
                         if result1 == None:
                                 print(f'{result} successfuly removed from the room')
                 else:
-                        print(f'Item not availabe')    
+                        print(f'Item not availabe')
+        #elif cmd == "drop" or                 
         else:
                 print('I cannot understand your command')
 
