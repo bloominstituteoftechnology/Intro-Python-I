@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 # Declare all the rooms
 
 room = {
@@ -40,17 +40,22 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 player = Player(room['outside'])
 
-gold = Item('gold coins', '10 gold')
+#Items
 pebble = Item('pebble')
 silver = Item('silver', '5 silver')
 rock = Item('rock')
 
+#Treasures
+gold = Treasure('gold coins', 'pile of gold', '100,000')
+excalibur = Treasure("Excalibur", "Legendary sword of King Arthur", "Priceless")
+ring = Treasure("Ring", "Seems to hold mysterious powers", "Priceless")
+
 player.add_item(rock)
 room['outside'].add_item(pebble)
-room['outside'].add_item(silver)
-room['foyer'].add_item(silver)
+room['foyer'].add_item(ring)
+room['narrow'].add_item(silver)
 room['overlook'].add_item(gold)
-room['narrow'].add_item('bones')
+room['treasure'].add_item(excalibur)
 
 # Write a loop that:
 #
@@ -67,6 +72,8 @@ while True:
     print(f'\nHello, you are currently at {player.room}.')
     cmd = input("Press N, E, S or W to move.\nPress Q at any time to exit.\nPress I to view inventory.\nEnter get/take item_name to add item to inventory.\nEnter drop/remove item_name to remove item from inventory\n-> ").lower().split()
     if len(cmd) == 1:
+        if cmd[0] == 'score':
+            print (f'Your score is {player.score}')
         if cmd[0] == 'i' or cmd[0] == 'inventory':
             player.inventory()
         elif cmd[0] == 'q':
