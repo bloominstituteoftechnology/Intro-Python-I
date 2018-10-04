@@ -3,11 +3,17 @@ from player import Player
 from constants import move_directions
 # Declare all the rooms
 
-laboratory = Room("Gnarly Laboratory", "The lab has a faint smell of iron and ammonia. Flickering light overhead half-illuminates a gnarly scene.", {"f":office})
-office =  Room("C-Suite Office", """The executive offices, of course, are empty.  Everyone in C-Suite managed to escape.""", {"b":laboratory, "f":laboratory, "r":chapel})
-incinerator = Room("Grand Incinerator", """A hot, dark room barely lit by flame peaking out of the incinerator.""", {"b":office})
-chapel = Room("The Passage Chapel", """Idols and iconography cover every inch of the chapel.""", {"l":office, "f":pendulum})
-pendulum = Room("The Pendulum", """You've reached the Pendulum. Conditioned air envelopes you.  The doors lock behind you.  You see the key-switch ahead and you know what you must do.""", {"b":chapel})
+laboratory = Room("Gnarly Laboratory", "The lab has a faint smell of iron and ammonia. Flickering light overhead half-illuminates a gnarly scene.")
+office =  Room("C-Suite Office", """The executive offices, of course, are empty.  Everyone in C-Suite managed to escape.""")
+incinerator = Room("Grand Incinerator", """A hot, dark room barely lit by flame peaking out of the incinerator.""")
+chapel = Room("The Passage Chapel", """Idols and iconography cover every inch of the chapel.""")
+pendulum = Room("The Pendulum", """You've reached the Pendulum. Conditioned air envelopes you.  The doors lock behind you.  You see the key-switch ahead and you know what you must do.""")
+
+laboratory.setRoomMoves({"f":office})
+office.setRoomMoves({"b":laboratory, "f":incinerator, "r":chapel})
+chapel.setRoomMoves({"l":office, "f":pendulum})
+incinerator.setRoomMoves({"f":office})
+pendulum.setRoomMoves({"b":chapel})
 
 # Link rooms together
 
@@ -53,19 +59,35 @@ def detectCMD(room,cmd):
 uD = Player(input('What is your name, punk...   '), laboratory)
 
 
-class Main():
-  def __init__(self):
+def Main():
 
-  
 
-  def gameLoop():
-  unicornDown = Player(input('What is your name, punk...   '), laboratory)
-  print(f"Ok, {unicornDown.sayName()}, you're in the {unicornDown.getCurrentRoom()}.  We need to get to the Pendulum quick!")
+  laboratory = Room("Gnarly Laboratory", "The lab has a faint smell of iron and ammonia. Flickering light overhead half-illuminates a gnarly scene.")
+  office =  Room("C-Suite Office", """The executive offices, of course, are empty.  Everyone in C-Suite managed to escape.""")
+  incinerator = Room("Grand Incinerator", """A hot, dark room barely lit by flame peaking out of the incinerator.""")
+  chapel = Room("The Passage Chapel", """Idols and iconography cover every inch of the chapel.""")
+  pendulum = Room("The Pendulum", """You've reached the Pendulum. Conditioned air envelopes you.  The doors lock behind you.  You see the key-switch ahead and you know what you must do.""")
+
+  laboratory.setRoomMoves({"f":office})
+  office.setRoomMoves({"b":laboratory, "f":incinerator, "r":chapel})
+  chapel.setRoomMoves({"l":office, "f":pendulum})
+  incinerator.setRoomMoves({"f":office})
+  pendulum.setRoomMoves({"b":chapel})
+
+  unicorn = Player(input('What is your name, punk...   '), laboratory)
+
+  print(f"Ok, {unicorn.sayName()}, you're in the {unicorn.getCurrentRoom()}.  We need to get to the Pendulum quick!")
   print("\n\nSo, let's make a move:")
+
+  gameLoop(unicorn)
+
+def gameLoop(plyr):
   while True:
-    cmd = input('\n\n\To make a move type a direction: "f", "b", "l", or "r": \n')
+    cmd = input('\n\n\To make a move type a direction: "f", "b", "l", or "r": \n\n')
     # move = detectCMD(cmd)
-    print(move)
+    print(cmd)
+
+Main()
 
 
 
