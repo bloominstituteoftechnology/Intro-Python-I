@@ -8,3 +8,4 @@ class Player:
         self.score = 0
         self.room = room
         self.items = []
+        self.hasLight = False

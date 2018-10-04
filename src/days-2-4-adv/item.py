@@ -34,3 +34,12 @@ class Treasure(Item):
 class LightSource(Item):
     def __init__(self):
         super().__init__("Lamp", "Lights up the world")
+
+    def onTake(self, player):
+        super().onTake(player)
+        player.hasLight = True
+
+    def onDrop(self, player):
+        super().onDrop(player)
+        player.hasLight = False
+        print("It's not wise to drop your source of light!")

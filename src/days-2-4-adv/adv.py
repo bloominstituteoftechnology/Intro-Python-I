@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item, Treasure
+from item import Item, Treasure, LightSource
 
 
 class AdventureDone(Exception):
@@ -15,7 +15,7 @@ directionFunctions = {"n": 'n_to', "north": 'n_to', "s": 's_to',
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", 'outside', [Treasure("Cake", "Test", 100), Treasure("death", "test", 1)]),
+                     "North of you, the cave mount beckons", 'outside', [Treasure("Cake", "Test", 100), LightSource()], True),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", 'foyer', [Treasure("test", "test", 2)]),
@@ -25,7 +25,7 @@ into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""", 'overlook'),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", 'narrow'),
+to north. The smell of gold permeates the air.""", 'narrow', [Treasure("death", "test", 1)]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -96,7 +96,7 @@ def TextEval(text):
     elif "drop" in text:
         itemObj = ItemEval(text[5:], currentPlayer.items)
         if itemObj is not None:
-            itemObj.onDrop()
+            itemObj.onDrop(currentPlayer)
             return False
         print('That object can not be dropped')
         return True
@@ -124,14 +124,18 @@ try:
     while True:
         awaitValidDirection = True
         print("\n")
-        print(
-            f"{currentPlayer.name} is located in {currentPlayer.room.name}")
-        print(currentPlayer.room.description)
+        if currentPlayer.room.is_light or currentPlayer.hasLight:
 
-        if len(currentPlayer.room.items) > 0:
-            itemSTR = f"Looking around you see the items: {', '.join([str(x.name) for x in currentPlayer.room.items])}"
-            print(itemSTR)
+            print(
+                f"{currentPlayer.name} is located in {currentPlayer.room.name}")
 
+            print(currentPlayer.room.description)
+
+            if len(currentPlayer.room.items) > 0:
+                itemSTR = f"Looking around you see the items: {', '.join([str(x.name) for x in currentPlayer.room.items])}"
+                print(itemSTR)
+        else:
+            print("It's pitch black")
         while awaitValidDirection:
             playerInput = input("==> ")
             awaitValidDirection = TextEval(playerInput.lower())
