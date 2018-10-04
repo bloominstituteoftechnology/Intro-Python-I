@@ -7,21 +7,21 @@ from item import Item
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", ['knife', 'torch', 'helmet']),
+                     "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ['steel-sword', 'golden-key', 'barrel-of-beer']),
+passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", []),
+the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ['ancient-scroll', 'bandages', 'rope']),
+to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", ['empty-chest', 'clay-jar', 'rock']),
+chamber! Sadly, it has already been completely emptied by 
+earlier adventurers. The only exit is to the south."""),
 }
 
 # Link rooms together
@@ -35,6 +35,21 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
+knife = Item("knife", "Old rusty knife that looks like it hasn't been sharpened in a decade")
+lamp = Item("lamp", "It's always good to have a source of light")
+leather_pouch = Item("leather_pouch", "Look inside... There might be something in there!")
+wine_flask = Item("wine_flask", "Well it's empty so what's the point?")
+golden_key = Item("golden_key", "You never know when you will come across a locked door")
+rope = Item("rope", "It's about 10 feet long and made out of horse hair")
+ancient_scroll = Item("ancient_scroll", "Looks like a love letter, does it hold any value?")
+
+room['outside'].items = [knife, lamp]
+room['foyer'].items = [leather_pouch, wine_flask]
+room['overlook'].items = []
+room['narrow'].items = [golden_key, rope]
+room['treasure'].items = [ancient_scroll]
+
 #
 # Main
 #
@@ -43,15 +58,14 @@ print("\nWelcome! Are you ready to embark on an adventure?")
 print("=========================================================")
 name = input(" What is your name?   ")
 room = room['outside']
-items = []
-player = Player(name, room, items )
+player = Player(name, room)
 print()
 print(f'Welcome, {player.name}!\n Lets begin the journey!')
 print()
 print("To play this game, use the buttons n, e, w, and s for direction. \n\n n = North \n e = East \n w = West \n s = South \n q = Quit")
 print("=========================================================")
 print()
-print("There are items in each room that can be collected.") 
+print("There are items in each room that can be collected.")
 print("You can only take one item from room at a time ")
 print("To take item ---- use command 'get [item you choose]'-----")
 print("To drop an item ---- use the command 'drop [item you choose]'------- ")
@@ -78,9 +92,11 @@ while True:
     print(player.room.description)
     print()
     print("=========================================================")
-    print(f'The items in this room are:{player.room.items}')
+    print('Items in room include:')
+    for items in player.room.items:
+        print(f'{items.name}: {items.description}')
     print("=========================================================")
-   
+
     cmds = input("What's Next? -->  ").split(' ')
 
     error = "You cannot go this way!! Try again"
@@ -89,11 +105,11 @@ while True:
         if cmds[0] == "q":
             break
         elif cmds[0] == "inventory":
-            print('=========================================================')
             print(f'Inventory: {player.items}')
-            print('=========================================================')
+        elif cmds[0] == "score":
+            print(f'Score: {player.score}')
         elif cmds[0] in valid_directions:
-            player.travel(cmds[0]) 
+            player.travel(cmds[0])
         else:
             print("The command entered does not exist.")
             print()
@@ -102,12 +118,12 @@ while True:
             player.look(cmds[1])
     if cmds[0] == "get":
         if cmds[1]:
-            player.get_item(cmds[1])
+            player.getItem(cmds[1])
         else:
             print('Please specify which item to get from inventory')
     if cmds[0] == "drop":
-        if cmds[1]:
-            player.remove_item(cmds[1])
+        if cmds[1]: 
+            player.removeItem(cmds[1])
         else:
             print('Please specify which item to remove from inventory')
     

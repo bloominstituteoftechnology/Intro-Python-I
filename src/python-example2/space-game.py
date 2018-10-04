@@ -40,4 +40,4 @@ while playAgain  == "yes" or playAgain == "y":
     displayIntro()
     chosenPath = choosePath()
     checkPath(chosenPath)
-    playAgain = input("Do you want to play again? (y or yes to continue playing)")
+    playAgain = input("Do you want to play again? (y or yes to continue playing)  ")

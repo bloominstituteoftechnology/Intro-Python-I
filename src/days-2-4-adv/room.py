@@ -2,7 +2,7 @@
 # description attributes.
 
 class Room:
-    def __init__(self, name, description, items):
+    def __init__(self, name, description, items = []):
         self.name = name
         self.description = description
         self.items = items
@@ -29,7 +29,7 @@ class Room:
         chosen = ''
         for items in self.items:
             if items == item:
-                chosen = item
+                chosen = items
         self.items.remove(chosen)
     def add_item(self, item):
         self.items.append(item)
