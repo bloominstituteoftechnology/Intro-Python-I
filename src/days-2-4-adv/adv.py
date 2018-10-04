@@ -110,13 +110,19 @@ while True:
             player.increaseScore(treasure.value)
 
     currentRoom = player.currentRoom
-
+    
+    playerHasLight = False
+    roomHasLight = False
     for item in player.inventory:
         if isinstance(item, Lightsource):
-            currentRoom.is_light = True
+            playerHasLight = True
     for item in currentRoom.inventory:
         if isinstance(item, Lightsource):
-            currentRoom.is_light = True
+            roomHasLight = True
+    if playerHasLight or roomHasLight:
+        currentRoom.is_light = True
+    else:
+        currentRoom.is_light = False
 
     if suppressRoomPrint:
         suppressRoomPrint = False
