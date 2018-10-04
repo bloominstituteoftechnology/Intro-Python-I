@@ -10,25 +10,25 @@ from items import Item
 '''
 # Declare all the rooms
 room = {
-    'outside cave entrance': Room("Outside Cave Entrance",
+    'outside cave entrance': Room("outside cave entrance",
     "North of you, the cave mount beckons"),
 
-    'foyer': Room("Foyer", """Dim light filters in from the south.
+    'foyer': Room("foyer", """Dim light filters in from the south.
     Dusty passages run north and east."""),
 
-    'grand overlook': Room("Grand Overlook", """A steep cliff appears before you,
+    'grand overlook': Room("grand overlook", """A steep cliff appears before you,
     falling into the darkness. Ahead to the north,
     a light flickers in the distance,
     but there is no way across the chasm."""),
 
-    'narrow passage': Room("Narrow Passage", """The narrow passage bends here
+    'narrow passage': Room("narrow passage", """The narrow passage bends here
     from west to north. The smell of gold permeates the air."""),
 
-    'treasure chamber': Room("Treasure Chamber", """You've found the long-lost treasure chamber!
+    'treasure chamber': Room("treasure chamber", """You've found the long-lost treasure chamber!
     Sadly, it has already been completely emptied by
     earlier adventurers. The only exit is to the south... or is it?"""),
 
-    'secret room': Room("Secret Room", """You have found the secret room"""),
+    'secret room': Room("secret room", """You have found the secret room"""),
 }
 
 
@@ -48,15 +48,15 @@ room['narrow passage'].isDark = True
 
 # Items
 items = {
-    'sword': Item("Sword"),
-    'light': Item("Light"),
-    'treasure chest': Item("Treasure Chest"),
-    'key': Item("Key")
+    'sword': Item("sword"),
+    'light': Item("light"),
+    'treasure': Item("treasure"),
+    'key': Item("key")
 }
 
 
 # initial items in rooms
-room['secret room'].items.append(items['treasure chest'].name)
+room['secret room'].items.append(items['treasure'].name)
 room['treasure chamber'].items.append(items['light'].name)
 room['grand overlook'].items.append(items['sword'].name)
 room['narrow passage'].items.append(items['key'].name)
@@ -72,10 +72,10 @@ player = Player(room['outside cave entrance'])
 ********** ACTIONS **********
 *
 '''
-# Player Actions
+# Routes
 def routeMovement(direction):
     if direction == 'n':
-        if player.room.n_to.place == 'Secret Room':
+        if player.room.n_to is not None and player.room.n_to.place == 'secret room':
             shouldEnterSecretRoom()
         else:
             if player.room.n_to is not None:
@@ -134,42 +134,47 @@ def routePlayerActions(action):
     if action == 'bag':
         checkBag()
 
-    if player.room.place.lower() == 'outside cave entrance':
+    if player.room.place == 'outside cave entrance':
         if action == 'look':
             checkForItems('outside cave entrance')
         elif action == 'get':
             getItems('outside cave entrance')
         elif action == 'drop':
             dropItems('outside cave entrance')
-    elif player.room.place.lower() == 'foyer':
+
+    elif player.room.place == 'foyer':
         if action == 'look':
             checkForItems('foyer')
         elif action == 'get':
             getItems('foyer')
         elif action == 'drop':
             dropItems('foyer')
-    elif player.room.place.lower() == 'grand overlook':
+
+    elif player.room.place == 'grand overlook':
         if action == 'look':
             checkForItems('grand overlook')
         elif action == 'get':
             getItems('grand overlook')
         elif action == 'drop':
             dropItems('grand overlook')
-    elif player.room.place.lower() == 'narrow passage':
+
+    elif player.room.place == 'narrow passage':
         if action == 'look':
             checkForItems('narrow passage')
         elif action == 'get':
             getItems('narrow passage')
         elif action == 'drop':
             dropItems('narrow passage')
-    elif player.room.place.lower() == 'treasure chamber':
+
+    elif player.room.place == 'treasure chamber':
         if action == 'look':
             checkForItems('treasure chamber')
         elif action == 'get':
             getItems('treasure chamber')
         elif action == 'drop':
             dropItems('treasure chamber')
-    elif player.room.place.lower() == 'secret room':
+
+    elif player.room.place == 'secret room':
         if action == 'look':
             checkForItems('secret room')
         elif action == 'get':
@@ -178,6 +183,141 @@ def routePlayerActions(action):
             dropItems('secret room')
 
 
+def routeItemActions(action, item):
+    if player.room.place == 'outside cave entrance':
+        if item == 'sword':
+            if action == 'get':
+                getSingleItem('outside cave entrance', item)
+            elif action == 'drop':
+                dropSingleItem('outside cave entrance', item)
+        elif item == 'light':
+            if action == 'get':
+                getSingleItem('outside cave entrance', item)
+            elif action == 'drop':
+                dropSingleItem('outside cave entrance', item)
+        elif item == 'treasure':
+            if action == 'get':
+                getSingleItem('outside cave entrance', item)
+            elif action == 'drop':
+                dropSingleItem('outside cave entrance', item)
+        elif item == 'key':
+            if action == 'get':
+                getSingleItem('outside cave entrance', item)
+            elif action == 'drop':
+                dropSingleItem('outside cave entrance', item)
+
+    elif player.room.place == 'foyer':
+        if item == 'sword':
+            if action == 'get':
+                getSingleItem('foyer', item)
+            elif action == 'drop':
+                dropSingleItem('foyer', item)
+        elif item == 'light':
+            if action == 'get':
+                getSingleItem('foyer', item)
+            elif action == 'drop':
+                dropSingleItem('foyer', item)
+        elif item == 'treasure':
+            if action == 'get':
+                getSingleItem('foyer', item)
+            elif action == 'drop':
+                dropSingleItem('foyer', item)
+        elif item == 'key':
+            if action == 'get':
+                getSingleItem('foyer', item)
+            elif action == 'drop':
+                dropSingleItem('foyer', item)
+
+    elif player.room.place == 'grand overlook':
+        if item == 'sword':
+            if action == 'get':
+                getSingleItem('grand overlook', item)
+            elif action == 'drop':
+                dropSingleItem('grand overlook', item)
+        elif item == 'light':
+            if action == 'get':
+                getSingleItem('grand overlook', item)
+            elif action == 'drop':
+                dropSingleItem('grand overlook', item)
+        elif item == 'treasure':
+            if action == 'get':
+                getSingleItem('grand overlook', item)
+            elif action == 'drop':
+                dropSingleItem('grand overlook', item)
+        elif item == 'key':
+            if action == 'get':
+                getSingleItem('grand overlook', item)
+            elif action == 'drop':
+                dropSingleItem('grand overlook', item)
+
+    elif player.room.place == 'narrow passage':
+        if item == 'sword':
+            if action == 'get':
+                getSingleItem('narrow passage', item)
+            elif action == 'drop':
+                dropSingleItem('narrow passage', item)
+        elif item == 'light':
+            if action == 'get':
+                getSingleItem('narrow passage', item)
+            elif action == 'drop':
+                dropSingleItem('narrow passage', item)
+        elif item == 'treasure':
+            if action == 'get':
+                getSingleItem('narrow passage', item)
+            elif action == 'drop':
+                dropSingleItem('narrow passage', item)
+        elif item == 'key':
+            if action == 'get':
+                getSingleItem('narrow passage', item)
+            elif action == 'drop':
+                dropSingleItem('narrow passage', item)
+
+    elif player.room.place == 'treasure chamber':
+        if item == 'sword':
+            if action == 'get':
+                getSingleItem('treasure chamber', item)
+            elif action == 'drop':
+                dropSingleItem('treasure chamber', item)
+        elif item == 'light':
+            if action == 'get':
+                getSingleItem('treasure chamber', item)
+            elif action == 'drop':
+                dropSingleItem('treasure chamber', item)
+        elif item == 'treasure':
+            if action == 'get':
+                getSingleItem('treasure chamber', item)
+            elif action == 'drop':
+                dropSingleItem('treasure chamber', item)
+        elif item == 'key':
+            if action == 'get':
+                getSingleItem('treasure chamber', item)
+            elif action == 'drop':
+                dropSingleItem('treasure chamber', item)
+
+    elif player.room.place == 'secret room':
+        if item == 'sword':
+            if action == 'get':
+                getSingleItem('secret room', item)
+            elif action == 'drop':
+                dropSingleItem('secret room', item)
+        elif item == 'light':
+            if action == 'get':
+                getSingleItem('secret room', item)
+            elif action == 'drop':
+                dropSingleItem('secret room', item)
+        elif item == 'treasure':
+            if action == 'get':
+                getSingleItem('secret room', item)
+            elif action == 'drop':
+                dropSingleItem('secret room', item)
+        elif item == 'key':
+            if action == 'get':
+                getSingleItem('secret room', item)
+            elif action == 'drop':
+                dropSingleItem('secret room', item)
+
+
+# Actions
 def updateRoom(room):
     player.room = room
 
@@ -236,13 +376,15 @@ def brickWall(type):
 
         bag: check your bag
         look: check room
-        get: get item
-        drop: drop item
+        get: get all item
+        get <item>: get specific item
+        drop: drop all item
+        drop <item>: drop specific item
         """)
 
 
 def lookAhead():
-    if player.nextRoom.place == 'Secret Room':
+    if player.nextRoom.place == 'secret room':
         print(f"""
 
         ~~~~~~~ There Is Something Off About This Wall ~~~~~~~
@@ -259,7 +401,7 @@ def lookAhead():
 
 
 def checkDarkRooms(location):
-    if 'Light' in player.items:
+    if 'light' in player.items:
         if len(room[location].items) == 0:
             print(f"""
 
@@ -323,7 +465,7 @@ def checkBag():
 
 
 def gettingInDarkRooms(location):
-    if 'Light' in player.items:
+    if 'light' in player.items:
         if len(room[location].items) == 0:
             print(f"""
 
@@ -351,6 +493,10 @@ def gettingInDarkRooms(location):
         """)
 
 
+def getSingleItem(location, item):
+    print(location, item)
+
+
 def getItems(location):
     if room[location].isDark == True:
        gettingInDarkRooms(location)
@@ -374,6 +520,29 @@ def getItems(location):
             ~~~~~~~ From {room[location].place} Room ~~~~~~~
 
             """)
+
+
+def dropSingleItem(location, item):
+    if len(player.items) == 0:
+        print(f"""
+
+        ~~~~~~~ You Have No Items ~~~~~~~
+
+        """)
+    elif len(player.items) > 0:
+        room[location].items.append(item)
+        print(player.items)
+        print(item)
+        player.items.remove(item)
+        print(f"""
+
+        ~~~~~~~ You Have Dropped ~~~~~~~""")
+        print(f"""
+            {item}""")
+        print(f"""
+        ~~~~~~~ To {room[location].place} Room ~~~~~~~
+
+        """)
 
 
 def dropItems(location):

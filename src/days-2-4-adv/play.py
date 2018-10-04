@@ -24,3 +24,15 @@ while play:
             PlayerActions.routePlayerActions(cmd[0])
         else:
             PlayerActions.brickWall('e')
+
+    # item Actions
+    elif len(cmd) > 1:
+        if cmd[0] == 'get' or cmd[0] == 'drop':
+            if cmd[1] == 'sword' or cmd[1] == 'light' or cmd[1] == 'treasure' or cmd[1] == 'key':
+                PlayerActions.routeItemActions(cmd[0], cmd[1])
+            else:
+                PlayerActions.brickWall('e')
+        else:
+            PlayerActions.brickWall('e')
+    else:
+        PlayerActions.brickWall('e')
