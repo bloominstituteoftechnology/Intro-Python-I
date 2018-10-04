@@ -62,6 +62,7 @@ ring = Treasure("Ring", "Seems to hold mysterious powers", 1000)
 
 #LightSource
 lamp = LightSource('lamp', 'a source of light')
+player_items = ''.join(player.items)
 
 player.add_item(rock)
 room['outside'].add_item(pebble)
@@ -122,23 +123,24 @@ while True:
                 print('\nThe movement is not allowed.')
     elif len(cmd) > 1 and len(cmd) < 3:
         if cmd[0] == 'get' or cmd[0] == 'take':
-            item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.room.items))[0]
-            if item in player.room.items and (player.room.is_light == True or any(isinstance(item, LightSource) for item in player.items) or any(isinstance(item, LightSource) for item in player.room.items)):
-                player.add_item(item)
-                player.room.remove_item(item)
-                item.on_take(player)
-            else:
-                print(f'\nGood luck finding that in the dark!')
-        # else:
-        #     print('\nThe item is not available for pick up.')
+            for item in player_items:
+                if item in player.room.items:
+                    if player.room.is_light == True or any(isinstance(item, LightSource) for item in player.items) or any(isinstance(item, LightSource) for item in player.room.items):
+                        player.add_item(item)
+                        player.room.remove_item(item)
+                        item.on_take(player)
+                    else:
+                        print(f'\nGood luck finding that in the dark!')
+                else:
+                    print('\nThe item is not available for pick up.')
         if cmd[0] == 'drop' or cmd[0] == 'remove':
-            item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.items))[0]
-            if item in player.items:
-                player.items.remove(item)
-                player.room.add_item(item)
-                item.on_drop()
-            else:
-                print('\nYou do not have that item in your inventory.')
+            for item in player_items:
+                if item in player.items:
+                    player.items.remove(item)
+                    player.room.add_item(item)
+                    item.on_drop()
+                else:
+                    print('\nYou do not have that item in your inventory.')
     if player.score >= 9000:
         print(f'Congratulations! You won!')
         break
