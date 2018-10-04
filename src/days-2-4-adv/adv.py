@@ -87,24 +87,16 @@ def TextEval(text):
         print(currentPlayer.score)
         return True
     elif "grab" in text or "take" in text:
-        splitCommand = text.split()
-        itemObj = ItemEval(splitCommand[1], currentPlayer.room.items)
+        itemObj = ItemEval(text[5:], currentPlayer.room.items)
         if itemObj is not None:
-            currentPlayer.items.append(itemObj)
-            currentPlayer.room.items.remove(itemObj)
             itemObj.onTake(currentPlayer)
-            itemObj.pickedup = True
-            print(f'You have grabbed {itemObj.name}')
             return False
         print('That object can not be grabbed')
         return True
     elif "drop" in text:
-        splitCommand = text.split()
-        itemObj = ItemEval(splitCommand[1], currentPlayer.items)
+        itemObj = ItemEval(text[5:], currentPlayer.items)
         if itemObj is not None:
-            currentPlayer.items.remove(itemObj)
-            currentPlayer.room.items.append(itemObj)
-            print(f'You have dropped {itemObj.name}')
+            itemObj.onDrop()
             return False
         print('That object can not be dropped')
         return True
@@ -125,7 +117,8 @@ def TextEval(text):
         return True
 
 
-print(f"Welcome {currentPlayer.name}, pick a direction or use q to quit")
+print(
+    f"Welcome {currentPlayer.name}, pick a direction,use h for help, or use q to quit")
 
 try:
     while True:
@@ -136,13 +129,11 @@ try:
         print(currentPlayer.room.description)
 
         if len(currentPlayer.room.items) > 0:
-            itemSTR = "Looking around you see the items:"
-            for item in currentPlayer.room.items:
-                itemSTR = itemSTR+" " + item.name
+            itemSTR = f"Looking around you see the items: {', '.join([str(x.name) for x in currentPlayer.room.items])}"
             print(itemSTR)
 
         while awaitValidDirection:
-            playerInput = input("Please input a command:")
+            playerInput = input("==> ")
             awaitValidDirection = TextEval(playerInput.lower())
 except AdventureDone:
     print('See you next adventure')
