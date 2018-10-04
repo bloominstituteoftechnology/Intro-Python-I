@@ -9,7 +9,9 @@ from item import Item
 item = {
     'sword': Item("sword", "a steely blade of death"),
 
-    'cat': Item("cat", "a clever little creature")
+    'cat': Item("cat", "a clever little creature"),
+
+    'hat': Item("hat", "a work of fine haberdashery"),
 }
 
 
