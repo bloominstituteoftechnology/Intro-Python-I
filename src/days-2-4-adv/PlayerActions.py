@@ -3,6 +3,11 @@ from player import Player
 from items import Item
 
 
+'''
+*
+********** INIT **********
+*
+'''
 # Declare all the rooms
 room = {
     'outside cave entrance': Room("Outside Cave Entrance",
@@ -61,7 +66,141 @@ room['narrow passage'].items.append(items['key'].name)
 player = Player(room['outside cave entrance'])
 
 
+
+'''
+*
+********** ACTIONS **********
+*
+'''
 # Player Actions
+def routeMovement(direction):
+    if direction == 'n':
+        if player.room.n_to.place == 'Secret Room':
+            shouldEnterSecretRoom()
+        else:
+            if player.room.n_to is not None:
+                updateRoom(player.room.n_to)
+                currentLocation()
+            else:
+                brickWall('m')
+    elif direction == 's':
+        if player.room.s_to is not None:
+            updateRoom(player.room.s_to)
+            currentLocation()
+        else:
+            brickWall('m')
+    elif direction == 'e':
+        if player.room.e_to is not None:
+            updateRoom(player.room.e_to)
+            currentLocation()
+        else:
+            brickWall('m')
+    elif direction == 'w':
+        if player.room.w_to is not None:
+            updateRoom(player.room.w_to)
+            currentLocation()
+        else:
+            brickWall('m')
+
+
+def routeLookAhead(direction):
+    if direction == 'ln':
+        if player.room.n_to is not None:
+            lookNextRoom(player.room.n_to)
+            lookAhead()
+        else:
+            brickWall('l')
+    if direction == 'ls':
+        if player.room.s_to is not None:
+            lookNextRoom(player.room.s_to)
+            lookAhead()
+        else:
+            brickWall('l')
+    if direction == 'le':
+        if player.room.e_to is not None:
+            lookNextRoom(player.room.e_to)
+            lookAhead()
+        else:
+            brickWall('l')
+    if direction == 'lw':
+        if player.room.w_to is not None:
+            lookNextRoom(player.room.w_to)
+            lookAhead()
+        else:
+            brickWall('l')
+
+
+def routePlayerActions(action):
+    if action == 'bag':
+        checkBag()
+
+    if player.room.place.lower() == 'outside cave entrance':
+        if action == 'look':
+            checkForItems('outside cave entrance')
+        elif action == 'get':
+            getItems('outside cave entrance')
+        elif action == 'drop':
+            dropItems('outside cave entrance')
+    elif player.room.place.lower() == 'foyer':
+        if action == 'look':
+            checkForItems('foyer')
+        elif action == 'get':
+            getItems('foyer')
+        elif action == 'drop':
+            dropItems('foyer')
+    elif player.room.place.lower() == 'grand overlook':
+        if action == 'look':
+            checkForItems('grand overlook')
+        elif action == 'get':
+            getItems('grand overlook')
+        elif action == 'drop':
+            dropItems('grand overlook')
+    elif player.room.place.lower() == 'narrow passage':
+        if action == 'look':
+            checkForItems('narrow passage')
+        elif action == 'get':
+            getItems('narrow passage')
+        elif action == 'drop':
+            dropItems('narrow passage')
+    elif player.room.place.lower() == 'treasure chamber':
+        if action == 'look':
+            checkForItems('treasure chamber')
+        elif action == 'get':
+            getItems('treasure chamber')
+        elif action == 'drop':
+            dropItems('treasure chamber')
+    elif player.room.place.lower() == 'secret room':
+        if action == 'look':
+            checkForItems('secret room')
+        elif action == 'get':
+            getItems('secret room')
+        elif action == 'drop':
+            dropItems('secret room')
+
+
+def updateRoom(room):
+    player.room = room
+
+
+def lookNextRoom(room):
+    player.nextRoom = room
+
+
+def shouldEnterSecretRoom():
+    if 'Key' in player.items:
+        updateRoom(player.room.n_to)
+        currentLocation()
+    else:
+        print(f"""
+        ~~~~~~~ You Hit A Wall ~~~~~~~
+        No Door Ahead
+        """)
+        print(f"""
+        ~~~~~~~ Hint ~~~~~~~
+        There Is Something Off About This Wall, There seems to be small key hole here
+        """)
+
+
 def currentLocation():
     print(f"""
     ~~~~~~~ You Have Entered ~~~~~~~
@@ -103,28 +242,44 @@ def brickWall(type):
 
 
 def lookAhead():
-    print(f"""
-    ~~~~~~~ What Lies Ahead ~~~~~~~
-    {player.nextRoom.place}
-    """)
+    if player.nextRoom.place == 'Secret Room':
+        print(f"""
+
+        ~~~~~~~ There Is Something Off About This Wall ~~~~~~~
+        There seems to be small key hole here
+
+        """)
+    else:
+        print(f"""
+
+        ~~~~~~~ What Lies Ahead ~~~~~~~
+        {player.nextRoom.place}
+
+        """)
 
 
 def checkDarkRooms(location):
     if 'Light' in player.items:
         if len(room[location].items) == 0:
             print(f"""
+
             ~~~~~~~ {room[location].place} Has No Items ~~~~~~~
+
             """)
         elif len(room[location].items) > 0:
             print(f"""
+
             ~~~~~~~ Items in {room[location].place} ~~~~~~~""")
             for item in room[location].items:
                 print(f"""
-                    {item}
+                  {item}
+
                 """)
     else:
         print(f"""
-        ~~~~~~~ Too Dark To See ~~~~~~~
+
+        ~~~~~~~ Too Dark To Look Around ~~~~~~~
+
         """)
 
 
@@ -134,88 +289,110 @@ def checkForItems(location):
     else:
         if len(room[location].items) == 0:
             print(f"""
+
             ~~~~~~~ {room[location].place} Has No Items ~~~~~~~ 
+
             """)
         elif len(room[location].items) > 0:
             print(f"""
+
             ~~~~~~~ Items in {room[location].place} ~~~~~~~""")
             for item in room[location].items:
                 print(f"""
-                    {item}
+                  {item}
+
                 """)
 
 
 def checkBag():
     if len(player.items) == 0:
         print(f"""
+
         ~~~~~~~ You Have No Items ~~~~~~~
+
         """)
     elif len(player.items) > 0:
         print(f"""
+        
         ~~~~~~~ Items in Your Bag ~~~~~~~""")
         for item in player.items:
             print(f"""
               {item}
+
             """)
 
 
-def getInDarkRooms(location):
+def gettingInDarkRooms(location):
     if 'Light' in player.items:
         if len(room[location].items) == 0:
             print(f"""
+
             ~~~~~~~ {room[location].place} Has No Items ~~~~~~~
+
             """)
         elif len(room[location].items) > 0:
             player.items.extend(room[location].items)
             room[location].items.clear()
             print(f"""
+
             ~~~~~~~ You Have Aquired ~~~~~~~""")
             for item in player.items:
                 print(f"""
-                {item}""")
+                  {item}""")
             print(f"""
             ~~~~~~~ From {room[location].place} Room ~~~~~~~
+
             """)
     else:
         print(f"""
-        ~~~~~~~ Too Dark To See ~~~~~~~
+
+        ~~~~~~~ Too Dark To Look Around, Can't Find Items ~~~~~~~
+
         """)
 
 
 def getItems(location):
     if room[location].isDark == True:
-       getInDarkRooms(location)
+       gettingInDarkRooms(location)
     else:
         if len(room[location].items) == 0:
             print(f"""
+
             ~~~~~~~ {room[location].place} Has No Items ~~~~~~~
+
             """)
         elif len(room[location].items) > 0:
             player.items.extend(room[location].items)
             room[location].items.clear()
             print(f"""
+
             ~~~~~~~ You Have Aquired ~~~~~~~""")
             for item in player.items:
                 print(f"""
-                {item}""")
+                  {item}""")
             print(f"""
             ~~~~~~~ From {room[location].place} Room ~~~~~~~
+
             """)
 
 
 def dropItems(location):
     if len(player.items) == 0:
         print(f"""
-        ~~~~~~~ You Have No Items ~~~~~~~ 
+
+        ~~~~~~~ You Have No Items ~~~~~~~
+
         """)
     elif len(player.items) > 0:
         room[location].items.extend(player.items)
         player.items.clear()
         print(f"""
+
         ~~~~~~~ You Have Dropped ~~~~~~~""")
         for item in room[location].items:
             print(f"""
-            {item}""")
+              {item}""")
         print(f"""
         ~~~~~~~ To {room[location].place} Room ~~~~~~~
+
         """)

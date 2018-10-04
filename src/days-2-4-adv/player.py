@@ -6,9 +6,3 @@ class Player:
     self.nextRoom = None
     self.room = room
     self.items = []
-  
-  def updateRoom(self, room):
-    self.room = room
-
-  def lookNextRoom(self, room):
-    self.nextRoom = room
