@@ -15,7 +15,7 @@ and what doesn't as you go through the process of exploring Python.
 * Try to relate things you already know in another language (e.g. what an
   _array_ is) to the corresponding things in Python (e.g. a _list_) and how to
   use them.
-
+* For PR
 * Write a bunch of "toy programs" that demonstrate different key features of the
   language
 
