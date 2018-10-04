@@ -5,6 +5,7 @@ class Room:
 
   def __init__(self, place, description):
     self.items = []
+    self.isDark = False
     self.place = place
     self.description = description
     self.n_to = None
