@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 import os
 
 
@@ -22,6 +23,19 @@ to north. The smell of gold permeates the air."""),
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
+
+
+items = {
+    'backpack': Item('an empty backpack', " that you set down"),
+    'Lumière': Item('a Lumière', " lighting the room"),
+    'parachute': Item('a parachute', " but you don't use it"),
+    'dust': Item('some dust', " but what can you do.."),
+    'chest': Item('a treasure chest', " that's also empty"),
+
+}
+
+
+
 
 
 # Link rooms together
@@ -48,9 +62,10 @@ choice_dictionary = {"n": "North", "s": "South", "e": "East", "w": "West", "u": 
 # Make a new player object that is currently in the 'outside' room.
 
 playername = input("Enter Your Name: ")
+currentItem = items["backpack"].name
 
 
-p = Player(playername, room["outside"])
+p = Player(playername, room["outside"], currentItem)
 
 # clearTerminal = os.system("clear")
 
@@ -85,7 +100,8 @@ while True:
     CBLUE = '\033[0;34m'
     currentPlayer = p.name
     currentLocation = p.location
-    print(f"\nYou are currently in the great " + p.location.name + "\n\n" + p.location.description)
+    currentItem = p.item
+    print(f"" + CBLUE + "\nYou are currently in the great " + p.location.name + "\n\n" + p.location.description + "\nAnd you have " + p.item + CBLACK)
     
 
     if hasattr(p.location, "S_to"):
@@ -159,13 +175,14 @@ while True:
     cmd = input("-> ")
     if cmd == "q":
         os.system("clear")
+        print(CBLACK)
         break
     elif cmd.upper() == 'N':
         os.system("clear")
         print(currentPlayer + ",")
 
-        # if p.location == room['treasure']:
-        #     break
+        if p.location == room['treasure']:
+            break
 
         if hasattr(p.location, 'n_to'):
             p.location = currentLocation.n_to
@@ -221,7 +238,7 @@ while True:
             p.location = currentLocation.s_to
         else:
             os.system("clear")
-            print("\n    You Can't Go Any Farther Sorth, Go Another Direction \n\n")
+            print("\n    You Can't Go Any Farther South, Go Another Direction \n\n")
     elif cmd.upper() == 'W':
         print(currentPlayer + ",")
         if hasattr(p.location, 'w_to'):
