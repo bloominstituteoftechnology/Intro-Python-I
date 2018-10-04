@@ -60,30 +60,30 @@ while True:
     if len(commands) == 1:
         if commands[0] == "q":
             break
-    elif commands[0] == "n":
-        if player.currentRoom.n_to is not None:
-            player.currentRoom = player.currentRoom.n_to
-        else:
-            print("You cannot move in that direction")
-            suppressRoomPrint = True
-    elif commands[0] == "s":
-        if player.currentRoom.s_to is not None:
-            player.currentRoom = player.currentRoom.s_to
-        else:
-            print("You cannot move in that direction")
-            suppressRoomPrint = True
-    elif commands[0] == "e":
-        if player.currentRoom.e_to is not None:
-            player.currentRoom = player.currentRoom.e_to
-        else:
-            print("You cannot move in that direction")
-            suppressRoomPrint = True
-    elif commands[0] == "w":
-        if player.currentRoom.w_to is not None:
-            player.currentRoom = player.currentRoom.w_to
-        else:
-            print("You cannot move in that direction")
-            suppressRoomPrint = True
+        elif commands[0] == "n":
+            if player.currentRoom.n_to is not None:
+                player.currentRoom = player.currentRoom.n_to
+            else:
+                print("You cannot move in that direction")
+                suppressRoomPrint = True
+        elif commands[0] == "s":
+            if player.currentRoom.s_to is not None:
+                player.currentRoom = player.currentRoom.s_to
+            else:
+                print("You cannot move in that direction")
+                suppressRoomPrint = True
+        elif commands[0] == "e":
+            if player.currentRoom.e_to is not None:
+                player.currentRoom = player.currentRoom.e_to
+            else:
+                print("You cannot move in that direction")
+                suppressRoomPrint = True
+        elif commands[0] == "w":
+            if player.currentRoom.w_to is not None:
+                player.currentRoom = player.currentRoom.w_to
+            else:
+                print("You cannot move in that direction")
+                suppressRoomPrint = True
     else:
         if commands[0] == "look":
             if commands[1] == "n" or commands[1] == "s" or commands[1] == "e" or commands[1] == "w":
