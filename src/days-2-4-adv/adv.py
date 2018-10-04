@@ -87,6 +87,9 @@ def TextEval(text):
         print(currentPlayer.score)
         return True
     elif "grab" in text or "take" in text:
+        if not currentPlayer.room.is_light or not currentPlayer.hasLight:
+            print("Good luck finding that in the dark!")
+            return True
         itemObj = ItemEval(text[5:], currentPlayer.room.items)
         if itemObj is not None:
             itemObj.onTake(currentPlayer)
