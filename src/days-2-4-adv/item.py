@@ -13,9 +13,8 @@ class Treasure(Item):
     def onTake(self):
         self.picked_up = True
 
-# class LightSource(Item):
-#     def __init__(self, name, description, calories):
-#         Item.__init__(self, name, description)
-#         self.calories = calories
-#     def eat(self):
-#         return self.calories
+class LightSource(Item):
+    def __init__(self, name, description):
+        Item.__init__(self, name, description)
+    def warning(self):
+        print("\n\n~~ It's not wise to drop your source of light! ~~")
