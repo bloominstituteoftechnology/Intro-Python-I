@@ -14,29 +14,17 @@ class Room():
     def __str__(self):
         return f"\n\n{self.name}\n\n   {self.description}\n"
 
-    # deal with items in rooms
-    def addItem(self, items):
-        self.items.append(item)
-
-    def removeItem(self, item):
-        if len(self.items) > 0:
-            for i in self.items:
-                if i.name == item:
-                    self.items.remove(i)
+    def getRoomInDirection(self, direction):
+        if direction == "n":
+            return self.n_to
+        elif direction == "s":
+            return self.s_to
+        elif direction == "e":
+            return self.e_to
+        elif direction == "w":
+            return self.w_to
         else:
-            print("That item is not available")
-
-    # def direction(self, direction):
-    #     if direction == "n":
-    #         return self.n_to
-    #     elif direction == "s":
-    #         return self.s_to
-    #     elif direction == "e":
-    #         return self.e_to
-    #     elif direction == "w":
-    #         return self.w_to
-    #     else:
-    #         return "None"
+            return "None"
 
     # def connectRooms(self, newRoom, direction):
     #     if direction == "n":
@@ -53,3 +41,22 @@ class Room():
     #         newRoom.w_to = self
     #     else:
     #         print("Sorry, you can't move in that direction, please enter n, s, e, w")
+
+
+#------------item related methods--------------
+    def findItemByName(self, name):
+        for item in self.items:
+            if item.name == name:
+                return item
+        return None
+
+    def addItem(self, items):
+        self.items.append(item)
+
+    def removeItem(self, item):
+        if len(self.items) > 0:
+            for item in self.items:
+                if item.name == item:
+                    self.items.remove(item)
+        else:
+            print("That item is not available")

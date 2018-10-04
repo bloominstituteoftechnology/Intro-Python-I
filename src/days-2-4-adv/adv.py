@@ -69,56 +69,37 @@ print(room['narrow'])
 print(room['treasure'])
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(input("What is your name? "), room["outside"])
+player = Player(input("\nWhat is your name? "), room["outside"])
 
-print(player.currentRoom)
+print(f"Welcome, {player.name}\n")
 
-# Write a loop that:
 
-# * Prints the current room name
+valid_directions = {"n": "north", "s":"south", "e": "east", "w":"west"}
 
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
-
-directions = {"n": "north", "s":"south", "e": "east", "w":"west"}
 
 
 playing = True
 
 while(playing):
+
     print(player.currentRoom.name + "\n" + player.currentRoom.description)
 
-    cmd = input("-> ")
-    if cmd == "q":
-        break
+    cmds = input("-> ").split(" ")
 
-    elif cmd == "n":
-        if player.currentRoom.n_to is not None:
-            player.currentRoom = player.currentRoom.n_to
-        else:  
-            print("Your chosen direction is not an option.")
-    elif cmd == "s":
-        if player.currentRoom.s_to is not None:
-            player.currentRoom = player.currentRoom.s_to
-        else:  
-            print("Your chosen direction is not an option.")
-    elif cmd == "e":
-        if player.currentRoom.e_to is not None:
-            player.currentRoom = player.currentRoom.e_to
-        else:  
-            print("Your chosen direction is not an option.")
-    elif cmd == "w":
-        if player.currentRoom.w_to is not None:
-            player.currentRoom = player.currentRoom.w_to
-        else:  
-            print("Your chosen direction is not an option.")
-    else:  
-        print("That command is not reconized by this program")
-
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            break
+        elif cmds[0] in valid_directions:
+            player.travel(valid_directions[cmds[0]])
+        elif cmds[0] == "look":
+            player.look()
+        else:
+            print("Command is not recognized.")
+    else:
+        if cmds[0] == "look":
+            if cmds[1] in valid_directions:
+                player.look(valid_directions[cmds[1]])
+        else:
+            print("Command is not recognized")
 
 

@@ -6,6 +6,27 @@ class Player():
         self.currentRoom = currentRoom
         self.items = []
 
+    def __repr__(self):
+        return f"Current Room: {self.currentRoom}"
+
+    def travel(self, direction):
+        nextRoom = self.currentRoom.getRoomInDirection(direction)
+        if nextRoom is not None:
+            self.currentRoom = nextRoom
+            print(nextRoom)
+        else:
+            print("You cannot move in that direction.")
+    def look(self, direction=None):
+        if direction is None:
+            print(self.currentRoom)
+        else:
+            nextRoom - self.currentRoom.getRoomInDirection(direction)
+            if nextRoom is not None:
+                print(nextRoom)
+            else: 
+                print("There is nothing there.")
+
+
     # deal with items by player
     def addItem(self, item):
         self.items.append(item)
