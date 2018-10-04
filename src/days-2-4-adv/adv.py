@@ -15,7 +15,11 @@ into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""", False),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", False),
+to north. The smell of gold permeates the air. The wall to the east looks weird.""", False),
+
+    'wall':   Room("Wall", """This wall looks out of place... Maybe if I try to push it...""", False),
+
+    'hidden':   Room("Hidden Room", """A hidden room. Some sacrificial markings on the wall and ground. I better turn around.""", True),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -31,7 +35,11 @@ room['foyer'].e_to = room['narrow']
 room['overlook'].s_to = room['foyer']
 room['overlook'].n_to = room['treasure']
 room['narrow'].w_to = room['foyer']
+room['narrow'].e_to = room['wall']
 room['narrow'].n_to = room['treasure']
+room['wall'].n_to = room['hidden']
+room['wall'].w_to = room['narrow']
+room['hidden'].s_to = room['wall']
 room['treasure'].s_to = room['narrow']
 
 #
@@ -45,6 +53,7 @@ player = Player(room['outside'])
 pebble = Item('pebble')
 silver = Item('silver', '5 silver')
 rock = Item('rock')
+bones = Item('bones', 'pile of bones')
 
 #Treasures
 gold = Treasure('gold', 'pile of gold', 100)
@@ -61,6 +70,7 @@ room['foyer'].add_item(lamp)
 room['narrow'].add_item(silver)
 room['overlook'].add_item(gold)
 room['treasure'].add_item(excalibur)
+room['hidden'].add_item(bones)
 
 # Write a loop that:
 #
@@ -75,7 +85,10 @@ room['treasure'].add_item(excalibur)
 
 while True:
     if player.room.is_light == True or any(isinstance(item, LightSource) for item in player.items) or any(isinstance(item, LightSource) for item in player.room.items):
-        print(f'\nItems available in this room: {player.room.items}')
+        if len(player.room.items) > 0:
+            print(f'\nItems available in this room: {player.room.items}')
+        else:
+            print(f'\nThere\'s nothing of interest in this room.')
     else:
         print(f'\nIt\'s pitch black!')
     print(f'\nYou are currently at {player.room}.')
@@ -116,8 +129,8 @@ while True:
                 item.on_take(player)
             else:
                 print(f'\nGood luck finding that in the dark!')
-        else:
-            print('\nThe item is not available for pick up.')
+        # else:
+        #     print('\nThe item is not available for pick up.')
         if cmd[0] == 'drop' or cmd[0] == 'remove':
             item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.items))[0]
             if item in player.items:
