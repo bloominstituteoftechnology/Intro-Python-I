@@ -1,9 +1,17 @@
 from room import Room
 from player import Player
 from items import Item
+
 # Declare all the rooms
 
 room = {
+    'darkness': Room("Darkness surrounds you", 
+                     """Pick up the lantern.Turn your lantern 
+on by typing 'on' in the terminal, you'll 
+only have ten seconds before the light goes out again, but when 
+that happens just type 'on' """, 
+[Item("Lantern", "Use to light up room", 150)]), 
+
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons", 
                      [Item("map", "map of the Location", 100)]),
@@ -28,7 +36,7 @@ earlier adventurers. The only exit is to the south.""",
 }
 
 # Link rooms together
-
+room['darkness'].on = room['outside']
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -42,7 +50,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
+player = Player(room['darkness'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -95,11 +103,19 @@ while True:
                 print("No item to remove")
             else:
                 player.removeItem(itemToRemove)
+
     else:
 
         if direction[0] == 'q':
             print("\nYour Journey has ended")
             break
+
+        elif direction[0] == 'on':
+            if not hasattr(player.currentRoom.on, 'name'):
+                print('\n Dead End')
+            else:
+                player.currentRoom = player.currentRoom.on 
+                print("the lantern revealed you've been outside the cave")
 
         elif direction[0] == 'n':
             if not hasattr(player.currentRoom.n_to, 'name'):
