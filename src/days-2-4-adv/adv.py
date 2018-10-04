@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 # Declare all the rooms
 
 room = {
@@ -39,6 +39,10 @@ room['treasure'].s_to = room['narrow']
 room['outside'].addItem(Item('meat', 'a pile of rancid meat. The smell is unbearable.'))
 room['foyer'].addItem(Item('gauntlets', 'a pair of gauntlets, well worn but still usable'))
 room['overlook'].addItem(Item('torch', 'a torch to light the way'))
+
+# Place some treasure
+
+room['narrow'].addItem(Treasure('silver', 'a piece of silver', 500))
 
 #
 # Main
@@ -81,13 +85,20 @@ while True:
             if itemToAdd == None:
                 print('No item like that here')
             else:
-                plyr.addItem(itemToAdd)
+                if hasattr(itemToAdd, 'value') and itemToAdd.value > 0:
+                    plyr.score += itemToAdd.value
+                    plyr.addItem(itemToAdd)
+                    plyr.getScore()
+                else:
+                    plyr.addItem(itemToAdd)
+
         elif cmd[0] == 'drop':
             itemToDrop = plyr.selectItem(cmd[1])
             if itemToDrop is None:
                 print('You dont have anything like that')
             else:
                 plyr.removeItem(itemToDrop)
+                itemToDrop.on_drop()
         else:
             print('Youre intentions are unclear...')
 
