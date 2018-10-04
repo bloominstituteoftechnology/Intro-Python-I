@@ -1,6 +1,3 @@
-from room import Room
-from player import Player
-
 class Item:
     def __init__(self, name, description):
         self.name = name
@@ -22,9 +19,6 @@ class Treasure(Item):
         if self.beenScored is False:
             player.score += self.value
             self.beenScored = True
-    def dropItem(self, player):
-        player.items.remove(self)
-        player.currentRoom.items.append(self)
 
 class LightSource(Item):
     def __init__(self, name, description,):
@@ -35,4 +29,5 @@ class LightSource(Item):
     def dropItem(self, player):
         player.items.remove(self)
         player.currentRoom.items.append(self)
+        print("It's not wise to drop your source of light")
 

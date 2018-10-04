@@ -8,24 +8,26 @@ room = {
     'outside':  
         Room("Outside Cave Entrance","North of you, the cave mount beckons",
         [Item("STICK","It's a stick and it's awesome!"),
-        Treasure("COINS", "It's money!", 10, False),
         LightSource("LAMP", "A kerosene lamp that lights up the immediate area")], 
         True),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty 
-    passages run north and east.""", [], False),
+    passages run north and east.""", 
+    [Treasure("COINS", "It's money!", 10, False),], False),
 
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
     into the darkness. Ahead to the north, a light flickers in
-    the distance, but there is no way across the chasm.""", [], True),
+    the distance, but there is no way across the chasm.""", 
+    [Treasure("Locket", "A precious keepsake obviously dropped by a previous adventurer.", 200, False)], True),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
     to north. The smell of gold permeates the air.""", [], False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
     chamber! Sadly, it has already been completely emptied by
-    earlier adventurers. The only exit is to the south.""", [], False),
+    earlier adventurers. The only exit is to the south.""", 
+    [Treasure("Golden Chest", "A fairly large chest made of gold.", 1337, False)], False),
 }
 
 
@@ -71,7 +73,7 @@ while True:
             player.travel(validDirections[cmds[0]])
         elif cmds[0] == "LOOK":
             player.look()
-        elif cmds[0] == "INV":
+        elif cmds[0] == "INV" or cmds[0] == "I":
             print("-----------------------------------------------------")
             print(f"This is what you have in your inventory: ")
             if len(player.items) > 0:
