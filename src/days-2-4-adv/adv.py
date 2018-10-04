@@ -50,8 +50,9 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+rock = Item('rock', 'I am a rock')
 suppressRoomPrint = False
-player = Player(input("What is your name? "), room['outside'])
+player = Player(input("What is your name? "), room['outside'], [rock])
 while True:
     if suppressRoomPrint:
         suppressRoomPrint = False
@@ -64,31 +65,33 @@ while True:
         elif commands[0] == "n":
             if player.currentRoom.n_to is not None:
                 player.currentRoom = player.currentRoom.n_to
-                print (player.currentRoom.items)
+                
             else:
                 print("You cannot move in that direction")
                 suppressRoomPrint = True
         elif commands[0] == "s":
             if player.currentRoom.s_to is not None:
                 player.currentRoom = player.currentRoom.s_to
-                print (player.currentRoom.items)
+                
             else:
                 print("You cannot move in that direction")
                 suppressRoomPrint = True
         elif commands[0] == "e":
             if player.currentRoom.e_to is not None:
                 player.currentRoom = player.currentRoom.e_to
-                print (player.currentRoom.items)
+                
             else:
                 print("You cannot move in that direction")
                 suppressRoomPrint = True
         elif commands[0] == "w":
             if player.currentRoom.w_to is not None:
                 player.currentRoom = player.currentRoom.w_to
-                print (player.currentRoom.items)
+                
             else:
                 print("You cannot move in that direction")
                 suppressRoomPrint = True
+        elif commands[0] == "i" or commands[0] == "inventory":
+            player.printInventory()
     else:
         if commands[0] == "look":
             if commands[1] == "n" or commands[1] == "s" or commands[1] == "e" or commands[1] == "w":

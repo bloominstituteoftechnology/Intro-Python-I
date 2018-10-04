@@ -2,9 +2,10 @@
 # currently.
 
 class Player:
-    def __init__(self, name, currentRoom):
+    def __init__(self, name, currentRoom, startingItems=[]):
         self.name = name
         self.currentRoom = currentRoom
+        self.items = startingItems
 
     def look(self, direction):
         nextRoom = None
@@ -24,3 +25,8 @@ class Player:
             print(nextRoom)
         else:
             print("There is nothing there.")
+
+    def printInventory(self):
+        print("You are carrying:\n")
+        for item in self.items:
+            print(f" {item.name}\n")
