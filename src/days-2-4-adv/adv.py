@@ -1,35 +1,41 @@
 from room import Room
 from player import Player
 from item import Item
+from item import Treasure
 import textwrap
 
 # Declare all the items
+item={}
+item['sword']=Item('sword','It is magical sword with interesting powers')
+item['knife']=Item('knife','It is an ancient knife with speed and power')
+item['arrow']=Item('arrow','Bow and arrow are a deadly combination')
+item['coins']=Item('coins','Coins can buy you other items')
+#Treasure creation, it is a sub-class of item
 
-sword=Item('sword','It is magical sword with interesting powers')
-knife=Item('knife','It is an ancient knife with speed and power')
-arrow=Item('arrow','Bow and arrow are a deadly combination')
-coins=Item('coins','Coins can buy you other items')
+item['gold']=Treasure('gold', 'gold gives you the power to buy more items', 500)
+item['silver']=Treasure('silver', 'silver is the choice of a warrior', 300)
+item['ruby']=Treasure('ruby', 'ruby potion can put you to sleep', 150)
 
 
 
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons",[sword, coins]),
+                     "North of you, the cave mount beckons",[item['sword'],item['coins']]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [knife,coins]),
+passages run north and east.""", [item['knife'],item['coins']]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""",[arrow, coins]),
+the distance, but there is no way across the chasm.""",[item['arrow'], item['coins']]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""",[knife, coins]),
+to north. The smell of gold permeates the air.""",[item['knife'], item['coins']]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""",[sword, coins]),
+earlier adventurers. The only exit is to the south.""",[item['sword'], item['coins']]),
 }
 
 
@@ -79,7 +85,8 @@ while True:
                 result=p.currentRoom.getItem(cmds[1])
                 #print(f'{result}')
                 if result!=None:
-                        p.addItem(result)
+                        p.addItem(item[result])
+                        item[result].on_take()
                         room[p.currentRoom.name].removeItem(result)
                         result1=p.currentRoom.getItem(result)
                         if result1 == None:
