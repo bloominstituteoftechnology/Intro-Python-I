@@ -2,7 +2,7 @@ import os
 
 from room import Room
 from player import Player
-from item import Item, Treasure
+from item import Item, Treasure, LightSource
 
 # Declare all the items
 
@@ -24,6 +24,10 @@ shoes = Item("shoes", "gotta wear something on them feets")
 ruby = Treasure("ruby", "a beautiful gem", 100)
 sapphire = Treasure("sapphire", "a beautiful gem", 200)
 emerald = Treasure("emerald", "a beautiful gem", 300)
+
+# Declare all the light sources
+
+lamp = LightSource("lamp", "a source of light in the darkness")
 
 
 # Declare all the rooms
@@ -67,6 +71,7 @@ room['treasure'].s_to = room['narrow']
 player_starting_items = [hat]
 
 room['outside'].add_item(sword)
+room['outside'].add_item(lamp)
 room['foyer'].add_item(cat)
 room['foyer'].add_item(ruby)
 room['overlook'].add_item(shoes)
@@ -122,14 +127,20 @@ while True:
             #     f'Hello, {p.name} – you are currently in the {p.current_room}')
         elif cmds[0] == "location":
             # os.system("clear")
-            p.print_current_room()        
+            p.print_current_room()
         else:
             # os.system("clear")
             print("Invalid command, ye dog!")
     else:
         if cmds[0] == "take":
             item_to_take = p.current_room.find_item(" ".join(cmds[1:]))
-            if item_to_take is not None:
+            if item_to_take is not None and hasattr(item_to_take, "value") and item_to_take.on_take() > 0:
+                p.add_item(item_to_take)
+                p.current_room.remove_item(item_to_take)
+                score_added = int(item_to_take.on_take()) 
+                p.score += score_added
+                print(f"You have picked up {item_to_take.name} and gained {score_added} points!")
+            elif item_to_take is not None:
                 p.add_item(item_to_take)
                 p.current_room.remove_item(item_to_take)
                 print(f"You have picked up {item_to_take.name}")
@@ -137,5 +148,13 @@ while True:
                 print("You do not see that item.")
         elif cmds[0] == "drop":
             p.drop_item(cmds[1:])
+        # elif cmds[0] == "sell":
+        #     item_to_sell = p.find_item(" ".join(cmds[1:]))
+        #     if item_to_sell is not None and hasattr(item_to_sell, "value") and item_to_sell:
+        #         p.add_item(item_to_take)
+        #         p.current_room.remove_item(item_to_take)
+        #         print(f"You have picked up {item_to_take.name}")
+        #     else:
+        #         print("You do not see that item.")
         else:
             print("I did not understand that command.")
