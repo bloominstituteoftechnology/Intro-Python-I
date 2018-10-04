@@ -90,6 +90,9 @@ print("Starting game:\n\n options -> Enter q to quit,\n score to view currentSco
 while True:
     #sleep(20) #implement for production currently commented out for development purposes.
     #os.system('cls') #clears out previous input. 
+    if player.wins:
+        print("You have collected all of the treasure you win!")
+        break
     print(f"{player.currentRoom}\n\n")
     option = input(
         "option ->")

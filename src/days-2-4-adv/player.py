@@ -14,6 +14,7 @@ class Player(object):
         self.points = 0 
         self.toCollect = 3#if a player gets all 3 treasures they win the game. 
         self.looked = False
+        self.wins = False 
     def __str__(self):
         return f"{self.name} \n\ncurrently in room {self.currentRoom}\n"
     
@@ -54,6 +55,8 @@ class Player(object):
                         print(self.treasures)
                         self.toCollect -=1
                         self.treasures.append(item.name)
+                        if self.toCollect == 0:
+                            self.wins = True
                     # if(isinstance(item, Item)):
                     #     print("this is a regular item")
                     # elif(isinstance(item, Treasure)):
