@@ -1,4 +1,4 @@
-from items import Items
+from inventory import Inventory
 
 class Room():
     def __init__(self, name, description):
@@ -8,11 +8,17 @@ class Room():
         self.e_to = None
         self.s_to = None
         self.w_to = None
-        Items.__init__(self, self.name, items=None)
+        self.points = None
+        Inventory.__init__(self, self.name)
     def __str__(self):
         return f'\n{self.name}\n\n   {self.description}'
     def roomItems(self):
-        Items.getItems(self, self.name)
+        Inventory.getItems(self, self.name)
+    def getItem(self, name):
+        print(name, "getitem")
+        return Inventory.getItem(self, name)
+    def showItems(self):
+        Inventory.showItems(self, self.name)
     def removeObject(self):
         self.object = 'nothing'
     def getRoomInDirection(self, direction):
@@ -27,6 +33,6 @@ class Room():
         else: 
             return name
     def dropItem(self, oldItem):
-        Items.dropItem(self, oldItem)
-    def addItem(self, newItem):
-        Items.addItem(self, newItem)
+        Inventory.dropItem(self, oldItem)
+    def addItem(self, item):
+        Inventory.addItem(self, item)

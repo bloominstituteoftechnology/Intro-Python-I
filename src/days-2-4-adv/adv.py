@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from items import Item
 
 # Declare all the rooms
 
@@ -26,8 +27,19 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+diamond1 = Item("diamond", 200)
+compass = Item("compass", 20)
+grass = Item("grass", 1)
+
+# diamond1 = Item({"name": "diamond", "points": 200})
+# compass = Item({"name": "compass", "points": 30})
+# grass = Item({"name": "grass", "points": 1})
+
 # room['outside'].object = 'a compass'
-room['outside'].items = ['compass', 'grass']
+# room['outside'].items = ['compass', 'grass']
+# room['outside'].items = [compass, grass]
+room['outside'].addItem(diamond1)
+room['outside'].addItem(grass)
 # room['treasure'].object = 'a note'
 
 valid_directions = {
@@ -78,7 +90,7 @@ while True:
         elif cmd == "me":
             p.playerItems()
         elif cmd == "room":
-            p.room.roomItems()
+            p.room.showItems()
         elif cmd == "get":
             p.addObject(p.room.object)
             p.room.removeObject()
@@ -102,10 +114,13 @@ while True:
             if cmds[1] in valid_directions:
                 p.lookRoom(valid_directions[cmds[1]])
         if cmds[0] == "get":
-            if cmds[1] in p.room.items:
-                p.addItem(cmds[1])
-                p.room.dropItem(cmds[1])
-                print(p.room)
+            print(cmds[1:])
+            itemToTake = p.room.getItem("".join(cmds[1:]))
+            print("itemToTake", itemToTake)
+            p.addItem({itemToTake})
+            # if cmds[1] in p.room.items:
+            #     p.addItem(cmds[1])
+            #     p.room.dropItem(cmds[1])
         if cmds[0] == "drop":
             if cmds[1] in p.items:
                 p.dropItem(cmds[1])
