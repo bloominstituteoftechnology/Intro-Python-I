@@ -30,19 +30,6 @@ pendulum.setRoomMoves({"b":chapel})
 # Main
 #
 
-# Make a new player object that is currently in the 'laboratory' room.
-
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
-
 def detectCMD(room,cmd):
 	if cmd == 'f' or 'b' or 'l' or 'r':
 		if cmd == room.f_to:
@@ -55,8 +42,6 @@ def detectCMD(room,cmd):
 			return r_to
 	else:
 		print(f'{cmd} is not an optional command.')
-
-uD = Player(input('What is your name, punk...   '), laboratory)
 
 
 def Main():
@@ -75,35 +60,24 @@ def Main():
   pendulum.setRoomMoves({"b":chapel})
 
   unicorn = Player(input('What is your name, punk...   '), laboratory)
+  currRoom = unicorn.getCurrentRoom()
 
-  print(f"Ok, {unicorn.sayName()}, you're in the {unicorn.getCurrentRoom()}.  We need to get to the Pendulum quick!")
+  print(f"Ok, {unicorn.sayName()}, you're in the {currRoom.getRoomType()}.  We need to get to the Pendulum quick!")
   print("\n\nSo, let's make a move:")
 
-  gameLoop(unicorn)
+  gameLoop(unicorn, currRoom)
 
-def gameLoop(plyr):
+def gameLoop(plyr,curr):
   while True:
     cmd = input('\n\n\To make a move type a direction: "f", "b", "l", or "r": \n\n')
-    # move = detectCMD(cmd)
     print(cmd)
+    possMoves = curr.getRoomMoves()
+    nextRoom = curr.checkIfRoomMove(cmd)
+    currRoom = nextRoom
+    roomName = nextRoom.getRoomType()
+    print(f"Looks like we are in the {roomName}")
 
 Main()
 
-
-
-
-
-
-
-# if cmd == 'r':
-#     print(f'\n\n\nLooks like you are in thw {uD.getCurrentRoom()} room\n\n')
-#     print(room[uD.getCurrentRoom()].room_descr)
-# elif cmd == 'u':
-#     print(f'\nYou dont look like an "{uD.sayName()}"\n\n\n')
-# elif cmd == 'q':
-#     print(f'\n\n\nLater, {uD.sayName()}!\n\n\n')
-#     break
-# else:
-#     print('\n\n\nDont type anything by u, r, or q.\n\n\n')
 
 

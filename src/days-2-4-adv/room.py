@@ -12,7 +12,6 @@ class Room:
 
 	def setRoomMoves(self,moves):
 		self.room_moves = moves
-	
 
 	def getRoomType(self):
 		return self.room_type
@@ -21,12 +20,13 @@ class Room:
 		return self.room_descr
 
 	def getRoomMoves(self):
-		print(self.room_moves)
-		return self.room_moves
+		for room in self.room_moves:
+			return room
 
 	# def getNextRoom(self, cmd):
 
 	def checkIfRoomMove(self,cmd):
-		return room_moves[cmd] if (cmd in room_moves) else notAMove
+		return self.room_moves.get(cmd)
+		# return self.room_moves[cmd] if (cmd in self.room_moves) else "Note a possible move. Try again."
 
 
