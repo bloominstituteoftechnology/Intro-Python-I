@@ -71,6 +71,8 @@ while True:
             plyr.travel(cmd[0])
         elif cmd[0] == 'i' or cmd[0] == 'inventory':
             plyr.getInventory()
+        elif cmd[0] == 'score':
+            plyr.getScore()
         else:
             print('Thats not right...')
     else:

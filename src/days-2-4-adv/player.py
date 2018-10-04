@@ -5,6 +5,7 @@ class Player():
         self.name = name
         self.current_room = current_room
         self.inventory = []
+        self.score = 0
     def travel(self, direction):
         nextRoom = self.current_room.getRoom(direction)
         if nextRoom is not None:
@@ -32,3 +33,5 @@ class Player():
         print('You are carrying: \n')
         for item in self.inventory:
             print(f' {item.name} -- {item.description} ')
+    def getScore(self):
+        print(f'Current score:  {self.score} ')
