@@ -133,7 +133,8 @@ def routeLookAhead(direction):
 def routePlayerActions(action):
     if action == 'bag':
         checkBag()
-
+    elif action == 'status':
+        checkStatus()
     if player.room.place == 'outside cave entrance':
         if action == 'look':
             checkForItems('outside cave entrance')
@@ -332,39 +333,53 @@ def shouldEnterSecretRoom():
         currentLocation()
     else:
         print(f"""
+
         ~~~~~~~ You Hit A Wall ~~~~~~~
         No Door Ahead
+
         """)
         print(f"""
+
         ~~~~~~~ Hint ~~~~~~~
-        There Is Something Off About This Wall, There seems to be small key hole here
+        There Is Something Off About This Wall,
+        There seems to be small key hole here
+
         """)
 
 
 def currentLocation():
     print(f"""
+
     ~~~~~~~ You Have Entered ~~~~~~~
     {player.room.place}
+
     """)
     print(f"""
+
     ~~~~~~~ Hint ~~~~~~~
     {player.room.description}
+
     """)
 
 
 def brickWall(type):
     if type == 'm':
         print(f"""
+
         ~~~~~~~ You Hit A Wall ~~~~~~~
         Nowhere To Go, Try Another Direction
+
         """)
     elif type == 'l':
         print(f"""
+
         ~~~~~~~ Nothing Ahead ~~~~~~~
         Nothing Ahead, Try Another Direction
+
         """)
     elif type == 'e':
         print(f"""
+
         ~~~~~~~ Not Allowed ~~~~~~~ 
         Action Not Allowed
 
@@ -374,12 +389,14 @@ def brickWall(type):
         e: move east       le: look east
         w: move west       lw: look west
 
+        status: check your status
         bag: check your bag
         look: check room
         get: get all item
         get <item>: get specific item
         drop: drop all item
         drop <item>: drop specific item
+        
         """)
 
 
@@ -462,6 +479,17 @@ def checkBag():
               {item}
 
             """)
+
+
+def checkStatus():
+    if len(player.items) == 0:
+        print(f"""
+
+        ~~~~~~~ Your Status ~~~~~~~
+        name: {player.name}
+        health: {player.health}
+
+        """)
 
 
 def gettingItemsInDarkRooms(location):

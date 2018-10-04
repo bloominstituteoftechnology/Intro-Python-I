@@ -2,9 +2,25 @@ from room import Room
 from player import Player
 import PlayerActions
 
-
+# Intro
 play = True
+PlayerActions.player.name = input('Enter Your Name -> ')
+print(f"""
 
+~~~~~~~~~~ Welcome {PlayerActions.player.name}! ~~~~~~~~~~
+
+    Starting Point
+    ``````````````
+    {PlayerActions.room['outside cave entrance'].place}
+
+
+    Hint
+    ````
+    {PlayerActions.room['outside cave entrance'].description}
+
+""")
+
+# Play
 while play:
     cmd = input('Where Shall You Go? -> ').lower().split(" ")
     if len(cmd) == 1:
@@ -14,13 +30,14 @@ while play:
         # movement
         elif cmd[0] == 'n' or cmd[0] == 's' or cmd[0] == 'e' or cmd[0] == 'w':
             PlayerActions.routeMovement(cmd[0])
+            PlayerActions.player.health -= 5
 
         # looking ahead
         elif cmd[0] == 'ln' or cmd[0] == 'ls' or cmd[0] == 'le' or cmd[0] == 'lw':
             PlayerActions.routeLookAhead(cmd[0])
         
         # item PlayerActions
-        elif cmd[0] == 'bag' or cmd[0] == 'look' or cmd[0] == 'get' or cmd[0] == 'drop':
+        elif cmd[0] == 'bag' or cmd[0] == 'status' or cmd[0] == 'look' or cmd[0] == 'get' or cmd[0] == 'drop':
             PlayerActions.routePlayerActions(cmd[0])
         else:
             PlayerActions.brickWall('e')
