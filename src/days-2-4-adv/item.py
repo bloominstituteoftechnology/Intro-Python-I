@@ -27,6 +27,9 @@ class Treasure(Item):
             self.owner.score += self.value
             self.first = False
 
+    def __str__(self):
+        return f'*Treasure* {self.name}: {self.desc} Value: {self.value}'
+
 
 class LightSource(Item):
     def __init__(self, name, desc):
