@@ -65,13 +65,13 @@ print (f"""
     """)
 while True:
     cmd = input("which way?-> ")
-    if cmd == "q":
+    if cmd[0] == "q":
         print ("""
     Quitting
         """)
         break
-    if cmd is "n" or "s" or "e" or "w":
-        me.enter(cmd)
+    if cmd[0] is "n" or "s" or "e" or "w":
+        me.enter(cmd[0])
     else:
         if cmd[0] == 'get':
             itemToAdd = me.startRoom.selectItem(cmd[1])

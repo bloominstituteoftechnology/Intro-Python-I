@@ -10,7 +10,11 @@ class Room:
         self.s_to = None
         self.w_to = None
         self.e_to = None
-
+    def __str__(self):
+        if len(self.items) > 0:
+            return f'\n You have entered the {self.location} \n {self.description} \n As you look around you notice  {self.items[0].name} in the {self.location} '
+        else:
+            return f'\n You have entered the {self.location} \n {self.description} \n '
     def getRoom(self, direction):
         if direction == "n":
             return self.n_to
@@ -24,8 +28,8 @@ class Room:
             return None  
     def addItem(self, item):
         self.items.append(item)
-    def removeItem(self, item):
         
+    def removeItem(self, item):        
         if len(self.items) > 0:
             self.items.remove(item)
         else:
