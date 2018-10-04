@@ -1,16 +1,21 @@
 
 
 class Room():
-    def __init__(self, name, description, items=None):
+    def __init__(self, name, description):
         self.name = name
         self.description = description
-        self.items = items
-
+        self.items = []
+    
     def __str__(self):
-        if self.items is None:
-            return f'\n== You find yourself in the {self.name}. {self.description} ==\n\n== There are no items in this room. =='
+        return f'\n== You find yourself in the {self.name}. {self.description} ==\n\n=='
+    
+    def addItems(self, item):
+        self.items.append(item)
+
+    def examine(self):
+        if len(self.items) > 0:
+            print(f'\n== You find yourself in the {self.name}. {self.description} ==\n')
+            for item in self.items:
+                print(f'== You see a {item.name}! {item.description} ==')
         else:
-            return f'\n== You find yourself in the {self.name}. {self.description} ==\n\n== You see a {self.items.name}! {self.items.description} =='
-
-
-
+            print(f'\n== You find yourself in the {self.name}. {self.description} ==\n\n== There are no items in this room. ==')
