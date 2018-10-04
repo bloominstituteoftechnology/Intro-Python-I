@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -22,6 +23,13 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+item = {
+    'dagger': Item("Dagger", """Stabby McStabberson."""),
+
+    'sword': Item("Fire Sword", """A red flame emanates from its blade."""),
+
+    'axe': Item("Golden Axe", """Looks expensive. Maybe you should sell it instead.""")
+}
 
 # Link rooms together
 
