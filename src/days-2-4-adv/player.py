@@ -1,10 +1,10 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 class Player:
-    def __init__(self, name, currentRoom, list):
+    def __init__(self, name, currentRoom, startingItems=[]):
         self.name = name
         self.currentRoom = currentRoom
-        self.list = list
+        self.items = startingItems
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
@@ -21,12 +21,16 @@ class Player:
                 print(nextRoom)
             else:
                 print("There is nothing there.")
-
-    def get_item(self, item):
-        self.list.append(item)
-
-    def drop_item(self, index):
-        if len(self.list) == 0:
-            print('You have no items.')
-        else:
-            del self.list[index]
+    def printInventory(self):
+        print('You are carrying:\n')
+        for item in self.items:
+            print(f" {item.name}\n")
+    def addItem(self, item):
+        self.items.append(item)
+    def removeItem(self, item):
+        self.items.remove(item)
+    def findItemByName(self, name):
+        for item in self.items:
+            if item.name.lower() == name.lower():
+                return item
+        return None
