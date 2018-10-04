@@ -7,10 +7,10 @@ dungeon_data = [ [None for n in range(10)] for i in range(10)]
 
 def world_gen():
     """
-    creates a room and inserts it at roughly bottom, south most position, and places
+    creates a room and inserts it at roughly center, south most position, and places
     data in the same spot in mirror array
-    then passes teh data to kick off construction
-    when finished, returns the initial room that's connect to others
+    then passes the data to kick off construction
+    when finished, returns the initial room that's connected to the others
     """
     dungeon[9][5] = Room(start_room['name'], start_room['description'], start_room['is_light'])
     dungeon_data[9][5] = start_room
@@ -20,8 +20,11 @@ def world_gen():
 def construct_rooms(c_room, pos_x, pos_y):
     """
     takes the data for the last room created and it's position,
-    then for each exit filters for rooms with matching exit,
+    then for each exit, filters for rooms with matching exit,
     then filters out those that won't connect to rooms around it
+    from the remaining rooms it chooses one randomly, puts it in position
+    then passes it to function to attach to surrounding rooms
+    then calls construct room on the newly created room
     """
     global min_room_count
     if min_room_count > 0:
@@ -53,8 +56,10 @@ def construct_rooms(c_room, pos_x, pos_y):
 
 def room_fits(c_room, pos_x, pos_y):
     """
-    takes in a room and x, y position and checks
-    if it's exits match the rooms surrounding x, y
+    takes in a room and the desired x, y coordinates
+    if x, y is empty and the room's exits match the exits
+    of the surrounding room, returns True,
+    else returns false
     """
     fits = True
     if dungeon_data[pos_x][pos_y] is not None:
@@ -93,6 +98,7 @@ def room_fits(c_room, pos_x, pos_y):
 def attach_rooms(room, x, y):
     """
     takes a room and cycles through directions, attaching rooms together
+    if they connect
     """
     if x - 1 >= 0 and dungeon[x-1][y] is not None:
         n_room = dungeon_data[x-1][y]
