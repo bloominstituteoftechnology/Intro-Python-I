@@ -96,7 +96,7 @@ while True:
             if len(player.currentRoom.items) == 0:
                  print(f"\n== There are no items in the room. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")
             elif len(player.currentRoom.items) > 0:
-                player.playerGet(cmd[1])
+                player.playerGet(item[cmd[1]])
                 player.currentRoom.items.remove(item[cmd[1]])
             else:
                 print(f"\n== There are no items in the room called '{cmd[1]}'. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")

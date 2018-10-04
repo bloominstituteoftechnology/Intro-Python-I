@@ -26,12 +26,17 @@ class Player():
             self.currentRoom = self.currentRoom.w_to
     
     def playerGet(self, item):
+        if hasattr(item, 'points'):
+            self.score += item.points 
+        else: 
+            pass
+
         if self.items == [None]:
             self.items.append(item)
             self.items.pop(0)
         else:
             self.items.append(item)
-        print(f"\n== You pick up the {item.upper()} and stuff it joyfully in your sack.")
+        print(f"\n== You pick up the {item.name.upper()} and stuff it joyfully in your sack.")
     
     def playerDrop(self, item):
         if self.items == [None]:

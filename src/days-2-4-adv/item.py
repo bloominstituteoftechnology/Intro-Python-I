@@ -10,6 +10,8 @@ class Treasure(Item):
     def __init__(self, name, description, points):
         Item.__init__(self, name, description)
         self.points = points
+    def onGet(self):
+        return self.points
 
 
 class Goblet(Treasure):
@@ -17,4 +19,6 @@ class Goblet(Treasure):
         self.name = "Goblet"
         self.description = "It is a beautiful golden goblet that makes your liquids taste like rainbows."
         self.points = 10
+    def onGet(self):
+        return self.points
 
