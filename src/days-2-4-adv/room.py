@@ -14,21 +14,24 @@ class Room():
         
         
         def __str__(self):
-            return f'You are in room: {self.name} and the author has a message for you: {self.text}'
+            return f'You are in: {self.name} and the author has a message for you: {self.text}'
 
         def showItems(self):
                 if (self.items):
                         for i in self.items:
-                                return(f'{i.name}')
+                                print(f'{i.name}')
+                else:
+                        print('No itmes available')    
 
         def addItem(self,item):
                 self.items.append(item)
 
         def getItem(self, itemIn):
+                allItems=[]
                 if len(self.items) > 0:
                         for i in self.items:
                                 if i.name==itemIn:
-                                        return i.name   
+                                    return i.name                                    
                 else:
                         return None
 
