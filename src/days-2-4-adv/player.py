@@ -10,8 +10,8 @@ class Player:
 
     def get_item(self, item):
         self.inventory.append(item)
-        if item.name == 'treasure':
-            self.score += 1000
+        if isinstance(item.value, int):
+            self.score += item.value
         else:
             self.score += 100
     

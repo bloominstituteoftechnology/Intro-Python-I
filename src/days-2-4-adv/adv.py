@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 
 # Declare all the rooms
  
@@ -20,7 +20,7 @@ to north. The smell of gold permeates the air.''', 'narrow', []),
 
     'treasure': Room('Treasure Chamber', '''You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.''', 'treasure', [Item('treasure', 'something shiny')]),
+earlier adventurers. The only exit is to the south.''', 'treasure', [Treasure('treasure', 'everyone likes shiny', 1000)]),
 }
 
 
@@ -42,27 +42,26 @@ class Main:
     def start(self):
 # Make a new player object that is currently in the 'outside' room.
         player1 = Player(input('\nProvide your name, hero: '), room['outside'], [Item('toothpick', 'Can be useful'), Item('Pocket rubish', 'No comment')], 0)
-        print('\nHello ' + player1.name + '!!!!!!\n')
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 #
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
+# If the user enters a cardinal direction, attempt to command to the room there.
+# Print an error message if the commandment isn't allowed.
 #
 # If the user enters 'q', quit the game.
 
-        move = ''
+        command = ''
 
-        while move != 'q':
+        while command != 'q':
             player1.getRoom()
-            move = input('\n###### CONTROLS ######\nNORTH(n), SOUTH(s), EAST(e) OR WEST(w)\n\n#################### \n####### MENU #######\n|| QUIT(q) the game || INVENTORY(i) || CHECK(c) the room ||\n\nYour next move, ' + player1.name.capitalize() + ' ==>> ')
+            command = input('\n====== CONTROLS ======\nNORTH(n), SOUTH(s), EAST(e) OR WEST(w)\n====================\n======= MENU =======\n|| QUIT(q) the game || INVENTORY(i) || CHECK(c) the room ||\n====================\n\nYour next command, ' + player1.name.capitalize() + ' ==>> ')
             
-            if move != 'q':
+            if command != 'q':
                 
-                if move == 'i':
+                if command == 'i':
                     player1.getScore()
                     player1.check_inventory()
                     dropDecision = input('\n==> DROP(d) item, PASS(p)\n')
@@ -79,7 +78,7 @@ class Main:
                             player1.drop_item(int(number))
 
                         
-                elif move == 'c':
+                elif command == 'c':
                     player1.room.room_items()
                     addDecision = input('\n==> ADD(a) item, PASS(p)')
 
@@ -94,7 +93,7 @@ class Main:
                             player1.room.delete_item(int(itemNumber))
                 
                 else:
-                    keyPress = move + '_to'
+                    keyPress = command + '_to'
                 
                     try:
                         #print(getattr(player1.room, keyPress).abr)
