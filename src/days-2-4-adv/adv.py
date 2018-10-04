@@ -56,6 +56,7 @@ player = Player(room['outside'])
 
 while True:
     currentRoom = player.currentRoom
+    inv = player
     print("\n")
     print("=====================================================")
     currentRoom.printName()
@@ -64,7 +65,7 @@ while True:
     currentRoom.printItems()
     print("=====================================================")
     print("=====================================================")
-    print(len(player.items))
+    inv.menu()
     print("\n")
     print("What direction will you choose?")
 
