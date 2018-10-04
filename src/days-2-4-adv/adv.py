@@ -1,26 +1,22 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
                      """North of you, the cave mount beckons"""),
-                     [Item("map", "map of another area, unfortunately")]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
-                    [Item("candlestick", "candlestick with half of a candle")]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
-                    [Item("dagger", "small dagger; hope you don't need it!"),
-                    Item("rope", "length of rope; probably not long enough to rappel the cliff")]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
-                    [Item("gold", "small bag of gold coins")]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -38,6 +34,19 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+book = Item("book", "dusty book of the occult in an unrecognizable language")
+candelabra = Item("candelabra", "a rusty piece of junk with no candles")
+dagger = Item("dagger", "bejeweled ceremonial dagger")
+rope = Item("rope", "length of rope; probably not long enough to rappel the cliff")
+gold = Item("gold", "small bag of gold coins")
+
+room['outside'].addItem(book)
+room['foyer'].addItem(candelabra)
+room['overlook'].addItem(dagger)
+room['overlook'].addItem(rope)
+room['narrow'].addItem(gold)
+
 
 #
 # Main
@@ -74,6 +83,3 @@ while True:
                 player.look(valid_directions[cmds[1]])
         else:
             print("I did not understand that command.")
-        
-#game1 = Main()
-#game1.start()
