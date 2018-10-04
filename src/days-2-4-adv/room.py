@@ -9,5 +9,17 @@ class Room:
         self.s_to = None # South to
         self.e_to = None # East to
         self.w_to = None # West to
+        self.items = []
     def __str__(self):
-        return f'\n\n{self.name}\n    {self.description}\n'
+        return f'\n{self.name}\n    {self.description}\n'
+    def getRoomInDirection(self, direction):
+        if direction == 'n':
+            return self.n_to
+        if direction == 's':
+            return self.s_to
+        if direction == 'e':
+            return self.e_to
+        if direction == 'w':
+            return self.w_to
+        else:
+            return None
