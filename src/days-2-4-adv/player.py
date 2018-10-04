@@ -5,6 +5,7 @@
 class Player: 
     def __init__(self, currentRoom):
         self.currentRoom = currentRoom
+        self.score = 0
         self.items = []
     def add(self, item):
         self.items.append(item)
@@ -23,10 +24,14 @@ class Player:
     def menu(self):
         if len(self.items) > 0:
             for item in self.items:
-                print(f"Items available:{item.name}")
+                print(item.name)
         else:   
             print("No items")
-
+    def playerScore(self):
+        print(f"Score: {self.score}")
+        
+            
+    
 
     #add a menu so that the player can see what they have in their inventory
     # def menu(self):

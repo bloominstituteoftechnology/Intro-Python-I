@@ -6,25 +6,25 @@ from items import Item
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons", 
-                     [Item("map", "map of the Location")]),
+                     [Item("map", "map of the Location", 100)]),
  
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""",
-[Item("coin", "coin of the Treasure")]),
+[Item("coin", "coin of the Treasure", 150)]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
-[Item("photo", "photo of the deceased owner")]),
+[Item("photo", "photo of the deceased owner", 100)]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""",
-[Item("backpack", "backpack belonging to other Adventurers")]),
+[Item("backpack", "backpack belonging to other Adventurers", 300)]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",
-[Item("list", "list of different treasure spots left by the other adventurers")]),
+[Item("list", "list of different treasure spots left by the other adventurers", 500)]),
 }
 
 # Link rooms together
@@ -65,7 +65,9 @@ while True:
     currentRoom.printItems()
     print("=====================================================")
     print("=====================================================")
+    print("inventory: ")
     inv.menu()
+    inv.playerScore()
     print("\n")
     print("What direction will you choose?")
 
@@ -73,8 +75,7 @@ while True:
     # print("\n")
 
     direction = input("--> ").lower().split(" ")
-    print(direction)
-    print(len(direction))
+
     if len(direction) > 1:
     
         if len(direction) > 1 and (direction[0] == "add"):
@@ -82,8 +83,10 @@ while True:
             if itemToAdd == None:
                 print("No item by that name")
             else:
-                print("add")
+                pointsEarned = int(itemToAdd.pointsIn() / 1)
+                player.score += pointsEarned
                 player.add(itemToAdd)
+                print(f"You have picked up {itemToAdd.name}, which held {pointsEarned} points")
 
         if len(direction) > 1 and (direction[0] == "remove"):
             print(player.items)
@@ -91,7 +94,6 @@ while True:
             if itemToRemove == None:
                 print("No item to remove")
             else:
-                print("removed")
                 player.removeItem(itemToRemove)
     else:
 
