@@ -110,6 +110,7 @@ while True:
             if option[0] == 'grab':
                 if player.looked:
                 #check what type of instance the item is.
+                    print(option[1])
                     if list(items.keys()).count(option[1]) > 0:
                         print(items[option[1]].on_take())
                         print(player.grabItem(items[option[1]]))

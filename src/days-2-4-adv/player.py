@@ -32,8 +32,8 @@ class Player(object):
         print(item.name, value, treasure)
         able_to_see = self.currentRoom.is_light
         has_light = False 
-        for item in self.items:
-            if(isinstance(item, LightSource)):
+        for it in self.items:
+            if(isinstance(it, LightSource)):
                 has_light = True
         if has_light or able_to_see:
             if item.name == 'coins':
