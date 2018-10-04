@@ -83,7 +83,7 @@ Suggested order for implementing the toy programs:
 * `lists` -- Python's version of arrays
 * `tuples` -- Immutable lists typically for heterogenous data
 * `slice` -- Accessing parts of lists
-* `comp` -- List comprehensions
+* `comp` -- List comprehensions 
 * `dicts` -- Dictionaries
 * `func` -- Functions
 * `args` -- Arguments and Keyword Arguments
