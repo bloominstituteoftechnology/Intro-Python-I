@@ -18,4 +18,18 @@ class Treasure(Item):
                 self.value=value
                         
         def on_take(self):
+                return self.value
+
+        def on_drop(self):
                 pass
+        
+
+class LightSource(Item):
+        def __init__(self, name, description):
+                Item.__init__(self, name, description)
+        
+        def on_take(self):
+                pass
+
+        def on_drop(self):
+                print("It's not wise do drop your source of light!")

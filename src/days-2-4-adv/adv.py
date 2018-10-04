@@ -72,6 +72,7 @@ valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w","f": "n", "b": "s", "
 while True:        
         cmds = input("-> ").lower().split(' ')
         #print(cmds)
+        #secondAttr=cmds[1]
         cmd=cmds[0]
         #print(cmd)
         if cmd == "q":
@@ -83,16 +84,25 @@ while True:
                 p.currentRoom.showItems()
         elif cmd == "take" or cmd == "get":
                 result=p.currentRoom.getItem(cmds[1])
-                #print(f'{result}')
                 if result!=None:
                         p.addItem(item[result])
-                        item[result].on_take()
+                        if cmds[1]=="gold" or cmds[1]=="silver" or cmds[1]=="ruby":
+                                #treasureCount = getattr(self, '%s' % itemAtt)
+                                #treasureCount = getattr(p, '%s' % cmds[1])
+                                #if p.cmds[1]==0:
+                                treasureValue=item[cmds[1]].on_take()
+                                p.addScore(cmds[1],treasureValue)
+                                #else:
+                                        #print('Your score will not increase on picking up this tresure since you dropped it earlier ')
+                        else:    
+                                item[result].on_take()
+                                
                         room[p.currentRoom.name].removeItem(result)
                         result1=p.currentRoom.getItem(result)
                         if result1 == None:
                                 print(f'{result} successfuly removed from the room')
-                else:
-                        print(f'Item not availabe')
+                        else:
+                                print(f'Item not availabe')
         elif cmd == "inventory" or cmd =="i":
                 print('Your inventory has')
                 p.showItems()

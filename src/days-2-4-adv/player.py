@@ -7,6 +7,9 @@ class Player():
                 self.name=name
                 self.currentRoom=room
                 self.score=0
+                self.treasure={'gold':0, 'silver':0, 'ruby':0}
+                #self.silver=0
+                #self.ruby=0
                 self.items=[]
 
         def room_name(self):
@@ -14,14 +17,13 @@ class Player():
 
         def addItem(self, item):
                 self.items.append(item)
-                print(f'You have a new item added to your list: {item} ')
 
         def removeItem(self, item):
                 if len(self.items) > 0:
                         for i in self.items:
-                                if i==item:
+                                if i.name==item:
                                         self.items.remove(i)
-                                        print(f'{item} dropped from inventory')        
+                                        return True
                 else:
                         print('The item you are trying to drop is not present in your inventory')
         
@@ -32,6 +34,14 @@ class Player():
                 else:
                         print(f'No items')    
 
+        def addScore(self,itemAtt,value):
+                if self.treasure[itemAtt]==0:
+                        self.score=self.score+value
+                        self.treasure[itemAtt]=1
+                        print(f'Your new score is {self.score}')
+                else:
+                        print('Your score will not increse on adding this item')
+                    
         def travel(self, direction):
                 nextRoom = None
                 if direction == "n":
