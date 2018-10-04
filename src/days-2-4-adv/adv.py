@@ -47,9 +47,6 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-
-suppressRoomPrint = False
-
 # Make a new player object that is currently in the 'outside' room.
 
 player = Player(input('What is your name? '), room['outside'], item['sandals'])
@@ -58,7 +55,7 @@ player = Player(input('What is your name? '), room['outside'], item['sandals'])
 valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
                     "forward": "n", "backwards": "s", "right": "e", "left": "w"}
 
-print("\n Where you are: {}".format(player.currentRoom))
+print("\n{}".format(player.currentRoom))
 
 while True:
     cmds = input("-> ").lower().split(" ")
@@ -69,6 +66,8 @@ while True:
             player.travel(valid_directions[cmds[0]])
         elif cmds[0] == 'inventory' or cmds[0] == 'i':
             player.inventory()
+        elif cmds[0] == 'look':
+            print("\nWhat you see: {}".format(player.currentRoom))
         else:
             print("I did not understand that command.")
     else:
@@ -80,13 +79,14 @@ while True:
 
         elif cmds[0] == "get":
             if cmds[1] in item_list:
-                player.get(cmds[1])
+                player.get(item[cmds[1]])
             else:
                 print("That item does not exist.")
 
         elif cmds[0] == "drop":
             if cmds[1] in item_list:
-                player.drop(cmds[1])
+                player.drop(item[cmds[1]])
+                player.inventory()
             else:
                 print("That item does not exist.")
         else:

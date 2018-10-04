@@ -9,19 +9,13 @@ class Player:
         if items is not None:
             self.items.append(items)
 
-        if len(self.items) != 0:
-            user_items_list = [item.name for item in self.items]
-            invntry = "{}".format(*user_items_list)
-        else:
-            invntry = "No items in inventory"
-
-
+    invntry = "No items in inventory"
 
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
             self.currentRoom = nextRoom
-            print("\n Where you are: {}".format(nextRoom))
+            print("\n{}".format(nextRoom))
         else:
             print('\n You\'ve run into a brick wall! Try another direction')
 
@@ -40,9 +34,9 @@ class Player:
         newItem = self.currentRoom.getItemFromRoom(item)
         if newItem is not None:
             self.items.append(newItem)
+            print("\nNew Inventory: {}\n".format(', '.join([item.name for item in self.items])))
         else:
-            print('That item is not in this room.')
-            print("\n Where you are: {}".format(self.currentRoom))
+            print('\nThat item is not in this room.\n')
 
     def drop(self, item):
         if item in self.items:
@@ -50,7 +44,12 @@ class Player:
             if dropItem is not None:
                 self.items.remove(dropItem)
         else:
-            print("You do not currently have (a) {}. Type \'inventory\' to see a list of your items.".format(item))
+            print("\nYou do not currently have (a) {}. Type \'inventory\' to see a list of your items.\n".format(item.name))
 
     def inventory(self):
-        print("{}".format(invntry))
+        if len(self.items) != 0:
+            invntry = "\nInventory: {}\n".format(', '.join([item.name for item in self.items]))
+        else:
+            invntry = "No items in inventory"
+
+        print(invntry)

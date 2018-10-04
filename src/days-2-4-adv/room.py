@@ -13,15 +13,14 @@ class Room:
         if items is not None:
             self.items.append(items)
 
-        if len(self.items) != 0:
-            room_items_list = [item.name for item in self.items]
 
     def __str__(self):
-        # description_list = [item.description for item in self.items]
-        # if description_list is not None:
-        return "{name}\n\n {description}\n\n".format(name = self.name, description=self.description)
-        # else:
-        #     return f"\n\n{self.name}\n\n {self.description}\n\n you see no items in this room."
+        if len(self.items) > 0:
+            description_list = [item.description for item in self.items]
+            return "{name}\n\n {description}\n\nItems in room: {items}\n\n".format(name = self.name, description=self.description, items = ', '.join([item.name for item in self.items]))
+        else:
+            return "{name}\n\n {description}\n\nYou see no items in this room.\n\n".format(name = self.name, description=self.description)
+
 
     def getRoomInDirection(self, direction):
         if direction == "n":
@@ -43,8 +42,12 @@ class Room:
             return None
 
     def dropItemInRoom(self, item):
-        if item in self.items:
-            return None
+        if len(self.items) != 0:
+            if item in self.items:
+                return None
+            else:
+                self.items.append(item)
+                return item
         else:
             self.items.append(item)
             return item
