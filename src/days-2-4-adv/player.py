@@ -2,10 +2,11 @@
 # currently.
 
 class Player:
-    def __init__(self, name, location, inventory):
+    def __init__(self, name, location, inventory, score=0):
         self.name = name
         self.location = location
         self.inventory = inventory
+        self.score = score
 
     def __str__(self):
         return self.name
@@ -36,3 +37,6 @@ class Player:
             if item.lower() == input_item.lower():
                 return item
             return None
+
+    def get_score(self):
+        print(f"\nCurrent Score: {self.score}")

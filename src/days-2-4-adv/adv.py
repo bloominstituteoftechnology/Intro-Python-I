@@ -59,16 +59,18 @@ while True:
     player_input = input(f'\nWhat does {player.name} do?   ')
     player_input_args = player_input.split(' ')
 
-    if len(player_input_args) == 0:
-        print('\nControls: N,S,E,W to move to a different room. T to take an item. D to drop an item. I to view your inventory. Q to quit')
+    if len(player_input) < 1:
+        print('\nControls: \nN,S,E,W to move to a different room. \nTake ___ to take an item. \nDrop ___ to drop an item. \nI to view your inventory. \nZ to view score \nQ to quit')
 
-    if len(player_input_args) == 1:
+    if len(player_input) == 1:
         if player_input[0].lower() == "q":
             break
         elif player_input[0].lower() == "n" or player_input[0].lower() == "s" or player_input[0].lower() == "w" or player_input[0].lower() == "e":
             player.change_location(player_input[0])
         elif player_input[0].lower() == "i":
-                player.view_inventory()
+            player.view_inventory()
+        elif player_input[0].lower() == "z":
+            player.get_score()
         else:
             print('\nControls: N,S,E,W to move to a different room. T to take an item. D to drop an item. I to view your inventory. Q to quit')
 
