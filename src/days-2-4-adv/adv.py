@@ -5,7 +5,7 @@ import time
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = Player("Kairi", room['outside'], [])
+player = Player(input("What is your name?\n-> "), room['outside'], [])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -20,7 +20,7 @@ player = Player("Kairi", room['outside'], [])
 while True:
     print (f"You are at: {player.room.name}")
     print (player.room.description)
-    cmd = input(f"-What do you want to do, {player.name}? You can: move 'n', move 'e', move 's', move 'w', press 'q' to quit  \n-Press 'i' to view items and 'd' to drop items and 'g' to get items  \n-> ")
+    cmd = input(f"\n-What do you want to do, {player.name}? You can: move 'n', move 'e', move 's', move 'w', press 'q' to quit  \n-Press 'i' to view items and 'd' to drop items and 'g' to get items  \n-> ")
     if cmd == "q":
         break
     elif cmd == "n":

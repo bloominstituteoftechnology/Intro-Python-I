@@ -8,15 +8,16 @@ class Player():
     def printRoom(self, room):
         print (self.room)
     def printItems(self, items):
-        print (items)
+        print (f"Inventory: {items}")
     def drop(self, items):
-        drop = input(f"What items do you want to drop: {self.items}\n->")
-        return self.items.remove(drop)
+        drop = input(f"\nWhat items do you want to drop: {self.items}\n->")
+        self.items.remove(drop)
+        self.room.items.append(drop)
     def get(self, items):
-        print (self.room.items)
+        print (f"\n{self.room.items}")
         get = input("Choose an item \n-> ")
         for item in self.room.items:
             if item == get:
                 self.items.append(get)
             else:
-                print ("You already have that item or no item not found")
+                print ("\nYou already have that item or no item not found\n")
