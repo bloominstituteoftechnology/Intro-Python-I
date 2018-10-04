@@ -1,34 +1,37 @@
 from room import Room
 from item import Item
+from item import LightSource
+from item import Treasure
 from player import Player
 
 # Declare all the rooms
 item = {
     'pickaxe': Item("pickaxe", "A tool used for mining"),
-    'lantern': Item("lantern", "An old kerosene lantern"),
+    'lamp': LightSource("lamp", "An old kerosene lantern"),
     'helmet': Item("helmet", "A sturdy helmet"),
     'stone': Item("stone", "a fist sized stone"),
-    'nugget': Item("nugget", "a golden nugget"),
-    'coins': Item("gold coins", "bright and shiny golden coins!")
+    'nugget': Treasure("nugget", "a golden nugget", 500),
+    'coins': Treasure("coins", "bright and shiny golden coins!", 800),
+    'rubies': Treasure("rubies", "Bright and shining red rubies!", 1000)
 }
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [item["pickaxe"]]),
+                     "North of you, the cave mount beckons", [item["pickaxe"]], False),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [item["lantern"], item["helmet"]]),
+passages run north and east.""", [item["lamp"], item["helmet"], item["nugget"]], True),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [item["stone"]]),
+the distance, but there is no way across the chasm.""", [item["stone"]], False),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", [item["nugget"], item["stone"]]),
+to north. The smell of gold permeates the air.""", [item["coins"]], False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [item["nugget"], item["coins"]]),
+earlier adventurers. The only exit is to the south.""", [item["rubies"], item['rubies']], False),
 }
 
 # Link rooms together
@@ -75,6 +78,8 @@ while True:
             player.look()
         elif cmds[0] == "inventory" or cmds[0] == "i":
             player.checkInventory()
+        elif cmds[0] == "score":
+            player.checkScore()
         else:
             print("I did not understand that command.")
     else:
@@ -82,8 +87,9 @@ while True:
             if cmds[1] in valid_directions:
                 player.look(valid_directions[cmds[1]])
         elif cmds[0] == "take" or cmds[0] == "get":
-                player.takeItem(player.currentRoom.removeItem(cmds[1]))
+            takenItem = player.currentRoom.removeItem(cmds[1])
+            player.takeItem(takenItem)
         elif cmds[0] == "drop":
-                player.currentRoom.addItem(player.dropItem(cmds[1]))
+            player.currentRoom.addItem(player.dropItem(cmds[1]))
         else:
             print("I did not understand that command.")
