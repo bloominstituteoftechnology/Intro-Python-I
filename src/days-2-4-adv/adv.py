@@ -5,21 +5,21 @@ from item import Item, Treasure, LightSource
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", True),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", False),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", False),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", False),
 }
 
 # Link rooms together
@@ -51,7 +51,7 @@ excalibur = Treasure("Excalibur", "Legendary sword of King Arthur", 10000)
 ring = Treasure("Ring", "Seems to hold mysterious powers", 1000)
 
 #LightSource
-lamp = LightSource('lamp')
+lamp = LightSource('lamp', 'a source of light')
 
 player.add_item(rock)
 room['outside'].add_item(pebble)
@@ -73,7 +73,12 @@ room['treasure'].add_item(excalibur)
 # If the user enters "q", quit the game.
 
 while True:
-    print(f'\nHello, you are currently at {player.room}.')
+    print(player.room.is_light)
+    if player.room.is_light == True or any(isinstance(item, LightSource) for item in player.items) or any(isinstance(item, LightSource) for item in player.room.items):
+        print(f'Items available in this room: {player.room.items}')
+    else:
+        print(f'It\'s pitch black!')
+    print(f'\nYou are currently at {player.room}.')
     cmd = input("=====================\nPress N, E, S or W to move.\nPress Q at any time to exit.\nPress I to view inventory.\nEnter get/take item_name to add item to inventory.\nEnter drop/remove item_name to remove item from inventory\n=====================\n-> ").lower().split()
     if len(cmd) == 1:
         if cmd[0] == 'score':
@@ -109,13 +114,13 @@ while True:
                 player.add_item(item)
                 player.room.remove_item(item)
                 item.on_take(player)
-            else:
-                print('\nThe item is not available for pick up.')
+        else:
+            print('\nThe item is not available for pick up.')
         if cmd[0] == 'drop' or cmd[0] == 'remove':
             item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.items))[0]
             if item in player.items:
                 player.items.remove(item)
                 player.room.add_item(item)
                 item.on_drop()
-            else:
-                print('\nYou do not have that item in your inventory.')
+        else:
+            print('\nYou do not have that item in your inventory.')
