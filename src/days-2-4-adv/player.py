@@ -15,14 +15,7 @@ class Player:
             print ("\nYo you cant go that way dog, duh, ya dingus\n")
 
     def itemHandler(self, cmd, item):
-        if cmd == "pickup" and len(self.items) == 0:
-            currentItem = self.currentRoom.toggleItem(cmd, item)
-            if currentItem is not None:
-                self.items.append(currentItem)
-                print (f"\npicked up this {currentItem.name}\n{currentItem.description}\n")
-            else: 
-                print ("\nthat isn't in this room\n")
-        elif cmd == "pickup" and len(self.items) != 0:
+        if cmd == "pickup":
             hasItem = False
             for each in self.items:
                 if each.name == item:
