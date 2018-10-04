@@ -64,14 +64,15 @@ print (f"""
     {me.startRoom.description}
     """)
 while True:
-    cmd = input("which way?-> ")
-    if cmd[0] == "q":
-        print ("""
-    Quitting
-        """)
-        break
-    if cmd[0] is "n" or "s" or "e" or "w":
-        me.enter(cmd[0])
+    cmd = input(' Which way? -> ').split(' ')
+    if len(cmd) == 1:
+        if cmd[0] == 'q':
+            print('\n Quitting')
+            break
+        elif cmd[0] in ['n', 's', 'e', 'w']:
+            me.enter(cmd[0])
+        else:
+            print('cannot do that')
     else:
         if cmd[0] == 'get':
             itemToAdd = me.startRoom.selectItem(cmd[1])
