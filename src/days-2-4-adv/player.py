@@ -13,6 +13,9 @@ class Player:
     def add_item(self, item):
         self.items.append(item)
 
+    def add_score(self, score):
+        self.score += score
+
     def inventory(self):
         print(f'\nYou have the following items: {self.items}')
 

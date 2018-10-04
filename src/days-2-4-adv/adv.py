@@ -46,9 +46,9 @@ silver = Item('silver', '5 silver')
 rock = Item('rock')
 
 #Treasures
-gold = Treasure('gold coins', 'pile of gold', '100,000')
-excalibur = Treasure("Excalibur", "Legendary sword of King Arthur", "Priceless")
-ring = Treasure("Ring", "Seems to hold mysterious powers", "Priceless")
+gold = Treasure('gold coins', 'pile of gold', 100)
+excalibur = Treasure("Excalibur", "Legendary sword of King Arthur", 10000)
+ring = Treasure("Ring", "Seems to hold mysterious powers", 1000)
 
 player.add_item(rock)
 room['outside'].add_item(pebble)
@@ -104,6 +104,7 @@ while True:
             if item in player.room.items:
                 player.add_item(item)
                 player.room.remove_item(item)
+                item.on_take(player)
             else:
                 print('\nThe item is not available for pick up.')
         if cmd[0] == 'drop' or cmd[0] == 'remove':
