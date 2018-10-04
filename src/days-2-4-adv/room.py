@@ -3,22 +3,25 @@
 from item import Light
 
 class Room:
-    def __init__(self, name, description, lit, items = None):
+    def __init__(self, name, description, lit, items):
         self.name = name
         self.description = description
         self.n_to = None
         self.s_to = None
         self.e_to = None
         self.w_to = None
-        self.items = []
+        self.items = items
         self.lit = lit
-        if items is not None:
-            self.items.append(items)
-
+        # if items is not None and len(items) > 1:
+        #     self.items = [thing for thing in items]
+        #     print(self.items)
+        # elif items is not None:
+        #     self.items.append(items)
     def hasLight(self):
         for object in self.items:
-            if isinstance(object, Light):
+            if isinstance(object, Light) or self.lit:
                 return True
+                break
             else: return False
 
 

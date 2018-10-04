@@ -17,6 +17,9 @@ class Treasure(Item):
     def on_take(self):
         print("\nYou have picked up {}.\n".format(self.name))
         return self.value
+    def on_drop(self):
+        print("\nYou have dropped {}.\n".format(self.name))
+        self.value = 0
 
 class Light(Item):
     def __init__(self, name, description):

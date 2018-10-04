@@ -7,6 +7,7 @@ class Player:
         self.name = name
         self.currentRoom = currentRoom
         self.items = []
+        self.score = 0
         if items is not None:
             self.items.append(items)
 
@@ -14,14 +15,21 @@ class Player:
         for object in self.items:
             if isinstance(object, Light):
                 return True
+                break
             else: return False
+
+    def isTreasure(self, item):
+        if isinstance(item, Treasure):
+            return True
+        else:
+            return False
 
 
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
             self.currentRoom = nextRoom
-            if nextRoom.lit or nextRoom.hasLight() or self.hasLight():
+            if nextRoom.hasLight() or self.hasLight():
                 print("\n{}".format(nextRoom))
             else:
                 print("\nYou've moved, but it's pitch black in here! Let's find some light.\n")
@@ -49,6 +57,9 @@ class Player:
         if newItem is not None:
             self.items.append(newItem)
             newItem.on_take()
+            if self.isTreasure(newItem):
+                if newItem.value != 0:
+                    self.score += newItem.value
         else:
             print('\nThat item is not in this room.\n')
 
