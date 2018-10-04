@@ -14,3 +14,16 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+def draw_calendar(month, year):
+    """creates and prints out a calendar"""
+    c = calendar.TextCalendar(calendar.SUNDAY)
+    str = c.formatmonth(int(year), int(month))
+    print(str)
+
+if len(sys.argv) > 1:
+    draw_calendar(sys.argv[1], sys.argv[2])
+else:
+    d = datetime.date.today()
+    draw_calendar(d.month, d.year)
