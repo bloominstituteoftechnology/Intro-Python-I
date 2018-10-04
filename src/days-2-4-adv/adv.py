@@ -78,6 +78,8 @@ while True:
                         # time.sleep(1)
                         print('\nI cannot understand. Let\'s continue!')
                         continue
+                elif cmds[0].upper() == 'I' or cmds[0].upper() == 'INVENTORY':
+                    p.printInventory()
                 else:
                     time.sleep(1)
                     print('You can only go north, south, east or west! Try going somewhere!')
