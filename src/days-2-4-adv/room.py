@@ -1,8 +1,9 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
+from item import Light
 
 class Room:
-    def __init__(self, name, description, items = None):
+    def __init__(self, name, description, lit, items = None):
         self.name = name
         self.description = description
         self.n_to = None
@@ -10,16 +11,22 @@ class Room:
         self.e_to = None
         self.w_to = None
         self.items = []
+        self.lit = lit
         if items is not None:
             self.items.append(items)
+
+    def hasLight(self):
+        for object in self.items:
+            if isinstance(object, Light):
+                return True
+            else: return False
 
 
     def __str__(self):
         if len(self.items) > 0:
-            description_list = [item.description for item in self.items]
-            return "{name}\n\n {description}\n\nItems in room: {items}\n\n".format(name = self.name, description=self.description, items = ', '.join([item.name for item in self.items]))
+            return "\n{name}\n\n {description}\n\nItems in room: {items}\n\n".format(name = self.name, description=self.description, items = ', '.join([item.name for item in self.items]))
         else:
-            return "{name}\n\n {description}\n\nYou see no items in this room.\n\n".format(name = self.name, description=self.description)
+            return "\n{name}\n\n {description}\n\nYou see no items in this room.\n\n".format(name = self.name, description=self.description)
 
 
     def getRoomInDirection(self, direction):

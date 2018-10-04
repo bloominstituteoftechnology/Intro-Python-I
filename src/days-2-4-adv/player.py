@@ -1,5 +1,6 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+from item import Light
 
 class Player:
     def __init__(self, name, currentRoom, items):
@@ -9,32 +10,45 @@ class Player:
         if items is not None:
             self.items.append(items)
 
-    invntry = "No items in inventory"
+    def hasLight(self):
+        for object in self.items:
+            if isinstance(object, Light):
+                return True
+            else: return False
+
 
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
             self.currentRoom = nextRoom
-            print("\n{}".format(nextRoom))
+            if nextRoom.lit or nextRoom.hasLight() or self.hasLight():
+                print("\n{}".format(nextRoom))
+            else:
+                print("\nYou've moved, but it's pitch black in here! Let's find some light.\n")
         else:
             print('\n You\'ve run into a brick wall! Try another direction')
 
     def look(self, direction=None):
         if direction is None:
-            print(self.currentRoom)
+            if self.hasLight() or self.currentRoom.hasLight() or self.currentRoom.lit:
+                print(self.currentRoom)
+            else:
+                print("It's pitch black in here!")
         else:
             nextRoom = self.currentRoom.getRoomInDirection(direction)
             if nextRoom is not None:
-                print("\n What you see: {}".format(nextRoom))
-
+                if self.hasLight() or nextRoom.hasLight() or nextRoom.lit:
+                    print("\n  What you see: {}\n".format(nextRoom))
+                else:
+                    print("\nIt's pitch black in there!\n")
             else:
-                print("There is nothing there.")
+                print("\nThere is nothing there.\n")
 
     def get(self, item):
         newItem = self.currentRoom.getItemFromRoom(item)
         if newItem is not None:
             self.items.append(newItem)
-            print("\nNew Inventory: {}\n".format(', '.join([item.name for item in self.items])))
+            newItem.on_take()
         else:
             print('\nThat item is not in this room.\n')
 
@@ -43,12 +57,13 @@ class Player:
             dropItem = self.currentRoom.dropItemInRoom(item)
             if dropItem is not None:
                 self.items.remove(dropItem)
+                dropItem.on_drop()
         else:
             print("\nYou do not currently have (a) {}. Type \'inventory\' to see a list of your items.\n".format(item.name))
 
     def inventory(self):
         if len(self.items) != 0:
-            invntry = "\nInventory: {}\n".format(', '.join([item.name for item in self.items]))
+            invntry = "Inventory: {}\n".format(', '.join([item.name for item in self.items]))
         else:
             invntry = "No items in inventory"
 

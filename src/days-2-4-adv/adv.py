@@ -16,21 +16,21 @@ item_list = item.keys()
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", True, None),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", item['scissors']),
+passages run north and east.""", True, item['scissors']),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", item['twine']),
+the distance, but there is no way across the chasm.""", False, item['twine']),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", item['coins']),
+to north. The smell of gold permeates the air.""", False, item['coins']),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", item['meatloaf']),
+earlier adventurers. The only exit is to the south.""", False, item['meatloaf']),
 }
 
 # Link rooms together
@@ -67,7 +67,8 @@ while True:
         elif cmds[0] == 'inventory' or cmds[0] == 'i':
             player.inventory()
         elif cmds[0] == 'look':
-            print("\nWhat you see: {}".format(player.currentRoom))
+            player.look()
+
         else:
             print("I did not understand that command.")
     else:
@@ -80,6 +81,7 @@ while True:
         elif cmds[0] == "get":
             if cmds[1] in item_list:
                 player.get(item[cmds[1]])
+                player.inventory()
             else:
                 print("That item does not exist.")
 
