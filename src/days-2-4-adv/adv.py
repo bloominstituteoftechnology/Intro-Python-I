@@ -52,39 +52,35 @@ p=Player(input('What is your name?'),room['outside'])
 
 # Write a loop that:
 
-direction = "What direction would you like to walk in?[n,s,e,w or q to quit]"
-print(f'Hello {p.name},Your current location is:{p.currentRoom.name} and it has items: {p.currentRoom.showItems()}')
+direction = "What direction would you like to walk in?[n,s,e,w or q to quit]-you could also enter commands like take sword or get coins to grab the vailabe items in the room"
+print(f'Your current location is:{p.currentRoom.name}. The available items are: {p.currentRoom.showItems()}')
 print(f'{p.currentRoom.text}')
 print(direction)
 
 
-valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w","forward": "n", "backwards": "s", "right": "e", "left": "w"}
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w","f": "n", "b": "s", "r": "e", "l": "w"}
 
 while True:        
         cmds = input("-> ").lower().split(' ')
-        print(cmds[1])
+        #print(cmds)
         cmd=cmds[0]
-        print(cmd[0])
-        if len(cmd)==1:
-                cm=cmd[0]
-                print(cm)
-                if cm == "q":
-                        print('You choose to quit.')
-                        break
-                elif cm in valid_directions:
-                        print('inside valid')
-                        p.travel(cm)
-                elif cm =="t" or cm =="g":
-                        print(cmds[1])
-                        result=p.currentRoom.getItem(cmds[1])
-                        if result!=None:
-                                p.items.append(result)
-                                p.currentRoom.removeItem(cmds[1])
-                                print(f'p.currentRoom.showItems()')
+        #print(cmd)
+        if cmd == "q":
+                print('You choose to quit.')
+                break
+        elif cmd in valid_directions:
+                p.travel(cmd)
+        elif cmd == "take" or cmd == "get":
+                result=p.currentRoom.getItem(cmds[1])
+                #print(f'{result}')
+                if result!=None:
+                        p.items.append(result)
+                        room[p.currentRoom.name].removeItem(result)
+                        print(f'You have a new item added to your list:{result}')
                 else:
-                        print('I cannot understand your command')
+                        print(f'Item not availabe')    
         else:
-                print("I did not understand that command.")        
+                print('I cannot understand your command')
 
 
 # * Prints the current room name

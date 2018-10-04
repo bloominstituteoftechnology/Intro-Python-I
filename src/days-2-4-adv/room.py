@@ -14,7 +14,7 @@ class Room():
         
         
         def __str__(self):
-                return f'{self.name} {self.text}'
+            return f'You are in room: {self.name} and the author has a message for you: {self.text}'
 
         def showItems(self):
                 if (self.items):
@@ -24,17 +24,21 @@ class Room():
         def addItem(self,item):
                 self.items.append(item)
 
-        def getItem(self, item):
-                if(self.items):
-                        for i in self.item:
-                                if i==item:
-                                        return i   
+        def getItem(self, itemIn):
+                if len(self.items) > 0:
+                        for i in self.items:
+                                if i.name==itemIn:
+                                        return i.name   
                 else:
                         return None
 
         def removeItem(self, item):
-                self.items.remove(item)
+                if len(self.items) > 0:
+                        for i in self.items:
+                                if i.name == item:
+                                        self.items.remove(i)
+                else:
+                        print('Item not available to remove!')
+            
 
-                
-                    
                             
