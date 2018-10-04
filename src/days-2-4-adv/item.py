@@ -13,6 +13,7 @@ class Item:
 
     def on_drop(self):
         self.owner = None
+        return True
 
 
 class Treasure(Item):
@@ -27,3 +28,15 @@ class Treasure(Item):
             self.first = False
 
 
+class LightSource(Item):
+    def __init__(self, name, desc):
+        super().__init__(name, desc)
+
+    def on_drop(self):
+        print('It is not wise to drop your source of light.')
+        choice = input('Do you still wish to drop your source of light? y/n \n')
+        if choice == 'y':
+            self.owner = None
+            return True
+        else:
+            return False

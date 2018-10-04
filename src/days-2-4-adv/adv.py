@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item, Treasure
+from item import Item, Treasure, LightSource
 
 # Declare all the rooms
 
@@ -35,6 +35,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 room['outside'].add_item(Item('Backpack', 'A backpack to hold your items'))
+room['outside'].add_item(LightSource('Lantern', 'A lantern to help you see through the darkness.'))
 room['treasure'].add_item(Treasure('Diamond', 'A shiny diamond.', 75))
 room['overlook'].add_item(Treasure('Map', 'A map with an X. Could it be treasure?', 20))
 room['narrow'].add_item(Treasure('Silver', 'A silver bar.', 25))
@@ -76,9 +77,9 @@ valid_utilities = {'i': 'i', 'inventory': 'i'}
 valid_help = {'h': 'h', 'help': 'h'}
 
 p = Player(input('What is your name? \n'), room['outside'])
-help_prompt()
 print(p.room)
 p.room.room_items()
+print('\n\nPress h or help to view commands.')
 
 while True:
     cmd = input('-> ').lower().split(' ')

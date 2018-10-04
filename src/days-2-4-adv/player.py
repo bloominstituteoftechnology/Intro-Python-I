@@ -41,9 +41,9 @@ class Player:
         if len(self.items) > 0:
             found_item = list(filter(lambda i: i.name.lower() == item, self.items))
             if len(found_item) > 0:
-                self.items.remove(found_item[0])
-                self.room.add_item(found_item[0])
-                found_item[0].on_drop()
+                if found_item[0].on_drop():
+                    self.items.remove(found_item[0])
+                    self.room.add_item(found_item[0])
             else:
                 print('There is no such item, please try again.')
 
