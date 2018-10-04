@@ -1,7 +1,7 @@
 from room import Room
 from player import Player
 import textwrap
-from item import Item
+from item import Item, Treasure
 
 # Declare all the rooms
 
@@ -54,9 +54,13 @@ room['treasure'].s_to = room['narrow']
 # If the user enters "q", quit the game.
 # Add some items
 
-# Items 
+# Items aka weapons
 wep1 = Item("sword", "a valerian steel sword")
 wep2 = Item("bow", "an elvish bow with sharp arrows")
+
+# Treasure Items (items subclass)
+t1 = Treasure("diamonds", "a bag full of prestine diamonds", 500)
+t2 = Treasure("gold", "a huge block of solid good.", 250)
 
 playerStartingItems = [wep1]
 room["outside"].addItem(wep2)

@@ -24,14 +24,18 @@ class Player:
                 print(nextRoom)
             else:
                 print("There is nothing there.")
+    # prints player inventory
     def printInventory(self):
         print("\nYou are carrying:\n")
         for item in self.items:
             print(f"  ~~ {item.name} ~~\n")
+    # adds item to players items
     def addItem(self, item):
         self.items.append(item)
+    # removes item to players items
     def removeItem(self, item):
         self.items.remove(item)
+    # gets the item in question via user command 
     def getItemByName(self, name):
         for item in self.items:
             if item.name.lower() == name.lower():
