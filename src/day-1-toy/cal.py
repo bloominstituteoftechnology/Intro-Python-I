@@ -14,3 +14,18 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+# def printCalendar(year, month):
+#     print(sys.argv)
+#     print(calendar.TextCalendar(firstweekday=6).prmonth(year, month))
+
+# printCalendar(1988, 7)
+
+def printCalendar():
+    if len(sys.argv) == 3:
+        print(calendar.TextCalendar().prmonth(int(sys.argv[1]), int(sys.argv[2])))
+    else:
+        print(calendar.TextCalendar().prmonth(2018, 10))
+
+printCalendar()
