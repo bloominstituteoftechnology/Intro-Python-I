@@ -83,14 +83,16 @@ while True:
             p.room.removeObject()
         elif cmd == "drop":
             p.dropObject()
-        elif cmd == "help":
+        elif cmd == "score":
+            p.getScore();
+        elif cmd == "help" or cmd == "h":
             for c in commands_help:
                 print(dict(c))            
         elif cmd == "command":
             print('command is not a command it is a header')
         elif cmd == "q":
             break
-        elif cmd == "back" || cmd == "look":
+        elif cmd == "back" or cmd == "look" or cmd == "here":
             print(p.room)
         else: 
             print('not a valid command')

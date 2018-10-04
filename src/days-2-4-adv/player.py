@@ -4,6 +4,7 @@ class Player():
     def __init__(self, name, room):
         self.name = name
         self.room = room
+        self.score = 0
         Items.__init__(self, self.name, ['knife'])
     def changeRoom(self, direction):
         next_room = self.room.getRoomInDirection(direction)
@@ -22,7 +23,7 @@ class Player():
         Items.getItems(self, self.name)
     def addItem(self, newItem):
         Items.addItem(self, newItem)
-        # Items.getItems(self, self.name)
     def dropItem(self, newItem):
         Items.dropItem(self, newItem)
-        # Items.getItems(self, self.name)
+    def getScore(self):
+        print(f"\nCurrent Score: {self.score}")
