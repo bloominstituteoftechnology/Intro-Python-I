@@ -79,9 +79,11 @@ while True:
                 result=p.currentRoom.getItem(cmds[1])
                 #print(f'{result}')
                 if result!=None:
-                        p.items.append(result)
+                        p.addItem(result)
                         room[p.currentRoom.name].removeItem(result)
-                        print(f'You have a new item added to your list:{result}')
+                        result1=p.currentRoom.getItem(result)
+                        if result1 == None:
+                                print(f'{result} successfuly removed from the room')
                 else:
                         print(f'Item not availabe')    
         else:

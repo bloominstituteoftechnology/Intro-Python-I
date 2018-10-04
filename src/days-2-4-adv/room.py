@@ -27,7 +27,6 @@ class Room():
                 self.items.append(item)
 
         def getItem(self, itemIn):
-                allItems=[]
                 if len(self.items) > 0:
                         for i in self.items:
                                 if i.name==itemIn:

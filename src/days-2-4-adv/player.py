@@ -11,6 +11,10 @@ class Player():
         def room_name(self):
                 return f'Your current location is: {self.currentRoom.name}'
 
+        def addItem(self, item):
+                self.items.append(item)
+                print(f'You have a new item added to your list: {item} ')
+
         def travel(self, direction):
                 nextRoom = None
                 if direction == "n":
