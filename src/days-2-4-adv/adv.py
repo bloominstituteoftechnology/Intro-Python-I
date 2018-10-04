@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -49,3 +51,35 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+valid_directions = {'n': 'n', 's': 's', 'e': 'e', 'w': 'w', 'forward': 'n', 'backwards': 's', 'right': 'e', 'left': 'w'}
+valid_utilities = {'i': 'i', 'inventory': 'i'}
+
+p = Player(input('What is your name? \n'), room['outside'])
+print(p.room)
+p.room.room_items()
+
+
+while True:
+    cmd = input('-->').lower().split('')
+    if len(cmd) == 1:
+        if cmd[0] == 'q'
+            break
+        elif cmd[0] in valid_directions:
+            p.move(valid_directions[cmd[0]])
+        elif cmd[0] in valid_directions:
+            p.list_items()
+        elif cmd[0] == 'score':
+            print(p.score)
+        else: 
+            print('Not a valid command')
+    else: 
+        if cmd[0] == 'look':
+            if cmd[1] in valid_directions:
+                p.look(valid_directions[cmd[1]])
+        elif cmd[0] == 'get' or cmd[0] == 'take':
+            p.get_item(cmd[1])
+        elif cmd[0] == 'drop':
+            p.drop_item(cmd[1])
+        else:
+            print('Not a valid command')
