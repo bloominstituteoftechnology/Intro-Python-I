@@ -23,6 +23,9 @@ class Player:
         for items in self.room.items:
             if items.name == item:
                 chosen = items
+                if(items.value and items.isNotTaken):
+                    self.score = self.score + items.value
+                    items.isNotTaken = False
         self.items.append(chosen)
         self.room.remove_item(chosen)
         print('Current Inventory:')

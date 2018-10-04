@@ -1,6 +1,6 @@
 from player import Player
 from room import Room
-from item import Item
+from item import Item, Treasure
 
 
 # Declare all the rooms
@@ -44,11 +44,17 @@ golden_key = Item("golden_key", "You never know when you will come across a lock
 rope = Item("rope", "It's about 10 feet long and made out of horse hair")
 ancient_scroll = Item("ancient_scroll", "Looks like a love letter, does it hold any value?")
 
-room['outside'].items = [knife, lamp]
-room['foyer'].items = [leather_pouch, wine_flask]
+pearls = Treasure("pearls", "So shiny, so white, so pretty. Maybe this has some value?", 100)
+emerald = Treasure("emerald", "Looks dirty, but it still has a glimmer to it", 200)
+gold_coins = Treasure("gold_coins", "These got to be worth a lot!", 500)
+
+
+
+room['outside'].items = [knife, lamp, pearls]
+room['foyer'].items = [leather_pouch, wine_flask, gold_coins]
 room['overlook'].items = []
 room['narrow'].items = [golden_key, rope]
-room['treasure'].items = [ancient_scroll]
+room['treasure'].items = [ancient_scroll, emerald]
 
 #
 # Main
@@ -105,7 +111,9 @@ while True:
         if cmds[0] == "q":
             break
         elif cmds[0] == "inventory":
-            print(f'Inventory: {player.items}')
+            print('Inventory:')
+            for items in player.items:
+                print(f'{items.name}: {items.description}')
         elif cmds[0] == "score":
             print(f'Score: {player.score}')
         elif cmds[0] in valid_directions:
