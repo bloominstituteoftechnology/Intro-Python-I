@@ -102,4 +102,6 @@ def game():
                 print('Invalid command.')
         else:
             print('Invalid command')
+        if player.win() is not None:
+            return player.win()
 game()

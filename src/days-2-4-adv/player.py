@@ -74,4 +74,8 @@ class Player:
                     return "Your light source illuminates the room." 
         self.can_see=False
         return "It's pitch black!"
+    def win(self):
+        if self.score==2700:
+            print('You have won the game.')
+        return None
         
