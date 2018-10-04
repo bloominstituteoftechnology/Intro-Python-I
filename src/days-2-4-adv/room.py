@@ -1,5 +1,5 @@
 class Room():
-    def __init__(self, title, description):
+    def __init__(self, title, description, light):
         self.title = title
         self.description = description
         self.n_to = None
@@ -7,6 +7,7 @@ class Room():
         self.w_to = None
         self.e_to = None
         self.items = []
+        self.is_light = light
 
     def getRoomInDirection(self, direction):
         if direction == "n":
@@ -33,7 +34,16 @@ class Room():
                     return i
 
     def listOfItems(self):
-        if len(self.items) < 1:
-            return ' '
-        for i in self.items:
-            return f'{i.name}'
+         return ", ".join([item.name for item in self.items])
+    def lightUpRoom(self):
+        self.is_light = True
+
+    def darkenRoom(self):
+        self.is_light = False
+    def hasLight(self, light):
+        if len(self.items) > 0:
+            for i in self.items:
+                if isinstance(i, light):
+                    return True
+        else:
+            return False
