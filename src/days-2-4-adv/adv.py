@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item, Treasure
+from item import Item, Treasure, LightSource
 # Declare all the rooms
 
 room = {
@@ -50,9 +50,13 @@ gold = Treasure('gold coins', 'pile of gold', 100)
 excalibur = Treasure("Excalibur", "Legendary sword of King Arthur", 10000)
 ring = Treasure("Ring", "Seems to hold mysterious powers", 1000)
 
+#LightSource
+lamp = LightSource('lamp')
+
 player.add_item(rock)
 room['outside'].add_item(pebble)
 room['foyer'].add_item(ring)
+room['foyer'].add_item(lamp)
 room['narrow'].add_item(silver)
 room['overlook'].add_item(gold)
 room['treasure'].add_item(excalibur)
@@ -70,7 +74,7 @@ room['treasure'].add_item(excalibur)
 
 while True:
     print(f'\nHello, you are currently at {player.room}.')
-    cmd = input("Press N, E, S or W to move.\nPress Q at any time to exit.\nPress I to view inventory.\nEnter get/take item_name to add item to inventory.\nEnter drop/remove item_name to remove item from inventory\n-> ").lower().split()
+    cmd = input("=====================\nPress N, E, S or W to move.\nPress Q at any time to exit.\nPress I to view inventory.\nEnter get/take item_name to add item to inventory.\nEnter drop/remove item_name to remove item from inventory\n=====================\n-> ").lower().split()
     if len(cmd) == 1:
         if cmd[0] == 'score':
             print (f'Your score is {player.score}')
@@ -109,9 +113,9 @@ while True:
                 print('\nThe item is not available for pick up.')
         if cmd[0] == 'drop' or cmd[0] == 'remove':
             item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.items))[0]
-            print(item)
             if item in player.items:
                 player.items.remove(item)
                 player.room.add_item(item)
+                item.on_drop()
             else:
                 print('\nYou do not have that item in your inventory.')
