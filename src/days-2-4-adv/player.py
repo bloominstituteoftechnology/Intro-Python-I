@@ -7,6 +7,7 @@ class Player:
         self.currentRoom = currentRoom
         self.inventory = inventory
         self.score = 0
+        self.health = 100
     def increaseScore(self, value):
         self.score += value
     def printInv(self):

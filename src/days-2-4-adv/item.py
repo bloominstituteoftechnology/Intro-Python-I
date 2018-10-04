@@ -1,7 +1,8 @@
 class Item:
-    def __init__(self, name, description):
+    def __init__(self, name, description, dmg):
         self.name = name
         self.description = description
+        self.dmg = dmg
     def on_take(self, player, room):
         if room.is_light:
             player.inventory.append(self)
@@ -22,8 +23,8 @@ class Item:
                 print("You have dropped the %s." % self.name)
 
 class Treasure(Item):
-    def __init__(self, name, description, value):
-        super().__init__(name, description)
+    def __init__(self, name, description, value, dmg):
+        super().__init__(name, description, dmg)
         self.value = value
         self.takenAlready = False
     def on_take(self, player, room):
@@ -36,6 +37,6 @@ class Treasure(Item):
             print("Good luck finding that in the dark!\n")
 
 class Lightsource(Item):
-    def __init__ (self, name, description):
-        super().__init__(name, description)
+    def __init__ (self, name, description, dmg):
+        super().__init__(name, description, dmg)
         
