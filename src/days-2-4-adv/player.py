@@ -3,11 +3,12 @@
 
 
 class Player():
-    def __init__(self, name, current_room, starting_items=[]):
+    def __init__(self, name, current_room, starting_items=[], starting_score=0):
         self.name = name
         self.current_room = current_room
         self.items = starting_items
         self.strength = 10
+        self.score = starting_score
 
     def travel(self, direction):
         next_room = self.current_room.get_room_in_direction(direction)
@@ -24,6 +25,9 @@ class Player():
         print("Your backpack contains...")
         for item in self.items:
             print(f" {item.name}: {item.description} \n")
+
+    def print_score(self):
+        print(f"Hey there {self.name}, your current score is {self.score}")
 
     def add_item(self, item):
         self.items.append(item)

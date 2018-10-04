@@ -2,7 +2,7 @@ import os
 
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Treasure
 
 # Declare all the items
 
@@ -12,6 +12,10 @@ cat = Item("cat", "a clever little creature")
 
 hat = Item("hat", "a work of fine haberdashery")
 
+
+# Declare all the treasures
+
+ruby = Treasure("ruby", "a beautiful gem", 100)
 
 
 # Declare all the rooms
@@ -51,7 +55,7 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-#Setup Arrangement
+# Setup Arrangement
 player_starting_items = [hat]
 
 room['outside'].add_item(sword)
@@ -60,8 +64,8 @@ room['foyer'].add_item(cat)
 # Make a new player object that is currently in the 'outside' room.
 
 
-
-p = Player(input("What is your name? "), room['outside'], player_starting_items)
+p = Player(input("What is your name? "),
+           room['outside'], player_starting_items)
 os.system("clear")
 print(f'Hello, {p.name} – your journey begins... {p.current_room}')
 
@@ -90,9 +94,18 @@ while True:
         elif cmds[0] == "i" or cmds[0] == "inventory":
             os.system("clear")
             p.print_inventory()
+            print(
+                f'Hello, {p.name} – you are currently in the {p.current_room}')
         elif cmds[0] == "status":
             os.system("clear")
-            p.print_status()             
+            p.print_status()
+            print(
+                f'Hello, {p.name} – you are currently in the {p.current_room}')
+        elif cmds[0] == "score":
+            os.system("clear")
+            p.print_score()
+            print(
+                f'Hello, {p.name} – you are currently in the {p.current_room}')
         else:
             os.system("clear")
             print("Invalid command, ye dog!")
