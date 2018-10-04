@@ -8,6 +8,7 @@ class Player(object):
         self.currentRoom = currentRoom
         self.items = items
         self.points = 0 
+        self.toCollect = 3#if a player gets all 3 treasures they win the game. 
 
     def __str__(self):
         return f"{self.name} \n\ncurrently in room {self.currentRoom}\n"

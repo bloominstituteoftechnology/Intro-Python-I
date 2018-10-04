@@ -3,8 +3,17 @@ from player import Player
 from weapon import Weapon
 from item import Item
 from item import Treasure
+from item import LightSource
+from time import sleep
 import random
+import os 
 # Declare all the rooms
+lights = {
+    "flashlight": LightSource("flashlight", "The flashlight helps you see better but can also be used as a weapon careful if you use it as a weapon it may not work anymore as a visual aid."),
+    "latern" : LightSource("latern", "use this to see in dark rooms, able to use underwater, may break if dropped"),
+    "torch" : LightSource("torch", "use as a light source torch stakes do not stay lit when wet"),
+}
+
 items = {
     "shovel": Item("shovel", "Use this to dig or hit with manually droppable item"),
     "sword": Item("sword", "Use this to chop or slice manually droppable item"),
@@ -13,22 +22,22 @@ items = {
     "gun": Item("gun", "Shoot with this manually droppable item"),
     "extinguisher": Item("extinguisher", "Put out fires or use as a decoy, manually droppable item"),
     "coins": Item("coins", "coins count as points, every room has coins This item cannot be mannually dropped"),
-    "flashlight": Item("flashlight", "The flashlight helps you see better but can also be used as a weapon careful if you use it as a weapon it may not work anymore as a visual aid."),
     "key": Item("key", "Master key that can unlock anything might be worth holding on to."),
-    "scub": Item("scuba", "Scuba Mask allows you to breathe under water for extended periods of time.")
-
+    "scuba": Item("scuba", "Scuba Mask allows you to breathe under water for extended periods of time.")
 }
+
 treasures = {
     "gold": Treasure(1000, "gold", "Chest full of Gold. The chest features 1000 points worth of gold. You will need a master key to unlock it!"),
     "silver": Treasure(500, "silver", "500 points worth of valuable silver at the bottom of the pool. YOu will need a scuba mask due the pool being 50 feet deep. Silvers at the bottom."),
     "wallet": Treasure (250, "wallet", "You have found the kings wallet featuring 250 points")
 }
+
 room = {
     'outside':  Room("outside",
                      "Outside Cave Entrance North of you, the cave mount beckons", [items["coins"]]),
 
     'foyer':    Room("foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [items["coins"], items["flashlight"]]),
+passages run north and east.""", [items["coins"], lights["flashlight"]]),
 
     'overlook': Room("overlook", """Grand Overlook A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -46,6 +55,7 @@ earlier adventurers. The only exit is to the south.""", [items["gun"],items["coi
     'kitchen': Room('Kitchen', """Welcome to the kitchen """, [items["sword"],items["coins"]])
 
 }
+
 # Link rooms together
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
@@ -64,8 +74,7 @@ room['prison'].n_to = room['coward']
 
 # Main
 
-rooms = ["outside", "foyer", "overlook",
-         "narrow", "treasure", "kitchen", "prison"]
+
 
 directions = {"n", "s", "e", "w"}
 # set of  directions want to key them to the direction.
@@ -75,11 +84,13 @@ directions = {"n", "s", "e", "w"}
 # Write a loop that:
 directions = ["n", "s", "e", "w"]
 # "i"  should allow one to check inventory. 
-moves = ["drop", "grab"]
+moves = ["drop", "grab", "look"]
 suppressRoomPrint = False
 player = Player(input("What is your name? "), room['outside'])
 print("Starting game:\n\n options -> Enter q to quit,\n score to view currentScore\n n to go North\n s to go South\n e to go East\n w to go West\n\n i should allow you to check your inventory\n\n")
 while True:
+    sleep(7)
+    os.system('cls') #clears out previous input. 
     print(f"{player.currentRoom}\n\n")
     option = input(
         "option ->")

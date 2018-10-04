@@ -32,7 +32,7 @@ class Room (object):
             return self.e_to
         else:
             return None
-    #
+    
     def removeItem(self,item):
         if self.items.count(item) > 0:
             self.items.remove(item)

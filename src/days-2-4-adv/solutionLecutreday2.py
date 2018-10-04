@@ -72,3 +72,11 @@ else:
 
 def getRoomInDirection(self, direction):
     return self.n_to #etc.. 
+
+
+def change_room(self, option):
+    obj = {"n": self.n_to, "s": self.s_to, "e": self.e_to, "w": self.w_to}
+    if obj[option] is not None:
+        return obj[option]
+    else:
+        return None 
