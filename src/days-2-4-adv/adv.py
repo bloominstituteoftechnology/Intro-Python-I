@@ -60,8 +60,8 @@ while True:
         player.enter(cmd[0])
         player.currentRoom.getItem()
     elif cmd[0] == "pickup" or cmd[0] == "drop":
-        print (player.items)
         player.itemHandler(cmd[0], cmd[1])
+        print ("stuff", player.items)
     else:
         print ("\nPlease enter a valid direction (n, s, e, w)\n")
     
