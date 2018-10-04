@@ -40,14 +40,13 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 
-p = Player(input("What is your name? "), room['outside'])
+player = Player(input("What is your name? "), room['outside'])
 
 validCmds = ['n', 's', 'e', 'w', 'get']
 
 while True:
-    print(p)
-    print(p.currentRoom)
-    cmd = input("\nWhat's your next move, pal? (Actions: n, s, e, w, get [item], drop [item], i/inventory)\n").lower().split(" ")
+    print(player.currentRoom)
+    cmd = input("\nWhat's your next move, pal? (Actions: n, s, e, w, status, get [item], drop [item], i/inventory)\n").lower().split(" ")
     
     if len(cmd) == 1:
         if cmd[0] == 'q':
@@ -55,44 +54,46 @@ while True:
         elif cmd[0] == 'n':
             print('\n== You stride confidently north. ==')
             try: 
-                p.playerMove('n')
+                player.playerMove('n')
             except: 
-                print(p.badMove)
+                print(player.badMove)
         elif cmd[0] == 's':
             print('\n== You stride confidently south. ==')
             try: 
-                p.playerMove('s')
+                player.playerMove('s')
             except: 
-                print(p.badMove)
+                print(player.badMove)
         elif cmd[0] == 'e':
             print('\n== You stride confidently east. ==')
             try: 
-                p.playerMove('e')
+                player.playerMove('e')
             except: 
-                print(p.badMove)
+                print(player.badMove)
         elif cmd[0] == 'w':
             print('\n== You stride confidently west. ==')
             try: 
-                p.playerMove('w')
+                player.playerMove('w')
             except: 
-                print(p.badMove)
+                print(player.badMove)
         elif cmd[0] == 'i' or cmd[0] == 'inventory':
-            print(f'\n== You have the following items in your sack: {p.items} ==')
+            print(f'\n== You have the following items in your sack: {player.items} ==')
+        elif cmd[0] == 'status':
+            print(f'\n{player}')            
         else:
             print("\n== You wander aimlessly like a fool and will surely be eaten by goblins if you don't pick a direction soon. ==")
     else:
         if cmd[0] == 'get':
-            if p.currentRoom.items == None:
+            if player.currentRoom.items == None:
                  print(f"\n== There are no items in the room called '{cmd[1]}'. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")
             elif cmd[1] == p.currentRoom.items.name.lower():
-                p.playerGet(cmd[1])
-                p.currentRoom.items = None 
+                player.playerGet(cmd[1])
+                player.currentRoom.items = None 
             else:
                 print(f"\n== There are no items in the room called '{cmd[1]}'. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")
         elif cmd[0] == 'drop':
-            if cmd[1] in p.items:
-                p.playerDrop(cmd[1])
-                p.currentRoom.items = item[cmd[1]]
+            if cmd[1] in player.items:
+                player.playerDrop(cmd[1])
+                player.currentRoom.items = item[cmd[1]]
             else:
                 print(f"\n== There are no items in your sack called '{cmd[1]}''. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")            
         else:
