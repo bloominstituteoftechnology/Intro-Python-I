@@ -11,6 +11,9 @@ class Item:
     def on_take(self, player):
         self.owner = player
 
+    def on_drop(self):
+        self.owner = None
+
 
 class Treasure(Item):
     def __init__(self, name, desc, value):
@@ -23,5 +26,4 @@ class Treasure(Item):
             self.owner.score += self.value
             self.first = False
 
-    def on_drop(self):
-        self.owner = None
+

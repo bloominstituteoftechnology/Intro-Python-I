@@ -43,6 +43,7 @@ class Player:
             if len(found_item) > 0:
                 self.items.remove(found_item[0])
                 self.room.add_item(found_item[0])
+                found_item[0].on_drop()
             else:
                 print('There is no such item, please try again.')
 

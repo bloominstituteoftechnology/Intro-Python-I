@@ -57,10 +57,26 @@ room['narrow'].add_item(Treasure('Silver', 'A silver bar.', 25))
 #
 # If the user enters "q", quit the game.
 
+def help_prompt():
+    print('Hello, adventurer. Here are the available commands: \n')
+    print('Move:')
+    print('  North: n or forward \n  South: s or backwards \n  East: e or right \n  West: w or left')
+    print('Look:')
+    print('  Look (direction) to look at what lies ahead.')
+    print('Items:')
+    print('  Get/take (item) to take item \n  Drop (item) to drop item \n  i or inventory to check inventory')
+    print('Help:')
+    print('  h or help to view these commands again')
+    print('Quit:')
+    print('  q to quit the game')
+
+
 valid_directions = {'n': 'n', 's': 's', 'e': 'e', 'w': 'w', 'forward': 'n', 'backwards': 's', 'right': 'e', 'left': 'w'}
 valid_utilities = {'i': 'i', 'inventory': 'i'}
+valid_help = {'h': 'h', 'help': 'h'}
 
 p = Player(input('What is your name? \n'), room['outside'])
+help_prompt()
 print(p.room)
 p.room.room_items()
 
@@ -73,6 +89,8 @@ while True:
             p.move(valid_directions[cmd[0]])
         elif cmd[0] in valid_utilities:
             p.list_items()
+        elif cmd[0] in valid_help:
+            help_prompt()
         elif cmd[0] == 'score':
             print(p.score)
         else:
