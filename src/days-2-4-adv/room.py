@@ -11,11 +11,10 @@ class Room:
         self.e_to=None
         self.w_to=None
     def __str__(self):
-        item_arr=[]
-        for item in self.inventory:
-            item_arr.extend(item.name)
-        item_arr=', '.join(item_arr)
-        return f'name: {self.name}\ndescription: {self.description}\nitems available: {item_arr}'
+        if len(self.inventory)==0:
+            return f'name: {self.name}\ndescription: {self.description}\nThere is nothing of value here.'
+        else:
+            return f"name: {self.name}\ndescription: {self.description}\nitems available: {', '.join([item.name[0] for item in self.inventory])}"
     def get_next_room(self,direction):
         next_location=''
         if direction=='n':
@@ -31,3 +30,12 @@ class Room:
             if hasattr(self,'w_to'):
                 next_location=self.w_to
         return next_location
+    def find_item(self,item):
+        for element in self.inventory:
+            if element.name[0]==item:
+                return element
+        return None
+    def add_item(self,item):
+        self.inventory.append(item)
+    def remove_item(self,item):
+        self.inventory.remove(item)

@@ -23,30 +23,39 @@ class Player:
         if self.can_see==False:
             return 'Good luck finding that in the dark!'
         else:
-            for element in self.current_location.inventory:
-                if element.name[0]==item:
-                    self.current_location.inventory.remove(element)
-                    self.possessions.append(element)
-                    value=element.on_take()
-                    if value is not None:
-                        self.score+=value
-                    return f'{self.name} picked up a {item}'
-        return f'Cannot find {item} in {self.current_location.name}'
-    def inventory(self):
-        item_arr=[]
-        for item in self.possessions:
-            item_arr.extend(item.name)
-        item_arr=', '.join(item_arr)
-        return f'Items currently in possession: {item_arr}'
-    def drop(self,item):
+            element=self.current_location.find_item(item)
+            if element==None:
+                return f'Cannot find {item} in {self.current_location.name}'
+            else:
+                self.current_location.remove_item(element)
+                self.add_item(element)
+                value=element.on_take()
+                if value is not None:
+                    self.score+=value
+                return f'{self.name} picked up a {item}'
+    def find_item(self,item):
         for element in self.possessions:
             if element.name[0]==item:
-                self.possessions.remove(element)
-                self.current_location.inventory.append(element)
-                warning=element.on_drop()
-                if warning is not None:
-                    print(f'{warning}')
-                return f'{self.name} dropped a {item}'
+                return element
+        return None
+    def add_item(self,item):
+        self.possessions.append(item)
+    def remove_item(self,item):
+        self.possessions.remove(item)
+    def inventory(self):
+        if len(self.possessions)==0:
+            return 'You have no items in your possession'
+        else:
+            return f"Items currently in possession: {', '.join([item.name[0] for item in self.possessions])}"
+    def drop(self,item):
+        element=self.find_item(item)
+        if element is not None:
+            self.remove_item(element)
+            self.current_location.add_item(element)
+            warning=element.on_drop()
+            if warning is not None:
+                print(f'{warning}')
+            return f'{self.name} dropped a {item}'
         return f'You do not have a {item} to drop.'
     def get_score(self):
         return f'{self.name}\'s score:{self.score}'

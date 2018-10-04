@@ -79,12 +79,11 @@ room['outside'].inventory.append(lightsource['candle'])
 valid_directions={'n':'n','s':'s','e':'e','w':'w'}
 def game():
     player=Player(input('What is your name? '),room['outside'])
-    print(f'Hello, {player.name}\nYour adventures starts at {player.current_location.name}')
-    print(player.is_there_light())
+    print(f'Hello, {player.name}\nYour adventures starts at:\n{player.current_location}\n{player.is_there_light()}')
     while True:
         cmd=input('-->').lower().split()
         if len(cmd)==2:
-            if cmd[0]=='get':
+            if cmd[0]=='get' or cmd[0]=='take':
                 print(player.pickup(cmd[1]))
             elif cmd[0]=='drop':
                 print(player.drop(cmd[1]))
