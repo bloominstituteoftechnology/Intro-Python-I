@@ -27,13 +27,13 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 # room['outside'].object = 'a compass'
-room['outside'].items = ['a compass', 'grass']
+room['outside'].items = ['compass', 'grass']
 # room['treasure'].object = 'a note'
 
 valid_directions = {
     "n": "n", 
     "north": "n", 
-    "e": "e", 
+    "e": "e",
     "east": "e", 
     "s": "s", 
     "south": "s", 

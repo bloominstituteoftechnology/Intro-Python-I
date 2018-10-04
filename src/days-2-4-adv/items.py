@@ -11,6 +11,9 @@ class Items():
     def addItem(self, newItem):
         self.items.append(newItem)
         Items.getItems(self, self.parent)
+        points = self.points
+        self.points = 0 
+        return points 
     def dropItem(self, oldItem):
         self.items.remove(oldItem)
         Items.getItems(self, self.parent)

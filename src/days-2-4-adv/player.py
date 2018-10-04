@@ -22,7 +22,8 @@ class Player():
     def playerItems(self):
         Items.getItems(self, self.name)
     def addItem(self, newItem):
-        Items.addItem(self, newItem)
+        self.score = self.score + Items.addItem(self, newItem)
+        self.getScore()
     def dropItem(self, newItem):
         Items.dropItem(self, newItem)
     def getScore(self):
