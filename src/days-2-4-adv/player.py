@@ -6,7 +6,7 @@ class Player:
         self.startRoom = startRoom
         self.name = name
         self.inventory = []
-
+        self.score = 0
     def enter(self, direction):
         room = self.startRoom.getRoom(direction)
         if room is not None:
@@ -39,4 +39,6 @@ class Player:
         print('You are carrying: \n')
         for item in self.inventory:
             print(f' {item.name} -- {item.description} ')
+    def getScore(self):
+        print(f'Current score:  {self.score} ')
 

@@ -73,6 +73,8 @@ while True:
             me.enter(cmd[0])
         elif cmd[0] == 'i':
             me.getInventory()
+        elif cmd[0] == 'score':
+            me.getScore()
         else:
             print('cannot do that')
     else:
