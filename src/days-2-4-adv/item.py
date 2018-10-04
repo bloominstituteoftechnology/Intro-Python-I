@@ -9,7 +9,6 @@ class Item:
 
     def on_take(self, player):
         self.acquired = True
-        return f'You have acquired {self.name}'
 
     def on_drop(self):
         return f'You have dropped {self.name}'

@@ -29,6 +29,7 @@ room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
 room['overlook'].s_to = room['foyer']
+room['overlook'].n_to = room['treasure']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
@@ -46,7 +47,7 @@ silver = Item('silver', '5 silver')
 rock = Item('rock')
 
 #Treasures
-gold = Treasure('gold coins', 'pile of gold', 100)
+gold = Treasure('gold', 'pile of gold', 100)
 excalibur = Treasure("Excalibur", "Legendary sword of King Arthur", 10000)
 ring = Treasure("Ring", "Seems to hold mysterious powers", 1000)
 
@@ -73,16 +74,15 @@ room['treasure'].add_item(excalibur)
 # If the user enters "q", quit the game.
 
 while True:
-    print(player.room.is_light)
     if player.room.is_light == True or any(isinstance(item, LightSource) for item in player.items) or any(isinstance(item, LightSource) for item in player.room.items):
-        print(f'Items available in this room: {player.room.items}')
+        print(f'\nItems available in this room: {player.room.items}')
     else:
-        print(f'It\'s pitch black!')
+        print(f'\nIt\'s pitch black!')
     print(f'\nYou are currently at {player.room}.')
-    cmd = input("=====================\nPress N, E, S or W to move.\nPress Q at any time to exit.\nPress I to view inventory.\nEnter get/take item_name to add item to inventory.\nEnter drop/remove item_name to remove item from inventory\n=====================\n-> ").lower().split()
+    cmd = input("================================\nPress N, E, S or W to move.\nPress Q at any time to exit.\nPress I to view inventory.\nEnter get/take item_name to add item to inventory.\nEnter drop/remove item_name to remove item from inventory\nEnter score to view your current score\n================================\n-> ").lower().split()
     if len(cmd) == 1:
         if cmd[0] == 'score':
-            print (f'Your score is {player.score}')
+            print (f'\nYour score is {player.score}')
         if cmd[0] == 'i' or cmd[0] == 'inventory':
             player.inventory()
         elif cmd[0] == 'q':
@@ -110,10 +110,12 @@ while True:
     elif len(cmd) > 1 and len(cmd) < 3:
         if cmd[0] == 'get' or cmd[0] == 'take':
             item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.room.items))[0]
-            if item in player.room.items:
+            if item in player.room.items and (player.room.is_light == True or any(isinstance(item, LightSource) for item in player.items) or any(isinstance(item, LightSource) for item in player.room.items)):
                 player.add_item(item)
                 player.room.remove_item(item)
                 item.on_take(player)
+            else:
+                print(f'\nGood luck finding that in the dark!')
         else:
             print('\nThe item is not available for pick up.')
         if cmd[0] == 'drop' or cmd[0] == 'remove':
@@ -122,5 +124,8 @@ while True:
                 player.items.remove(item)
                 player.room.add_item(item)
                 item.on_drop()
-        else:
-            print('\nYou do not have that item in your inventory.')
+            else:
+                print('\nYou do not have that item in your inventory.')
+    if player.score >= 9000:
+        print(f'Congratulations! You won!')
+        break
