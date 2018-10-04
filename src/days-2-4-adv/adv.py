@@ -27,19 +27,8 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 
-# Link rooms together
-
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
-
-
 # Declare all items
+
 item = {
     'axe':  Item("Axe", """You may use the axe to cut down trees and brush."""),
 
@@ -58,15 +47,22 @@ item = {
     'iphone': Item("Iphone", """You now have an iphone, you probably don't want to play this game anymore."""),
 }
 
+# Link rooms together
+
+room['outside'].n_to = room['foyer']
+room['foyer'].s_to = room['outside']
+room['foyer'].n_to = room['overlook']
+room['foyer'].e_to = room['narrow']
+room['overlook'].s_to = room['foyer']
+room['overlook'].addItem(item['bow']) #passes a reference to save the value
+room['narrow'].w_to = room['foyer']
+room['narrow'].n_to = room['treasure']
+room['treasure'].s_to = room['narrow']
+
+
 #
 # Main
 #
-
-print(room['outside'])
-print(room['foyer'])
-print(room['overlook'])
-print(room['narrow'])
-print(room['treasure'])
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(input("\nWhat is your name? "), room["outside"])

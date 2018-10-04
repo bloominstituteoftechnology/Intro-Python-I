@@ -12,7 +12,7 @@ class Room():
         self.items = []
 
     def __str__(self):
-        return f"\n\n{self.name}\n\n   {self.description}\n\n  {self.items}"
+        return f"\n\n{self.name}\n\n {self.description}\n\n  {self.getItemsString()}\n"
 
     def getRoomInDirection(self, direction):
         if direction == "n":
@@ -24,7 +24,7 @@ class Room():
         elif direction == "w":
             return self.w_to
         else:
-            return "None"
+            return None
 
     def connectRooms(self, newRoom, direction):
         if direction == "n":
@@ -44,14 +44,18 @@ class Room():
 
 
 #------------item related methods--------------
+    def getItemsString(self):
+        return f"The room contains: {', '.join([item.name for item in self.items])}"
+
     def findItemByName(self, name):
         for item in self.items:
             if item.name == name:
                 return item
         return None
 
-    def addItem(self, items):
+    def addItem(self, item):
         self.items.append(item)
 
     def removeItem(self, item):
         self.items.remove(item)
+    
