@@ -1,26 +1,25 @@
 from room import Room
 from player import Player
-from item import Item
-
+from item import Item, Treasure
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", ['sword']),
+                     "North of you, the cave mount beckons", [Treasure(5, 'sword')]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ['shield']),
+passages run north and east.""", [Treasure(3, 'shield')]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""", []),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ['flint']),
+to north. The smell of gold permeates the air.""", [Treasure(2, 'potato')]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", ['stick']),
+earlier adventurers. The only exit is to the south.""", [Item('stick')]),
 }
 
 # Link rooms together
@@ -78,7 +77,7 @@ while True:
         if player_input[0].lower() == "t" or player_input[0].lower() == "take":
             taking_item = player.location.find_item(player_input_args[1])
             if taking_item == None:
-                print(f"You couldn't find a {player_input[1]}")
+                print(f"You couldn't find a {player_input_args[1]}")
             else:
                 player.take_item(taking_item)
                 player.location.remove_item(taking_item)

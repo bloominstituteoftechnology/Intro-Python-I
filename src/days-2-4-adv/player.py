@@ -30,13 +30,16 @@ class Player:
     def view_inventory(self):
         print(f"{self.name} is currently holding:")
         for item in self.inventory:
-            print(f"{item.capitalize()}")
+            print(f"{item.name.capitalize()}")
 
     def find_item(self, input_item):
         for item in self.inventory:
-            if item.lower() == input_item.lower():
+            if item.name.lower() == input_item.lower():
                 return item
             return None
 
     def get_score(self):
         print(f"\nCurrent Score: {self.score}")
+
+    def add_to_score(self, points):
+        self.score = self.score + points

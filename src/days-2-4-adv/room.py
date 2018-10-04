@@ -28,18 +28,18 @@ class Room:
 
     def print_items(self):
         for item in self.items:
-            print(f"You find a {item.lower()} in this room!")
+            print(f"You find a {item.name.lower()} in this room!")
 
     def find_item(self, input_item):
         for item in self.items:
-            if item.lower() == input_item.lower():
+            if item.name.lower() == input_item.lower():
                 return item
             return None
 
     def remove_item(self, item):
-        print(f"You have picked up the {item.lower()}")
+        print(f"You have picked up the {item.name.lower()}")
         self.items.remove(item)
 
     def add_item(self, item):
         self.items.append(item)
-        print(f"You have dropped the {item.lower()}")
+        print(f"You have dropped the {item.name.lower()}")
