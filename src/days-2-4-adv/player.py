@@ -22,8 +22,9 @@ class Player:
         return None 
     def menu(self):
         if len(self.items) > 0:
-            print(f"Items avliable:{self.items}")
-        else:
+            for item in self.items:
+                print(f"Items available:{item.name}")
+        else:   
             print("No items")
 
 
