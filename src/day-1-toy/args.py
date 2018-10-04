@@ -11,7 +11,7 @@ print(f1(1, 2))
 # Write a function f2 that takes any number of iteger arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
-# def f2(...
+# def f2(... # *x list of arguments
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4

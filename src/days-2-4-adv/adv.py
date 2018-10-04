@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+Minion = Player(input('What is your name, traveler? '), room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +49,26 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+valid_directions = {'n': 'n', 's': 's', 'e': 'e', 'w': 'w',
+                    'north': 'n', 'south': 's', 'east': 'e', 'west': 'w',
+                    'forward': 'n', 'backward': 's', 'right': 'e', 'left': 'w'}
+
+print(f'Room Location: {Minion.roomLocation}')
+
+while True:
+    cmds = input("Where would you like to go next?\n ->").lower().split(' ')
+    print(f'cmds: {cmds}')
+    if len(cmds) == 1:
+        if cmds[0] == 'q':
+            break
+        elif cmds[0] in valid_directions:
+            Minion.travel(valid_directions[cmds[0]])
+        else:
+            print("Your request was not recognized.")
+    else:
+        if cmds[0] == 'look':
+            if cmds[1] in valid_directions:
+                Minion.look(valid_directions[cmds[1]])
+        else:
+            print("Your request was not recognized.")

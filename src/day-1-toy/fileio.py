@@ -1,5 +1,5 @@
 # Use open to open file "foo.txt" for reading
-
+import foo
 # Print all the lines in the file
 
 # Close the file
