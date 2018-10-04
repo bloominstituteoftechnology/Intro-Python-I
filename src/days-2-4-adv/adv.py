@@ -71,6 +71,8 @@ while True:
             break
         elif cmd[0] in ['n', 's', 'e', 'w']:
             me.enter(cmd[0])
+        elif cmd[0] == 'i':
+            me.getInventory()
         else:
             print('cannot do that')
     else:
@@ -87,4 +89,4 @@ while True:
             else:
                 me.removeItem(itemToDrop)
         else:
-             print('Cannot do that...')
+             print('cannot do that')

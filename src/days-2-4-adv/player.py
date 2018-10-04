@@ -35,4 +35,8 @@ class Player:
             print(f'You dropped the {item.name}')
         else:
             print('No items to drop')
+    def getInventory(self):
+        print('You are carrying: \n')
+        for item in self.inventory:
+            print(f' {item.name} -- {item.description} ')
 
