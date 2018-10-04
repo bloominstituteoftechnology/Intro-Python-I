@@ -8,12 +8,9 @@ class Player():
     def printRoom(self, room):
         print (self.room)
     def printItems(self, items):
-        for item in items:
-            print (item)
+        print (items)
     def drop(self, items):
-        drop = input("What items do you want to drop: " for item in items)
-        for item in self.items:
-            if item != drop:
-                self.items.append(item)
-
-        
+        drop = input(f"What items do you want to drop: {self.items}\n->")
+        self.items.remove(drop)
+    def get(self, items):
+        return ''
