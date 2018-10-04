@@ -20,7 +20,7 @@ to north. The smell of gold permeates the air.""",False),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",False),
-    'final':Room("Final Room","""Collect the power of the three keys before entering this dungeon and you will be rewarded handsomely.""",
+    'final':Room("Final Room","""Collect the power of the three treasures before entering this dungeon and you will be rewarded handsomely.""",
     True)
 }
 
