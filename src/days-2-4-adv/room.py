@@ -1,18 +1,5 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
-from item import Item
-
-items = {
-    'katana': Item("Katana", """An extremely sharp single-edged sword"""),
-
-    'spear': Item("Spear", """A wooden spear, useful for fishing"""),
-
-    'broadsword': Item("Broadsword", """A heavy two-handed sword"""),
-
-    'scimitar': Item("Scimitar", """A short curved blade, perfect for self-defense"""),
-
-    'club': Item("Club", """A crudely fashioned club"""),
-}
 
 class Room:
     def __init__(self, name, description, inventory):
