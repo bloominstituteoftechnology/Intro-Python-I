@@ -14,7 +14,7 @@ class Room:
         print(self.description)
     def printInv(self):
         if len(self.inventory) > 0:
-            print("The room contains:")
+            print("This room contains:")
             for item in self.inventory:
                 print(item.name, ":", item.description)
         else:

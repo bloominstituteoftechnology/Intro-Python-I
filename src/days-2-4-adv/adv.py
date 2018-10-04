@@ -19,7 +19,8 @@ room = {
     falling into the darkness. Ahead to the north, 
     a light flickers in the distance, but there 
     is no way across the chasm.""",
-                    [Item("long sword", "a sharp, heavy blade")], False),
+                    [Item("long sword", "a sharp, heavy blade"),
+                    Item("rusty sword", "a dull and dingy blade")], False),
 
     'narrow':   Room("Narrow Passage", 
     """    The narrow passage bends here from west
@@ -165,43 +166,117 @@ What would you like to do, %s? """ % player.name)
             suppressRoomPrint = True
     elif cmd.upper() == 'INV' or cmd.upper() == 'I':
         player.printInv()
-    elif "TAKE" in cmd.upper():
-        isInInv = False
-        for item in currentRoom.inventory:
-            if cmd[5:] in item.name:
-                isInInv = True
-
-                if isinstance(item, Treasure):
-                    treasureOnTake(item)
-                    item.on_take(player, currentRoom)
+    elif "TAKE" in cmd.upper() and len(cmd) > 4:
+        if cmd[5:].upper() == "ALL":
+            while len(currentRoom.inventory) > 0:
+                for item in currentRoom.inventory:
+                    if isinstance(item, Treasure):
+                        treasureOnTake(item)
+                        item.on_take(player, currentRoom)
+                    else:
+                        item.on_take(player, currentRoom)
+        else:
+            isInInv = False
+            stringCount = 0
+            for item in currentRoom.inventory:
+                if cmd[5:] in item.name:
+                    isInInv = True
+                    stringCount += 1
+                    itemToTake = item
+            if isInInv:
+                if stringCount > 1:
+                    print(f"I don't know which type of {cmd[5:]} you mean.")
                 else:
-                    item.on_take(player, currentRoom)
-        if not isInInv:
-            print("Sorry, %s, that item is not in this room." % player.name)
+                    if isinstance(item, Treasure):
+                        treasureOnTake(itemToTake)
+                        itemToTake.on_take(player, currentRoom)
+                    else:
+                        itemToTake.on_take(player, currentRoom)
+            else:
+                print("Sorry, %s, that item is not in this room." % player.name)
+    elif cmd.upper() == "TAKE":
+        print("Please specify what you would like to take.")
     elif "DROP" in cmd.upper():
-        isInInv = False
-        for item in player.inventory:
-            if cmd[5:] in item.name:
-                isInInv = True
-                item.on_drop(player, currentRoom)
-        if not isInInv:
-            print("You are not carrying that item.")
+        if cmd[5:].upper() == "ALL":
+            while len(player.inventory) > 0:
+                for item in player.inventory:
+                    item.on_drop(player, currentRoom)
+        else:
+            isInInv = False
+            for item in player.inventory:
+                if cmd[5:] in item.name:
+                    isInInv = True
+                    item.on_drop(player, currentRoom)
+            if not isInInv:
+                print("You are not carrying that item.")
     elif cmd.upper() == "SCORE":
         print("Your score: %s" % player.score)
+    elif cmd.upper() == "LOOK":
+        if currentRoom.is_light:
+            print("------------------------------------------------")
+            currentRoom.printName()
+            currentRoom.printDesc()
+            print()
+            currentRoom.printInv()
+            print()
+        else:
+            print("It's pitch black!")
+    elif len(cmd) > 4 and "LOOK" in cmd.upper():
+        if cmd[5:].upper() == 'N' or cmd[5:].upper() == 'NORTH':
+            if hasattr(currentRoom, 'n_to'):
+                if currentRoom.n_to.is_light:
+                    print("Looking towards: ")
+                    currentRoom.n_to.printName()
+                    currentRoom.n_to.printDesc()
+                else:
+                    print("\nIt is too dark to see what is in that room.")
+            else:
+                print("\nThere is nothing to look at in that direction.\n")
+        if cmd[5:].upper() == 'S' or cmd[5:].upper() == 'SOUTH':
+            if hasattr(currentRoom, 's_to'):
+                if currentRoom.s_to.is_light:
+                    print("Looking towards: ")
+                    currentRoom.s_to.printName()
+                    currentRoom.s_to.printDesc()
+                else:
+                    print("\nIt is too dark to see what is in that room.")
+            else:
+                print("\nThere is nothing to look at in that direction.\n")
+        if cmd[5:].upper() == 'E' or cmd[5:].upper() == 'EAST':
+            if hasattr(currentRoom, 'e_to'):
+                if currentRoom.e_to.is_light:
+                    print("Looking towards: ")
+                    currentRoom.e_to.printName()
+                    currentRoom.e_to.printDesc()
+                else:
+                    print("\nIt is too dark to see what is in that room.")
+            else:
+                print("\nThere is nothing to look at in that direction.\n")
+        if cmd[5:].upper() == 'W' or cmd[5:].upper() == 'WEST':
+            if hasattr(currentRoom, 'w_to'):
+                if currentRoom.w_to.is_light:
+                    print("Looking towards: ")
+                    currentRoom.w_to.printName()
+                    currentRoom.w_to.printDesc()
+                else:
+                    print("\nIt is too dark to see what is in that room.")
+            else:
+                print("\nThere is nothing to look at in that direction.\n")
     elif cmd.upper() == 'Q' or cmd.upper() == 'QUIT':
         print("\nThanks for playing.\n")
         break
     elif cmd.upper() == 'H' or cmd.upper() == 'HELP':
-        print("""Commands:
+        print("""\nCommands:
     'n' or 'north' to move north
     's' or 'south' to move south
     'e' or 'east' to move east
     'w' or 'west' to move west
     'i' or 'inv' to look in inventory
+    'look' or 'look <direction>' to get description of a room
     'score' for score
     'take <item>' to take
     'drop <item>' to drop
     'q' or 'quit' to quit
-    'h' or 'help' for help""")
+    'h' or 'help' for help\n""")
     else:
         print("That command is not valid.")
