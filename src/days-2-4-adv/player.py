@@ -74,8 +74,8 @@ class Player:
                     return "Your light source illuminates the room." 
         self.can_see=False
         return "It's pitch black!"
-    def win(self):
-        if self.score==2700:
-            print('You have won the game.')
+    def win(self,room):
+        if self.score==2700 and self.current_location is room:
+            print(f'The power of the 3 treasures unlocks a golden easter egg and {self.name} strides forward to claim it\n{self.name} has won the game.')
         return None
         

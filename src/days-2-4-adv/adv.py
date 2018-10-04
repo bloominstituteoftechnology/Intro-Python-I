@@ -20,6 +20,8 @@ to north. The smell of gold permeates the air.""",False),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""",False),
+    'final':Room("Final Room","""Collect the three keys before entering this dungeon and you will be rewarded handsomely.""",
+    True)
 }
 
 
@@ -33,6 +35,8 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+room['narrow'].e_to=room['final']
+room['final'].w_to=room['narrow']
 #Declare items
 item={
     'sword':Item('sword',"""Just a basic sword to hack at monsters with ... nothing fancy."""),
@@ -102,6 +106,6 @@ def game():
                 print('Invalid command.')
         else:
             print('Invalid command')
-        if player.win() is not None:
-            return player.win()
+        if player.win(room['final']) is not None:
+            return player.win(room['final'])
 game()
