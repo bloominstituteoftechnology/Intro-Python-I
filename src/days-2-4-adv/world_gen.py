@@ -1,5 +1,6 @@
 from room import Room
 from random import choice
+from room_list import rooms
 
 min_room_count = 20
 dungeon = [ [None for n in range(10)] for i in range(10)]
@@ -42,7 +43,7 @@ def construct_rooms(c_room, pos_x, pos_y):
                 fit_y = pos_y
             elif exit == 'w':
                 fit_x = pos_x
-                fit_y = pos_x - 1
+                fit_y = pos_y - 1
             a_rooms = [r for r in rooms if exit in rooms[r]['exits_for']]
             if len(a_rooms) > 0:
                 a_rooms = [room for room in a_rooms if room_fits(room, fit_x, fit_y)]
@@ -89,7 +90,7 @@ def room_fits(c_room, pos_x, pos_y):
         if pos_y - 1 == -1:
             if 'w' in rooms[c_room]['exits']:
                 fits = False
-        if dungeon_data[pos_x][pos_y - 1] is not None:
+        elif dungeon_data[pos_x][pos_y - 1] is not None:
             if 'e' in dungeon_data[pos_x][pos_y - 1]:
                 if 'w' not in rooms[c_room]['exits']:
                     fits = False
@@ -109,7 +110,7 @@ def attach_rooms(room, x, y):
         e_room = dungeon_data[x][y+1]
         if 'w' in e_room['exits']:
             room.e_to = dungeon[x][y+1]
-            dungeon[x][y+1] = room.w_to
+            dungeon[x][y+1].w_to = room
     if x + 1 <= 9 and dungeon[x+1][y] is not None:
         s_room = dungeon_data[x+1][y]
         if 'n' in s_room['exits']:
@@ -129,70 +130,71 @@ start_room = {
     'exits_for': ('s',)
 }
 
-rooms = {
-    'foyer': {
-        'name': 'Foyer',
-        'description': """Dim light filters in from the south. Dusty
-    passages run north and east.""",
-        'is_light': True,
-        'exits': ('s', 'e', 'n'),
-        'exits_for': ('n', 'w', 's')
-    },
-    'overlook': {
-        'name': 'Grand Overlook',
-        'description': """A steep cliff appears before you, falling
-    into the darkness. Ahead to the north, a light flickers in
-    the distance, but there is no way across the chasm.""",
-        'is_light': True,
-        'exits': ('s',),
-        'exits_for': ('n',)
-    },
-    'narrow': {
-        'name': 'Narrow Passage',
-        'description': """The narrow passage bends here from west
-    to north. The smell of gold permeates the air.""",
-        'is_light': True,
-        'exits': ('w', 'n'),
-        'exits_for': ('e', 's')
-    },
-    'treasure': {
-        'name': 'Treasure Chamber',
-        'description': """You've found the long-lost treasure
-    chamber! Sadly, it has already been completely emptied by
-    earlier adventurers. The only exit is to the south.""",
-        'is_light': True,
-        'exits': ('s',),
-        'exits_for': ('n',)
-    },
-    'n_cap': {
-        'name': 'Cap for North rooms',
-        'description': """Trying to see if directional capping helps""",
-        'is_light': True,
-        'exits': ('s',),
-        'exits_for': ('n',)
-    },
-    'e_cap': {
-        'name': 'Cap for East rooms',
-        'description': """Trying to see if directional capping helps""",
-        'is_light': True,
-        'exits': ('w',),
-        'exits_for': ('e',)
-    },
-    's_cap': {
-        'name': 'Cap for South rooms',
-        'description': """Trying to see if directional capping helps""",
-        'is_light': True,
-        'exits': ('n',),
-        'exits_for': ('s',)
-    },
-    'w_cap': {
-        'name': 'Cap for West rooms',
-        'description': """Trying to see if directional capping helps""",
-        'is_light': True,
-        'exits': ('e',),
-        'exits_for': ('w',)
-    },
-}
+# Using another list of rooms, old list below
+# rooms = {
+#     'foyer': {
+#         'name': 'Foyer',
+#         'description': """Dim light filters in from the south. Dusty
+#     passages run north and east.""",
+#         'is_light': True,
+#         'exits': ('s', 'e', 'n'),
+#         'exits_for': ('n', 'w', 's')
+#     },
+#     'overlook': {
+#         'name': 'Grand Overlook',
+#         'description': """A steep cliff appears before you, falling
+#     into the darkness. Ahead to the north, a light flickers in
+#     the distance, but there is no way across the chasm.""",
+#         'is_light': True,
+#         'exits': ('s',),
+#         'exits_for': ('n',)
+#     },
+#     'narrow': {
+#         'name': 'Narrow Passage',
+#         'description': """The narrow passage bends here from west
+#     to north. The smell of gold permeates the air.""",
+#         'is_light': True,
+#         'exits': ('w', 'n'),
+#         'exits_for': ('e', 's')
+#     },
+#     'treasure': {
+#         'name': 'Treasure Chamber',
+#         'description': """You've found the long-lost treasure
+#     chamber! Sadly, it has already been completely emptied by
+#     earlier adventurers. The only exit is to the south.""",
+#         'is_light': True,
+#         'exits': ('s',),
+#         'exits_for': ('n',)
+#     },
+#     'n_cap': {
+#         'name': 'Cap for North rooms',
+#         'description': """Trying to see if directional capping helps""",
+#         'is_light': True,
+#         'exits': ('s',),
+#         'exits_for': ('n',)
+#     },
+#     'e_cap': {
+#         'name': 'Cap for East rooms',
+#         'description': """Trying to see if directional capping helps""",
+#         'is_light': True,
+#         'exits': ('w',),
+#         'exits_for': ('e',)
+#     },
+#     's_cap': {
+#         'name': 'Cap for South rooms',
+#         'description': """Trying to see if directional capping helps""",
+#         'is_light': True,
+#         'exits': ('n',),
+#         'exits_for': ('s',)
+#     },
+#     'w_cap': {
+#         'name': 'Cap for West rooms',
+#         'description': """Trying to see if directional capping helps""",
+#         'is_light': True,
+#         'exits': ('e',),
+#         'exits_for': ('w',)
+#     },
+# }
 # These are for testing
 # world_gen()
 # for row in dungeon_data:
