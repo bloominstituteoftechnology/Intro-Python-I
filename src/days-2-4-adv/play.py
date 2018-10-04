@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 import PlayerActions
 
+
 # Intro
 play = True
 PlayerActions.player.name = input('Enter Your Name -> ')
@@ -22,6 +23,12 @@ print(f"""
 
 # Play
 while play:
+    if PlayerActions.player.health < 1:
+        print(f"""
+        ~~~~~~~ Sorry, You Died ~~~~~~~
+        """)
+        break
+
     cmd = input('Where Shall You Go? -> ').lower().split(" ")
     if len(cmd) == 1:
         if cmd[0] == 'q':
@@ -37,7 +44,7 @@ while play:
             PlayerActions.routeLookAhead(cmd[0])
         
         # item PlayerActions
-        elif cmd[0] == 'bag' or cmd[0] == 'status' or cmd[0] == 'look' or cmd[0] == 'get' or cmd[0] == 'drop':
+        elif cmd[0] == 'bag' or cmd[0] == 'status' or cmd[0] == 'eat' or cmd[0] == 'look' or cmd[0] == 'get' or cmd[0] == 'drop':
             PlayerActions.routePlayerActions(cmd[0])
         else:
             PlayerActions.brickWall('e')
@@ -45,7 +52,7 @@ while play:
     # item Actions
     elif len(cmd) > 1:
         if cmd[0] == 'get' or cmd[0] == 'drop':
-            if cmd[1] == 'sword' or cmd[1] == 'light' or cmd[1] == 'treasure' or cmd[1] == 'key':
+            if cmd[1] == 'sword' or cmd[1] == 'light' or cmd[1] == 'treasure' or cmd[1] == 'key' or cmd[1] == 'apple':
                 PlayerActions.routeItemActions(cmd[0], cmd[1])
             else:
                 PlayerActions.brickWall('e')
