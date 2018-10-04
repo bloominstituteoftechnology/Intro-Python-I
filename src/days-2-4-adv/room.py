@@ -12,7 +12,7 @@ class Room():
         self.is_light = is_light
 
     def __str__(self):
-        return f'{self.location}: {self.description}'
+        return f'\n\n{self.location}\n\n    {self.description}\n'
 
     def get_room(self, dir):
       if dir == 'n':
