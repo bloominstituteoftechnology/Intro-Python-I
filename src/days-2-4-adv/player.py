@@ -7,6 +7,8 @@ class Player(object):
         self.name = name
         self.currentRoom = currentRoom
         self.items = items
+        self.treasures = []
+        self.pTreasures = []#add to both check if its already here to add value or not.
         self.points = 0 
         self.toCollect = 3#if a player gets all 3 treasures they win the game. 
 

@@ -34,14 +34,14 @@ treasures = {
 
 room = {
     'outside':  Room("outside",
-                     "Outside Cave Entrance North of you, the cave mount beckons", [items["coins"]]),
+                     "Outside Cave Entrance North of you, the cave mount beckons", [items["coins"]],treasures["gold"]),
 
     'foyer':    Room("foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [items["coins"], lights["flashlight"]]),
+passages run north and east.""", [items["coins"], lights["flashlight"]], treasures["silver"]),
 
     'overlook': Room("overlook", """Grand Overlook A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [items["spells"],items["coins"]]),
+the distance, but there is no way across the chasm.""", [items["spells"],items["coins"]], treasures["wallet"]),
 
     'narrow':   Room("narrow", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", [items["coins"]]),
@@ -113,6 +113,8 @@ while True:
                 print(player.dropItem(items[option[1]]))
             else:
                 print(f"That item doesn't exist.\n\n")
+        elif option[0] == 'look':
+            pass
 
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
