@@ -31,6 +31,8 @@ class Player():
         if nextRoom is not None:
             self.currentRoom = nextRoom
             print(nextRoom)
+
+            print(self.currentRoom.weaponsIn)
         else:
             print("*Runs into a shiny purple wall*")    
 
@@ -43,3 +45,6 @@ class Player():
                 print(nextRoom)
             else:
                 print("Just a wall. Try elsewhere")        
+
+    def pickUpItem(self, weapon):
+        if command = "w"

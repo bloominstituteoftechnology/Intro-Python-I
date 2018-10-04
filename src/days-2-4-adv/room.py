@@ -11,6 +11,11 @@ class Room():
         self.a_to = None
         self.s_to = None
         self.d_to = None
+        self.weaponsIn = [
+
+        ]
+
+        
 
     def directedRoom(self, direction):
         if direction == "w":
@@ -24,6 +29,6 @@ class Room():
         else:
             return None
 
-    
+
     def __repr__(self):
         return f'{self.name}: {self.description}'

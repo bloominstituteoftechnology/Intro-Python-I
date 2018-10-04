@@ -143,7 +143,7 @@ weapon = {
     "Carbine" : Weapon("\nCarbine", "The Covenants medium range rifle. It shoots faster than a Battle Rifle but you also need to land more shots to kill\n"), 
 }
 
-print (weapon["Sword"])
+# print (weapon["Sword"])
 # print(room["b1"])
 # print(room['r-bubble'])
 # Link rooms together
@@ -208,7 +208,6 @@ room['b-car'].d_to = room['b-toilet']
 room['car2'].w_to = room['r-car']
 room['car2'].s_to = room['b-car']
 room['car2'].a_to = room['car1']
-room['car2'].weaponsIn = weapon["Carbine"]
 # Carbine 1 Paths
 room['car1'].w_to = room['r-door']
 room['car1'].s_to = room['b-door']
@@ -218,7 +217,8 @@ room['mid1'].w_to = room['r-door']
 room['mid1'].s_to = room['b-door']
 room['mid1'].a_to = room['p1']
 room['mid1'].d_to = room['car1']
-
+# Weapon Assignments
+room['car2'].weaponsIn.append(weapon["Carbine"])
 # Slide/ Car 3/ P3 / Bubble & Car 1 Paths not added/complete yet due to height/drop/pathing limitations currently
 
 
