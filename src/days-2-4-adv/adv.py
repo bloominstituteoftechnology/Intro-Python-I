@@ -119,7 +119,7 @@ while True:
     for item in currentRoom.inventory:
         if isinstance(item, Lightsource):
             roomHasLight = True
-    if playerHasLight or roomHasLight:
+    if currentRoom.naturalLight or playerHasLight or roomHasLight:
         currentRoom.is_light = True
     else:
         currentRoom.is_light = False
