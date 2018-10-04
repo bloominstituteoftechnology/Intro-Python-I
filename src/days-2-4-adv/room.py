@@ -9,6 +9,7 @@ class Room:
 		self.room_type = room_type
 		self.room_descr = room_descr
 		self.room_moves = {}
+		self.room_item = None
 
 	def setRoomMoves(self,moves):
 		self.room_moves = moves
@@ -23,10 +24,14 @@ class Room:
 		for room in self.room_moves:
 			return room
 
-	# def getNextRoom(self, cmd):
-
 	def checkIfRoomMove(self,cmd):
-		return self.room_moves.get(cmd)
-		# return self.room_moves[cmd] if (cmd in self.room_moves) else "Note a possible move. Try again."
+		return self.room_moves[cmd] if (cmd in self.room_moves) else False	
+	
+	def getRoomItem(self):
+		return self.room_item
 
+	def setRoomItem(self, item):
+		self.room_item = item
+
+	
 

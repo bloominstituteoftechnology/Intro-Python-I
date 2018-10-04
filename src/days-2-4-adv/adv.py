@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from constants import move_directions
+from item import Item
 # Declare all the rooms
 
 laboratory = Room("Gnarly Laboratory", "The lab has a faint smell of iron and ammonia. Flickering light overhead half-illuminates a gnarly scene.")
@@ -53,13 +54,21 @@ def Main():
   chapel = Room("The Passage Chapel", """Idols and iconography cover every inch of the chapel.""")
   pendulum = Room("The Pendulum", """You've reached the Pendulum. Conditioned air envelopes you.  The doors lock behind you.  You see the key-switch ahead and you know what you must do.""")
 
+  badCrystal = Item('Bad Crystal', 'A small glass capsule containing an experimental, protein-like macromolecule.', 'You place the Bad Crystal in your mouth and chomp down...')
+  lumniscience = Item('Lumniscience', 'A suspension containing what the scientists said "frees users from the 3rd dimension". This will allow you to see ahead 2 moves.', 'You pop the vile open and gulp the suspension down, here comes the rabbit hole.')
+
   laboratory.setRoomMoves({"f":office})
   office.setRoomMoves({"b":laboratory, "f":incinerator, "r":chapel})
   chapel.setRoomMoves({"l":office, "f":pendulum})
   incinerator.setRoomMoves({"f":office})
   pendulum.setRoomMoves({"b":chapel})
 
+  office.setRoomItem(lumniscience)
+  chapel.setRoomItem(badCrystal)
+  print(chapel.getRoomItem().getItemType())
+
   unicorn = Player(input('What is your name, punk...   '), laboratory)
+
   currRoom = unicorn.getCurrentRoom()
 
   print(f"Ok, {unicorn.sayName()}, you're in the {currRoom.getRoomType()}.  We need to get to the Pendulum quick!")
@@ -68,16 +77,22 @@ def Main():
   gameLoop(unicorn, currRoom)
 
 def gameLoop(plyr,curr):
+  currRoom = curr
   while True:
-    cmd = input('\n\n\To make a move type a direction: "f", "b", "l", or "r": \n\n')
+    cmd = input('\n\n\To make a move type a direction: "f", "b", "l", "r", OR "q" to bite down on that tooth.: \n\n')
     print(cmd)
-    possMoves = curr.getRoomMoves()
-    nextRoom = curr.checkIfRoomMove(cmd)
+    if cmd == "q":
+      break
+    possMoves = currRoom.getRoomMoves()
+  
+    nextRoom = currRoom.checkIfRoomMove(cmd)
+    if(nextRoom == False):
+      print(f"You cannot move in the direction.")
     currRoom = nextRoom
-    roomName = nextRoom.getRoomType()
+    plyr.setCurrentRoom(nextRoom)
+    roomName = currRoom.getRoomType()
+    roomDesc = currRoom.getRoomDescription()
     print(f"Looks like we are in the {roomName}")
+    print(f"{roomDesc}")
 
 Main()
-
-
-

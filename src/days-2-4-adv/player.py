@@ -11,3 +11,6 @@ class Player:
 	
 	def getCurrentRoom(self):
 		return self.current_room
+    
+	def setCurrentRoom(self, room):
+		self.current_room=room
