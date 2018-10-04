@@ -11,12 +11,12 @@ waypoints = [
         "lat": 43,
         "lon": -121,
         "name": "a place"
-    }, 
+    },
     {
         "lat": 41,
         "lon": -123,
         "name": "another place"
-    }, 
+    },
     {
         "lat": 43,
         "lon": -122,
@@ -26,4 +26,13 @@ waypoints = [
 
 # Write a loop that prints out all the field values for all the waypoints
 
+for waypoint in waypoints:
+    print('lat: %(lat)d, lon: %(lon)d, name: %(name)s' % waypoint)
+
 # Add a new waypoint to the list
+
+waypoints.append({
+    "lat": 234,
+    "lon": 2,
+    "name": "A random location"
+})
