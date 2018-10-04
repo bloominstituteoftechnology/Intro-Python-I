@@ -78,8 +78,8 @@ room['outside'].inventory.append(lightsource['candle'])
 # If the user enters "q", quit the game.
 valid_directions={'n':'n','s':'s','e':'e','w':'w'}
 def game():
-    player=Player(input('What is your name?\n'),room['outside'])
-    print(f'Hello, {player.name}\n{player.current_location}')
+    player=Player(input('What is your name? '),room['outside'])
+    print(f'Hello, {player.name}\nYour adventures starts at {player.current_location.name}')
     print(player.is_there_light())
     while True:
         cmd=input('-->').lower().split()

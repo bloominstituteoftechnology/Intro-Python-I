@@ -15,7 +15,7 @@ class Room:
         for item in self.inventory:
             item_arr.extend(item.name)
         item_arr=', '.join(item_arr)
-        return f'Current Location:\nname: {self.name}\ndescription: {self.description}\nitems available: {item_arr}'
+        return f'name: {self.name}\ndescription: {self.description}\nitems available: {item_arr}'
     def get_next_room(self,direction):
         next_location=''
         if direction=='n':

@@ -28,8 +28,8 @@ class Player:
                     self.current_location.inventory.remove(element)
                     self.possessions.append(element)
                     value=element.on_take()
-                if value is not None:
-                    self.score+=value
+                    if value is not None:
+                        self.score+=value
                     return f'{self.name} picked up a {item}'
         return f'Cannot find {item} in {self.current_location.name}'
     def inventory(self):
@@ -52,13 +52,16 @@ class Player:
         return f'{self.name}\'s score:{self.score}'
     def is_there_light(self):
         if self.current_location.is_light==True:
+            self.can_see=True
             return "The room is bright."
         else:
             for item in self.current_location.inventory:
                 if isinstance(item,LightSource):
+                    self.can_see=True
                     return "There's a light source illuminating the room."
             for item in self.possessions:
                 if isinstance(item,LightSource):
+                    self.can_see=True
                     return "Your light source illuminates the room." 
         self.can_see=False
         return "It's pitch black!"
