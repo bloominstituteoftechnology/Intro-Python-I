@@ -24,11 +24,17 @@ class Room:
         for room in self.room_moves:
             return room
 
-    def checkIfRoomMove(self, cmd):
-        return self.room_moves[cmd] if (cmd in self.room_moves) else False
+    def getNextRoom(self, cmd):
+        return self.room_moves.get(cmd)
 
     def setRoomItem(self, item):
         self.room_item = item
 
     def getRoomItem(self):
         return self.room_item if (self.room_item is not None) else False
+
+    def checkIfRoomMove(self, cmd):
+        if cmd in self.room_moves:
+            return True
+        else:
+            return False

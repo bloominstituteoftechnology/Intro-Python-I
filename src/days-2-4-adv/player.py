@@ -21,3 +21,8 @@ class Player:
         if item:
             self.inventory.append(item)
             print(f"You have picked up the {item.getItemType()}")
+
+    def useItem(self, item):
+        if item in self.inventory:
+            self.inventory.remove(item)
+            print(f"You have used {item.getItemType()}")

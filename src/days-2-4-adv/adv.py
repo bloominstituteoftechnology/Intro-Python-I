@@ -110,11 +110,11 @@ def gameLoop(plyr, curr):
         print(cmd)
         if cmd == "q":
             break
-        nextRoom = currRoom.checkIfRoomMove(cmd)
-        if(nextRoom == False):
-            print(f"You cannot move in the direction.")
-        currRoom = nextRoom
-        plyr.setCurrentRoom(nextRoom)
+        elif currRoom.checkIfRoomMove(cmd) is True:
+            currRoom = currRoom.getNextRoom(cmd)
+        else:
+            print('Try a different direction')
+        plyr.setCurrentRoom(currRoom)
         roomName = currRoom.getRoomType()
         roomDesc = currRoom.getRoomDescription()
         print(f"Looks like we are in the {roomName}")
@@ -127,9 +127,11 @@ def gameLoop(plyr, curr):
             if pickupCmd == 'y':
                 plyr.pickUpItem(roomItem)
                 currRoom.setRoomItem(None)
+                print("Current items in your inventory:")
+                for item in plyr.inventory:
+                    print(item.getItemType())
             else:
                 print("That is not a proper response.")
-            
 
 
 Main()
