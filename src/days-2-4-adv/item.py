@@ -25,8 +25,9 @@ class Treasure(Item):
         self.value = 0
 
 class Light_Source(Item):
-    def __init__(self, name):
+    def __init__(self, name, light=True):
         super().__init__(name)
+        self.light = light
 
     def __str__(self):
         return self.name

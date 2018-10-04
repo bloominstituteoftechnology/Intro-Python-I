@@ -1,4 +1,4 @@
-from room import Room
+from room import Room, Dark_Room
 from player import Player
 from item import Item, Treasure, Light_Source
 # Declare all the rooms
@@ -17,9 +17,9 @@ the distance, but there is no way across the chasm.""", []),
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", [Light_Source('flashlight')]),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
+    'treasure': Dark_Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [Item('stick')]),
+earlier adventurers. The only exit is to the south.""", [Item('stick')], False),
 }
 
 # Link rooms together
@@ -51,9 +51,20 @@ player = Player(input("What is your character's name?   "), room['outside'], [])
 # If the user enters "q", quit the game.
 while True:
     print(f'\nLocation: {player.location.name}')
-    print(f'{player.location.description}')
-    if len(player.location.items) > 0:
-        player.location.print_items()
+    if hasattr(player.location, 'visibility'):
+        for item in player.inventory:
+            if hasattr(item, 'light'):
+                print(f"The {item.name} gives light to the dark room!")
+                player.location.light_on()
+                print(f'{player.location.description}')
+                if len(player.location.items) > 0:
+                    player.location.print_items()
+        if player.location.visibility is not True:
+            print(f"The room is dark and you can't see anything!")
+    else:
+        print(f'{player.location.description}')
+        if len(player.location.items) > 0:
+            player.location.print_items()
 
     player_input = input(f'\nWhat does {player.name} do?   ')
     player_input_args = player_input.split(' ')

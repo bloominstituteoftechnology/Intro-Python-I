@@ -43,3 +43,11 @@ class Room:
     def add_item(self, item):
         self.items.append(item)
         print(f"You have dropped the {item.name.lower()}")
+
+class Dark_Room(Room):
+    def __init__(self, name, description, items, visibility):
+        super().__init__(name, description, items)
+        self.visibility = visibility
+
+    def light_on(self):
+        self.visibility = True
