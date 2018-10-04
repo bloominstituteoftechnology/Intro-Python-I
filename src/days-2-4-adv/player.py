@@ -12,6 +12,7 @@ class Player:
 
     def add_item(self, item):
         self.items.append(item)
+        item.on_take(self)
         return f'You have acquired {item.name}'
 
     def add_score(self, score):
