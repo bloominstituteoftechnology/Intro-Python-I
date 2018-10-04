@@ -30,14 +30,14 @@ class Player():
             self.items.pop(0)
         else:
             self.items.append(item)
-        print(f"\n== You pick up the {item} and stuff it joyfully in your sack.")
+        print(f"\n== You pick up the {item.upper()} and stuff it joyfully in your sack.")
     
     def playerDrop(self, item):
         if self.items == [None]:
             print(f"\n== There is nothing to drop from your sack except for your imagination. ==")
         else:
             self.items.remove(item)
-        print(f"\n== You take the {item} out of your sack and drop it on the ground, with a glimmer of zenful madness in your eyes. ==")        
+        print(f"\n== With a glimmer of zenful madness in your eyes, you take the {item.upper()} out of your sack and drop it on the ground. ==")        
 
 
 

@@ -47,7 +47,7 @@ validCmds = ['n', 's', 'e', 'w', 'get']
 while True:
     print(p)
     print(p.currentRoom)
-    cmd = input("\nWhat's your next move, pal? (Actions: n, s, e, w, get [item])\n").lower().split(" ")
+    cmd = input("\nWhat's your next move, pal? (Actions: n, s, e, w, get [item], drop [item], i/inventory)\n").lower().split(" ")
     
     if len(cmd) == 1:
         if cmd[0] == 'q':
@@ -76,22 +76,25 @@ while True:
                 p.playerMove('w')
             except: 
                 print(p.badMove)
+        elif cmd[0] == 'i' or cmd[0] == 'inventory':
+            print(f'\n== You have the following items in your sack: {p.items} ==')
         else:
             print("\n== You wander aimlessly like a fool and will surely be eaten by goblins if you don't pick a direction soon. ==")
     else:
         if cmd[0] == 'get':
-            if cmd[1] == p.currentRoom.items.name.lower():
+            if p.currentRoom.items == None:
+                 print(f"\n== There are no items in the room called '{cmd[1]}'. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")
+            elif cmd[1] == p.currentRoom.items.name.lower():
                 p.playerGet(cmd[1])
                 p.currentRoom.items = None 
             else:
-                print(f"\n== There are no items in the room called {cmd[1]}. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")
+                print(f"\n== There are no items in the room called '{cmd[1]}'. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")
         elif cmd[0] == 'drop':
             if cmd[1] in p.items:
                 p.playerDrop(cmd[1])
                 p.currentRoom.items = item[cmd[1]]
             else:
-                print(f"\n== There are no items in your sack called {cmd[1]}. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")            
-
+                print(f"\n== There are no items in your sack called '{cmd[1]}''. You gawk vacantly into the distance like one who has seen far too many dragons in their days. ==")            
         else:
             print("\n== Nothing you are saying makes sense. Insanity is looming just beyond another fawlty keystroke. ==")
 
