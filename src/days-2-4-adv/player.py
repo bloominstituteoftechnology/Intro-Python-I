@@ -7,12 +7,13 @@ class Player():
         self.name = name
         self.health = 100
         self.mana = 50
+        self.score = 0
         self.currentRoom = currentRoom
         self.badMove = '==You abruptly realize it is impossible to continue in this direction, turn around, and stride confidently back from whence you came.=='
         self.items = [items]
 
     def __str__(self):
-        return f'\nPlayer Name: {self.name}\nRoom: {self.currentRoom.name}\nHealth: {self.health} - Mana: {self.mana} - Items: {self.items}'
+        return f'\nPlayer Name: {self.name}\nRoom: {self.currentRoom.name}\nHealth: {self.health} - Mana: {self.mana} - Score: {self.score} - Items: {self.items}'
 
     def playerMove(self, direction):
         if direction == 'n':
