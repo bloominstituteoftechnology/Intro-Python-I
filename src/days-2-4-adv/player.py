@@ -1,5 +1,6 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+from item import LightSource
 
 
 class Player:
@@ -15,8 +16,11 @@ class Player:
         next_room = self.room.get_room_in_direction(direction)
         if next_room:
             self.room = next_room
-            print(next_room)
-            next_room.room_items()
+            if self.has_light_source() or next_room.has_light_source() or next_room.lit:
+                print(next_room)
+                next_room.room_items()
+            else:
+                print("It's pitch black. Maybe you need some light?")
         else:
             print('That is not a valid direction.')
 
@@ -59,3 +63,6 @@ class Player:
         if len(self.items) > 0:
             return True
         return False
+
+    def has_light_source(self):
+        return any(isinstance(item, LightSource) for item in self.items)
