@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Treasure, LightSource
+from world_gen import world_gen
 
 # Declare all the rooms
 
@@ -46,7 +47,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-p = Player(room['outside'])
+p = Player(world_gen())
 
 # Write a loop that:
 #
