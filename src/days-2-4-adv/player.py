@@ -2,10 +2,11 @@
 # currently.
 class Player:
     
-    def __init__(self, name, room, inventory):
+    def __init__(self, name, room, inventory, score):
         self.name = name
         self.room = room
         self.inventory = inventory
+        self.score = score
 
     def get_item(self, item):
         self.inventory.append(item)
@@ -27,4 +28,7 @@ class Player:
     def getRoom(self):
         print(75 * '#')
         print('You are in: ' + self.room.name)
-        print('Directions: ' + self.room.description)
+        print('                 ' + self.room.description)
+
+    def getScore(self):
+        print('Your score is: ' + str(self.score))

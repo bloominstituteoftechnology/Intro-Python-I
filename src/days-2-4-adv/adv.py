@@ -6,7 +6,7 @@ from item import Item
  
 room = {
     'outside':  Room('Outside Cave Entrance',
-                     'North of you, the cave mount beckons', 'outside', [Item('key', 'Looks like it is used to open the cave entrance')]),
+                     'North of you, the cave mount beckons', 'outside', [Item('key', 'Looks like it is used to open the cave entrance'), Item('baseball bat', 'for defence purposes?')]),
 
     'foyer':    Room('Foyer', '''Dim light filters in from the south. Dusty
 passages run north and east.''', 'foyer', []),
@@ -20,7 +20,7 @@ to north. The smell of gold permeates the air.''', 'narrow', []),
 
     'treasure': Room('Treasure Chamber', '''You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.''', 'treasure', ['treasure']),
+earlier adventurers. The only exit is to the south.''', 'treasure', [Item('treasure', 'something shiny')]),
 }
 
 
@@ -41,7 +41,7 @@ room['treasure'].s_to = room['narrow']
 class Main:
     def start(self):
 # Make a new player object that is currently in the 'outside' room.
-        player1 = Player(input('\nProvide your name, hero: '), room['outside'], [Item('toothpick', 'Can be useful')])
+        player1 = Player(input('\nProvide your name, hero: '), room['outside'], [Item('toothpick', 'Can be useful'), Item('Pocket rubish', 'No comment')], 0)
         print('\nHello ' + player1.name + '!!!!!!\n')
 # Write a loop that:
 #
@@ -58,11 +58,12 @@ class Main:
 
         while move != 'q':
             player1.getRoom()
-            move = input('\n---> What is your next move, ' + player1.name + ': NORTH(n), SOUTH(s), EAST(e) OR WEST(w) \n|| QUIT(q) the game || INVENTORY(i) || CHECK(c) the room: ')
+            move = input('\n###### CONTROLS ######\nNORTH(n), SOUTH(s), EAST(e) OR WEST(w)\n\n#################### \n####### MENU #######\n|| QUIT(q) the game || INVENTORY(i) || CHECK(c) the room ||\n\nYour next move, ' + player1.name.capitalize() + ' ==>> ')
             
             if move != 'q':
                 
                 if move == 'i':
+                    player1.getScore()
                     player1.check_inventory()
                     dropDecision = input('\n==> DROP(d) item, PASS(p)\n')
                     
