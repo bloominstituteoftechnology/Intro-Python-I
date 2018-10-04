@@ -327,7 +327,7 @@ def lookNextRoom(room):
 
 
 def shouldEnterSecretRoom():
-    if 'Key' in player.items:
+    if 'key' in player.items:
         updateRoom(player.room.n_to)
         currentLocation()
     else:
@@ -464,7 +464,7 @@ def checkBag():
             """)
 
 
-def gettingInDarkRooms(location):
+def gettingItemsInDarkRooms(location):
     if 'light' in player.items:
         if len(room[location].items) == 0:
             print(f"""
@@ -493,13 +493,9 @@ def gettingInDarkRooms(location):
         """)
 
 
-def getSingleItem(location, item):
-    print(location, item)
-
-
 def getItems(location):
     if room[location].isDark == True:
-       gettingInDarkRooms(location)
+       gettingItemsInDarkRooms(location)
     else:
         if len(room[location].items) == 0:
             print(f"""
@@ -522,27 +518,56 @@ def getItems(location):
             """)
 
 
-def dropSingleItem(location, item):
-    if len(player.items) == 0:
+def gettingSingleItemInDarkRooms(location, item):
+    if 'light' in player.items:
+        if len(room[location].items) == 0:
+            print(f"""
+
+            ~~~~~~~ {room[location].place} Has No Items ~~~~~~~
+
+            """)
+        elif len(room[location].items) > 0:
+            player.items.append(item)
+            room[location].items.remove(item)
+            print(f"""
+
+            ~~~~~~~ You Have Aquired ~~~~~~~""")
+            print(f"""
+              {item}""")
+            print(f"""
+            ~~~~~~~ From {room[location].place} Room ~~~~~~~
+
+            """)
+    else:
         print(f"""
 
-        ~~~~~~~ You Have No Items ~~~~~~~
+        ~~~~~~~ Too Dark To Look Around, Can't Find Items ~~~~~~~
 
         """)
-    elif len(player.items) > 0:
-        room[location].items.append(item)
-        print(player.items)
-        print(item)
-        player.items.remove(item)
-        print(f"""
 
-        ~~~~~~~ You Have Dropped ~~~~~~~""")
-        print(f"""
-            {item}""")
-        print(f"""
-        ~~~~~~~ To {room[location].place} Room ~~~~~~~
 
-        """)
+def getSingleItem(location, item):
+    if room[location].isDark == True:
+       gettingSingleItemInDarkRooms(location, item)
+    else:
+        if len(room[location].items) == 0:
+            print(f"""
+
+            ~~~~~~~ {room[location].place} Has No Items ~~~~~~~
+
+            """)
+        elif len(room[location].items) > 0:
+            player.items.append(item)
+            room[location].items.remove(item)
+            print(f"""
+
+            ~~~~~~~ You Have Aquired ~~~~~~~""")
+            print(f"""
+              {item}""")
+            print(f"""
+            ~~~~~~~ From {room[location].place} Room ~~~~~~~
+
+            """)
 
 
 def dropItems(location):
@@ -561,6 +586,27 @@ def dropItems(location):
         for item in room[location].items:
             print(f"""
               {item}""")
+        print(f"""
+        ~~~~~~~ To {room[location].place} Room ~~~~~~~
+
+        """)
+
+
+def dropSingleItem(location, item):
+    if len(player.items) == 0:
+        print(f"""
+
+        ~~~~~~~ You Have No Items ~~~~~~~
+
+        """)
+    elif len(player.items) > 0:
+        room[location].items.append(item)
+        player.items.remove(item)
+        print(f"""
+
+        ~~~~~~~ You Have Dropped ~~~~~~~""")
+        print(f"""
+          {item}""")
         print(f"""
         ~~~~~~~ To {room[location].place} Room ~~~~~~~
 
