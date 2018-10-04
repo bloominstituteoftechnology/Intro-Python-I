@@ -49,7 +49,37 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+suppressRoomPrint = False
 player = Player(input("What is your name? "), room['outside'])
 while True:
-    print(player.currentRoom.name + "\n" + player.currentRoom.description)
+    if suppressRoomPrint:
+        suppressRoomPrint = False
+    else:
+        print(player.currentRoom)
     command = input("-> ")
+    if command == "q":
+        break
+    elif command == "n":
+        if player.currentRoom.n_to is not None:
+            player.currentRoom = player.currentRoom.n_to
+        else:
+            print("You cannot move in that direction")
+            suppressRoomPrint = True
+    elif command == "s":
+        if player.currentRoom.s_to is not None:
+            player.currentRoom = player.currentRoom.s_to
+        else:
+            print("You cannot move in that direction")
+            suppressRoomPrint = True
+    elif command == "e":
+        if player.currentRoom.e_to is not None:
+            player.currentRoom = player.currentRoom.e_to
+        else:
+            print("You cannot move in that direction")
+            suppressRoomPrint = True
+    elif command == "w":
+        if player.currentRoom.w_to is not None:
+            player.currentRoom = player.currentRoom.w_to
+        else:
+            print("You cannot move in that direction")
+            suppressRoomPrint = True
