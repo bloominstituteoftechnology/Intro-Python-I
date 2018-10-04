@@ -3,7 +3,7 @@
 
 class Room (object):
     
-    def __init__(self, name, description,items = [],treasure = None, n_to = None, s_to = None, e_to = None, w_to = None):
+    def __init__(self, name, description,items = [],treasure = None, is_light = None, n_to = None, s_to = None, e_to = None, w_to = None):
         self.name = name
         self.description = description
         self.items = items
@@ -13,9 +13,10 @@ class Room (object):
         self.w_to = w_to
         self.treasure = treasure
         self.directions = [] 
+        self.is_light = is_light
 
     def __str__(self):
-        return f"Room Name: {self.name}\n\n, Room description: {self.description}\n\n"
+        return f"Room Name: {self.name}\n\n, Room description: {self.description}\n\n Room has light : {self.is_light}"
     def revealItems(self):
         items = []
         for item in self.items:

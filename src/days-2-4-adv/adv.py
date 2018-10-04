@@ -34,25 +34,25 @@ treasures = {
 
 room = {
     'outside':  Room("outside",
-                     "Outside Cave Entrance North of you, the cave mount beckons", [items["coins"]],treasures["gold"]),
+                     "Outside Cave Entrance North of you, the cave mount beckons", [items["coins"]],treasures["gold"],False),
 
     'foyer':    Room("foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [items["coins"], lights["flashlight"]], treasures["silver"]),
+passages run north and east.""", [items["coins"], lights["flashlight"]], treasures["silver"], True),
 
     'overlook': Room("overlook", """Grand Overlook A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [items["spells"],items["coins"]], treasures["wallet"]),
+the distance, but there is no way across the chasm.""", [items["spells"],items["coins"]], treasures["wallet"], True),
 
     'narrow':   Room("narrow", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", [items["coins"]]),
+to north. The smell of gold permeates the air.""", [items["coins"]], is_light = True),
 
     'treasure': Room("treasure", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [items["gun"],items["coins"]]),
+earlier adventurers. The only exit is to the south.""", [items["gun"],items["coins"]], is_light = True ),
     'prison': Room('Prison', """You will have to fight your way out of the prison if you wish to go north.
      If you wish not to fight run left or right""", [items["bat"],items["coins"]]),
-    'coward': Room("coward", """You have entered Cowards Forest. You coward! You ran from the fight. Now the goblins have been alerted.  """, [items["shovel"]]),
-    'kitchen': Room('Kitchen', """Welcome to the kitchen """, [items["sword"],items["coins"]])
+    'coward': Room("coward", """You have entered Cowards Forest. You coward! You ran from the fight. Now the goblins have been alerted.  """, [items["shovel"]], is_light = True),
+    'kitchen': Room('Kitchen', """Welcome to the kitchen """, [items["sword"],items["coins"]], is_light = True)
 
 }
 
