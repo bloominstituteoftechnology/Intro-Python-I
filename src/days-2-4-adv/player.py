@@ -20,7 +20,7 @@ class Player(object):
         print(f"newRoom === {newRoom}") #sole purpose of this line is for debugging
         if newRoom is not None:
             self.currentRoom = newRoom
-            return f"Changing rooms...{ self.currentRoom.revealItems()}"
+            return f"Changing rooms..."
         else:
             return "You cannot go into that direction!"
     #
@@ -58,6 +58,22 @@ class Player(object):
     def currentScore(self):
         return f"Your current score is {self.points}"
     #
+    def lookAround(self):
+        able_to_see = self.currentRoom.is_light
+        if able_to_see:
+            return self.currentRoom.revealItems()
+        else:
+            # if the player has a light source self.currentRoom.revealItems()
+            has_light = False 
+            for item in self.items:
+                if(isinstance(item, LightSource)):
+                    has_light = True
+            if has_light:
+                return self.currentRoom.revealItems()
+            else:
+                return f"This room requires a lightsource to see items within."
+                    
+                
     #
     #
     #

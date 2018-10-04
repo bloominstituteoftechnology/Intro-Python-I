@@ -53,7 +53,6 @@ earlier adventurers. The only exit is to the south.""", [items["gun"],items["coi
      If you wish not to fight run left or right""", [items["bat"],items["coins"]]),
     'coward': Room("coward", """You have entered Cowards Forest. You coward! You ran from the fight. Now the goblins have been alerted.  """, [items["shovel"]], is_light = True),
     'kitchen': Room('Kitchen', """Welcome to the kitchen """, [items["sword"],items["coins"]], is_light = True)
-
 }
 
 # Link rooms together
@@ -114,7 +113,7 @@ while True:
             else:
                 print(f"That item doesn't exist.\n\n")
         elif option[0] == 'look':
-            pass
+            print(player.lookAround())
 
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
