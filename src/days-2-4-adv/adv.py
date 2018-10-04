@@ -1,7 +1,7 @@
 import textwrap
 from room import Room
 from player import Player
-from item import Treasure, LightSource
+from item import Treasure, LightSource , Food
 
 # Declare all the rooms
 
@@ -20,7 +20,12 @@ the distance, but there is no way across the chasm."""),
 to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! The only exit is to the south."""),
+chamber! Head south for a surprise."""),
+
+'partyroom': Room("Party Room", """Now come celebrate your 
+journey and feast! Good game"""),
+
+
 }
 
 
@@ -33,14 +38,14 @@ room['foyer'].e_to = room['narrow']
 room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['treasure'].s_to = room['partyroom']
 
 room['outside'].is_light = True
 room['foyer'].is_light = True
 
 # Add some items
 
-t = Treasure("coins", "Shiny coins", 100)
+t = Treasure("stars", "Shiny stars", 100)
 room['overlook'].contents.append(t)
 
 t = Treasure("jewels", "Jewels! Beautiful Jewels ", 200)
@@ -48,6 +53,9 @@ room['treasure'].contents.append(t)
 
 l = LightSource("jar", "Jar of Fairies")
 room['foyer'].contents.append(l)
+
+f = Food("turkeyleg", "Turkey Leg")
+room['partyroom'].contents.append(f)
 
 def tryDirection(d, currentRoom):
     """
@@ -64,7 +72,7 @@ def tryDirection(d, currentRoom):
         return getattr(currentRoom, attrib)
 
     # Otherwise print an error and stay in the same room
-    print("You can't go that way")
+    print("Where do you think your going?")
 
     return currentRoom
 
@@ -108,14 +116,14 @@ while not done:
     is_light = player.currentRoom.is_light or len(light_sources) > 0
 
     if is_light:
-        # Print the room name
+        # room name
         print("\n{}\n".format(player.currentRoom.name))
 
-        # Print the room description
+        # room description
         for line in textwrap.wrap(player.currentRoom.description):
             print(line)
 
-        # Print any items found in the room
+        # Items found in the room
         if len(player.currentRoom.contents) > 0:
             print("\nYou also see:\n")
             for i in player.currentRoom.contents:
@@ -123,8 +131,8 @@ while not done:
     else:
         print("\nIt's dark AHHHHHH!\n")
 
-    # User prompt
-    s = input("\nPlease say a command: ").strip().lower().split()
+    # Start question
+    s = input("\nWhat is it you wish to do?: ").strip().lower().split()
 
     if len(s) > 2 or len(s) < 1:
         print("I don't understand your nonsense")
@@ -143,7 +151,7 @@ while not done:
                     print(f"    {i}")
 
         elif s[0] == "score":
-            print(f"Your score is currently {player.score}.")
+            print(f" {player.score}.")
 
         elif s[0] in ["n", "s", "w", "e"]:
             player.currentRoom = tryDirection(s[0], player.currentRoom)
@@ -166,7 +174,7 @@ while not done:
                     player.contents.append(item)
                     print(f"{item}: has been retrieved.")
             else:
-                print("Good luck finding that in the dark.")
+                print("I hope you can see well,it's pretty dark in here.")
 
         elif s[0] == 'drop':
             item = find_item(s[1], player)

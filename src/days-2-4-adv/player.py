@@ -3,8 +3,7 @@
 
 
 class Player:
-    """Holds information about a player"""
-    def __init__(self, startRoom):
+  def __init__(self, startRoom):
         self.currentRoom = startRoom
         self.contents = []
         self.score = 0

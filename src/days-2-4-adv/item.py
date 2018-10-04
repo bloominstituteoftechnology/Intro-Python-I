@@ -1,25 +1,23 @@
 class Item:
-    """Item base class."""
-    def __init__(self, name, description):
+  def __init__(self, name, description):
         self.name = name
         self.description = description
 
-    def on_take(self, player):
-        """Called every time the player takes an item."""
+  def on_take(self, player):
+     
         pass
 
-    def __str__(self):
-        """Convert to string."""
+  def __str__(self):
+      
         return self.description
 
 class Treasure(Item):
-    """A treasure that adds to your score the first time you pick it up."""
-    def __init__(self, name, description, value):
+  def __init__(self, name, description, value):
         self.value = value
         self.picked_up = False
         super().__init__(name, description)
 
-    def on_take(self, player):
+  def on_take(self, player):
         super().on_take(player)
 
         if not self.picked_up:
@@ -28,10 +26,14 @@ class Treasure(Item):
             self.picked_up = True
 
 class LightSource(Item):
-    """This item will guide you through without getting lost"""
-    def __init__(self, name, description):
+  def __init__(self, name, description):
         super().__init__(name, description)
         self.lightsource = True
+
+class Food(Item):
+   def __init__(self, name ,description):
+         self.picked_up = False
+         super().__init__(name,description)
    
 
 
