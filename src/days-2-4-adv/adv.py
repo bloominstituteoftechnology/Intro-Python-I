@@ -8,25 +8,20 @@ import time
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons",
-                     Item("sword","samurai sword")),
+                     "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""",
-                Item(" ", " ")),
+passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""",
-                Item(" ", " ")),
+the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""",
-                Item(" ", " ")),
+to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! """,
-                Item("Lightsaber", "The weapon of a Jedi")),
+chamber! """),
 }
 
 
@@ -41,12 +36,18 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+rock1 = Item("Rock", "This is a rock.")
+rock2 = Item("Rock", "This is a rock.")
+
+playerStartingItems = [rock1]
+room['outside'].addItem(rock2)
+
 # Valid directions
 
 valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
                     "forward": "n", "backwards": "s", "right": "e", "left": "w"}
 
-p = Player(input('\n\n\n\n\nWhat is your name?'), room['outside'])
+p = Player(input('\n\n\n\n\nWhat is your name?'), room['outside'], playerStartingItems)
 
 while True:
     time.sleep(1)
@@ -54,7 +55,7 @@ while True:
 
     if cmd.upper() == 'YES':
         # time.sleep(2)
-        print('\n\n\nYour location is: ') 
+        print('\n\n\nYour location is: ')
         # time.sleep(1)
         print(p.currentRoom)
         while True:
@@ -85,6 +86,22 @@ while True:
                     if cmds[1] in valid_directions:
                         # time.sleep(2)
                         p.look(valid_directions[cmds[1]])
+                elif cmds[0] == "take":
+                    currentRoom = p.currentRoom
+                    itemToTake = currentRoom.findItemByName(cmds[1])
+                    if itemToTake is not None:
+                        p.addItem(itemToTake)
+                        currentRoom.removeItem(itemToTake)
+                    else:
+                        print("You did not see that item.")
+                elif cmds[0] == "drop":
+                    currentRoom = p.currentRoom
+                    itemToDrop = p.findItemByName(cmds[1])
+                    if itemToDrop is not None:
+                        p.removeItem(itemToDrop)
+                        p.currentRoom.addItem(itemToDrop)
+                    else:
+                        print("You are not holding that item.")
                 else:
                     time.sleep(1)
                     print('I did not understand that command!')
