@@ -11,11 +11,7 @@ class Room():
         self.a_to = None
         self.s_to = None
         self.d_to = None
-        self.weaponsIn = [
-
-        ]
-
-        
+        self.weaponsIn = []
 
     def directedRoom(self, direction):
         if direction == "w":
@@ -29,6 +25,12 @@ class Room():
         else:
             return None
 
+    def removeItem(self, weapon):
+        for selectedWeapon in self.weaponsIn:
+            if selectedWeapon.label == weapon:
+                self.weaponsIn.remove(selectedWeapon)
 
     def __repr__(self):
-        return f'{self.name}: {self.description}'
+        return f'{self.name} \n \n {self.description} '
+
+    

@@ -8,7 +8,8 @@ class Player():
         self.losses = 0
         self.skill = 0
         self.currentRoom = currentRoom
-
+        self.score = 0
+        self.equipment = {"primary": None, "secondary": None, "frag": None, "plasma": None}
     def __str__(self):
         return f"\n{self.name}\n{self.wins} - {self.losses}\nSkill Rating: {self.skill} "
 
@@ -30,11 +31,9 @@ class Player():
         nextRoom = self.currentRoom.directedRoom(direction)
         if nextRoom is not None:
             self.currentRoom = nextRoom
-            print(nextRoom)
-
-            print(self.currentRoom.weaponsIn)
+            print(f"\n{nextRoom}")
         else:
-            print("*Runs into a shiny purple wall*")    
+            print("\n*Runs into a shiny purple wall*")    
 
     def look(self, direction=None):
         if direction is None:
@@ -46,5 +45,7 @@ class Player():
             else:
                 print("Just a wall. Try elsewhere")        
 
-    # def pickUpItem(self, weapon):
-    #     if command = "w"
+    def getItem(self, weapon):
+        self.equipment["primary"] = weapon
+        
+

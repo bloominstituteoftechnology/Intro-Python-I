@@ -134,13 +134,13 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 weapon = {
-    "Sword" : Weapon("\nSword", "The energy sword is a one slice kill. It can only be used on enemies that get too close\n"),
-    "Frag Grenade" : Weapon("\nFrag Grenade", "A short fused grenade that if timed correctly can bring a bang to the battlefield!\n"),
-    "Plasma Grenade": Weapon("\nPlasma Grenade", "Blue glowing grenades from the Covenant. Also called stickies, They have a longer fuse and can stick to enemies\n"),
-    "Needler" : Weapon("\nNeedler", "A gun that shoots prickly needles. It is not very powerful if your opponent is moving but if they stand still like Ronald then they are done son!\n"),
-    "Shotgun" : Weapon("\nShotgun", "The UNSC's trusty close quarters weapon. Although you have to be really really close for it to be effective\n"),
-    "Battle Rifle" : Weapon("\nBattle Rifle", "The standard weapon of any hardcore Halo kid. Your utility weapon that can be effective at all ranges but shines in medium -> close range battles. 4 consecutive shots for a kill\n"),
-    "Carbine" : Weapon("\nCarbine", "The Covenants medium range rifle. It shoots faster than a Battle Rifle but you also need to land more shots to kill\n"), 
+    "sword": Weapon("sword", "\nSword", "The energy sword is a one slice kill. It can only be used on enemies that get too close\n"),
+    "frag": Weapon("frag", "\nFrag Grenade", "A short fused grenade that if timed correctly can bring a bang to the battlefield!\n"),
+    "plasma": Weapon("plasma", "\nPlasma Grenade", "Blue glowing grenades from the Covenant. Also called stickies, They have a longer fuse and can stick to enemies\n"),
+    "needler": Weapon("needler", "\nNeedler", "A gun that shoots prickly needles. It is not very powerful if your opponent is moving but if they stand still like Ronald then they are done son!\n"),
+    "shotgun": Weapon("shotgun", "\nShotgun", "The UNSC's trusty close quarters weapon. Although you have to be really really close for it to be effective\n"),
+    "br": Weapon("br", "\nBattle Rifle", "The standard weapon of any hardcore Halo kid. Your utility weapon that can be effective at all ranges but shines in medium -> close range battles. 4 consecutive shots for a kill\n"),
+    "carbine": Weapon("carbine", "\nCarbine", "The Covenants medium range rifle. It shoots faster than a Battle Rifle but you also need to land more shots to kill\n"),
 }
 
 # print (weapon["Sword"])
@@ -218,7 +218,7 @@ room['mid1'].s_to = room['b-door']
 room['mid1'].a_to = room['p1']
 room['mid1'].d_to = room['car1']
 # Weapon Assignments
-room['car2'].weaponsIn.append(weapon["Carbine"])
+room['car2'].weaponsIn.append(weapon["carbine"])
 # Slide/ Car 3/ P3 / Bubble & Car 1 Paths not added/complete yet due to height/drop/pathing limitations currently
 
 
@@ -239,18 +239,29 @@ while True:
             break
         elif commands[0] in valid_directions:
             player.movement(valid_directions[commands[0]])
+            print(f"\nOn floor: {player.currentRoom.weaponsIn}")
+
         elif commands[0] == "look":
             player.look()
+            print(f"\nOn floor: {player.currentRoom.weaponsIn}")
+            # player.getItem(commands[1])-
         else:
             print("Please enter a valid command.")
     else:
         if commands[0] == "look":
             if commands[1] in valid_directions:
                 player.look(valid_directions[commands[1]])
-            
             else:
                 print("Please enter a valid command.")
-        
+        elif commands[0] == "get":
+            for weapon in player.currentRoom.weaponsIn:
+                if commands[1] == weapon.label:
+                    player.getItem(commands[1])
+                    player.currentRoom.removeItem(commands[1])
+                    print(player.equipment)
+                else:
+                    print("weapon not in room")
+
     # print(player.currentRoom)
     # print(currentRoomDesc)
 # Write a loop that:
