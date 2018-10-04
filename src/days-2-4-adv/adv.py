@@ -34,14 +34,14 @@ treasures = {
 
 room = {
     'outside':  Room("outside",
-                     "Outside Cave Entrance North of you, the cave mount beckons", [items["coins"]],treasures["gold"],False),
+                     "Outside Cave Entrance North of you, the cave mount beckons", [items["coins"],treasures["gold"]],False),
 
     'foyer':    Room("foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [items["coins"], lights["flashlight"]], treasures["silver"], True),
+passages run north and east.""", [items["coins"], lights["flashlight"],treasures["silver"]], True),
 
     'overlook': Room("overlook", """Grand Overlook A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [items["spells"],items["coins"]], treasures["wallet"], True),
+the distance, but there is no way across the chasm.""", [items["spells"],items["coins"],treasures["wallet"]], True),
 
     'narrow':   Room("narrow", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", [items["coins"]], is_light = True),
@@ -106,33 +106,47 @@ while True:
     elif directions.count(option[0]) > 0:
         print(player.room_change(option[0]))
     elif moves.count(option[0]) > 0:
-        if option[0] == 'grab':
-            #check what type of instance the item is.
-            if list(items.keys()).count(option[1]) > 0:
-                print("grabbing")
-                print(player.grabItem(items[option[1]]))
-            elif list(lights.keys()).count(option[1]) > 0:
-                print("grabbing")
-                print(player.grabItem(lights[option[1]]))
-            elif list(treasures.keys()).count(option[1]) > 0:
-                print("grabbing")
-                print(player.grabItem(treasures[option[1]]))
-        elif option[0] == 'drop':
-            itemsAvaliable = list(items.keys()) + list(treasures.keys()) + list(lights.keys())
-            if itemsAvaliable.count(option[1]) > 0:
-                # check what type of instance the item is 
-                # alternatively could have done a isinstance but would have required more lines of code.
-                if list(items.keys()).count(option[1]) > 0:
-                    print(player.dropItem(items[option[1]]))
-                elif list(lights.keys()).count(option[1]) > 0:
-                    print(player.dropItem(lights[option[1]]))
-                elif list(treasures.keys()).count(option[1]) > 0:
-                    print(player.dropItem(treasures[option[1]]))
-            else:
-                print(f"That item doesn't exist.\n\n")
+        if len(option) > 1:
+
+            if option[0] == 'grab':
+                if player.looked:
+                #check what type of instance the item is.
+                    if list(items.keys()).count(option[1]) > 0:
+                        print(items[option[1]].on_take())
+                        print(player.grabItem(items[option[1]]))
+                    elif list(lights.keys()).count(option[1]) > 0:
+                        print(lights[option[1]].on_take())
+                        print(player.grabItem(lights[option[1]]))
+                    elif list(treasures.keys()).count(option[1]) > 0:
+                        print(treasures[option[1]].on_take())
+                        print(player.grabItem(treasures[option[1]], treasures[option[1]].value, True))
+                else:
+                    print(f"You must look before you grab\n Use keyword\n\n look")
+            elif option[0] == 'drop':
+                itemsAvaliable = list(items.keys()) + list(treasures.keys()) + list(lights.keys())
+                if itemsAvaliable.count(option[1]) > 0:
+                    # check what type of instance the item is 
+                    # alternatively could have done a isinstance but would have required more lines of code.
+                    if list(items.keys()).count(option[1]) > 0:
+                        if option[1] != "coins":
+                            print(items[option[1]].on_drop())
+                        print(player.dropItem(items[option[1]]))
+                    elif list(lights.keys()).count(option[1]) > 0:
+                        print(lights[option[1]].on_drop())
+                        print(player.dropItem(lights[option[1]]))
+                    elif list(treasures.keys()).count(option[1]) > 0:
+                        print(treasures[option[1]].on_drop())
+                        print(player.dropItem(treasures[option[1]]))
+                else:
+                    print(f"That item doesn't exist.\n\n")
+        
         elif option[0] == 'look':
             print(player.lookAround())
             #sleep(10)
+        else:
+            print(f"choose what you wish to {option[0]}")
+    else:
+        print("That is not a valid choice")
 
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).

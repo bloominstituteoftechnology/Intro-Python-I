@@ -3,7 +3,7 @@
 
 class Room (object):
     
-    def __init__(self, name, description,items = [],treasure = None, is_light = None ):#n_to = None, s_to = None, e_to = None, w_to = None
+    def __init__(self, name, description,items = [], is_light = None ):#n_to = None, s_to = None, e_to = None, w_to = None
         self.name = name
         self.description = description
         self.items = items
@@ -11,7 +11,6 @@ class Room (object):
         self.s_to = None
         self.e_to = None
         self.w_to = None
-        self.treasure = treasure
         self.directions = [] 
         self.is_light = is_light
 
