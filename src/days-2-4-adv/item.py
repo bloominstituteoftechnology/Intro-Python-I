@@ -16,3 +16,8 @@ class Treasure(Item):
         return self.value
     def on_drop(self):
         self.value = 0
+
+class LightSource(Item):
+    def __init__(self, name, description):
+        Item.__init__(self, name, description)
+        

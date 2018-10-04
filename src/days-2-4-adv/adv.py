@@ -43,6 +43,8 @@ room['overlook'].addItem(Item('torch', 'a torch to light the way'))
 # Place some treasure
 
 room['narrow'].addItem(Treasure('silver', 'a piece of silver', 500))
+room['foyer'].addItem(Treasure('statuette', 'a small statue of a dragon', 1500))
+room['overlook'].addItem(Treasure('ring', 'a nondescript ring', 1000))
 
 #
 # Main
