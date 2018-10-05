@@ -6,11 +6,16 @@ class Player():
         self.current_room = current_room
         self.inventory = []
         self.score = 0
+        self.has_light = False
     def travel(self, direction):
         nextRoom = self.current_room.getRoom(direction)
         if nextRoom is not None:
             self.current_room = nextRoom
-            print(nextRoom)
+            if self.current_room.is_light or self.has_light:
+                print(nextRoom)
+            else:
+                print('Its pitch black!')
+            
         else:
             print('You are filled with an overwhelming sense of dread and quickly reconsider your decision.')
     def addItem(self, item):

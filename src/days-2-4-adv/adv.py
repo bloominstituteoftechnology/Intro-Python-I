@@ -1,25 +1,25 @@
 from room import Room
 from player import Player
-from item import Item, Treasure
+from item import Item, Treasure, LightSource
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside a Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", True),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", True),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", True),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", False),
 }
 
 
@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 
 room['outside'].addItem(Item('meat', 'a pile of rancid meat. The smell is unbearable.'))
 room['foyer'].addItem(Item('gauntlets', 'a pair of gauntlets, well worn but still usable'))
-room['overlook'].addItem(Item('torch', 'a torch to light the way'))
+room['overlook'].addItem(LightSource('torch', 'a torch to light the way'))
 
 # Place some treasure
 
@@ -91,6 +91,9 @@ while True:
                     plyr.score += itemToAdd.value
                     plyr.addItem(itemToAdd)
                     plyr.getScore()
+                elif isinstance(itemToAdd, LightSource):
+                    plyr.has_light = True
+                    plyr.addItem(itemToAdd)
                 else:
                     plyr.addItem(itemToAdd)
 
@@ -98,6 +101,10 @@ while True:
             itemToDrop = plyr.selectItem(cmd[1])
             if itemToDrop is None:
                 print('You dont have anything like that')
+            elif isinstance(itemToDrop, LightSource):
+                plyr.has_light = False
+                plyr.removeItem(itemToDrop)
+                itemToDrop.on_drop()
             else:
                 plyr.removeItem(itemToDrop)
                 itemToDrop.on_drop()

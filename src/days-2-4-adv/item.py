@@ -20,4 +20,5 @@ class Treasure(Item):
 class LightSource(Item):
     def __init__(self, name, description):
         Item.__init__(self, name, description)
-        
+    def on_drop(self):
+        print('Way to drop your source of light you fool!')
