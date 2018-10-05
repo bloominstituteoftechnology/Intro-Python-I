@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from items import Item
+from items import Item, Treasure
 # Declare all the rooms
 
 room = {
@@ -17,8 +17,7 @@ the distance, but there is no way across the chasm."""),
 to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+chamber! Sadly, there is only one piece of gold left. The only exit is to the south."""),
 }
 
 
@@ -42,7 +41,9 @@ room['treasure'].s_to = room['narrow']
 room['outside'].addItem(Item('sword', 'a sword for slashing'))
 room['foyer'].addItem(Item('shield', 'a sheild for protection'))
 room['overlook'].addItem(Item('compass', 'a compass to show the direction'))
-
+room['foyer'].addItem(Treasure('key', 'a key', 300))
+room['outside'].addItem(Treasure('picture', 'a picture', 100))
+room['treasure'].addItem(Treasure('Gold', 'a piece of gold', 500))
 
 # Make a new player object that is currently in the 'outside' room.
 name = input('Who are you? \n')
@@ -83,12 +84,19 @@ while True:
             if itemToAdd == None:
                 print('Item is not here')
             else:
-                me.addItem(itemToAdd)
+                if hasattr(itemToAdd, 'value') and itemToAdd.value > 0:
+                    me.score += itemToAdd.value
+                    me.addItem(itemToAdd)
+                    me.getScore()
+                else:
+                    me.addItem(itemToAdd)
+
         elif cmd[0] == 'drop':
             itemToDrop = me.selectItem(cmd[1])
             if itemToDrop is None:
                 print('You dont have that item')
             else:
                 me.removeItem(itemToDrop)
+                itemToDrop.on_drop()
         else:
              print('cannot do that')
