@@ -202,6 +202,8 @@ while True:
         os.system("clear")
         print(CBLACK)
         break
+    elif cmd == "score":
+            print("Score:" + str(player_score))
     elif cmd.upper() == 'N':
         os.system("clear")
         print(currentPlayer + ",")
