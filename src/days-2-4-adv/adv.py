@@ -7,35 +7,35 @@ import textwrap
 
 # Declare all the rooms
 item = {
-'twine': Item("twine", "a ball of tightly wound twine."),
-'scissors': Item("scissors", "a pair of sewing shears."),
-'coins': Treasure("coins", "a handful of gold coins", 20),
-'meatloaf': Item("meatloaf", "a fragrant meatloaf, still warm."),
-'sandals': Item("sandals", "a pair of sandals made of rope and cardboard"),
-'lamp': Light("lamp", "an old kerosene lamp"),
-'jewels': Treasure("jewels", "a small bag of precious jewels", 80),
-'jewelry': Treasure("jewelry", "a box with diamond earings, necklace, and bracelet", 120)
+'twine': Item("twine", "a ball of tightly wound twine [get twine]"),
+'scissors': Item("scissors", "a pair of sewing shears [get scissors]"),
+'coins': Treasure("coins", "a handful of gold coins [get coins]", 20),
+'meatloaf': Item("meatloaf", "a fragrant meatloaf, still warm [get meatloaf]"),
+'sandals': Item("sandals", "a pair of sandals made of rope and cardboard [get sandals]"),
+'lamp': Light("lamp", "an old kerosene lamp [get lamp]"),
+'jewels': Treasure("jewels", "a small bag of precious jewels [get jewels]", 80),
+'jewelry': Treasure("jewelry", "a box with diamond earings, necklace, and bracelet [get jewelry]", 120)
 }
 
 item_list = item.keys()
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", True, item['coins']),
+                     "North of you, the cave mount beckons", True, [item['coins'], ]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", True, item['scissors'], item['lamp']),
+passages run north and east.""", True, [item['scissors'], item['lamp']]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", False, item['twine'], item['jewels']),
+the distance, but there is no way across the chasm.""", False, [item['twine'], item['jewels']]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", False, item['jewelry']),
+to north. The smell of gold permeates the air.""", False, [item['jewelry'], ]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", False, item['meatloaf']),
+earlier adventurers. The only exit is to the south.""", False, [item['meatloaf'], ]),
 }
 
 # Link rooms together
@@ -54,7 +54,7 @@ room['treasure'].s_to = room['narrow']
 #
 # Make a new player object that is currently in the 'outside' room.
 
-player = Player(input('What is your name? '), room['outside'], item['sandals'])
+player = Player(input('What is your name? '), room['outside'], [item['sandals'], ])
 
 # Write a loop that:
 valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",

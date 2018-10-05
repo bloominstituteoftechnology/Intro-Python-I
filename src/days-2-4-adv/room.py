@@ -12,22 +12,24 @@ class Room:
         self.w_to = None
         self.items = items
         self.lit = lit
-        # if items is not None and len(items) > 1:
-        #     self.items = [thing for thing in items]
-        #     print(self.items)
-        # elif items is not None:
-        #     self.items.append(items)
+
     def hasLight(self):
-        for object in self.items:
-            if isinstance(object, Light) or self.lit:
-                return True
-                break
-            else: return False
+        if self.lit == True:
+            print('You have natural light')
+            return True
+        else:
+            for object in self.items:
+                if isinstance(object, Light):
+                    print('You have a light')
+                    return True
+                    break
+                else: continue
+            return False
 
 
     def __str__(self):
         if len(self.items) > 0:
-            return "\n{name}\n\n {description}\n\nItems in room: {items}\n\n".format(name = self.name, description=self.description, items = ', '.join([item.name for item in self.items]))
+            return "\n{name}\n\n {description}\n\nItems in room: {items}\n\n".format(name = self.name, description=self.description, items = ', '.join([item.description for item in self.items]))
         else:
             return "\n{name}\n\n {description}\n\nYou see no items in this room.\n\n".format(name = self.name, description=self.description)
 

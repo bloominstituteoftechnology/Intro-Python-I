@@ -1,22 +1,24 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 from item import Light
+from item import Treasure
 
 class Player:
     def __init__(self, name, currentRoom, items):
         self.name = name
         self.currentRoom = currentRoom
-        self.items = []
+        self.items = items
         self.score = 0
-        if items is not None:
-            self.items.append(items)
+
 
     def hasLight(self):
         for object in self.items:
             if isinstance(object, Light):
+                print('You have a light')
                 return True
-                break
-            else: return False
+            else:
+                continue
+        return False
 
     def isTreasure(self, item):
         if isinstance(item, Treasure):
@@ -38,17 +40,17 @@ class Player:
 
     def look(self, direction=None):
         if direction is None:
-            if self.hasLight() or self.currentRoom.hasLight() or self.currentRoom.lit:
+            if self.hasLight() or self.currentRoom.hasLight():
                 print(self.currentRoom)
             else:
-                print("It's pitch black in here!")
+                print("It's pitch black in here! Get a light.")
         else:
             nextRoom = self.currentRoom.getRoomInDirection(direction)
             if nextRoom is not None:
-                if self.hasLight() or nextRoom.hasLight() or nextRoom.lit:
+                if self.hasLight() or nextRoom.hasLight():
                     print("\n  What you see: {}\n".format(nextRoom))
                 else:
-                    print("\nIt's pitch black in there!\n")
+                    print("\nIt's pitch black in there! Get a light to see.\n")
             else:
                 print("\nThere is nothing there.\n")
 
@@ -60,6 +62,7 @@ class Player:
             if self.isTreasure(newItem):
                 if newItem.value != 0:
                     self.score += newItem.value
+                    print('Score: {}'.format(self.score))
         else:
             print('\nThat item is not in this room.\n')
 
