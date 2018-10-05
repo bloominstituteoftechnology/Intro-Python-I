@@ -1,5 +1,5 @@
 # Intro to Python
-
+installed python 3
 ## Goals
 
 It's time to learn a new language! Python!
