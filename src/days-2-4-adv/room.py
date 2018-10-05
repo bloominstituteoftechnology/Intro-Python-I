@@ -15,7 +15,7 @@ class Room():
     def roomItems(self):
         Inventory.getItems(self, self.name)
     def getItem(self, name):
-        print(name, "getitem")
+        # print(name, "getitem")
         return Inventory.getItem(self, name)
     def showItems(self):
         Inventory.showItems(self, self.name)

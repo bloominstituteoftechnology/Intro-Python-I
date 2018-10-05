@@ -12,34 +12,23 @@ class Inventory():
                 if item == None: 
                     print("    Nothing")
                 else: 
-                    print(item)
-                    # print(item.name)
-                    print(item.itemName)
-                    # print(item.points)
-                    # help(item)
-                    # vars(item)
-                    # print(__contains__(item))
-                    # print(type(item))
-                    # for thing in item:
-                    #     print(thing)
-                    # print(f"    {item.values}")
+                    print(f"    {item.itemName}")
     def getItems(self, name):
         return self.items
     def getItem(self, name):
-        print(name, "getitem inventory")
+        # print(name, "getitem inventory")
         for item in self.items:
-            print(item, 'item')
-            print(item.itemName, 'item')
+            # print(item, 'item')
+            # print(item.itemName, 'item')
             if item.itemName.lower() == name.lower():
-                print(item, "maybe this is grassITEM?")
                 return item
         return None
     def addItem(self, item):
-        print(item)
         self.items.append(item)
-        for item in self.items:
-            print(item, "add item in inventory")
-        # return points 
+        newPoints = item.itemPoints
+        return newPoints
+    def removePoints(self, item):
+        item.itemPoints = 0
     def dropItem(self, oldItem):
         self.items.remove(oldItem)
         Inventory.getItems(self, self.parent)

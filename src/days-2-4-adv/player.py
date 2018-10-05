@@ -1,10 +1,10 @@
 from inventory import Inventory
 
 class Player():
-    def __init__(self, name, room):
+    def __init__(self, name, room, score=0):
         self.name = name
         self.room = room
-        self.score = 0
+        self.score = score
         Inventory.__init__(self, self.name)
     def changeRoom(self, direction):
         next_room = self.room.getRoomInDirection(direction)
@@ -23,9 +23,11 @@ class Player():
         Inventory.showItems(self, self.name)
         self.getScore()
     def addItem(self, newItem):
-        print(newItem)
-        score = Inventory.addItem(self, newItem)
-        # self.getScore()
+        newPoints = Inventory.addItem(self, newItem)
+        self.score = self.score + newPoints
+        Inventory.removePoints(self, newItem)
+        Inventory.showItems(self, self.name)
+        self.getScore()
     def dropItem(self, newItem):
         Inventory.dropItem(self, newItem)
     def getScore(self):

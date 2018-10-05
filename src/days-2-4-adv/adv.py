@@ -77,7 +77,7 @@ commands_help = [
     {"q": "exits program"}
 ]
 
-p = Player(input("What is your name? "), room["outside"])
+p = Player(input("\n  What is your name? "), room["outside"])
 
 print(f'\nYou are currently: \n{p.room}') # this comes from the __str__ statement
 while True: 
@@ -114,9 +114,7 @@ while True:
             if cmds[1] in valid_directions:
                 p.lookRoom(valid_directions[cmds[1]])
         if cmds[0] == "get":
-            print(cmds[1:])
             itemToTake = p.room.getItem("".join(cmds[1:]))
-            print("itemToTake", itemToTake)
             p.addItem(itemToTake)
             # if cmds[1] in p.room.items:
             #     p.addItem(cmds[1])
@@ -125,4 +123,3 @@ while True:
             if cmds[1] in p.items:
                 p.dropItem(cmds[1])
                 p.room.addItem(cmds[1])
-            
