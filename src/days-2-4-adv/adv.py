@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item, Food
+from item import Item, Food, Egg
 import textwrap
 import time
 
@@ -40,11 +40,13 @@ rock1 = Item("Rock", "This is a rock.")
 rock2 = Item("Rock", "This is a rock.")
 sword = Item("Sword", "This is just a regular sword but it is better than a stick.")
 bread = Food("Bread", "This is a loaf of bread.", 100)
+egg = Egg()
 
 playerStartingItems = [rock1]
 room['outside'].addItem(rock2)
 room['outside'].addItem(sword)
 room['outside'].addItem(bread)
+room['outside'].addItem(egg)
 
 # Valid directions
 
@@ -107,12 +109,12 @@ while True:
                     if itemToDrop is not None:
                         p.removeItem(itemToDrop)
                         p.currentRoom.addItem(itemToDrop)
-                        print(f"You dropped {itemToTake.name}")
+                        print(itemToDrop.on_drop())
                     else:
                         print("You are not holding that item.")
                 elif cmds[0] == "eat":
                     itemToEat = p.findItemByName(cmds[1])
-                    if itemToEat is not None and hasattr(itemToEat, "eat"):
+                    if itemToEat is not None and hasattr(itemToEat, "eat") and itemToEat.eat() > 0:
                         strengthGain = int(itemToEat.eat() / 10)
                         p.strength += strengthGain
                         p.removeItem(itemToEat)
