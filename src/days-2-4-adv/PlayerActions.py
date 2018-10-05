@@ -153,35 +153,10 @@ def routePlayerActions(action):
 
 
 def routeItemActions(action, item):
-    if item == 'sword':
-        if action == 'get':
-            getSingleItem(player.room.place, item)
-        elif action == 'drop':
-            dropSingleItem(player.room.place, item)
-    
-    elif item == 'light':
-        if action == 'get':
-            getSingleItem(player.room.place, item)
-        elif action == 'drop':
-            dropSingleItem(player.room.place, item)
-    
-    elif item == 'treasure':
-        if action == 'get':
-            getSingleItem(player.room.place, item)
-        elif action == 'drop':
-            dropSingleItem(player.room.place, item)
-    
-    elif item == 'key':
-        if action == 'get':
-            getSingleItem(player.room.place, item)
-        elif action == 'drop':
-            dropSingleItem(player.room.place, item)
-    
-    elif item == 'apple':
-        if action == 'get':
-            getSingleItem(player.room.place, item)
-        elif action == 'drop':
-            dropSingleItem(player.room.place, item)
+    if action == 'get':
+        getSingleItem(player.room.place, item)
+    elif action == 'drop':
+        dropSingleItem(player.room.place, item)
 
 
 # Actions
