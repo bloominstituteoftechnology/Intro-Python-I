@@ -117,7 +117,7 @@ while True:
             print(cmds[1:])
             itemToTake = p.room.getItem("".join(cmds[1:]))
             print("itemToTake", itemToTake)
-            p.addItem({itemToTake})
+            p.addItem(itemToTake)
             # if cmds[1] in p.room.items:
             #     p.addItem(cmds[1])
             #     p.room.dropItem(cmds[1])

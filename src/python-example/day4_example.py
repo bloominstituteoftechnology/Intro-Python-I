@@ -140,11 +140,13 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
 rock1 = Item("Rock", "This is a rock.")
 big_rock = Item("Big Rock", "This is a big rock.")
 bread = Food("Bread", "This is a loaf of bread.", 100)
 egg = Egg()
 playerStartingItems = [rock1]
+
 room['outside'].addItem(big_rock)
 room['foyer'].addItem(bread)
 room['treasure'].addItem(egg)

@@ -12,12 +12,16 @@ class Inventory():
                 if item == None: 
                     print("    Nothing")
                 else: 
+                    print(item)
+                    # print(item.name)
+                    print(item.itemName)
+                    # print(item.points)
                     # help(item)
                     # vars(item)
                     # print(__contains__(item))
                     # print(type(item))
-                    for thing in item:
-                        print(thing)
+                    # for thing in item:
+                    #     print(thing)
                     # print(f"    {item.values}")
     def getItems(self, name):
         return self.items
