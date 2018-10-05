@@ -32,13 +32,13 @@ class Player:
         if direction is None:
             if self.currentRoom.is_light or self.hasLight():
                 print("\n-----------------------------------------------------")
-                print(f"    You look around [{self.currentRoom.name}] and see:")
+                print(f"\n    You look around [{self.currentRoom.name}] and see:")
                 if len(self.currentRoom.items) > 0:
                     for item in self.currentRoom.items:
-                        print(f"    {item.name}")
+                        print(f"\n    {item.name}")
                 else:
-                    print("    Nothing")
-                print("-----------------------------------------------------")
+                    print("\n    Nothing")
+                print("\n-----------------------------------------------------")
             else:
                 print("\n-----------------------------------------------------")
                 print(f"\n    You look around the [{self.currentRoom.name}] and see:")

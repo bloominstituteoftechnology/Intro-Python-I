@@ -19,7 +19,7 @@ room = {
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
     into the darkness. Ahead to the north, a light flickers in
     the distance, but there is no way across the chasm.""", 
-    [Treasure("Locket", "A precious keepsake obviously dropped by a previous adventurer.", 200, False)], True),
+    [Treasure("LOCKET", "A precious keepsake obviously dropped by a previous adventurer.", 200, False)], True),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
     to north. The smell of gold permeates the air.""", [], False),
@@ -27,7 +27,7 @@ room = {
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
     chamber! Sadly, it has already been completely emptied by
     earlier adventurers. The only exit is to the south.""", 
-    [Treasure("Golden Chest", "A fairly large chest made of gold.", 1337, False)], False),
+    [Treasure("GOLDEN CHEST", "A fairly large chest made of gold.", 1337, False)], False),
 }
 
 
@@ -84,7 +84,19 @@ while True:
                 print("\n    Your inventory is empty.")
                 print("\n-----------------------------------------------------")
         elif cmds[0] == "SCORE":
-            print(f"    {player.name}'s current score is: {player.score} ")
+            print("\n-----------------------------------------------------")
+            print(f"\n    {player.name}'s current score is: {player.score} ")
+            print("\n-----------------------------------------------------")
+        elif cmds[0] == "HELP":
+            print("\n-----------------------------------------------------")
+            print(f"\n    Type: [n,e,s,w] to move in a direction.")
+            print(f"\n          [look] to look around the room.")
+            print(f"\n          [look] + 'direction' to look in a specific direction.")
+            print(f"\n          [take] + 'item' to pick up an item.")
+            print(f"\n          [drop] + 'item' to drop an item.")
+            print(f"\n          [inv] to access your inventory.")
+            print(f"\n          [score] to check your score.")
+            print("\n-----------------------------------------------------")
         elif cmds[0] == "Q" or cmds[0] == "QUIT":
             break
         else:
@@ -98,10 +110,15 @@ while True:
         elif cmds[0] == "TAKE":
             for item in player.currentRoom.items:
                 if cmds[1] in item.name:
-                    item.takeItem(player)
-                    print("\n-----------------------------------------------------")
-                    print(f"\n    You have taken the {cmds[1]}!")
-                    print("\n-----------------------------------------------------")
+                    if player.currentRoom.is_light or player.hasLight():
+                        item.takeItem(player)
+                        print("\n-----------------------------------------------------")
+                        print(f"\n    You have taken the {cmds[1]}!")
+                        print("\n-----------------------------------------------------")
+                    else:
+                        print("\n-----------------------------------------------------")
+                        print(f"\n    Good luck finding that in the DARK!")
+                        print("\n-----------------------------------------------------")
         elif cmds[0] == "DROP":
             for item in player.items:
                 if cmds[1] in item.name:
