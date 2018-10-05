@@ -5,3 +5,10 @@ class Item:
         self.description = description
     def __str__(self):
         return self.name
+
+class Food(Item):
+    def __init__(self, name, description, calories):
+        Item.__init__(self, name, description)
+        self.calories = calories
+    def eat(self):
+        return self.calories

@@ -6,6 +6,7 @@ class Player():
         self.name = name
         self.currentRoom = currentRoom
         self.items = startingItems
+        self.strength = 10
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
@@ -19,6 +20,8 @@ class Player():
             print(nextRoom)
         else:
             print("There is nothing there.")
+    def printStats(self):
+        print(f"{self.name} - strength: {self.strength} - n.items: {len(self.items)}")
     def printInventory(self):
         print("You are carrying:\n")
         for item in self.items:

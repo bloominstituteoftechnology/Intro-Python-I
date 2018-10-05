@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Food
 import textwrap
 import time
 
@@ -38,9 +38,13 @@ room['treasure'].s_to = room['narrow']
 
 rock1 = Item("Rock", "This is a rock.")
 rock2 = Item("Rock", "This is a rock.")
+sword = Item("Sword", "This is just a regular sword but it is better than a stick.")
+bread = Food("Bread", "This is a loaf of bread.", 100)
 
 playerStartingItems = [rock1]
 room['outside'].addItem(rock2)
+room['outside'].addItem(sword)
+room['outside'].addItem(bread)
 
 # Valid directions
 
@@ -80,6 +84,8 @@ while True:
                         continue
                 elif cmds[0].upper() == 'I' or cmds[0].upper() == 'INVENTORY':
                     p.printInventory()
+                elif cmds[0].upper() == 'STATS' or cmds[0].upper() == 'STATUS':
+                    p.printStats()
                 else:
                     time.sleep(1)
                     print('You can only go north, south, east or west! Try going somewhere!')
@@ -89,21 +95,31 @@ while True:
                         # time.sleep(2)
                         p.look(valid_directions[cmds[1]])
                 elif cmds[0] == "take":
-                    currentRoom = p.currentRoom
-                    itemToTake = currentRoom.findItemByName(cmds[1])
+                    itemToTake = p.currentRoom.findItemByName(cmds[1])
                     if itemToTake is not None:
                         p.addItem(itemToTake)
-                        currentRoom.removeItem(itemToTake)
+                        p.currentRoom.removeItem(itemToTake)
+                        print(f"You picked up {itemToTake.name}")
                     else:
                         print("You did not see that item.")
                 elif cmds[0] == "drop":
-                    currentRoom = p.currentRoom
                     itemToDrop = p.findItemByName(cmds[1])
                     if itemToDrop is not None:
                         p.removeItem(itemToDrop)
                         p.currentRoom.addItem(itemToDrop)
+                        print(f"You dropped {itemToTake.name}")
                     else:
                         print("You are not holding that item.")
+                elif cmds[0] == "eat":
+                    itemToEat = p.findItemByName(cmds[1])
+                    if itemToEat is not None and hasattr(itemToEat, "eat"):
+                        strengthGain = int(itemToEat.eat() / 10)
+                        p.strength += strengthGain
+                        p.removeItem(itemToEat)
+                        del itemToEat
+                        print(f"You have gained {strengthGain} strength!")
+                    else:
+                        print("You cannot eat that.")
                 else:
                     time.sleep(1)
                     print('I did not understand that command!')
