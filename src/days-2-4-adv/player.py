@@ -26,3 +26,8 @@ class Player:
         if item in self.inventory:
             self.inventory.remove(item)
             print(f"You have used {item.getItemType()}")
+
+    def listInventory(self):
+        for item in self.inventory:
+            print(f"\n{item.item_type} : {item.item_descr}\n")
+            print("--------------------------------")
