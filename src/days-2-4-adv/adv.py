@@ -26,11 +26,11 @@ earlier adventurers. The only exit is to the south."""),
 
 
 items = {
-    'backpack': Item('an empty backpack', " that you set down"),
-    'Lumiere': Item('Lumière', " lighting the room"),
-    'parachute': Item('a parachute', " but you don't use it"),
-    'dust': Item('some dust', " but what can you do.."),
-    'chest': Item('an empty treasure chest', " ..that's also empty"),
+    'backpack': Item('backpack', " that is empty", 10),
+    'lumiere': Item('lumiere', " lighting the room", 20),
+    'parachute': Item('parachute', " but you don't use it", 30),
+    'dust': Item('dust', " but what can you do..", 40),
+    'chest': Item('chest', " ..that's also empty", 50),
 
 }
 
@@ -38,12 +38,12 @@ items = {
 
 
 
-items['backpack'].n_to = items['Lumiere']
-items['Lumiere'].s_to = items['backpack']
-items['Lumiere'].n_to = items['parachute']
-items['Lumiere'].e_to = items['dust']
-items['parachute'].s_to = items['Lumiere']
-items['dust'].w_to = items['Lumiere']
+items['backpack'].n_to = items['lumiere']
+items['lumiere'].s_to = items['backpack']
+items['lumiere'].n_to = items['parachute']
+items['lumiere'].e_to = items['dust']
+items['parachute'].s_to = items['lumiere']
+items['dust'].w_to = items['lumiere']
 items['dust'].n_to = items['chest']
 items['chest'].s_to = items['dust']
 
@@ -80,7 +80,10 @@ p = Player(playername, room["outside"], currentItem, 0)
 
 # clearTerminal = os.system("clear")
 
-
+inventory = ["pennies", "nickels", "dimes"]
+player_inventory = inventory
+player_score = 0
+currentPoints = currentItem.points
 
 
 # Write a loop that:
@@ -113,10 +116,12 @@ while True:
     currentLocation = p.location
     currentItem = p.item
     itemDescription = currentItem.description
-    inventory = []
+    currentPoints = currentItem.points
+    # inventory = []
     new_list = []
-    score = p.score
-    print(f"" + RED + "\nYou are currently in the great " + p.location.name + "\n\n" + p.location.description + "\n\nYou find " + p.item.name + currentItem.description + GREEN + "\n\nYour score is " + str(score) + BLACK)
+    
+    # player_score = p.score
+    print(f"" + RED + "\nYou are currently in the great " + p.location.name + "\n\n" + p.location.description + "\n\nYou find " + p.item.name + currentItem.description + BLACK)
 
     # if inventory:
     #     for each in inventory:
@@ -207,7 +212,8 @@ while True:
         if hasattr(p.location, 'n_to'):
             p.location = currentLocation.n_to
             p.item = currentItem.n_to
-
+            p.score = currentItem.n_to
+            print("n_to", p.score)
             # if hasattr(p.location, 's_to'):
             #     print("\n     Enter "S" to go Souther")
             # else:
@@ -252,6 +258,8 @@ while True:
         if hasattr(p.location, 'e_to'):
             p.location = currentLocation.e_to
             p.item = currentItem.e_to
+            p.score = currentItem.e_to
+            print("e_to", p.score)
         else:
             os.system("clear")
             print("\n    You Can't Go Any Farther East, Go Another Direction \n\n")
@@ -260,6 +268,8 @@ while True:
         if hasattr(p.location, 's_to'):
             p.location = currentLocation.s_to
             p.item = currentItem.s_to
+            p.score = currentItem.s_to
+            print("s_to", p.score)
         else:
             os.system("clear")
             print("\n    You Can't Go Any Farther South, Go Another Direction \n\n")
@@ -268,6 +278,8 @@ while True:
         if hasattr(p.location, 'w_to'):
             p.location = currentLocation.w_to
             p.item = currentItem.w_to
+            p.score = currentItem.w_to
+            print("w_to", p.score)
         else:
             os.system("clear")
             print("\n    You Can't Go Any Farther West, Go Another Direction \n\n")
@@ -292,54 +304,78 @@ while True:
         #         print(each)
 
         if " " in cmd:
-            inventory = ["pennies", "nickels", "dimes"]
-            player_inventory = inventory
             itemCMD = split[0]
             if itemCMD == "get":
-                if split[1] == "item":
-                    print("....be more specific")
-                elif not split[1] in currentItem.name:
-                    print("Can't get that..")
+                thingName = currentItem.name
+                thingInput = split[1]
+                if thingInput == "items":
+                    print("\n\nBe more specific....")
+                    print("\n..but you see " + thingName + " in the room..")
+                elif thingInput in player_inventory:
+                    print("But you already have it")
+                elif not thingInput == thingName:
+                    print("\n\nCan't get that..")
                 else:
-                    item_name = currentItem.name
-                    player_inventory.append(item_name)
-                    # inventory.extend(list(new_list))
-                    # inventory.update({p.item.name: p.item.description})
-                    print("Item Secured!")
-                    print(f"You got a new item, you now have " + inventory[(len(inventory) - 1)] + "\n\nInventory:")
-                    for item in inventory:
+                    # item_name = currentItem.name
+                    player_inventory.append(thingInput)
+                    player_score += currentItem.points
+                    print("\n\nItem Secured!")
+                    print(f"\nYou got a new item, you now have " + inventory[(len(inventory) - 1)] + "\n\nInventory:")
+                    thingName = "nothing"
+                    for item in player_inventory:
                         print(item)
 
+                    print("" + GREEN + "\n\nYour score is now " + str(player_score) + BLACK) 
+                    
             elif itemCMD == "take":
-                if split[1] == "item":
-                    print("....be more specific")
-                elif not split[1] in currentItem.name:
-                    print("Can't take that..")
+                thingName = currentItem.name
+                thingInput = split[1]
+                if thingInput == "items":
+                    print("\n\n....be more specific")
+                    print("\n..but you see " + thingName + " in the room..")
+                elif thingInput in player_inventory:
+                    print("\n\nCan't take what you already have..")
+                elif not thingInput == thingName:
+                    print("That's not in here")
                 else:
                     item_name = currentItem.name
                     player_inventory.append(item_name)
-                    # inventory.append(split[1])
+                    player_score += currentItem.points
                     print("Item Taken!")
-                    print(f"You took a new item, you now have " + inventory[0] + "\n\nInventory:")
-                    for item in inventory:
+                    print(f"\nYou took a new item, you now have " + inventory[(len(inventory) - 1)] + "\n\nInventory:")
+                    thingName = "nothing"
+                    for item in player_inventory:
                         print(item)
+
+                    print("" + GREEN + "\n\nYour score is now " + str(player_score) + BLACK)
 
             elif itemCMD == "drop":
                 if split[1] == "item":
-                    print("....be more specific")
+                    print("\n\n....be more specific")
+                if split[1] == "all":
+                    alert = input("Are you sure?: ")
+                    if alert == "yes":
+                        player_inventory = []
+                        print("\nInventory destroyed, maybe you can find some more things")
+                    else:
+                        print("Change of heart!")
                 elif split[1] in player_inventory:
                     to_drop = split[1]
                     player_inventory.remove(to_drop)
-                    print("Item Dropped!")
-                    print(f"You left " + currentItem + " behind.." + "\n\nInventory:")
-                    for item in inventory:
+                    player_score -= currentItem.points
+                    print("\n\nItem Dropped!")
+                    print(f"You left " + to_drop + " behind.." + "\n\nInventory:")
+                    for item in player_inventory:
                         print(item)
-                    
+
+                    print("" + GREEN + "\n\nYour score is now " + str(player_score) + BLACK)    
                 else:
                     print("..but you don't have that to drop..")
 
             elif itemCMD == "print":
+                print("Inventory:\n")
                 print(player_inventory)
+                print("Score:" + str(player_score))
                                         
                     #         print(len(inventory))
                         # print(inventory[0])

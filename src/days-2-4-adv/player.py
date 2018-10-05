@@ -6,5 +6,5 @@ class Player(object):
         self.name = name
         self.location = location
         self.item = item
-        self.score = 0
+        self.score = score
         
