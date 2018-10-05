@@ -86,6 +86,8 @@ while True:
             itemToAdd = plyr.current_room.selectItem(cmd[1])
             if itemToAdd == None:
                 print('No item like that here')
+            elif not plyr.current_room.is_light and not plyr.has_light:
+                print('Good luck finding that in the dark!')
             else:
                 if hasattr(itemToAdd, 'value') and itemToAdd.value > 0:
                     plyr.score += itemToAdd.value
