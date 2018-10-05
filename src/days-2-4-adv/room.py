@@ -15,12 +15,11 @@ class Room():
     def roomItems(self):
         Inventory.getItems(self, self.name)
     def getItem(self, name):
-        # print(name, "getitem")
         return Inventory.getItem(self, name)
     def showItems(self):
         Inventory.showItems(self, self.name)
-    def removeObject(self):
-        self.object = 'nothing'
+    def removeObject(self, oldItem):
+        Inventory.dropItem(self, oldItem)
     def getRoomInDirection(self, direction):
         if direction == "n":
             return self.n_to

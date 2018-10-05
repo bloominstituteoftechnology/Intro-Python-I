@@ -16,19 +16,19 @@ class Inventory():
     def getItems(self, name):
         return self.items
     def getItem(self, name):
-        # print(name, "getitem inventory")
         for item in self.items:
-            # print(item, 'item')
-            # print(item.itemName, 'item')
             if item.itemName.lower() == name.lower():
                 return item
         return None
     def addItem(self, item):
         self.items.append(item)
-        newPoints = item.itemPoints
-        return newPoints
+        if hasattr(item, 'itemPoints'): 
+            newPoints = item.itemPoints
+            return newPoints
+        else: 
+            return 0
     def removePoints(self, item):
         item.itemPoints = 0
     def dropItem(self, oldItem):
         self.items.remove(oldItem)
-        Inventory.getItems(self, self.parent)
+        Inventory.showItems(self, self.parent)

@@ -116,10 +116,8 @@ while True:
         if cmds[0] == "get":
             itemToTake = p.room.getItem("".join(cmds[1:]))
             p.addItem(itemToTake)
-            # if cmds[1] in p.room.items:
-            #     p.addItem(cmds[1])
-            #     p.room.dropItem(cmds[1])
+            p.room.dropItem(itemToTake)
         if cmds[0] == "drop":
-            if cmds[1] in p.items:
-                p.dropItem(cmds[1])
-                p.room.addItem(cmds[1])
+            itemToDrop = p.getItem("".join(cmds[1:]))
+            p.room.addItem(itemToDrop)
+            p.dropItem(itemToDrop)

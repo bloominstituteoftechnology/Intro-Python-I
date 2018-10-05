@@ -32,3 +32,5 @@ class Player():
         Inventory.dropItem(self, newItem)
     def getScore(self):
         print(f"\n    Current Score: {self.score}")
+    def getItem(self, name):
+        return Inventory.getItem(self, name)
