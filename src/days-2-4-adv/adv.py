@@ -35,11 +35,11 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-book = Item("book", "dusty book of the occult in an unrecognizable language")
-candelabra = Item("candelabra", "a rusty piece of junk with no candles")
-dagger = Item("dagger", "bejeweled ceremonial dagger")
-rope = Item("rope", "length of rope; probably not long enough to rappel the cliff")
-gold = Item("gold", "small bag of gold coins")
+book = Item("book", "dusty book of the occult in an unrecognizable language", 0)
+candelabra = Item("candelabra", "a rusty piece of junk with no candles", 0)
+dagger = Item("dagger", "bejeweled ceremonial dagger", 150)
+rope = Item("rope", "length of rope; probably not long enough to rappel the cliff", 0)
+gold = Item("gold", "small bag of gold coins", 100)
 
 room['outside'].addItem(book)
 room['foyer'].addItem(candelabra)
@@ -77,6 +77,8 @@ while True:
             player.look()
         elif cmds[0] == "i" or cmds[0] == "inventory":
             player.printInventory()
+        elif cmds[0] == "status":
+            player.printStatus()
         else:
             print("I did not understand that command.")
     else:
@@ -84,15 +86,16 @@ while True:
             if cmds[1] in valid_directions:
                 player.look(valid_directions[cmds[1]])
         elif cmds[0] == "take":
-            itemToTake = currentRoom.findItemByName(" ".join(cmds[1:]))
+            itemToTake = player.findItemByName(" ".join(cmds[1:]))
             if itemToTake is not None:
                 player.addItem(itemToTake)
+                player.totalScore(itemToTake)
                 player.currentRoom.removeItem(itemToTake)
                 print(f"You have picked up {itemToTake.name}")
             else:
                 print("You do not see that item.")
         elif cmds[0] == "drop":
-            itemToDrop = currentRoom.findItemByName(" ".join(cmds[1:]))
+            itemToDrop = player.findItemByName(" ".join(cmds[1:]))
             if itemToDrop is not None:
                 player.removeItem(itemToDrop)
                 player.currentRoom.addItem(itemToDrop)

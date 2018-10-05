@@ -1,10 +1,11 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 class Player:
-    def __init__(self, name, currentRoom, startingItems=[]):
+    def __init__(self, name, currentRoom):
         self.name = name
         self.currentRoom = currentRoom
-        self.items = startingItems
+        self.items = []
+        self.score = 0
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
@@ -25,6 +26,8 @@ class Player:
         print('You are carrying:\n')
         for item in self.items:
             print(f" {item.name}\n")
+    def printStatus(self):
+        print(f"Your name is {self.name}; you are in {self.currentRoom}; your score is {self.score}")
     def addItem(self, item):
         self.items.append(item)
     def removeItem(self, item):
@@ -34,3 +37,6 @@ class Player:
             if item.name.lower() == name.lower():
                 return item
         return None
+    def totalScore(self, item):
+        points = item.points
+        self.score += points
