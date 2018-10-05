@@ -25,7 +25,7 @@ item['lamp']=LightSource('lamp','lamp is a source of light that leads to knowled
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons",[item['sword'],item['coins']], True),
+                     "North of you, the cave mount beckons",[item['sword'],item['coins']], False),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", [item['knife'],item['coins'], item['lamp']], False),
@@ -80,40 +80,43 @@ while True:
                 p.currentRoom.showItems()
                 print(f'{p.currentRoom.text}')
         else:
-                print("It's pitch black!")
+                print("\nIt's pitch black!")
         cmds = input("-> ").lower().split(' ')
         cmd=cmds[0]
         if cmd == "q":
-                print('You choose to quit.')
+                print('\nYou choose to quit.')
                 break
         elif cmd in valid_directions:
                 p.travel(valid_directions[cmd])
-                print(f'Items available in this room are:')
+                print(f'\nItems available in this room are:')
                 p.currentRoom.showItems()
         elif cmd == "take" or cmd == "get":
                 result=p.currentRoom.getItem(cmds[1])
                 if result!=None:
-                        p.addItem(item[result])
-                        if cmds[1]=="gold" or cmds[1]=="silver" or cmds[1]=="ruby":
-                                treasureValue=item[cmds[1]].on_take()
-                                p.addScore(cmds[1],treasureValue)
-                        else:    
-                                item[result].on_take()
+                        if item['lamp'] not in p.currentRoom.items:
+                                print('\nGood luck finding that in the dark!')
+                        else:        
+                                p.addItem(item[result])
+                                if cmds[1]=="gold" or cmds[1]=="silver" or cmds[1]=="ruby":
+                                        treasureValue=item[cmds[1]].on_take()
+                                        p.addScore(cmds[1],treasureValue)
+                                else:    
+                                        item[result].on_take()
                                 
-                        room[p.currentRoom.name].removeItem(result)
-                        result1=p.currentRoom.getItem(result)
-                        if result1 == None:
-                                if len(p.currentRoom.items) > 0:
-                                        print('Items still availabe in the room')
-                                        p.currentRoom.showItems()
+                                room[p.currentRoom.name].removeItem(result)
+                                result1=p.currentRoom.getItem(result)
+                                if result1 == None:
+                                        if len(p.currentRoom.items) > 0:
+                                                print('\nItems still availabe in the room')
+                                                p.currentRoom.showItems()
+                                        else:
+                                                print('\nNo more items availabe in the room')
                                 else:
-                                        print('No more items availabe in the room')
-                        else:
-                                print('Item not availabe')
+                                        print('\nItem not availabe')
                 else:
-                        print('Item not availabe')
+                        print('\nItem not availabe')
         elif cmd == "inventory" or cmd =="i":
-                print('Your inventory has')
+                print('\nYour inventory has')
                 p.showItems()
         elif cmd =="drop":
                 itemDropped=p.removeItem(cmds[1])
@@ -121,13 +124,13 @@ while True:
                         room[p.currentRoom.name].addItem(item[cmds[1]])
                         item[cmds[1]].on_drop()
                 else:
-                        print('The item you are trying to drop is not present in your inventory')    
-                print('Items avaialbe in the room')
+                        print('\nThe item you are trying to drop is not present in your inventory')    
+                print('\nItems avaialbe in the room')
                 p.currentRoom.showItems()        
         elif cmd =="score" or cmd=="s":
-                print(f'Your score is:{p.score}')
+                print(f'\nYour score is:{p.score}')
         else:
-                print('I cannot understand your command')
+                print('\nI cannot understand your command')
 
 
 # * Prints the current room name
