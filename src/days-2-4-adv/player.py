@@ -5,6 +5,7 @@ class Player():
         self.name = name
         self.currentRoom = currentRoom
         self.items = []
+        self.score = 0
 
     def __repr__(self):
         return f"Current Room: {self.currentRoom}"
@@ -13,8 +14,7 @@ class Player():
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
             self.currentRoom = nextRoom
-            print(f"  {self.currentRoom}: {self.currentRoom.description}\n")
-
+            print(f"  \n{self.currentRoom}: {self.currentRoom.description}\n")
         else:
             print("You cannot move in that direction.")
 
@@ -29,7 +29,7 @@ class Player():
                 print("There is nothing in that room.")
 
     def printStatus(self):
-        print(f"Your name is {self.name} you are in {self.currentRoom} you have {self.items}")
+        print(f"Your name is {self.name} you are in {self.currentRoom} you have {self.items} your score is {self.score}")
 
     def printInventory(self):
         print("You have collected: \n")
@@ -57,3 +57,8 @@ class Player():
             self.currentRoom.addItem(itemToDrop)
         else:
             print("You do not have that item in your possession.")
+
+# scoring ------------
+    def tallyScore(self, item):
+        points = item.points
+        self.score += points

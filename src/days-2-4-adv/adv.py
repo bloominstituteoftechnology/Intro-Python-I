@@ -30,21 +30,21 @@ earlier adventurers. The only exit is to the south."""),
 # Declare all items
 
 item = {
-    'axe':  Item("Axe", """You may use the axe to cut down trees and brush."""),
+    'axe':  Item("Axe", """You may use the axe to cut down trees and brush.""", 20),
 
-    'bow':    Item("Bow", """You may use the bow and arrow for hunting."""),
+    'bow':    Item("Bow", """You may use the bow and arrow for hunting.""", 10),
 
-    'compass': Item("Compass", """Use the compass to find your way."""),
+    'compass': Item("Compass", """Use the compass to find your way.""", 30),
 
-    'map':   Item("Map", """The map will guide you to the treasure."""),
+    'map':   Item("Map", """The map will guide you to the treasure.""", 40),
 
-    'keys': Item("Keys", """Find which key opens the treasure chest."""),
+    'keys': Item("Keys", """Find which key opens the treasure chest.""", 10),
 
-    'knife': Item("Knife", """The knife is a versatile tool for carving and self-defense."""),
+    'knife': Item("Knife", """The knife is a versatile tool for carving and self-defense.""", 20),
 
-    'scroll': Item("Scroll", """Read the ancient scroll to learn the secrets of the wizards."""),
+    'scroll': Item("Scroll", """Read the ancient scroll to learn the secrets of the wizards.""", 30),
 
-    'iphone': Item("Iphone", """You now have an iphone, you probably don't want to play this game anymore."""),
+    'iphone': Item("Iphone", """You now have an iphone, you probably don't want to play this game anymore.""", 50),
 }
 
 # Link rooms together
@@ -104,7 +104,6 @@ while(playing):
         else:
             print("That command is not recognized by this program.")
 
-
     else:
         if cmds[0] == "look":
             if cmds[1] in valid_directions:
@@ -113,6 +112,7 @@ while(playing):
             itemToTake = player.currentRoom.findItemByName(" ".join(cmds[1:]))
             if itemToTake is not None:
                 player.addItem(itemToTake)
+                player.tallyScore(itemToTake)
                 player.currentRoom.removeItem(itemToTake)
                 print(f"You have collected the {itemToTake.name}")
             else:
