@@ -1,4 +1,4 @@
-# Make an array of dictionaries. Each dictionary should have keys:
+# Make a list of dictionaries. Each dictionary should have keys:
 #
 # lat: the latitude
 # lon: the longitude
@@ -25,5 +25,7 @@ waypoints = [
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
-
+for i in waypoints:
+    print(i.values())
 # Add a new waypoint to the list
+waypoints.append(dict({"lat": 62, "lon": -215, "name": "the fourth place" }))
