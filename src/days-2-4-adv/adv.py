@@ -5,21 +5,21 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     """North of you, the cave mount beckons"""),
+                     """North of you, the cave mount beckons""", False, "torch"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", False, "blade"),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", False, "sand"),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", False, "shield"),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", False, "coin jewel"),
 }
 
 
@@ -138,9 +138,24 @@ room['treasure'].s_to = room['narrow']
 
 
 #2ND IMPLEMENTATION
+print("\n\n===Helllooooooo traveler!===")
+print("\n you can move around using 'north', 'south', 'west', 'east'")
+print("\n or 'forward', 'backward', 'right', 'left'")
+print("\n or 'n' 's' 'w' 'e'")
+print("\n use 'look' to inspect your surroundings")
+print("\n or 'look' with any move commands to look ahead")
+print("\n to pick up items use 'take item'")
+print("\n to drop items use 'drop item'")
+print("\n use 'worth' to see your net worth")
+print("\n use 'inventory' or 'i' to view and inspect your items")
+print("\n use 'q' to quit")
+
 valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
                     "north": "n", "south": "s", "east": "e", "west": "w",
                     "forward": "n", "backward": "s", "right": "e", "left": "w"}
+
+valid_items = {"blade": "blade", "shield": "shield", "sand": "sand",
+               "torch": "torch", "coin": "coin", "jewel": "jewel"}
 
 player = Player(input("What is your name? "), room['outside'])
 print(f"\n{player.currentRoom}")
@@ -154,11 +169,25 @@ while True:
             player.travel(valid_directions[cmds[0]])
         elif cmds[0] == "look":
             player.look()
+            if len(player.currentRoom.inventory) > 0:
+                print(f"\nthings of interest: {player.currentRoom.inventory}")
+            else:
+                print("\nnothing else to see")    
+        elif cmds[0] == "i" or cmds[0] == "inventory":
+            player.viewInventory()
+        elif cmds[0] == "worth":
+            player.viewNetWorth()
         else:
             print("\nneed valid commands")
     else:
         if cmds[0] == "look":
             if cmds[1] in valid_directions:
                 player.look(valid_directions[cmds[1]])
+        elif cmds[0] == "take":
+            if cmds[1] in valid_items:
+                player.takeItem(valid_items[cmds[1]])
+        elif cmds[0] == "drop":
+            if cmds[1] in valid_items:
+                player.dropItem(valid_items[cmds[1]])
         else:
             print("\nneed valid commands")
