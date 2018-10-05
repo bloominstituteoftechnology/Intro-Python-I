@@ -1,5 +1,6 @@
-from player import Player
 from room import Room
+from player import Player
+from item import Item, Treasure, LightSource
 
 # Declare all the rooms
 
@@ -34,58 +35,45 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-
-item = {
-    'sword':  Item("sword",
-                     "slay the creeps using the sword."),
-
-    'ax':    Item("ax",
-                        """crush them with the ax"""),
-
-    'torch': Item("torch",
-                        """Find your way!"""),
-
-    'amulet':   Item("amulet",
-                         """Stop spells"""),
-
-}
-
-item['outside'].n_to = Item['foyer']
-item['foyer'].s_to = Item['outside']
-item['narrow'].n_to = Item['overlook']
-item['foyer'].e_to = Item['narrow']
-
-
+# item = {
+#     'sword':  Item("sword",
+#                      "slay the creeps using the sword."),
 #
-# Main
+#     'ax':    Item("ax",
+#                         """crush them with the ax"""),
 #
-
-# Make a new player object that is currently in the 'outside' room.
-
-# Write a loop that:
+#     'torch': Item("torch",
+#                         """Find your way!"""),
 #
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
+#     'amulet':   Item("amulet",
+#                          """Stop spells"""),
 #
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+# }
+
+coins = Treasure("coins", "gold coins for the taking")
+rubies = Treasure("rubies", "sparkleys")
+
+sword = Item("sword", "slay the creeps using the sword.")
+ax = Item("ax", "crush them with the ax")
+mace = Item("mace", "fly anything with the mace")
 
 
 
-
-
+playerStartingItems = [sword]
+room['outside'].addItem(ax)
+room['foyer'].addItem(mace)
+room['treasure'].addItem(coins)
+room['treasure'].addItem(rubies)
 
 valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w",
                     "forward": "n", "backwards": "s", "right": "e", "left": "w"}
 
-player = Player(input("What is your name? "), room['outside'])
+player = Player(input("What is your name? "), room['outside'],playerStartingItems)
 
-#print(player.currentRoom)
+print(" debug string ",player.currentRoom)
 
 while True:
+    print(" debug string ",player)
     cmds = input("-> ").lower().split(" ")
     if len(cmds) == 1:
         if cmds[0] == "q":
@@ -94,35 +82,35 @@ while True:
             player.travel(valid_directions[cmds[0]])
         elif cmds[0] == "look":
             player.look()
+        elif cmds[0] == "i" or cmds[0] == "inventory":
+            player.printInventory()
+        elif cmds[0] == "status":
+            player.printStatus()
         else:
-            print("I did not understand that cmds.")
+            print("I did not understand that command.")
     else:
-
         if cmds[0] == "look":
             if cmds[1] in valid_directions:
                 player.look(valid_directions[cmds[1]])
-    else:
-        if cmds[0] == ('get' or 'take'):
-        if cmds[1] not in item:
-            print('That item doesn\'t exist.')
-        if cmds[1] not in player.location.items:
-            print('That item isn\'t in the room.')
-        if cmds[1] in player.location.items:
-            print('ITS WORKING ')
-            player.location.removeItem(f'{cmds[1]}')
-            player.addItems([cmds[1]])
-    
-    if cmds[0] == 'drop':
-        if cmds[1] in player.inventory:
-            print(player.inventory)
-            player.removeItem('rock')
-            player.location.addItems([cmds[1]])
-        elif cmds[1] in item:
-            print('You don\'t have that item in your inventory.')
-        elif cmds[1] not in item:
-            print('That item doesn\'t exist.')
-    
-    if cmds[0] == 'i' or 'inventory':
-        print('Player Inventory: ', player.inventory)
-            print("I did not understand that cmds.")
-
+        elif cmds[0] == "take" or cmds[0] == "get":
+            itemToTake = player.currentRoom.findItemByName(" ".join(cmds[1:]))
+            if itemToTake is not None:
+                player.addItem(itemToTake)
+                player.currentRoom.removeItem(itemToTake)
+                print(f"You have picked up {itemToTake.name}")
+            else:
+                print("You do not see that item.")
+        elif cmds[0] == "drop":
+            player.dropItem(cmds[1:])
+        elif cmds[0] == "score":
+            items = player.findItemByName(" ".join(cmds[1:]))
+            if items is not None and hasattr(items, "score") and items.score() > 0:
+                strengthGain = int(items.eat() / 10)
+                player.score += score
+                player.item(items)
+                del items
+                print(f"Your score {score} strength!")
+            else:
+                print("You cannot eat that.")
+        else:
+            print("I did not understand that command.")
