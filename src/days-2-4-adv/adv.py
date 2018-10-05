@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 from item import Item
 from item import Treasure
+from item import LightSource
 import textwrap
 
 # Declare all the items
@@ -10,32 +11,35 @@ item['sword']=Item('sword','It is magical sword with interesting powers')
 item['knife']=Item('knife','It is an ancient knife with speed and power')
 item['arrow']=Item('arrow','Bow and arrow are a deadly combination')
 item['coins']=Item('coins','Coins can buy you other items')
+
 #Treasure creation, it is a sub-class of item
 
 item['gold']=Treasure('gold', 'gold gives you the power to buy more items', 500)
 item['silver']=Treasure('silver', 'silver is the choice of a warrior', 300)
-item['ruby']=Treasure('ruby', 'ruby potion can put you to sleep', 150)
+item['ruby']=Treasure('ruby', 'ruby potion can put Hagrid to sleep', 150)
 
+#LightSource creation
+item['lamp']=LightSource('lamp','lamp is a source of light that leads to knowledge')
 
 
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons",[item['sword'],item['coins']]),
+                     "North of you, the cave mount beckons",[item['sword'],item['coins']], True),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [item['knife'],item['coins']]),
+passages run north and east.""", [item['knife'],item['coins'], item['lamp']], False),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""",[item['arrow'], item['coins']]),
+the distance, but there is no way across the chasm.""",[item['arrow'], item['coins']], False),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""",[item['knife'], item['coins']]),
+to north. The smell of gold permeates the air.""",[item['knife'], item['coins']], True),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""",[item['gold'], item['silver'], item['ruby']]),
+earlier adventurers. The only exit is to the south.""",[item['gold'], item['silver'], item['ruby']], True),
 }
 
 
@@ -60,21 +64,25 @@ p=Player(input('\nWhat is your name?'),room['outside'])
 
 direction = "\nWhat direction would you like to walk in?[n,s,e,w or q to quit]\nYou could also enter commands like take sword or get coins to grab the availabe items in the room\n to view your items or inventory type i or inventory"
 
-print(f'\nYour current location is:{p.currentRoom.name}')
+'''print(f'\nYour current location is:{p.currentRoom.name}')
 print('\nItems availabe in this room are:\n') 
 p.currentRoom.showItems()
 print(f'{p.currentRoom.text}')
-print(direction)
+print(direction)'''
 
 
 valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w","f": "n", "b": "s", "r": "e", "l": "w"}
 
-while True:        
+while True:   
+        if p.currentRoom.light or item['lamp'] in p.items or item['lamp'] in p.currentRoom.items: 
+                print(f'\nYour current location is:{p.currentRoom.name}')
+                print('\nItems availabe in this room are:\n')
+                p.currentRoom.showItems()
+                print(f'{p.currentRoom.text}')
+        else:
+                print("It's pitch black!")
         cmds = input("-> ").lower().split(' ')
-        #print(cmds)
-        #secondAttr=cmds[1]
         cmd=cmds[0]
-        #print(cmd)
         if cmd == "q":
                 print('You choose to quit.')
                 break
@@ -89,8 +97,6 @@ while True:
                         if cmds[1]=="gold" or cmds[1]=="silver" or cmds[1]=="ruby":
                                 treasureValue=item[cmds[1]].on_take()
                                 p.addScore(cmds[1],treasureValue)
-                                #else:
-                                        #print('Your score will not increase on picking up this tresure since you dropped it earlier ')
                         else:    
                                 item[result].on_take()
                                 
@@ -100,7 +106,6 @@ while True:
                                 if len(p.currentRoom.items) > 0:
                                         print('Items still availabe in the room')
                                         p.currentRoom.showItems()
-                                        #print(f'{result} successfuly removed from the room')
                                 else:
                                         print('No more items availabe in the room')
                         else:

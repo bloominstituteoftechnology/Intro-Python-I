@@ -2,9 +2,10 @@
 # description attributes.
 
 class Room():
-        def __init__(self, name, text, items):
+        def __init__(self, name, text, items, is_light):
                 self.name=name.split(' ', 1)[0].lower()     
                 self.text=text
+                self.light=is_light
                 self.n_to=None
                 self.s_to=None
                 self.e_to=None
