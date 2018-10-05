@@ -10,7 +10,7 @@ class Item():
             print(f'You have added a new item to your list: {self.name}')
 
         def on_drop(self):
-            print(f'You have dropped the item from your list: {self.name}')    
+            print(f'You have dropped {self.name} from your list')    
 
 class Treasure(Item):
         def __init__(self, name, description, value):  

@@ -25,22 +25,21 @@ class Player():
                                         self.items.remove(i)
                                         return True
                 else:
-                        print('The item you are trying to drop is not present in your inventory')
-        
+                        return False 
         def showItems(self):
                 if len(self.items) > 0:
                         for i in self.items:
                                 print(f'{i}')  
                 else:
-                        print(f'No items')    
+                        print('No items')    
 
-        def addScore(self,itemAtt,value):
-                if self.treasure[itemAtt]==0:
+        def addScore(self,treasureItem,value):
+                if self.treasure[treasureItem]==0:
                         self.score=self.score+value
-                        self.treasure[itemAtt]=1
+                        self.treasure[treasureItem]=1
                         print(f'Your new score is {self.score}')
                 else:
-                        print('Your score will not increse on adding this item')
+                        print(f'Your is {self.score}. You gotta be careful. Since, you already dropped this treasure, your score will not increse.')
                     
         def travel(self, direction):
                 nextRoom = None

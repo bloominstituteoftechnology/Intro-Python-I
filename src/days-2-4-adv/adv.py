@@ -35,7 +35,7 @@ to north. The smell of gold permeates the air.""",[item['knife'], item['coins']]
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""",[item['gold'], item['silver']]),
+earlier adventurers. The only exit is to the south.""",[item['gold'], item['silver'], item['ruby']]),
 }
 
 
@@ -87,9 +87,6 @@ while True:
                 if result!=None:
                         p.addItem(item[result])
                         if cmds[1]=="gold" or cmds[1]=="silver" or cmds[1]=="ruby":
-                                #treasureCount = getattr(self, '%s' % itemAtt)
-                                #treasureCount = getattr(p, '%s' % cmds[1])
-                                #if p.cmds[1]==0:
                                 treasureValue=item[cmds[1]].on_take()
                                 p.addScore(cmds[1],treasureValue)
                                 #else:
@@ -100,17 +97,29 @@ while True:
                         room[p.currentRoom.name].removeItem(result)
                         result1=p.currentRoom.getItem(result)
                         if result1 == None:
-                                print(f'{result} successfuly removed from the room')
+                                if len(p.currentRoom.items) > 0:
+                                        print('Items still availabe in the room')
+                                        p.currentRoom.showItems()
+                                        #print(f'{result} successfuly removed from the room')
+                                else:
+                                        print('No more items availabe in the room')
                         else:
-                                print(f'Item not availabe')
+                                print('Item not availabe')
+                else:
+                        print('Item not availabe')
         elif cmd == "inventory" or cmd =="i":
                 print('Your inventory has')
                 p.showItems()
         elif cmd =="drop":
                 itemDropped=p.removeItem(cmds[1])
                 if itemDropped ==True:
+                        room[p.currentRoom.name].addItem(item[cmds[1]])
                         item[cmds[1]].on_drop()
-        elif cmd =="score":
+                else:
+                        print('The item you are trying to drop is not present in your inventory')    
+                print('Items avaialbe in the room')
+                p.currentRoom.showItems()        
+        elif cmd =="score" or cmd=="s":
                 print(f'Your score is:{p.score}')
         else:
                 print('I cannot understand your command')
