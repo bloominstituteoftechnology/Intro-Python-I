@@ -27,19 +27,23 @@ earlier adventurers. The only exit is to the south."""),
 
 items = {
     'backpack': Item('an empty backpack', " that you set down"),
-    'Lumière': Item('Lumière', " lighting the room"),
+    'Lumiere': Item('Lumière', " lighting the room"),
     'parachute': Item('a parachute', " but you don't use it"),
     'dust': Item('some dust', " but what can you do.."),
-    'chest': Item('an empty treasure chest', " that's also empty"),
+    'chest': Item('an empty treasure chest', " ..that's also empty"),
 
 }
 
-items['backpack'].n_to = items['Lumière']
-items['Lumière'].s_to = items['backpack']
-items['Lumière'].n_to = items['parachute']
-items['Lumière'].e_to = items['dust']
-items['parachute'].s_to = items['Lumière']
-items['dust'].w_to = items['Lumière']
+
+
+
+
+items['backpack'].n_to = items['Lumiere']
+items['Lumiere'].s_to = items['backpack']
+items['Lumiere'].n_to = items['parachute']
+items['Lumiere'].e_to = items['dust']
+items['parachute'].s_to = items['Lumiere']
+items['dust'].w_to = items['Lumiere']
 items['dust'].n_to = items['chest']
 items['chest'].s_to = items['dust']
 
@@ -72,7 +76,7 @@ playername = input("Enter Your Name: ")
 currentItem = items["backpack"]
 
 
-p = Player(playername, room["outside"], currentItem)
+p = Player(playername, room["outside"], currentItem, 0)
 
 # clearTerminal = os.system("clear")
 
@@ -101,16 +105,18 @@ def current(location):
     
 
 while True:
-    CRED = '\033[91m'
-    CBLACK = '\033[0;30m'
-    CGREEN = '\033[0;32m'
-    CBLUE = '\033[0;34m'
+    RED = '\033[31m'
+    BLACK = '\033[0;30m'
+    GREEN = '\033[0;32m'
+    BLUE = '\033[0;34m'
     currentPlayer = p.name
     currentLocation = p.location
     currentItem = p.item
     itemDescription = currentItem.description
-    inventory = ["a few nickels", "a few dimes"]
-    print(f"" + CBLUE + "\nYou are currently in the great " + p.location.name + "\n\n" + p.location.description + "\n\nYou find " + p.item.name + currentItem.description + CBLACK)
+    inventory = []
+    new_list = []
+    score = p.score
+    print(f"" + RED + "\nYou are currently in the great " + p.location.name + "\n\n" + p.location.description + "\n\nYou find " + p.item.name + currentItem.description + GREEN + "\n\nYour score is " + str(score) + BLACK)
 
     # if inventory:
     #     for each in inventory:
@@ -152,7 +158,6 @@ while True:
                 if hasattr(p.location, "w_to"):
                     print("    'W' to" + str(p.location.w_to))
     else:
-
         if hasattr(p.location, "S_to"):
             print("\n\n    'S' to" + str(p.location.s_to))
             if hasattr(p.location, "e_to"):
@@ -287,26 +292,56 @@ while True:
         #         print(each)
 
         if " " in cmd:
-            if length == 2:
-                for word in split:
-                    if word == "get":
-                        if currentItem:
-                            inventory.append(currentItem.name)
-                            # inventory.update({p.item.name: p.item.description})
-                            print("Item Taken!")
-                            print(f"You got a new item, you now have " + inventory[(len(inventory) - 1)] + "\n\nInventory:")
-                            for item in inventory:
-                                print(item)
+            inventory = ["pennies", "nickels", "dimes"]
+            player_inventory = inventory
+            itemCMD = split[0]
+            if itemCMD == "get":
+                if split[1] == "item":
+                    print("....be more specific")
+                elif not split[1] in currentItem.name:
+                    print("Can't get that..")
+                else:
+                    item_name = currentItem.name
+                    player_inventory.append(item_name)
+                    # inventory.extend(list(new_list))
+                    # inventory.update({p.item.name: p.item.description})
+                    print("Item Secured!")
+                    print(f"You got a new item, you now have " + inventory[(len(inventory) - 1)] + "\n\nInventory:")
+                    for item in inventory:
+                        print(item)
 
-                    elif word == "take":
-                        if currentItem:
-                            inventory.append(currentItem.name)
-                            print("Item Secured!")
-                            print(f"You took a new item, you now have " + inventory[(len(inventory) - 1)] + "\n\nInventory:")
-                            for item in inventory:
-                                print(item)
+            elif itemCMD == "take":
+                if split[1] == "item":
+                    print("....be more specific")
+                elif not split[1] in currentItem.name:
+                    print("Can't take that..")
+                else:
+                    item_name = currentItem.name
+                    player_inventory.append(item_name)
+                    # inventory.append(split[1])
+                    print("Item Taken!")
+                    print(f"You took a new item, you now have " + inventory[0] + "\n\nInventory:")
+                    for item in inventory:
+                        print(item)
 
-                        print(len(inventory))
+            elif itemCMD == "drop":
+                if split[1] == "item":
+                    print("....be more specific")
+                elif split[1] in player_inventory:
+                    to_drop = split[1]
+                    player_inventory.remove(to_drop)
+                    print("Item Dropped!")
+                    print(f"You left " + currentItem + " behind.." + "\n\nInventory:")
+                    for item in inventory:
+                        print(item)
+                    
+                else:
+                    print("..but you don't have that to drop..")
+
+            elif itemCMD == "print":
+                print(player_inventory)
+                                        
+                    #         print(len(inventory))
                         # print(inventory[0])
                         # print(inventory[1])
                     # else:
