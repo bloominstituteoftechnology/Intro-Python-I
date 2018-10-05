@@ -3,10 +3,13 @@
 import random
 
 class Room:
-    def __init__ (self, name, description, items = []):
+    def __init__ (self, name, description, items = [], treasures = [], lightsources = []):
         self.name = name
         self.description = description
         self.items = items  
+        self.treasures = treasures
+        self.lightsources = lightsources
+        self.is_lighted = len(self.lightsources) == 0
         self.n_to = None 
         self.e_to = None
         self.s_to = None 
@@ -30,6 +33,10 @@ class Room:
         else:
             print("\n⚠️  The direction you have chosen is not accessible!\n")
             return None
+
+    def print_treasures(self):
+        for treasure in self.treasures:
+            return treasure.name
 
     def generate_items(self, player):
         if random.random() > 0.5:
