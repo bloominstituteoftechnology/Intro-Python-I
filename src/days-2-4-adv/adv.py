@@ -32,7 +32,7 @@ earlier adventurers. The only exit is to the south."""),
 item = {
     'axe':  Item("Axe", """You may use the axe to cut down trees and brush."""),
 
-    'bow':    Item("Bow and Arrows", """You may use the bow and arrow for hunting."""),
+    'bow':    Item("Bow", """You may use the bow and arrow for hunting."""),
 
     'compass': Item("Compass", """Use the compass to find your way."""),
 
@@ -80,7 +80,7 @@ player = Player(input("\nWhat is your name? "), room["outside"])
 
 print(f"Welcome, {player.name}\n")
 
-valid_directions = {"n": "north", "s":"south", "e": "east", "w":"west"}
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w"}
 
 print(player.currentRoom)
 

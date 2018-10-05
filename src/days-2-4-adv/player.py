@@ -13,7 +13,8 @@ class Player():
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
             self.currentRoom = nextRoom
-            nextRoom.printRoomDescription(player)
+            print(f"  {self.currentRoom}: {self.currentRoom.description}\n")
+
         else:
             print("You cannot move in that direction.")
 
@@ -27,11 +28,8 @@ class Player():
             else:
                 print("There is nothing in that room.")
 
-    def __repr__(self):
-        return "Current Location: {}".format(self.currentRoom)
-
     def printStatus(self):
-        print(f"Your name is {self.name}")
+        print(f"Your name is {self.name} you are in {self.currentRoom} you have {self.items}")
 
     def printInventory(self):
         print("You have collected: \n")
@@ -57,6 +55,5 @@ class Player():
         if itemToDrop is not None:
             self.removeItem(itemToDrop)
             self.currentRoom.addItem(itemToDrop)
-            itemToDrop.on_Drop()
         else:
             print("You do not have that item in your possession.")
