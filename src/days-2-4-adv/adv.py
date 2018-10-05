@@ -1,51 +1,156 @@
 from room import Room
-
+from player import Player
+from constants import move_directions
+from item import Item
+from cmds import commands
 # Declare all the rooms
 
-room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+laboratory = Room("Gnarly Laboratory",
+				  "The lab has a faint smell of iron and ammonia. Flickering light overhead half-illuminates a gnarly scene.")
+office = Room("C-Suite Office",
+			  """The executive offices, of course, are empty.  Everyone in C-Suite managed to escape.""")
+incinerator = Room("Grand Incinerator",
+				   """A hot, dark room barely lit by flame peaking out of the incinerator.""")
+chapel = Room("The Passage Chapel",
+			  """Idols and iconography cover every inch of the chapel.""")
+pendulum = Room("The Pendulum", """You've reached the Pendulum. Conditioned air envelopes you.  The doors lock behind you.  You see the key-switch ahead and you know what you must do.""")
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
-
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
-
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
-}
-
+laboratory.setRoomMoves({"f": office})
+office.setRoomMoves({"b": laboratory, "f": incinerator, "r": chapel})
+chapel.setRoomMoves({"l": office, "f": pendulum})
+incinerator.setRoomMoves({"f": office})
+pendulum.setRoomMoves({"b": chapel})
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+# room['laboratory'].f_to = room['office']
+# room['office'].b_to = room['laboratory']
+# room['office'].f_to = room['incinerator']
+# room['office'].r_to = room['chapel']
+# room['incinerator'].b_to = room['office']
+# room['chapel'].l_to = room['office']
+# room['chapel'].f_to = room['pendulum']
+# room['pendulum'].b_to = room['chapel']
 
 #
 # Main
 #
 
-# Make a new player object that is currently in the 'outside' room.
 
-# Write a loop that:
+# def detectCMD(room, cmd):
+#     if cmd == 'f' or 'b' or 'l' or 'r':
+#         if cmd == room.f_to:
+#             return f
+#         elif cmd == b:
+#             return b_to
+#         elif cmd == l:
+#             return l_to
+#         elif cmd == r:
+#             return r_to
+#     else:
+#         print(f'{cmd} is not an optional command.')
+
+
 #
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
+# Main: initializes items, room, and player.  Calls GameLoop function
 #
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
+def Main():
+	#
+	# Initializing Rooms
+	#
+	laboratory = Room("Gnarly Laboratory",
+					  "The lab has a faint smell of iron and ammonia. Flickering light overhead half-illuminates a gnarly scene.")
+	office = Room("C-Suite Office",
+				  """The executive offices, of course, are empty.  Everyone in C-Suite managed to escape.""")
+	incinerator = Room(
+		"Grand Incinerator", """A hot, dark room barely lit by flame peaking out of the incinerator.""")
+	chapel = Room("The Passage Chapel",
+				  """Idols and iconography cover every inch of the chapel.""")
+	pendulum = Room("The Pendulum", """You've reached the Pendulum. Conditioned air envelopes you.  The doors lock behind you.  You see the key-switch ahead and you know what you must do.""")
+
+	#
+	# Initializing Pick-Up Items
+	#
+	badCrystal = Item('Bad Crystal', 'A small glass capsule containing an experimental, protein-like macromolecule.',
+					  'You place the Bad Crystal in your mouth and chomp down...')
+	lumniscience = Item('Lumniscience', 'A suspension containing what the scientists said "frees users from the 3rd dimension". This will allow you to see ahead 2 moves.',
+						'You pop the vile open and gulp the suspension down, here comes the rabbit hole.')
+
+	# setting possible room_moves for each room
+	laboratory.setRoomMoves({"f": office})
+	office.setRoomMoves({"b": laboratory, "f": incinerator, "r": chapel})
+	chapel.setRoomMoves({"l": office, "f": pendulum})
+	incinerator.setRoomMoves({"f": office})
+	pendulum.setRoomMoves({"b": chapel})
+
+	# setting pickup-items as attributes to certain rooms
+	office.setRoomItem(lumniscience)
+	chapel.setRoomItem(badCrystal)
+	print(chapel.getRoomItem().getItemType())
+
+	# creating / initializing Player
+	unicorn = Player(input('What is your name, punk...   '), laboratory)
+
+	# grabbing initial room name
+	currRoom = unicorn.getCurrentRoom()
+
+	print(f"Ok, {unicorn.sayName()}, you're in the {currRoom.getRoomType()}.  We need to get to the Pendulum quick!")
+	print("\n\nSo, let's make a move:")
+	gameLoop(unicorn, currRoom)
+
+
 #
-# If the user enters "q", quit the game.
+# GameLoop:
+#
+def gameLoop(plyr, curr):
+	currRoom = curr
+	initCmdDialog = False
+	cmd = None
+	while True:
+
+		if initCmdDialog == False:
+			print(
+				'\n\n\To make a move type a direction: "f", "b", "l", "r", OR "q" to bite down on that tooth. \n\n')
+			print('Too, you can always type "cmds" to see a list of possible commands.')
+			initCmdDialog = True
+		else:
+			cmd = input('Type your command: ')
+
+			if cmd == "q":
+				break
+			elif cmd == "cmds":
+				printCommands()
+			elif cmd == "inventory":
+				plyr.listInventory()
+			elif currRoom.checkIfRoomMove(cmd) is True and currRoom is not currRoom.getNextRoom(cmd):
+				currRoom = currRoom.getNextRoom(cmd)
+				plyr.setCurrentRoom(currRoom)
+				roomName = currRoom.getRoomType()
+				roomDesc = currRoom.getRoomDescription()
+				print(f"Looks like we are in the {roomName}")
+				print(f"{roomDesc}")
+			else:
+				print('Try a different direction')
+
+			if currRoom.getRoomItem() is not False:
+				roomItem = currRoom.getRoomItem()
+				print(
+					f"Wait, it looks like there is a {roomItem.getItemType()} here.")
+				pickupCmd = input("Would you like to pick it up? 'y' or 'n'")
+				if pickupCmd == 'y':
+					plyr.pickUpItem(roomItem)
+					currRoom.setRoomItem(None)
+					print("Current items in your inventory:")
+					for item in plyr.inventory:
+						print(item.getItemType())
+				else:
+					print("That is not a proper response.")
+
+
+def printCommands():
+	print("Here are your command options: \n")
+	for cmd in commands:
+		print(f"{cmd} : {commands.get(cmd)}\n")
+
+
+Main()
