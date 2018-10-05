@@ -4,7 +4,8 @@
 # When you use a variable in a function, it's local in scope to the function.
 x = 12
 
-def changeX():
+def changeX(): 
+    global x
     x = 99
 
 changeX()
@@ -19,6 +20,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()

@@ -1,4 +1,9 @@
+import textwrap
+
 from room import Room
+from player import Player
+from item import Item
+
 
 # Declare all the rooms
 
@@ -22,6 +27,26 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 
+# Declare all items
+
+item = {
+    'axe':  Item("Axe", """You may use the axe to cut down trees and brush.""", 20),
+
+    'bow':    Item("Bow", """You may use the bow and arrow for hunting.""", 10),
+
+    'compass': Item("Compass", """Use the compass to find your way.""", 30),
+
+    'map':   Item("Map", """The map will guide you to the treasure.""", 40),
+
+    'keys': Item("Keys", """Find which key opens the treasure chest.""", 10),
+
+    'knife': Item("Knife", """The knife is a versatile tool for carving and self-defense.""", 20),
+
+    'scroll': Item("Scroll", """Read the ancient scroll to learn the secrets of the wizards.""", 30),
+
+    'iphone': Item("Iphone", """You now have an iphone, you probably don't want to play this game anymore.""", 50),
+}
+
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -33,19 +58,69 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
+#Add some items to the rooms
+
+room['outside'].addItem(item['bow']) 
+room['foyer'].addItem(item['axe']) 
+room['foyer'].addItem(item['map']) 
+room['overlook'].addItem(item['scroll']) 
+room['overlook'].addItem(item['keys']) 
+room['narrow'].addItem(item['knife']) 
+room['narrow'].addItem(item['compass']) 
+room['treasure'].addItem(item['iphone']) 
+
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(input("\nWhat is your name? "), room["outside"])
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+print(f"Welcome, {player.name}\n")
+
+valid_directions = {"n": "n", "s": "s", "e": "e", "w": "w"}
+
+print(player.currentRoom)
+
+playing = True
+
+while(playing):
+
+    cmds = input("-> ").split(" ") # this allows us to separate commands
+
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            break
+        elif cmds[0] in valid_directions:
+            player.travel(valid_directions[cmds[0]])
+        elif cmds[0] == "look":
+            player.look()
+        elif cmds[0] == "i" or cmds[0] == "inventory":
+            player.printInventory()
+        elif cmds[0] == "status":
+            player.printStatus()
+        else:
+            print("That command is not recognized by this program.")
+
+    else:
+        if cmds[0] == "look":
+            if cmds[1] in valid_directions:
+                player.look(valid_directions[cmds[1]])
+        elif cmds[0] == "take" or cmds[0] == "get":
+            itemToTake = player.currentRoom.findItemByName(" ".join(cmds[1:]))
+            if itemToTake is not None:
+                player.addItem(itemToTake)
+                player.tallyScore(itemToTake)
+                player.currentRoom.removeItem(itemToTake)
+                print(f"You have collected the {itemToTake.name}")
+            else:
+                print("That item is not here.")
+        elif cmds[0] == "drop":
+            player.dropItem(cmds[1:])
+        else:
+            print("Command is not recognized.")
+
+
+
