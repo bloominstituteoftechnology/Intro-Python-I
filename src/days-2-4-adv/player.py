@@ -26,16 +26,19 @@ class Player:
             for each in self.items:
                 if each.name == item:
                     hasItem = True
-            currentItem = self.currentRoom.toggleItem(cmd, item)
-            if hasItem == False and currentItem is not None:
-                self.items.append(currentItem)
-                print (f"\npicked up this {currentItem.name}\n{currentItem.description}\n")
-                if hasattr(currentItem, "onTake"):
-                    self.score += currentItem.onTake()
-                if hasattr(currentItem, "brightness"):
-                    self.light = True
-            else:
-                print ("\nthat isn't in this room\n")
+            if self.currentRoom.light == False and self.light == False:
+                print ("\ncan't find anything to pick up in the dark\n")
+            elif hasItem == False:
+                currentItem = self.currentRoom.toggleItem(cmd, item)
+                if currentItem is not None:
+                    self.items.append(currentItem)
+                    print (f"\npicked up this {currentItem.name}\n{currentItem.description}\n")
+                    if hasattr(currentItem, "onTake"):
+                        self.score += currentItem.onTake()
+                    if hasattr(currentItem, "brightness"):
+                        self.light = True
+                else:
+                    print ("\ndon't see one of those around\n")
         elif cmd == "drop":
             for each in self.items:
                 if each.name == item:
@@ -43,12 +46,15 @@ class Player:
                     current = each
             if "current" not in globals():
                 print ("\ncan't drop whatcha don't have\n")
-            else:
-                current2 = self.currentRoom.toggleItem(cmd, current)
-                if current2 is not None:
-                    self.items.remove(current)
-                    print (f"\nwho needs this {current.name} anyway\n")
-                    if hasattr(current, "onDrop"):
-                        self.light = False
-                else: 
-                    print ("\ncan't drop whatcha don't have\n")
+            elif self.currentRoom.light == False and self.light == False:
+                print ("\nit's so dark in here, if you drop that you'll never find it again\n")
+            elif self.currentRoom.light == False:
+                if hasattr(current, "onDrop"):
+                    print ("\nif you drop that it's gonn get real dark in here\n")
+            elif self.currentRoom.toggleItem(cmd, current) is not None:
+                self.items.remove(current)
+                print (f"\nwho needs this {current.name} anyway\n")
+                if hasattr(current, "onDrop"):
+                    self.light = False
+        else: 
+            print ("\ncan't drop whatcha don't have\n")

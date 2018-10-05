@@ -52,7 +52,7 @@ player = Player(input("what's yer name? "), room['outside'])
 # If the user enters "q", quit the game.
 print (f"\n{player.currentRoom.name}:\n\n{player.currentRoom.description}\n\nPick a direction to start (n, s, e, w)\n")
 
-while True:
+while True: 
     cmd = input("what next?-> ").split(" ")
     if cmd[0] is "q":
         print ("\n~~~~ until tomorrow ~~~~\n")
@@ -70,6 +70,6 @@ while True:
     elif cmd[0] == "score":
         print (f"\nya score is {player.score}\n")
     else:
-        print ("\nPlease enter a valid command: \n(n, s, e, w, i/inventory, score, pickup itemname, drop itemname)\n")
+        print ("\nPlease enter a valid command: \n(n, s, e, w, i/inventory, score, take itemname, drop itemname)\n")
     
         
