@@ -1,0 +1,6 @@
+## PIPENV INFO
+to create:
+    PIPENV install
+
+to use:
+    PIPENV shell
