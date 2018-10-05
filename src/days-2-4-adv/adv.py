@@ -38,6 +38,14 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+#Items
+
+knife = Item("knife", "Useful for cutting through brush")
+stone = Item("stone", "Useful for weighing items down")
+
+
+
+
 # Make a new player object that is currently in the 'outside' room.
 
 # Write a loop that:
