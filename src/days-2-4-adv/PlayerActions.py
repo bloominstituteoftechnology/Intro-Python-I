@@ -60,7 +60,7 @@ items = {
 room['secret room'].items.append(items['treasure'].name)
 room['treasure chamber'].items.append(items['light'].use)
 room['grand overlook'].items.append(items['sword'].name)
-room['narrow passage'].items.append(items['key'].name)
+room['narrow passage'].items.append(items['key'].use)
 room['foyer'].items.append(items['apple'].name)
 
 
@@ -169,7 +169,7 @@ def lookNextRoom(room):
 
 
 def shouldEnterSecretRoom():
-    if 'key' in player.items:
+    if 'small key' in player.items:
         updateRoom(player.room.n_to)
         currentLocation()
     else:
@@ -274,7 +274,6 @@ def checkDarkRooms(location):
             for item in room[location].items:
                 print(f"""
                   {item}
-
                 """)
     else:
         print(f"""
@@ -301,7 +300,6 @@ def checkForItems(location):
             for item in room[location].items:
                 print(f"""
                   {item}
-
                 """)
 
 
@@ -319,7 +317,6 @@ def checkBag():
         for item in player.items:
             print(f"""
               {item}
-
             """)
 
 

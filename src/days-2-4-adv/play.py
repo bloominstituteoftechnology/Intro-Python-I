@@ -70,10 +70,20 @@ while play:
             PlayerActions.brickWall('e')
 
     # item Actions
-    elif len(cmd) > 1:
+    elif len(cmd) == 2:
         if cmd[0] == 'get' or cmd[0] == 'drop':
-            if cmd[1] == 'sword' or cmd[1] == 'light' or cmd[1] == 'treasure' or cmd[1] == 'key' or cmd[1] == 'apple':
+            if cmd[1] == 'sword' or cmd[1] == 'light' or cmd[1] == 'treasure' or cmd[1] == 'apple':
                 PlayerActions.routeItemActions(cmd[0], cmd[1])
+            else:
+                PlayerActions.brickWall('e')
+        else:
+            PlayerActions.brickWall('e')
+    
+    elif len(cmd) == 3:
+        if cmd[0] == 'get' or cmd[0] == 'drop':
+            if cmd[1] == 'small' and cmd[2] == 'key':
+                smallKey = f'{cmd[1]} {cmd[2]}'
+                PlayerActions.routeItemActions(cmd[0], smallKey)
             else:
                 PlayerActions.brickWall('e')
         else:
