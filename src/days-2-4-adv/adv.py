@@ -123,23 +123,23 @@ while True:
                 print('\nThe movement is not allowed.')
     elif len(cmd) > 1 and len(cmd) < 3:
         if cmd[0] == 'get' or cmd[0] == 'take':
-            item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.room.items))[0]
-            if item in player.room.items and (player.room.is_light == True or any(isinstance(item, LightSource) for item in player.items) or any(isinstance(item, LightSource) for item in player.room.items)):
-                player.add_item(item)
-                player.room.remove_item(item)
-                item.on_take(player)
+            item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.room.items))
+            if not item:
+                print('\nThe item is not available for pick up.')
+            elif item[0] in player.room.items and (player.room.is_light == True or any(isinstance(item, LightSource) for item in player.items) or any(isinstance(item, LightSource) for item in player.room.items)):
+                player.add_item(item[0])
+                player.room.remove_item(item[0])
+                item[0].on_take(player)
             else:
                 print(f'\nGood luck finding that in the dark!')
-        # else:
-        #     print('\nThe item is not available for pick up.')
         if cmd[0] == 'drop' or cmd[0] == 'remove':
-            item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.items))[0]
-            if item in player.items:
-                player.items.remove(item)
-                player.room.add_item(item)
-                item.on_drop()
-            else:
+            item = list(filter(lambda item: item.name.lower() == cmd[1].lower(), player.items))
+            if not item:
                 print('\nYou do not have that item in your inventory.')
+            elif item[0] in player.items:
+                player.items.remove(item[0])
+                player.room.add_item(item[0])
+                item[0].on_drop()
     if player.score >= 9000:
         print(f'Congratulations! You won!')
         break
