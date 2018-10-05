@@ -49,7 +49,7 @@ room['narrow passage'].isDark = True
 # Items
 items = {
     'sword': items.Weapon("sword", 100, 20),
-    'light': items.Tool("light", 50, 'lights up a room'),
+    'light': items.Tool("light", 50, 'light'),
     'treasure': items.Asset("treasure", 'preserved', 1000000000000),
     'key': items.Tool("key", 100, 'small key'),
     'apple': items.Food("apple", 1, 20)
@@ -58,7 +58,7 @@ items = {
 
 # initial items in rooms
 room['secret room'].items.append(items['treasure'].name)
-room['treasure chamber'].items.append(items['light'].name)
+room['treasure chamber'].items.append(items['light'].use)
 room['grand overlook'].items.append(items['sword'].name)
 room['narrow passage'].items.append(items['key'].name)
 room['foyer'].items.append(items['apple'].name)
