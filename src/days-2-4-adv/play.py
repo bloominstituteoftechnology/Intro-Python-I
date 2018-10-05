@@ -19,13 +19,33 @@ print(f"""
     ````
     {PlayerActions.room['outside cave entrance'].description}
 
+
+    Allowed Actions
+    ```````````````
+    n: move north      ln: look north
+    s: move south      ls: look south
+    e: move east       le: look east
+    w: move west       lw: look west
+
+    status: check your status
+    bag: check your bag
+    eat: eat food from your bag
+    look: check room
+    get: get all item
+    get <item>: get specific item
+    drop: drop all item
+    drop <item>: drop specific item
+
 """)
+
 
 # Play
 while play:
     if PlayerActions.player.health < 1:
         print(f"""
+
         ~~~~~~~ Sorry, You Died ~~~~~~~
+        
         """)
         break
 
