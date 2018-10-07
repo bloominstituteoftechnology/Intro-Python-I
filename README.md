@@ -197,7 +197,6 @@ This is in `src/adv/`. Check it out!
 * Practice inheritance
 * Practice method overriding
 * Be able to call superclass methods
-* Implement a callback/event structure
 
 ### Summary
 
