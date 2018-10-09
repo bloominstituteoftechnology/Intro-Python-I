@@ -39,4 +39,8 @@ class Treasure(Item):
 class Lightsource(Item):
     def __init__ (self, name, description, dmg):
         super().__init__(name, description, dmg)
-        
+
+class Food(Item):
+    def __init__ (self, name, description, dmg, healValue):
+        super().__init__(name, description, dmg)
+        self.healValue = healValue

@@ -1,7 +1,7 @@
 import random
 from room import Room
 from player import Player
-from item import Item, Treasure, Lightsource
+from item import Item, Treasure, Lightsource, Food
 from monster import Monster
 
 # Declare all the rooms
@@ -22,12 +22,13 @@ room = {
     a light flickers in the distance, but there 
     is no way across the chasm.""",
                     [Item("long sword", "a sharp, heavy blade", 75),
-                    Item("rusty sword", "a dull and dingy blade", 30)], False),
+                    Item("rusty sword", "a dull and dingy blade", 30),
+                    Food("bread", "a crusty loaf", 5, 20)], False),
 
     'narrow':   Room("Narrow Passage", 
     """    The narrow passage bends here from west
     to north. The smell of gold permeates the air.""",
-                    [], False),
+                    [Food("apple", "a shiny red orb", 5, 10)], False),
 
     'treasure': Room("Treasure Chamber", 
     """    You've found the long-lost treasure
@@ -56,7 +57,8 @@ room = {
     Sea shells are scattered around. 
     The ocean looks cold and uninviting. 
     the only exit is east.""", 
-                    [Item("conch shell", "a pale shell with an opening", 15)], False)
+                    [Item("conch shell", "a pale shell with an opening", 15),
+                    Food("mac and cheese", "cheesy pasta", 5, 50)], False)
 }
 
 roomList = ['outside', 'foyer', 'overlook', 'narrow', 'treasure', 'hidden', 'lighthouse', 'beach']
@@ -125,8 +127,6 @@ while True:
         if not treasure.takenAlready:
             player.increaseScore(treasure.value)
 
-    # currentRoom = player.currentRoom
-
     def printMonsters():
         for monster in monsters:
             if monster.monsterCurrentRoom == player.currentRoom:
@@ -141,7 +141,6 @@ while True:
     def monsterAttacks(monster):
         player.health -= monster.attack
         print(f"You have taken {monster.attack} damage from the \n{monster.name}. Your health is now {player.health}.")
-        # print(f"monster current room: {monster.monsterCurrentRoom.name}; player current room: {player.currentRoom.name}")
 
     playerHasLight = False
     roomHasLight = False
@@ -330,6 +329,17 @@ What would you like to do, %s? """ % player.name)
                         monsterAttacks(monster)
     elif cmd.upper() == "HEALTH":
         print(f"Your health: {player.health}")
+    elif "EAT" in cmd.upper():
+        for item in player.inventory:
+            if cmd[4:] in item.name:
+                if isinstance(item, Food):
+                    player.health += item.healValue
+                    if player.health > 100:
+                        player.health = 100
+                    player.inventory.remove(item)
+                    print(f"You have eaten the {item.name} and your health is now {player.health}.")
+                else:
+                    print("You can't eat that!")
     elif cmd.upper() == 'Q' or cmd.upper() == 'QUIT':
         print("\nThanks for playing.\n")
         break
