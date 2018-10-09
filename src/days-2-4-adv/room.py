@@ -18,4 +18,4 @@ class Room:
             for item in self.inventory:
                 print(item.name, ":", item.description)
         else:
-            print('There is nothing of interest here.')
+            print('\nThere is nothing of interest here.')

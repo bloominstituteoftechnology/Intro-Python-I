@@ -111,10 +111,10 @@ suppressRoomPrint = False
 # Input loop
 while True:
     if player.health <= 0:
-        print("YOU ARE DEAD!")
+        print("\nYOU ARE DEAD!\n")
         break
     if len(monsters) == 0:
-        print("Congratulations, you won!")
+        print("\nCongratulations, you won!\n")
         break
 
     def printNoMove():
@@ -125,45 +125,54 @@ while True:
         if not treasure.takenAlready:
             player.increaseScore(treasure.value)
 
-    currentRoom = player.currentRoom
+    # currentRoom = player.currentRoom
 
     def printMonsters():
         for monster in monsters:
-            if monster.currentRoom == currentRoom:
-                print(f"There is a {monster.name} in the room. It appears to be {monster.description}")
+            if monster.monsterCurrentRoom == player.currentRoom:
+                print(f"\nThere is a {monster.name} in the room. It appears to be {monster.description}\n")
     
     def moveMonsters():
         for monster in monsters:
             randMove = random.choice(directions)
-            if hasattr(monster.currentRoom, randMove):
-                monster.currentRoom = getattr(monster.currentRoom, randMove)
+            if hasattr(monster.monsterCurrentRoom, randMove):
+                monster.monsterCurrentRoom = getattr(monster.monsterCurrentRoom, randMove)
 
     def monsterAttacks(monster):
         player.health -= monster.attack
         print(f"You have taken {monster.attack} damage from the \n{monster.name}. Your health is now {player.health}.")
+        # print(f"monster current room: {monster.monsterCurrentRoom.name}; player current room: {player.currentRoom.name}")
 
     playerHasLight = False
     roomHasLight = False
     for item in player.inventory:
         if isinstance(item, Lightsource):
             playerHasLight = True
-    for item in currentRoom.inventory:
+    for item in player.currentRoom.inventory:
         if isinstance(item, Lightsource):
             roomHasLight = True
-    if currentRoom.naturalLight or playerHasLight or roomHasLight:
-        currentRoom.is_light = True
+    if player.currentRoom.naturalLight or playerHasLight or roomHasLight:
+        player.currentRoom.is_light = True
     else:
-        currentRoom.is_light = False
+        player.currentRoom.is_light = False
+
+    moveMonsters()
 
     if suppressRoomPrint:
         suppressRoomPrint = False
-    elif currentRoom.is_light:
+    elif player.currentRoom.is_light:
         print("------------------------------------------------")
-        currentRoom.printName()
-        currentRoom.printDesc()
+        player.currentRoom.printName()
+        player.currentRoom.printDesc()
         print()
         printMonsters()
-        currentRoom.printInv()
+        willItAttack = random.randint(0, 20)
+        for monster in monsters:
+            if monster.monsterCurrentRoom.name == player.currentRoom.name:
+                if willItAttack <= 10:
+                    monsterAttacks(monster)
+
+        player.currentRoom.printInv()
         print()
     else:
         print("It's pitch black!")
@@ -171,52 +180,50 @@ while True:
     cmd = input("""================================================
 What would you like to do, %s? """ % player.name)
 
-    moveMonsters()
-    willItAttack = random.randint(0, 20)
-    for monster in monsters:
-        if monster.currentRoom == currentRoom:
-            if willItAttack <= 10:
-                monsterAttacks(monster)
 
     if cmd.upper() == 'N' or cmd.upper() == 'NORTH':
-        if hasattr(currentRoom, 'n_to'):
-            player.currentRoom = currentRoom.n_to
+        if hasattr(player.currentRoom, 'n_to'):
+            player.currentRoom = player.currentRoom.n_to
         else:
             printNoMove()
+            printMonsters()
             suppressRoomPrint = True
     elif cmd.upper() == 'S' or cmd.upper() == 'SOUTH':
-        if hasattr(currentRoom, 's_to'):
-            player.currentRoom = currentRoom.s_to
+        if hasattr(player.currentRoom, 's_to'):
+            player.currentRoom = player.currentRoom.s_to
         else:
             printNoMove()
+            printMonsters()
             suppressRoomPrint = True
     elif cmd.upper() == 'E' or cmd.upper() == 'EAST':
-        if hasattr(currentRoom, 'e_to'):
-            player.currentRoom = currentRoom.e_to
+        if hasattr(player.currentRoom, 'e_to'):
+            player.currentRoom = player.currentRoom.e_to
         else:
             printNoMove()
+            printMonsters()
             suppressRoomPrint = True
     elif cmd.upper() == 'W' or cmd.upper() == 'WEST':
-        if hasattr(currentRoom, 'w_to'):
-            player.currentRoom = currentRoom.w_to
+        if hasattr(player.currentRoom, 'w_to'):
+            player.currentRoom = player.currentRoom.w_to
         else:
             printNoMove()
+            printMonsters()
             suppressRoomPrint = True
     elif cmd.upper() == 'INV' or cmd.upper() == 'I':
         player.printInv()
     elif "TAKE" in cmd.upper() and len(cmd) > 4:
         if cmd[5:].upper() == "ALL":
-            while len(currentRoom.inventory) > 0:
-                for item in currentRoom.inventory:
+            while len(player.currentRoom.inventory) > 0:
+                for item in player.currentRoom.inventory:
                     if isinstance(item, Treasure):
                         treasureOnTake(item)
-                        item.on_take(player, currentRoom)
+                        item.on_take(player, player.currentRoom)
                     else:
-                        item.on_take(player, currentRoom)
+                        item.on_take(player, player.currentRoom)
         else:
             isInInv = False
             stringCount = 0
-            for item in currentRoom.inventory:
+            for item in player.currentRoom.inventory:
                 if cmd[5:] in item.name:
                     isInInv = True
                     stringCount += 1
@@ -227,9 +234,9 @@ What would you like to do, %s? """ % player.name)
                 else:
                     if isinstance(item, Treasure):
                         treasureOnTake(itemToTake)
-                        itemToTake.on_take(player, currentRoom)
+                        itemToTake.on_take(player, player.currentRoom)
                     else:
-                        itemToTake.on_take(player, currentRoom)
+                        itemToTake.on_take(player, player.currentRoom)
             else:
                 print("Sorry, %s, that item is not in this room." % player.name)
     elif cmd.upper() == "TAKE":
@@ -238,64 +245,65 @@ What would you like to do, %s? """ % player.name)
         if cmd[5:].upper() == "ALL":
             while len(player.inventory) > 0:
                 for item in player.inventory:
-                    item.on_drop(player, currentRoom)
+                    item.on_drop(player, player.currentRoom)
         else:
             isInInv = False
             for item in player.inventory:
                 if cmd[5:] in item.name:
                     isInInv = True
-                    item.on_drop(player, currentRoom)
+                    item.on_drop(player, player.currentRoom)
             if not isInInv:
                 print("You are not carrying that item.")
     elif cmd.upper() == "SCORE":
         print("Your score: %s" % player.score)
     elif cmd.upper() == "LOOK":
-        if currentRoom.is_light:
+        if player.currentRoom.is_light:
             print("------------------------------------------------")
-            currentRoom.printName()
-            currentRoom.printDesc()
+            player.currentRoom.printName()
+            player.currentRoom.printDesc()
             print()
-            currentRoom.printInv()
+            player.currentRoom.printInv()
             print()
+            suppressRoomPrint = True
         else:
             print("It's pitch black!")
     elif len(cmd) > 4 and "LOOK" in cmd.upper():
         if cmd[5:].upper() == 'N' or cmd[5:].upper() == 'NORTH':
-            if hasattr(currentRoom, 'n_to'):
-                if currentRoom.n_to.is_light:
+            if hasattr(player.currentRoom, 'n_to'):
+                if player.currentRoom.n_to.is_light:
                     print("Looking towards: ")
-                    currentRoom.n_to.printName()
-                    currentRoom.n_to.printDesc()
+                    player.currentRoom.n_to.printName()
+                    player.currentRoom.n_to.printDesc()
                 else:
                     print("\nIt is too dark to see what is in that room.")
             else:
                 print("\nThere is nothing to look at in that direction.\n")
         if cmd[5:].upper() == 'S' or cmd[5:].upper() == 'SOUTH':
-            if hasattr(currentRoom, 's_to'):
-                if currentRoom.s_to.is_light:
+            if hasattr(player.currentRoom, 's_to'):
+                if player.currentRoom.s_to.is_light:
                     print("Looking towards: ")
-                    currentRoom.s_to.printName()
-                    currentRoom.s_to.printDesc()
+                    player.currentRoom.s_to.printName()
+                    player.currentRoom.s_to.printDesc()
                 else:
                     print("\nIt is too dark to see what is in that room.")
             else:
                 print("\nThere is nothing to look at in that direction.\n")
         if cmd[5:].upper() == 'E' or cmd[5:].upper() == 'EAST':
-            if hasattr(currentRoom, 'e_to'):
-                if currentRoom.e_to.is_light:
+            if hasattr(player.currentRoom, 'e_to'):
+                if player.currentRoom.e_to.is_light:
                     print("Looking towards: ")
-                    currentRoom.e_to.printName()
-                    currentRoom.e_to.printDesc()
+                    player.currentRoom.e_to.printName()
+                    player.currentRoom.e_to.printDesc()
                 else:
                     print("\nIt is too dark to see what is in that room.")
             else:
                 print("\nThere is nothing to look at in that direction.\n")
         if cmd[5:].upper() == 'W' or cmd[5:].upper() == 'WEST':
-            if hasattr(currentRoom, 'w_to'):
-                if currentRoom.w_to.is_light:
+            if hasattr(player.currentRoom, 'w_to'):
+                if player.currentRoom.w_to.is_light:
                     print("Looking towards: ")
-                    currentRoom.w_to.printName()
-                    currentRoom.w_to.printDesc()
+                    player.currentRoom.w_to.printName()
+                    player.currentRoom.w_to.printDesc()
                 else:
                     print("\nIt is too dark to see what is in that room.")
             else:
@@ -306,14 +314,14 @@ What would you like to do, %s? """ % player.name)
             if item.dmg > maxDmg:
                 maxDmg = item.dmg
         for monster in monsters:
-            if cmd[7:] in monster.name.lower():
+            if cmd[7:].upper() in monster.name.upper():
                 monster.health -= maxDmg
                 print(f"You hurt the {monster.name} by {maxDmg}.")
                 if monster.health <= 0:
                     print(f"You have killed the {monster.name}!")
                     while len(monster.inventory) > 0:
                         for item in monster.inventory:
-                            currentRoom.inventory.append(item)
+                            player.currentRoom.inventory.append(item)
                             monster.inventory.remove(item)
                     monsters.remove(monster)
                 else:
