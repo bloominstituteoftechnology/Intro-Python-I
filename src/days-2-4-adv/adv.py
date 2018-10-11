@@ -50,32 +50,24 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+validDirections = {"n": "n", "s": "s", "e": "e", "w": "w", "north": "n", "south": "s", "east": "e", "west": "w"}
+
 player = Player(input("What is your name?"), room['outside'])
+print(player.currentRoom)
 
 while True:
-    print(player.currentRoom.name + "\n" + player.currentRoom.description)
-    cmd = input("-> ")
-    if cmd == "q":
-        break
-    elif cmd == "n":
-        if player.currentRoom.n_to is not None:
-            player.currentRoom = player.currentRoom.n_to
+    cmds = input("-> ").lower().split(" ")
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            break
+        elif cmds[0] in validDirections:
+            player.travel(validDirections[cmds[0]])
         else:
-            print("you cannot move that way.")
-    elif cmd == "s":
-        if player.currentRoom.s_to is not None:
-            player.currentRoom = player.currentRoom.s_to
-        else:
-            print("you cannot move that way.")
-    elif cmd == "e":
-        if player.currentRoom.e_to is not None:
-            player.currentRoom = player.currentRoom.e_to
-        else:
-            print("you cannot move that way.")
-    elif cmd == "w":
-        if player.currentRoom.w_to is not None:
-            player.currentRoom = player.currentRoom.w_to
-        else:
-            print("you cannot move that way.")
+            print("I did not understand that command.")    
     else:
-        print("I did not understand that command.")
+        if cmds[0] == "look":
+            if cmds[1] in validDirections:
+                player.look(validDirections[cmds[1]])
+        else:
+            print("I did not understand that command.")  
