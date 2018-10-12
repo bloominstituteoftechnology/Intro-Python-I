@@ -39,6 +39,9 @@ rock = Item("Rock", "This is a rock")
 
 room['outside'].addItem(rock)
 
+room['outside'].light = True
+room['foyer'].light = True
+
 #
 # Main
 #

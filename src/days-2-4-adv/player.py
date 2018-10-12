@@ -9,16 +9,27 @@ class Player:
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
             self.currentRoom = nextRoom
-            print(nextRoom)
+            light = nextRoom.light
+            if light:                
+                print(nextRoom)
+            else:
+                print("It is too dark to see.")
         else:
             print("You cannot move that way.")
     def look(self, direction = None):
         if direction is None:
-            print(self.currentRoom)
+            if self.currentRoom.light:
+                print(self.currentRoom)
+            else:
+                print("It is too dark to see.")
         else:
             nextRoom = self.currentRoom.getRoomInDirection(direction)
-            if nextRoom is not None:            
-                print(nextRoom)
+            if nextRoom is not None: 
+                light = nextRoom.light
+                if light:                
+                    print(nextRoom)
+                else:
+                    print("It is too dark to see.")
             else:
                 print("There is nothing there.")
     def printInventory(self):

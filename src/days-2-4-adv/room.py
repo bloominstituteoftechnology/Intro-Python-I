@@ -9,6 +9,7 @@ class Room:
         self.e_to = None
         self.w_to = None
         self.items = []
+        self.light = False
     def __str__(self):
         return f"\n\n{self.name}\n  {self.description}\n\n{self.getItems()}"
     def getItems(self):
