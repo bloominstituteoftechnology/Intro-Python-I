@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item, LightSource
+from item import Item, LightSource, Treasure
 
 # Declare all the rooms
 
@@ -37,9 +37,11 @@ room['treasure'].s_to = room['narrow']
 
 rock = Item("Rock", "This is a rock")
 lantern = LightSource("Lantern", "A lantern that emits light.")
+coins = Treasure("Coins", "A small pile of coins", 50)
 
 room['outside'].addItem(rock)
 room['foyer'].addItem(lantern)
+room['overlook'].addItem(coins)
 
 room['outside'].light = True
 room['foyer'].light = True
@@ -79,6 +81,8 @@ while True:
             player.look()
         elif cmds[0] == "i" or cmds[0] == "inventory":
             player.printInventory()
+        elif cmds[0] == "p" or cmds[0] == "score":
+            print(f"You have {player.score} points.")
         else:
             print("I did not understand that command.")    
     else:

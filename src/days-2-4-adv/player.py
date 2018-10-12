@@ -5,6 +5,7 @@ class Player:
         self.name = name
         self.currentRoom = currentRoom
         self.items = []
+        self.score = 0
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
@@ -41,7 +42,13 @@ class Player:
         for item in self.items:
             print(f"    {item.name}\n")   
     def addItem(self, item):
-        self.items.append(item)
+        if item.treasure:
+            self.items.append(item)
+            item.collected = True
+            self.score += item.value
+            print(f"You have gained {item.value} points!")
+        else:
+            self.items.append(item)
     def removeItem(self, item):
         self.items.remove(item)
     def findItembyName(self, name):
