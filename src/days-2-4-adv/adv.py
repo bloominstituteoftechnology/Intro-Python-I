@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
+from item import Item, LightSource
 
 # Declare all the rooms
 
@@ -36,11 +36,15 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 rock = Item("Rock", "This is a rock")
+lantern = LightSource("Lantern", "A lantern that emits light.")
 
 room['outside'].addItem(rock)
+room['foyer'].addItem(lantern)
 
 room['outside'].light = True
 room['foyer'].light = True
+
+
 
 #
 # Main

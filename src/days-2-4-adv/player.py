@@ -9,7 +9,8 @@ class Player:
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
             self.currentRoom = nextRoom
-            light = nextRoom.light
+            light_sources = [item for item in self.items if item.lightsource]
+            light = nextRoom.light or len(light_sources) > 0
             if light:                
                 print(nextRoom)
             else:
@@ -18,14 +19,17 @@ class Player:
             print("You cannot move that way.")
     def look(self, direction = None):
         if direction is None:
-            if self.currentRoom.light:
+            light_sources = [item for item in self.items if item.lightsource]
+            light = self.currentRoom.light or len(light_sources) > 0
+            if light:
                 print(self.currentRoom)
             else:
                 print("It is too dark to see.")
         else:
             nextRoom = self.currentRoom.getRoomInDirection(direction)
             if nextRoom is not None: 
-                light = nextRoom.light
+                light_sources = [item for item in self.items if item.lightsource]
+                light = nextRoom.light or len(light_sources) > 0
                 if light:                
                     print(nextRoom)
                 else:
