@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -34,6 +35,10 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+rock = Item("Rock", "This is a rock")
+
+room['outside'].addItem(rock)
+
 #
 # Main
 #
@@ -63,11 +68,29 @@ while True:
             break
         elif cmds[0] in validDirections:
             player.travel(validDirections[cmds[0]])
+        elif cmds[0] == "look":
+            player.look()
+        elif cmds[0] == "i" or cmds[0] == "inventory":
+            player.printInventory()
         else:
             print("I did not understand that command.")    
     else:
         if cmds[0] == "look":
             if cmds[1] in validDirections:
                 player.look(validDirections[cmds[1]])
+        elif cmds[0] == "take":
+            itemToTake = player.currentRoom.findItembyName(cmds[1])
+            if itemToTake is not None:
+                player.addItem(itemToTake)
+                player.currentRoom.removeItem(itemToTake)
+            else:
+                print("You do not see that item.")
+        elif cmds[0] == "drop":
+            itemToTake = player.findItembyName(cmds[1])
+            if itemToTake is not None:
+                player.removeItem(itemToTake)
+                player.currentRoom.addItem(itemToTake)
+            else:
+                print("You are not holding that item.")
         else:
             print("I did not understand that command.")  
