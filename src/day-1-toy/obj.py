@@ -26,7 +26,7 @@ class Geocache(Waypoint):
 w = Waypoint(41.70505, -121.51521, "Catacombs")
 
 # Print it
-print(w)
+#print(w)
 
 # Without changing the following line, how can you make it print into something
 # more human-readable?
@@ -36,4 +36,4 @@ print(w)
 geo = Geocache(44.052137, -121.41556, "Newberry Views", 1.5, 2)
 
 # Print it--also make this print more nicely
-print(g)
+print(geo)
