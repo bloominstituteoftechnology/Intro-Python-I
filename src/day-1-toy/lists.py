@@ -8,7 +8,7 @@ y = [8, 9, 10]
 
 # Change x so that it is [1, 2, 3, 4]
 # [command here]
-print(x)
+print(x.append(4))
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # [command here]
