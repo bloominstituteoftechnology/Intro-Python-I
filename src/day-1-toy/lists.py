@@ -22,12 +22,12 @@ x.remove(8)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
-# [command here]
+# [insert]
 x.insert(5, 99)
 print(x)
 
 # Print the length of list x
-# [command here]
+# [len]
 print(len(x))
 
 # Using a for loop, print all the element values multiplied by 1000
