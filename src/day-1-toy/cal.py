@@ -8,7 +8,7 @@ cal = calendar.TextCalendar(calendar.SUNDAY)
 str = ""
 month = 2
 year = 2018
-if ((sys.argv) == 2):
+if (len(sys.argv) >= 2):
     month = int(sys.argv[1])
     year = int(sys.argv[2])
     str = cal.formatmonth(year, month)
