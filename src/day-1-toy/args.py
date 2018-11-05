@@ -30,6 +30,11 @@ print(f2(*a))    # Should print 22
 # arguments. Google "python default arguments" for a hint.
 
 #def f3(...
+def f3 (arg,arg2):
+    if arg2:
+        return arg + arg2
+    else:
+        return arg+1
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
