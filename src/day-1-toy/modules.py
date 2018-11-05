@@ -9,11 +9,10 @@ import os
 
 
 # Print out the platform from sys:
-print()
+print(sys.platform)
 
 # Print out the Python version from sys:
-print()
-
+print(sys.version)
 
 
 # Module "os"
@@ -28,4 +27,3 @@ print()
 
 # Print your login name
 print()
-
