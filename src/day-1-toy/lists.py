@@ -7,23 +7,29 @@ y = [8, 9, 10]
 # For the following, DO NOT USE AN ASSIGNMENT (=).
 
 # Change x so that it is [1, 2, 3, 4]
-# [command here]
+# [append]
+x.append(4)
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
-# [command here]
+# [extend]
+x.extend(y)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
-# [command here]
+# [remove]
+x.remove(8)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
-# [command here]
+# [insert]
+x.insert(5, 99)
 print(x)
 
 # Print the length of list x
-# [command here]
+# [len()]
 print(len(x))
 
 # Using a for loop, print all the element values multiplied by 1000
+for n in x:
+    print(n * 1000)
