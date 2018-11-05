@@ -12,7 +12,7 @@ import os
 print()
 
 # Print out the Python version from sys:
-print()
+print(sys.version_info)
 
 
 
@@ -28,4 +28,3 @@ print()
 
 # Print your login name
 print()
-
