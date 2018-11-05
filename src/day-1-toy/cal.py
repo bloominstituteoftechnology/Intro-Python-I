@@ -3,6 +3,7 @@
 #
 import sys
 import calendar
+import datetime
 
 cal = calendar.TextCalendar(calendar.SUNDAY)
 str = ""
@@ -13,7 +14,8 @@ if (len(sys.argv) >= 2):
     year = int(sys.argv[2])
     str = cal.formatmonth(year, month)
 else:
-    str = cal.formatmonth(year, month)
+    d = datetime.date.today()  # get todays date as a date object
+    str = cal.formatmonth(d.year, d.month)
 
 print(str)
 
