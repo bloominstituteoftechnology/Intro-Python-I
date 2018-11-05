@@ -6,8 +6,10 @@
 
 #def f1(...
 
+
 def f1(arg1, arg2):
     return arg1 + arg2
+
 
 print(f1(1, 2))
 
@@ -16,11 +18,13 @@ print(f1(1, 2))
 
 # def f2(...
 
+
 def f2(*args):
     sum = 0
     for i in args:
         sum = sum + i
     return sum
+
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -38,8 +42,10 @@ print(f2(*a))    # Should print 22
 
 #def f3(...
 
+
 def f3(arg1, arg2 = 0):
     return arg1 + arg2
+
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -55,6 +61,7 @@ print(f3(8))     # Should print 9
 
 #def f4(...
 
+
 def f4(**kwargs):
     for name, value in kwargs.items():
         print(' {0} = {1}'.format(name, value))
@@ -62,6 +69,8 @@ def f4(**kwargs):
 # Should print
 # key: a, value: 12
 # key: b, value: 30
+
+
 f4(a=12, b=30)
 
 # Should print
