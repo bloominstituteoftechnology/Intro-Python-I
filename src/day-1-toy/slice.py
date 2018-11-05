@@ -1,7 +1,7 @@
 a = [2, 4, 1, 7, 9, 6]
 
 # Output the second element: 4:
-print()
+print( )
 
 # Output the second-to-last element: 9
 print()
