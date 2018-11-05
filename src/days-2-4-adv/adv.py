@@ -20,79 +20,80 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-print(" ")
 print("Game directions: to play enter n for north, e for east, s for south, and w for west or q to quite")
 
 player = Player('outside')
+current_room = room['outside']
 res = '--start of game--'
 
-# Write a loop that:
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-
-# If the user enters "q", quit the game.
+room['outside'].n_to = room['foyer']
+room['foyer'].s_to = room['outside']
+room['foyer'].n_to = room['overlook']
+room['foyer'].e_to = room['narrow']
+room['overlook'].s_to = room['foyer']
+room['narrow'].w_to = room['foyer']
+room['narrow'].n_to = room['treasure']
+room['treasure'].s_to = room['narrow']
 
 while not res == 'q':
-  print(" ")
 
-  #while at outside
+  #while player is outside
   if player.room == 'outside':
-    print(room['outside'])
-    res = input('what direction will you go?  ')
+    print(current_room)
+    res = input('what direction will you go \n')
     if res == 'n':
-      print(" ")
+      current_room = current_room.room_direction(res)
       player = Player('foyer')
-    if player.room == 'outside' and res not in ['e', 's', 'w', 'q']:
-      print('only option is n')
-
-  #while at foyer
+    elif not res == 'q':
+      print('\nincorrect input')
+  
+  #while player is at foyer
   if player.room == 'foyer':
-    print(room['foyer'])
-    res = input('what direction will you go?  ')
+    print(current_room)
+    res = input('what direction will you go?\n')
     if res == 's':
+      current_room = current_room.room_direction(res)
       player = Player('outside')
-    if res == 'n':
+    elif res == 'n':
+      current_room = current_room.room_direction(res)
       player = Player('overlook')
-      print(" ")
-    if res == 'e':
+    elif res == 'e':
+      current_room = current_room.room_direction(res)
       player = Player('narrow')
-      print(" ")
-    if player.room == 'foyer' and res not in ['w', 'q']:
-      print('current options are n, e, and s')
-  
-  #while at overlook
+    elif not res == 'q':
+      print('\nincorrect input')
+
+  #while player is at overlook
   if player.room == 'overlook':
-    print(room['overlook'])
-    res = input('what direction will you go?  ')
+    print(current_room)
+    res = input('what direction will you go?\n')
     if res == 's':
+      current_room = current_room.room_direction(res)
       player = Player('foyer')
-    if player.room == 'overlook' and res not in ['n', 'e', 'w', 'q']:
-      print('only option is s')
-
-  #while at narrow
-  if player.room == 'narrow':
-    print(room['narrow'])
-    res = input('what direction will you go?'  )
-    if res == 'w':
-      player = Player('foyer')
-    if res == 'n':
-      player = Player('treasure')
-      print(" ")
-    if player.room == 'narrow' and res not in ['e', 's', 'q']:
-      print('current options are n and w')
+    elif not res == 'q':
+      print('\nincorrect input')
   
-  #while at treasure
-  if player.room == 'treasure':
-    print(room['treasure'])
-    res = input('what direction will you go?  ')
-    if res == 's':
-      player = Player('narrow')
-    if player.room == 'treasure' and res not in ['n', 'e', 'w', 'q']:
-      print('only option is s')
+  #while player is at narrow
+  if player.room == 'narrow':
+    print(current_room)
+    res = input('what direction will you go?\n')
+    if res == 'w':
+      current_room = current_room.room_direction(res)
+      player = Player('foyer')
+    elif res == 'n':
+      current_room = current_room.room_direction(res)
+      player = Player('treasure')
+    elif not res == 'q':
+      print('\nincorrect input')
 
-print(" ")
-print("thank you for playering my game")
+  #while player is at treasure
+  if player.room == 'treasure':
+    print(current_room)
+    res = input('what direction will you go?\n')
+    if res == 's':
+      current_room = current_room.room_direction(res)
+      player = Player('narrow')
+    elif not res == 'q':
+      print('\nincorrect input')
+
+print('\nthank you for playing my game')
