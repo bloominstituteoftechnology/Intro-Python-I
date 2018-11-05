@@ -13,7 +13,7 @@ print(a[-3:])
 print(a[slice(2, 4)])  # decided to use slice() for a change
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
-print()
+print(a[:-1])
 
 # Output every element except the last one: [2, 4, 1, 7, 9]
 print()
