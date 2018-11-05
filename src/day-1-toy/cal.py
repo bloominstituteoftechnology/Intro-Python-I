@@ -14,3 +14,9 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+
+print(calendar.calendar(datetime.MAXYEAR))
+print(sys.argv[1])
