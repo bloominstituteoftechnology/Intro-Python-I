@@ -31,3 +31,5 @@ print(x)
 print(len(x))
 
 # Using a for loop, print all the element values multiplied by 1000
+for number in x:
+    print(number * 1000)
