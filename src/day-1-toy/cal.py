@@ -13,15 +13,23 @@
 # Hint: this should be about 15 lines of code. No loops are required. Read the
 # docs for the calendar module closely.
 
-import sys
+import sys, datetime
 import calendar
 
-def cal(month, year):
+
+def cal():
+    arguments = sys.argv[1:]
+    now = datetime.datetime.now()
+    month = now.month
+    year = now.year
+
+    if len(arguments) > 1:
+        month = int(arguments[0])
+        year = int(arguments[1])
+
     c = calendar.TextCalendar(calendar.SUNDAY)
-    str = c.formatmonth(int(year), int(month), 0,0)
+    str = c.formatmonth(year, month, 0, 0)
     print(str)
 
-x = input('Month: ')
-y = input('Year: ')
 
-cal(x,y)
+cal()
