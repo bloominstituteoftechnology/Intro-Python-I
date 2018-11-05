@@ -5,18 +5,20 @@ x = [1, 2, 3]
 y = [8, 9, 10]
 
 # For the following, DO NOT USE AN ASSIGNMENT (=).
-
+# looked up datastructures here https://docs.python.org/2/tutorial/datastructures.html
 # Change x so that it is [1, 2, 3, 4]
 # [append]
 x.append(4)
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
-# [command here]
+# [extend]
+x.extend(y)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
-# [command here]
+# []
+x.remove(8)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
