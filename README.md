@@ -1,4 +1,4 @@
-# Intro to Python
+# Intro to Python.
 
 ## Goals
 
@@ -219,7 +219,7 @@ This is in `src/adv/`. Check it out!
 
 * During world creation, add three `Treasure`s to convenient `Room`s.
 
-* Add an `on_take` method to `Item`. 
+* Add an `on_take` method to `Item`.
 
   * Call this method when the `Item` is picked up by the player.
 
@@ -228,7 +228,7 @@ This is in `src/adv/`. Check it out!
 * Override `on_take` in `Treasure` so that the player gets the value of the
   `Treasure` added to their `score` attribute _but only the first time the
   treasure is picked up_.
-  
+
   * If the treasure is dropped and picked up again later, the player should
     _not_ have the value added to their score again.
 
