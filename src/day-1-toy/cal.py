@@ -14,3 +14,9 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+year = input('Enter year: ')
+month = input('Enter month 1-12: ')
+
+calendar.monthcalendar(int(year), int(month))
