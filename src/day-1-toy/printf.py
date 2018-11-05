@@ -9,7 +9,6 @@ print('x is %d, y is %.2f, z is %s' %(x, y, z))
 
 # Use the 'format' string method to print the same thing
 print('x is {0}, y is {1:.3}, z is {2}'.format(x, y, z))
- #THE SUPERIOR WAY
-print(f'x is {x}, y is {round(y, 2)}, z is {z}') 
 
-# Finally, print the same thing using an f-string
+#THE SUPERIOR WAY
+print(f'x is {x}, y is {round(y, 2)}, z is {z}')
