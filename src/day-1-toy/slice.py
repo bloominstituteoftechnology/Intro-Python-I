@@ -10,7 +10,7 @@ print(a[len(a) - 2])
 print(a[-3:])
 
 # Output the two middle elements in the array: [1, 7]
-print()
+print(a[slice(2, 4)])  # decided to use slice() for a change
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
 print()
