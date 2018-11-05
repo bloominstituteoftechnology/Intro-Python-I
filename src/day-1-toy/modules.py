@@ -6,13 +6,15 @@ import os
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
 
 # Print out the command line arguments in sys.argv, one per line:
-print (argv[0])
+for arg in sys.argv:
+    print(arg)
 
-# Print out the platform from sys:
-print('win32')
+
+# Print out the plaform from sys:
+print(sys.platform)
 
 # Print out the Python version from sys:
-print()
+print(sys.version)
 
 
 
@@ -21,11 +23,10 @@ print()
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
 # Print the current process ID
-print(getegid())
+print(os.getpid())
 
 # Print the current working directory (cwd):
-print(getcwd())
+print(os.getcwd())
 
 # Print your login name
-print(getlogin())
-
+print(os.getlogin())
