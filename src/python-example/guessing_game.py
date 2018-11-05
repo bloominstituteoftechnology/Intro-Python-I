@@ -9,16 +9,17 @@ def guessing_game():
     guess = input("Input your guess: ")
     
     try:
-      value = int(guess)
+      guess = int(guess)
     except ValueError:
       print("Please enter an integer.")
+      continue
 
-    print(f"You guessed: {value}")
+    print(f"You guessed: {guess}")
 
-    if value == secret_number:
+    if guess == secret_number:
       print("You win!")
       break
-    elif value < secret_number:
+    elif guess < secret_number:
       print("Too small!")
     else:
       print("Too big!")
