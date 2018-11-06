@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -38,6 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +52,58 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+# print (player.room.name)
+
+# player.room = player.room.n_to
+# print (player.room)
+# print (player.room.name)
+# player.room = player.room.n_to
+# print (player.room.name)
+# player.room = player.room.n_to
+# print (player.room.name)
+
+# print (room[player.room].name)
+
+
+
+
+while True:
+    print (' ')
+    print ('Thy current location:', player.room.name)
+    print ( textwrap.wrap(player.room.description) )
+    move = input('Where will you move next?     ')
+    print ()
+    try:
+       move = move.lower()
+    except AttributeError:
+        print ('Please enter a cardinal direction')
+        continue
+    if move in ['n', 'e', 's', 'w', 'q']:
+        if move == 'n':
+            try:
+                player.room = player.room.n_to
+            except AttributeError:
+                print('You may not move in that direction. Try again')
+                continue
+        elif move == 'e':
+            try:
+                player.room = player.room.e_to
+            except AttributeError:
+                print('You may not move in that direction. Try again')
+                continue
+        elif move == 's':
+            try:
+                player.room = player.room.s_to
+            except AttributeError:
+                print('You may not move in that direction. Try again')
+                continue
+        elif move == 'w':
+            try:
+                player.room = player.room.w_to
+            except AttributeError:
+                print('You may not move in that direction. Try again')
+                continue
+        elif move == 'q':
+            break
+    else:
+        print ('Please enter a cardinal direction')

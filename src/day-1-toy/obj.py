@@ -24,7 +24,7 @@ class Geocache(Waypoint):
     def __init__(self, name, difficulty, size, lat, lon):
         Waypoint.__init__(self, name, lat, lon)
         self.difficulty = difficulty
-        self.size = size
+        self.size = size 
     
     def __repr__(self):
         return "Geocache Info\n name: %s\n difficulty: %s\n size: %s\n latitude: %s\n longitude: %s" % (self.name, self.difficulty, self.size, self.lat, self.lon)
