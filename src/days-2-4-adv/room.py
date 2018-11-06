@@ -2,9 +2,10 @@
 # description attributes.
 
 class Room:
-  def __init__(self, name, description):
+  def __init__(self, name, description, items):
     self.name = name
     self.description = description
+    self.items = items
   def room_direction(self, direction):
     if direction == "n":
       return self.n_to
@@ -17,4 +18,4 @@ class Room:
     else:
       return None
   def __str__(self):
-    return str(f"\n{self.name}, {self.description}\n")
+    return str(f"\n{self.name}, {self.description}")
