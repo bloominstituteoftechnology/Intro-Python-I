@@ -12,4 +12,4 @@ print("x is %d, y is %.2f, z is \"%s\"" % (x, y, z))
 print("x is {}, y is {:.2f}, z is \"{}\"".format(x, y, z))
 # Finally, print the same thing using an f-string
 # “formatted string literals,” f-strings are string literals that have an f at the beginning and curly braces containing expressions that will be replaced with their values. The expressions are evaluated at runtime and then formatted using the __format__ protocol
-f"{x}, {y}, {z}"
+print(f"{x},  {y}, \"{z}\"")
