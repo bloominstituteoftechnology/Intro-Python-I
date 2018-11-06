@@ -1,6 +1,6 @@
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
-y = [x for x in range(1, 5)]
+y = [x for x in range(1, 6)]
 
 print (y)
 
@@ -17,6 +17,7 @@ print(y)
 a = ["foo", "bar", "baz"]
 
 y = [letters.upper() for letters in a]
+y = [letters[0].upper() + letters[1:] for letters in a]
 
 print(y)
 
@@ -24,10 +25,9 @@ print(y)
 # the user entered into list x.
 
 x = input("Enter comma-separated numbers: ").split(',')
-even_elements = [num for num in x if int(num) % 2 == 0]
-print("even elements = ", even_elements)
+
 # What do you need between the square brackets to make it work?
-y = []
+y = [num for num in x if int(num) % 2 == 0]
 
 print(y)
 
