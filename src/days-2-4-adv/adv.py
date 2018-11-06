@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -35,17 +36,43 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-print(room['outside'].n_to.description)
+player1 = Player(room["outside"])
 
-# Make a new player object that is currently in the 'outside' room.
+while True:
+    print(f"Welcome, you are at the {player1.current_room.name}")
+    print(f"{player1.current_room.description}")
+    if player1.current_room.name == "Outside Cave Entrance":
+        answer = input('Do you want to head North, into the cave? Y/N')
+        if answer == "Y":
+            player1.current_room = player1.current_room.n_to
+        elif answer == "N":
+            print("Coward")
+            break
+        else:
+            print("Please enter Y or N")
+    keepgoing = input(
+        "Are you able to keep going? \nIf not, you can get out now by heading south, where you came from. \nIf so, you must push ahead north to the overlook. North/South?").upper()
+    if player1.current_room.name == "Foyer":
+        if keepgoing == "SOUTH":
+            player1.current_room = player1.current_room.s_to
+            print("Figures, come back when you have some courage")
+        elif keepgoing == "NORTH":
+            player1.current_room = player1.current_room.n_to
+            print(
+                f"Welcome to {player1.current_room}, {player1.current_room.description}")
+        else:
+            print("Pick a real direction!")
+    # if player1.current_room.name == "Overlook":
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+        # Make a new player object that is currently in the 'outside' room.
+
+        # Write a loop that:
+        #
+        # * Prints the current room name
+        # * Prints the current description (the textwrap module might be useful here).
+        # * Waits for user input and decides what to do.
+        #
+        # If the user enters a cardinal direction, attempt to move to the room there.
+        # Print an error message if the movement isn't allowed.
+        #
+        # If the user enters "q", quit the game.
