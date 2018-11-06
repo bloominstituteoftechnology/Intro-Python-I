@@ -33,21 +33,32 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+# helper functions
+
+# print current room details
+def print_current_room_details(room_name, description):
+    # * Prints the current room name
+    print_current_room_name(room_name)
+    # * Prints the current description (the textwrap module might be useful here).
+    print_current_player_room_description(description)
+
+def print_current_room_name(room):
+    print("\nYou are in the %s." % (room.name))
+
+def print_current_player_room_description(description):
+    print("\nYou are in the %s." % (description))
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 # TODO: instantiate a player with this type of calling convention and write the player class to allow for this
-# player = player(room['outside'])
+player = player(room['outside']) # <<< match this up in the player class
 
 # Write a loop that:
 while True:
-
-    # * Prints the current room name
-    print_current_room_name()
-    # * Prints the current description (the textwrap module might be useful here).
-    print_current_description()
+    # print the current room details
+    print_current_room_details(player.room.name, player.room.description)
     # * Waits for user input and decides what to do.
     command = input("Some filler question prompt text : fill this in later")
     # If the user enters "q", quit the game.
