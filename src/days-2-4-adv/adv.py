@@ -1,3 +1,4 @@
+import textwrap
 from room import Room
 from player import Player
 
@@ -61,27 +62,53 @@ room['treasure'].s_to   = room['narrow']
 
 p = Player(room['outside'])
 
+def print_wrapped_lines(value = ''):
+    wrapper = textwrap.TextWrapper(width = 50)
+    word_list = wrapper.wrap(text = value)
+
+    for element in word_list:
+        print(element)
+
 def start_game():
     valid_moves = ['n', 's', 'e', 'w', 'q']
     currRoom = p.room
+    text_divider = '\n====================\n'
+
+    print(text_divider)
 
     while True:
-        print(f'You are currently in the {currRoom.name}.')
-        print(f'{currRoom.description}')
 
-        next_move = input('\nWhich direction do you want to go? (n/s/e/w):')
-        
-        print('\n==========')
+        print_wrapped_lines(f'You are currently in the {currRoom.name}.')
+        print_wrapped_lines(currRoom.description)
+
+        print(text_divider)
+
+        next_move = input('Which direction do you want to go? (n/s/e/w):')
+
+        print(text_divider)
 
         room_attr = f'{next_move.lower()}_to'
 
         if next_move.lower() not in valid_moves:
-            print('Invalid move. \n')
+            print_wrapped_lines(f'{next_move} is an invalid move.')
+            print('\n')
         elif next_move.lower() == 'q':
-            return print('See ya!')
+            print_wrapped_lines('Do you really want to leave?')
+            print(text_divider)
+            print('\n')
+            confirm_exit = input('Cofirm: (y/n):')
+            if (confirm_exit.lower() == 'y'):
+                print(text_divider)
+                print_wrapped_lines('See ya!')
+                print(text_divider)
+                return print('/n')
+            else:
+                print(text_divider)
         elif hasattr(currRoom, room_attr):
             currRoom = getattr(currRoom, room_attr)
         else:
-            print('There is nothing there. Pick another direction. \n')
+            direction = {'n': 'north', 's': 'south', 'e': 'east', 'w': 'west'}
+            print_wrapped_lines(f'There is nothing to the {direction[next_move.lower()]}. Pick another direction.')
+            print('\n')
 
 start_game()
