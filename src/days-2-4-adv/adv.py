@@ -78,10 +78,13 @@ while True:
         # logic for move south
         if player.room.south_to:
             player.room = player.room.south_to
-            
+
     elif command.upper() == "EAST":
         print("EAST MOVE PLACEHOLDER")
         # TODO: logic to move east
+        if player.room.east_to:
+            player.room = player.room.east_to
+            
     elif command.upper() == "WEST":
         print("WEST MOVE PLACEHOLDER")
         # TODO: logic to move west
