@@ -9,4 +9,4 @@ print("x is %d, y is %.2f, z is %s" % (x, y, z))
 # Use the 'format' string method to print the same thing
 print("x is {:d}, y is {:.2f}, z = {:s}".format(x, y, z))
 # Finally, print the same thing using an f-string
-print(f"x is {x}, y is {round(y,2)}, z is {z}")
+print(f'x is {x}, y is {y}, z is {z}')
