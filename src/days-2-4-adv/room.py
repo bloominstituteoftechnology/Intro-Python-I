@@ -3,13 +3,19 @@
 
 # basic room class based upon the calling convention and data in the adv.py file
 class Room:
-    def __init__(self, name, description):
+    def __init__(self, name, description, items=None):
         self.name = name
         self.description = description
+        self.items = [] if items is None else items
         self.north_to = None
         self.south_to = None
         self.east_to = None
         self.west_to = None
     
+    # look at the items in the room
+    def look_items(self):
+      # print using an f string and use a join on a comma to delimit the items and a for loop to loop over the item list
+      print(f"\n In this room you see the following: {", ".join(item.mane for item in self.items)}")
+
     def __str__(self):
         return str(self.name) + "\n" + str(self.description)

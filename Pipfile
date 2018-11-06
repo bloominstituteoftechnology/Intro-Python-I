@@ -8,6 +8,8 @@ name = "pypi"
 pylint = "*"
 
 [dev-packages]
+yapf = "*"
+pylint = "*"
 
 [requires]
 python_version = "3"
