@@ -16,6 +16,14 @@ class Treasure(Item):
         self.value = value
 
 
+
+# item1 = Item('rock', 'huge boulder')
+# print(item1)
+# print(item1.name)
+# print(item1.description)
+
 # treasure1 = Treasure('gold bricks', 'shiny polished gold bricks', '$150000')
 # print(treasure1.value)
+# print(treasure1.name)
+# print(treasure1.description)
 # print(repr(treasure1))

@@ -31,7 +31,7 @@ class Room:
 
 
 
-# location1 = Room('Living Room', 'Space for lounging and hanging out.')
+location1 = Room('Living Room', 'Space for lounging and hanging out.')
 # # print("Location name: " + location1.name + "\n" + "Location description: " + location1.description)
 
-# print(repr(location1))
+print(repr(location1))

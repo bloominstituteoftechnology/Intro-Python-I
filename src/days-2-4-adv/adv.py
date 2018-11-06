@@ -16,7 +16,7 @@ from room import Room
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [item['rock'], "log", "rope"]),
+                     "North of you, the cave mount beckons", [item["rock"], "log", "rope"]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", ["lamp", "chair"]),
@@ -33,6 +33,7 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", ["treasure chest", "shovel"]),
 }
 
+# print(room["outside"])
 
 
 

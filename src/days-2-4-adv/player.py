@@ -30,12 +30,15 @@ class Player:
     
 # p1 = Player('Adrian', 'Living Room')
 
-# # print(p1.name)
-# # print(p1.location)
 # print(p1)
+# print(p1.name)
+# print(p1.location)
+# print(p1.inventory)
+
 
 # p1.addItems(['sword', 'gun', 'grenades'])
 # print(p1)
+# print(p1.inventory)
 
 
 
