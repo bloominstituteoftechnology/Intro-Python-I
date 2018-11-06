@@ -41,15 +41,14 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 
 while True:
-  new_player = input("Your hero's name?")
+  new_player = input("Your hero's name? ")
   if len(new_player) == 0:
     print("Please enter your hero's name.\n")
   else:
     player = Player(new_player, room['outside'])
-    print(f'\n*~*~*~*~Welcome {player.name}~*~*~*~*')
+    print(f'\n*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~\nWelcome to Myst...\n{player.name:^40}\n*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~')
     break
   
-
 # Write a loop that:
 #
 # * Prints the current room name
