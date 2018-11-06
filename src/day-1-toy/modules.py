@@ -6,7 +6,7 @@ import os
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
 
 # Print out the command line arguments in sys.argv, one per line:
-for item of sys.argv:
+for item in sys.argv:
   print(item)
 
 # Print out the platform from sys:
