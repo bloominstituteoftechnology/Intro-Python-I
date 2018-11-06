@@ -39,6 +39,8 @@ room['treasure'].s_to = room['narrow']
 
 #see if items in room
 def check_area(room, player):
+  if len(room.items) == 0:
+    print('you do not notice any items in the room')
   if len(room.items) == 1:
     print(f'\nin the area you notice a {room.items[0]}\n')
   if len(room.items) > 1:
@@ -100,13 +102,14 @@ while not res[0] == 'q':
 
     #base commands #################
     print(current_room)
-    check_area(current_room, player)
     res = input('\nwhat will you do?\n').split(" ")
     command(res, player, current_room)
     #################################
 
     if res[0] == 'get' or res[0] == 'drop':
       pass
+    elif res[0] == 'l':
+      check_area(current_room, player)
     elif res[0] == 'n':
       current_room = current_room.room_direction(res[0])
       location = 'foyer'
@@ -120,13 +123,14 @@ while not res[0] == 'q':
 
     #base commands #################
     print(current_room)
-    check_area(current_room, player)
     res = input('\nwhat will you do?\n').split(" ")
     command(res, player, current_room)
     #################################
 
     if res[0] == 'get' or res[0] == 'drop':
       pass
+    elif res[0] == 'l':
+      check_area(current_room, player)
     elif res[0] == 'i':
       check_inventory(player)
     elif res[0] == 's':
@@ -146,13 +150,14 @@ while not res[0] == 'q':
 
     #base commands #################
     print(current_room)
-    check_area(current_room, player)
     res = input('\nwhat will you do?\n').split(" ")
     command(res, player, current_room)
     #################################
-
+ 
     if res[0] == 'get' or res[0] == 'drop':
       pass
+    elif res[0] == 'l':
+      check_area(current_room, player)
     elif res[0] == 'i':
       check_inventory(player)
     elif res[0] == 's':
@@ -166,13 +171,14 @@ while not res[0] == 'q':
 
     #base commands #################
     print(current_room)
-    check_area(current_room, player)
     res = input('\nwhat will you do?\n').split(" ")
     command(res, player, current_room)
     #################################
 
     if res[0] == 'get' or res[0] == 'drop':
       pass
+    elif res[0] == 'l':
+      check_area(current_room, player)
     elif res[0] == 'i':
       check_inventory(player)
     elif res[0] == 'w':
@@ -189,13 +195,14 @@ while not res[0] == 'q':
 
     #base commands #################
     print(current_room)
-    check_area(current_room, player)
     res = input('\nwhat will you do?\n').split(" ")
     command(res, player, current_room)
     #################################
 
     if res[0] == 'get' or res[0] == 'drop':
       pass
+    elif res[0] == 'l':
+      check_area(current_room, player)
     elif res[0] == 'i':
       check_inventory(player)
     elif res[0] == 's':
