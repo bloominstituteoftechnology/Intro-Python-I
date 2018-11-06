@@ -15,7 +15,7 @@ class Room:
     # look at the items in the room
     def look_items(self):
       # print using an f string and use a join on a comma to delimit the items and a for loop to loop over the item list
-      print(f"\n In this room you see the following: {", ".join(item.mane for item in self.items)}")
+      print(f"\n In this room you see the following: {', '.join(item.mane for item in self.items)}")
 
     # add_item same implementation as in the player class
     def add_item(self, item):
@@ -27,3 +27,4 @@ class Room:
 
     def __str__(self):
         return str(self.name) + "\n" + str(self.description)
+

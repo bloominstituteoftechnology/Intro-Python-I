@@ -21,3 +21,6 @@ class Player:
     # check the players gold
     def check_gold(self):
         print(f"\nYou have: {self.gold} gold")
+
+    def __str__(self):
+        return str(self.location.name)  + "\n" + str(self.location.description)

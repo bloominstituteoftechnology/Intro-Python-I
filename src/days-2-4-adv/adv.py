@@ -5,10 +5,10 @@ from item import Item
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside':  Room("Outside Complex Entrance",
+                     "North of you, the enemy building with a large iron staircase"),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
+    'foyer':    Room("Foyer", """The baked bean tin to the south of the random noises. Dusty
 passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
@@ -31,7 +31,7 @@ items = {
     "C4": Item("C4"),
     "Katana": Item("Katana"),
     "Notepad": Item("Notepad"),
-    "Wick": Item("Wick")
+    "JohnWick": Item("JohnWick")
 }
 
 
@@ -89,7 +89,16 @@ while True:
         # logic to move west
         if player.room.west_to:
             player.room = player.room.west_to
+    
+    # tell me the truth
+    elif command.upper() == "TELL ME THE TRUTH":
+        print("\nYOU CAN'T HANDLE THE TRUTH!\n")
 
+    elif command.upper() == "PING WWW.GOOGLE.COM":
+        print("\nPinging www.google.com [172.217.20.68] with 32 bytes of data:\n")
+        for x in range(30):
+            print("Reply from 172.217.20.68: bytes=32 time=34ms TTL=50\n")
+        print("\nPackets: Sent = 4, Received = 4, Lost = 0 (0 loss)\n")
     # Print an error message if the movement isn't allowed.
     else:
         print("\nUnknown command!\n")
