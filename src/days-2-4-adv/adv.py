@@ -21,7 +21,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -36,6 +35,7 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+print(room['outside'].n_to.description)
 
 # Make a new player object that is currently in the 'outside' room.
 
