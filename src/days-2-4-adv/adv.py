@@ -1,5 +1,6 @@
 from room import Room
-
+from player import Player
+from item import Item
 # Declare all the rooms
 
 room = {
@@ -37,6 +38,14 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+#Items
+
+knife = Item("knife", "Useful for cutting through brush")
+stone = Item("stone", "Useful for weighing items down")
+
+
+
+
 # Make a new player object that is currently in the 'outside' room.
 
 # Write a loop that:
@@ -49,3 +58,51 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+rock = Item('rock', 'I am a rock')
+suppressRoomPrint = False
+player = Player(input("What is your name? "), room['outside'], [rock])
+while True:
+    if suppressRoomPrint:
+        suppressRoomPrint = False
+    else:
+        print(player.currentRoom)
+    commands = input("-> ").split(" ")
+    if len(commands) == 1:
+        if commands[0] == "q":
+            break
+        elif commands[0] == "n":
+            if player.currentRoom.n_to is not None:
+                player.currentRoom = player.currentRoom.n_to
+                
+            else:
+                print("You cannot move in that direction")
+                suppressRoomPrint = True
+        elif commands[0] == "s":
+            if player.currentRoom.s_to is not None:
+                player.currentRoom = player.currentRoom.s_to
+                
+            else:
+                print("You cannot move in that direction")
+                suppressRoomPrint = True
+        elif commands[0] == "e":
+            if player.currentRoom.e_to is not None:
+                player.currentRoom = player.currentRoom.e_to
+                
+            else:
+                print("You cannot move in that direction")
+                suppressRoomPrint = True
+        elif commands[0] == "w":
+            if player.currentRoom.w_to is not None:
+                player.currentRoom = player.currentRoom.w_to
+                
+            else:
+                print("You cannot move in that direction")
+                suppressRoomPrint = True
+        elif commands[0] == "i" or commands[0] == "inventory":
+            player.printInventory()
+    else:
+        if commands[0] == "look":
+            if commands[1] == "n" or commands[1] == "s" or commands[1] == "e" or commands[1] == "w":
+                player.look(commands[1])
+            else:
+                print("I did not understand that command")
