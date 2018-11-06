@@ -37,6 +37,14 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+'''
+Order to win:
+
+1. Head n to foyer
+2. Head e into the narrow
+3. Head n to the treasure (break here. User has won)
+'''
+
 # Make a new player object that is currently in the 'outside' room.
 create_name = input("Choose a name adventurer: ")
 user_1 = Player(create_name, room['outside'])
@@ -45,7 +53,7 @@ user_1 = Player(create_name, room['outside'])
 # Write a loop that:
 # * Prints the current room name --> /
 # * Prints the current description (the textwrap module might be useful here). --> /
-# * Waits for user input and decides what to do.
+# * Waits for user input and decides what to do. --> somewhat /
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
@@ -57,14 +65,53 @@ while True:
     print(f"Currently in: {user_1.room.name}")
     print(user_1.room.description)
 
-    direction = input("\n Pick a direction: w, a, s, d : Press q to GIVE UP \n")
+    # Print error message for invalid input
+    invalid_input = "\n=== Your character looks confused. He cannot move there, please select another direction===\n"
 
-    if len(direction) == 1:
-        print("You look in all directions, where shall you venture?")
+    direction = input("\n Pick a direction: n, e, s, w (north, east, south, west) : Press q to GIVE UP \n")
+
+    if len(direction) == 1:        
 
         if (direction[0]) == "q":
             break     
 
+        elif (direction[0]) == "n":
+            if hasattr(user_1.room, 'n_to'):
+                user_1.room = user_1.room.n_to
+                # print(f"\nYour character looks forward and proceeds to walk, arriving in: {user_1.room.name}\n")
+
+                if user_1.room.name == 'Treasure Chamber':
+                    print("\n=== Your character, in utter disbelief, kills himself due to severe sadness===\n")
+                    break
+
+            else:
+                print(f"You hear foot steps rush from all angles. Soon {user_1.name} is quickly surrounded by skeletons and killed.")   
+                break
+        
+        elif (direction[0]) == "e":
+            if hasattr(user_1.room, 'e_to'):
+                user_1.room = user_1.room.e_to
+
+            else: # tell user they cannot go that way
+                print(f"{user_1.name} hears something in the distance quickly running towards its location, in a rush {user_1.name} doesn\'t look where it steps, and fall into the dark chasm. You have lost.")
+                break
+
+        elif (direction[0]) == "s":
+            if hasattr(user_1.room, 's_to'):
+                user_1.room = user_1.room.s_to
+
+            else:
+                print(f"{user_1.name} suddenly dies! Whoops.") 
+                break           
+
         elif (direction[0]) == "w":
-            print("Your character looks forward and proceeds to walk")
+            if hasattr(user_1.room, 'w_to'):
+                user_1.room = user_1.room.w_to
+
+            else:
+                print(f"{user_1.name} accidentally steps on a trap, slowly he hears a contraption swing behind him... He is dead")
+                break
+
+        
+
 
