@@ -2,11 +2,17 @@
 # Good reading: https://www.programiz.com/python-programming/global-local-nonlocal-variables
 
 # When you use a variable in a function, it's local in scope to the function.
-x = 12
+
+
+x = 12 # --> module-level/global by DEFAULT
+
+
+# Use global keyword to read/write a global variable INSIDE A FUNCTION
 
 def changeX():
-    x = 99
-
+   global x
+   x = 99 # --> local/function level scope by DEFAULT   
+   
 changeX()
 
 # This prints 12. What do we have to modify in changeX() to get it to print 99?
@@ -19,6 +25,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y # --> this tells the inner function to look at the outer function's y variable
         y = 999
 
     inner()
