@@ -69,10 +69,16 @@ while True:
     # If the user enters a cardinal direction, attempt to move to the room there.
     elif command.upper() == "NORTH":
         print("NORTH MOVE PLACEHOLDER")
-        # TODO: logic for move north
+        # logic for move north
+        if player.room.north_to:
+            player.room = player.room.north_to
+
     elif command.upper() == "SOUTH":
         print("SOUTH MOVE PLACEHOLDER")
-        # TODO: logic for move south
+        # logic for move south
+        if player.room.south_to:
+            player.room = player.room.south_to
+            
     elif command.upper() == "EAST":
         print("EAST MOVE PLACEHOLDER")
         # TODO: logic to move east
