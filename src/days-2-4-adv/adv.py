@@ -55,33 +55,45 @@ room['treasure'].s_to = room['narrow']
 # If the user enters "q", quit the game.
 
 player = Player("Nicocchi", room['outside'])
-print(f'{player.room.name}')
-desc = textwrap.wrap(player.room.description, width=100)
-for element in desc:
-    print(element)
+player_inp = ''
 
-user = input("[n] North   [s] South   [e] East   [w] West   [q] Quit\n").lower()
 
-while not user == 'q':
+# Gets the player's input and sets it in the global var user
+def player_input():
+    global player_inp
+    player_inp = input("\n[n] North   [s] South   [e] East   [w] West   [q] Quit\n").lower()
+
+
+# Display the screen message
+def screen_message():
+    print(f'\n{player.room.name}')
+    desc = textwrap.wrap(player.room.description, width=70)
+    for element in desc:
+        print(element)
+
+
+screen_message()
+player_input()
+
+# While the input is not q, keep get game going
+while not player_inp == 'q':
     # if player chooses North
-    if user == 'n':
+    if player_inp == 'n':
         player.move_north()
-    elif user == 's':
+    elif player_inp == 's':
         player.move_south()
-    elif user == 'e':
+    elif player_inp == 'e':
         player.move_east()
-    elif user == 'w':
+    elif player_inp == 'w':
         player.move_west()
     else:
-        print("Invalid selection. Please try again.")
+        print("Invalid selection. Please try again.\n")
 
-    if player.room:
-        print(f'{player.room.name}')
-        desc = textwrap.wrap(player.room.description, width=100)
-        for element in desc:
-            print(element)
+    # if the player has a room, continue to display the
+    # room message, else, display input message to avoid infinite loop of same room
+    if player.room and player.previous_room is not player.room:
+        screen_message()
     else:
-        print(f'{player.name} tried to move to {player.direction} but was blocked. Try another direction.')
+        print(f'\n{player.name} tried to move to {player.direction} but was blocked. Try another direction.\n')
 
-    print(f'{player.name} pick a direction...')
-    user = input("[n] North   [s] South   [e] East   [w] West   [q] Quit\n").lower()
+    player_input()
