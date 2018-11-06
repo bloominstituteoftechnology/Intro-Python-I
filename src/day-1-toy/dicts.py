@@ -25,5 +25,11 @@ waypoints = [
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
-
+def print_way():
+    for waypoint in waypoints:
+        print("%s is at (%d, %d)" %(waypoint["name"], waypoint["lat"], waypoint["lon"]))
+print_way()
 # Add a new waypoint to the list
+new = {"lat": 22, "lon": 32, "name": "no place"}
+waypoints.append(new)
+print_way()
