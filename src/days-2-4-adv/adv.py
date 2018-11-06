@@ -1,6 +1,8 @@
 from room import Room
 from player import Player
 
+import textwrap
+
 # Declare all the rooms
 
 room = {
@@ -41,8 +43,6 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 
 
-player = Player("Nicocchi", "outside")
-
 # Write a loop that:
 #
 # * Prints the current room name
@@ -54,4 +54,46 @@ player = Player("Nicocchi", "outside")
 #
 # If the user enters "q", quit the game.
 
-print(player)
+player = Player("Nicocchi", room['outside'])
+print(f'{player.room.name}')
+desc = textwrap.wrap(player.room.description, width=100)
+for element in desc:
+    print(element)
+
+user = input("[n] North   [s] South   [e] East   [w] West   [q] Quit\n").lower()
+
+while not user == 'q':
+    # if player chooses North
+    if user == 'n':
+        player.direction = 'north'
+
+        if player.room.n_to:
+            player = Player("Nicocchi", player.room.n_to)
+    elif user == 's':
+        player.direction = 'south'
+
+        if player.room.s_to:
+            player = Player("Nicocchi", player.room.s_to)
+    elif user == 'e':
+        player.direction = 'east'
+
+        if player.room.e_to:
+            player = Player("Nicocchi", player.room.e_to)
+    elif user == 'w':
+        player.direction = 'west'
+
+        if player.room.w_to:
+            player = Player("Nicocchi", player.room.w_to)
+    else:
+        print("Invalid selection. Please try again.")
+
+    if player.room:
+        print(f'{player.room.name}')
+        desc = textwrap.wrap(player.room.description, width=100)
+        for element in desc:
+            print(element)
+    else:
+        print(f'{player.name} tried to move to {player.direction} but was blocked. Try another direction.')
+
+    print(f'{player.name} pick a direction...')
+    user = input("[n] North   [s] South   [e] East   [w] West   [q] Quit\n").lower()
