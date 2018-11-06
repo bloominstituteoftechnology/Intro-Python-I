@@ -10,3 +10,6 @@ class Room:
         self.south_to = None
         self.east_to = None
         self.west_to = None
+    
+    def __str__(self):
+        return str(self.name) + "\n" + str(self.description)

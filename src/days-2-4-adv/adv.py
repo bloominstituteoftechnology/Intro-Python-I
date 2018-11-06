@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -36,17 +37,9 @@ room['treasure'].south_to = room['narrow']
 # helper functions
 
 # print current room details
-def print_current_room_details(room_name, description):
-    # * Prints the current room name
-    print_current_room_name(room_name)
-    # * Prints the current description (the textwrap module might be useful here).
-    print_current_player_room_description(description)
+def print_current_room_details(room):
+    print("\n You are in the %s" % (room))
 
-def print_current_room_name(room):
-    print("\nYou are in the %s." % (room.name))
-
-def print_current_player_room_description(description):
-    print("\nYou are in the %s." % (description))
 #
 # Main
 #
@@ -54,16 +47,15 @@ def print_current_player_room_description(description):
 # Make a new player object that is currently in the 'outside' room.
 
 # instantiate player object with a starting room
-player = player(room['outside'])
-
+player = Player(room['outside'])
 # Write a loop that:
 while True:
     # print the current room details
-    print_current_room_details(player.room.name, player.room.description)
+    print(player.room)
     # * Waits for user input and decides what to do.
     command = input("PLEASE ENTER a Command to move : [NORTH] [SOUTH] [EAST] or [WEST] >> ")
     # If the user enters "q", quit the game.
-    if command == "q":
+    if command.upper() == "QUIT":
         print("QUIT PLACEHOLDER")
         break
     # If the user enters a cardinal direction, attempt to move to the room there.
