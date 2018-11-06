@@ -39,19 +39,33 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 done = False
-
+start = True
+result=[]
 while not done:
 
         print("===Welcome to Adventure===")
         player = room['outside']
         player.name
-        print(player.name,player.description)
+        if start:
+            print(player.name,player.description)
+            start = False
         x = input("Enter a Direction: ") 
+    
         if x=="north":
-            pos = player.n_to.name,player.n_to.name
+           
+            pos = player.n_to
+            
+            print(pos.name,pos.description)
+            y = input("Enter a Direction: ")
+            if y=="north":
+              post = pos.n_to 
+              
+              print(post.name,post.description)
+
         else:
             print("must go forward")
-print(pos)
+            
+        
 
 
 
