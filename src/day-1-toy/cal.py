@@ -23,6 +23,6 @@ print(a)
 import sys
 
 
-print(sys.argv)
+# print(sys.argv)
 
-if len(sys.argv) == 2 #just print the specified month
+# if len(sys.argv) == 2 #just print the specified month
