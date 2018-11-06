@@ -7,13 +7,11 @@ import os
 
 # Print out the command line arguments in sys.argv, one per line:
 
-
 # Print out the platform from sys:
 print(sys.platform)
 
 # Print out the Python version from sys:
 print(sys.version)
-
 
 
 # Module "os"
@@ -28,4 +26,3 @@ print(os.getcwd())
 
 # Print your login name
 print(os.getlogin())
-

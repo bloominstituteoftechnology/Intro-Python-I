@@ -1,4 +1,3 @@
 # Write Hello, world
 
-msg = "\n Hello World \n"
-print(msg)
+print("\n Hello World \n")
