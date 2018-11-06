@@ -27,7 +27,8 @@ x = input("Enter comma-separated numbers: ").split(',')
 
 # # What do you need between the square brackets to make it work?
 
-y = [int(n) for n in x if int(n) % 2 == 0]
+#Why is int needed here? The input characters you type in are treated as strings when you type them in. 
+y = [int(n) for n in x if int(n) % 2 == 0]  
 
 print(y)
 
