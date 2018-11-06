@@ -17,5 +17,13 @@ class Room:
       # print using an f string and use a join on a comma to delimit the items and a for loop to loop over the item list
       print(f"\n In this room you see the following: {", ".join(item.mane for item in self.items)}")
 
+    # add_item same implementation as in the player class
+    def add_item(self, item):
+        self.items.append(item)
+
+    # remove_item same implementation as in the player class
+    def remove_item(self, item):
+        del self.items[self.items.index(item)]
+
     def __str__(self):
         return str(self.name) + "\n" + str(self.description)
