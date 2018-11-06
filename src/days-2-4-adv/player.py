@@ -2,7 +2,12 @@
 # currently.
 
 class Player:
-    def __init__(self, name):
+    def __init__(self, name, room):
         self.name = name
-    def __str__(self):
-        return str(f'{self.name}')
+        self.room = room
+    
+    def move_to(self, direction):
+        if direction == 'n':
+            self.room = self.room.to_room(direction)
+        else:
+            print("You can't go that way.")

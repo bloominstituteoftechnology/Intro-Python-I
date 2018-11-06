@@ -22,12 +22,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-player = Player('Lucas')
-current_room = room['outside']
-
-start = 'start game'
-location = 'outside'
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -44,6 +38,15 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+while True:
+    new_player = input("Your hero's name?")
+    if len(new_player) == 0:
+        print("Please enter your player's name.\n")
+    else:
+        player = Player(new_player, room['outside'])
+        print(f'\n Welcome, {player.name}')
+        break
+
 
 # Write a loop that:
 #
@@ -55,3 +58,20 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+  choice = input(f'\nWhere would you like to go? [n]orth, [e]ast, [s]outh, or [w]est [q]uit')
+  if len(choice) == 1:
+    if choice == "q":
+      print(f'\nAye, perhaps another day.')
+      break
+    elif choice == "n":
+      print(choice)
+    elif choice == "e":
+      print(choice)
+    elif choice == "s":
+      print(choice)
+    elif choice == "w":
+      print(choice)
+    else:
+      print(f'\nAgain, where would you like to go?')
