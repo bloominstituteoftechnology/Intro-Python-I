@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+
 
 # Declare all the rooms
 
@@ -40,9 +42,24 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 player = Player(room["outside"])
 
+print(f"Welcome adventurer, you are currently in {player.current_room.name}. {player.current_room.descr}")
 # Write a loop that:
 #
 # * Prints the current room name
+while True:
+    print(f"You are now in {player.current_room.name}. {player.current_room.descr}")
+    dir = input("Where would you like to go?")
+    if dir == "n":
+        player.enter(player.current_room.n_to)
+    elif dir == "e":
+        player.enter(player.current_room.e_to)
+    elif dir == "w":
+        player.enter(player.current_room.w_to)
+    elif dir == "s":
+        player.enter(player.current_room.s_to)
+    elif dir == "exit":
+        break
+
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 #
