@@ -3,7 +3,7 @@ def is_even(x):
   if x % 2 == 0:
     print("{} is Even!".format(x))
   else:
-    print("Odd!")
+    print("{} is Odd!".format(x))
 # Read a number from the keyboard
 num = input("Enter a number: ")
 # Print out "Even!" if the number is even. Otherwise print "Odd"
