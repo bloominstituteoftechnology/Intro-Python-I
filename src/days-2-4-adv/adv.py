@@ -38,14 +38,32 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+# TODO: instantiate a player with this type of calling convention and write the player class to allow for this
+# player = player(room['outside'])
 
 # Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+while True:
+
+    # * Prints the current room name
+    print_current_room_name()
+    # * Prints the current description (the textwrap module might be useful here).
+    print_current_description()
+    # * Waits for user input and decides what to do.
+    command = input("Some filler question prompt text : fill this in later")
+    # If the user enters "q", quit the game.
+    if command == "q":
+        print("QUIT PLACEHOLDER")
+        break
+    # If the user enters a cardinal direction, attempt to move to the room there.
+    elif command.upper() == "NORTH":
+        print("NORTH MOVE PLACEHOLDER")
+    elif command.upper() == "SOUTH":
+        print("SOUTH MOVE PLACEHOLDER")
+    elif command.upper() == "EAST":
+        print("EAST MOVE PLACEHOLDER")
+    elif command.upper() == "WEST":
+        print("WEST MOVE PLACEHOLDER")
+    # Print an error message if the movement isn't allowed.
+    #
+    else:
+        print("\nUnknown command!\n")
