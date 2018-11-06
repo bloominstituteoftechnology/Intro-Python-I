@@ -1,6 +1,7 @@
 from room import Room
+from player import Player
 
-# Declare all the rooms
+#Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -38,9 +39,13 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+danny_boy = Player('Tom', 'outside')
+n = danny_boy.name
+r = danny_boy.room
+rd = str(room['outside'])
 # Write a loop that:
-#
+print("{} is in the {}".format(n, r))
+print("{}".format(rd))
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
