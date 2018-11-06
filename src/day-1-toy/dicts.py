@@ -25,5 +25,12 @@ waypoints = [
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
-
+for i in waypoints:
+    print (i)
+    print (i['lat'])
+    print (i['lon'])
+    print (i['name'])
 # Add a new waypoint to the list
+waypoints.append({'lat': 15, 'lon':-91, 'name': 'Guatemala City'})
+
+print (waypoints)
