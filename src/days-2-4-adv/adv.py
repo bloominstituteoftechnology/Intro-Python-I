@@ -65,27 +65,13 @@ user = input("[n] North   [s] South   [e] East   [w] West   [q] Quit\n").lower()
 while not user == 'q':
     # if player chooses North
     if user == 'n':
-        # player.direction = 'north'
         player.move_north()
-
-        # if player.room.n_to:
-        #     player = Player("Nicocchi", player.room.n_to)
     elif user == 's':
         player.move_south()
-        # player.direction = 'south'
-        #
-        # if player.room.s_to:
-        #     player = Player("Nicocchi", player.room.s_to)
     elif user == 'e':
-        player.direction = 'east'
-
-        if player.room.e_to:
-            player = Player("Nicocchi", player.room.e_to)
+        player.move_east()
     elif user == 'w':
-        player.direction = 'west'
-
-        if player.room.w_to:
-            player = Player("Nicocchi", player.room.w_to)
+        player.move_west()
     else:
         print("Invalid selection. Please try again.")
 
