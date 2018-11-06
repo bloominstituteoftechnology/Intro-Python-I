@@ -25,13 +25,14 @@ waypoints = [
 ]
 
 # Write a loop that prints out all the field values for all the waypoints
-# QQQQQQQQ:Are we supposed to print both the keys and values and not just the values?
 
 for i in waypoints:
-    print(i)
+    for x, y in i.items():
+        print(y)
 
-#nested for loop for (x,y) in items: print y
-
+## alternative solution
+# for w in waypoints:
+#     print("lat: %d, lon: %d, name: %s" % (w["lat"], w["lon"], w["name"]))
 
 
 # Add a new waypoint to the list
