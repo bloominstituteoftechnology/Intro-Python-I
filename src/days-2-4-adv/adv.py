@@ -60,19 +60,18 @@ while True:
 #
 # If the user enters "q", quit the game.
 while True:
-  choice = input(f'\n===You are in {player.room.name}.===\n{player.room.desc}\n\nWhere would you like to go?\n[n]orth, [e]ast, [s]outh, [w]est, or [q]uit\n')
+  choice = input(f'\n========================================\nYou are in {player.room.name.upper()}.\n{player.room.desc}\n\nWhere would you like to go?\n[n]orth, [e]ast, [s]outh, [w]est, or [q]uit\n')
   if len(choice) == 1:
     if choice == "q":
       print(f'\nAye, perhaps another day.')
       break
     elif choice == "n":
       player.move_to(choice)
-      print(f'===Now you are in {player.room.name}.===\n{player.room.desc}')
     elif choice == "e":
-      print(choice)
+      player.move_to(choice)
     elif choice == "s":
-      print(choice)
+      player.move_to(choice)
     elif choice == "w":
-      print(choice)
+      player.move_to(choice)
     else:
       print(f'\nAgain, where would you like to go?')

@@ -7,7 +7,7 @@ class Player:
     self.room = room
 
   def move_to(self, direction):
-    if direction == "n":
+    if direction:
       self.room = self.room.to_room(direction)
     else:
       print("You can't go that way.")
