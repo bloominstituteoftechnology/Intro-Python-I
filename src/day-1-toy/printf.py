@@ -1,5 +1,5 @@
 x = 10
-y = 2.24552
+y = 213123212.24552
 z = "I like turtles!"
 
 # Using the printf operator (%), print the following feeding in the values of x,
@@ -10,8 +10,8 @@ z = "I like turtles!"
 
 # Finally, print the same thing using an f-string
 
-print ("x is %s, y is %.2f, z is %s" % (x,y,z))
+print ("x is %s, y is %1.2f, z is %s" % (x,y,z))
 
-print ("x is {}, y is {:.2f}, z is {}".format(x,y,z))
+print ("x is {}, y is {:3.2f}, z is {}".format(x,y,z))
 
-print (f"x is {x}, y is {y:.2f}, z is {z}")
+print (f"x is {x}, y is {y:3.2f}, z is {z}")
