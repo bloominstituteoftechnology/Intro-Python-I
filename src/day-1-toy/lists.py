@@ -17,15 +17,6 @@ print(x)
 for num in y:
   x.append(num)
 # x.append(y)
-# using insert or append results in a nested list within the list
-# OR
-# OR using '='
-# mergedlist = []
-# mergedlist.extend(x)
-# mergedlist.extend(y)
-# for num in y:
-#   x.append num
-
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
@@ -33,6 +24,7 @@ print(x)
 for num in x:
   if num == 8:
     x.remove(num)
+#x.remove(8)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
