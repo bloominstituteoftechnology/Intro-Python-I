@@ -1,6 +1,7 @@
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 x = [1, 2, 3, 4, 5]
 y = [i for i in x]
+#y = [i for i in range(1, 6)]
 
 print (y)
 
@@ -8,6 +9,7 @@ print (y)
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 x = [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 y = [i**3 for i in x ]
+# y = [i**3 for i in range(10)]
 
 print(y)
 
@@ -17,6 +19,7 @@ print(y)
 a = ["foo", "bar", "baz"]
 
 y = [a.upper() for a in a]
+# y = [word[0].upper() + word[1:] for word in a]
 
 print(y)
 
