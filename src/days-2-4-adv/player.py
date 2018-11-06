@@ -10,6 +10,8 @@ class Player:
 
   def __repr__(self):
     return f"Current Location: {self.location}"
+    #return "Current Location: {}".format(self.location)
 
-  def __strs__(self):
+  def __str__(self):
     return f"Current Location: {self.location}"
+    #return "Current Location: {}".format(self.location)
