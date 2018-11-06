@@ -39,8 +39,16 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(input("Your hero's name?"), room['outside'])
-print(f'\nWelcome {player.name}.') if player.name else print("Please enter a name.")
+
+while True:
+  new_player = input("Your hero's name?")
+  if len(new_player) == 0:
+    print("Please enter your hero's name.\n")
+  else:
+    player = Player(new_player, room['outside'])
+    print(f'\n*~*~*~*~Welcome {player.name}~*~*~*~*')
+    break
+  
 
 # Write a loop that:
 #
@@ -52,17 +60,15 @@ print(f'\nWelcome {player.name}.') if player.name else print("Please enter a nam
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-
-print(f'You are currently in {player.room.name} ({player.room.desc}.)')
-
 while True:
-  choice = input(f'\nWhere would you like to go? [n]orth, [e]ast, [s]outh, or [w]est [q]uit')
+  choice = input(f'\n===You are in {player.room.name}.===\n{player.room.desc}\n\nWhere would you like to go?\n[n]orth, [e]ast, [s]outh, [w]est, or [q]uit\n')
   if len(choice) == 1:
     if choice == "q":
       print(f'\nAye, perhaps another day.')
       break
     elif choice == "n":
-      print(choice)
+      player.move_to(choice)
+      print(f'===Now you are in {player.room.name}.===\n{player.room.desc}')
     elif choice == "e":
       print(choice)
     elif choice == "s":
