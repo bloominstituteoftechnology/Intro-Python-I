@@ -3,23 +3,37 @@ from player import Player
 from item import Item
 # Declare all the rooms
 
+
+items = {
+    'Small Knife': Item('Small Knife', 'A small cooking knife.', True),
+    'Torch': Item('Torch', 'An unlit torch', True),
+    'Matches': Item('Matches', 'Used for starting fires or lighting torches.'),
+    'Rations': Item('Rations', 'Well-preserved food'),
+    'Cigarettes': Item('Cigarettes', 'Adventuring can be stressful.'),
+    '9mm Pistol': Item('9mm Pistol', 'A standard issue 9mm Pistol', True),
+    '9mm Ammunition': Item('9mm Ammunition', 'Ammunition for 9mm weapons.', True)
+}
+
+
+
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",
+                     [items['Torch']]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", [items['Matches'], items['Small Knife']]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", [items['Cigarettes']]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", [items['Rations']]),
 }
 
 
@@ -52,24 +66,29 @@ room['treasure'].s_to = room['narrow']
 # If the user enters "q", quit the game.
 
 
-items = {
-    'Small Knife': Item('Small Knife', True),
-    'Torch': Item('Torch', True),
-    'Matches': Item('Matches'),
-    'Rations': Item('Rations'),
-    'Cigarettes': Item('Cigarettes'),
-    '9mm Pistol': Item('9mm Pistol', True),
-    '9mm Ammunition': Item('9mm Ammunition', True)
-}
 
 # initialize the player to be outside
 player = Player(room['outside'])
 
-while True:
-    # print the current room
-    print("\n CURRENT ROOM:\n" + "  " + player.room.name + "\n" + "    " + player.room.description + "\n")
+#initialize a function to examine the room
+def look(room, player):
+    if len(room.items) == 0:
+        print("====================\n You don't see anything useful here. \n ====================")
+    if len(room.items) >= 1:
+        print(f'==================== \n You notice the following:\n')
+        for i in room.items:
+            print(i.name + ': ' + i.description + '\n')
+        print('====================')
 
-    command = input("Please enter a direction to move: [NORTH] [SOUTH] [EAST] [WEST]. \n Input [QUIT] to leave the game. \n\n Command: ")
+
+while True:
+
+    # print the current room
+    print("==================== \n CURRENT ROOM:\n" + "  " + player.room.name + "\n" + "    " + player.room.description + "\n ====================")
+
+    command = input("Please enter a command: [NORTH] [SOUTH] [EAST] [WEST]. \n Use [LOOK] to look around. \n Input [QUIT] to leave the game. \n\n Command: ")
+
+    
 
     if command.upper() == 'QUIT':
         break
@@ -105,6 +124,9 @@ while True:
         else:
             print("\n There is nowhere to move west.")
             continue
+
+    elif command.upper() == 'LOOK':
+        look(player.room, player)
 
     else:
         print("\n Unknown command, please try again.")

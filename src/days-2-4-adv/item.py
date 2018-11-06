@@ -1,6 +1,7 @@
 class Item:
-    def __init__(self, name, equippable=None):
+    def __init__(self, name, description, equippable=None):
         self.name = name
+        self.description = description
         self.equippable = False if equippable is None else True
         self.equipped = False
 
