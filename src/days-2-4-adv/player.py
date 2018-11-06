@@ -2,12 +2,13 @@
 # currently.
 
 class Player:
-  def __init__(self, name, room):
+  def __init__(self, name, current):
     self.name = name
-    self.room = room
+    self.current = current
 
   def move_to(self, direction):
     if direction:
-      self.room = self.room.to_room(direction)
+      self.current = self.current.to_new(direction)
     else:
       print("You can't go that way.")
+      

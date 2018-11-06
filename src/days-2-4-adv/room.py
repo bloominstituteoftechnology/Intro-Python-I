@@ -10,18 +10,15 @@ class Room:
     self.s_to = None
     self.w_to = None
 
-  def to_room(self, direction):
-    if direction == "n":
-      if self.n_to:
+  def to_new(self, direction):
+    if direction == "n" and self.n_to:
         return self.n_to
-    if direction == "e":
-      if self.e_to:
+    if direction == "e" and self.e_to:
         return self.e_to
-    if direction == "s":
-      if self.s_to:
+    if direction == "s" and self.s_to:
         return self.s_to
-    if direction == "w":
-      if self.w_to:
+    if direction == "w" and self.w_to:
         return self.w_to
     else:
       print("You can't go that way.")
+      
