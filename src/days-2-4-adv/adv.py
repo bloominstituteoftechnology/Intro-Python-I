@@ -38,12 +38,20 @@ room['treasure'].s_to = room['narrow']
 
 #
 # Main
-#
-def 
-player = room['outside']
-player.name
-print(player.name,player.description)
+done = False
 
+while not done:
+
+        print("===Welcome to Adventure===")
+        player = room['outside']
+        player.name
+        print(player.name,player.description)
+        x = input("Enter a Direction: ") 
+        if x=="north":
+            pos = player.n_to.name,player.n_to.name
+        else:
+            print("must go forward")
+print(pos)
 
 
 
