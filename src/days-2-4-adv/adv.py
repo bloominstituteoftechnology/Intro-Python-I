@@ -1,7 +1,10 @@
-from room import Room
 
-# Declare all the rooms
-
+class Room:
+  def __init__(self,name,description):
+     self.name = name
+     self.description=description 
+     
+     
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
@@ -36,6 +39,13 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+def 
+player = room['outside']
+player.name
+print(player.name,player.description)
+
+
+
 
 # Make a new player object that is currently in the 'outside' room.
 
