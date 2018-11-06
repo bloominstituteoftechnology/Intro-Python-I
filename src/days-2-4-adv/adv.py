@@ -1,10 +1,12 @@
 from room import Room
+from player import Player
+
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                    "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -39,6 +41,8 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +53,35 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+
+player = Player(input("What is your name, please?"), room['outside'])
+ 
+while True:
+    print(player.currentRoom.name + "\n" + player.currentRoom.description)
+    cmd = input("-> ")
+    if cmd == "q":
+        break
+    elif cmd == "n":
+        if player.currentRoom.n_to is not None:
+            player.currentRoom = player.currentRoom.n_to
+        else:
+            print("That leads to the wrong direction")
+    elif cmd == "s":
+        if player.currentRoom.s_to is not None:
+            player.currentRoom = player.currentRoom.s_to
+        else:
+            print("That leads to the wrong direction")
+    elif cmd == "e":
+        if player.currentRoom.e_to is not None:
+            player.currentRoom = player.currentRoom.e_to
+        else:
+            print("That leads to the wrong direction")
+    elif cmd == "w":
+        if player.currentRoom.w_to is not None:
+            player.currentRoom = player.currentRoom.w_to
+        else:
+            print("That leads to the wrong direction")
+    else:
+        print("I did not understand that command.") 
