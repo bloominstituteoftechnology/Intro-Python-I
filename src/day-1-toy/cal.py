@@ -16,8 +16,6 @@
 import sys
 import calendar
 
-cal = calendar.Calendar()
-
 if len(sys.argv) > 2:
 	year = int(sys.argv[1])
 	month = int(sys.argv[2])
@@ -26,4 +24,4 @@ else:
 	year = datetime.date.today().year
 	month = datetime.date.today().month
 
-print(cal.monthdayscalendar(year, month))
+print(calendar.month(year, month))
