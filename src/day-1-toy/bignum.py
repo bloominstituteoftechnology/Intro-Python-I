@@ -7,3 +7,7 @@ while exponent < 65536+1:
     n = x ** exponent
     exponent = exponent + 1
 print(n)
+
+
+# easier way:
+print(2**65536)
