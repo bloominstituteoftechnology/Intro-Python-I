@@ -39,3 +39,5 @@ for name in waypoints:
     print(name['lat'])
     print(name['lon'])
     print(name['name'])
+
+print(dir(waypoints))
