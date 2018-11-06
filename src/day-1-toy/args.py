@@ -29,8 +29,8 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 a = [7, 6, 5, 4]
 
 # What thing do you have to add to make this work?
-for num in a
-    print(f2(a))    # Should print 22
+for num in a:
+    print(f2(*a))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
