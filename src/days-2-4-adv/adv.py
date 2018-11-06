@@ -77,7 +77,6 @@ def start_game():
     print(text_divider)
 
     while True:
-
         print_wrapped_lines(f'You are currently in the {currRoom.name}.')
         print_wrapped_lines(currRoom.description)
 
@@ -111,4 +110,5 @@ def start_game():
             print_wrapped_lines(f'There is nothing to the {direction[next_move.lower()]}. Pick another direction.')
             print('\n')
 
-start_game()
+if __name__ == '__main__':
+    start_game()
