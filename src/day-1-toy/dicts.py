@@ -28,6 +28,13 @@ waypoints = [
 for item in waypoints:
     print(item.values())
 
+"""
+Alternative:
+
+for w in waypoints:
+  print(w['name'], w['lat'], w['lon'])
+"""
+
 # Add a new waypoint to the list
 waypoints.append({
     "lat": 22,
