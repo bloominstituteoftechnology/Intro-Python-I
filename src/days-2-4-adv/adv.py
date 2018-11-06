@@ -52,8 +52,9 @@ def print_current_player_room_description(description):
 #
 
 # Make a new player object that is currently in the 'outside' room.
-# TODO: instantiate a player with this type of calling convention and write the player class to allow for this
-player = player(room['outside']) # <<< match this up in the player class
+
+# instantiate player object with a starting room
+player = player(room['outside'])
 
 # Write a loop that:
 while True:
@@ -68,13 +69,17 @@ while True:
     # If the user enters a cardinal direction, attempt to move to the room there.
     elif command.upper() == "NORTH":
         print("NORTH MOVE PLACEHOLDER")
+        # TODO: logic for move north
     elif command.upper() == "SOUTH":
         print("SOUTH MOVE PLACEHOLDER")
+        # TODO: logic for move south
     elif command.upper() == "EAST":
         print("EAST MOVE PLACEHOLDER")
+        # TODO: logic to move east
     elif command.upper() == "WEST":
         print("WEST MOVE PLACEHOLDER")
+        # TODO: logic to move west
+
     # Print an error message if the movement isn't allowed.
-    #
     else:
         print("\nUnknown command!\n")
