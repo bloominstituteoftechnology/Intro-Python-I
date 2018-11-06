@@ -40,7 +40,7 @@ player1 = Player(room["outside"])
 
 while True:
     print(
-        f"You are now in {player1.current_room.name}. {player1.current_room.descr}")
+        f"You are now in {player1.current_room.name}. {player1.current_room.description}")
     dir = input("Where would you like to go?")
     if dir == "n":
         player1.enter(player1.current_room.n_to)
