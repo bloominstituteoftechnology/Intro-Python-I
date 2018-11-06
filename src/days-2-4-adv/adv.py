@@ -61,7 +61,7 @@ while True:
     # print the current room details
     print_current_room_details(player.room.name, player.room.description)
     # * Waits for user input and decides what to do.
-    command = input("Some filler question prompt text : fill this in later")
+    command = input("PLEASE ENTER a Command to move : [NORTH] [SOUTH] [EAST] or [WEST] >> ")
     # If the user enters "q", quit the game.
     if command == "q":
         print("QUIT PLACEHOLDER")
@@ -81,13 +81,15 @@ while True:
 
     elif command.upper() == "EAST":
         print("EAST MOVE PLACEHOLDER")
-        # TODO: logic to move east
+        # logic to move east
         if player.room.east_to:
             player.room = player.room.east_to
-            
+
     elif command.upper() == "WEST":
         print("WEST MOVE PLACEHOLDER")
         # TODO: logic to move west
+        if player.room.west_to:
+            player.room = player.room.west_to
 
     # Print an error message if the movement isn't allowed.
     else:
