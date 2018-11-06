@@ -53,33 +53,28 @@ while True:
     # print the current room details
     print(player.room)
     # * Waits for user input and decides what to do.
-    command = input("PLEASE ENTER a Command to move : [NORTH] [SOUTH] [EAST] or [WEST] >> ")
+    command = input("PLEASE ENTER a Command to move : [NORTH] [SOUTH] [EAST] [WEST] or [QUIT] to exit the game >> ")
     # If the user enters "q", quit the game.
     if command.upper() == "QUIT":
-        print("QUIT PLACEHOLDER")
         break
     # If the user enters a cardinal direction, attempt to move to the room there.
     elif command.upper() == "NORTH":
-        print("NORTH MOVE PLACEHOLDER")
         # logic for move north
         if player.room.north_to:
             player.room = player.room.north_to
 
     elif command.upper() == "SOUTH":
-        print("SOUTH MOVE PLACEHOLDER")
         # logic for move south
         if player.room.south_to:
             player.room = player.room.south_to
 
     elif command.upper() == "EAST":
-        print("EAST MOVE PLACEHOLDER")
         # logic to move east
         if player.room.east_to:
             player.room = player.room.east_to
 
     elif command.upper() == "WEST":
-        print("WEST MOVE PLACEHOLDER")
-        # TODO: logic to move west
+        # logic to move west
         if player.room.west_to:
             player.room = player.room.west_to
 
