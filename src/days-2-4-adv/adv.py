@@ -40,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(input("Your hero's name?"), room['outside'])
-print(f'Welcome {player.name}.') if player.name else print("Please enter a name.")
+print(f'\nWelcome {player.name}.') if player.name else print("Please enter a name.")
 
 # Write a loop that:
 #
@@ -52,3 +52,22 @@ print(f'Welcome {player.name}.') if player.name else print("Please enter a name.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+print(f'You are currently in {player.room.name} ({player.room.desc}.)')
+
+while True:
+  choice = input(f'\nWhere would you like to go? [n]orth, [e]ast, [s]outh, or [w]est [q]uit')
+  if len(choice) == 1:
+    if choice == "q":
+      print(f'\nAye, perhaps another day.')
+      break
+    elif choice == "n":
+      print(choice)
+    elif choice == "e":
+      print(choice)
+    elif choice == "s":
+      print(choice)
+    elif choice == "w":
+      print(choice)
+    else:
+      print(f'\nAgain, where would you like to go?')
