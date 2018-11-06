@@ -15,6 +15,17 @@ print(f1(1, 2))
 def f2(*args):
     return sum(args)
 
+"""
+Alternative:
+def f2(*args):
+    sum = 0
+
+    for i in args:
+        sum += i
+
+    return sum
+"""
+
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
 print(f2(1, 4, -12))            # Should print -7
@@ -35,6 +46,12 @@ def f3(*args):
     elif len(args) == 2:
         return sum(args)
 
+"""
+Alternative:
+def f3(a, b=1):
+    return a + b
+"""
+
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
 
@@ -48,6 +65,15 @@ print(f3(8))     # Should print 9
 
 def f4(**kwargs):
     print(str(kwargs))
+
+"""
+def f4(**kwargs):
+    for k, v in kwargs.items():
+        print(f'key: {k}, value: {v}')
+    # Alternate:
+    #for k in kwargs:
+    #    print(f'key: {k}, value: {kwargs[k]}')
+"""
 
 # Should print
 # key: a, value: 12
