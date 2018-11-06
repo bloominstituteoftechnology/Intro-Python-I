@@ -106,4 +106,4 @@ while True:
         elif move == 'q':
             break
     else:
-        print ('Please enter a cardinal direction')
+        print ('Please enter a cardinal direction or "q" to quit')
