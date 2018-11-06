@@ -44,12 +44,14 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-rock = Item("Rock", "This is a rock")
+rock = Item("Rock", "This is a rock.")
 lantern = LightSource("Lantern", "A lantern that emits light.")
-coins = Treasure("Coins", "A small pile of coins", 50)
+coins = Treasure("Coins", "A small pile of coins.", 50)
 sword = Item("Sword", "A standard arming blade.")
+big_rock = Item("Big Rock", "This is a big rock.")
 
 room['outside'].addItem(rock)
+room['outside'].addItem(big_rock)
 room['foyer'].addItem(lantern)
 room['overlook'].addItem(coins)
 
@@ -108,34 +110,38 @@ while True:
                 if itemToTake is not None:
                     player.addItem(itemToTake)
                     player.currentRoom.removeItem(itemToTake)
+                    print(f"You have picked up {itemToTake.name}")
                 else:
                     print("You do not see that item.")
             else:
-                itemToTake = player.currentRoom.findItembyName(cmds[1])
+                itemToTake = player.currentRoom.findItembyName(" ".join(cmds[1:]))
                 if itemToTake is not None:
                     player.addItem(itemToTake)
                     player.currentRoom.removeItem(itemToTake)
+                    print(f"You have picked up {itemToTake.name}")
                     if len(recent_item) > 0:
                         recent_item.pop()
-                    recent_item.append(cmds[1])
+                    recent_item.append(" ".join(cmds[1:]))
                 else:
                     print("You do not see that item.")
         elif cmds[0] == "drop":
             if cmds[1] == "it":
-                itemToTake = player.findItembyName(recent_item[0])
-                if itemToTake is not None:
-                    player.removeItem(itemToTake)
-                    player.currentRoom.addItem(itemToTake)
+                itemToDrop = player.findItembyName(recent_item[0])
+                if itemToDrop is not None:
+                    player.removeItem(itemToDrop)
+                    player.currentRoom.addItem(itemToDrop)
+                    print(f"You have dropped {itemToDrop.name}")
                 else:
                     print("You are not holding that item.")
             else:
-                itemToTake = player.findItembyName(cmds[1])
+                itemToDrop = player.findItembyName(" ".join(cmds[1:]))
                 if itemToTake is not None:
-                    player.removeItem(itemToTake)
-                    player.currentRoom.addItem(itemToTake)
+                    player.removeItem(itemToDrop)
+                    player.currentRoom.addItem(itemToDrop)
+                    print(f"You have dropped {itemToDrop.name}")
                     if len(recent_item) > 0:
                         recent_item.pop()
-                    recent_item.append(cmds[1])                    
+                    recent_item.append(" ".join(cmds[1:]))                    
                 else:
                     print("You are not holding that item.")
         else:
