@@ -32,7 +32,7 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 a = [7, 6, 5, 4]
 
 # What thing do you have to add to make this work?
-print(f2(a))    # Should print 22
+print(f2(*a))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
@@ -59,9 +59,9 @@ print(f3(8))     # Should print 9
 
 # def f4(...
 
-def f4(*kwargs):
-    for key, value in kwargs:
-        print("key: {:key}, value: {:value}".format(key, value))
+def f4(**kwargs):
+    for key, value in kwargs.items():
+        print("key: {0}, value: {1}".format(key, value))
 
 
 # Should print
@@ -81,4 +81,4 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+f4(**d)
