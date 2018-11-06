@@ -1,5 +1,6 @@
 from room import Room
-
+from player import Player
+from item import Item
 # Declare all the rooms
 
 room = {
@@ -49,3 +50,61 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+items = {
+    'Small Knife': Item('Small Knife', True),
+    'Torch': Item('Torch', True),
+    'Matches': Item('Matches'),
+    'Rations': Item('Rations'),
+    'Cigarettes': Item('Cigarettes'),
+    '9mm Pistol': Item('9mm Pistol', True),
+    '9mm Ammunition': Item('9mm Ammunition', True)
+}
+
+# initialize the player to be outside
+player = Player(room['outside'])
+
+while True:
+    # print the current room
+    print("\n CURRENT ROOM:\n" + "  " + player.room.name + "\n" + "    " + player.room.description + "\n")
+
+    command = input("Please enter a direction to move: [NORTH] [SOUTH] [EAST] [WEST]. \n Input [QUIT] to leave the game. \n\n Command: ")
+
+    if command.upper() == 'QUIT':
+        break
+
+    elif command.upper() == 'NORTH':
+        if player.room.n_to:
+            player.room = player.room.n_to
+            print(f"\n You move north into the {player.room.name}. {player.room.description}")
+        else:
+            print("\n There is nowhere to move north.")
+            continue
+
+    elif command.upper() == 'SOUTH':
+        if player.room.s_to:
+            player.room = player.room.s_to
+            print(f"\n You move south into the {player.room.name}. {player.room.description}")
+        else:
+            print('\n There is nowhere to move south.')
+            continue
+
+    elif command.upper() == 'EAST':
+        if player.room.e_to:
+            player.room = player.room.e_to
+            print(f"\n You move ease into the {player.room.name}. {player.room.description}")
+        else:
+            print("\n There is nowhere to move east.")
+            continue
+
+    elif command.upper() == 'WEST':
+        if player.room.w_to:
+            player.room = player.room.w_to
+            print(f"\n You move west into the {player.room.name}. {player.room.description}")
+        else:
+            print("\n There is nowhere to move west.")
+            continue
+
+    else:
+        print("\n Unknown command, please try again.")
