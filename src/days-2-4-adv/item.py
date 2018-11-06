@@ -3,6 +3,7 @@ class Item:
         self.name = name
         self.description = description
         self.treasure = False
+        self.lightsource = False
 class LightSource(Item):
     def __init__(self, name, description):
         super().__init__(name, description)

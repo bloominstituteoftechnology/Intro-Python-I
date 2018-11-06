@@ -19,8 +19,16 @@ the distance, but there is no way across the chasm."""),
 to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+chamber! Sadly, it has already been completely emptied except 
+for the remains of a previous adventurer. The only exit is to the south."""),
+
+    'throne': Room("Throne Room",
+"""The room opens up immensely, wide enough to
+fit over a hundred people and a ceiling that
+reached very high. Along the top of the walls
+there are windows that light the room from the
+outside. Across from the entance on the other
+side of the room, you notice a throne.""")
 }
 
 
@@ -28,9 +36,10 @@ earlier adventurers. The only exit is to the south."""),
 
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
+room['foyer'].w_to = room['overlook']
 room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
+room['foyer'].n_to = room['throne']
+room['overlook'].e_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
@@ -38,6 +47,7 @@ room['treasure'].s_to = room['narrow']
 rock = Item("Rock", "This is a rock")
 lantern = LightSource("Lantern", "A lantern that emits light.")
 coins = Treasure("Coins", "A small pile of coins", 50)
+sword = Item("Sword", "A standard arming blade.")
 
 room['outside'].addItem(rock)
 room['foyer'].addItem(lantern)
@@ -45,6 +55,8 @@ room['overlook'].addItem(coins)
 
 room['outside'].light = True
 room['foyer'].light = True
+room['overlook'].light = True
+room['throne'].light = True
 
 
 
@@ -64,6 +76,7 @@ room['foyer'].light = True
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+recent_item = []
 
 validDirections = {"n": "n", "s": "s", "e": "e", "w": "w", "north": "n", "south": "s", "east": "e", "west": "w"}
 
@@ -90,18 +103,40 @@ while True:
             if cmds[1] in validDirections:
                 player.look(validDirections[cmds[1]])
         elif cmds[0] == "take":
-            itemToTake = player.currentRoom.findItembyName(cmds[1])
-            if itemToTake is not None:
-                player.addItem(itemToTake)
-                player.currentRoom.removeItem(itemToTake)
+            if cmds[1] == "it":
+                itemToTake = player.currentRoom.findItembyName(recent_item[0])
+                if itemToTake is not None:
+                    player.addItem(itemToTake)
+                    player.currentRoom.removeItem(itemToTake)
+                else:
+                    print("You do not see that item.")
             else:
-                print("You do not see that item.")
+                itemToTake = player.currentRoom.findItembyName(cmds[1])
+                if itemToTake is not None:
+                    player.addItem(itemToTake)
+                    player.currentRoom.removeItem(itemToTake)
+                    if len(recent_item) > 0:
+                        recent_item.pop()
+                    recent_item.append(cmds[1])
+                else:
+                    print("You do not see that item.")
         elif cmds[0] == "drop":
-            itemToTake = player.findItembyName(cmds[1])
-            if itemToTake is not None:
-                player.removeItem(itemToTake)
-                player.currentRoom.addItem(itemToTake)
+            if cmds[1] == "it":
+                itemToTake = player.findItembyName(recent_item[0])
+                if itemToTake is not None:
+                    player.removeItem(itemToTake)
+                    player.currentRoom.addItem(itemToTake)
+                else:
+                    print("You are not holding that item.")
             else:
-                print("You are not holding that item.")
+                itemToTake = player.findItembyName(cmds[1])
+                if itemToTake is not None:
+                    player.removeItem(itemToTake)
+                    player.currentRoom.addItem(itemToTake)
+                    if len(recent_item) > 0:
+                        recent_item.pop()
+                    recent_item.append(cmds[1])                    
+                else:
+                    print("You are not holding that item.")
         else:
             print("I did not understand that command.")  
