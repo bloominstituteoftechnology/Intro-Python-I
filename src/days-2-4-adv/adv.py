@@ -1,10 +1,10 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons."),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -38,6 +38,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+p = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +50,25 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+def start_game():
+    valid_moves = ['n', 's', 'e', 'w', 'q']
+
+    while True:
+        print(f'You are currently in the {p.room.name}.')
+        print(f'{p.room.description}')
+
+        next_move = input('\nWhich direction do you want to go? (n/s/e/w):')
+
+        if next_move.lower() not in valid_moves:
+            print('Wrong move.')
+        elif next_move.lower() == 'q':
+            return print('See ya!')
+        elif hasattr(p.room, f'{next_move.lower()}_to'):
+            p.room = getattr(p.room, f'{next_move.lower()}_to')
+        else:
+            print('There is nothing there. Pick another direction.')
+        
+        print('========')
+
+start_game()
