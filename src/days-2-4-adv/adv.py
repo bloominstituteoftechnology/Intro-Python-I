@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,6 +39,8 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(input("Your hero's name?"), room['outside'])
+print(f'Welcome {player.name}.') if player.name else print("Please enter a name.")
 
 # Write a loop that:
 #
