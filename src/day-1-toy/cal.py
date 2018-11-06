@@ -29,7 +29,7 @@ def cal():
         year = int(arguments[1])
 
     c = calendar.TextCalendar(calendar.SUNDAY)
-    str = c.formatmonth(year, month, 0, 0)
+    str = c.formatmonth(year, month, 3, 1)
     print(str)
 
 

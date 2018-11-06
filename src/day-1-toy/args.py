@@ -4,7 +4,7 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-#def f1(...
+# def f1(...
 
 
 def f1(arg1, arg2):
@@ -13,17 +13,17 @@ def f1(arg1, arg2):
 
 print(f1(1, 2))
 
-# Write a function f2 that takes any number of iteger arguments and prints the
+# Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # def f2(...
 
 
 def f2(*args):
-    sum = 0
+    sum1 = 0
     for i in args:
-        sum = sum + i
-    return sum
+        sum1 = sum1 + i
+    return sum1
 
 
 print(f2(1))                    # Should print 1
@@ -40,7 +40,7 @@ print(f2(*a))    # Should print 22
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments. Google "python default arguments" for a hint.
 
-#def f3(...
+# def f3(...
 
 
 def f3(arg1, arg2 = 0):
@@ -59,7 +59,7 @@ print(f3(8))     # Should print 9
 #
 # Google "python keyword arguments".
 
-#def f4(...
+# def f4(...
 
 
 def f4(**kwargs):
