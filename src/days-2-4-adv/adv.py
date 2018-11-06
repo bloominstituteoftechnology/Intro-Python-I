@@ -4,7 +4,10 @@ from player import Player
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons."),
+    'outside':  Room(
+                    "Outside Cave Entrance",
+                    "North of you, the cave mount beckons."
+                ),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -59,16 +62,15 @@ def start_game():
         print(f'{p.room.description}')
 
         next_move = input('\nWhich direction do you want to go? (n/s/e/w):')
+        print('\n==========')
 
         if next_move.lower() not in valid_moves:
-            print('Wrong move.')
+            print('Invalid move. \n')
         elif next_move.lower() == 'q':
             return print('See ya!')
         elif hasattr(p.room, f'{next_move.lower()}_to'):
             p.room = getattr(p.room, f'{next_move.lower()}_to')
         else:
-            print('There is nothing there. Pick another direction.')
-        
-        print('========')
+            print('There is nothing there. Pick another direction. \n')
 
 start_game()
