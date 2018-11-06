@@ -54,8 +54,27 @@ room['treasure'].s_to = room['narrow']
 #
 # If the user enters "q", quit the game.
 
+# Global vars
 player = Player("Nicocchi", room['outside'])
 player_inp = ''
+
+
+# Set the player's name
+def set_init_player():
+    global player
+
+    # Ask the player for the character name
+    user_input = input("\nEnter Your Character's Name\n")
+
+    # Ask the player if the name is correct
+    result = input(f'\nAre you sure {user_input} is the right name? [y] yes or [n] no?\n')
+
+    # If the name is right, set the player and continue the game,
+    # else, loop this function
+    if result == 'y':
+        player = Player(user_input, room['outside'])
+    else:
+        set_init_player()
 
 
 # Gets the player's input and sets it in the global var user
@@ -72,6 +91,10 @@ def screen_message():
         print(element)
 
 
+# START GAME
+# Initialize the character input, display the room message and initialize the player's input
+# These three functions run once then the while loop takes over
+set_init_player()
 screen_message()
 player_input()
 
