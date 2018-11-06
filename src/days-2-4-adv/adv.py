@@ -9,39 +9,44 @@ room = {
                     "North of you, the cave mount beckons."
                 ),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+    'foyer':    Room(
+                    "Foyer",
+                    "Dim light filters in from the south. Dusty passages run north and east."
+                ),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+    'overlook': Room(
+                    "Grand Overlook",
+                    "A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."
+                ),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+    'narrow':   Room(
+                    "Narrow Passage",
+                    "The narrow passage bends here from west to north. The smell of gold permeates the air."
+                ),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+    'treasure': Room(
+                    "Treasure Chamber",
+                    "You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."
+                )
 }
 
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['outside'].n_to    = room['foyer']
+room['foyer'].s_to      = room['outside']
+room['foyer'].n_to      = room['overlook']
+room['foyer'].e_to      = room['narrow']
+room['overlook'].s_to   = room['foyer']
+room['narrow'].w_to     = room['foyer']
+room['narrow'].n_to     = room['treasure']
+room['treasure'].s_to   = room['narrow']
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-p = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -54,22 +59,28 @@ p = Player(room['outside'])
 #
 # If the user enters "q", quit the game.
 
+p = Player(room['outside'])
+
 def start_game():
     valid_moves = ['n', 's', 'e', 'w', 'q']
+    currRoom = p.room
 
     while True:
-        print(f'You are currently in the {p.room.name}.')
-        print(f'{p.room.description}')
+        print(f'You are currently in the {currRoom.name}.')
+        print(f'{currRoom.description}')
 
         next_move = input('\nWhich direction do you want to go? (n/s/e/w):')
+        
         print('\n==========')
+
+        room_attr = f'{next_move.lower()}_to'
 
         if next_move.lower() not in valid_moves:
             print('Invalid move. \n')
         elif next_move.lower() == 'q':
             return print('See ya!')
-        elif hasattr(p.room, f'{next_move.lower()}_to'):
-            p.room = getattr(p.room, f'{next_move.lower()}_to')
+        elif hasattr(currRoom, room_attr):
+            currRoom = getattr(currRoom, room_attr)
         else:
             print('There is nothing there. Pick another direction. \n')
 
