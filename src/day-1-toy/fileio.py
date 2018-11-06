@@ -1,5 +1,5 @@
 # Use open to open file "foo.txt" for reading
-f = open("foo.text", "r")
+f = open("foo.txt", "r")
 # Print all the lines in the file
 print(f.read())
 # Close the file
