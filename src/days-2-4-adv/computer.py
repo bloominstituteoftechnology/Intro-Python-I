@@ -1,12 +1,12 @@
 from item import Item
 
 class Computer(Item):
-    def __init__(self, name, power):
+    def __init__(self, name, power=10):
         Item.__init__(self, name)
         self.power = power
         self.picked_up = False
         self.switched_on = False
-        
+
     def on_take(self):
         self.picked_up = True
 

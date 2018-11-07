@@ -5,6 +5,7 @@ from item import Item
 from treasure import Treasure
 from lightsource import LightSource
 from potion import Potion
+from computer import Computer
 from subprocess import call
 
 
@@ -19,9 +20,12 @@ items = {
     "JohnWick": Item("JohnWick"),
     "torch": LightSource("torch"),
     "ingot": Treasure("ingot", 120),
-    "potion": Potion("potion", 100)
+    "potion": Potion("potion", 100),
+    "laptop": Computer("laptop")
 }
 
+# globals are bad mkay
+has_computer = False
 # Declare all the rooms
 
 room = {
@@ -160,7 +164,14 @@ while True:
             consumable.on_use(player)
         else:
             logError("\nyou can't drink that!\n")
-
+    elif command == "power":
+        pc = items[target]
+        if isinstance(pc, Computer):
+            global has_computer
+            consumable.on_use()
+            has_computer = True
+        else:
+            logError("\nyou can't power that up!\n")
     elif command == "drop":
             if not player.items:
                 logError("You rummage in your knapsack but find nothing! You may need to rething your life choices and preperation skills at this point!")
@@ -178,7 +189,8 @@ while True:
         print("\nYOU CAN'T HANDLE THE TRUTH!\n")
 
     elif command.upper() == "PING":
-        call(["ping", str(target)])
+        if has_computer:
+            call(["ping", str(target)])
 
     elif command.upper() == "CLEAR":
         call(["clear"])
