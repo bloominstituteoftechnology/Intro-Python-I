@@ -36,12 +36,13 @@ class Player:
             print(f' [{Fore.GREEN}{count}{Style.RESET_ALL}] {item.name} - {item.description}')
 
     def pickup_item(self, item):
+        print('pickup item')
         if self.room.contains(item):
+            print(f'\n{Fore.GREEN}{item.name}{Style.RESET_ALL} Picked up.')
             self.inventory.append(item)
             self.room.remove_item(item)
-            print(f'\n{item} Picked up.')
         else:
-            print(f'\n{item} not found.')
+            print(f'\n{item.name} not found.')
 
     def drop_item(self, item):
         bl = False
@@ -50,10 +51,10 @@ class Player:
                 bl = True
                 self.inventory.remove(item)
                 self.room.add_item(item)
-                print(f'\n{item} has been dropped')
+                print(f'\n{Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}has been dropped{Style.RESET_ALL}')
 
         if bl is False:
-            print(f'\n{item} is not in the inventory')
+            print(f'\n{Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}is not in the inventory{Style.RESET_ALL}')
 
     def look_around(self):
         if len(self.room.inventory) < 1:

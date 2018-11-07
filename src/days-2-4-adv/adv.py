@@ -148,7 +148,7 @@ while not player_inp == 'q':
         if item_exists(player_inp[7:]):
             player.pickup_item(items[player_inp[7:].capitalize()])
         else:
-            print(f"{player_inp[7:]} is not in the room")
+            print(f'You looked for a {player_inp[7:]}, but did not find anything')
     elif player_inp[:4] == 'drop':
         if item_exists(player_inp[5:]):
             player.drop_item(items[player_inp[5:].capitalize()])
