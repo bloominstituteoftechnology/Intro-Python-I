@@ -15,4 +15,5 @@ if num % 2 == 0:
     
 odds = [a for a in num if a not in evens]
 
-if (len.evens = 1) print('Even!')
+if (len.evens = 1):
+    print('Even!')
