@@ -5,13 +5,13 @@ from item import Item
 
 
 items = {
-    'Small Knife': Item('Small Knife', 'A small cooking knife.', True),
+    'Knife': Item('Knife', 'A small cooking knife.', True),
     'Torch': Item('Torch', 'An unlit torch', True),
     'Matches': Item('Matches', 'Used for starting fires or lighting torches.'),
     'Rations': Item('Rations', 'Well-preserved food'),
     'Cigarettes': Item('Cigarettes', 'Adventuring can be stressful.'),
-    '9mm Pistol': Item('9mm Pistol', 'A standard issue 9mm Pistol', True),
-    '9mm Ammunition': Item('9mm Ammunition', 'Ammunition for 9mm weapons.', True)
+    'Pistol': Item('Pistol', 'A standard issue 9mm Pistol', True),
+    'Ammunition': Item('Ammunition', 'Ammunition for 9mm weapons.', True)
 }
 
 
@@ -22,7 +22,7 @@ room = {
                      [items['Torch']]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [items['Matches'], items['Small Knife']]),
+passages run north and east.""", [items['Matches'], items['Knife']]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -80,13 +80,19 @@ def look(room, player):
             print(i.name + ': ' + i.description + '\n')
         print('====================')
 
+def commands():
+    print(f'Commands: [NORTH] [SOUTH] [EAST] [WEST]. \n Use [LOOK] to look around. \n Input [QUIT] to leave the game. \n Use [GET] and [DROP] to manage items.')
 
 while True:
 
+    #print command instructions
+    print('Type "commands" to see full command list.')
+
     # print the current room
     print("==================== \n CURRENT ROOM:\n" + "  " + player.room.name + "\n" + "    " + player.room.description + "\n ====================")
+    
 
-    userInput = input("Please enter a command: [NORTH] [SOUTH] [EAST] [WEST]. \n Use [LOOK] to look around. \n Input [QUIT] to leave the game. \n\n Command: ").split(' ')
+    userInput = input(">>: ").split(' ')
 
     # parse the input if more than 2 commands
     if 1 <= len(userInput) <= 2:
@@ -96,6 +102,9 @@ while True:
 
     if command.upper() == 'QUIT':
         break
+
+    elif command.upper() == 'COMMANDS':
+        commands()
 
     elif command.upper() == 'NORTH':
         if player.room.n_to:
