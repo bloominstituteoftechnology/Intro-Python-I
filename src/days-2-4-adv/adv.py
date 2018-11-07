@@ -1,5 +1,7 @@
 from room import Room
 from player import Player
+from item import Item
+
 
 
 # Declare all the rooms
@@ -35,6 +37,10 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+rock = Item("Rock", "This is a rock")
+
+room['outside'].addItem(rock)
+
 #
 # Main
 #
@@ -54,34 +60,41 @@ room['treasure'].s_to = room['narrow']
 #
 # If the user enters "q", quit the game.
 
+validDirections = {"n": "n", "s": "s", "e": "e", "w": "w", "north": "n", "south": "s", "east": "e", "west": "w"}
 
 
 player = Player(input("What is your name, please?"), room['outside'])
  
 while True:
-    print(player.currentRoom.name + "\n" + player.currentRoom.description)
-    cmd = input("-> ")
-    if cmd == "q":
-        break
-    elif cmd == "n":
-        if player.currentRoom.n_to is not None:
-            player.currentRoom = player.currentRoom.n_to
+    cmds = input("-> ").lower().split(" ")
+    if len (cmds) == 1:
+        if cmds [0] == "q":
+            break
+        elif cmds[0] in validDirections:
+            player.travel(validDirections[cmds[0]])
+        elif cmds[0] == "look":
+            player.look()
+        elif cmds[0] == "i" or cmds[0] == "inventory":
+            player.printInventory()
         else:
-            print("That leads to the wrong direction")
-    elif cmd == "s":
-        if player.currentRoom.s_to is not None:
-            player.currentRoom = player.currentRoom.s_to
-        else:
-            print("That leads to the wrong direction")
-    elif cmd == "e":
-        if player.currentRoom.e_to is not None:
-            player.currentRoom = player.currentRoom.e_to
-        else:
-            print("That leads to the wrong direction")
-    elif cmd == "w":
-        if player.currentRoom.w_to is not None:
-            player.currentRoom = player.currentRoom.w_to
-        else:
-            print("That leads to the wrong direction")
+            print("I did not understand that command.") 
     else:
-        print("I did not understand that command.") 
+        if cmds [0] == "look":
+            if cmds[1] in validDirections:
+                player.look(validDirections[cmds[1]])
+        elif cmds[0] == "take":
+            itemToTake = player.currentRoom.findItembyName(cmds[1])
+            if itemToTake is not None:
+                player.addItem(itemToTake)
+                player.currentRoom.removeItem(itemToTake)
+            else:
+                print("You do not see that item.")
+        elif cmds[0] == "drop":
+            itemToTake = player.findItembyName(cmds[1])
+            if itemToTake is not None:
+                player.removeItem(itemToTake)
+                player.currentRoom.addItem(itemToTake)
+            else:
+                print("You are not holding that item.")
+        else:
+            print("I did not understand that command.")
