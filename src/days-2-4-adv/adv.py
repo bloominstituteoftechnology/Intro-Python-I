@@ -50,15 +50,15 @@ while True:
     print(player.location.description)
 
 # * Waits for user input and decides what to do.
-    input = input("Please enter a command: ")
+    userInputs = input("Please enter a command: ")
 
     # If the user enters "q", quit the game.
-    if input == "q":
+    if userInputs == "q":
         break
 
 # If the user enters a cardinal direction, attempt to move to the room there.
-    if input == "n" or input == "s" or input == "e" or input == "w":
-        newRoom = player.location.goToRoomInEnteredDirection(input)
+    if userInputs == "n" or userInputs == "s" or userInputs == "e" or userInputs == "w":
+        newRoom = player.location.goToRoomInEnteredDirection(userInputs)
        
         # If the movement isn't allowed, print an error message 
         if newRoom == None:
@@ -66,19 +66,5 @@ while True:
         else:
             # Else move the user to the room specified
             player.change_location(newRoom)
-
-    # If the user enters a cardinal direction, attempt to move to the room there.
-    """elif input == "n":
-      player.location = player.location.n_to
-    elif input == "s":
-      player.location = player.location.s_to
-    elif input == "e":
-      player.location = player.location.e_to
-    elif input == "w":
-      player.location = player.location.w_to
-    else:"""
-    # If the movement isn't allowed, print an error message 
-      #print("\n ===That direction is not allowed at this time=== \n") 
-
 
 

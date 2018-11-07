@@ -24,4 +24,3 @@ class Room:
 
   def __str__(self):
     return f"\n   {self.name}\n  {self.description}\n"
-    #return str(self.name) + "\n" +  str(self.description)
