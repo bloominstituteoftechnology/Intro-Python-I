@@ -32,7 +32,9 @@ print(f2(*a))    # Should print 22
 
 def f3(*arg):
     if len(arg) == 1:
-        return arg + 1
+        return arg[0] + 1
+    else:
+        return sum(arg)
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -46,7 +48,7 @@ print(f3(8))     # Should print 9
 #
 # Google "python keyword arguments".
 
-#def f4(...
+def f4()
 
 # Should print
 # key: a, value: 12
