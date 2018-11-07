@@ -14,7 +14,7 @@ class Waypoint(LatLon):
         super()
         self.name = name
     def __str__(self):
-        return f"Waypoint '{self.name}' {self.lat},{self.lon}"
+        return f"Waypoint {self.name} {self.lat},{self.lon}"
 
 # Make a class Geocache that can be passed parameters `name`, `difficulty`,
 # `size`, `lat`, and `lon` to the constructor. What should it inherit from?
@@ -41,3 +41,4 @@ g = Geocache("Newberry Views", 1.5, 2,44.052137, -121.41556)
 
 # Print it--also make this print more nicely
 print(g)
+print(isinstance(w, Geocache))

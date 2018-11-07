@@ -4,19 +4,29 @@ from player import Player
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",
+                     {'n': 'foyer', 's': None, 'e': None, 'w': None}
+    ),
 
     'foyer':    Room("Foyer",
-                     """Dim light filters in from the south. Dusty passages run north and east."""),
+                     """Dim light filters in from the south. Dusty passages run north and east.""",
+                     {'n': 'overlook', 's': 'outside', 'e': 'narrow', 'w': None}
+    ),
 
     'overlook': Room("Grand Overlook",
-                     """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."""),
+                     """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
+                     {'n': None, 's': 'foyer', 'e': None, 'w': None}
+    ),
 
     'narrow':   Room("Narrow Passage",
-                     """The narrow passage bends here from west to north. The smell of gold permeates the air."""),
+                     """The narrow passage bends here from west to north. The smell of gold permeates the air.""",
+                     {'n': 'treasure', 's': None, 'e': None, 'w': 'foyer'}
+    ),
 
     'treasure': Room("Treasure Chamber",
-                     """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."""),
+                     """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.""",
+                     {'n': None, 's': 'narrow', 'e': None, 'w': None}
+    ),
 }
 
 
@@ -37,7 +47,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 player_name = input("\nEnter your name: ") 
-player = Player(player_name, "outside")
+player = Player(player_name, room["outside"])
 
 # Write a loop that:
 #
@@ -46,79 +56,29 @@ player = Player(player_name, "outside")
 # * Waits for user input and decides what to do.
 #
 
-# def moving():
-#     print("Move around using north, south, east, & west")
-#     room = 'outside'
-
 while True:
     print("Move around using north, south, east, & west")
-    room = 'outside'    
+
     direction = input('input your direction: ')
     if direction == 'q' or direction == 'quit':
         print("Thanks for playing!\n")
         break
-    
-    # try:
-    #     direction = str(direction)
-    # except ValueError:
-    #     print("please enter a cardinal direction (n,e,w,s)")
-    #     continue
-    if room == 'outside' and direction == 'n':
-        # room[player.location] = room.player.location
-        # print(room)
-        if (room[player.location].n_to):
-            player.location = room[player.location].n_to
-        print('you\'re in the foyer')
-    elif room == 'outside':
-        if direction == 's' or direction == 'e' or direction == 'w':
-            print('cannot go that way')
-            continue
-        else:
-            print('not a direction')
-            continue
-    if room == 'foyer' and direction == 's':
-        room == 'outside'
-        print(room)
-    elif room == 'foyer':
-        if direction == 'n':
-            room == 'overlook'
-            print(room)
-            if direction == 'e':
-                room == 'narrow'
-                print(room)
-            if direction == 'w':
-                print('cannot go that way')
-                continue
-        else:
-            print('not a direction')
-            continue
-        if room == 'overlook':
-            if direction == 's':
-                room == 'foyer'
-                print(room)
-        elif direction == 'n' or direction == 'e' or direction == 'w':
-            print('cannot go that way')
-            continue
-    if room == 'narrow':
-        if direction == 'w':
-            room == 'foyer'
-            print(room)
-        if direction == 'n':
-            room == 'treasure'
-            print(room)
-        elif direction == 's' or direction == 'e':
-            print('cannot go that way')
-            continue
-    if room == 'treasure':
-        if direction == 's':
-            room == 'narrow'
-            print(room)
-        elif direction == 'n' or direction == 'e' or direction == 'w':
-            print('cannot go that way')
-            continue
-            
-# if __name__ == '__main__':
-#     moving()
+    if direction == 'myname':
+        print(f'your name is {player.name}')
+    if direction == 'mylocation':
+        print(f'your location is {player.location}')
+    if direction == 'myroom':
+        print(f'room is {room[outside]}')
+
+    try:
+        direction = str(direction)
+    except ValueError:
+        print('cannot do that')
+        continue
+
+    print(player.location)
+    player.location = player.try_move(direction)
+    print(f'You are in the {player.location.name}')
 
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
