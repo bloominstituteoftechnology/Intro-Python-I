@@ -135,7 +135,16 @@ while True:
                 new_item = items[target]
                 player.room.remove_item(new_item)
                 player.get(new_item)
-    
+    elif command == "drop":
+            if not player.items:
+                logError("You rummage in your knapsack but find nothing! You may need to rething your life choices and preperation skills at this point!")
+            elif not player.check_for_item(target):
+                logError("on closer inspection the knapsack does not contain this item.")
+            else:
+                dropped_item = items[target]
+                player.drop(dropped_item)
+                player.room.add_item(dropped_item)
+
     # tell me the truth
     elif command.upper() == "TELL ME THE TRUTH":
         print("\nYOU CAN'T HANDLE THE TRUTH!\n")
