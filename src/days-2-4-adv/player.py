@@ -33,8 +33,21 @@ class Player:
     def pickup_item(self, item):
         if self.room.contains(item):
             self.inventory.append(item)
+            self.room.remove_item(item)
         else:
             print(f'{item} not found.')
+
+    def drop_item(self, item):
+        bl = False
+        for itm in self.inventory:
+            if itm == item:
+                bl = True
+                self.inventory.remove(item)
+                self.room.add_item(item)
+                print(f'{item} has been dropped')
+
+        if bl is False:
+            print(f'{item} is not in the inventory')
 
     # Move the player north
     def move_north(self):

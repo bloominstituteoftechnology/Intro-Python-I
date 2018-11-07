@@ -103,22 +103,29 @@ def screen_message():
     for element in desc:
         print(element)
 
+
 # TODO: Simplify/Abstract this
 # Check if the item exists in the Items dict, and if exists,
 # Use the player pickup method to pickup the item, if not,
 # return a message printing item not found
-
-
-def item_pickup(item):
+def item_exists(item, typeof='pickup'):
     bl = False
     for itm in items:
         if itm == item.capitalize():
             bl = True
-            player.pickup_item(items[item.capitalize()])
-            print(f'\nFound a {item}!')
+            if typeof == 'pickup':
+                player.pickup_item(items[item.capitalize()])
+                print(f'\nFound a {item}!')
+            elif typeof == 'drop':
+                player.drop_item(items[item.capitalize()])
+            else:
+                print(f'Type Error')
 
     if bl is False:
+        if typeof == 'drop':
+            print(f'\n{item} not in inventory')
         print(f'\n{item} not found')
+
 
 # START GAME
 # Initialize the character input, display the room message and initialize the player's input
@@ -141,7 +148,9 @@ while not player_inp == 'q':
     elif player_inp == 'w':
         player.move_west()
     elif player_inp[:6] == 'pickup':
-        item_pickup(player_inp[7:])
+        item_exists(player_inp[7:], 'pickup')
+    elif player_inp[:4] == 'drop':
+        item_exists(player_inp[5:], 'drop')
     elif player_inp == 'show inventory' or 'inventory':
         player.show_inventory()
     else:
