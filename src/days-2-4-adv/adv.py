@@ -36,7 +36,7 @@ room = {
                     "Foyer",
                     """Dim light filters in from the south. Dusty passages run north and east.""",
                     False,
-                    [],
+                    [items['potion']],
                     {'north': 'overlook', 'south': 'outside', 'east': 'narrow', 'west': None},
                     ),
 
@@ -152,6 +152,14 @@ while True:
                     if not new_item.picked_up:
                         player.gold += new_item.value
                         new_item.on_take()
+    
+    elif command == "drink":
+        consumable = items[target]
+        if isinstance(consumable, Potion):
+            consumable.on_use(player)
+        else:
+            logError("\nyou can't drink that!\n")
+
     elif command == "drop":
             if not player.items:
                 logError("You rummage in your knapsack but find nothing! You may need to rething your life choices and preperation skills at this point!")

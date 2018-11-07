@@ -12,4 +12,5 @@ class Potion(Item):
     def on_drop(self): pass
 
     def on_use(self, target): 
+      print("you consumed a potion")
       target.health += self.power
