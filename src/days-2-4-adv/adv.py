@@ -74,11 +74,11 @@ player = Player(room['outside'])
 def look(room, player):
     if len(room.items) == 0:
         print("====================\n You don't see anything useful here. \n ====================")
-    if len(room.items) >= 1:
-        print(f'==================== \n You notice the following:\n')
-        for i in room.items:
-            print(i.name + ': ' + i.description + '\n')
-        print('====================')
+
+    print(f'==================== \n You notice the following:\n')
+    for i in room.items:
+        print(i.name + ': ' + i.description + '\n')
+    print('====================')
 
 def commands():
     print(f'Commands: [NORTH] [SOUTH] [EAST] [WEST]. \n Use [LOOK] to look around. \n Input [QUIT] to leave the game. \n Use [GET]/[TAKE] and [DROP] to manage items. \n You can check your inventory using [INVENTORY] or [I].')
