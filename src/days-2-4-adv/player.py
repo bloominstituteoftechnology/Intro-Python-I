@@ -15,10 +15,20 @@ class Player:
         self.room = room
         self.previous_room = room
         self.direction = 'north'
+        self.inventory = []
 
     # Return a formatted value of the Player class
     def __str__(self):
         return f"Name: {self.name}, Room: {self.room}"
+
+    def show_inventory(self):
+        if len(self.inventory) < 1:
+            print("No items in inventory")
+            return
+
+        for d in self.inventory:
+            for key in d:
+                print("{}: {}".format(key, d[key]))
 
     # Move the player north
     def move_north(self):

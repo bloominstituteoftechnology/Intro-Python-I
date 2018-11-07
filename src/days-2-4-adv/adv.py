@@ -112,6 +112,8 @@ while not player_inp == 'q':
         player.move_east()
     elif player_inp == 'w':
         player.move_west()
+    elif player_inp == 'inventory':
+        player.show_inventory()
     else:
         print("Invalid selection. Please try again.\n")
 
