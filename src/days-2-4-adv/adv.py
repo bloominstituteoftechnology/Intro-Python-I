@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Item
+from treasure import Treasure
 
 
 ## declare some items [ will elaborate and subclass some of these later ]
@@ -13,7 +14,7 @@ items = {
     "Notepad": Item("Notepad"),
     "JohnWick": Item("JohnWick"),
     "torch": Item("torch"),
-    "ingot": Item("ingot")
+    "ingot": Treasure("ingot")
 }
 
 # Declare all the rooms
@@ -135,6 +136,10 @@ while True:
                 new_item = items[target]
                 player.room.remove_item(new_item)
                 player.get(new_item)
+                if isinstance(new_item, Treasure):
+                    if not new_item.picked_up:
+                        player.gold += new_item.value
+                        new_item.on_take()
     elif command == "drop":
             if not player.items:
                 logError("You rummage in your knapsack but find nothing! You may need to rething your life choices and preperation skills at this point!")
