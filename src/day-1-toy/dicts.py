@@ -30,7 +30,11 @@ for i in waypoints:
     for x, y in i.items():
         print(y)
 
-## alternative solution
+# #I wonder why this form of the solution outputs digits for lat and lon instead of the strings data type that was specified.
+# for i in waypoints:
+# 	print ('latitude: %s, longitude: %s, name: %s' % (i["lat"],i["lon"],i["name"]))
+
+# # alternative solution
 # for w in waypoints:
 #     print("lat: %d, lon: %d, name: %s" % (w["lat"], w["lon"], w["name"]))
 
@@ -43,5 +47,5 @@ waypoints.append({
     "name": "bleep bloop place"
 })
 
-for i in waypoints:
-    print(i)
+# for i in waypoints:
+#     print(i)
