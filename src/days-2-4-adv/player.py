@@ -4,10 +4,12 @@ from lightsource import LightSource
 
 # created a simple constructor to take in a room to match the calling convention in my adv.py
 class Player:
-    def __init__(self, room, items=None):
+    def __init__(self, room, items=None, health=100):
         self.room = room
         self.items = [] if items is None else items
         self.gold = 0
+        self.health = health
+        self.attack = 0
 
     # class methods
 
