@@ -2,26 +2,6 @@ from room import Room
 from player import Player
 from item import Item
 
-# Declare all the rooms
-
-room = {
-    'outside':  Room("Outside Complex Entrance",
-                     "North of you, the enemy building with a large iron staircase"),
-
-    'foyer':    Room("Foyer", """The baked bean tin to the south of the random noises. Dusty
-passages run north and east."""),
-
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
-
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
-}
 
 ## declare some items [ will elaborate and subclass some of these later ]
 items = {
@@ -29,11 +9,56 @@ items = {
     "AK47": Item("AK47"),
     "Stiletto": Item("Stiletto"),
     "C4": Item("C4"),
-    "Katana": Item("Katana"),
+    "Katana": Item("katana"),
     "Notepad": Item("Notepad"),
-    "JohnWick": Item("JohnWick")
+    "JohnWick": Item("JohnWick"),
+    "torch": Item("torch"),
+    "ingot": Item("ingot")
 }
 
+# Declare all the rooms
+
+rooms = {
+    'outside':  Room(
+                    "Outside Cave Entrance",
+                    "North of you, the cave mount beckons.",
+                    True,
+                    [items['katana'], items['C4'], items['torch']],
+                    {'north': 'foyer', 'south': None, 'east': None, 'west': None},
+                    ),
+
+    'foyer':    Room(
+                    "Foyer",
+                    """Dim light filters in from the south. Dusty passages run north and east.""",
+                    False,
+                    [],
+                    {'north': 'overlook', 'south': 'outside', 'east': 'narrow', 'west': None},
+                    ),
+
+    'overlook': Room(
+                    "Grand Overlook",
+                    """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
+                    False,
+                    [],
+                    {'north': None, 'south': 'foyer', 'east': None, 'west': None}
+                    ),
+
+    'narrow':   Room(
+                    "Narrow Passage",
+                    """The narrow passage bends here from west to north. The smell of gold permeates the air.""",
+                    False,
+                    [],
+                    {'north': 'treasure', 'south': None, 'east': None, 'west': 'foyer'},
+                    ),
+
+    'treasure': Room(
+                    "Treasure Chamber",
+                    """You've found the long-lost treasure chamber! Sadly, it has already been almost completely emptied by earlier adventurers. The only exit is to the south.""",
+                    False,
+                    [items['ingot']],
+                    {'north': None, 'south': 'narrow', 'east': None, 'west': 'foyer'},
+                    )
+}
 
 # Link rooms together - refactored directions
 
