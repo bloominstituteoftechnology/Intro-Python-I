@@ -60,12 +60,14 @@ print (player.room.name)
 # individual items, or a combination of both
 # e.g. Room.add_items('sword', 'shield', ['treasure, 'crown', 'chalice'])
 
-
+room['outside'].add_items('rocks', ['skull', 'abandoned armor'])
 
 while True:
     print (' ')
     print ('Thy current location:', player.room.name)
     print ( textwrap.wrap(player.room.description) )
+    print ('Items found in this room')
+    print ( player.room.item_list)
     move = input('Where will you move next?     ')
     print ()
     try:
