@@ -17,3 +17,8 @@ class Weapon(Item):
         super().__init__(name, description)
         self.attack = value
         self.equippable = True
+class Armor(Item):
+    def __init__(self, name, description, value):
+        super().__init__(name, description)
+        self.defense = value
+        self.equippable = True

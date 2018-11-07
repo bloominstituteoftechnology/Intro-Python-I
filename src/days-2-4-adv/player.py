@@ -10,6 +10,7 @@ class Player:
         self.max_health = 20
         self.health = self.max_health
         self.attack = 0
+        self.defense = 0
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
@@ -49,7 +50,7 @@ class Player:
         for item in self.items:
             print(f"    {item.name}\n")
     def printStats(self):
-        print(f"Name: {self.name}\nHealth: {self.health}\nAttack: {self.attack}")
+        print(f"Name: {self.name}\nHealth: {self.health}\nAttack: {self.attack}\nDefense: {self.defense}")
     def addItem(self, item):
         if hasattr(item, 'treasure'):
             self.items.append(item)
@@ -73,7 +74,11 @@ class Player:
         self.equiped_items.append(item)
         if hasattr(item, 'attack'):
             self.attack = item.attack
+        if hasattr(item, 'defense'):
+            self.defense = item.defense
     def unequipItem(self, item):        
         self.equiped_items.remove(item)
         if hasattr(item, 'attack'):
             self.attack = self.attack - item.attack
+        if hasattr(item, 'defense'):
+            self.defense = self.defense - item.defense
