@@ -122,7 +122,7 @@ while True:
         if player.room.west_to:
             player.room = player.room.west_to
 
-    elif command == "inventory":
+    elif command == "inventory" or command == "i":
             if player.items:
                 player.inventory()
 
