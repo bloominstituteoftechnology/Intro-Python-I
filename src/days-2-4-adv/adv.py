@@ -140,5 +140,14 @@ while True:
                 print(f'You add the {item.name} to your inventory.')
             else:
                 print(f'There is no {target} here.')
+
+    elif command.upper() == 'DROP':
+        for item in player.inventory:
+            if target == item.name:
+                player.drop(item)
+                player.room.add_item(item)
+                print(f'You drop the {item.name} in the {player.room.name}.')
+
+
     else:
         print("\n Unknown command, please try again.")
