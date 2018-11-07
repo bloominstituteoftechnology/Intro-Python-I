@@ -25,6 +25,7 @@ items = {
 }
 
 # globals are bad mkay
+global has_computer
 has_computer = False
 # Declare all the rooms
 
@@ -41,7 +42,7 @@ room = {
                     "Foyer",
                     """Dim light filters in from the south. Dusty passages run north and east.""",
                     False,
-                    [items['potion']],
+                    [items['potion'], items["laptop"]],
                     {'north': 'overlook', 'south': 'outside', 'east': 'narrow', 'west': None},
                     ),
 
@@ -167,8 +168,7 @@ while True:
     elif command == "power":
         pc = items[target]
         if isinstance(pc, Computer):
-            global has_computer
-            consumable.on_use()
+            pc.on_use(target)
             has_computer = True
         else:
             logError("\nyou can't power that up!\n")
@@ -191,6 +191,8 @@ while True:
     elif command.upper() == "PING":
         if has_computer:
             call(["ping", str(target)])
+        else:
+            logError("ping? PING? What? Do you think you have some sort of computer or something?!?")
 
     elif command.upper() == "CLEAR":
         call(["clear"])
