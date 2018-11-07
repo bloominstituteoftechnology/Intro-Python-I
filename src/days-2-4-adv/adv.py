@@ -135,13 +135,13 @@ while not player_inp == 'q':
     # TODO: Abstract the command handler
     # if player chooses North
     if player_inp == 'n':
-        player.move_north()
+        player.movedir('north')
     elif player_inp == 's':
-        player.move_south()
+        player.movedir('south')
     elif player_inp == 'e':
-        player.move_east()
+        player.movedir('east')
     elif player_inp == 'w':
-        player.move_west()
+        player.movedir('west')
     elif player_inp == 'look around':
         player.look_around()
     elif player_inp[:6] == 'pickup':

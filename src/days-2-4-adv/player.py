@@ -59,44 +59,16 @@ class Player:
         for item in self.room.inventory:
             print(f' [ ] {item.name} - {item.description}')
 
-    # Move the player north
-    def move_north(self):
-        # Set direction
-        self.direction = 'north'
-
-        # Set new room, else, set previous room to current room so
-        # we don't have an infinite loop of the same room
-        if self.room.n_to:
-            self.previous_room = self.room
+    # Handles the movement of the Player
+    def movedir(self, direction):
+        self.direction = direction
+        if self.room.n_to and direction == 'north':
             self.room = self.room.n_to
-        else:
-            # self.previous_room = self.room
-            print(f'\n{self.name} tried to move to {self.direction} but was blocked. Try another direction.\n')
-
-    # Move the player south
-    def move_south(self):
-        self.direction = 'south'
-        if self.room.s_to:
-            self.previous_room = self.room
+        elif self.room.s_to and direction == 'south':
             self.room = self.room.s_to
-        else:
-            # self.previous_room = self.room
-            print(f'\n{self.name} tried to move to {self.direction} but was blocked. Try another direction.\n')
-
-    # Move the player east
-    def move_east(self):
-        self.direction = 'east'
-        if self.room.e_to:
+        elif self.room.e_to and direction == 'east':
             self.room = self.room.e_to
-        else:
-            # self.previous_room = self.room
-            print(f'\n{self.name} tried to move to {self.direction} but was blocked. Try another direction.\n')
-
-    # Move the player west
-    def move_west(self):
-        self.direction = 'west'
-        if self.room.w_to:
+        elif self.room.w_to and direction == 'west':
             self.room = self.room.w_to
         else:
-            # self.previous_room = self.room
-            print(f'\n{self.name} tried to move to {self.direction} but was blocked. Try another direction.\n')
+            print(f'\n{self.name} tried to move to {direction} but was blocked. Try another direction.\n')
