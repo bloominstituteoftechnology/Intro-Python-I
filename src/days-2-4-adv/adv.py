@@ -1,6 +1,7 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
+
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -38,6 +39,18 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+while True:
+    new_player = input("Your hero's name?")
+    if len(new_player) == 0:
+        print("Please enter your hero's name.\n")
+    else:
+        player = Player(new_player, room["outside"])
+        player.populate_inventory(
+            Item("Bread", "Some hard, crusty bread that looks good right about now.")
+        )
+        print(f"\n*~*~*~*~*~*\nWelcome to Myst...\n{player.name}\n*~*~*~*~*~*")
+        break"
 
 # Write a loop that:
 #
