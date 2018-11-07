@@ -2,7 +2,7 @@
 # description attributes.
 
 class Room:
-  def __init__(self, name, description, items):
+  def __init__(self, name, description):
     self.name = name
     self.description = description
     self.items = []
@@ -24,17 +24,21 @@ class Room:
       return None 
 
   def __str__(self):
-    return f"\n   {self.name}\n  {self.description}\n"
+    return f"\n   {self.name}\n  {self.description}\n   \n{self.items}"
 
   # Adds an item to a room
-  def addItem(self, item):
+  def add_item(self, item):
     self.items.append(item)
 
   # Removes an item from a room
-  def removeItem(self, item):
+  def remove_item(self, item):
     if len(self.items) > 0:
       for i in self.items:
         if i.name == item:
           self.items.remove(i)
     else:
       print('There is no item to remove')
+
+  # List items in the room
+  def list_items(self):
+    print(f"\n Here are the items in this room: {', '.join(item.name for item in self.items)}")

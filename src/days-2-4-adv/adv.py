@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -22,6 +23,11 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+# Declare all items
+
+rock = Item("Rock", "can be used a a weapon and good for building")
+sword = Item("Sword", "is a weapon and can be used for cutting and slicing things")
+coins = Item("Coins", "can be used to purchase things")
 
 # Link rooms together
 
@@ -33,6 +39,11 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+# Items in rooms
+room['outside'].add_item(rock)
+room['narrow'].add_item(coins)
+room['foyer'].add_item(sword)
 
 #
 # Main
@@ -48,17 +59,22 @@ while True:
 
 # * Prints the current description (the textwrap module might be useful here).
     print(player.location.description)
+    player.location.list_items()
 
 # * Waits for user input and decides what to do.
-    userInputs = input("Please enter a command: ")
+    userInputs = input("Please enter a command: ").split(' ')
+
+    if 1 <= len(userInputs) <= 2:
+        command = userInputs[0]
+        target = userInputs[1] if len(userInputs) == 2 else None
 
     # If the user enters "q", quit the game.
-    if userInputs == "q":
+    if command == "q":
         break
 
 # If the user enters a cardinal direction, attempt to move to the room there.
-    if userInputs == "n" or userInputs == "s" or userInputs == "e" or userInputs == "w":
-        newRoom = player.location.goToRoomInEnteredDirection(userInputs)
+    if command == "n" or command == "s" or command == "e" or command == "w":
+        newRoom = player.location.goToRoomInEnteredDirection(command)
        
         # If the movement isn't allowed, print an error message 
         if newRoom == None:
