@@ -21,8 +21,8 @@ class Player:
                 f'{self.name!r}, {self.location!r}, {self.inventory!r})')
     
     def addItems(self, items):
-        self.inventory.extend(items)
-    
+        # self.inventory.extend(items)
+        self.inventory.append(items)
     def removeItem(self, item):
         self.inventory.remove(item)
 

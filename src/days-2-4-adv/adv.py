@@ -16,26 +16,22 @@ from room import Room
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [item["rock"], "log", "rope"]),
+                     "North of you, the cave mount beckons", [item["rock"], item["log"], item["rope"]]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ["lamp", "chair"]),
+passages run north and east.""", [item["lamp"], item["chair"]]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", []),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ["hat", "hiking pole"]),
+to north. The smell of gold permeates the air.""", [item["hat"], item["hiking_pole"]]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", ["treasure chest", "shovel"]),
+earlier adventurers. The only exit is to the south.""", [item["treasure_chest"], "shovel"]),
 }
-
-# print(room["outside"])
-
-
 
 # Link rooms together
 room['outside'].n_to = room['foyer']
@@ -46,6 +42,9 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+# print(room['outside'].n_to)
+# print(item['rock'].description)
 
 ################ Main ################
 
@@ -82,14 +81,25 @@ while True:
         break
 
     if command[0] == ('get' or 'take'):
-        if command[1] not in item:
-            print('That item doesn\'t exist.')
-        if command[1] not in player1.location.items:
-            print('That item isn\'t in the room.')
-        if command[1] in player1.location.items:
-            print('ITS WORKING ')
-            player1.location.removeItem(f'{command[1]}')
-            player1.addItems([command[1]])
+        for i in range(len(player1.location.items)-1):
+            if command[1] == player1.location.items[i].name: 
+                player1.location.removeItem(item[command[1]])
+                player1.addItems(item[command[1]])
+                print(player1.location.items)
+
+
+
+    # if command[0] == ('get' or 'take'):
+    #     if command[1] not in item:
+    #         print('That item doesn\'t exist.')
+    #     if command[1] not in player1.location.items:
+    #         print('That item isn\'t in the room.')
+    #         print('That item isn\'t in 324232', player1.location.items[0].name)
+
+    #     if command[1] in player1.location.items:
+    #         print('ITS WORKING ')
+    #         player1.location.removeItem(f'{command[1]}')
+    #         player1.addItems([command[1]])
     
     if command[0] == 'drop':
         if command[1] in player1.inventory:
