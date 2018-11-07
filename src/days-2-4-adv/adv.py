@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -49,3 +50,77 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+player_name = input("\nEnter your name: ") 
+player = Player(player_name, "outside")
+
+```# def moving():
+#     print("Move around using north, south, east, & west")
+#     room = 'outside'
+
+while True:
+    print("Move around using north, south, east, & west")
+    room = 'outside'    
+    direction = input('input your direction: ')
+    if direction == 'q' or direction == 'quit':
+        print("Thanks for playing!\n")
+        break
+    
+    # try:
+    #     direction = str(direction)
+    # except ValueError:
+    #     print("please enter a cardinal direction (n,e,w,s)")
+    #     continue
+    if room == 'outside' and direction == 'n':
+        # room[player.location] = room.player.location
+        # print(room)
+        if (room[player.location].n_to):
+            player.location = room[player.location].n_to
+        print('you\'re in the foyer')
+    elif room == 'outside':
+        if direction == 's' or direction == 'e' or direction == 'w':
+            print('cannot go that way')
+            continue
+        else:
+            print('not a direction')
+            continue
+    if room == 'foyer' and direction == 's':
+        room == 'outside'
+        print(room)
+    elif room == 'foyer':
+        if direction == 'n':
+            room == 'overlook'
+            print(room)
+            if direction == 'e':
+                room == 'narrow'
+                print(room)
+            if direction == 'w':
+                print('cannot go that way')
+                continue
+        else:
+            print('not a direction')
+            continue
+        if room == 'overlook':
+            if direction == 's':
+                room == 'foyer'
+                print(room)
+        elif direction == 'n' or direction == 'e' or direction == 'w':
+            print('cannot go that way')
+            continue
+    if room == 'narrow':
+        if direction == 'w':
+            room == 'foyer'
+            print(room)
+        if direction == 'n':
+            room == 'treasure'
+            print(room)
+        elif direction == 's' or direction == 'e':
+            print('cannot go that way')
+            continue
+    if room == 'treasure':
+        if direction == 's':
+            room == 'narrow'
+            print(room)
+        elif direction == 'n' or direction == 'e' or direction == 'w':
+            print('cannot go that way')
+            continue```
