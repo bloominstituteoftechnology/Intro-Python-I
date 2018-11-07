@@ -94,7 +94,6 @@ def print_wrapped_lines(value = ''):
         print(element)
 
 def start_game():
-    # valid_moves = ['n', 's', 'e', 'w']
     valid_moves = {'n': 'north', 's': 'south', 'e': 'east', 'w': 'west'}
     currRoom = p.room
     inventory = p.items
@@ -123,7 +122,6 @@ def start_game():
                 print_wrapped_lines(f'Player has dropped the {item_name}.')
                 print('\n')
                 return view_inventory()
-                print('\n')
         print(text_divider)
         print(f'Your inventory does not contain: {item_name}.')
         return print('\n')
@@ -179,7 +177,7 @@ def start_game():
                 print_wrapped_lines('See ya!')
                 return print('/n')
             else:
-                print('\n')
+                print(text_divider)
                 continue
         
         else:
