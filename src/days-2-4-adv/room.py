@@ -17,7 +17,7 @@ class Room:
         self.s_to = ''
         self.e_to = ''
         self.w_to = ''
-        self.inventory = [{'potion': 'a simple health potion', 'book': 'a dusty old book'}]
+        self.inventory = []
 
     # Return a formatted value of the Room class
     def __str__(self):

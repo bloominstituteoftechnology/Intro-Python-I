@@ -4,6 +4,7 @@ from item import Item
 
 import textwrap
 
+# TODO: Abstract Rooms and Items to separate file
 # Declare all the rooms
 
 room = {
@@ -108,23 +109,15 @@ def screen_message():
 # Check if the item exists in the Items dict, and if exists,
 # Use the player pickup method to pickup the item, if not,
 # return a message printing item not found
-def item_exists(item, typeof='pickup'):
+def item_exists(item):
     bl = False
     for itm in items:
         if itm == item.capitalize():
             bl = True
-            if typeof == 'pickup':
-                player.pickup_item(items[item.capitalize()])
-                print(f'\nFound a {item}!')
-            elif typeof == 'drop':
-                player.drop_item(items[item.capitalize()])
-            else:
-                print(f'Type Error')
+            return True
 
     if bl is False:
-        if typeof == 'drop':
-            print(f'\n{item} not in inventory')
-        print(f'\n{item} not found')
+        return False
 
 
 # START GAME
@@ -138,6 +131,8 @@ player_input()
 
 # While the input is not q, keep get game going
 while not player_inp == 'q':
+
+    # TODO: Abstract the command handler
     # if player chooses North
     if player_inp == 'n':
         player.move_north()
@@ -147,15 +142,24 @@ while not player_inp == 'q':
         player.move_east()
     elif player_inp == 'w':
         player.move_west()
+    elif player_inp == 'look around':
+        player.look_around()
     elif player_inp[:6] == 'pickup':
-        item_exists(player_inp[7:], 'pickup')
+        if item_exists(player_inp[7:]):
+            player.pickup_item(items[player_inp[7:].capitalize()])
+        else:
+            print(f"{player_inp[7:]} is not in the room")
     elif player_inp[:4] == 'drop':
-        item_exists(player_inp[5:], 'drop')
+        if item_exists(player_inp[5:]):
+            player.drop_item(items[player_inp[5:].capitalize()])
+        else:
+            print(f"{player_inp[5:]} is not in inventory")
     elif player_inp == 'show inventory' or 'inventory':
         player.show_inventory()
     else:
         print("Invalid selection. Please try again.\n")
 
+    # TODO: Get rid of legacy code
     # if the player has a room, continue to display the
     # room message, else, display input message to avoid infinite loop of same room
     # if player.room and player.previous_room is not player.room:

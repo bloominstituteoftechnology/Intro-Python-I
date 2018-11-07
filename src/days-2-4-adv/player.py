@@ -22,7 +22,7 @@ class Player:
 
     def show_inventory(self):
         if len(self.inventory) < 1:
-            print("No items in inventory")
+            print("\nNo items in inventory")
             return
 
         print('\n Inventory')
@@ -34,8 +34,9 @@ class Player:
         if self.room.contains(item):
             self.inventory.append(item)
             self.room.remove_item(item)
+            print(f'\n{item} Picked up.')
         else:
-            print(f'{item} not found.')
+            print(f'\n{item} not found.')
 
     def drop_item(self, item):
         bl = False
@@ -44,10 +45,19 @@ class Player:
                 bl = True
                 self.inventory.remove(item)
                 self.room.add_item(item)
-                print(f'{item} has been dropped')
+                print(f'\n{item} has been dropped')
 
         if bl is False:
-            print(f'{item} is not in the inventory')
+            print(f'\n{item} is not in the inventory')
+
+    def look_around(self):
+        if len(self.room.inventory) < 1:
+            print("\n You looked around the room, but found no items")
+            return
+
+        print(f'\nYou looked around the room and found:')
+        for item in self.room.inventory:
+            print(f' [ ] {item.name} - {item.description}')
 
     # Move the player north
     def move_north(self):
