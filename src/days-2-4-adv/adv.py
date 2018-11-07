@@ -122,6 +122,10 @@ while True:
         if player.room.west_to:
             player.room = player.room.west_to
 
+    elif command == "inventory":
+            if player.items:
+                player.inventory()
+
     elif command == "get":
             if not player.room.items:
                 logError("There are no items in your grasp. maybe we need to rethink this!")
