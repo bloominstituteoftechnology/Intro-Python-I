@@ -9,7 +9,7 @@ items = {
     "AK47": Item("AK47"),
     "Stiletto": Item("Stiletto"),
     "C4": Item("C4"),
-    "Katana": Item("katana"),
+    "katana": Item("katana"),
     "Notepad": Item("Notepad"),
     "JohnWick": Item("JohnWick"),
     "torch": Item("torch"),
@@ -22,7 +22,6 @@ room = {
     'outside':  Room(
                     "Outside Cave Entrance",
                     "North of you, the cave mount beckons.",
-                    True,
                     [items['katana'], items['C4'], items['torch']],
                     {'north': 'foyer', 'south': None, 'east': None, 'west': None},
                     ),
@@ -30,7 +29,6 @@ room = {
     'foyer':    Room(
                     "Foyer",
                     """Dim light filters in from the south. Dusty passages run north and east.""",
-                    False,
                     [],
                     {'north': 'overlook', 'south': 'outside', 'east': 'narrow', 'west': None},
                     ),
@@ -38,7 +36,6 @@ room = {
     'overlook': Room(
                     "Grand Overlook",
                     """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
-                    False,
                     [],
                     {'north': None, 'south': 'foyer', 'east': None, 'west': None}
                     ),
@@ -46,7 +43,6 @@ room = {
     'narrow':   Room(
                     "Narrow Passage",
                     """The narrow passage bends here from west to north. The smell of gold permeates the air.""",
-                    False,
                     [],
                     {'north': 'treasure', 'south': None, 'east': None, 'west': 'foyer'},
                     ),
@@ -54,7 +50,6 @@ room = {
     'treasure': Room(
                     "Treasure Chamber",
                     """You've found the long-lost treasure chamber! Sadly, it has already been almost completely emptied by earlier adventurers. The only exit is to the south.""",
-                    False,
                     [items['ingot']],
                     {'north': None, 'south': 'narrow', 'east': None, 'west': 'foyer'},
                     )
@@ -94,6 +89,9 @@ player = Player(room['outside'])
 while True:
     # print the current room details formatted and coloured
     print("\n\x1b[1;36mYou are in the {}.".format(player.room.name))
+    print(player.room.description)
+    if player.room.items:
+            player.room.list_items()
 
     # * Waits for user input and decides what to do.
     command = input("PLEASE ENTER a Command to move : [NORTH] [SOUTH] [EAST] [WEST] or [QUIT] to exit the game >> ")
