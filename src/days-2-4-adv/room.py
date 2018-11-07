@@ -6,6 +6,10 @@ class Room:
     def __init__(self, name, desc):
         self.name = name
         self.desc = desc
+        self.n_to = None
+        self.s_to = None
+        self.e_to = None
+        self.w_to = None
 
     def __str__(self):
-        return f'{self.name}: {self.desc}'
+        return f'\n{self.name}\n {self.desc}\n'
