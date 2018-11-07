@@ -13,9 +13,9 @@ class Player:
     def __init__(self, name, room):
         self.name = name
         self.room = room
-        self.previous_room = room
+        self.previous_room = None
         self.direction = 'north'
-        self.inventory = []
+        self.inventory = {'sword': 'a metal sword', 'potion': 'a simple health potion'}
 
     # Return a formatted value of the Player class
     def __str__(self):
@@ -26,9 +26,10 @@ class Player:
             print("No items in inventory")
             return
 
-        for d in self.inventory:
-            for key in d:
-                print("{}: {}".format(key, d[key]))
+        print('\n Inventory')
+        print('+----------------------------------------------------------------------+')
+        for item in self.inventory:
+            print(f' [ ] {item}')
 
     # Move the player north
     def move_north(self):
@@ -41,7 +42,8 @@ class Player:
             self.previous_room = self.room
             self.room = self.room.n_to
         else:
-            self.previous_room = self.room
+            # self.previous_room = self.room
+            print(f'\n{self.name} tried to move to {self.direction} but was blocked. Try another direction.\n')
 
     # Move the player south
     def move_south(self):
@@ -50,7 +52,8 @@ class Player:
             self.previous_room = self.room
             self.room = self.room.s_to
         else:
-            self.previous_room = self.room
+            # self.previous_room = self.room
+            print(f'\n{self.name} tried to move to {self.direction} but was blocked. Try another direction.\n')
 
     # Move the player east
     def move_east(self):
@@ -58,7 +61,8 @@ class Player:
         if self.room.e_to:
             self.room = self.room.e_to
         else:
-            self.previous_room = self.room
+            # self.previous_room = self.room
+            print(f'\n{self.name} tried to move to {self.direction} but was blocked. Try another direction.\n')
 
     # Move the player west
     def move_west(self):
@@ -66,4 +70,5 @@ class Player:
         if self.room.w_to:
             self.room = self.room.w_to
         else:
-            self.previous_room = self.room
+            # self.previous_room = self.room
+            print(f'\n{self.name} tried to move to {self.direction} but was blocked. Try another direction.\n')

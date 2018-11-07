@@ -25,6 +25,8 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 
+
+
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -83,7 +85,7 @@ def set_init_player():
 # Gets the player's input and sets it in the global var user
 def player_input():
     global player_inp
-    player_inp = input("\n[n] North   [s] South   [e] East   [w] West   [q] Quit\n").lower()
+    player_inp = input("\nWhat do you do?\n").lower()
 
 
 # Display the screen message
@@ -119,9 +121,10 @@ while not player_inp == 'q':
 
     # if the player has a room, continue to display the
     # room message, else, display input message to avoid infinite loop of same room
-    if player.room and player.previous_room is not player.room:
-        screen_message()
-    else:
-        print(f'\n{player.name} tried to move to {player.direction} but was blocked. Try another direction.\n')
+    # if player.room and player.previous_room is not player.room:
+    #     screen_message()
+    # else:
+    #     print(f'\n{player.name} tried to move to {player.direction} but was blocked. Try another direction.\n')
 
+    screen_message()
     player_input()
