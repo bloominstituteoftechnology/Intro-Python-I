@@ -18,7 +18,7 @@ items = {
 
 # Declare all the rooms
 
-rooms = {
+room = {
     'outside':  Room(
                     "Outside Cave Entrance",
                     "North of you, the cave mount beckons.",
@@ -72,6 +72,10 @@ room['narrow'].north_to = room['treasure']
 room['treasure'].south_to = room['narrow']
 
 # helper functions
+
+# log errors in an orange colour ref: https://bixense.com/clicolors/
+def logError(err):
+    print(f'\x1b[1;33;40m\n{err}\x1b[0m')
 
 # print current room details
 def print_current_room_details(room):
