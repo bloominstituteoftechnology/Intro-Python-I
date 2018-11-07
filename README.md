@@ -4,24 +4,17 @@
 
 It's time to learn a new language! Python!
 
-Python is a popular, easy-to-use programming language that has significant
-traction in the field.
+Python is a popular, easy-to-use programming language that has significant traction in the field.
 
-Remember the goal is _learning to learn_, so keep track of what works for you
-and what doesn't as you go through the process of exploring Python.
+Remember the goal is _learning to learn_, so keep track of what works for you and what doesn't as you go through the process of exploring Python.
 
 ## Techniques for learning new languages
 
-* Try to relate things you already know in another language (e.g. what an
-  _array_ is) to the corresponding things in Python (e.g. a _list_) and how to
-  use them.
+* Try to relate things you already know in another language (e.g. what an _array_ is) to the corresponding things in Python (e.g. a _list_) and how to use them.
 
-* Write a bunch of "toy programs" that demonstrate different key features of the
-  language
+* Write a bunch of "toy programs" that demonstrate different key features of the language
 
-* Explore the standard library that's available for the language. Skim it
-  briefly for now--the idea isn't to memorize everything but to file away
-  generally what functionality is available.
+* Explore the standard library that's available for the language. Skim it briefly for now--the idea isn't to memorize everything but to file away generally what functionality is available.
 
 * Write a more substantial toy program that uses a variety of the features.
 
@@ -57,7 +50,7 @@ best for learning new languages.
 
    You can exit the virtual environment by typing `exit`.
 
-## Day 1
+## Days 1 and 2
 
 ### Goals
 
@@ -92,18 +85,21 @@ Suggested order for implementing the toy programs:
 * `cal` -- Experiment with module imports
 * `obj` -- Classes and objects
 
-## Day 2
+## Days 3 and 4
 
 ### Goals
 
-* Solidify the Python basics
-
+* Solidify the Python basics by implementing a simple text adventure game
 
 ### Summary
 
-* Implement a basic text adventure game
 * Add classes for rooms and the player
 * Add a simple parser that reads user input and performs actions
+* Add items to the game that the user can carry around
+* Make rooms able to hold multiple items
+* Make the player able to carry multiple items
+* Add two-word commands to the parser
+* Add the `get` and `drop` commands to the parser
 
 ### Instructions
 
@@ -113,29 +109,7 @@ This is in `src/adv/`. Check it out!
 
 * Put the Player class in `player.py`.
 
-* Follow the instructions `adv.py`.
-
-* Figure out what all those `.pyc` files are that appear after you successfully
-  run the program.
-
-## Day 3
-
-### Goals
-
-* Prepare for more OOP techniques
-* Practice classes and lists
-
-### Summary
-
-* Add items to the game that the user can carry around
-* Make rooms able to hold multiple items
-* Make the player able to carry multiple items
-* Add two-word commands to the parser
-* Add the `get` and `drop` commands to the parser
-
-### Instructions
-
-* Add an `Item` class in a file `item.py`.
+* Create a file called `item.py` and add an `Item` class in there.
 
   * This will be the _base class_ for specialized item types to be declared
     later.
@@ -144,7 +118,7 @@ This is in `src/adv/`. Check it out!
 
      * Hint: the name should be one word for ease in parsing later.
 
-* Add capability to add items to rooms.
+* Add the ability to add items to rooms.
 
   * The `Room` class should be extended with a `list` that holds the `Item`s
     that are currently in that room.
@@ -184,71 +158,46 @@ This is in `src/adv/`. Check it out!
 
      * If it's not there, print an error message telling the user so.
 
+     * Add an `on_take` method to `Item`. 
+
+        * Call this method when the `Item` is picked up by the player.
+
+        * The `Item` can use this to run additional code when it is picked up.
+
+     * Add an `on_drop` method to `Item`. Implement it similar to `on_take`.
+
 * Implement support for the verb `drop` followed by an `Item` name. This is the
   opposite of `get`/`take`.
 
 * Add the `i` and `inventory` commands that both show a list of items currently
   carried by the player.
 
-## Day 4
 
-### Goals
+## Stretch Goals
 
-* Practice inheritance
-* Practice method overriding
-* Be able to call superclass methods
+In arbitrary order:
 
-### Summary
+* Add more rooms
 
 * Add scoring
+
 * Subclass items into treasures
-* Subclass items into light sources
-* Add methods to notify items when they are picked up or dropped
-* Add light and darkness to the game
-
-### Instructions
-
-* Add a `score` to your `Player` class. Set it to 0.
-
-* Add a single word command, `score`, that the user can type in to see their
-  current score.
-
-* Add a subclass to `Item` called `Treasure`.
-
-  * The `Treasure` constructor should accept a name, description, and value.
-
-* During world creation, add three `Treasure`s to convenient `Room`s.
-
-* Add an `on_take` method to `Item`. 
-
-  * Call this method when the `Item` is picked up by the player.
-
-  * The `Item` can use this to run additional code when it is picked up.
-
-* Override `on_take` in `Treasure` so that the player gets the value of the
-  `Treasure` added to their `score` attribute _but only the first time the
-  treasure is picked up_.
-  
-  * If the treasure is dropped and picked up again later, the player should
-    _not_ have the value added to their score again.
-
-* Add an `on_drop` method to `Item`. Implement it similar to `on_take`.
 
 * Add a subclass to `Item` called `LightSource`.
 
-* During world creation, add a `lamp` `LightSource` to a convenient `Room`.
+  * During world creation, add a `lamp` `LightSource` to a convenient `Room`.
 
-* Override `on_drop` in `LightSource` that tells the player "It's not wise to
+  * Override `on_drop` in `LightSource` that tells the player "It's not wise to
   drop your source of light!" if the player drops it. (But still lets them drop
   it.)
 
-* Add an attribute to `Room` called `is_light` that is `True` if the `Room` is
+  * Add an attribute to `Room` called `is_light` that is `True` if the `Room` is
   naturally illuminated, or `False` if a `LightSource` is required to see what
   is in the room.
 
-* Modify the main loop to test if there is light in the `Room` (i.e. if
-  `is_light` is `True` **or** there is a `LightSource` item in the `Room`'s
-  contents **or** if there is a `LightSource` item in the `Player`'s contents).
+  * Modify the main loop to test if there is light in the `Room` (i.e. if
+    `is_light` is `True` **or** there is a `LightSource` item in the `Room`'s
+    contents **or** if there is a `LightSource` item in the `Player`'s contents).
 
   * If there is light in the room, display name, description, and contents as
     normal.
@@ -258,14 +207,12 @@ This is in `src/adv/`. Check it out!
   * Hint: `isinstance` might help you figure out if there's a `LightSource`
     among all the nearby `Item`s.
 
-* Modify the `get`/`take` code to print "Good luck finding that in the dark!" if
+  * Modify the `get`/`take` code to print "Good luck finding that in the dark!" if
   the user tries to pick up an `Item` in the dark.
 
-## Stretch Goals
+* Add methods to notify items when they are picked up or dropped
 
-In arbitrary order:
-
-* Add more rooms.
+* Add light and darkness to the game
 
 * Add more items to the game.
 
