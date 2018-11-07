@@ -3,6 +3,9 @@ from player import Player
 from item import Item
 # Declare all the rooms
 
+# Items -
+crate = Item("Wooden Crate", "Hmm... there might be something useful in there. If there were only a way I could open it")
+
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -48,11 +51,6 @@ Order to win:
 
 # Make a new player object that is currently in the 'outside' room.
 
-# Lets give the player some stuff in his inventory first
-cooked_chicken = Item("Cooked Chicken", "Yummy, delicious, and most importantly... it will give you 10 health")
-club = Item("Blunt Club", "While not the most efficient of weapons, it will get the job done. Eventually.")
-# user_1.pick_up(club) --> Starts the player off with a weapon
-
 while True:
     create_name = input("Choose a name adventurer: ")
 
@@ -77,7 +75,7 @@ while True:
 
 while True:
     print(f"\nCurrently in: {user_1.room.name}\n")
-    print(f"\n{user_1.room.description} \n")    
+    print(f"\n{user_1.room.description} \n")        
 
     # Print error message for invalid input
     invalid_input = "\n=== Your character looks confused. He cannot move there, please select another direction===\n"
