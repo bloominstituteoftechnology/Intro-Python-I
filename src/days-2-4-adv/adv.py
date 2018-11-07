@@ -80,7 +80,9 @@ while not done:
   s = input("\n\nWhich way would you like to go? (N, S, E, W)\n").strip().lower().split()
   if s[0] in ["n", "s", "w", "e"]:
     player.current = direction(s[0], player.current)
-    print("Current location: {}".format(player.current.name))
+    print("Current room: {}".format(player.current.name))
+  elif s[0] == "quit" or s[0] == "q":
+            done = True
   else:
     print("Unknown command {}".format(' '.join(s)))
 
