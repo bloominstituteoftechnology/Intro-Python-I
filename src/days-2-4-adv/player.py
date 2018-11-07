@@ -7,7 +7,6 @@ Player holds player name, room and direction information and movement
 methods.
 """
 
-
 class Player:
     # Initialize the properties of the class
     def __init__(self, name, room):
@@ -15,7 +14,7 @@ class Player:
         self.room = room
         self.previous_room = None
         self.direction = 'north'
-        self.inventory = {'sword': 'a metal sword', 'potion': 'a simple health potion'}
+        self.inventory = []
 
     # Return a formatted value of the Player class
     def __str__(self):
@@ -29,7 +28,13 @@ class Player:
         print('\n Inventory')
         print('+----------------------------------------------------------------------+')
         for item in self.inventory:
-            print(f' [ ] {item}')
+            print(f' [ ] {item.name} - {item.description}')
+
+    def pickup_item(self, item):
+        if self.room.contains(item):
+            self.inventory.append(item)
+        else:
+            print(f'{item} not found.')
 
     # Move the player north
     def move_north(self):

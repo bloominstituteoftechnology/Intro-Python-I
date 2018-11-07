@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 import textwrap
 
@@ -24,6 +25,11 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+items = {
+    'Sword': Item('Sword', 'A simple sword'),
+    'Potion': Item('Potion', 'A health potion'),
+    'Book': Item('Book', 'A dirty old book')
+}
 
 
 
@@ -37,6 +43,8 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+room['outside'].inventory = [items['Sword'], items['Book']]
 
 #
 # Main
@@ -95,10 +103,28 @@ def screen_message():
     for element in desc:
         print(element)
 
+# TODO: Simplify/Abstract this
+# Check if the item exists in the Items dict, and if exists,
+# Use the player pickup method to pickup the item, if not,
+# return a message printing item not found
+
+
+def item_pickup(item):
+    bl = False
+    for itm in items:
+        if itm == item.capitalize():
+            bl = True
+            player.pickup_item(items[item.capitalize()])
+            print(f'\nFound a {item}!')
+
+    if bl is False:
+        print(f'\n{item} not found')
 
 # START GAME
 # Initialize the character input, display the room message and initialize the player's input
 # These three functions run once then the while loop takes over
+
+
 set_init_player()
 screen_message()
 player_input()
@@ -114,7 +140,9 @@ while not player_inp == 'q':
         player.move_east()
     elif player_inp == 'w':
         player.move_west()
-    elif player_inp == 'inventory':
+    elif player_inp[:6] == 'pickup':
+        item_pickup(player_inp[7:])
+    elif player_inp == 'show inventory' or 'inventory':
         player.show_inventory()
     else:
         print("Invalid selection. Please try again.\n")

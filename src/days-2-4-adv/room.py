@@ -17,10 +17,18 @@ class Room:
         self.s_to = ''
         self.e_to = ''
         self.w_to = ''
+        self.inventory = {'potion': 'a simple health potion', 'book': 'a dusty old book'}
 
     # Return a formatted value of the Room class
     def __str__(self):
         return f"Name: {self.name}, Description: {self.description}"
 
+    def contains(self, item):
+        if item in self.inventory:
+            return True
+        else:
+            return False
 
-
+    def show_inv(self):
+        for d in self.inventory:
+            print(d)
