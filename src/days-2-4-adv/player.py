@@ -15,6 +15,14 @@ class Player:
     def drop(self, item):
         del self.inventory[self.inventory.index(item)]
 
+    def check_inventory(self):
+        if len(self.inventory) == 0:
+            print(f'There are no items in your inventory.')
+        else:
+            print(f'Your inventory contains the following: \n')
+            for item in self.inventory:
+                print(item.name + '\n')
+
     def equip(self, item):
         # put item in equipment and remove from inventory
         if item.equippable == True:

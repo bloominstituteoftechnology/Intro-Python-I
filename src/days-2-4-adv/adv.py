@@ -81,7 +81,7 @@ def look(room, player):
         print('====================')
 
 def commands():
-    print(f'Commands: [NORTH] [SOUTH] [EAST] [WEST]. \n Use [LOOK] to look around. \n Input [QUIT] to leave the game. \n Use [GET] and [DROP] to manage items.')
+    print(f'Commands: [NORTH] [SOUTH] [EAST] [WEST]. \n Use [LOOK] to look around. \n Input [QUIT] to leave the game. \n Use [GET]/[TAKE] and [DROP] to manage items. \n You can check your inventory using [INVENTORY] or [I].')
 
 while True:
 
@@ -141,7 +141,7 @@ while True:
     elif command.upper() == 'LOOK':
         look(player.room, player)
 
-    elif command.upper() == 'GET':
+    elif command.upper() == 'GET' or 'TAKE':
         for item in player.room.items:
             if target == item.name:
                 player.pickup(item)
@@ -157,6 +157,9 @@ while True:
                 player.room.add_item(item)
                 print(f'You drop the {item.name} in the {player.room.name}.')
 
+    elif command.upper() == 'INVENTORY' or 'i':
+        player.check_inventory()
 
+        
     else:
         print("\n Unknown command, please try again.")
