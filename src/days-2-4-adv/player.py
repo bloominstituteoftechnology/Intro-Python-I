@@ -16,3 +16,9 @@ class Player:
 
     def populate_inventory(self, item):
         self.inventory.append(item)
+
+    def show_inventory(self):
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("\n===In your inventory: ")
+        for item in self.inventory:
+            print(f"{item.name} - {item.desc}")

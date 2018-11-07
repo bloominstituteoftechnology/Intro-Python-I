@@ -30,7 +30,6 @@ earlier adventurers. The only exit is to the south.""",
     ),
 }
 
-
 # Link rooms together
 
 room["outside"].n_to = room["foyer"]
@@ -113,20 +112,12 @@ while True:
 # If the user enters "q", quit the game.
 
 while True:
-    print(
-        f"\n========================================\nYou are in {player.current.name.upper()}."
-    )
-    print(f"{player.current.desc}")
-    print(f"\n===In the room:")
-    for item in player.current.items:
-        print(f"{item.name} - {item.desc}")
-    print(f"\n===In your inventory:")
-    for item in player.inventory:
-        print(f"{item.name} - {item.desc}")
-    choice = input(
-        "\n===Where would you like to go?\n[n]orth, [e]ast, [s]outh, [w]est,or [q]uit\n"
-    )
-    if len(choice) == 1:
+    print(f"\n\n===You are in {player.current.name.upper()}.")
+    print(f"{player.current.desc}.\n")
+    print("Go [n]orth [e]ast [s]outh [w]est")
+    print("[search room] [open inventory] [q]uit\n")
+    choice = input("===What to do? ")
+    if choice:
         if choice == "q":
             print(f"\nAye, perhaps another day.")
             break
@@ -138,7 +129,12 @@ while True:
             player.move_to(choice)
         elif choice == "w":
             player.move_to(choice)
+        elif choice == "search room":
+            player.current.show_items()
+        elif choice == "open inventory":
+            print("open inventory")
+            player.show_inventory()
         else:
-            print(f"\nAgain, where would you like to go?")
+            print(f"\nPlease make a choice.")
     else:
         print(f"\nAgain, where would you like to go?")

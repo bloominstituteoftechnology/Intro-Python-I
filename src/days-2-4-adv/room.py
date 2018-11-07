@@ -27,3 +27,9 @@ class Room:
     def populate_item(self, item):
         self.items.append(item)
 
+    def show_items(self):
+        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print(f"\n===In the {self.name}, you find: ")
+        for item in self.items:
+            print(f"{item.name} - {item.desc}")
+
