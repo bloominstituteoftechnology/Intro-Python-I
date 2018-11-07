@@ -5,6 +5,7 @@ from item import Item
 from treasure import Treasure
 from lightsource import LightSource
 from potion import Potion
+from subprocess import call
 
 
 ## declare some items [ will elaborate and subclass some of these later ]
@@ -173,14 +174,14 @@ while True:
                     dropped_item.on_drop()
 
     # tell me the truth
-    elif command.upper() == "TELL ME THE TRUTH":
+    elif command.upper() == "THETRUTH":
         print("\nYOU CAN'T HANDLE THE TRUTH!\n")
 
-    elif command.upper() == "PING WWW.GOOGLE.COM":
-        print("\nPinging www.google.com [172.217.20.68] with 32 bytes of data:\n")
-        for x in range(30):
-            print("Reply from 172.217.20.68: bytes=32 time=34ms TTL=50\n")
-        print("\nPackets: Sent = 4, Received = 4, Lost = 0 (0 loss)\n")
+    elif command.upper() == "PING":
+        call(["ping", str(target)])
+
+    elif command.upper() == "CLEAR":
+        call(["clear"])
 
     elif command == "gold":
             player.check_gold()
