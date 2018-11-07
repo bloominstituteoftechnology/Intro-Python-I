@@ -8,6 +8,7 @@ class Player:
         self.inventory = [] if inventory is None else inventory
         self.equipment = [] if equipment is None else equipment
         self.coin = 0
+        self.score = 0
 
     def pickup(self, item):
         self.inventory.append(item)

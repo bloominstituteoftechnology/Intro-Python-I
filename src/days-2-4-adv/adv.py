@@ -157,8 +157,11 @@ while True:
                 player.room.add_item(item)
                 print(f'You drop the {item.name} in the {player.room.name}.')
 
-    elif command.upper() == 'INVENTORY' or 'i':
+    elif command.upper() == 'INVENTORY' or 'I':
         player.check_inventory()
+
+    elif command.upper() == 'SCORE' or 'S':
+        print(f'Your current score is {player.score}.')
 
         
     else:
