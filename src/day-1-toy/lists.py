@@ -24,7 +24,7 @@ print(x)
 for num in x:
   if num == 8:
     x.remove(num)
-#x.remove(8)
+#x.remove(4) remove(index)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
