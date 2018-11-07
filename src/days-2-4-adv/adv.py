@@ -154,18 +154,10 @@ while not player_inp == 'q':
             player.drop_item(items[player_inp[5:].capitalize()])
         else:
             print(f"{player_inp[5:]} is not in inventory")
-    elif player_inp == 'show inventory' or 'inventory':
+    elif player_inp == 'inventory':
         player.show_inventory()
     else:
         print("Invalid selection. Please try again.\n")
-
-    # TODO: Get rid of legacy code
-    # if the player has a room, continue to display the
-    # room message, else, display input message to avoid infinite loop of same room
-    # if player.room and player.previous_room is not player.room:
-    #     screen_message()
-    # else:
-    #     print(f'\n{player.name} tried to move to {player.direction} but was blocked. Try another direction.\n')
 
     screen_message()
     player_input()
