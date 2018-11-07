@@ -113,7 +113,7 @@ def movement_or_inv(move):
                 print('You may not move in that direction. Try again')
         elif move in ['inventory', 'i', 'items']:
             print ('~ ~ Thy current inventory ~ ~')
-            print (player.item_list if player.item.list else 'Thou hath nothing')
+            print (player.item_list if player.item_list else 'Thou hath nothing')
         elif move == 'q' or move == 'quit':
             print ('Farewell, you coward')
             global stop
