@@ -41,6 +41,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(room['outside'])
+stop = False
 
 # Write a loop that:
 #
@@ -62,45 +63,84 @@ print (player.room.name)
 
 room['outside'].add_items('rocks', ['skull', 'abandoned armor'])
 
-while True:
-    print (' ')
-    print ('Thy current location:', player.room.name)
-    print ( textwrap.wrap(player.room.description) )
-    print ('Items found in this room')
-    print ( player.room.item_list)
-    move = input('Where will you move next?     ')
-    print ()
-    try:
-       move = move.lower()
-    except AttributeError:
-        print ('Please enter a cardinal direction')
-        continue
-    if move in ['n', 'e', 's', 'w', 'q']:
+def action(phrase):
+    verb = phrase[0]
+    noun = phrase[1]
+    if verb in ['get', 'take', 'lift', 'grab', ]:
+        if noun in player.room.item_list:
+            player.room.remove_items(noun)
+            player.add_items(noun)
+            print (f'Thou hath picked up one {noun}')
+        else:
+            print ('The item thou look for is not here')
+    elif verb in ['drop', 'leave', 'forget', 'dump', 'discard', 'abandon' ]:
+        if noun in player.item_list:
+            player.remove_items
+            player.room.add_items(noun)
+            print (f'Thou hath dropped thy {noun}')
+        else:
+            print ('Thou hath not the item thou speak of')
+    else:
+        print ('I understand not thy command. Please choose another one')
+
+
+def movement_or_inv(move):
+    move = move[0]   
+    if move in ['n', 'e', 's', 'w', 'q', 'i', 'items', 'inventory', 'quit']:
         if move == 'n':
             try:
                 player.room = player.room.n_to
+                print ('Thou attemps to move north-ward')
             except AttributeError:
                 print('You may not move in that direction. Try again')
-                continue
         elif move == 'e':
             try:
                 player.room = player.room.e_to
+                print ('Thou attemps to move east-ward')
             except AttributeError:
                 print('You may not move in that direction. Try again')
-                continue
         elif move == 's':
             try:
+                print ('Thou attemps to move south-ward')
                 player.room = player.room.s_to
             except AttributeError:
                 print('You may not move in that direction. Try again')
-                continue
         elif move == 'w':
             try:
+                print ('Thou attemps to move west-ward')
                 player.room = player.room.w_to
             except AttributeError:
                 print('You may not move in that direction. Try again')
-                continue
-        elif move == 'q':
-            break
+        elif move in ['inventory', 'i', 'items']:
+            print ('~ ~ Thy current inventory ~ ~')
+            print (player.item_list if player.item.list else 'Thou hath nothing')
+        elif move == 'q' or move == 'quit':
+            print ('Farewell, you coward')
+            global stop
+            stop = True
     else:
         print ('Please enter a cardinal direction or "q" to quit')
+
+
+while stop == False:
+    print (' ')
+    print ('Thy current location:', player.room.name)
+    print ( textwrap.wrap(player.room.description) )
+    print ('~ ~ Items found in this room ~ ~')
+    print ( player.room.item_list)
+    command = input('What shall thou do next?     ')
+    print ()
+    try:
+       command = command.lower()
+    except AttributeError:
+        print ('Please enter an english instruction')
+        continue
+    command = command.split()
+    if len(command) == 1:
+        movement_or_inv(command)
+    elif len(command) == 2:
+        action(command)
+    else:
+        print ('Thy hath not been understood. Tryeth again')
+
+

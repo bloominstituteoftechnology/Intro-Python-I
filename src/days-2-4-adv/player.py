@@ -12,3 +12,11 @@ class Player:
                     self.item_list.append(i)
             else:
                 self.item_list.append(item)
+    
+    def remove_items(self, *items):
+        for item in items:
+            if type(item) == list:
+                for i in item:
+                    self.item_list.remove(i)
+            else:
+                self.item_list.remove(item)
