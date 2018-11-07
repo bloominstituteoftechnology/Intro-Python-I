@@ -1,3 +1,4 @@
+import textwrap
 from room import Room
 from player import Player
 
@@ -39,7 +40,7 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 
 while True:
-  new_player = input("\nYour hero's name? ")
+  new_player = input("\n\nType in your player's name: ")
   if len(new_player) == 0:
     print("Please enter your hero's name.\n")
   else:
@@ -59,22 +60,27 @@ while True:
 #
 # If the user enters "q", quit the game.
 
-while True:
-  choice = input(f'\nYou are located: {player.current.name.upper()} \n{player.current.desc}\n\n\nWhere would you like to go? \n[n]orth, [e]ast, [s]outh, [w]est, or [q]uit\n')
+# DIRECTION
 
-  if len(choice) == 1:
-    if choice == "q":
-      print(f'\nYou quit the game.')
-      break
-    elif choice == "n":
-      player.move_to(choice)
-    elif choice == "e":
-      player.move_to(choice)
-    elif choice == "s":
-      player.move_to(choice)
-    elif choice == "w":
-      player.move_to(choice)
-    else:
-      print(f'\nAgain, where would you like to go?')
+def direction(direction, current):
+    # Try to move a direction, or print error if player can't go that way.
+    # Returns room the player moved to or same room if player didn't move.
+    attrib = direction + '_to'
+    # See if the room has the destination attribute
+    if hasattr(current, attrib):
+        # If so, return its value (the next room)
+        return getattr(current, attrib)
+    # Otherwise print an error and stay in the same room
+    print("You can NOT go that way")
+    return current
+
+done = False
+
+while not done:
+  s = input("\n\nWhich way would you like to go? (N, S, E, W)\n").strip().lower().split()
+  if s[0] in ["n", "s", "w", "e"]:
+    player.current = direction(s[0], player.current)
+    print("Current location: {}".format(player.current.name))
   else:
-    print(f'\nAgain, where would you like to go?')
+    print("Unknown command {}".format(' '.join(s)))
+

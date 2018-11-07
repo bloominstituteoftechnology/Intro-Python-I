@@ -6,9 +6,5 @@ class Player:
     self.name = name
     self.current = current
 
-  def move_to(self, direction):
-    if direction:
-      self.current = self.current.to_new(direction)
-    else:
-      print("You can't go that way.")
+  
       
