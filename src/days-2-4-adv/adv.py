@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 from item import Item
 from treasure import Treasure
+from lightsource import LightSource
 
 
 ## declare some items [ will elaborate and subclass some of these later ]
@@ -11,9 +12,9 @@ items = {
     "Stiletto": Item("Stiletto"),
     "C4": Item("C4"),
     "katana": Item("katana"),
-    "Notepad": Item("Notepad"),
+    "notepad": Item("notepad"),
     "JohnWick": Item("JohnWick"),
-    "torch": Item("torch"),
+    "torch": LightSource("torch"),
     "ingot": Treasure("ingot", 120)
 }
 
@@ -23,13 +24,15 @@ room = {
     'outside':  Room(
                     "Outside Cave Entrance",
                     "North of you, the cave mount beckons.",
-                    [items['katana'], items['C4'], items['torch']],
+                    True,
+                    [items['katana'], items['notepad'], items['torch']],
                     {'north': 'foyer', 'south': None, 'east': None, 'west': None},
                     ),
 
     'foyer':    Room(
                     "Foyer",
                     """Dim light filters in from the south. Dusty passages run north and east.""",
+                    False,
                     [],
                     {'north': 'overlook', 'south': 'outside', 'east': 'narrow', 'west': None},
                     ),
@@ -37,6 +40,7 @@ room = {
     'overlook': Room(
                     "Grand Overlook",
                     """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
+                    False,
                     [],
                     {'north': None, 'south': 'foyer', 'east': None, 'west': None}
                     ),
@@ -44,6 +48,7 @@ room = {
     'narrow':   Room(
                     "Narrow Passage",
                     """The narrow passage bends here from west to north. The smell of gold permeates the air.""",
+                    False,
                     [],
                     {'north': 'treasure', 'south': None, 'east': None, 'west': 'foyer'},
                     ),
@@ -51,6 +56,7 @@ room = {
     'treasure': Room(
                     "Treasure Chamber",
                     """You've found the long-lost treasure chamber! Sadly, it has already been almost completely emptied by earlier adventurers. The only exit is to the south.""",
+                    False,
                     [items['ingot']],
                     {'north': None, 'south': 'narrow', 'east': None, 'west': 'foyer'},
                     )
@@ -90,9 +96,12 @@ player = Player(room['outside'])
 while True:
     # print the current room details formatted and coloured
     print("\n\x1b[1;36mYou are in the {}.".format(player.room.name))
-    print(player.room.description)
-    if player.room.items:
+    if player.room.has_light or player.check_for_light():
+        print(player.room.description)
+        if player.room.items:
             player.room.list_items()
+    else:
+        logError("I can't see a thing! If only we had some sort of lamp like object to light the way")
 
     # * Waits for user input and decides what to do. add the ability to parse multi word commands
     in_cmd = input("\n:>> ").split(" ")
@@ -149,6 +158,8 @@ while True:
                 dropped_item = items[target]
                 player.drop(dropped_item)
                 player.room.add_item(dropped_item)
+                if isinstance(dropped_item, LightSource):
+                    dropped_item.on_drop()
 
     # tell me the truth
     elif command.upper() == "TELL ME THE TRUTH":
@@ -159,7 +170,10 @@ while True:
         for x in range(30):
             print("Reply from 172.217.20.68: bytes=32 time=34ms TTL=50\n")
         print("\nPackets: Sent = 4, Received = 4, Lost = 0 (0 loss)\n")
-    
+
+    elif command == "gold":
+            player.check_gold()
+
     elif command == "help":
             print("\x1b[1;32;40m\nLIST OF COMMANDS\n----------------\n[north] = move north\n[south] = move south\n[east] = move east\n[west] = move west\n[get <item>] = pick up an item\n[drop <item>] = drop an item\n[quit] = give up the game\n[help] = this text\x1b[0m")
 

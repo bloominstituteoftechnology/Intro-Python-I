@@ -1,5 +1,6 @@
 # player class
 from item import Item # might centralize all this in to 1 file at some point
+from lightsource import LightSource
 
 # created a simple constructor to take in a room to match the calling convention in my adv.py
 class Player:
@@ -29,6 +30,13 @@ class Player:
     def check_for_item(self, item_name):
         for item in self.items:
             if item.name == item_name:
+                return True
+        return False
+
+    # ehcek for the light
+    def check_for_light(self):
+        for item in self.items:
+            if type(item) == LightSource:
                 return True
         return False
 
