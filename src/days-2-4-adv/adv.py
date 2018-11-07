@@ -93,8 +93,11 @@ while True:
     if player.room.items:
             player.room.list_items()
 
-    # * Waits for user input and decides what to do.
-    command = input("PLEASE ENTER a Command to move : [NORTH] [SOUTH] [EAST] [WEST] or [QUIT] to exit the game >> ")
+    # * Waits for user input and decides what to do. add the ability to parse multi word commands
+    in_cmd = input("\n:>> ").split(" ")
+    if 1 <= len(in_cmd) <= 2:
+        command = in_cmd[0]
+        target = in_cmd[1] if len(in_cmd) == 2 else None
     # If the user enters "q", quit the game.
     if command.upper() == "QUIT":
         break
