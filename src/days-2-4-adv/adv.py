@@ -85,20 +85,18 @@ def commands():
 
 while True:
 
-    #print command instructions
-    print('Type "commands" to see full command list.')
-
     # print the current room
     print("==================== \n CURRENT ROOM:\n" + "  " + player.room.name + "\n" + "    " + player.room.description + "\n ====================")
+    #print command instructions
+    print('Type "commands" to see full command list.')
     
 
     userInput = input(">>: ").split(' ')
 
-    # parse the input if more than 2 commands
+    # parse the input if more than 1 command
     if 1 <= len(userInput) <= 2:
         command = userInput[0]
         target = userInput[1] if len(userInput) == 2 else None
-
 
     if command.upper() == 'QUIT':
         break
@@ -141,7 +139,7 @@ while True:
     elif command.upper() == 'LOOK':
         look(player.room, player)
 
-    elif command.upper() == 'GET' or 'TAKE':
+    elif command.upper() == 'GET' or command.upper() == 'TAKE':
         for item in player.room.items:
             if target == item.name:
                 player.pickup(item)
@@ -157,10 +155,10 @@ while True:
                 player.room.add_item(item)
                 print(f'You drop the {item.name} in the {player.room.name}.')
 
-    elif command.upper() == 'INVENTORY' or 'I':
+    elif command.upper() == 'INVENTORY' or command.upper() == 'I':
         player.check_inventory()
 
-    elif command.upper() == 'SCORE' or 'S':
+    elif command.upper() == 'SCORE':
         print(f'Your current score is {player.score}.')
 
         
