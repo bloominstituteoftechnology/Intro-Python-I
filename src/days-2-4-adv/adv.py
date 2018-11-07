@@ -14,7 +14,7 @@ items = {
     "Notepad": Item("Notepad"),
     "JohnWick": Item("JohnWick"),
     "torch": Item("torch"),
-    "ingot": Treasure("ingot")
+    "ingot": Treasure("ingot", 120)
 }
 
 # Declare all the rooms
