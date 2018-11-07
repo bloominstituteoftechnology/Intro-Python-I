@@ -22,6 +22,13 @@ class Room:
     def remove_item(self, item):
         del self.items[self.items.index(item)]
 
+    # check room for specific item
+    def check_for_item(self, item_name):
+        for item in self.items:
+            if item.name == item_name:
+                return True
+        return False
+
     def __str__(self):
         return str(self.name) + "\n" + str(self.description)
 

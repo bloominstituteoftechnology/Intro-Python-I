@@ -121,6 +121,16 @@ while True:
         # logic to move west
         if player.room.west_to:
             player.room = player.room.west_to
+
+    elif command == "get":
+            if not player.room.items:
+                logError("There are no items in your grasp. maybe we need to rethink this!")
+            elif not player.room.check_for_item(target):
+                logError("These are not the Items you are looking for.")
+            else:
+                new_item = items[target]
+                player.room.remove_item(new_item)
+                player.get(new_item)
     
     # tell me the truth
     elif command.upper() == "TELL ME THE TRUTH":
