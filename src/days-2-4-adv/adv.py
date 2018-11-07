@@ -98,6 +98,7 @@ def start_game():
     currRoom = p.room
     currItems = p.items
     get_item = p.get_item
+    view_items = p.view_items
     text_divider = '\n====================\n'
 
     print(text_divider)
@@ -116,6 +117,8 @@ def start_game():
                 get_item(currRoom.item)
                 setattr(currRoom, 'item', item['nothing'])
                 next_action = input('What would you like to do? (view items/keep moving):')
+            if next_action.lower() == 'view items':
+                view_items()
 
 
 
