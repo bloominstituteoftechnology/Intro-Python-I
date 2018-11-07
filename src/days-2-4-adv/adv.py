@@ -1,3 +1,4 @@
+# day 1 - 4 is MVP complete going to start working on the stretch goals 
 from room import Room
 from player import Player
 from item import Item
