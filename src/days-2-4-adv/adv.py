@@ -86,9 +86,13 @@ while True:
     # print the current room
     print("==================== \n CURRENT ROOM:\n" + "  " + player.room.name + "\n" + "    " + player.room.description + "\n ====================")
 
-    command = input("Please enter a command: [NORTH] [SOUTH] [EAST] [WEST]. \n Use [LOOK] to look around. \n Input [QUIT] to leave the game. \n\n Command: ")
+    userInput = input("Please enter a command: [NORTH] [SOUTH] [EAST] [WEST]. \n Use [LOOK] to look around. \n Input [QUIT] to leave the game. \n\n Command: ").split(' ')
 
-    
+    # parse the input if more than 2 commands
+    if 1 <= len(userInput) <= 2:
+        command = userInput[0]
+        target = userInput[1] if len(userInput) == 2 else None
+
 
     if command.upper() == 'QUIT':
         break
@@ -128,5 +132,13 @@ while True:
     elif command.upper() == 'LOOK':
         look(player.room, player)
 
+    elif command.upper() == 'GET':
+        for item in player.room.items:
+            if target == item.name:
+                player.pickup(item)
+                player.room.remove_item(item)
+                print(f'You add the {item.name} to your inventory.')
+            else:
+                print(f'There is no {target} here.')
     else:
         print("\n Unknown command, please try again.")

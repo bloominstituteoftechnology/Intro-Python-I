@@ -11,14 +11,14 @@ class Room:
         self.e_to = None
         self.w_to = None
 
-        def examine_room(self):
-            print(f"\n You examine the room and find: {', '.join(item.name for item in self.items)}")
+    def examine_room(self):
+        print(f"\n You examine the room and find: {', '.join(item.name for item in self.items)}")
 
-        def add_item(self, item):
-            self.items.append(item)
+    def add_item(self, item):
+        self.items.append(item)
 
-        def remove_item(self, item):
-            del self.items[self.items.index(item)]
+    def remove_item(self, item):
+        del self.items[self.items.index(item)]
 
-        def __str__(self):
-            return str(self.name) + "\n" + str(self.description)
+    def __str__(self):
+        return str(self.name) + "\n" + str(self.description)

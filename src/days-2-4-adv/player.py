@@ -9,25 +9,25 @@ class Player:
         self.equipment = [] if equipment is None else equipment
         self.coin = 0
 
-        def pickup(self, item):
-            self.inventory.append(item)
+    def pickup(self, item):
+        self.inventory.append(item)
 
-        def drop(self, item):
+    def drop(self, item):
+        del self.inventory[self.inventory.index(item)]
+
+    def equip(self, item):
+        # put item in equipment and remove from inventory
+        if item.equippable == True:
+            self.equipment.append(item)
             del self.inventory[self.inventory.index(item)]
+        else:
+            print(f"\n You cannot equip {item}.")
 
-        def equip(self, item):
-            # put item in equipment and remove from inventory
-            if item.equippable == True:
-                self.equipment.append(item)
-                del self.inventory[self.inventory.index(item)]
-            else:
-                print(f"\n You cannot equip {item}.")
+    def unequip(self, item):
+        # remove from equipment and put into inventory
+        self.inventory.append(item)
+        del self.equipment[self.equipment.index(item)]
 
-        def unequip(self, item):
-            # remove from equipment and put into inventory
-            self.inventory.append(item)
-            del self.equipment[self.equipment.index(item)]
-
-        def wallet(self):
-            print(f"\n You currently have {self.coin} coins.")
+    def wallet(self):
+        print(f"\n You currently have {self.coin} coins.")
 
