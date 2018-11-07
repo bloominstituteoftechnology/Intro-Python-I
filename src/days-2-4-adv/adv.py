@@ -96,10 +96,27 @@ def print_wrapped_lines(value = ''):
 def start_game():
     valid_moves = ['n', 's', 'e', 'w', 'q']
     currRoom = p.room
-    currItems = p.items
+    inventory = p.items
     get_item = p.get_item
     view_items = p.view_items
     text_divider = '\n====================\n'
+
+    def try_get_item(item_name):
+        if item_name == currRoom.item.name:
+            get_item(currRoom.item)
+            print_wrapped_lines(f'Player has picked up {currRoom.item.description}.')
+            setattr(currRoom, 'item', item['nothing'])
+        else:
+            print_wrapped_lines(f'Room does not have a: {item_name}')
+
+    def try_drop_item(item_name):
+        for index, item in enumerate(inventory):
+            if item.name == item_name:
+                del inventory[index]
+                setattr(currRoom, 'item', item)
+                print_wrapped_lines(f'Player has dropped the {item_name}.')
+                return view_items()
+        return print(f'Your inventory does not contain: {item_name}.')
 
     print(text_divider)
 
@@ -111,16 +128,35 @@ def start_game():
 
         print(text_divider)
 
-        if currRoom.item.name != 'nothing':
-            next_action = input('What would you like to do? (get <item>/view items/keep moving):')
-            if next_action.lower() == f'get {currRoom.item.name}':
-                get_item(currRoom.item)
-                setattr(currRoom, 'item', item['nothing'])
-                next_action = input('What would you like to do? (view items/keep moving):')
-            if next_action.lower() == 'view items':
+        while(True):
+            print_wrapped_lines('What would you like to do?')
+            next_action = input('get <item> / drop <item> / view items / keep moving / quit :')
+            next_action = next_action.lower()
+
+            if next_action == 'keep moving':
+                break
+
+            if next_action[:4] == 'get ':
+                try_get_item(next_action[4:].lower())
+
+            if next_action[:5] == 'drop ':
+                try_drop_item(next_action[5:].lower())
+
+            if next_action == 'view items':
                 view_items()
-
-
+            
+            if next_action == 'quit' or next_action == 'q':
+                print_wrapped_lines('Do you really want to leave?')
+                print(text_divider)
+                print('\n')
+                confirm_exit = input('Cofirm: (y/n):')
+                if (confirm_exit.lower() == 'y'):
+                    print(text_divider)
+                    print_wrapped_lines('See ya!')
+                    print(text_divider)
+                    return print('/n')
+                else:
+                    print(text_divider)
 
         next_move = input('Which direction do you want to go? (n/s/e/w):')
 
