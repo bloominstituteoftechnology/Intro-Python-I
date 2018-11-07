@@ -6,7 +6,8 @@ class Treasure(Item):
     self.value = value
     self.picked_up = False
 
-  # TODO: fill in logic for this method
-  def on_take(self): pass
+  # on_take method set picked_up to true
+  def on_take(self):
+    self.picked_up = True
 
   def on_drop(self): pass
