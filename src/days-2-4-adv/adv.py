@@ -4,6 +4,7 @@ from player import Player
 from item import Item
 from treasure import Treasure
 from lightsource import LightSource
+from potion import Potion
 
 
 ## declare some items [ will elaborate and subclass some of these later ]
@@ -16,7 +17,8 @@ items = {
     "notepad": Item("notepad"),
     "JohnWick": Item("JohnWick"),
     "torch": LightSource("torch"),
-    "ingot": Treasure("ingot", 120)
+    "ingot": Treasure("ingot", 120),
+    "potion": Potion("potion", 100)
 }
 
 # Declare all the rooms
