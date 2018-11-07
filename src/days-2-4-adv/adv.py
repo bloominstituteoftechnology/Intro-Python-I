@@ -67,6 +67,23 @@ room['narrow'].w_to     = room['foyer']
 room['narrow'].n_to     = room['treasure']
 room['treasure'].s_to   = room['narrow']
 
+
+#
+#                   Map
+#
+#
+#           Overlook(2)        Treasure
+#              |                  |
+#              |                  |
+#           Foyer(1) ---------- Narrow
+#              |
+#              |
+#           Outside
+#
+#
+#           (1): Shield   (2): Sword
+#
+
 #
 # Main
 #
