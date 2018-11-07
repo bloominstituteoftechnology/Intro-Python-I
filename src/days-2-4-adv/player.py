@@ -6,9 +6,13 @@ class Player:
     def __init__(self, name, current):
         self.name = name
         self.current = current
+        self.inventory = []
 
-    def move_to(self, direction):
-        if direction:
-            self.current = self.current.to_new(direction)
+    def move_to(self, room):
+        if room:
+            self.current = self.current.to_new(room)
         else:
             print("You can't go that way.")
+
+    def populate_inventory(self, item):
+        self.inventory.append(item)

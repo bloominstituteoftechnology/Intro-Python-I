@@ -95,9 +95,10 @@ while True:
         print("Please enter your hero's name.\n")
     else:
         player = Player(new_player, room["outside"])
-        print(
-            f"\n*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~\nWelcome to Myst...\n{player.name:^40}\n*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~"
+        player.populate_inventory(
+            Item("Bread", "Some hard, crusty bread that looks good right about now.")
         )
+        print(f"\n*~*~*~*~*~*\nWelcome to Myst...\n{player.name}\n*~*~*~*~*~*")
         break
 
 # Write a loop that:
@@ -116,11 +117,14 @@ while True:
         f"\n========================================\nYou are in {player.current.name.upper()}."
     )
     print(f"{player.current.desc}")
-    print(f"\nIn the room, you see:")
+    print(f"\n===In the room:")
     for item in player.current.items:
         print(f"{item.name} - {item.desc}")
+    print(f"\n===In your inventory:")
+    for item in player.inventory:
+        print(f"{item.name} - {item.desc}")
     choice = input(
-        "\nWhere would you like to go?\n[n]orth, [e]ast, [s]outh, [w]est\n[search] room,or [q]uit\n"
+        "\n===Where would you like to go?\n[n]orth, [e]ast, [s]outh, [w]est,or [q]uit\n"
     )
     if len(choice) == 1:
         if choice == "q":
