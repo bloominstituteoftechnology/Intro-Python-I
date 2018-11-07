@@ -8,17 +8,17 @@ class Player:
         self.inventory = []
         self.movement_speed = 10
 
-        def pickup_item(self, item):
+    def pickup_item(self, item):
             self.inventory.append(item)
 
-        def try_move(self, direction):
+    def try_move(self, direction):
             """
             try to move
             """
-            d = direction + "_to"
+            key = direction + "_to"
 
-            if not hasattr(self.currentRoom, d):
+            if not hasattr(self.currentRoom, key):
                 print("you can't go that way")
                 return self.currentRoom
             else:
-                self.currentRoom = self.currentRoom(d)
+                return getattr(self.currentRoom, key)
