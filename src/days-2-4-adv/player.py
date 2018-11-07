@@ -10,5 +10,22 @@ class Player:
         self.speed = 10
 
     def move(self, direction):
-        d = direction + "_to"
-        self.room = self.room[d]
+        key = direction + "_to"
+
+        # check to see if we can move in the specified direction
+        if not hasattr(self.room, key):
+            print("You can't go that way!")
+            return self.room
+        else:
+            return getattr(self.room, key)
+
+
+room = Room("Outside", "outside")
+foyer = Room("Foyer")
+room.n_to = foyer
+foyer.s_to = room
+
+p = Player(room)
+print(p.room)
+p.room = room.n_to
+print(p.room)
