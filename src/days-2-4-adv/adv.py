@@ -64,14 +64,16 @@ def main():
         for item in new_player.current_room.room_items:
             print('- ' + item.name + ': ' + item.description)
         print()
-        # promp for next move
-        print("What do you want to do next?")
-        print("('n': go north")
-        print("('s': go south")
-        print("('e': go east")
-        print("('w': go west")
-        print("('q': quit game")
-        new_input = input("")
+        # promp for an instruction
+        print("'i' or 'inventory': display your items in your inventory")
+        print("'get' or 'take' (item name): add item found in room to your inventory")
+        print("'drop' (item name): drop item from inventory to the room")
+        print("'n': go north")
+        print("'s': go south")
+        print("'e': go east")
+        print("'w': go west")
+        print("'q': quit game")
+        new_input = input("What do you want to do next? ")
 
         # type check new_input input
         try:
@@ -116,8 +118,9 @@ def main():
                 for item_object in new_player.current_room.room_items:
                     if item_name == item_object.name:
                         found_match = True
-                        new_player.player_items.append(item_object) #pick up item from room to player
-                        new_player.current_room.room_items.remove(item_object)
+                        new_player.player_items.append(item_object) # add item to player inventory
+                        new_player.current_room.room_items.remove(item_object) # remove item from room item list
+                        print('You have added' + item_object.name +' to your inventory.')
                 if found_match == False:
                     print('Item is not found in room.  Please try again.')
             elif verb =='drop':
@@ -131,6 +134,10 @@ def main():
                     print('Item is not found on player.  Please try again.')
             else:
                 print('Command is not recognized.  Please try again.')
+        elif input_list[0] =='inventory':
+            print('You have the following items:')
+            for item_object in new_player.player_items:
+                print('- ' + item_object.name +': ' + item_object.description)
         else:
             print("Please enter an appropriate input.")
         
