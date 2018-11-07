@@ -117,6 +117,7 @@ while True:
     if 1 <= len(in_cmd) <= 2:
         command = in_cmd[0]
         target = in_cmd[1] if len(in_cmd) == 2 else None
+
     # If the user enters "q", quit the game.
     if command.upper() == "QUIT":
         break
@@ -195,7 +196,16 @@ while True:
             logError("ping? PING? What? Do you think you have some sort of computer or something?!?")
 
     elif command.upper() == "CLEAR":
-        call(["clear"])
+        if has_computer:
+            call(["clear"])
+        else:
+            logError("what exactly are you expecting to clear? some sort of screen??!?")
+
+    elif command.upper() == "BROWSE":
+        if has_computer:
+            call(["chrome", str(target)])
+        else:
+            logError("browse? What? anyone would think that the internet had been invented?!?")
 
     elif command == "gold":
             player.check_gold()

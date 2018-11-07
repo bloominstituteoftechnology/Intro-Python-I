@@ -19,4 +19,4 @@ class Potion(Item):
         self.consumed = True
         self.name = "empty flask"
       else:
-        print("this flask is empty you already drank this potion")
+        print("this flask is empty you already drank the potion")
