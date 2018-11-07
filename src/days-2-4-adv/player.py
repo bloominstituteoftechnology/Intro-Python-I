@@ -22,5 +22,12 @@ class Player:
     def check_gold(self):
         print(f"\nYou have: {self.gold} gold")
 
+    # check the players items list for a specific item
+    def check_for_item(self, item_name):
+        for item in self.items:
+            if item.name == item_name:
+                return True
+        return False
+
     def __str__(self):
         return str(self.location.name)  + "\n" + str(self.location.description)
