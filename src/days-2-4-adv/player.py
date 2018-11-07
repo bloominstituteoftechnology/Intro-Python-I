@@ -12,12 +12,13 @@ from colorama import Style
 
 class Player:
     # Initialize the properties of the class
-    def __init__(self, name, room):
-        self.name = name
-        self.room = room
+    def __init__(self):
+        self.name = None
+        self.room = None
         self.previous_room = None
         self.direction = 'north'
         self.inventory = []
+        self.game_over = False
 
     # Return a formatted value of the Player class
     def __str__(self):
@@ -36,7 +37,6 @@ class Player:
             print(f' [{Fore.GREEN}{count}{Style.RESET_ALL}] {item.name} - {item.description}')
 
     def pickup_item(self, item):
-        print('pickup item')
         if self.room.contains(item):
             print(f'\n{Fore.GREEN}{item.name}{Style.RESET_ALL} Picked up.')
             self.inventory.append(item)

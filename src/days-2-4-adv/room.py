@@ -24,7 +24,6 @@ class Room:
         return f"Name: {self.name}, Description: {self.description}"
 
     def contains(self, item):
-        print('contains')
         if item in self.inventory:
             return True
         else:
