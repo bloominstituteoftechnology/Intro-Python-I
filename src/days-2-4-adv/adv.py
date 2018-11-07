@@ -52,18 +52,13 @@ player = Player(room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-# print (player.room.name)
+print (player.room)
+print (player.room.name)
 
-# player.room = player.room.n_to
-# print (player.room)
-# print (player.room.name)
-# player.room = player.room.n_to
-# print (player.room.name)
-# player.room = player.room.n_to
-# print (player.room.name)
-
-# print (room[player.room].name)
-
+# Rooms are initiliazed with no items. To add them, use the
+# Room.add_items(*items) method. You may pass in a  list,
+# individual items, or a combination of both
+# e.g. Room.add_items('sword', 'shield', ['treasure, 'crown', 'chalice'])
 
 
 
