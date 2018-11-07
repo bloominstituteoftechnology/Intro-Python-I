@@ -15,8 +15,8 @@ class Room:
         return (f'{self.__class__.__name__}('
                 f'{self.name!r}, {self.description!r}, {self.items!r})')
 
-    def addItems(self, items):
-        self.items.extend(items)
+    def addItem(self, item):
+        self.items.extend(item)
     
     def removeItem(self, item):
         self.items.remove(item)

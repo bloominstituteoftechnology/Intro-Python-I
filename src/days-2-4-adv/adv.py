@@ -63,8 +63,8 @@ player1 = Player(input('\n'+'>>>Enter player name: '), room['outside'])
     # * Add a new type of sentence the parser can understand: two words in the form of [verb] [item] (e.g. take coins)
 
 while True:
-    print('\n'+'Location Name: '+ player1.location.name + '\n'+ 'Location Description: '+ player1.location.description, '\n')
-    print("Items in the room: ", player1.location.items[0].name,'\n')
+    print('\n'+'Location Name: '+ player1.location.name + '\n'+ 'Location Description: '+ player1.location.description)
+    print("Items in the room: ", [player1.location.items[i].name for i in range(len(player1.location.items))])
 
     command = input('>>>Next move: ').split(' ')
     validDirections = ['n', 's', 'e', 'w']
@@ -81,38 +81,22 @@ while True:
         break
 
     if command[0] == ('get' or 'take'):
-        for i in range(len(player1.location.items)-1):
-            if command[1] == player1.location.items[i].name: 
-                player1.location.removeItem(item[command[1]])
-                player1.addItems(item[command[1]])
-                print(player1.location.items)
-
-
-
-    # if command[0] == ('get' or 'take'):
-    #     if command[1] not in item:
-    #         print('That item doesn\'t exist.')
-    #     if command[1] not in player1.location.items:
-    #         print('That item isn\'t in the room.')
-    #         print('That item isn\'t in 324232', player1.location.items[0].name)
-
-    #     if command[1] in player1.location.items:
-    #         print('ITS WORKING ')
-    #         player1.location.removeItem(f'{command[1]}')
-    #         player1.addItems([command[1]])
+        if command[1] in [player1.location.items[i].name for i in range(len(player1.location.items))]:
+            player1.location.removeItem(item[command[1]])
+            player1.addItem(item[command[1]])
+        else: 
+            print('Item not in room.')
     
     if command[0] == 'drop':
-        if command[1] in player1.inventory:
-            print(player1.inventory)
-            player1.removeItem('rock')
-            player1.location.addItems([command[1]])
-        elif command[1] in item:
-            print('You don\'t have that item in your inventory.')
-        elif command[1] not in item:
-            print('That item doesn\'t exist.')
+        if command[1] in [player1.items[i].name for i in range(len(player1.items))]:
+            player1.removeItem(item[command[1]])
+            player1.location.addItem(item[command[1]])
+        else:
+            print('You don\'t have that item in your items.')
     
-    if command[0] == 'i' or 'inventory':
-        print('Player Inventory: ', player1.inventory)
+    if command[0] == ('i' or 'items'):
+        print(command[0])
+        print('Player items: ', player1.items)
     
     if command[0] == 'score':
         print('Player Score: ', player1.score)
