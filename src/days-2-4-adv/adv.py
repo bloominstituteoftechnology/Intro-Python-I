@@ -2,31 +2,12 @@ from room import Room
 from player import Player
 from item import Item
 from item import Treasure
-
-#         done 
-#todays home work 4, part 1
-#-----------------------------------
-# one subclass is for items, treasure
-# - when this item is picked up it adds a score to player
-# - this method will increase the score only once
-# - this item can be dropped and picked up
-# - only increases score on first pickup
-
-#         in progress
-#todays home work 4, part 2
-# one sublcass is for items, lightsources, 
-# - add on drop method to item
-# - if the item is a light source will print 'its not wise
-# - to drop light a light source', then do it anyway
-# add atribute to room bool is_light to check if the room is
-# lit or not
-# - if there is no light source in the room or on the player
-# - room description is its bitch black
+from item import LightSource
 
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-"North of you, the cave mounth beckons", [Item('sword', 'looks sharp'), Item("torch", 'currently unlit'), Treasure('gold', 'looks like a small bag of gold', 50)]),
+"North of you, the cave mounth beckons", [Item('sword', 'looks sharp'), LightSource("lamp", 'good source of light'), Treasure('gold', 'looks like a small bag of gold', 50)]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", []),
@@ -36,7 +17,7 @@ into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""", [Item('key', 'looks important'), Item('rope', 'looks sturdy'), Treasure('beans', 'they appear to be magical beans', 20)]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", []),
+to north. The smell of gold permeates the air.""", [], False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -59,7 +40,6 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-
 #see if items in room
 def check_area(room, player):
   if len(room.items) == 0:
@@ -75,7 +55,7 @@ def check_area(room, player):
 #for getting and dropping items in room
 def command(player_input, player, current_room):
 
-  #print(player.score)
+  #=print(player.score)
   # for get item and drop item
   if len(player_input) == 2:
 
@@ -108,7 +88,7 @@ def command(player_input, player, current_room):
         if player_input[1] == i.name:
           current_room.items.append(i)
           player.items.remove(i)
-          print('player has dropped ' + i.name)
+          i.on_drop()
           count2 += 1
 
       if count2 == 0:
@@ -123,6 +103,22 @@ def check_inventory(player):
     for i in player.items:
       print(i.name)
 #end of check_inventory
+
+def check_for_light(room, player):
+  boolv = False
+
+  #check room for light source
+  for i in room.items:
+    if i.__class__.__name__ == 'LightSource':
+      boolv = True
+
+  #check player for light source
+  for i in player.items:
+    if i.__class__.__name__ == 'LightSource':
+      boolv = True
+
+  #return false if no light and true if there is light
+  return boolv
 
 
 while not res[0] == 'q':
@@ -200,7 +196,12 @@ while not res[0] == 'q':
   if location == 'narrow':
 
     #base commands #################
-    print(current_room)
+    if current_room.is_light == False:
+      if check_for_light(current_room, player) == False:
+        print('its dark in here!')
+      else:
+        print(current_room)
+
     res = input('\nwhat will you do?\n').split(" ")
     command(res, player, current_room)
     #################################

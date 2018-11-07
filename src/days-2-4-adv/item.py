@@ -2,6 +2,8 @@ class Item:
   def __init__(self, name, description):
     self.name = name
     self.description = description
+  def on_drop(self):
+    print(f'player has dropped {self.name}')
   def __str__(self):
     return str(f"{self.name}")
 
@@ -16,3 +18,9 @@ class Treasure(Item):
       return False
     else:
       return True
+
+class LightSource(Item):
+  def __init__(self, name, description):
+    super().__init__(name,description)
+  def on_drop(self):
+    print(f"It's not wise to drop a light source, {self.name} dropped")
