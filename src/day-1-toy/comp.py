@@ -1,7 +1,7 @@
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
 y = [n for n in [1, 2, 3, 4, 5] ]
-
+# y = [n for n in range(1,6)]
 print (y)
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
@@ -28,9 +28,10 @@ x = input("Enter comma-separated numbers: ").split(',')
 # # What do you need between the square brackets to make it work?
 
 #Why is int needed here? The input characters you type in are treated as strings when you type them in. 
-y = [int(n) for n in x if int(n) % 2 == 0]  
-
-print(y)
+y1 = [int(n) for n in x if int(n) % 2 == 0]
+y2 = [n for n in x if int(n) % 2 == 0]
+print('y1: ', y1)
+print('y2: ', y2)
 
 
 
