@@ -3,8 +3,8 @@
 
 class Room:
 	"""docstring for ClassName"""
-	def __init__(self, location, description):
-		self.location = location
+	def __init__(self, name, description):
+		self.name = name
 		self.description = description
 	
 	n_to = None
