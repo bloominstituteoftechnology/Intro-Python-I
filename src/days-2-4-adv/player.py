@@ -20,7 +20,10 @@ class Player:
 
     # check the players gold
     def check_gold(self):
-        print(f"\nYou have: {self.gold} gold")
+        if self.gold == 0:
+            print("\nYou are skinter than a poor mans poor bits!")
+        else:
+            print(f"\nYou have: {self.gold} gold.")
 
     # check the players items list for a specific item
     def check_for_item(self, item_name):
