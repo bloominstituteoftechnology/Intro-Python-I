@@ -6,6 +6,9 @@
 Player holds player name, room and direction information and movement
 methods.
 """
+from colorama import Fore
+from colorama import Style
+
 
 class Player:
     # Initialize the properties of the class
@@ -25,10 +28,12 @@ class Player:
             print("\nNo items in inventory")
             return
 
-        print('\n Inventory')
+        print(f'\n {Fore.GREEN} Inventory {Style.RESET_ALL}')
         print('+----------------------------------------------------------------------+')
+        count = 0
         for item in self.inventory:
-            print(f' [ ] {item.name} - {item.description}')
+            count += 1
+            print(f' [{Fore.GREEN}{count}{Style.RESET_ALL}] {item.name} - {item.description}')
 
     def pickup_item(self, item):
         if self.room.contains(item):
