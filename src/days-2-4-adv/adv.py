@@ -66,6 +66,9 @@ def set_init_player():
     # Ask the player for the character name
     user_input = input("\nEnter Your Character's Name\n")
 
+    if user_input == '':
+        set_init_player()
+
     # Ask the player if the name is correct
     result = input(f'\nAre you sure {user_input} is the right name? [y] yes or [n] no?\n')
 
