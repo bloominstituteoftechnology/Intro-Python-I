@@ -33,8 +33,8 @@ print(f2(*a))    # Should print 22
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments. Google "python default arguments" for a hint.
 
-def f3(arg1, arg2=None):
-  if arg2 == None:
+def f3(arg1, arg2=1):
+  if arg2 == 1:
     return arg1 + 1
   else:
     return arg1 + arg2
