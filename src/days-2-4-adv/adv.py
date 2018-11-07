@@ -1,7 +1,7 @@
+from player import Player
 from room import Room
-
-# Declare all the rooms
-
+from item import Item  
+     
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
@@ -22,6 +22,7 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 
+
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -35,7 +36,90 @@ room['treasure'].s_to = room['narrow']
 
 #
 # Main
-#
+done = False
+start = True
+result=[]
+while not done:
+
+        print("===Welcome to Adventure===")
+       
+    
+        if start:
+            r=input("enter name:")
+            playerlocation = room['outside']
+            print(playerlocation.name,playerlocation.description)
+            start = False
+            new_player = Player(str(r),100,0)
+            print("++++++++++++++++++++++++++++++++++++++++++++")
+            print(" Name: " + str(new_player.name) + " Score: " + str(new_player.score) + " Health: " + str(new_player.heath))
+    
+        if not start:
+            x = input("""MOVE PLAYER: 
+                    North: 
+                    South:
+                    East:
+                    West:
+OTHER:
+                    Exit:
+                    Grab:
+                    Drop:
+                    Enter a commmand: """) 
+     
+        
+
+        if x=="north":
+              try:  
+                    playerlocation = playerlocation.n_to 
+
+              except:
+                    print ("must go south") 
+            
+            
+
+        if x=="south":
+            try:
+                playerlocation = playerlocation.s_to
+            except:
+                print("must go north")
+
+        if x=="east":
+            try:
+                playerlocation = playerlocation.e_to
+            except:
+                 print ("must go west") 
+    
+        if x=="west":
+            try:
+              playerlocation = playerlocation.w_to
+            except:
+                    print ("must go east") 
+
+        if x == "exit":
+            y = input("are you sure you want to exit?:")
+            if y=="y":
+                     done=True
+         
+       
+
+        if not playerlocation:
+                    print ("must go south") 
+
+
+
+        print("++++++++++++++++++++++++++++++++++")           
+        print(playerlocation.name,playerlocation.description)
+        print("++++++++++++++++++++++++++++++++++") 
+        print(" Name: " + str(new_player.name) + " Score: " + str(new_player.score) + " Health: " + str(new_player.heath))
+      #  if playerlocation = room['foyer']:
+
+
+
+        if playerlocation == room['treasure']:
+            print("You Win!!!")
+            done = True
+
+
+
 
 # Make a new player object that is currently in the 'outside' room.
 
