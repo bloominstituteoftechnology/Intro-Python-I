@@ -1,28 +1,28 @@
-from room import Room
-from player import Player
+from room import Room 
+from player import Player 
 import textwrap
+from item import Item
+from data import room
+
+# Define items
+# scroll = Item('Scroll', 'A rolled-up piece of old paper')
+# dictionary = Item('Dictionary', 'An old dusty book with lots of words in it')
+# holy_grail = Item('Holy Grail', 'A golden chalice')
 
 # Declare all the rooms
 
-room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+# room = {
+#     'outside':  Room("Outside Cave Entrance",
+#                      "North of you, the cave mount beckons", [scroll, dictionary]),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+#     'foyer':    Room("Foyer", "Dim light filters in from the south. Dusty passages run north and east.", []),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+#     'overlook': Room("Grand Overlook", "A steep cliff appears before you,falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.", []),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+#     'narrow':   Room("Narrow Passage", "The narrow passage bends here from west to north. The smell of gold permeates the air.",[]),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
-}
-
+#     'treasure': Room("Treasure Chamber", "You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.",[holy_grail]),
+# }
 
 # Link rooms together
 
@@ -41,10 +41,8 @@ room['treasure'].s_to = room['narrow']
 def main():
     new_player_name = input('Please enter your name: ')
 
-
 # Make a new player object that is currently in the 'outside' room.
-    new_player = Player(new_player_name, room['outside'])
-
+    new_player = Player(new_player_name, room['outside'],[])
 
 # Write a loop that:
 #
@@ -59,9 +57,13 @@ def main():
 
     while True:
         # display current room info
-        print(f"You are in the {new_player.room.name}")
-        print(textwrap.wrap(new_player.room.description))
-
+        print(f"You are in the {new_player.current_room.name}")
+        print(textwrap.wrap(new_player.current_room.description))
+        print()
+        print('Items found in this room: ')
+        for item in new_player.current_room.room_items:
+            print('- ' + item.name + ': ' + item.description)
+        print()
         # promp for next move
         print("What do you want to do next?")
         print("('n': go north")
@@ -69,63 +71,68 @@ def main():
         print("('e': go east")
         print("('w': go west")
         print("('q': quit game")
-        next_move = input("")
+        new_input = input("")
 
-        # type check next_move input
+        # type check new_input input
         try:
-            next_move = str(next_move) 
+            new_input = str(new_input) 
+
         except ValueError:
-            print("Please enter an appropriate letter.")
+            print("Please make an acceptable input.")
         
-        if len(next_move) == 1:
+        input_list = new_input.split(' ')
+        if len(new_input) == 1:
 
             #handle quit
-            if next_move == 'q':
+            if new_input == 'q':
                 print("Thank you for playing.  Goodbye!")
                 break
 
-            elif next_move == 'n':
-                if hasattr(new_player.room, 'n_to'):
-                    new_player.room = new_player.room.n_to
-                    if new_player.room.name == 'Treasure Chamber':
+            #handle making a move
+            elif new_input == 'n' or new_input == 's' or new_input == 'e' or new_input == 'w':
+                key = new_input + '_to'
+                if hasattr(new_player.current_room, key):
+                    new_player.current_room = getattr(new_player.current_room, key)
+                    if new_player.current_room.name == 'Treasure Chamber':
                         print("You won!!")
                         break
                 else:
                     print("This move is not allowed.  Please try again.")
             
-            elif next_move == 's':
-                if hasattr(new_player.room, 's_to'):
-                    new_player.room = new_player.room.s_to
-                    if new_player.room.name == 'Treasure Chamber':
-                        print("You won!!")
-                        break
-                else:
-                    print("This move is not allowed.  Please try again.")
-            elif next_move == 'e':
-                if hasattr(new_player.room, 'e_to'):
-                    new_player.room = new_player.room.e_to
-                    if new_player.room.name == 'Treasure Chamber':
-                        print("You won!!")
-                        break
-                else:
-                    print("This move is not allowed.  Please try again.")
-            elif next_move == 'w':
-                if hasattr(new_player.room, 'w_to'):
-                    new_player.room = new_player.room.w_to
-                    if new_player.room.name == 'Treasure Chamber':
-                        print("You won!!")
-                        break
-                else:
-                    print("This move is not allowed.  Please try again.")
-            
-            # elif        or next_move == 's' or next_move == 'e' or next_move == 'w':
-                # print('here')
-                # break
+            elif new_input == 'i':
+                print('You have the following items:')
+                for item_object in new_player.player_items:
+                    print('- ' + item_object.name +': ' + item_object.description)
+            else:
+                print("Please enter an acceptable input.")
 
-                # move_str = next_move + '_to'
-                # if hasattr(new_player.room, move_str):
-                #     new_player.room = new_player.room[move_str]
+        # handle 2 words
+        elif len(input_list) == 2:
+            verb = input_list[0]
+            item_name = input_list[1]
+            # handle get or take item from room to player
+            if verb == 'get' or verb == 'take':
+                found_match = False
+                for item_object in new_player.current_room.room_items:
+                    if item_name == item_object.name:
+                        found_match = True
+                        new_player.player_items.append(item_object) #pick up item from room to player
+                        new_player.current_room.room_items.remove(item_object)
+                if found_match == False:
+                    print('Item is not found in room.  Please try again.')
+            elif verb =='drop':
+                found_match = False
+                for item_object in new_player.player_items:
+                    if item_name == item_object.name:
+                        found_match = True
+                        new_player.current_room.room_items.append(item_object) #pick up item from room to player
+                        new_player.player_items.remove(item_object)
+                if found_match == False:
+                    print('Item is not found on player.  Please try again.')
+            else:
+                print('Command is not recognized.  Please try again.')
         else:
-            print("Please enter an appropriate letter.")
+            print("Please enter an appropriate input.")
+        
 
 main()
