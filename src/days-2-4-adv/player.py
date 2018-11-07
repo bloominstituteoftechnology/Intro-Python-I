@@ -32,5 +32,9 @@ class Player:
                 return True
         return False
 
+    # list out the items in the players inventory [items] list
+    def inventory(self):
+        print(f"\nYou have the following items: {', '.join(item.name for item in self.items)}")
+
     def __str__(self):
         return str(self.location.name)  + "\n" + str(self.location.description)
