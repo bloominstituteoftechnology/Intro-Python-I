@@ -89,10 +89,12 @@ def print_current_room_details(room):
 
 # instantiate player object with a starting room
 player = Player(room['outside'])
-# Write a loop that:
+
+# Main game loop:
 while True:
-    # print the current room details
-    print(player.room)
+    # print the current room details formatted and coloured
+    print("\n\x1b[1;36mYou are in the {}.".format(player.room.name))
+
     # * Waits for user input and decides what to do.
     command = input("PLEASE ENTER a Command to move : [NORTH] [SOUTH] [EAST] [WEST] or [QUIT] to exit the game >> ")
     # If the user enters "q", quit the game.
@@ -128,6 +130,10 @@ while True:
         for x in range(30):
             print("Reply from 172.217.20.68: bytes=32 time=34ms TTL=50\n")
         print("\nPackets: Sent = 4, Received = 4, Lost = 0 (0 loss)\n")
+    
+    elif command == "help":
+            print("\x1b[1;32;40m\nLIST OF COMMANDS\n----------------\n[north] = move north\n[south] = move south\n[east] = move east\n[west] = move west\n[get <item>] = pick up an item\n[drop <item>] = drop an item\n[quit] = give up the game\n[help] = this text\x1b[0m")
+
     # Print an error message if the movement isn't allowed.
     else:
         print("\nUnknown command!\n")
