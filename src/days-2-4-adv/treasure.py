@@ -5,3 +5,8 @@ class Treasure(Item):
     return super().__init__(name)
     self.value = value
     self.picked_up = False
+
+  # TODO: fill in logic for this method
+  def on_take(self): pass
+
+  def on_drop(self): pass
