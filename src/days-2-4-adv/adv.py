@@ -1,9 +1,6 @@
-
-class Room:
-  def __init__(self,name,description):
-     self.name = name
-     self.description=description 
-     
+from player import Player
+from room import Room
+from item import Item  
      
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -23,6 +20,7 @@ to north. The smell of gold permeates the air."""),
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
+
 
 
 # Link rooms together
@@ -47,11 +45,26 @@ while not done:
        
     
         if start:
+            r=input("enter name:")
             playerlocation = room['outside']
             print(playerlocation.name,playerlocation.description)
             start = False
-        x = input("Enter a Direction: ") 
-
+            new_player = Player(str(r),100,0)
+            print("++++++++++++++++++++++++++++++++++++++++++++")
+            print(" Name: " + str(new_player.name) + " Score: " + str(new_player.score) + " Health: " + str(new_player.heath))
+    
+        if not start:
+            x = input("""MOVE PLAYER: 
+                    North: 
+                    South:
+                    East:
+                    West:
+OTHER:
+                    Exit:
+                    Grab:
+                    Drop:
+                    Enter a commmand: """) 
+     
         
 
         if x=="north":
@@ -80,11 +93,27 @@ while not done:
               playerlocation = playerlocation.w_to
             except:
                     print ("must go east") 
-            
+
+        if x == "exit":
+            y = input("are you sure you want to exit?:")
+            if y=="y":
+                     done=True
+         
+       
 
         if not playerlocation:
                     print ("must go south") 
-        print(playerlocation.name,playerlocation.description)   
+
+
+
+        print("++++++++++++++++++++++++++++++++++")           
+        print(playerlocation.name,playerlocation.description)
+        print("++++++++++++++++++++++++++++++++++") 
+        print(" Name: " + str(new_player.name) + " Score: " + str(new_player.score) + " Health: " + str(new_player.heath))
+      #  if playerlocation = room['foyer']:
+
+
+
         if playerlocation == room['treasure']:
             print("You Win!!!")
             done = True
