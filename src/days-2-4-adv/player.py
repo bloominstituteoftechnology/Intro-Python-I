@@ -8,7 +8,7 @@ class Player:
 	def get_item(self, item):
 		return self.items.append(item)
 
-	def view_items(self):
+	def view_inventory(self):
 		if len(self.items) > 0:
 			print('Your inventory:')
 			for item in self.items:

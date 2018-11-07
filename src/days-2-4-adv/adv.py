@@ -94,29 +94,39 @@ def print_wrapped_lines(value = ''):
         print(element)
 
 def start_game():
-    valid_moves = ['n', 's', 'e', 'w', 'q']
+    # valid_moves = ['n', 's', 'e', 'w']
+    valid_moves = {'n': 'north', 's': 'south', 'e': 'east', 'w': 'west'}
     currRoom = p.room
     inventory = p.items
     get_item = p.get_item
-    view_items = p.view_items
+    view_inventory = p.view_inventory
     text_divider = '\n====================\n'
 
     def try_get_item(item_name):
         if item_name == currRoom.item.name:
             get_item(currRoom.item)
+            print(text_divider)
             print_wrapped_lines(f'Player has picked up {currRoom.item.description}.')
+            print('\n')
             setattr(currRoom, 'item', item['nothing'])
         else:
-            print_wrapped_lines(f'Room does not have a: {item_name}')
+            print(text_divider)
+            print_wrapped_lines(f'This room does not have a {item_name}')
+            print('\n')
 
     def try_drop_item(item_name):
         for index, item in enumerate(inventory):
             if item.name == item_name:
                 del inventory[index]
                 setattr(currRoom, 'item', item)
+                print(text_divider)
                 print_wrapped_lines(f'Player has dropped the {item_name}.')
-                return view_items()
-        return print(f'Your inventory does not contain: {item_name}.')
+                print('\n')
+                return view_inventory()
+                print('\n')
+        print(text_divider)
+        print(f'Your inventory does not contain: {item_name}.')
+        return print('\n')
 
     print(text_divider)
 
@@ -126,64 +136,91 @@ def start_game():
         print('\n')
         print_wrapped_lines(f'This room has {currRoom.item.description}.')
 
-        print(text_divider)
+        print('\n')
 
-        while(True):
-            print_wrapped_lines('What would you like to do?')
-            next_action = input('get <item> / drop <item> / view items / keep moving / quit :')
-            next_action = next_action.lower()
+        print_wrapped_lines('What would you like to do?')
+        next_action = input('(g)et <item> / (d)rop <item> / (i)inventory / (k)eep moving / (q)uit :')
+        next_action = next_action.lower()
 
-            if next_action == 'keep moving':
-                break
+        if next_action[:4] == 'get ':
+            try_get_item(next_action[4:])
+            continue
 
-            if next_action[:4] == 'get ':
-                try_get_item(next_action[4:].lower())
+        elif next_action[:2] == 'g ':
+            try_get_item(next_action[2:])
+            continue
 
-            if next_action[:5] == 'drop ':
-                try_drop_item(next_action[5:].lower())
+        elif next_action[:5] == 'drop ':
+            try_drop_item(next_action[5:])
+            continue
 
-            if next_action == 'view items':
-                view_items()
-            
-            if next_action == 'quit' or next_action == 'q':
-                print_wrapped_lines('Do you really want to leave?')
-                print(text_divider)
-                print('\n')
-                confirm_exit = input('Cofirm: (y/n):')
-                if (confirm_exit.lower() == 'y'):
-                    print(text_divider)
-                    print_wrapped_lines('See ya!')
-                    print(text_divider)
-                    return print('/n')
-                else:
-                    print(text_divider)
+        elif next_action[:2] == 'd ':
+            try_drop_item(next_action[2:])
+            continue
 
-        next_move = input('Which direction do you want to go? (n/s/e/w):')
-
-        print(text_divider)
-
-        room_attr = f'{next_move.lower()}_to'
-
-        if next_move.lower() not in valid_moves:
-            print_wrapped_lines(f'{next_move} is an invalid move.')
-            print('\n')
-        elif next_move.lower() == 'q':
-            print_wrapped_lines('Do you really want to leave?')
+        elif next_action == 'inventory' or next_action == 'i':
             print(text_divider)
+            view_inventory()
             print('\n')
-            confirm_exit = input('Cofirm: (y/n):')
-            if (confirm_exit.lower() == 'y'):
+            continue
+
+        elif next_action == 'keep moving' or next_action == 'k':
+            pass
+        
+        elif next_action == 'quit' or next_action == 'q':
+            print(text_divider)
+            print_wrapped_lines('Do you really want to quit?')
+            print('\n')
+            confirm_exit = input('(y)es / (n)o :')
+            confirm_exit = confirm_exit.lower()
+
+            if confirm_exit == 'yes' or confirm_exit == 'y':
                 print(text_divider)
                 print_wrapped_lines('See ya!')
+                return print('/n')
+            else:
+                print('\n')
+                continue
+        
+        else:
+            print(text_divider)
+            print(f'Invalid input: {next_action}')
+            print('\n')
+            continue
+
+        print(text_divider)
+        print_wrapped_lines('You decide to keep moving.')
+        print('\n')
+        print_wrapped_lines('Which direction do you want to go?')
+
+        next_move = input('(n)orth / (s)outh / (e)ast / (w)est / (q)uit :')
+
+        next_move = next_move.lower()
+        print(text_divider)
+        room_attr = f'{next_move[0]}_to'
+
+        if (len(next_move) == 1 and next_move[0] in valid_moves.keys()) or next_move in valid_moves.values():
+            if hasattr(currRoom, room_attr):
+                currRoom = getattr(currRoom, room_attr)
+            else:
+                print_wrapped_lines(f'There is nothing to the {valid_moves[next_move[0]]}. Pick another direction.')
+                print('\n')
+        elif next_move == 'quit' or next_move == 'q':
+            print_wrapped_lines('Do you really want to quit?')
+            print(text_divider)
+            print('\n')
+            confirm_exit = input('(y)es / (n)o :')
+            confirm_exit = confirm_exit.lower()
+
+            if confirm_exit == 'yes' or confirm_exit == 'y':
                 print(text_divider)
+                print_wrapped_lines('See ya!')
                 return print('/n')
             else:
                 print(text_divider)
-        elif hasattr(currRoom, room_attr):
-            currRoom = getattr(currRoom, room_attr)
         else:
-            direction = {'n': 'north', 's': 'south', 'e': 'east', 'w': 'west'}
-            print_wrapped_lines(f'There is nothing to the {direction[next_move.lower()]}. Pick another direction.')
+            print(text_divider)
+            print(f'Invalid direction: {next_move}')
             print('\n')
 
 if __name__ == '__main__':
