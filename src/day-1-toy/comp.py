@@ -1,13 +1,13 @@
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
-y = []
+y = [x for x in range(1, 6)]
 
 print (y)
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 
-y = []
+y = [num**3 for num in range(0, 10)]
 
 print(y)
 
@@ -16,7 +16,8 @@ print(y)
 
 a = ["foo", "bar", "baz"]
 
-y = []
+y = [letters.upper() for letters in a]
+y = [letters[0].upper() + letters[1:] for letters in a]
 
 print(y)
 
@@ -26,7 +27,7 @@ print(y)
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-y = []
+y = [i for i in x int(i)%2==0]
 
 print(y)
 

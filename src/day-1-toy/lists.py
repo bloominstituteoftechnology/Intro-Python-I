@@ -8,18 +8,28 @@ y = [8, 9, 10]
 
 # Change x so that it is [1, 2, 3, 4]
 # [command here]
+# x.insert(3, 4)
+x.append(4)
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # [command here]
+for num in y:
+  x.append(num)
+# x.append(y)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # [command here]
+for num in x:
+  if num == 8:
+    x.remove(num)
+#x.remove(4) remove(index)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # [command here]
+x.insert(5, 99)
 print(x)
 
 # Print the length of list x
@@ -27,3 +37,7 @@ print(x)
 print(len(x))
 
 # Using a for loop, print all the element values multiplied by 1000
+for num in x:
+  print num * 1000
+
+print(x)
