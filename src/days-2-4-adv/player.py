@@ -17,30 +17,43 @@ from room import Room
 #         return str(f'{self.name} you are in {self.current_room}')
 
 class Player:
-    def __init__(self, currentRoom):
+    def __init__(self, name, currentRoom):
+        self.name = name
         self.currentRoom = currentRoom
-        self.health = 100
-        self.inventory = []
-        
-    def.pickup_item(self, item):
-        self.inventory.append(item)
 
-    def try_move(self, direction):
-        """
-        Picka direction, or print error stating player can not go that way
-        """
-        #making attribute expectations for adv.py directions
-        d = direction + "_to"
-        #check to see if movement is possible  in direction chosen
-        # python check called HASATTR: hasattr(object, name)
-        # The arguments are an object and a string. The result is True if the string is the name of
-        # one of the object’s attributes, False if not. (This is implemented by calling getattr(object, name) 
-        # and seeing whether it raises an exception or not.)
-        if not hasattr(self.currentRoom, d):
-            print("The path is blocked, choose a different door...")
-            return self.currentRoom
+    def travel(self, direction):
+        nextRoom = self.currentRoom.getRoomInDirection(direction)
+        if nextRoom is not None:
+            self.currentRoom = nextRoom
         else:
-            self.currentRoom = self.currentRoom[d]
+            print("Your path is blocked, try a different way.")
+
+#________Lecture Example________________________
+# class Player:
+#     def __init__(self, currentRoom):
+#         self.currentRoom = currentRoom
+#         self.health = 100
+#         self.inventory = []
+        
+#     def.pickup_item(self, item):
+#         self.inventory.append(item)
+
+#     def try_move(self, direction):
+#         """
+#         Picka direction, or print error stating player can not go that way
+#         """
+#         #making attribute expectations for adv.py directions
+#         d = direction + "_to"
+#         #check to see if movement is possible  in direction chosen
+#         # python check called HASATTR: hasattr(object, name)
+#         # The arguments are an object and a string. The result is True if the string is the name of
+#         # one of the object’s attributes, False if not. (This is implemented by calling getattr(object, name) 
+#         # and seeing whether it raises an exception or not.)
+#         if not hasattr(self.currentRoom, d):
+#             print("The path is blocked, choose a different door...")
+#             return self.currentRoom
+#         else:
+#             self.currentRoom = self.currentRoom[d]
             #
 
 

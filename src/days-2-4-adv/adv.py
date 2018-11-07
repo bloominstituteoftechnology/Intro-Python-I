@@ -23,8 +23,6 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 # Link rooms together
-res = '--start of game --'
-location = 'outside'
 
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
@@ -52,88 +50,24 @@ room['treasure'].s_to = room['narrow']
 #
 # If the user enters "q", quit the game.
 
-player = Player(input("what is your name hero?"), room["outside"])
-current_room = room[player.current_room].description
+directions = {"n": "n", "e": "e", "s": "s", "w":"w"}
 
-while not res[0] == 'q':
-    command = input("am I working?").lower().split(" ")
-    #while player is outside
-    if location == 'outside':
-        print(current_room)
-        res = input('\nwhat will you do?\n').split(" ")
-        command(res, player, current_room)
+nameInput = input("What is your name hero?...")
+player = Player(nameInput, room["outside"])
+print(f"{player.currentRoom}")
 
-        if res[0] == 'get' or res[0] == 'drop':
-            pass
-        elif res[0] == 'n':
-            current_room = current_room.room_direction(res[0])
-            location = 'foyer'
-        elif not res[0] == 'q':
-            print('try a different input')
-    #Foyer
-    if location == 'foyer':
-        print(current_room)
-        res = input('\nwhat will you do?\n').split(" ")
-        command(res, player, current_room)
+while True:
+    cmds = input("-->").lower().split(" ")
+    if len(cmds) == 1:
+        if cmds[0] == "q":
+            break
+        elif cmds[0] in directions:
+            player.travel(directions[cmds[0]])
+            print(f"{player.currentRoom}")
+        else:
+            print("command not recognize")
+    else:
+        print("command not recognize, q = quit")
 
-        if res[0] == 'get' or res[0] == 'drop':
-            pass
-        elif res[0] == 's':
-            current_room = current_room.room_direction(res[0])
-            location = 'outside'
-        elif res[0] == 'e':
-            current_room = current_room.room_direction(res[0])
-            location = 'narrow'
-        elif res[0] == 'n':
-            current_room = current_room.room_direction(res[0])
-            location = 'overlook'
-        elif not res[0] == 'q':
-            print('try a different input')
-    #Narrow
-    if location == 'narrow':
-        print(current_room)
-        res = input('\nwhat will you do?\n').split(" ")
-        command(res, player, current_room)
-
-        if res[0] == 'get' or res[0] == 'drop':
-            pass
-        elif res[0] == 'w':
-            current_room = current_room.room_direction(res[0])
-            location = 'foyer'
-        elif res[0] == 'n':
-            current_room = current_room.room_direction(res[0])
-            location = 'treasure'
-        elif not res[0] == 'q':
-            print('try a different input')
-    #Overlook
-    if location == 'overlook':
-        print(current_room)
-        res = input('\nwhat will you do?\n').split(" ")
-        command(res, player, current_room)
-
-        if res[0] == 'get' or res[0] == 'drop':
-            pass
-        elif res[0] == 's':
-            current_room = current_room.room_direction(res[0])
-            location = 'foyer'
-        elif not res[0] == 'q':
-            print('try a different input')
-    #Treasure
-    if location == 'treasure':
-        print(current_room)
-        res = input('\nwhat will you do?\n').split(" ")
-        command(res, player, current_room)
-
-        if res[0] == 'get' or res[0] == 'drop':
-            pass
-        elif res[0] == 'w':
-            current_room = current_room.room_direction(res[0])
-            location = 'foyer'
-        elif res[0] == 's':
-            current_room = current_room.room_direction(res[0])
-            location = 'narrow'
-        elif not res[0] == 'q':
-            print('try a different input')
-
-print('\Thank you for playing')
+print('Thank you for playing')
         
