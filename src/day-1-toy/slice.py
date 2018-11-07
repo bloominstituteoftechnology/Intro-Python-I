@@ -26,3 +26,10 @@ s = "Hello, world!"
 
 # Output just the 8th-12th characters: "world"
 print(s[7:12])
+
+#convert string to list
+def convert(string):
+    li = list(string.split(" "))
+    return li
+str1 = "greeks make yummy olives"
+print(convert(str1))
