@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -44,70 +45,125 @@ room['foyer'].connectRooms(room['overlook'], 'n')
 room['foyer'].connectRooms(room['narrow'], 'e')
 room['narrow'].connectRooms(room['treasure'], 'n')
 
+rock = Item('rock', 'large, grey boulder near the entrance to the cave.')
 
-#
-# Main
-#
+room['outside'].addItem(rock)
 
-# Make a new player object that is currently in the 'outside' room.
+
+def printErrorString(errorString):
+  print("\n{}\n".format(errorString))
+  global noPrint
+  noPrint = True
+
+
+
+validDirection = ['n', 's', 'e', 'w']
 noPrint = False
 current_room = room['outside']
 user_character = player['default_character']
 print("Welcome to the game!")
-inp = input("Type 'Terrance' to play as the greatest character, or Type 'c' to create a new character:")
+inp = input("Type 'Terrance' to play as default character, or Type 'C' to create a character:")
 if inp == 'Terrance':
   user_character == player['default_character']
   print(user_character)
-elif inp == 'T' or inp == 'c':
-  char_name = inp("Please enter your name: ")  
-  player[char_name] = Player(name = char_name.name, start_room = room['outside'])
-  user_character = player[char_name]
+elif inp == 'C' or inp == 'c':
+  user_character = Player(input("Please enter your characters name: "), start_room = room['outside'])
+  print('Welcome, {}!'.format(user_character.name))
+
+
+def lookCommand(player, *args):
+    if len(args) == 1:
+      return False
+    elif args[1] in validDirection:
+      lookRoom = user_character.location.getRoomInDirection(args[1])
+      if lookRoom == None:
+        printErrorString('\nThere is nothing to see that way\n')
+        return True
+      else:
+        print(f'\nTo the {args[1]} you see {lookRoom.name}.\n')
+        return True
+    else:
+      print('\nI dont even know where you are trying to go..\n')
+      return True
+
+def moveCommand(player, *args):
+  global current_room
+  current_room = user_character.location.getRoomInDirection(args[0])
+  global newRoom
+  newRoom = user_character.location.getRoomInDirection(args[0])
+  if newRoom == None:
+    printErrorString('Cant go that direction')
+  else:
+    user_character.changeLocation(newRoom)
+    return False
+  
+def itemCommand(user_character, *args):
+  if (args[0] == 'get' or args[0] == 'take'):
+    item = user_character.location.findItem(args[1])
+    print(item)
+    if item == None:
+      printErrorString('\nThat item is not avalible\n')
+    else:
+      user_character.addItem(args[1])
+      print(f'{args[1]} added to your inventory\n')
+    return True
+  elif args[0] == 'drop':
+    if len(args) > 1:
+      user_character.removeItem(args[1])
+      print(f'\n{args[1]} was deleted from your inventory\n')
+      return True
+    else:
+      print(f'{args[1]} doesnt exist.')  
+
+commands = {}
+commands['n'] = moveCommand
+commands['s'] = moveCommand
+commands['e'] = moveCommand
+commands['w'] = moveCommand
+commands['look'] = lookCommand
+commands['get'] = itemCommand
+commands['take'] = itemCommand
+commands['drop'] = itemCommand
+
+commandsHelp = {}
+commandsHelp['n'] = 'move north'
+commandsHelp['s'] = 'move south'
+commandsHelp['e'] = 'move east'
+commandsHelp['w'] = 'move west'
+commandsHelp['look'] = 'look somewhere'
+
 
 
 while True:
   if noPrint:
     noPrint = False
   else:
-    print("  \n---- You are at the {} ----\n".format(current_room.name))
-    print("    {}".format(current_room.description))
+    print(current_room)
   inp = input("What is your input: ")
-  if inp == 'q':
+  inplist = inp.split(' ')
+  print(f'Your input has {len(inplist)} arguments')
+  for arg in inplist:
+    print(arg)
+
+  if inplist[0] == 'q':
     print("Bye!")
     break
-  if inp == "n" or inp == "s" or inp == "w" or inp == "e":
-    current_room = user_character.location.getRoomInDirection(inp)
+    
+ 
 
-  if inp == "n" or inp == "s" or inp == "w" or inp == "e":
-    newRoom = user_character.location.getRoomInDirection(inp)
-    if newRoom == None:
-      print("\nYou can not go that way.\n")
-      noPrint = True
+  elif (inplist[0] == 'inventory' or inplist[0] == 'items'):
+    print('\n--Your Inventory--\n')
+    if len(user_character.inventory) > 0:
+      for item in user_character.inventory:
+        print(f'item --{item}\n')
+        noPrint = True
     else:
-      user_character.changeLocation(newRoom)
+      printErrorString('\nThere is nothing in your inventory\n')     
+
+  elif inplist[0] == 'help':
+    for command in commandsHelp:
+      print(f'{command} -- {commandsHelp[command]}')
+  elif inplist[0] in commands:
+    noPrint = commands[inplist[0]](user_character, *inplist)
   else:
-    print("\nI don't understand that\n")
-    noPrint = True
-
-
-  # elif inp == 'n' and current_room == room['outside']:
-  #   current_room = room['outside'].n_to
-  # elif inp == 's' and current_room == room['outside']:
-  #   print("Can not go any further South.")
-  # elif inp == 'e' and current_room == room['outside']:
-  #   current_room = room['outside'].s_to
-  # elif inp == 'me':
-  #   print(player[player_name])
-    
-
-    
-
-
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+    printErrorString("\nI don't understand that\n")
