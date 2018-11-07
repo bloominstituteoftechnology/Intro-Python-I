@@ -1,7 +1,8 @@
 from room import Room
 from player import Player
+import textwrap
 
-#Declare all the rooms
+# Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -39,13 +40,12 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-danny_boy = Player('Tom', 'outside')
-n = danny_boy.name
-r = danny_boy.room
-rd = str(room['outside'])
+
+print(Player(room['treasure']))
+# player = Player(room['outside'])
+
 # Write a loop that:
-print("{} is in the {}".format(n, r))
-print("{}".format(rd))
+#
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
@@ -54,3 +54,54 @@ print("{}".format(rd))
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# print (player.room)
+# print (player.room.name)
+
+# Rooms are initiliazed with no items. To add them, use the
+# Room.add_items(*items) method. You may pass in a  list,
+# individual items, or a combination of both
+# e.g. Room.add_items('sword', 'shield', ['treasure, 'crown', 'chalice'])
+
+
+
+# while True:
+#     print (' ')
+#     print ('Thy current location:', player.room.name)
+#     print ( textwrap.wrap(player.room.description) )
+#     move = input('Where will you move next?     ')
+#     print ()
+#     try:
+#        move = move.lower()
+#     except AttributeError:
+#         print ('Please enter a cardinal direction')
+#         continue
+#     if move in ['n', 'e', 's', 'w', 'q']:
+#         if move == 'n':
+#             try:
+#                 player.room = player.room.n_to
+#             except AttributeError:
+#                 print('You may not move in that direction. Try again')
+#                 continue
+#         elif move == 'e':
+#             try:
+#                 player.room = player.room.e_to
+#             except AttributeError:
+#                 print('You may not move in that direction. Try again')
+#                 continue
+#         elif move == 's':
+#             try:
+#                 player.room = player.room.s_to
+#             except AttributeError:
+#                 print('You may not move in that direction. Try again')
+#                 continue
+#         elif move == 'w':
+#             try:
+#                 player.room = player.room.w_to
+#             except AttributeError:
+#                 print('You may not move in that direction. Try again')
+#                 continue
+#         elif move == 'q':
+#             break
+#     else:
+#         print ('Please enter a cardinal direction or "q" to quit')
