@@ -1,15 +1,15 @@
 from room import Room
 from player import Player
-from item import Treasure, LightSource
+from item import Item, Treasure, LightSource
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     """North of you, the cave mount beckons"""),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", False),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -20,7 +20,7 @@ to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", False),
 }
 
 
@@ -34,36 +34,20 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
-
-room['outside'].is_light = True
-room['foyer'].is_light = True
-
-# Add some items
-
-t = Treasure("silver", "a piece of silver", 600)
-room['overlook'].contents.append(t)
-
-t = Treasure("pearl", "a piece of black pearl", 600)
-room['treasure'].contents.append(t)
-
-
-t = Treasure("medal", "a small medal with a dragon", 2000)
-room['treasure'].contents.append(t)
-
-l = LightSource("lamp", "Oil Lamp" 100)
-room['foyer'].contents.append(l)
-
-f = Food("fries", "potato")
-room['treasure'].contents.append(f)
-
+room['outside'].add_item(Item('Backpack', 'A backpack to put your stuff in'))
+room['outside'].add_item(LightSource(
+    'Oil Lamp', 'An oil lamp to help you see in the darkness.'))
+room['treasure'].add_item(Treasure('Black Pearl', 'A rear pearl.', 75))
+room['overlook'].add_item(
+    Treasure('Map', 'A map with mark. There might be the treasure', 20))
+room['narrow'].add_item(Treasure('Medal', 'Medal with a dragon.', 25))
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-name = input("What's your name?\n")
-plyr = Player(name, room['outside'])
+
 
 # Write a loop that:
 #
@@ -75,50 +59,53 @@ plyr = Player(name, room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-print(
-    f'You find yourself just {plyr.current_room.location} with no memory of how you got here  {plyr.current_room.description}. ')
+
+def help_prompt():
+    print('Hello, travelers. Here are the available commands: \n')
+    print('Move:')
+    print('  North: n or forward \n  South: s or backwards \n  East: e or right \n  West: w or left')
+    print('Look:')
+    print('  Look (direction) to look at what lies ahead.')
+    print('Items:')
+    print('  Get/take (item) to take item \n  Drop (item) to drop item \n  i or inventory to check inventory')
+    print('Help:')
+    print('  h or help to view these commands again')
+    print('Quit:')
+    print('  q to quit the game')
+
+
+valid_directions = {'n': 'n', 's': 's', 'e': 'e', 'w': 'w',
+                    'forward': 'n', 'backwards': 's', 'right': 'e', 'left': 'w'}
+valid_utilities = {'i': 'i', 'inventory': 'i'}
+valid_help = {'h': 'h', 'help': 'h'}
+
+p = Player(input('What is your name? \n'), room['outside'])
+print(p.room)
+p.room.room_items()
+print('\n\nPress h or help to view commands.')
+
 while True:
-    cmd = input(' How should we proceed? -> ').lower().split(' ')
+    cmd = input('-> ').lower().split(' ')
     if len(cmd) == 1:
         if cmd[0] == 'q':
-            print('\n Knew you didnt have the permission for this...')
             break
-        elif cmd[0] in ['n', 's', 'e', 'w']:
-            plyr.travel(cmd[0])
-        elif cmd[0] == 'i' or cmd[0] == 'inventory':
-            plyr.getInventory()
+        elif cmd[0] in valid_directions:
+            p.move(valid_directions[cmd[0]])
+        elif cmd[0] in valid_utilities:
+            p.list_items()
+        elif cmd[0] in valid_help:
+            help_prompt()
         elif cmd[0] == 'score':
-            plyr.getScore()
+            print(p.score)
         else:
-            print('Thats not right...')
+            print('That is not a valid command. Please try again.')
     else:
-        if cmd[0] == 'get' or cmd[0] == 'take':
-            itemToAdd = plyr.current_room.selectItem(cmd[1])
-            if itemToAdd == None:
-                print('Not inhere!')
-            elif not plyr.current_room.is_light and not plyr.has_light:
-                print('Good luck!')
-            else:
-                if hasattr(itemToAdd, 'value') and itemToAdd.value > 0:
-                    plyr.score += itemToAdd.value
-                    plyr.addItem(itemToAdd)
-                    plyr.getScore()
-                elif isinstance(itemToAdd, LightSource):
-                    plyr.has_light = True
-                    plyr.addItem(itemToAdd)
-                else:
-                    plyr.addItem(itemToAdd)
-
+        if cmd[0] == 'look':
+            if cmd[1] in valid_directions:
+                p.look(valid_directions[cmd[1]])
+        elif cmd[0] == 'get' or cmd[0] == 'take':
+            p.get_item(cmd[1])
         elif cmd[0] == 'drop':
-            itemToDrop = plyr.selectItem(cmd[1])
-            if itemToDrop is None:
-                print('You dont have anything like that')
-            elif isinstance(itemToDrop, LightSource):
-                plyr.has_light = False
-                plyr.removeItem(itemToDrop)
-                itemToDrop.on_drop()
-            else:
-                plyr.removeItem(itemToDrop)
-                itemToDrop.on_drop()
+            p.drop_item(cmd[1])
         else:
-            print('Unclear what you want...')
+            print('That is not a valid command. Please try again.')
