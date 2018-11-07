@@ -44,28 +44,51 @@ result=[]
 while not done:
 
         print("===Welcome to Adventure===")
-        player = room['outside']
-        player.name
+       
+    
         if start:
-            print(player.name,player.description)
+            playerlocation = room['outside']
+            print(playerlocation.name,playerlocation.description)
             start = False
         x = input("Enter a Direction: ") 
-    
-        if x=="north":
-           
-            pos = player.n_to
-            
-            print(pos.name,pos.description)
-            y = input("Enter a Direction: ")
-            if y=="north":
-              post = pos.n_to 
-              
-              print(post.name,post.description)
 
-        else:
-            print("must go forward")
-            
         
+
+        if x=="north":
+              try:  
+                    playerlocation = playerlocation.n_to 
+
+              except:
+                    print ("must go south") 
+            
+            
+
+        if x=="south":
+            try:
+                playerlocation = playerlocation.s_to
+            except:
+                print("must go north")
+
+        if x=="east":
+            try:
+                playerlocation = playerlocation.e_to
+            except:
+                 print ("must go west") 
+    
+        if x=="west":
+            try:
+              playerlocation = playerlocation.w_to
+            except:
+                    print ("must go east") 
+            
+
+        if not playerlocation:
+                    print ("must go south") 
+        print(playerlocation.name,playerlocation.description)   
+        if playerlocation == room['treasure']:
+            print("You Win!!!")
+            done = True
+
 
 
 
