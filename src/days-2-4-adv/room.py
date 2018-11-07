@@ -2,16 +2,16 @@
 # description attributes.
 
 class Links:
-	def __init__(self,key,value):
-		self.links = list(zip(key,value))
+	def __init__(self,dir,room,vis):
+		self.links = list(zip(dir,room,vis))
 	
 	def __str__(self):
 		return"{}".format(self.links)
 
 class Room(Links):
-	def __init__(self, name, desc, key, value):
-		super().__init__(key, value)
-		self.name = name
-		self.desc = desc
+	def __init__(self, values):
+		super().__init__(values[2],values[3],values[4])
+		self.name = values[0]
+		self.desc = values[1]
 	def __str__(self):
 		return "Room: {}: {}".format(self.name,self.desc)

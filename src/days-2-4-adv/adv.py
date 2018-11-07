@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from data import *
 # Declare all the rooms
 
 #room = {
@@ -33,26 +34,37 @@ from player import Player
 #room['narrow'].n_to = room['treasure']
 #room['treasure'].s_to = room['narrow']
 
-pName = input("welcome adventurer! What is your name?\n\n> ")
+while True:
+	pName = input("welcome adventurer! What is your name?\n\n> ")
+	if len(pName) > 0:
+		break
+
 
 p = Player(pName)
 
 print(p)
 
-r = Room("cheesy beginnings","the room smells strongly of... cheese? There is a room to the north.",["n","h"],["north room","hidden room"])
+r = Room(start)
 print (r)
-(dir,place)=(zip(*r.links))
+(dir,place,visible)=(zip(*r.links))
 #
 # remember to take these out: currently they display too much information
 #
 print (dir)
-print (r.links)
+print (place)
+print (visible)
+print (str(visible).split(',')[0][2:3:])  #expected output: 'h') or 'v'), with a space in front (Visible/hidden)
 #
 # Don't tell the player every direction they can go
 #
-t = input("Enter a command: ")
+t = input("Enter a command, h for help, or q to quit: ")
 if t in dir:
 	print('working')
+elif t == "h":
+	print ("""Help:""")
+elif t == "q":
+	print ('thanks for playing!')
+	#break
 else:
 	print('you can\'t go that way!')
 
