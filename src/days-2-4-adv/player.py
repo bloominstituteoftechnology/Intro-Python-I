@@ -6,6 +6,10 @@ class Player:
         self.currentRoom = currentRoom
         self.items = []
         self.score = 0
+        self.equiped_items = []
+        self.max_health = 20
+        self.health = self.max_health
+        self.attack = 0
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
@@ -38,15 +42,21 @@ class Player:
             else:
                 print("There is nothing there.")
     def printInventory(self):
-        print("You are carrying:\n")
+        print("Equipped:\n")
+        for item in self.equiped_items:
+            print(f"    {item.name}\n")
+        print("Backpack:\n")
         for item in self.items:
-            print(f"    {item.name}\n")   
+            print(f"    {item.name}\n")
+    def printStats(self):
+        print(f"Name: {self.name}\nHealth: {self.health}\nAttack: {self.attack}")
     def addItem(self, item):
-        if item.treasure:
+        if hasattr(item, 'treasure'):
             self.items.append(item)
-            item.collected = True
-            self.score += item.value
-            print(f"You have gained {item.value} points!")
+            if not item.collected:
+                item.collected = True
+                self.score += item.value
+                print(f"You have gained {item.value} points!")
         else:
             self.items.append(item)
     def removeItem(self, item):
@@ -55,4 +65,15 @@ class Player:
         for item in self.items:
             if item.name.lower() == name.lower():
                 return item
+        for item in self.equiped_items:
+            if item.name.lower() == name.lower():
+                return item
         return None
+    def equipItem(self, item):        
+        self.equiped_items.append(item)
+        if hasattr(item, 'attack'):
+            self.attack = item.attack
+    def unequipItem(self, item):        
+        self.equiped_items.remove(item)
+        if hasattr(item, 'attack'):
+            self.attack = self.attack - item.attack

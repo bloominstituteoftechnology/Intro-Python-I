@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Item, LightSource, Treasure
+from item import Item, LightSource, Treasure, Weapon
 
 # Declare all the rooms
 
@@ -47,13 +47,14 @@ room['treasure'].s_to = room['narrow']
 rock = Item("Rock", "This is a rock.")
 lantern = LightSource("Lantern", "A lantern that emits light.")
 coins = Treasure("Coins", "A small pile of coins.", 50)
-sword = Item("Sword", "A standard arming blade.")
+sword = Weapon("Sword", "A standard arming blade.", 10)
 big_rock = Item("Big Rock", "This is a big rock.")
 
 room['outside'].addItem(rock)
 room['outside'].addItem(big_rock)
 room['foyer'].addItem(lantern)
 room['overlook'].addItem(coins)
+room['treasure'].addItem(sword)
 
 room['outside'].light = True
 room['foyer'].light = True
@@ -98,6 +99,8 @@ while True:
             player.printInventory()
         elif cmds[0] == "p" or cmds[0] == "score":
             print(f"You have {player.score} points.")
+        elif cmds[0] == "stats":
+            player.printStats()
         else:
             print("I did not understand that command.")    
     else:
@@ -144,5 +147,51 @@ while True:
                     recent_item.append(" ".join(cmds[1:]))                    
                 else:
                     print("You are not holding that item.")
+        elif cmds[0] == "equip":
+            if cmds[1] == "it":
+                itemToEquip = player.findItembyName(recent_item[0])
+                if itemToEquip is not None:
+                    if hasattr(itemToEquip,'equippable'):
+                        player.equipItem(itemToEquip)
+                        player.removeItem(itemToEquip)
+                        print(f"You have equipped {itemToEquip.name}")
+                    else:
+                        print("You cannot equip this item.")
+                else:
+                    print("You are not holding that item.")
+            else:
+                itemToEquip = player.findItembyName(" ".join(cmds[1:]))            
+                if itemToEquip is not None:
+                    if hasattr(itemToEquip,'equippable'):
+                        player.equipItem(itemToEquip)
+                        player.removeItem(itemToEquip)
+                        print(f"You have equipped {itemToEquip.name}")
+                        if len(recent_item) > 0:
+                            recent_item.pop()
+                        recent_item.append(" ".join(cmds[1:]))
+                    else:
+                        print("You cannot equip this item.")
+                else:
+                    print("You are not holding that item.") 
+        elif cmds[0] == "unequip":
+            if cmds[1] == "it":
+                itemToUnequip = player.findItembyName(recent_item[0])
+                if itemToUnequip is not None:
+                    player.unequipItem(itemToUnequip)
+                    player.addItem(itemToUnequip)
+                    print(f"You have unequipped {itemToUnequip.name}")
+                else:
+                    print("You are not holding that item.")
+            else:
+                itemToEquip = player.findItembyName(" ".join(cmds[1:]))
+                if itemToUnequip is not None:
+                    player.unequipItem(itemToUnequip)
+                    player.addItem(itemToUnequip)
+                    print(f"You have unequipped {itemToUnequip.name}")
+                    if len(recent_item) > 0:
+                        recent_item.pop()
+                    recent_item.append(" ".join(cmds[1:]))
+                else:
+                    print("You are not holding that item.") 
         else:
             print("I did not understand that command.")  
