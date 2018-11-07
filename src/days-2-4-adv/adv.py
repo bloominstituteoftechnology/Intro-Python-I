@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -41,6 +42,47 @@ room["narrow"].w_to = room["foyer"]
 room["narrow"].n_to = room["treasure"]
 room["treasure"].s_to = room["narrow"]
 
+# Add items to rooms
+
+room["outside"].populate_item(
+    Item(
+        "Crimson", "The weapon fills its bearer with an unquenchable thirst for blood."
+    )
+)
+room["outside"].populate_item(
+    Item("Tonic", "Seals wounds and mends broken bones for all injuries sustained.")
+)
+room["foyer"].populate_item(
+    Item(
+        "Butcher",
+        "Embodiment of the madness and depravity that overwhelmed the people of Cairn following the Grim Dawn.",
+    )
+)
+room["overlook"].populate_item(
+    Item(
+        "Final",
+        "Forged by railyard workers during a desparate battle against the rising Chthonian forces.",
+    )
+)
+room["narrow"].populate_item(
+    Item(
+        "Codex",
+        "Forbidden texts of the witch god Solael, as recorded by Cabalist Hester Maughan.",
+    )
+)
+room["treasure"].populate_item(
+    Item(
+        "Glyph",
+        "Signet granted by Kelphat'Zoth, Grand Harbinger of Ch'Thon, upon his most loyal followers.",
+    )
+)
+room["narrow"].populate_item(
+    Item(
+        "Aegis",
+        "The guiding light of Ishtak cleanses of pain and fills with renewed resolve.",
+    )
+)
+
 #
 # Main
 #
@@ -68,9 +110,17 @@ while True:
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
 while True:
+    print(
+        f"\n========================================\nYou are in {player.current.name.upper()}."
+    )
+    print(f"{player.current.desc}")
+    print(f"\nIn the room, you see:")
+    for item in player.current.items:
+        print(f"{item.name} - {item.desc}")
     choice = input(
-        f"\n========================================\nYou are in {player.current.name.upper()}.\n{player.current.desc}\n\nWhere would you like to go?\n[n]orth, [e]ast, [s]outh, [w]est, or [q]uit\n"
+        "\nWhere would you like to go?\n[n]orth, [e]ast, [s]outh, [w]est\n[search] room,or [q]uit\n"
     )
     if len(choice) == 1:
         if choice == "q":

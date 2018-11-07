@@ -12,4 +12,3 @@ class Player:
             self.current = self.current.to_new(direction)
         else:
             print("You can't go that way.")
-

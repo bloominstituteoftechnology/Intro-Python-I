@@ -10,6 +10,7 @@ class Room:
         self.e_to = None
         self.s_to = None
         self.w_to = None
+        self.items = []
 
     def to_new(self, direction):
         if direction == "n" and self.n_to:
@@ -22,4 +23,7 @@ class Room:
             return self.w_to
         else:
             print("You can't go that way.")
+
+    def populate_item(self, item):
+        self.items.append(item)
 
