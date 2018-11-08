@@ -11,42 +11,82 @@ items = {
     'Rations': Item('Rations', 'Well-preserved food'),
     'Cigarettes': Item('Cigarettes', 'Adventuring can be stressful.'),
     'Pistol': Item('Pistol', 'A standard issue 9mm Pistol', True),
-    'Ammunition': Item('Ammunition', 'Ammunition for 9mm weapons.', True)
+    'Ammunition': Item('Ammunition', 'Ammunition for 9mm weapons.', True),
+    'Rusty Key': Item('Rusty Key', "A key that looks like it's spent a lot of time outdoors."), # key to the shed
+    'Shiny Key': Item('Shiny Key', "A key that looks like it opens an important room."), # key to the master bedroom
+    'Globe': Item('Globe', "A large globe with hardware meant to mount it on something..."), # globe for garden statue
+    'Book': Item('Book', "A weathered tome that is unusually heavy.")
 }
 
 
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons",
-                     [items['Torch']]),
+    'outside':  Room("Outside Cave Entrance", """North of you, the estate manor beckons. A small garden plot lays to the east."""),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [items['Matches'], items['Knife']]),
+    'garden': Room('Garden', """A small plot of plants that has been overgrown by weeds. There is a large Atlas statue in the middle, and a shed to the north.""", [items['Torch']]),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", [items['Cigarettes']]),
+    'foyer':    Room("Foyer", """Dim light filters in from the south. You see doorways to the north, east, and west. A cold draft blows from the west...""", [items['Matches']]),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+    'shed': Room("Garden Shed", """Dust floats through the air, and rusty tools are strewn about the inside. Doors lead out to the west and south.""", [items["Book"]]),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [items['Rations']]),
+    'basement': Room("Musty Basement", """A damp, moldy basement, dressed with cobwebs. A freezing cold wind blows from the south..."""),
+
+    'dungeon': Room("Dungeon of Horrors", """Blood soaks the floors and walls, and a menacing figure stands in the middle!"""),
+
+    'greathall': Room("Great Hall", """A large hall filled with classic artwork. Passages extend to the east and west, and a staircase winds to the north."""),
+
+    'diningroom': Room("Dining Room", """A large wooden table runs the length of the room, and dust has settled on the plateware. You hear water dripping to the north.""", [items["Rusty Key"]]),
+
+    'kitchen': Room("Kitchen", """An old sink is leaking in the corner of this fully-stocked kitchen.""", [items['Knife']]),
+
+    'library': Room("Library", """Old books line the walls, and a draft seems to be coming from the northern bookshelf."""),
+
+    'secretpassage': Room("Secret Passageway", """A narrow hallway extends north to south. There seems to be an evil presence here...""", [items["Shiny Key"]]),
+
+    'masterbed': Room("Master Bedroom", """A large bed lays undisturbed. A crooked painting hangs on the northern wall."""),
+
+    'upstairs': Room("Upstairs Hall", """A carpeted corridor runs east to west, with a glass doorway heading north."""),
+
+    'observatory': Room("Observatory", """Scientific instruments are laid about, with all sorts of papers and devices.""", [items["Globe"]]),
+
+    'terrace': Room("Grand Terrace", """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""", [items['Cigarettes']]),
 }
 
 
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
+room['outside'].e_to = room['garden']
+room['garden'].w_to = room['outside']
+room['garden'].n_to = room['shed']
+room['shed'].s_to = room['garden']
+room['shed'].w_to = room['foyer']
+room['foyer'].e_to = room['shed']
 room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['foyer'].w_to = room['basement']
+room['foyer'].n_to = room['greathall']
+room['basement'].s_to = room['dungeon']
+room['basement'].e_to = room['foyer']
+room['dungeon'].n_to = room['basement']
+room['greathall'].n_to = room['upstairs']
+room['greathall'].e_to = room['diningroom']
+room['greathall'].w_to = room['library']
+room['greathall'].s_to = room['foyer']
+room['diningroom'].n_to = room['kitchen']
+room['diningroom'].w_to = room['greathall']
+room['kitchen'].s_to = room['diningroom']
+room['library'].n_to = room['secretpassage']
+room['library'].e_to = room['greathall']
+room['upstairs'].s_to = room['greathall']
+room['upstairs'].w_to = room['masterbed']
+room['upstairs'].e_to = room['observatory']
+room['upstairs'].n_to = room['terrace']
+room['terrace'].s_to = room['upstairs']
+room['observatory'].w_to = room['upstairs']
+room['masterbed'].e_to = room['upstairs']
+room['masterbed'].s_to = room['secretpassage']
+room['secretpassage'].n_to = room['masterbed']
+room['secretpassage'].s_to = room['library']
 
 #
 # Main
@@ -69,16 +109,6 @@ room['treasure'].s_to = room['narrow']
 
 # initialize the player to be outside
 player = Player(room['outside'])
-
-#initialize a function to examine the room
-def look(room, player):
-    if len(room.items) == 0:
-        print("====================\n You don't see anything useful here. \n ====================")
-
-    print(f'==================== \n You notice the following:\n')
-    for i in room.items:
-        print(i.name + ': ' + i.description + '\n')
-    print('====================')
 
 def commands():
     print(f'Commands: [NORTH] [SOUTH] [EAST] [WEST]. \n Use [LOOK] to look around. \n Input [QUIT] to leave the game. \n Use [GET]/[TAKE] and [DROP] to manage items. \n You can check your inventory using [INVENTORY] or [I].')
@@ -110,7 +140,7 @@ while True:
         player.move(player.room, direction)
 
     elif command.upper() == 'LOOK':
-        look(player.room, player)
+        player.look(player.room)
 
     elif command.upper() in ['GET', 'TAKE']:
         for item in player.room.items:

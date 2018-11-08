@@ -53,6 +53,15 @@ class Player:
         self.inventory.append(item)
         del self.equipment[self.equipment.index(item)]
 
+    def look(self, room):
+        if len(room.items) == 0:
+            print("====================\nYou don't see anything useful here.\n====================")
+        elif len(room.items) > 0:
+            print(f'====================\nYou notice the following:\n')
+            for i in room.items:
+                print(i.name + ': ' + i.description + '\n')
+            print('====================')
+
     def wallet(self):
         print(f"\n You currently have {self.coin} coins.")
 
