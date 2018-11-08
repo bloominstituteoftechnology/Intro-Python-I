@@ -2,11 +2,12 @@
 # description attributes.
 
 class Room:
-  def __init__(self, name, description, items, is_light=True):
+  def __init__(self, name, description, items, is_light=True, monster=[]):
     self.name = name
     self.description = description
     self.items = items
     self.is_light = is_light
+    self.monster = monster
   def room_direction(self, direction):
     if direction == "n":
       return self.n_to

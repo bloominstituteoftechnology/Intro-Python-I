@@ -1,8 +1,10 @@
+import random
 from room import Room
 from player import Player
 from item import Item
 from item import Treasure
 from item import LightSource
+from monster import Monster
 
 
 room = {
@@ -19,7 +21,7 @@ the distance, but there is no way across the chasm.""", [Item('key', 'looks impo
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", [], False),
 
-    'bridge':   Room("Long Bridge", """A long bridge above a bottomless pit of darkness stands before you. A Troll blocks your path across.""", []),
+    'bridge':   Room("Long Bridge", """A long bridge above a bottomless pit of darkness stands before you. A Troll blocks your path across.""", [], True, [Monster('Troll', 35,5,10)]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", [Item('note', 'Sorry I took your gold, but this is a solid IOU which is pretty much as good as gold. Definatly planning to pay the money back. - Sinceraly a lying thief'), Treasure('knife', 'jewel incrusted knife. Probably accidently dropped by the thief', 30)]),
@@ -51,13 +53,12 @@ def check_area(room, player):
   if len(room.items) == 1:
     print(f'{room} Also you notice a {room.items[0]}\n')
   if len(room.items) > 1:
-    string = ''
+    print(f"\n{room} Also you notice {len(room.items)} items nearby:")
     for i in room.items:
-      string += i.name + ' '
-    print(f"\n{room} Also you notice {len(room.items)} items nearby: {string.rstrip('/')}")
+      print(i.name)
 #end of check_area function
 
-#for getting and dropping items in room
+#for getting and dropping items in room and attack
 def command(player_input, player, current_room):
 
   #=print(player.score)
@@ -98,6 +99,34 @@ def command(player_input, player, current_room):
 
       if count2 == 0:
         print("you don't have item to drop")
+    
+
+  attack_bol = False
+  if player_input[0] == 'attack':
+
+    if len(current_room.monster) == 0:
+      print('There is no monster to attack')
+    else:
+      for i in player.items:
+        if i.name == 'sword':
+          attack_bol = True
+
+      if attack_bol == False:
+      # player takes hp damage
+        monster_attack = current_room.monster[0].attack()
+        player.hp -= monster_attack
+        print(f"\nyou took {monster_attack} damage from {current_room.monster[0].name} Your health is now at {player.hp}. If only you had a weapon you could fight back.")
+
+      if attack_bol == True:
+        player_attack = random.randrange(10, 15 , 1)
+        monster_attack = current_room.monster[0].attack()
+        player.hp -= monster_attack
+        current_room.monster[0].hp -= player_attack
+
+        print(f"\nyou took {monster_attack} damage from {current_room.monster[0].name} Your health is now at {player.hp}. You manage to strike {current_room.monster[0].name} for {player_attack} points of damage.")
+
+        if current_room.monster[0].hp > 15:
+          print(f"{current_room.monster[0].name} looks weak")
 #end of command function
 
 def check_inventory(player):
@@ -125,14 +154,21 @@ def check_for_light(room, player):
   #return false if no light and true if there is light
   return boolv
 
-#task one
-#I will add another room that has a troll in it
-#the troll will need to be attacked with the sword
-#will need to do the command attack troll
+def monster_block(room):
+  if len(room.monster) > 0:
+    return True
 
-#first made the new room
-#the new room will be a bridge to the treasure room
-#it will be after the narrow passage
+def player_health(player):
+  alive = True
+  if player.hp <= 0:
+    alive = False
+  return alive
+
+def monster_health(current_room):
+  alive = True
+  if current_room.monster[0].hp <= 0:
+    alive = False
+  return alive
 
 
 #have I been there yet?
@@ -151,6 +187,11 @@ narrow_loop = True
 bridge_loop = True
 treasure_loop = True
 
+# for troll bridge crossing
+counter = 0
+died_to_troll = False
+killed_troll = False
+
 ######################--------------######################
 ###################### START OF GAME #####################
 ######################--------------######################
@@ -168,13 +209,12 @@ while not res[0] == 'q':
       print('\n' + current_room.name)
     been_outside = True
 
-
     #### need loop here #
     while outside_loop == True:
       res = input('\n').split(" ")
       command(res, player, current_room)
 
-      if res[0] == 'get' or res[0] == 'drop':
+      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack':
         pass
       elif res[0] == 'l':
         check_area(current_room, player)
@@ -206,7 +246,7 @@ while not res[0] == 'q':
       res = input('\n').split(" ")
       command(res, player, current_room)
 
-      if res[0] == 'get' or res[0] == 'drop':
+      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack':
         pass
       elif res[0] == 'l':
         check_area(current_room, player)
@@ -247,7 +287,7 @@ while not res[0] == 'q':
       res = input('\n').split(" ")
       command(res, player, current_room)
 
-      if res[0] == 'get' or res[0] == 'drop':
+      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack':
         pass
       elif res[0] == 'l':
         check_area(current_room, player)
@@ -280,7 +320,7 @@ while not res[0] == 'q':
     while narrow_loop == True:
       res = input('\n').split(" ")
       command(res, player, current_room)
-      if res[0] == 'get' or res[0] == 'drop':
+      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack':
         pass
       elif res[0] == 'l':
         if check_for_light(current_room, player) == False:
@@ -312,6 +352,8 @@ while not res[0] == 'q':
 
   #while player is at bridge
   if location == 'bridge':
+    if died_to_troll == True:
+      break
 
     if been_bridge == False:
       print(current_room)
@@ -320,19 +362,49 @@ while not res[0] == 'q':
     been_bridge = True
 
     while bridge_loop == True:
+
+      if player_health(player) == False:
+        print('\nyou where slain')
+        bridge_loop = False
+        died_to_troll = True
+
+      if died_to_troll == True:
+        break
+
       res = input('\n').split(" ")
       command(res, player, current_room)
-      if res[0] == 'get' or res[0] == 'drop':
+
+      if killed_troll == False:
+        if monster_health(current_room) == False:
+          print('\nway to go! You totaly slayed that monster!')
+          current_room.monster.pop(0)
+          killed_troll = True
+          current_room.description = "Long Bridge, A long bridge above a bottomless pit of darkness stands before you. A dead troll lies at your feet"
+          player.score += 10
+
+      if res[0] == 'get' or res[0] == 'drop' or res[0] == 'attack':
         pass
       elif res[0] == 'l':
         check_area(current_room, player)
       elif res[0] == 'i':
         check_inventory(player)
       elif res[0] == 'n':
-        current_room = current_room.room_direction(res[0])
-        bridge_loop = False
-        treasure_loop = True
-        location = 'treasure'
+        if monster_block(current_room) == True:
+          if counter == 0:
+            print("\nA Troll blocks your path forward")
+            counter += 1
+          elif counter == 1:
+            print('\nThe troll begins to charge')
+            counter += 1
+          elif counter == 2:
+            print('\nThe troll picked you up and and ate you alive. It was a grewsome death.')
+            died_to_troll = True
+            bridge_loop = False
+        else:
+          current_room = current_room.room_direction(res[0])
+          bridge_loop = False
+          treasure_loop = True
+          location = 'treasure'
       elif res[0] == 's':
         current_room = current_room.room_direction(res[0])
         bridge_loop = False
@@ -342,7 +414,6 @@ while not res[0] == 'q':
         bridge_loop = False
       elif not res[0] == 'q':
         print('\nincorrect input\n')
-
 
   #while player is at treasure
   if location == 'treasure':
@@ -358,7 +429,7 @@ while not res[0] == 'q':
     while treasure_loop == True:
       res = input('\n').split(" ")
       command(res, player, current_room)
-      if res[0] == 'get' or res[0] == 'drop':
+      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack':
         pass
       elif res[0] == 'l':
         check_area(current_room, player)
