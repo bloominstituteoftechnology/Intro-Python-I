@@ -5,7 +5,9 @@ from item import Item, Treasure, LightSource
 # Declare all the rooms
 
 room = {
-    "outside": Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    "outside": Room(
+        "Outside Cave Entrance", "North of you, the cave mount beckons", True
+    ),
     "foyer": Room(
         "Foyer",
         """Dim light filters in from the south. Dusty
@@ -16,6 +18,7 @@ passages run north and east.""",
         """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm.""",
+        True,
     ),
     "narrow": Room(
         "Narrow Passage",
@@ -135,6 +138,18 @@ while True:
         print(f"\n*~*~*~*~*~*\nWelcome to Myst...\n{player.name}\n*~*~*~*~*~*")
         break
 
+# Light Check
+def light_check():
+    if (
+        player.current.is_lit
+        or list(filter(lambda x: x.name.lower() == "lamp", player.current.items))
+        or list(filter(lambda x: x.name.lower() == "lamp", player.inventory))
+    ):
+        return True
+    else:
+        return False
+
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -174,18 +189,27 @@ while True:
     elif len(choice) > 1:
         format_choice = choice.lower().split(" ")
         if choice == "search":
-            player.current.show_items()
+            if light_check():
+                player.current.show_items()
+            else:
+                print("It's pitch black!")
         elif choice == "inventory":
-            player.show_inventory()
+            if light_check():
+                player.show_inventory()
+            else:
+                print("It's pitch black!")
         elif choice == "score":
             player.show_score()
         elif (format_choice[0] == "get" or format_choice[0] == "take") and len(
             format_choice
         ) == 2:
-            if len(format_choice[1]) > 0:
-                player.add_item(format_choice[1])
+            if light_check():
+                if len(format_choice[1]) > 0:
+                    player.add_item(format_choice[1])
+                else:
+                    print("Enter an item also.")
             else:
-                print("Enter an item also.")
+                print("Good luck finding that in the dark!")
         elif format_choice[0] == "drop" and len(format_choice) == 2:
             if len(format_choice[1]) > 0:
                 player.remove_item(format_choice[1])

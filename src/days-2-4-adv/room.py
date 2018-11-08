@@ -3,7 +3,7 @@
 
 
 class Room:
-    def __init__(self, name, desc):
+    def __init__(self, name, desc, is_lit=False):
         self.name = name
         self.desc = desc
         self.n_to = None
@@ -11,6 +11,7 @@ class Room:
         self.s_to = None
         self.w_to = None
         self.items = []
+        self.is_lit = is_lit
 
     def to_new(self, direction):
         if direction == "n" and self.n_to:
