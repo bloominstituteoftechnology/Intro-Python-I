@@ -56,7 +56,8 @@ class Treasure(Item):
         else:
             return False
 
-class Lightsoure(Item):
+
+class Lightsource(Item):
     def __init__(self, name, description):
         super().__init__(name, description)
 

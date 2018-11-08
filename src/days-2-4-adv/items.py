@@ -1,10 +1,10 @@
-from item import Item, Weapon, Shield, Armour, Treasure, Lightsoure
+from item import Item, Weapon, Shield, Armour, Treasure, Lightsource
 
 items = {
     'EmptyW': Weapon('Empty Slot', ' '),
     'EmptyS': Shield('Empty Slot', ' '),
     'EmptyA': Armour('Empty Slot', ' '),
-    'EmptyL': Lightsoure('Empty Slot', ' '),
+    'EmptyL': Lightsource('Empty Slot', ' '),
 
     'Sword': Weapon('Sword', 'A simple sword', 20, 10, 5, 10, 2, 5, 1),
     'Stick': Weapon('Stick', 'A small stick. This doesn\'t look like it will do much damage', 5),
@@ -19,5 +19,5 @@ items = {
 
     'Book': Treasure('Book', 'A dirty old book', 50),
 
-    'Lamp': Lightsoure('Lamp', 'A bight lamp')
+    'Lamp': Lightsource('Lamp', 'A bight lamp')
 }

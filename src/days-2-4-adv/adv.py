@@ -143,6 +143,7 @@ def set_init_player():
         player.weapon = items['EmptyW']
         player.armour = items['EmptyA']
         player.shield = items['EmptyS']
+        player.lightsource = items['EmptyL']
         player.gold = 0
         player.game_over = False
     else:
@@ -156,7 +157,7 @@ def set_init_player():
 def room_message():
     # os.system('clear')
     tprint(f'\n {player.room.name}\n', 0.03)
-    if player.room.is_light or player.lightsoure != items['EmptyL']:
+    if player.room.is_light or player.lightsource != items['EmptyL']:
         desc = textwrap.wrap(player.room.description, width=70)
         for element in desc:
             tprint(f' {element}\n', 0.03)
@@ -206,7 +207,8 @@ def prompt():
             break
 
         tprint('Unknown action, try again\n')
-        prompt()
+        action = input(" > ").split()
+        combined_action = ' '.join(action[:2])
 
     if combined_action.lower() in ['look around', 'examine room']:
         player.look_around()

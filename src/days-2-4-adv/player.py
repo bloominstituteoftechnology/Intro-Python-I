@@ -10,7 +10,7 @@ import os
 from colorama import Fore
 from colorama import Style
 from items import items
-from item import Treasure, Weapon, Shield, Armour, Item, Lightsoure
+from item import Treasure, Weapon, Shield, Armour, Item, Lightsource
 
 # TODO: Refactore os.system('clear') to be better implemented - maybe with a DRAW GUI function
 
@@ -25,6 +25,7 @@ class Player:
         self.weapon = {}
         self.armour = {}
         self.shield = {}
+        self.lightsource = {}
         self.direction = 'north'
         self.inventory = []
         self.level = 1
@@ -35,7 +36,6 @@ class Player:
         self.mp = 100
         self.max_mp = 100
         self.gold = 1000
-        self.lightsoure = {}
 
     # Return a formatted value of the Player class
     def __str__(self):
@@ -58,6 +58,7 @@ class Player:
                 f'   WEAP: {self.weapon.name} - {self.weapon.description}\n'
                 f'   ARMR: {self.armour.name} - {self.armour.description}\n'
                 f'   SHLD: {self.shield.name} - {self.shield.description}\n'
+                f'   LHTS: {self.lightsource.name} - {self.lightsource.description}\n'
                 f'    VIT: [{self.job.vitality}] + {vita}\n'
                 f'    INT: [{self.job.dexterity}] + {dext}\n'
                 f'    DEX: [{self.job.intelligence}] + {inte}\n'
@@ -134,33 +135,39 @@ class Player:
                     self.inventory.append(self.weapon)
                     self.inventory.remove(target)
                     self.weapon = target
-            elif isinstance(target, Lightsoure):
-                if self.lightsoure == items['EmptyL']:
-                    self.lightsoure = target
+            elif isinstance(target, Lightsource):
+                if self.lightsource == items['EmptyL']:
+                    self.lightsource = target
                     self.inventory.remove(target)
                 else:
-                    self.inventory.append(self.lightsoure)
+                    self.inventory.append(self.lightsource)
                     self.inventory.remove(target)
-                    self.lightsoure = target
+                    self.lightsource = target
 
             print(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was equipped.')
         else:
             print(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} not in inventory')
 
     # Un-equip the weapon
-    def unequip_weapon(self, weapon):
+    def unequip_weapon(self, target):
         os.system('clear')
-        if weapon == self.weapon:
-            print(f'\n {Fore.GREEN}{weapon.name}{Style.RESET_ALL} was un-equipped.')
-            self.weapon = items['EmptyW']
-            self.inventory.append(weapon)
+        if isinstance(target, Weapon):
+            if target == self.weapon:
+                self.weapon = items['EmptyW']
+                self.inventory.append(target)
+                print(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was un-equipped.')
+        elif isinstance(target, Lightsource):
+            if target == self.lightsource:
+                self.lightsource = items['EmptyL']
+                self.inventory.append(target)
+                print(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was un-equipped.')
         else:
-            print(f'\n {Fore.GREEN}{weapon.name}{Style.RESET_ALL} not in inventory or is not a weapon')
+            print(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} is not equipped')
 
     # Look around the current room
     def look_around(self):
         os.system('clear')
-        if self.room.is_light or self.lightsoure != items['EmptyL']:
+        if self.room.is_light or self.lightsource != items['EmptyL']:
             if len(self.room.inventory) < 1:
                 print("\n You looked around the room, but found no items")
                 return
