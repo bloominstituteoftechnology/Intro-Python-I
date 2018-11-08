@@ -14,11 +14,10 @@ class Player:
 
     def try_move(self, direction):
 
-
         # Try to move in a direction or print error message
         d = direction + "_to"
 
-        #check t0 see if we can move in a specified direction
+        #check to see if we can move in a specified direction
         if not hasattr(self.currentRoom, d):
             print("You can't go that way")
             return self.currentRoom
