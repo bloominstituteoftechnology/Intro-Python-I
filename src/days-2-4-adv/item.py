@@ -8,6 +8,11 @@ class Item:
         print(f"\n===You got {self.name}.")
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
+    def on_drop(self):
+        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print(f"\n===You dropped {self.name}.")
+        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
 
 class Treasure(Item):
     def __init__(self, name, desc, value):
@@ -15,8 +20,16 @@ class Treasure(Item):
         self.desc = desc
         self.value = value
         self.scored = False
+        self.deducted = False
 
-    def on_take(self, item):
+    def on_take(self):
+        self.scored = True
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print(f"\n===You got a RARE: {self.name}.")
+        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+    def on_drop(self):
+        self.deducted = True
+        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print(f"\n===You dropped {self.name}.")
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")

@@ -34,10 +34,7 @@ class Player:
         else:
             if hasattr(searched_item[0], "value") and not searched_item[0].scored:
                 self.score += searched_item[0].value
-                searched_item[0].scored = True
-                searched_item[0].on_take(searched_item[0])
-            else:
-                searched_item[0].on_take()
+            searched_item[0].on_take()
             self.inventory.append(searched_item[0])
             self.current.items.remove(searched_item[0])
 
@@ -48,11 +45,15 @@ class Player:
         if len(targeted_item) == 0:
             print("Item not found.")
         else:
+            if (
+                hasattr(targeted_item[0], "value")
+                and targeted_item[0].scored
+                and not targeted_item[0].deducted
+            ):
+                self.score -= targeted_item[0].value
+            targeted_item[0].on_drop()
             self.current.items.append(targeted_item[0])
             self.inventory.remove(targeted_item[0])
-            print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            print(f"\n===You dropped {item}.")
-            print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
     def show_score(self):
         print(self.score)
