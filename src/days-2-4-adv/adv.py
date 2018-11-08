@@ -21,7 +21,9 @@ items = {
     "torch": LightSource("torch"),
     "ingot": Treasure("ingot", 120),
     "potion": Potion("potion", 100),
-    "laptop": Computer("laptop")
+    "laptop": Computer("laptop"),
+    "qwill": Item("qwill"),
+    "pigeon": Item("pigeon")
 }
 
 # globals are bad mkay
@@ -58,7 +60,7 @@ room = {
                     "Narrow Passage",
                     """The narrow passage bends here from west to north. The smell of gold permeates the air.""",
                     False,
-                    [],
+                    [items['qwill']],
                     {'north': 'treasure', 'south': None, 'east': None, 'west': 'foyer'},
                     ),
 
@@ -66,8 +68,15 @@ room = {
                     "Treasure Chamber",
                     """You've found the long-lost treasure chamber! Sadly, it has already been almost completely emptied by earlier adventurers. The only exit is to the south.""",
                     False,
-                    [items['ingot']],
+                    [items['ingot'], items['pigeon']],
                     {'north': None, 'south': 'narrow', 'east': None, 'west': 'foyer'},
+                    ),
+    'endgame': Room(
+                    "The End",
+                    """You have completed the demo! Well done, you can fork and clone this game and build upon it as you see fit""",
+                    False,
+                    [],
+                    {'north': None, 'south': None, 'east': None, 'west': None},
                     )
 }
 
