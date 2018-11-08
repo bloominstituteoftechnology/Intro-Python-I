@@ -82,9 +82,9 @@ def main():
         except ValueError:
             print("Please make an acceptable input.")
         
+        # handle single charactor inputs
         input_list = new_input.split(' ')
         if len(new_input) == 1:
-
             #handle quit
             if new_input == 'q':
                 print("Thank you for playing.  Goodbye!")
@@ -101,6 +101,7 @@ def main():
                 else:
                     print("This move is not allowed.  Please try again.")
             
+            # handle displaying inventory
             elif new_input == 'i':
                 print('You have the following items:')
                 for item_object in new_player.player_items:
@@ -108,13 +109,15 @@ def main():
             else:
                 print("Please enter an acceptable input.")
 
-        # handle 2 words
+        # handle 2-word inputs
         elif len(input_list) == 2:
             verb = input_list[0]
             item_name = input_list[1]
+
             # handle get or take item from room to player
             if verb == 'get' or verb == 'take':
                 found_match = False
+                # find item in room item list
                 for item_object in new_player.current_room.room_items:
                     if item_name == item_object.name:
                         found_match = True
@@ -123,23 +126,26 @@ def main():
                         print('You have added' + item_object.name +' to your inventory.')
                 if found_match == False:
                     print('Item is not found in room.  Please try again.')
+            # handle drop item from player inventory
             elif verb =='drop':
                 found_match = False
+                # find item in player inventory
                 for item_object in new_player.player_items:
                     if item_name == item_object.name:
                         found_match = True
-                        new_player.current_room.room_items.append(item_object) #pick up item from room to player
-                        new_player.player_items.remove(item_object)
+                        new_player.player_items.remove(item_object) #remove item from player inventory
+                        new_player.current_room.room_items.append(item_object) # add item to room item list
                 if found_match == False:
-                    print('Item is not found on player.  Please try again.')
+                    print('Item is not found in your inventory.  Please try again.')
             else:
                 print('Command is not recognized.  Please try again.')
+
+        # handle displaying inventory
         elif input_list[0] =='inventory':
             print('You have the following items:')
             for item_object in new_player.player_items:
                 print('- ' + item_object.name +': ' + item_object.description)
         else:
             print("Please enter an appropriate input.")
-        
 
 main()
