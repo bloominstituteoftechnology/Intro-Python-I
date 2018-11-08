@@ -43,3 +43,13 @@ ogre = ["ogre",15,3,1,ogrl,"An OGRE is standing in the way!","The fight is final
 
 
 # MONSTERS
+
+# HELP MENU
+
+help ="""Help:
+w, a, s, and d are the primary direction keys.
+
+You can press i to access your invientory.
+
+currently from this room you can go to:
+	"""
