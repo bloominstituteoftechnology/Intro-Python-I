@@ -123,3 +123,5 @@ while True:
             player.drop(dropped_item)
             player.location.add_item(dropped_item)
 
+    if command == 'score':
+        pass #in prep for showing score
