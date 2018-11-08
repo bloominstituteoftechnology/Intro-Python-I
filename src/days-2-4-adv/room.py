@@ -10,7 +10,10 @@ class Room:
         self.w_to = None
         self.items = []
         self.light = False
+        self.monsters = []
     def __str__(self):
+        if len(self.monsters) > 0:
+            return f"\n\n{self.name}\n  {self.description}\n\n There is a {''.join([monster.name for monster in self.monsters])} blocking the way!"
         return f"\n\n{self.name}\n  {self.description}\n\n{self.getItems()}"
     def getItems(self):
         return f"This room contains: {', '.join([item.name for item in self.items])}"
@@ -33,5 +36,12 @@ class Room:
         for item in self.items:
             if item.name.lower() == name.lower():
                 return item
+        return None
+    def addMonster(self, monster):
+        self.monsters.append(monster)
+    def findMonsterbyName(self, name):
+        for monster in self.monsters:
+            if monster.name.lower() == monster.lower():
+                return monster
         return None
     

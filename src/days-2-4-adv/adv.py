@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Item, LightSource, Treasure, Weapon
+from monster import Monster
 
 # Declare all the rooms
 
@@ -22,6 +23,8 @@ to north. The smell of gold permeates the air."""),
 chamber! Sadly, it has already been completely emptied except 
 for the remains of a previous adventurer. The only exit is to the south."""),
 
+    'hall': Room("Hall","A simple passageway to another room. Torches hang along the wall."),
+
     'throne': Room("Throne Room",
 """The room opens up immensely, wide enough to
 fit over a hundred people and a ceiling that
@@ -38,7 +41,10 @@ room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].w_to = room['overlook']
 room['foyer'].e_to = room['narrow']
-room['foyer'].n_to = room['throne']
+room['foyer'].n_to = room['hall']
+room['hall'].n_to = room['throne']
+room['hall'].s_to = room['foyer']
+room['throne'].s_to = room['hall']
 room['overlook'].e_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
@@ -50,16 +56,21 @@ coins = Treasure("Coins", "A small pile of coins.", 50)
 sword = Weapon("Sword", "A standard arming blade.", 10)
 big_rock = Item("Big Rock", "This is a big rock.")
 
+goblin = Monster("Goblin", 10, 5, 0)
+
 room['outside'].addItem(rock)
 room['outside'].addItem(big_rock)
 room['foyer'].addItem(lantern)
 room['overlook'].addItem(coins)
 room['treasure'].addItem(sword)
 
+room['hall'].addMonster(goblin)
+
 room['outside'].light = True
 room['foyer'].light = True
 room['overlook'].light = True
 room['throne'].light = True
+room['hall'].light = True
 
 
 

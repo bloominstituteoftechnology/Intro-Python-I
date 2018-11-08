@@ -11,6 +11,7 @@ class Player:
         self.health = self.max_health
         self.attack = 0
         self.defense = 0
+        self.killed = False
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
@@ -82,3 +83,5 @@ class Player:
             self.attack = self.attack - item.attack
         if hasattr(item, 'defense'):
             self.defense = self.defense - item.defense
+    def attack(self, target):
+        target.health -= self.attack            
