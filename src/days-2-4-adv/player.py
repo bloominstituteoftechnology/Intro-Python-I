@@ -9,27 +9,29 @@ methods.
 import os
 from colorama import Fore
 from colorama import Style
-from item import Item
+from items import items
 
 
 class Player:
     # Initialize the properties of the class
-    def __init__(self):
+    def __init__(self, name=None, job=None, sex="Male", room=None,):
         self.game_over = False
-        self.room = None
-        self.name = None
-        self.job = None
-        self.sex = 'Male'
+        self.room = room
+        self.name = name
+        self.job = job
+        self.sex = sex
+        self.weapon = {}
+        self.armour = {}
+        self.shield = {}
         self.direction = 'north'
         self.inventory = []
         self.level = 1
+        self.exp = 0
+        self.next_exp = 100
         self.hp = 100
         self.max_hp = 100
         self.mp = 100
         self.max_mp = 100
-        self.weapon = {}
-        self.armour = {}
-        self.shield = {}
         self.gold = 1000
 
     # Return a formatted value of the Player class
@@ -39,19 +41,28 @@ class Player:
     # Displays the player information onto the screen
     def player_info(self):
         # Inventory Formatting
+        vita = self.weapon.vit + self.shield.vit + self.armour.vit
+        dext = self.weapon.dex + self.shield.dex + self.armour.dex
+        inte = self.weapon.int + self.shield.int + self.armour.int
+        wisd = self.weapon.wis + self.shield.wis + self.armour.wis
+        max_hp = self.hp + self.weapon.hp + self.shield.hp + self.armour.hp
+        max_mp = self.mp + self.weapon.mp + self.shield.mp + self.armour.mp
+
         os.system('clear')
         info = (f'  NAME: {Fore.GREEN}{self.name}{Style.RESET_ALL} <[{Fore.CYAN}{self.level}{Style.RESET_ALL}]> '
                 f'[{self.job.name} - {self.sex}]\n'
-                f'   WEAP: {self.weapon.name}\n'
-                '   ARMR: Blessed Breast Plate\n'
-                '   SHLD: Empty Slot\n'
-                f'    VIT: {self.job.vitality}\n'
-                f'    INT: {self.job.intelligence}\n'
-                f'    DEX: {self.job.dexterity}\n'
-                f'    WIS: {self.job.wisdom}\n\n'
-                f'  HP {Fore.GREEN}{self.hp}{Style.RESET_ALL}/{Fore.GREEN}{self.max_hp}{Style.RESET_ALL}   '
-                f'ATK: {self.job.attack + self.weapon.attack}   MP: <{Fore.CYAN}{self.mp}{Style.RESET_ALL}/{Fore.CYAN}'
-                f'{self.max_mp}{Style.RESET_ALL}>   GOLD: {Fore.YELLOW}{self.gold}{Style.RESET_ALL}\n'
+                f'   WEAP: {self.weapon.name} - {self.armour.description}\n'
+                f'   ARMR: {self.armour.name} - {self.armour.description}\n'
+                f'   SHLD: {self.shield.name} - {self.shield.description}\n'
+                f'    VIT: [{self.job.vitality}] + {vita}\n'
+                f'    INT: [{self.job.dexterity}] + {dext}\n'
+                f'    DEX: [{self.job.intelligence}] + {inte}\n'
+                f'    WIS: [{self.job.wisdom}] + {wisd}\n\n'
+                f'  HP {Fore.GREEN}{self.hp}{Style.RESET_ALL}/{Fore.GREEN}{max_hp}{Style.RESET_ALL}   '
+                f'ATK: {Fore.LIGHTRED_EX}{self.job.attack + self.weapon.attack}{Style.RESET_ALL}   MP: {Fore.CYAN}'
+                f'{self.mp}{Style.RESET_ALL}/{Fore.CYAN}{max_mp}{Style.RESET_ALL}   EXP: <{Fore.LIGHTRED_EX}'
+                f'{self.exp}{Style.RESET_ALL}/{Fore.LIGHTRED_EX}{self.next_exp}{Style.RESET_ALL}>   GOLD: {Fore.YELLOW}'
+                f'{self.gold}{Style.RESET_ALL}\n'
                 f'  +----------------------------------------------------------------------+\n'
                 f'  | INVENTORY:                                                           |\n'
                 f'  +----------------------------------------------------------------------+')
@@ -93,18 +104,28 @@ class Player:
 
     # Equip the weapon
     def equip_weapon(self, weapon):
-        if weapon in self.inventory and weapon.is_weapon:
+        if weapon in self.inventory:
+
+            # Checks if we don't have any other weapon equipped, if we do,
+            # go ahead and swap the weapons out, bringing the already equipped to the
+            # inventory
+            if self.weapon == items['EmptyW']:
+                self.weapon = weapon
+                self.inventory.remove(weapon)
+            else:
+                self.inventory.append(self.weapon)
+                self.inventory.remove(weapon)
+                self.weapon = weapon
+
             print(f'\n{Fore.GREEN}{weapon.name}{Style.RESET_ALL} was equipped.')
-            self.weapon = weapon
-            self.inventory.remove(weapon)
         else:
             print(f'{Fore.GREEN}{weapon.name}{Style.RESET_ALL} not in inventory or is not a weapon')
 
     # Un-equip the weapon
     def unequip_weapon(self, weapon):
-        if weapon == self.weapon and weapon.is_weapon:
+        if weapon == self.weapon:
             print(f'\n{Fore.GREEN}{weapon.name}{Style.RESET_ALL} was un-equipped.')
-            self.weapon = Item('None', 'None')
+            self.weapon = items['EmptyW']
             self.inventory.append(weapon)
         else:
             print(f'{Fore.GREEN}{weapon.name}{Style.RESET_ALL} not in inventory or is not a weapon')

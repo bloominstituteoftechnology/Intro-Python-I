@@ -119,7 +119,9 @@ def set_init_player():
     if result.lower() in ['y', 'yes']:
         player.name = player_name
         player.room = room['outside']
-        player.weapon = items['Stick']
+        player.weapon = items['EmptyW']
+        player.armour = items['EmptyA']
+        player.shield = items['EmptyS']
         player.game_over = False
     else:
         set_init_player()
