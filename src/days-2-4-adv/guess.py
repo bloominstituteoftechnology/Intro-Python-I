@@ -25,7 +25,7 @@ while guessesTaken < 6:
 
 if guess == number:
     guessesTaken = str(guessesTaken)
-    print(f'\'Good job, \'{myName}!')
+    print(f'\'Good job, {myName} you can start your treasure hunt!\'')
 if guess != number:
     number = str(number)
     print(f"Nope.The number I was thinking of was\",{number}")
