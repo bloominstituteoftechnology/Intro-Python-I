@@ -6,7 +6,6 @@ from armor import Armor
 
 # Declare all Weapons
 
-weapon =
 
 # Declare all the rooms
 
@@ -64,6 +63,7 @@ while True:
         player1.enter(player1.current_room.s_to)
     elif dir == "exit":
         break
+
 
 # ----- too much code!!! -----
 
