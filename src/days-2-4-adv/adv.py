@@ -119,6 +119,7 @@ def set_init_player():
     if result.lower() in ['y', 'yes']:
         player.name = player_name
         player.room = room['outside']
+        player.weapon = items['Stick']
         player.game_over = False
     else:
         set_init_player()
@@ -165,7 +166,7 @@ def prompt():
     tprint('\nWhat do you do?\n')
     action = input("> ").split()
     acceptable_actions = ['quit', 'go', 'move', 'examine', 'pickup', 'drop', 'inventory', 'get',
-                          'look', 'look around', 'examine room']
+                          'look', 'look around', 'examine room', 'equip']
     while action[0].lower() not in acceptable_actions:
         tprint('Unknown action, try again\n')
         action = input("> ").split()
@@ -190,7 +191,7 @@ def prompt():
         player.player_info()
     elif action[0].lower() in ['equip']:
         if item_exists(action[1].capitalize()):
-            player.equip_weapon(action[1])
+            player.equip_weapon(items[action[1].capitalize()])
         else:
             print(f'You tried to equip {action[1]}, but it\'s not in your inventory')
 

@@ -41,7 +41,7 @@ class Player:
         os.system('clear')
         info = (f'  NAME: {Fore.GREEN}{self.name}{Style.RESET_ALL} <[{Fore.CYAN}{self.level}{Style.RESET_ALL}]> '
                 f'[{self.job.name} - {self.sex}]\n'
-                '   WEAP: Sapping Threshmaul\n'
+                f'   WEAP: {self.weapon.name}\n'
                 '   ARMR: Blessed Breast Plate\n'
                 '   SHLD: Empty Slot\n'
                 f'    VIT: {self.job.vitality}\n'
@@ -49,8 +49,8 @@ class Player:
                 f'    DEX: {self.job.dexterity}\n'
                 f'    WIS: {self.job.wisdom}\n\n'
                 f'  HP {Fore.GREEN}{self.hp}{Style.RESET_ALL}/{Fore.GREEN}{self.max_hp}{Style.RESET_ALL}   '
-                f'ATK: {self.job.attack}   MP: <{Fore.CYAN}{self.mp}{Style.RESET_ALL}/{Fore.CYAN}{self.max_mp}'
-                f'{Style.RESET_ALL}>   GOLD: {Fore.YELLOW}{self.gold}{Style.RESET_ALL}\n'
+                f'ATK: {self.job.attack + self.weapon.attack}   MP: <{Fore.CYAN}{self.mp}{Style.RESET_ALL}/{Fore.CYAN}'
+                f'{self.max_mp}{Style.RESET_ALL}>   GOLD: {Fore.YELLOW}{self.gold}{Style.RESET_ALL}\n'
                 f'  +----------------------------------------------------------------------+\n'
                 f'  | INVENTORY:                                                           |\n'
                 f'  +----------------------------------------------------------------------+')
@@ -91,9 +91,14 @@ class Player:
             print(f'\n{Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}is not in the inventory{Style.RESET_ALL}')
 
     def equip_weapon(self, weapon):
+        print('equip')
         if weapon in self.inventory and weapon.is_weapon:
+            print('equipping')
             self.weapon = weapon
             self.inventory.remove(weapon)
+            print('equipped')
+        else:
+            print('Weapon not in inventory')
 
     # Look around the current room
     def look_around(self):
