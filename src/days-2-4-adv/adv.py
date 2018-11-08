@@ -11,10 +11,6 @@ from jobs import jobs
 from colorama import Fore
 from colorama import Style
 
-# TODO: Abstract Rooms and Items to separate file
-# Declare all the rooms
-
-
 # Global vars
 player = Player()
 
@@ -97,6 +93,7 @@ def set_init_player():
 
     # Ask the player's gender
     question_gender = '\n Are you male or female?\n'
+    os.system('clear')
     tprint(question_gender)
 
     player_gender = input("> ")
@@ -111,10 +108,11 @@ def set_init_player():
 
     # Ask the player for their preferred class
     question_class = "\n Pick your class:\n" \
-                     "Warrior\n" \
-                     "Mage\n" \
-                     "Thief\n"
+                     " Warrior\n" \
+                     " Mage\n" \
+                     " Thief\n"
 
+    os.system('clear')
     tprint(question_class, 0.05)
 
     job = input("> ")
@@ -128,16 +126,17 @@ def set_init_player():
             player.job = jobs[job.capitalize()]
 
     # Ask the player if the name is correct
-    question_correct = f'\n {Fore.BLUE}{player_name}{Style.RESET_ALL}, {Fore.BLUE}{player.sex}{Style.RESET_ALL}, ' \
+    question_correct = f'\n {Fore.BLUE}{player_name.title()}{Style.RESET_ALL}, {Fore.BLUE}{player.sex}{Style.RESET_ALL}, ' \
                        f'{Fore.BLUE}{player.job.name}{Style.RESET_ALL} is correct? [y] ' \
                        f'yes or [n] no?\n'
+    os.system('clear')
     tprint(question_correct, 0.03)
     result = input("> ")
 
     # If the name is right, set the player and continue the game,
     # else, loop this function
     if result.lower() in ['y', 'yes']:
-        player.name = player_name
+        player.name = player_name.title()
         player.room = room['outside']
         player.weapon = items['EmptyW']
         player.armour = items['EmptyA']
@@ -185,29 +184,32 @@ def item_exists(item):
 
 
 def prompt():
-    tprint('\n What do you do?\n', 0.03)
+    tprint(f'\n {Fore.CYAN}What do you do?{Style.RESET_ALL}', 0.03)
 
     # Input for the action to be taken - split into list
-    action = input("> ").split()
+    action = input(" > ").split()
     combined_action = ' '.join(action[:2])
 
     # Complete list of all the actions to be done
     valid_actions = ['quit', 'character', 'char', 'i', 'inventory', 'get', 'take', 'pickup', 'drop', 'go', 'move',
                      'look around', 'examine room', 'equip', 'unequip']
 
+    # If the action is not a valid action
     while action[0].lower() not in valid_actions:
+        # Break the loop if combined_action is in it
+        # This makes the parsing of double-texted actions workable
         if combined_action in valid_actions:
             break
 
         tprint('Unknown action, try again\n')
-        action = input("> ").split()
-        combined_action = ' '.join(action[:2])
+        prompt()
 
     if combined_action.lower() in ['look around', 'examine room']:
         player.look_around()
 
     if action[0].lower() == 'quit':
         tprint('Play again!\n', 0.03)
+        os.system('clear')
         sys.exit()
 
     elif action[0].lower() in ['go', 'move']:

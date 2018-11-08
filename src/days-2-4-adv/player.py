@@ -10,7 +10,9 @@ import os
 from colorama import Fore
 from colorama import Style
 from items import items
+from item import Treasure
 
+# TODO: Refactore os.system('clear') to be better implemented - maybe with a DRAW GUI function
 
 class Player:
     # Initialize the properties of the class
@@ -52,14 +54,14 @@ class Player:
         os.system('clear')
         info = (f'  NAME: {Fore.GREEN}{self.name}{Style.RESET_ALL} <[{Fore.CYAN}{self.level}{Style.RESET_ALL}]> '
                 f'[{self.job.name} - {self.sex}] - [{self.room.name}]\n'
-                f'   WEAP: {self.weapon.name} - {self.armour.description}\n'
+                f'   WEAP: {self.weapon.name} - {self.weapon.description}\n'
                 f'   ARMR: {self.armour.name} - {self.armour.description}\n'
                 f'   SHLD: {self.shield.name} - {self.shield.description}\n'
                 f'    VIT: [{self.job.vitality}] + {vita}\n'
                 f'    INT: [{self.job.dexterity}] + {dext}\n'
                 f'    DEX: [{self.job.intelligence}] + {inte}\n'
                 f'    WIS: [{self.job.wisdom}] + {wisd}\n\n'
-                f'  HP {Fore.GREEN}{self.hp}{Style.RESET_ALL}/{Fore.GREEN}{max_hp}{Style.RESET_ALL}   '
+                f'    HP {Fore.GREEN}{self.hp}{Style.RESET_ALL}/{Fore.GREEN}{max_hp}{Style.RESET_ALL}   '
                 f'ATK: {Fore.LIGHTRED_EX}[{self.job.attack}] + {atk}{Style.RESET_ALL}   MP: {Fore.CYAN}'
                 f'{self.mp}{Style.RESET_ALL}/{Fore.CYAN}{max_mp}{Style.RESET_ALL}   EXP: <{Fore.LIGHTRED_EX}'
                 f'{self.exp}{Style.RESET_ALL}/{Fore.LIGHTRED_EX}{self.next_exp}{Style.RESET_ALL}>   GOLD: {Fore.YELLOW}'
@@ -83,28 +85,38 @@ class Player:
 
     # Add an item to the inventory
     def pickup_item(self, item):
+        os.system('clear')
         if self.room.contains(item):
-            print(f'\n{Fore.GREEN}{item.name}{Style.RESET_ALL} Picked up.')
+            print(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} picked up.')
             self.inventory.append(item)
             self.room.remove_item(item)
+
+            if isinstance(item, Treasure):
+                print('is treasure')
+                if item.is_taken() is False:
+                    self.gold += item.gold
+
+                item.on_take()
         else:
-            print(f'\n{item.name} not found.')
+            print(f'\n {item.name} not found.')
 
     # Drop an item from inventory to the current room
     def drop_item(self, item):
+        os.system('clear')
         bl = False
         for itm in self.inventory:
             if itm == item:
                 bl = True
                 self.inventory.remove(item)
                 self.room.add_item(item)
-                print(f'\n{Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}has been dropped{Style.RESET_ALL}')
+                print(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}has been dropped{Style.RESET_ALL}')
 
         if bl is False:
-            print(f'\n{Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}is not in the inventory{Style.RESET_ALL}')
+            print(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}is not in the inventory{Style.RESET_ALL}')
 
     # Equip the weapon
     def equip_weapon(self, weapon):
+        os.system('clear')
         if weapon in self.inventory:
 
             # Checks if we don't have any other weapon equipped, if we do,
@@ -118,31 +130,33 @@ class Player:
                 self.inventory.remove(weapon)
                 self.weapon = weapon
 
-            print(f'\n{Fore.GREEN}{weapon.name}{Style.RESET_ALL} was equipped.')
+            print(f'\n {Fore.GREEN}{weapon.name}{Style.RESET_ALL} was equipped.')
         else:
-            print(f'{Fore.GREEN}{weapon.name}{Style.RESET_ALL} not in inventory or is not a weapon')
+            print(f'\n {Fore.GREEN}{weapon.name}{Style.RESET_ALL} not in inventory or is not a weapon')
 
     # Un-equip the weapon
     def unequip_weapon(self, weapon):
+        os.system('clear')
         if weapon == self.weapon:
-            print(f'\n{Fore.GREEN}{weapon.name}{Style.RESET_ALL} was un-equipped.')
+            print(f'\n {Fore.GREEN}{weapon.name}{Style.RESET_ALL} was un-equipped.')
             self.weapon = items['EmptyW']
             self.inventory.append(weapon)
         else:
-            print(f'{Fore.GREEN}{weapon.name}{Style.RESET_ALL} not in inventory or is not a weapon')
+            print(f'\n {Fore.GREEN}{weapon.name}{Style.RESET_ALL} not in inventory or is not a weapon')
 
     # Look around the current room
     def look_around(self):
+        os.system('clear')
         if len(self.room.inventory) < 1:
             print("\n You looked around the room, but found no items")
             return
 
         count = 0
-        print(f'\nYou looked around the room and found:')
+        print(f'\n You looked around the room and found:')
         for item in self.room.inventory:
             count += 1
             print(f' [{Fore.GREEN}{count}{Style.RESET_ALL}] {Fore.GREEN}{item.name}{Style.RESET_ALL} - '
-                  f'{item.description}')
+                  f'  {item.description}')
 
     # Handles the movement of the Player
     def movedir(self, direction):
@@ -156,4 +170,5 @@ class Player:
         elif self.room.w_to and direction == 'west':
             self.room = self.room.w_to
         else:
-            print(f'\n{self.name} tried to move to {direction} but was blocked. Try another direction.\n')
+            os.system('clear')
+            print(f'\n {self.name} tried to move to {direction} but was blocked. Try another direction.\n')

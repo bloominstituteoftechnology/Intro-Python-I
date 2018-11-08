@@ -1,9 +1,9 @@
 from item import Item, Weapon, Shield, Armour, Treasure
 
 items = {
-    'EmptyW': Weapon('Empty Slot', 'Empty Slot'),
-    'EmptyS': Shield('Empty Slot', 'Empty Slot'),
-    'EmptyA': Armour('Empty Slot', 'Empty Slot'),
+    'EmptyW': Weapon('Empty Slot', ' '),
+    'EmptyS': Shield('Empty Slot', ' '),
+    'EmptyA': Armour('Empty Slot', ' '),
 
     'Sword': Weapon('Sword', 'A simple sword', 20, 10, 5, 10, 2, 5, 1),
     'Stick': Weapon('Stick', 'A small stick. This doesn\'t look like it will do much damage', 5),
@@ -15,5 +15,5 @@ items = {
     'Peasant Clothes': Armour('Peasant Clothes', 'Holey clothing for peasants', 0, 10),
 
     'Potion': Item('Potion', 'A health potion'),
-    'Book': Treasure('Book', 'A dirty old book'),
+    'Book': Treasure('Book', 'A dirty old book', 50),
 }

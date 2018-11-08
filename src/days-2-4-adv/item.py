@@ -39,14 +39,16 @@ class Armour(Shield):
 
 
 class Treasure(Item):
-    def __init__(self, name, description, score=0, attack=0):
-        super().__init__(name, description, attack)
-        self.score = score
+    def __init__(self, name, description, gold):
+        super().__init__(name, description)
+        self.gold = gold
         self.taken = False
 
     def on_take(self):
-        if self.taken is False:
-            self.taken = True
-            return self.score
+        self.taken = True
+
+    def is_taken(self):
+        if self.taken:
+            return True
         else:
-            return 0
+            return False
