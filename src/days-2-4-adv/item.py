@@ -16,8 +16,11 @@ class Item:
     def __str__(self):
         return f"Name: {self.name}, Description: {self.description}"
 
-    def on_take(self, value):
+    def on_take(self):
         print(f'{self.name} has been picked up')
+
+    def on_drop(self):
+        print(f'{self.name} has been dropped')
 
 
 # TODO: Add more attributes
@@ -52,3 +55,10 @@ class Treasure(Item):
             return True
         else:
             return False
+
+class Lightsoure(Item):
+    def __init__(self, name, description):
+        super().__init__(name, description)
+
+    def on_drop(self):
+        print('It\'s not wise to drop your source of light!')

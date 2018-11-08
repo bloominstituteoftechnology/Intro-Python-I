@@ -7,6 +7,8 @@ from player import Player
 from rooms import room
 from rooms import items
 from jobs import jobs
+from item import Treasure
+from items import items
 
 from colorama import Fore
 from colorama import Style
@@ -141,6 +143,7 @@ def set_init_player():
         player.weapon = items['EmptyW']
         player.armour = items['EmptyA']
         player.shield = items['EmptyS']
+        player.gold = 0
         player.game_over = False
     else:
         set_init_player()
@@ -151,11 +154,12 @@ def set_init_player():
 
 # Display the room message
 def room_message():
-    os.system('clear')
+    # os.system('clear')
     tprint(f'\n {player.room.name}\n', 0.03)
-    desc = textwrap.wrap(player.room.description, width=70)
-    for element in desc:
-        tprint(f' {element}\n', 0.03)
+    if player.room.is_light or player.lightsoure != items['EmptyL']:
+        desc = textwrap.wrap(player.room.description, width=70)
+        for element in desc:
+            tprint(f' {element}\n', 0.03)
 
 
 # TODO: Simplify/Abstract this
@@ -192,7 +196,7 @@ def prompt():
 
     # Complete list of all the actions to be done
     valid_actions = ['quit', 'character', 'char', 'i', 'inventory', 'get', 'take', 'pickup', 'drop', 'go', 'move',
-                     'look around', 'examine room', 'equip', 'unequip']
+                     'look around', 'examine room', 'equip', 'unequip', 'score', 'gold']
 
     # If the action is not a valid action
     while action[0].lower() not in valid_actions:
@@ -246,6 +250,9 @@ def prompt():
             player.unequip_weapon(items[item.title()])
         else:
             print(f'You tried to un-equip {item}, but it\'s not equipped')
+
+    elif action[0].lower() in ['gold', 'score']:
+        tprint(f'You have {player.gold} GOLD', 0.05)
 
 
 # Keep the game going until the player gets a game over

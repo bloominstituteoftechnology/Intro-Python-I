@@ -11,14 +11,15 @@ rooms in their cardinal direction
 
 class Room:
     # Initialize the properties of the class
-    def __init__(self, name, description):
+    def __init__(self, name, description, is_light=True):
         self.name = name
         self.description = description
-        self.n_to = ''
-        self.s_to = ''
-        self.e_to = ''
-        self.w_to = ''
+        # self.n_to = ''
+        # self.s_to = ''
+        # self.e_to = ''
+        # self.w_to = ''
         self.inventory = []
+        self.is_light = is_light
 
     # Return a formatted value of the Room class
     def __str__(self):

@@ -10,7 +10,7 @@ import os
 from colorama import Fore
 from colorama import Style
 from items import items
-from item import Treasure
+from item import Treasure, Weapon, Shield, Armour, Item, Lightsoure
 
 # TODO: Refactore os.system('clear') to be better implemented - maybe with a DRAW GUI function
 
@@ -35,6 +35,7 @@ class Player:
         self.mp = 100
         self.max_mp = 100
         self.gold = 1000
+        self.lightsoure = {}
 
     # Return a formatted value of the Player class
     def __str__(self):
@@ -86,19 +87,22 @@ class Player:
     # Add an item to the inventory
     def pickup_item(self, item):
         os.system('clear')
-        if self.room.contains(item):
-            print(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} picked up.')
-            self.inventory.append(item)
-            self.room.remove_item(item)
+        if self.room.is_light or self.lightsoure != items['EmptyL']:
+            if self.room.contains(item):
+                print(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} picked up.')
+                self.inventory.append(item)
+                self.room.remove_item(item)
 
-            if isinstance(item, Treasure):
-                print('is treasure')
-                if item.is_taken() is False:
-                    self.gold += item.gold
+                if isinstance(item, Treasure):
+                    print('is treasure')
+                    if item.is_taken() is False:
+                        self.gold += item.gold
 
-                item.on_take()
+                    item.on_take()
+            else:
+                print(f'\n {item.name} not found.')
         else:
-            print(f'\n {item.name} not found.')
+            print('\n Good luck finding that item in the dark!')
 
     # Drop an item from inventory to the current room
     def drop_item(self, item):
@@ -115,24 +119,33 @@ class Player:
             print(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}is not in the inventory{Style.RESET_ALL}')
 
     # Equip the weapon
-    def equip_weapon(self, weapon):
+    def equip_weapon(self, target):
         os.system('clear')
-        if weapon in self.inventory:
+        if target in self.inventory:
 
             # Checks if we don't have any other weapon equipped, if we do,
             # go ahead and swap the weapons out, bringing the already equipped to the
             # inventory
-            if self.weapon == items['EmptyW']:
-                self.weapon = weapon
-                self.inventory.remove(weapon)
-            else:
-                self.inventory.append(self.weapon)
-                self.inventory.remove(weapon)
-                self.weapon = weapon
+            if isinstance(target, Weapon):
+                if self.weapon == items['EmptyW']:
+                    self.weapon = target
+                    self.inventory.remove(target)
+                else:
+                    self.inventory.append(self.weapon)
+                    self.inventory.remove(target)
+                    self.weapon = target
+            elif isinstance(target, Lightsoure):
+                if self.lightsoure == items['EmptyL']:
+                    self.lightsoure = target
+                    self.inventory.remove(target)
+                else:
+                    self.inventory.append(self.lightsoure)
+                    self.inventory.remove(target)
+                    self.lightsoure = target
 
-            print(f'\n {Fore.GREEN}{weapon.name}{Style.RESET_ALL} was equipped.')
+            print(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was equipped.')
         else:
-            print(f'\n {Fore.GREEN}{weapon.name}{Style.RESET_ALL} not in inventory or is not a weapon')
+            print(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} not in inventory')
 
     # Un-equip the weapon
     def unequip_weapon(self, weapon):
@@ -147,9 +160,12 @@ class Player:
     # Look around the current room
     def look_around(self):
         os.system('clear')
-        if len(self.room.inventory) < 1:
-            print("\n You looked around the room, but found no items")
-            return
+        if self.room.is_light or self.lightsoure != items['EmptyL']:
+            if len(self.room.inventory) < 1:
+                print("\n You looked around the room, but found no items")
+                return
+        else:
+            print("\n It is pitch black!")
 
         count = 0
         print(f'\n You looked around the room and found:')
@@ -159,16 +175,15 @@ class Player:
                   f'  {item.description}')
 
     # Handles the movement of the Player
+    # Side Note: I didn't know about the attr method, this makes the
+    # movement direction much much simplier
     def movedir(self, direction):
         self.direction = direction
-        if self.room.n_to and direction == 'north':
-            self.room = self.room.n_to
-        elif self.room.s_to and direction == 'south':
-            self.room = self.room.s_to
-        elif self.room.e_to and direction == 'east':
-            self.room = self.room.e_to
-        elif self.room.w_to and direction == 'west':
-            self.room = self.room.w_to
-        else:
-            os.system('clear')
+        key = direction[0] + '_to'
+
+        if not hasattr(self.room, key):
+            # os.system('clear')
             print(f'\n {self.name} tried to move to {direction} but was blocked. Try another direction.\n')
+            return self.room
+        else:
+            self.room = getattr(self.room, key)
