@@ -1,5 +1,5 @@
 from room import Room
-from player import Player
+from gameObjects import Player, Monster
 from data import *
 import random
 
@@ -98,20 +98,22 @@ print(p)
 #print (dir)
 #print (place)
 #print (visible)
+##########################
+###MAIN GAME LOOP BELOW###
+##########################(needs work but still, that's where it is)
 while True:
 	print(n)
 	print (rc)
-	
 	(dir,place,visible)=(zip(*rc.links))
 	t = input("Enter a command, h for help, or q to quit: ")
 	if t in dir:
 		print('working')
-		
-		
 	elif t == "h":
 		print ("""Help:
 w, a, s, and d are the primary direction keys.
-	
+
+You can press i to access your invientory.
+
 currently from this room you can go to:
 	""")
 		for i in range(len(visible)):
