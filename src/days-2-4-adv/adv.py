@@ -85,24 +85,31 @@ room["narrow"].populate_item(
 
 # Add treasures to rooms
 
+room["outside"].populate_item(
+    Treasure(
+        "Silver",
+        "**Silver has become highly prized over gold for the ability to craft armaments.",
+        200,
+    )
+)
 room["treasure"].populate_item(
     Treasure(
-        "*Silver*",
-        "Silver has become highly prized over gold for the ability to craft armaments.",
+        "Silver",
+        "**Silver has become highly prized over gold for the ability to craft armaments.",
         200,
     )
 )
 room["overlook"].populate_item(
     Treasure(
-        "*Scepter*",
-        "Ancient folklore spoke of a cloaked figure that traveled the world cleansing disease and mending wounds, never once asking for payment or any other sign of gratitude.",
+        "Scepter",
+        "**Ancient folklore spoke of a cloaked figure that traveled the world cleansing disease and mending wounds, never once asking for payment or any other sign of gratitude.",
         800,
     )
 )
 room["narrow"].populate_item(
     Treasure(
-        "*Blademaster*",
-        "A symbol of mastery in the art of wielding two melee weapons at the same time.",
+        "Blademaster",
+        "**A symbol of mastery in the art of wielding two melee weapons at the same time.",
         650,
     )
 )
@@ -114,7 +121,8 @@ room["narrow"].populate_item(
 # Make a new player object that is currently in the 'outside' room.
 
 while True:
-    new_player = input("Your hero's name? ")
+    new_player = "Rathma"
+    # new_player = input("Your hero's name? ")
     if len(new_player) == 0:
         print("Please enter your hero's name.\n")
     else:
@@ -141,7 +149,7 @@ while True:
     print(f"{player.current.desc}.\n")
     print("Go [n]orth [e]ast [s]outh [w]est\n")
     print("[search] area")
-    print("[inventory] check\n")
+    print("[inventory] check")
     print("[score] check\n")
     print("[get <item>]")
     print("[drop <item>]\n")

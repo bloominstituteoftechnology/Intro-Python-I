@@ -6,8 +6,8 @@ class Player:
     def __init__(self, name, current, score=0):
         self.name = name
         self.current = current
-        self.inventory = []
         self.score = score
+        self.inventory = []
 
     def move_to(self, room):
         if room:
@@ -32,11 +32,14 @@ class Player:
         if len(searched_item) == 0:
             print("Item not found.")
         else:
+            if hasattr(searched_item[0], "value") and not searched_item[0].scored:
+                self.score += searched_item[0].value
+                searched_item[0].scored = True
+                searched_item[0].on_take(searched_item[0])
+            else:
+                searched_item[0].on_take()
             self.inventory.append(searched_item[0])
             self.current.items.remove(searched_item[0])
-            print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            print(f"\n===You got {item}.")
-            print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
     def remove_item(self, item):
         targeted_item = list(
