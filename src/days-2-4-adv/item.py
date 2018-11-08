@@ -9,4 +9,4 @@ class Item:
 
     def __str__(self):
         # Convert to string
-        return self.description
+        return self.name

@@ -2,7 +2,7 @@ import textwrap
 import time
 from room import Room
 from player import Player
-from item import item
+from item import Item
 
 # Declare all the rooms
 
@@ -37,10 +37,10 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 # Created items for certain rooms
-book = Book("a book")
+book = Item("a book", "dusty and old")
 room['foyer'].contents.append(book)
 
-coin = Coin("a gold coin")
+coin = Item("a rare gold coin", "worth a fortune")
 room['narrow'].contents.append(coin)
 
 
@@ -72,10 +72,10 @@ while True:
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
-# If the user enters "q", quit the game.
+
+
 
 # DIRECTION
-
 def direction(direction, current):
     # Try to move a direction, or print error if player can't go that way.
     # Returns room the player moved to or same room if player didn't move.
@@ -92,7 +92,7 @@ def direction(direction, current):
 
 def search(name, current):
     # Search the current room for items.
-    for item in curRoom.contents:
+    for item in current.contents:
         if item.name == name:
             return item
 
@@ -101,7 +101,10 @@ def search(name, current):
 done = False
 
 while not done:
-  s = input("\n\nWhich way would you like to go? (N, S, E, W)\n").strip().lower().split()
+# list of items in room
+  items = [item for item in player.contents + player.current.contents]
+  s = input("\n\nYou can 'search' or change direction (N, S, E, W)\n").strip().lower().split()
+
   if s[0] in ["n", "s", "w", "e"]:
     player.current = direction(s[0], player.current)
     time.sleep(1)
@@ -109,6 +112,12 @@ while not done:
     time.sleep(1)
     print(player.current.desc)
     time.sleep(2)
+
+  elif s[0] == "search":
+    print("\nYou also see:\n")
+    for item in player.current.contents:
+        print("     " + str(item))
+    # If the user enters "q", quit the game.
   elif s[0] == "quit" or s[0] == "q":
             done = True
   else:
