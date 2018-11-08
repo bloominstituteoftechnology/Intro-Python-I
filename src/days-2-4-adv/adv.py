@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Treasure, Item
 import textwrap
 
 # Declare all the rooms
@@ -61,7 +62,24 @@ print (player.room.name)
 # individual items, or a combination of both
 # e.g. Room.add_items('sword', 'shield', ['treasure, 'crown', 'chalice'])
 
-room['outside'].add_items('rocks', ['skull', 'abandoned armor'])
+# room['outside'].add_items('rocks', ['skull', 'abandoned armor'])
+
+treasure_chest = Treasure('Treasure Chest', """An old pirate relic, overflowing with 
+    bullions and gems""", 100)
+ring = Treasure("Princess Fiora's Ring", """A ring granting the wearer god-like beauty and charm,
+    but removing the ability to love""", 150 )
+crown = Treasure("King Arthur's Crown", """Rumored among mystics and trobadours to grant
+the wearer the ability to read the minds of others""", 225)
+holy_grail = Treasure('Holy Grail', """The enchanted chalice of life. It looks benign 
+    now, but perhaps in the proper hands...""", 350)
+
+room['treasure'].add_items(treasure_chest, holy_grail)
+room['narrow'].add_items(ring)
+room['overlook'].add_items(crown)
+
+
+
+allowed_moves = ['n', 'e', 's', 'w', 'q', 'i', 'items', 'inventory', 'quit', 'score']
 
 def action(phrase):
     verb = phrase[0]
@@ -84,9 +102,9 @@ def action(phrase):
         print ('I understand not thy command. Please choose another one')
 
 
-def movement_or_inv(move):
+def single(move):
     move = move[0]   
-    if move in ['n', 'e', 's', 'w', 'q', 'i', 'items', 'inventory', 'quit']:
+    if move in allowed_moves:
         if move == 'n':
             try:
                 player.room = player.room.n_to
@@ -114,6 +132,9 @@ def movement_or_inv(move):
         elif move in ['inventory', 'i', 'items']:
             print ('~ ~ Thy current inventory ~ ~')
             print (player.item_list if player.item_list else 'Thou hath nothing')
+        elif move == 'score':
+            print ('~ ~ Thy current score ~ ~')
+            print (player.score)
         elif move == 'q' or move == 'quit':
             print ('Farewell, you coward')
             global stop
@@ -121,13 +142,21 @@ def movement_or_inv(move):
     else:
         print ('Please enter a cardinal direction or "q" to quit')
 
-
+print ('before we start')
+print (player.room.name)
+print (player.room.item_list)
+print ('NOW WE START')
 while stop == False:
     print (' ')
     print ('Thy current location:', player.room.name)
     print ( textwrap.wrap(player.room.description) )
     print ('~ ~ Items found in this room ~ ~')
-    print ( player.room.item_list)
+    if player.room.item_list:
+        for item in player.room.item_list:
+            print (item.name)
+    else:
+        print ('  Nothing to see here...  ')
+    # print ( print item.name for item in player.room.item_list)
     command = input('What shall thou do next?     ')
     print ()
     try:
@@ -137,7 +166,7 @@ while stop == False:
         continue
     command = command.split()
     if len(command) == 1:
-        movement_or_inv(command)
+        single(command)
     elif len(command) == 2:
         action(command)
     else:
