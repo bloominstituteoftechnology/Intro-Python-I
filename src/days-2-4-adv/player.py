@@ -10,6 +10,7 @@ import textwrap
 import os
 import sys
 import time
+import random
 from colorama import Fore
 from colorama import Style
 from items import items
@@ -23,7 +24,6 @@ def tprint(string, speed=0.05):
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(speed)
-
 
 # TODO: Refactore os.system('clear') to be better implemented - maybe with a DRAW GUI function
 
@@ -234,9 +234,27 @@ class Player:
         else:
             tprint("\n It is pitch black!\n")
 
+    def room_message(self):
+        os.system('clear')
+        tprint(f'\n {self.room.name}\n', 0.03)
+        if self.room.is_light or isinstance(self, Lightsource):
+            desc = textwrap.wrap(self.room.description, width=70)
+            for element in desc:
+                tprint(f' {element}\n', 0.03)
+
+    # Random encounters, 50/50 chance. 0 for safe, 1 for battle
+    def random_encounter(self):
+        if len(self.room.monsters) > 0:
+            result = random.randint(0, 1)
+            if result == 1:
+                print('Random encounter')
+                # TODO: Battle System
+        else:
+            self.room_message()
+
     # Handles the movement of the Player
     # Side Note: I didn't know about the attr method, this makes the
-    # movement direction much much simplier
+    # movement direction much much simpler
     def movedir(self, direction):
         self.direction = direction
         key = direction[0] + '_to'
@@ -247,3 +265,56 @@ class Player:
             return self.room
         else:
             self.room = getattr(self.room, key)
+            self.random_encounter()
+
+    # Player takes damage
+    def on_take_dmg(self, dmg):
+        if self.hp > 0:
+            self.hp -= dmg
+
+            if self.hp == 0:
+                self.game_over = True
+                tprint(f' <{self.name} has been defeated>')
+
+            tprint(f' <{self.name} took {dmg}>')
+
+    # Player attacks the monster
+    def attack(self, monster):
+        monster.hp -= self.job.attack
+
+
+# Monster Base Class - handles all the default monster and attributes
+class Monster(Player):
+    def __init__(self, name=None, job=None, room=None, hp=0, mp=0, inventory=[], exp=0, gold=0):
+        super().__init__(name, job, room, hp)
+        self.mp = mp
+        self.inventory = inventory
+        self.exp = exp
+        self.gold = gold
+        self.dead = False
+
+    # When the monster is dead, drop all the items into the room
+    def drop_item(self):
+        if self.dead and len(self.inventory) > 0:
+            for itm in self.inventory:
+                self.room.add_item(itm)
+                self.inventory.remove(itm)
+                tprint(f'\n {Fore.GREEN}Items were dropped!{Style.RESET_ALL}')
+
+    # Monster takes damage
+    def on_take_dmg(self, dmg):
+        if self.hp > 0:
+            self.hp -= dmg
+
+            if self.hp == 0:
+                self.dead = True
+                tprint(f' <{self.name} has been defeated>')
+                drop_item()
+
+            tprint(f' <{self.name} took {dmg}>')
+
+    # TODO: Make this a random attack, i.e, if mage, use random skills + physical attacks
+    # Monster attacks the player
+    def attack(self, player):
+        player.hp -= self.job.attack
+

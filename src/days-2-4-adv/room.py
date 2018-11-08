@@ -18,6 +18,7 @@ class Room:
         # self.e_to = ''
         # self.w_to = ''
         self.inventory = []
+        self.monsters = []
         self.is_light = is_light
 
     # Return a formatted value of the Room class
@@ -35,3 +36,6 @@ class Room:
 
     def add_item(self, item):
         self.inventory.append(item)
+
+    def remove_monster(self, monster):
+        self.monsters.remove(monster)

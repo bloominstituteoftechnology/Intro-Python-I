@@ -1,5 +1,6 @@
 from room import Room
 from items import items
+from monsters import monsters
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -34,3 +35,5 @@ room['treasure'].s_to = room['narrow']
 room['outside'].inventory = [items['Wooden Sword'], items['Lamp']]
 room['overlook'].inventory = [items['Rusty Shield'], items['Peasant Clothes']]
 room['foyer'].inventory = [items['Book']]
+
+room['foyer'].monsters = [monsters['Slime'], monsters['Bat']]

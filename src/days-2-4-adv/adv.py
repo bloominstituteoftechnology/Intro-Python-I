@@ -212,7 +212,7 @@ def prompt():
 
     elif action[0].lower() in ['go', 'move']:
         player.movedir(action[1].lower())
-        room_message()
+        # room_message()
 
     elif action[0].lower() in ['get', 'take', 'pickup']:
         item = ' '.join(action[1:])
