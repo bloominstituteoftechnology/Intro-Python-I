@@ -63,6 +63,8 @@ print(p.room)
 p.room.room_items()
 print('\n\nPress h or help to view commands.')
 
+# wrapper = textwrap.TextWrapper(width=50)
+
 while True:
     cmd = input('-> ').lower().split(' ')
     if len(cmd) == 1:
