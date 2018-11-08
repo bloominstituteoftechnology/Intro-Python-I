@@ -8,3 +8,7 @@ class Item:
   def __init__(self, name, description):   
     self.name = name 
     self.description: description
+
+  def pick_up(self, player):
+    player.inventory.append(self) # --> add item to player's inventory
+    

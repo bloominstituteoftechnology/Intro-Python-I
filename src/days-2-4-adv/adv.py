@@ -11,28 +11,20 @@ items = {
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons",
-                     [
-                        items['crate'],
-                        items['torch']
-                     ]),
+                     "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", 
-                    """Dim light filters in from the south. Dusty passages run north and east.""", 
-                    []),                    
+                    """Dim light filters in from the south. Dusty passages run north and east."""),                    
 
     'overlook': Room("Grand Overlook", 
-                    """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
-                    [
-                        items['sword']
-                    ]),
+                    """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", []),
+to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", []),
+earlier adventurers. The only exit is to the south."""),
 }
 
 
@@ -46,6 +38,9 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+# --> Add items to rooms
+room['outside'].items.append(Item('Torch', 'A useful light source. Don\'t get it wet!'))
+room['treasure'].items.append(Item('Midas Cup', 'It honestly is just a cup.'))
 
 #
 # Main
@@ -67,7 +62,7 @@ while True:
     if len(create_name) == 0:
         print("\nYour adventurer cannot be name-less!\n")
     else:        
-        user_1 = Player(create_name, room['outside'], [])
+        player = Player(create_name, room['outside'])
         break
 
 
@@ -83,82 +78,38 @@ while True:
 #
 # If the user enters "q", quit the game. -->
 
-while True:
-    print(f"\nCurrently in: {user_1.room.name}\n")
-    print(f"\n{user_1.room.description} \n")   
+game_finish = False
 
-    # Print error message for invalid input
-    invalid_input = "\n=== Your character looks confused. He cannot move there, please select another direction===\n"
+while not game_finish:
+    print("===========================")
+    print(f"\nCurrently in: {player.room.name}\n")
+    print(f"{player.room.description} \n")   
+    print("===========================")
 
-    direction = input("\nPick a direction: n, e, s, w, l, i (north, east, south, west, look around, inventory) : Press q to GIVE UP \n")
+    direction = input("\nPick a direction: [n],[e],[s],[w]\n").strip().lower().split()
 
-    if len(direction) == 1:
-        # travel_to_room() --!--> error()
+    # --> Check improper commands
+    if len(direction) > 2 or len(direction) < 1:
+        print("\nYour character does not understand that command\n")
+        continue
 
+    # --> Check one word/character command
+    if len(direction) == 1:        
 
-        if (direction[0]) == "q":
-            break     
-
-        elif (direction[0]) == "n":
-            # user_1.travel_to_room(direction[0])
-            if hasattr(user_1.room, 'n_to'):
-                user_1.room = user_1.room.n_to                
-
-                if user_1.room.name == 'Treasure Chamber':
-                    print("\n=== Your character, in utter disbelief of finding all the treasure taken, kills himself due to severe sadness===\n")
-                    break
-
-            else:
-                print(f"{user_1.name} looks at the direction you commanded the adventurer with a look of suspicion... {user_1.name} tells you: I cannot move that way sire!")
+        # --> User wants to quit
+        if (direction[0]) == "q" or direction[0] == "quit":
+            game_finish = True    
         
-        elif (direction[0]) == "e":
-            if hasattr(user_1.room, 'e_to'):
-                user_1.room = user_1.room.e_to
-
-            else:
-                print(f"{user_1.name} looks at the direction you commanded the adventurer with a look of suspicion... {user_1.name} tells you: I cannot move that way sire!")
-
-        elif (direction[0]) == "s":
-            if hasattr(user_1.room, 's_to'):
-                user_1.room = user_1.room.s_to
-
-            else:
-                print(f"{user_1.name} looks at the direction you commanded the adventurer with a look of suspicion... {user_1.name} tells you: I cannot move that way sire!")
-
-        elif (direction[0]) == "w":
-            if hasattr(user_1.room, 'w_to'):
-                user_1.room = user_1.room.w_to
-
-            else:
-                print(f"{user_1.name} looks at the direction you commanded the adventurer with a look of suspicion... {user_1.name} tells you: I cannot move that way sire!")       
+        # --> User wants to move in any direction        
+        elif direction[0] in ['n', 'north', 'e', 'east', 's', 'south', 'w', 'west']:
+            # --> If user delivers something like 'north', we just take the first letter of it
+                # --> note: Double bracket ==> first one to access letter ==> second one to access first letter only
+            player.room = player.try_move(direction[0][0])
         
-        elif (direction[0]) == "i":
-            print("Inventory: \n")
-
-            if len(user_1.inventory) == 0:
-                print("Empty.")
-            else:
-                for item in user_1.inventory:
-                    print(f"{item.name}: {item.description}")
-
-        elif (direction[0]) == "l":
-            if len(user_1.room.items_in_room) > 0:
-                print(f"\n You look around and see: \n")
-                for item in user_1.room.items_in_room:            
-                    print(f"{item.name}")
-            else:
-                print("You look around the room and see nothing")
-
-            
-    else:
-        print("\n===Please enter: n, e, s, w (north, east, south, west)===\n")
-
-
-# # print(f"\n{user_1.room.items_in_room.name}\n")
-# # for i in user_1.room.items_in_room:
-# #     print(f"{user_1.room.items_in_room[i].name}")  
-
-# # print(f"\n=== {user_1.starting_item.name} {user_1.starting_item.description} ===\n")
+        elif direction[0] not in ['n', 'north', 'e', 'east', 's', 'south', 'w', 'west']:
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print("\nYour character does not understand that command\n")
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
     
 
 

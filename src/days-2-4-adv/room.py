@@ -2,7 +2,7 @@
 # description attributes.
 
 class Room:
-  def __init__(self, name, description, items_in_room):
+  def __init__(self, name, description):
     self.name = name
     self.description = description    
-    self.items_in_room = items_in_room
+    self.items = [] # --> add a way to hold items in room
