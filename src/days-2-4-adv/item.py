@@ -10,7 +10,12 @@ class Item:
                 f'{self.name!r}, {self.description!r})')
     
     def on_take(self):
-        print('on_take for item class: ', self.name, 'was just picked up')
+        # print(self.name, 'was picked up')
+        pass
+
+    def on_drop(self):
+        # print("You just dropped item: ", self.name)
+        pass
 
 # class Treasure(Item):
 #     def __init__(self, name, description, value):
@@ -29,7 +34,17 @@ class Treasure(Item):
     
     def on_take(self):
         self.value = 0
-        print('on_take for treasure class: ', self.name, 'was just picked up')
+        # print('You picked up item: ', self.name)
+
+class LightSource(Item):
+    def __init__(self, name, description):
+        Item.__init__(self, name, description)
+    
+    def on_drop(self):
+        print("It's not wise to drop your source of light!")
+
+
+
 
 
 # i = Treasure('b', 'a', 500)

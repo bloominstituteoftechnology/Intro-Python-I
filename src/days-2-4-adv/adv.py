@@ -1,5 +1,6 @@
 from item import Item
 from item import Treasure
+from item import LightSource
 from room import Room
 
 #Declare all the items
@@ -7,7 +8,6 @@ item = {
     'rock': Item('rock', 'rock with the shape and size of an orange'),
     'log': Item('log', 'a small wooden log'), 
     'rope': Item('rope', '30 ft of rope'),
-    'lamp': Item('lamp', 'a small oil lamp'),
     'chair': Item('chair', 'generic chair'),
     'hat': Item('hat', 'a rain hat'),
     'hiking_pole': Item('hiking pole', 'a pole you use as a walking stick while hiking'),
@@ -15,7 +15,8 @@ item = {
     'shovel': Item('shovel', 'a big gardening shovel'),
     'treasure1': Treasure('treasure1', 'treasure1 description', 50),
     'treasure2': Treasure('treasure2', 'treasure2 description', 100),
-    'treasure3': Treasure('treasure3', 'treasure3 description', 200)
+    'treasure3': Treasure('treasure3', 'treasure3 description', 200),
+    'lamp': LightSource('lamp', 'a small oil lamp')
 }
 
 # treasure = {
@@ -31,7 +32,7 @@ room = {
                      "North of you, the cave mount beckons", [item["rock"], item["log"], item["rope"]]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", [item["lamp"], item["chair"]]),
+passages run north and east.""", [item["lamp"], item["chair"]], False),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -64,6 +65,8 @@ room['treasure'].s_to = room['narrow']
 # print(room['outside'].n_to)
 # print(item['rock'].description)
 
+
+
 ################ Main ################
 
 # Make a new player object that is currently in the 'outside' room.
@@ -81,8 +84,18 @@ player1 = Player(input('\n'+'>>>Enter player name: '), room['outside'])
     # * Add a new type of sentence the parser can understand: two words in the form of [verb] [item] (e.g. take coins)
 
 while True:
-    print('\n'+'Location Name: '+ player1.location.name + '\n'+ 'Location Description: '+ player1.location.description)
-    print("Items in the room: ", [player1.location.items[i].name for i in range(len(player1.location.items))])
+    lightCheck = player1.location.is_light or \
+    True in [isinstance(player1.location.items[i], LightSource) for i in range(len(player1.location.items))] or \
+    True in [isinstance(player1.items[i], LightSource) for i in range(len(player1.items))]
+
+    if lightCheck:
+        print('\n'+'Location Name: '+ player1.location.name + '\n'+ 'Location Description: '+ player1.location.description)
+        print("Items in the room: ", [player1.location.items[i].name for i in range(len(player1.location.items))])
+    else:
+        print("It's pitch black!\n")    
+        print("Items in the room: ", [player1.location.items[i].name for i in range(len(player1.location.items))])
+
+
 
     command = input('>>>Next move: ').split(' ')
     validDirections = ['n', 's', 'e', 'w']
@@ -113,14 +126,17 @@ while True:
     #         print('Item not in room.')
 
     if command[0] == ('get' or 'take'):
+        if lightCheck == False:
+            print("Good luck finding that in the dark!")
         if command[1] in [player1.location.items[i].name for i in range(len(player1.location.items))]:
             player1.location.removeItem(item[command[1]])
             player1.addItem(item[command[1]])
             if hasattr(item[command[1]], 'value'): 
-                player1.addScore(item[command[1]].value)
-                print(player1.score)
-            else:
-                print(item[command[1]].name + ' is empty')
+                if getattr(item[command[1]],'value') == 0:
+                    print(item[command[1]].name+ ' is empty. Someone must have already taken the treasure inside.')
+                else:
+                    player1.addScore(item[command[1]].value)
+                    print(player1.score)
             item[command[1]].on_take()
         else: 
             print('Item not in room.')
@@ -128,6 +144,7 @@ while True:
     if command[0] == 'drop':
         if command[1] in [player1.items[i].name for i in range(len(player1.items))]:
             player1.removeItem(item[command[1]])
+            item[command[1]].on_drop()
             player1.location.addItem(item[command[1]])
         else:
             print('You don\'t have that item in your items.')

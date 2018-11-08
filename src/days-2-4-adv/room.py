@@ -4,12 +4,13 @@
 # Add capability to add items to rooms.The Room class should be extended with a list that holds the Items that are currently in that room.
 
 class Room:
-    def __init__(self, locationName, locationDescription, locationItems=None):
+    def __init__(self, locationName, locationDescription, locationItems=None, is_light = True):
         if locationItems is None:
             locationItems = []
         self.name = locationName
         self.description = locationDescription
         self.items = locationItems
+        self.is_light = is_light
 
     def __repr__(self):
         return (f'{self.__class__.__name__}('
