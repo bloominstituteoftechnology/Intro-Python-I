@@ -11,18 +11,18 @@ class Player:
         self.score = 0
 
     def move(self, room, direction):
-        if direction == 'NORTH' and room.n_to:
+        if direction in ['NORTH', 'N'] and room.n_to:
             self.room = room.n_to
             print(f'You move north into the {self.room.name}.')
-        elif direction == 'SOUTH' and room.s_to:
+        elif direction in ['SOUTH', 'S'] and room.s_to:
             self.room = room.s_to
             print(f'You move south into the {self.room.name}.')
-        elif direction == 'EAST' and room.e_to:
+        elif direction in ['EAST', 'E'] and room.e_to:
             self.room = room.e_to
-            print(f'You move ease into the {self.room.name}.')
-        elif direction == 'SOUTH' and room.s_to:
-            self.room = room.s_to
-            print(f'You move south into the {self.room.name}.')
+            print(f'You move east into the {self.room.name}.')
+        elif direction in ['WEST', 'W'] and room.w_to:
+            self.room = room.w_to
+            print(f'You move west into the {self.room.name}.')
         else:
             print(f'There is nothing in that direction.')
 

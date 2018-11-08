@@ -105,14 +105,14 @@ while True:
         # shows the command list
         commands()
 
-    elif command.upper() in ['NORTH', 'SOUTH', 'EAST', 'WEST']:
+    elif command.upper() in ['NORTH', 'N', 'SOUTH', 'S', 'EAST', 'E', 'WEST', 'W']:
         direction = command.upper()
         player.move(player.room, direction)
 
     elif command.upper() == 'LOOK':
         look(player.room, player)
 
-    elif command.upper() == 'GET' or command.upper() == 'TAKE':
+    elif command.upper() in ['GET', 'TAKE']:
         for item in player.room.items:
             if target == item.name:
                 player.pickup(item)
