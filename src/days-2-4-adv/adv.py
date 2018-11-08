@@ -38,6 +38,17 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+
+#items in rooms
+room["outside"].populate_item(
+    Item(
+        "Gloc-40", "This weapon is the go to for warriors."
+    )
+)
+room["outside"].populate_item(
+    Item("Smoothie", "delicious smoothie that makes the hero refreshed.")
+)
+
 # Make a new player object that is currently in the 'outside' room.
 
 while True:

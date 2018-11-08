@@ -6,6 +6,7 @@ class Player:
         self.name = name
         self.hp = hp
         self.MaxHp = hp
+        self.maxMp = mp
 
     def attack(self, other):
         pass
