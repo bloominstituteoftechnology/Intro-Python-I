@@ -4,3 +4,4 @@ class Item:
         self.name = name
         self.descr = descr
     
+    
