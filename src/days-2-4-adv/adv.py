@@ -85,12 +85,12 @@ while True:
 
 while True:
     print(f"\nCurrently in: {user_1.room.name}\n")
-    print(f"\n{user_1.room.description} \n")        
+    print(f"\n{user_1.room.description} \n")   
 
     # Print error message for invalid input
     invalid_input = "\n=== Your character looks confused. He cannot move there, please select another direction===\n"
 
-    direction = input("\nPick a direction: n, e, s, w (north, east, south, west) : Press q to GIVE UP \n")
+    direction = input("\nPick a direction: n, e, s, w, l, i (north, east, south, west, look around, inventory) : Press q to GIVE UP \n")
 
     if len(direction) == 1:
         # travel_to_room() --!--> error()
@@ -140,6 +140,14 @@ while True:
             else:
                 for item in user_1.inventory:
                     print(f"{item.name}: {item.description}")
+
+        elif (direction[0]) == "l":
+            if len(user_1.room.items_in_room) > 0:
+                print(f"\n You look around and see: \n")
+                for item in user_1.room.items_in_room:            
+                    print(f"{item.name}")
+            else:
+                print("You look around the room and see nothing")
 
             
     else:
