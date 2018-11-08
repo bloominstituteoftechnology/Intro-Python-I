@@ -96,7 +96,6 @@ while True:
         print("Items in the room: ", [player1.location.items[i].name for i in range(len(player1.location.items))])
 
 
-
     command = input('>>>Next move: ').split(' ')
     validDirections = ['n', 's', 'e', 'w']
 
