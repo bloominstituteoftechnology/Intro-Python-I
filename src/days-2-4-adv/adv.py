@@ -50,8 +50,15 @@ room = {
     'outside':  Room(
                     'Outside Cave Entrance',
                     'North of you, the cave mount beckons.',
-                    item['lamp'],
+                    item['nothing'],
                     True
+                ),
+
+    'entrance':  Room(
+                    'Cave Entrance',
+                    'The cave entrance is eerily silent.',
+                    item['lamp'],
+                    False
                 ),
 
     'foyer':    Room(
@@ -100,8 +107,10 @@ room = {
 
 # Link rooms together
 
-room['outside'].n_to    = room['foyer']
-room['foyer'].s_to      = room['outside']
+room['outside'].n_to    = room['entrance']
+room['entrance'].s_to   = room['outside']
+room['entrance'].n_to   = room['foyer']
+room['foyer'].s_to      = room['entrance']
 room['foyer'].n_to      = room['overlook']
 room['foyer'].e_to      = room['narrow']
 room['overlook'].s_to   = room['foyer']
@@ -124,7 +133,10 @@ room['chamber'].s_to    = room['hall']
 #                 Foyer(2) ---------- Narrow(4) ---------- Hall(6)
 #                    |
 #                    |
-#                 Outside(1)
+#                 Entrance(1)
+#                    |
+#                    |
+#                 Outside
 #
 #
 #   (1): Lamp   (2): Shield   (3): Sword   (4): Ruby   (5): Gold   (6): Sapphire   (7): Beast
@@ -194,13 +206,19 @@ def start_game():
     print(text_divider)
 
     while True:
-        print_wrapped_lines(f'You are currently in the {currRoom.name}.')
-        print_wrapped_lines(currRoom.description)
-        print('\n')
-        if hasattr(currRoom.item, 'value'):
-            print_wrapped_lines(f'This room has {currRoom.item.description}. Thats quite a treasure.')
+
+
+
+        if currRoom.is_light == True or isinstance(currRoom.item, LightSource) or True in [True for item in inventory if isinstance(item, LightSource)]:
+            print_wrapped_lines(f'You are currently in the {currRoom.name}.')
+            print_wrapped_lines(currRoom.description)
+            print('\n')
+            if hasattr(currRoom.item, 'value'):
+                print_wrapped_lines(f'This room has {currRoom.item.description}. Thats quite a treasure.')
+            else:
+                print_wrapped_lines(f'This room has {currRoom.item.description}.')
         else:
-            print_wrapped_lines(f'This room has {currRoom.item.description}.')
+            print_wrapped_lines('It\'s pitch black!')
 
         print('\n')
 
@@ -209,11 +227,21 @@ def start_game():
         next_action = next_action.lower()
 
         if next_action[:4] == 'get ':
-            try_get_item(next_action[4:])
+            if currRoom.is_light == True or isinstance(currRoom.item, LightSource) or True in [True for item in inventory if isinstance(item, LightSource)]:
+                try_get_item(next_action[4:])
+            else:
+                print(text_divider)
+                print_wrapped_lines('Good luck finding that in the dark!')
+                print('\n')
             continue
 
         elif next_action[:2] == 'g ':
-            try_get_item(next_action[2:])
+            if currRoom.is_light == True or isinstance(currRoom.item, LightSource) or True in [True for item in inventory if isinstance(item, LightSource)]:
+                try_get_item(next_action[2:])
+            else:
+                print(text_divider)
+                print_wrapped_lines('Good luck finding that in the dark!')
+                print('\n')
             continue
 
         elif next_action[:5] == 'drop ':
