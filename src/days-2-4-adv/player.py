@@ -12,17 +12,29 @@ class Player:
 
     def move(self, room, direction):
         if direction in ['NORTH', 'N'] and room.n_to:
-            self.room = room.n_to
-            print(f'You move north into the {self.room.name}.')
+            if room.n_to.locked:
+                print(f'The door to the {room.n_to.name} is locked!')
+            else:
+                self.room = room.n_to
+                print(f'You move north into the {self.room.name}.')
         elif direction in ['SOUTH', 'S'] and room.s_to:
-            self.room = room.s_to
-            print(f'You move south into the {self.room.name}.')
+            if room.s_to.locked:
+                print(f'The door to the {room.s_to.name} is locked!')
+            else:
+                self.room = room.s_to
+                print(f'You move south into the {self.room.name}.')
         elif direction in ['EAST', 'E'] and room.e_to:
-            self.room = room.e_to
-            print(f'You move east into the {self.room.name}.')
+            if room.e_to.locked:
+                print(f'The door to the {room.e_to.name} is locked!')
+            else:
+                self.room = room.e_to
+                print(f'You move east into the {self.room.name}.')
         elif direction in ['WEST', 'W'] and room.w_to:
-            self.room = room.w_to
-            print(f'You move west into the {self.room.name}.')
+            if room.w_to.locked:
+                print(f'The door to the {room.w_to.name} is locked!')
+            else:
+                self.room = room.w_to
+                print(f'You move west into the {self.room.name}.')
         else:
             print(f'There is nothing in that direction.')
 

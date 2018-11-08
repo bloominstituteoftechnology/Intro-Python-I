@@ -10,3 +10,7 @@ class Item:
 
         def on_drop(self):
             raise NotImplementedError
+
+# create a KEY subclass that can unlock doors when picked up
+
+# create a LIGHTSOURCE subclass that can illuminate dark places

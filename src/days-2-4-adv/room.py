@@ -2,7 +2,7 @@
 # description attributes.
 
 class Room:
-    def __init__(self, name, description, items=None):
+    def __init__(self, name, description, items=None, locked=None):
         self.name = name
         self.description = description
         self.items = [] if items is None else items
@@ -10,6 +10,7 @@ class Room:
         self.s_to = None
         self.e_to = None
         self.w_to = None
+        self.locked = False if locked is None else True
 
     def examine_room(self):
         print(f"\n You examine the room and find: {', '.join(item.name for item in self.items)}")

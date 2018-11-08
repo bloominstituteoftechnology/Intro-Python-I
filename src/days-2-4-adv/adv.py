@@ -25,11 +25,11 @@ room = {
 
     'garden': Room('Garden', """A small plot of plants that has been overgrown by weeds. There is a large Atlas statue in the middle, and a shed to the north.""", [items['Torch']]),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. You see doorways to the north, east, and west. A cold draft blows from the west...""", [items['Matches']]),
+    'foyer': Room("Foyer", """Dim light filters in from the south. You see doorways to the north, east, and west. A cold draft blows from the west...""", [items['Matches']]),
 
-    'shed': Room("Garden Shed", """Dust floats through the air, and rusty tools are strewn about the inside. Doors lead out to the west and south.""", [items["Book"]]),
+    'shed': Room("Garden Shed", """Dust floats through the air, and rusty tools are strewn about the inside. Doors lead out to the west and south.""", [items["Book"]], True),
 
-    'basement': Room("Musty Basement", """A damp, moldy basement, dressed with cobwebs. A freezing cold wind blows from the south..."""),
+    'basement': Room("Musty Basement", """A damp, moldy basement, dressed with cobwebs. A freezing cold wind blows from the south...""", None, True),
 
     'dungeon': Room("Dungeon of Horrors", """Blood soaks the floors and walls, and a menacing figure stands in the middle!"""),
 
@@ -43,7 +43,7 @@ room = {
 
     'secretpassage': Room("Secret Passageway", """A narrow hallway extends north to south. There seems to be an evil presence here...""", [items["Shiny Key"]]),
 
-    'masterbed': Room("Master Bedroom", """A large bed lays undisturbed. A crooked painting hangs on the northern wall."""),
+    'masterbed': Room("Master Bedroom", """A large bed lays undisturbed. A crooked painting hangs on the northern wall.""", None, True),
 
     'upstairs': Room("Upstairs Hall", """A carpeted corridor runs east to west, with a glass doorway heading north."""),
 
@@ -116,7 +116,7 @@ def commands():
 while True:
 
     # print the current room
-    print("==================== \n CURRENT ROOM:\n" + "  " + player.room.name + "\n" + "    " + player.room.description + "\n ====================")
+    print("====================\nCURRENT ROOM: " + player.room.name + "\n" + player.room.description + "\n====================")
     #print command instructions
     print('Type "commands" to see full command list.')
     
