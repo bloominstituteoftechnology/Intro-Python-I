@@ -174,6 +174,15 @@ def monster_health(current_room):
     alive = False
   return alive
 
+def help():
+  print('\ndirections: n,e,s,w')
+  print('attack: attack')
+  print('get item: get item-name')
+  print('drop item: drop item-name')
+  print('look in room: l')
+  print('look in inventory: i')
+  print('inspect item in inventory: in item-name')
+
 
 #have I been there yet?
 been_outside = False
@@ -199,6 +208,8 @@ killed_troll = False
 ######################--------------######################
 ###################### START OF GAME #####################
 ######################--------------######################
+
+print("""\nwelcome to dungeon quest. Commands are n,e,s,w for directions, attack to attack, i to check inventory, l to look in area, in item-name to inspect item, get item-name to pick up item, and drop item-name to drop item. if your ever confused enter help for commands.'""")
 
 while not res[0] == 'q':
 
@@ -231,6 +242,8 @@ while not res[0] == 'q':
         check_inventory(player)
       elif res[0] == 'q':
         outside_loop = False
+      elif res[0] == 'help':
+        help()
       elif not res[0] == 'q':
         print('incorrect input')
 
@@ -273,6 +286,8 @@ while not res[0] == 'q':
         foyer_loop = False
       elif res[0] == 'q':
         foyer_loop = False
+      elif res[0] == 'help':
+        help()
       elif not res[0] == 'q':
         print('incorrect input')
 
@@ -304,6 +319,8 @@ while not res[0] == 'q':
         foyer_loop = True
       elif res[0] == 'q':
         overlook_loop = False
+      elif res[0] == 'help':
+        help()
       elif not res[0] == 'q':
         print('\nincorrect input\n')
   
@@ -351,6 +368,8 @@ while not res[0] == 'q':
           narrow_loop = False
       elif res[0] == 'q':
         narrow_loop = False
+      elif res[0] == 'help':
+        help()
       elif not res[0] == 'q':
         print('\nincorrect input\n')
 
@@ -416,6 +435,8 @@ while not res[0] == 'q':
         location = 'narrow'
       elif res[0] == 'q':
         bridge_loop = False
+      elif res[0] == 'help':
+        help()
       elif not res[0] == 'q':
         print('\nincorrect input\n')
 
@@ -446,6 +467,8 @@ while not res[0] == 'q':
         bridge_loop = True
       elif res[0] == 'q':
         treasure_loop = False
+      elif res[0] == 'help':
+        help()
       elif not res[0] == 'q':
         print('\nincorrect input\n')
 
