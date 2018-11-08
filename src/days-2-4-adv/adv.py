@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from mage import Mage
 
 # Declare all the rooms
 
@@ -36,7 +37,11 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-player1 = Player(room["outside"])
+player1 = Player()
+
+# ----- testing to see if items inv worked -----
+# killer = Mage()
+# print(killer.items)
 
 while True:
     print(
@@ -53,7 +58,7 @@ while True:
     elif dir == "exit":
         break
 
-# too much code!!!
+# ----- too much code!!! -----
 
 # while True:
 #     print(f"Welcome, you are at the {player1.current_room.name}")

@@ -3,6 +3,7 @@ from player import Player
 
 class Warrior(Player):
     def __init__(self):
+        super(self)
         self.main_weapon = "Barbed sword"
         self.hp = 140
         self.rage = 0
