@@ -3,19 +3,13 @@ import os
 import sys
 import time
 
-from player import Player
-from rooms import room
-from rooms import items
 from jobs import jobs
-from item import Treasure
+from rooms import room
 from items import items
-
+from player import Player
 from colorama import Fore
 from colorama import Style
-
-# Global vars
-player = Player()
-
+from item import Lightsource
 
 # Displays each character of the string in intervals, produces
 # a typewriter effect
@@ -77,11 +71,10 @@ def title_screen_selections():
         tprint("Not a recognized input.\n")
         title_screen_selections()
 
-
+player = Player()
 # Setup the Player
 def set_init_player():
     os.system('clear')
-    global player
 
     # Ask the player for the character name
     question_name = "\n Enter Your Character's Name\n"
@@ -128,8 +121,8 @@ def set_init_player():
             player.job = jobs[job.capitalize()]
 
     # Ask the player if the name is correct
-    question_correct = f'\n {Fore.BLUE}{player_name.title()}{Style.RESET_ALL}, {Fore.BLUE}{player.sex}{Style.RESET_ALL}, ' \
-                       f'{Fore.BLUE}{player.job.name}{Style.RESET_ALL} is correct? [y] ' \
+    question_correct = f'\n {Fore.BLUE}{player_name.title()}{Style.RESET_ALL}, {Fore.BLUE}{player.sex}' \
+                       f'{Style.RESET_ALL}, {Fore.BLUE}{player.job.name}{Style.RESET_ALL} is correct? [y] ' \
                        f'yes or [n] no?\n'
     os.system('clear')
     tprint(question_correct, 0.03)
@@ -143,7 +136,7 @@ def set_init_player():
         player.weapon = items['EmptyW']
         player.armour = items['EmptyA']
         player.shield = items['EmptyS']
-        player.lightsource = items['EmptyL']
+        player.hand = items['EmptyL']
         player.gold = 0
         player.game_over = False
     else:
@@ -151,16 +144,6 @@ def set_init_player():
 
     room_message()
     main_game_loop()
-
-
-# Display the room message
-def room_message():
-    # os.system('clear')
-    tprint(f'\n {player.room.name}\n', 0.03)
-    if player.room.is_light or player.lightsource != items['EmptyL']:
-        desc = textwrap.wrap(player.room.description, width=70)
-        for element in desc:
-            tprint(f' {element}\n', 0.03)
 
 
 # TODO: Simplify/Abstract this
@@ -179,6 +162,15 @@ def item_exists(item):
     if bl is False:
         return False
 
+
+# Display the room message
+def room_message():
+    os.system('clear')
+    tprint(f'\n {player.room.name}\n', 0.03)
+    if player.room.is_light or isinstance(player.hand, Lightsource):
+        desc = textwrap.wrap(player.room.description, width=70)
+        for element in desc:
+            tprint(f' {element}\n', 0.03)
 
 # TODO: Simplify/Pretty up the actions
 """ Where the action happens

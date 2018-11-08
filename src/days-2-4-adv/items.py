@@ -4,7 +4,7 @@ items = {
     'EmptyW': Weapon('Empty Slot', ' '),
     'EmptyS': Shield('Empty Slot', ' '),
     'EmptyA': Armour('Empty Slot', ' '),
-    'EmptyL': Lightsource('Empty Slot', ' '),
+    'EmptyL': Item('Empty Slot', ' '),
 
     'Sword': Weapon('Sword', 'A simple sword', 20, 10, 5, 10, 2, 5, 1),
     'Stick': Weapon('Stick', 'A small stick. This doesn\'t look like it will do much damage', 5),

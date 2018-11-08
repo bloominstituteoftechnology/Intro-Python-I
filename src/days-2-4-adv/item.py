@@ -30,13 +30,13 @@ class Weapon(Item):
 
 
 # TODO: Add more attributes
-class Shield(Weapon):
+class Shield(Item):
     def __init__(self, name, description, attack=0, defence=0, hp=0, vitality=0, intelligence=0, dexterity=0, wisdom=0, mp=0):
         super().__init__(name, description, attack, defence, hp, vitality, intelligence, dexterity, wisdom, mp)
 
 
 # TODO: Add more attributes
-class Armour(Shield):
+class Armour(Item):
     def __init__(self, name, description, attack=0, defence=0, hp=0, vitality=0, intelligence=0, dexterity=0, wisdom=0, mp=0):
         super().__init__(name, description, attack, defence, hp, vitality, intelligence, dexterity, wisdom, mp)
 

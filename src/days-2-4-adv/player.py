@@ -6,11 +6,24 @@
 Player holds player name, room and direction information and movement
 methods.
 """
+import textwrap
 import os
+import sys
+import time
 from colorama import Fore
 from colorama import Style
 from items import items
 from item import Treasure, Weapon, Shield, Armour, Item, Lightsource
+
+
+# Displays each character of the string in intervals, produces
+# a typewriter effect
+def tprint(string, speed=0.05):
+    for character in string:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(speed)
+
 
 # TODO: Refactore os.system('clear') to be better implemented - maybe with a DRAW GUI function
 
@@ -25,7 +38,7 @@ class Player:
         self.weapon = {}
         self.armour = {}
         self.shield = {}
-        self.lightsource = {}
+        self.hand = {}
         self.direction = 'north'
         self.inventory = []
         self.level = 1
@@ -58,7 +71,7 @@ class Player:
                 f'   WEAP: {self.weapon.name} - {self.weapon.description}\n'
                 f'   ARMR: {self.armour.name} - {self.armour.description}\n'
                 f'   SHLD: {self.shield.name} - {self.shield.description}\n'
-                f'   LHTS: {self.lightsource.name} - {self.lightsource.description}\n'
+                f'   HAND: {self.hand.name} - {self.hand.description}\n'
                 f'    VIT: [{self.job.vitality}] + {vita}\n'
                 f'    INT: [{self.job.dexterity}] + {dext}\n'
                 f'    DEX: [{self.job.intelligence}] + {inte}\n'
@@ -88,22 +101,21 @@ class Player:
     # Add an item to the inventory
     def pickup_item(self, item):
         os.system('clear')
-        if self.room.is_light is False or self.lightsource == items['EmptyL']:
-            print('\n Good luck finding that item in the dark!')
+        if self.room.is_light is False and isinstance(self.hand, Lightsource) is False:
+            tprint('\n Good luck finding that item in the dark!\n')
 
         if self.room.contains(item):
-            print(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} picked up.')
+            tprint(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} picked up.')
             self.inventory.append(item)
             self.room.remove_item(item)
 
             if isinstance(item, Treasure):
-                print('is treasure')
                 if item.is_taken() is False:
                     self.gold += item.gold
 
                 item.on_take()
         else:
-            print(f'\n {item.name} not found.')
+            tprint(f'\n {item.name} not found.', 0.02)
 
     # Drop an item from inventory to the current room
     def drop_item(self, item):
@@ -117,10 +129,10 @@ class Player:
 
                 self.inventory.remove(item)
                 self.room.add_item(item)
-                print(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}has been dropped{Style.RESET_ALL}')
+                tprint(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}has been dropped{Style.RESET_ALL}')
 
         if bl is False:
-            print(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}is not in the inventory{Style.RESET_ALL}')
+            tprint(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}is not in the inventory{Style.RESET_ALL}')
 
     # Equip the weapon
     def equip_weapon(self, target):
@@ -138,18 +150,42 @@ class Player:
                     self.inventory.append(self.weapon)
                     self.inventory.remove(target)
                     self.weapon = target
-            elif isinstance(target, Lightsource):
-                if self.lightsource == items['EmptyL']:
-                    self.lightsource = target
+            elif isinstance(target, Armour):
+                if self.armour == items['EmptyA']:
+                    self.armour = target
                     self.inventory.remove(target)
                 else:
-                    self.inventory.append(self.lightsource)
+                    self.inventory.append(self.armour)
                     self.inventory.remove(target)
-                    self.lightsource = target
+                    self.armour = target
+            elif isinstance(target, Shield):
+                if self.shield == items['EmptyS']:
+                    self.shield = target
+                    self.inventory.remove(target)
+                else:
+                    self.inventory.append(self.shield)
+                    self.inventory.remove(target)
+                    self.shield = target
+            elif isinstance(target, Lightsource):
+                if self.hand == items['EmptyL']:
+                    self.hand = target
+                    self.inventory.remove(target)
+                else:
+                    self.inventory.append(self.hand)
+                    self.inventory.remove(target)
+                    self.hand = target
+            elif isinstance(target, Item):
+                if self.hand == items['EmptyL']:
+                    self.hand = target
+                    self.inventory.remove(target)
+                else:
+                    self.inventory.append(self.hand)
+                    self.inventory.remove(target)
+                    self.hand = target
 
-            print(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was equipped.')
+            tprint(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was equipped.')
         else:
-            print(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} not in inventory')
+            tprint(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} not in inventory')
 
     # Un-equip the weapon
     def unequip_weapon(self, target):
@@ -158,31 +194,45 @@ class Player:
             if target == self.weapon:
                 self.weapon = items['EmptyW']
                 self.inventory.append(target)
-                print(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was un-equipped.')
-        elif isinstance(target, Lightsource):
-            if target == self.lightsource:
-                self.lightsource = items['EmptyL']
+                tprint(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was un-equipped.')
+        elif isinstance(target, Shield):
+            if target == self.shield:
+                self.shield = items['EmptyS']
                 self.inventory.append(target)
-                print(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was un-equipped.')
+                tprint(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was un-equipped.')
+        elif isinstance(target, Armour):
+            if target == self.armour:
+                self.armour = items['EmptyL']
+                self.inventory.append(target)
+                tprint(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was un-equipped.')
+        elif isinstance(target, Lightsource):
+            if target == self.hand:
+                self.hand = items['EmptyL']
+                self.inventory.append(target)
+                tprint(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was un-equipped.')
+        elif isinstance(target, Item):
+            if target == self.hand:
+                self.hand = items['EmptyL']
+                self.inventory.append(target)
+                tprint(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} was un-equipped.')
         else:
-            print(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} is not equipped')
+            tprint(f'\n {Fore.GREEN}{target.name}{Style.RESET_ALL} is not equipped')
 
     # Look around the current room
     def look_around(self):
         os.system('clear')
-        if self.room.is_light or self.lightsource != items['EmptyL']:
+        if self.room.is_light or isinstance(self.hand, Lightsource):
             if len(self.room.inventory) < 1:
-                print("\n You looked around the room, but found no items")
+                tprint("\n You looked around the room, but found no items\n")
                 return
 
-            print(f'\n You looked around the room and found:')
+            tprint(f'\n You looked around the room and found:\n')
             count = 0
             for item in self.room.inventory:
                 count += 1
-                print(f' [{Fore.GREEN}{count}{Style.RESET_ALL}] {Fore.GREEN}{item.name}{Style.RESET_ALL} - '
-                      f'  {item.description}')
+                tprint(f' [{Fore.GREEN}{count}{Style.RESET_ALL}] {Fore.GREEN}{item.name}{Style.RESET_ALL}\n', 0.02)
         else:
-            print("\n It is pitch black!")
+            tprint("\n It is pitch black!\n")
 
     # Handles the movement of the Player
     # Side Note: I didn't know about the attr method, this makes the
@@ -193,7 +243,7 @@ class Player:
 
         if not hasattr(self.room, key):
             # os.system('clear')
-            print(f'\n {self.name} tried to move to {direction} but was blocked. Try another direction.\n')
+            tprint(f'\n {self.name} tried to move to {direction} but was blocked. Try another direction.\n')
             return self.room
         else:
             self.room = getattr(self.room, key)
