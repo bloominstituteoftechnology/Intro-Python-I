@@ -12,7 +12,8 @@ class Room:
         self.light = False
         self.monsters = []
     def __str__(self):
-        if len(self.monsters) > 0:
+        monsters_alive = [monster for monster in self.monsters if not monster.killed]
+        if len(monsters_alive) > 0:
             return f"\n\n{self.name}\n  {self.description}\n\n There is a {''.join([monster.name for monster in self.monsters])} blocking the way!"
         return f"\n\n{self.name}\n  {self.description}\n\n{self.getItems()}"
     def getItems(self):

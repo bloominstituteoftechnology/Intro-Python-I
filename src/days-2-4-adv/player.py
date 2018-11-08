@@ -14,7 +14,7 @@ class Player:
         self.killed = False
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
-        if nextRoom is not None:
+        if nextRoom is not None:  
             self.currentRoom = nextRoom
             light_sources = [item for item in self.items if hasattr(item,'lightsource')]
             light = nextRoom.light or len(light_sources) > 0

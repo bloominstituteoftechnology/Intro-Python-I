@@ -102,124 +102,137 @@ while True:
     if len(cmds) == 1:
         if cmds[0] == "q":
             break
-        elif cmds[0] in validDirections:
-            player.travel(validDirections[cmds[0]])
-        elif cmds[0] == "look":
-            player.look()
-        elif cmds[0] == "i" or cmds[0] == "inventory":
-            player.printInventory()
-        elif cmds[0] == "p" or cmds[0] == "score":
-            print(f"You have {player.score} points.")
-        elif cmds[0] == "stats":
-            player.printStats()
+        if player.killed:
+            print("You are dead.")
         else:
-            print("I did not understand that command.")    
+            if cmds[0] in validDirections:
+                monsters_alive = [monster for monster in player.currentRoom.monsters if not monster.killed]
+                if len(monsters_alive) > 0:
+                    print(f"The {''.join([monster.name for monster in player.currentRoom.monsters])} blocks your path!")
+                else:
+                    player.travel(validDirections[cmds[0]])
+            elif cmds[0] == "look":
+                player.look()
+            elif cmds[0] == "i" or cmds[0] == "inventory":
+                player.printInventory()
+            elif cmds[0] == "p" or cmds[0] == "score":
+                print(f"You have {player.score} points.")
+            elif cmds[0] == "stats":
+                player.printStats()
+            else:
+                print("I did not understand that command.")    
     else:
-        if cmds[0] == "look":
-            if cmds[1] in validDirections:
-                player.look(validDirections[cmds[1]])
-        elif cmds[0] == "take":
-            if cmds[1] == "it":
-                itemToTake = player.currentRoom.findItembyName(recent_item[0])
-                if itemToTake is not None:
-                    player.addItem(itemToTake)
-                    player.currentRoom.removeItem(itemToTake)
-                    print(f"You have picked up {itemToTake.name}")
-                else:
-                    print("You do not see that item.")
-            else:
-                itemToTake = player.currentRoom.findItembyName(" ".join(cmds[1:]))
-                if itemToTake is not None:
-                    player.addItem(itemToTake)
-                    player.currentRoom.removeItem(itemToTake)
-                    print(f"You have picked up {itemToTake.name}")
-                    if len(recent_item) > 0:
-                        recent_item.pop()
-                    recent_item.append(" ".join(cmds[1:]))
-                else:
-                    print("You do not see that item.")
-        elif cmds[0] == "drop":
-            if cmds[1] == "it":
-                itemToDrop = player.findItembyName(recent_item[0])
-                if itemToDrop is not None:
-                    player.removeItem(itemToDrop)
-                    player.currentRoom.addItem(itemToDrop)
-                    print(f"You have dropped {itemToDrop.name}")
-                else:
-                    print("You are not holding that item.")
-            else:
-                itemToDrop = player.findItembyName(" ".join(cmds[1:]))
-                if itemToTake is not None:
-                    player.removeItem(itemToDrop)
-                    player.currentRoom.addItem(itemToDrop)
-                    print(f"You have dropped {itemToDrop.name}")
-                    if len(recent_item) > 0:
-                        recent_item.pop()
-                    recent_item.append(" ".join(cmds[1:]))                    
-                else:
-                    print("You are not holding that item.")
-        elif cmds[0] == "equip":
-            if cmds[1] == "it":
-                itemToEquip = player.findItembyName(recent_item[0])
-                if itemToEquip is not None:
-                    if hasattr(itemToEquip,'equippable'):
-                        player.equipItem(itemToEquip)
-                        player.removeItem(itemToEquip)
-                        print(f"You have equipped {itemToEquip.name}")
+        if player.killed:
+            print("You are dead.")
+        else:
+            if cmds[0] == "look":
+                if cmds[1] in validDirections:
+                    monsters_alive = [monster for monster in player.currentRoom.monsters if not monster.killed]
+                    if len(monsters_alive) > 0:
+                        print(f"The {''.join([monster.name for monster in player.currentRoom.monsters])} blocks your path!")
+                    player.look(validDirections[cmds[1]])
+            elif cmds[0] == "take":
+                if cmds[1] == "it":
+                    itemToTake = player.currentRoom.findItembyName(recent_item[0])
+                    if itemToTake is not None:
+                        player.addItem(itemToTake)
+                        player.currentRoom.removeItem(itemToTake)
+                        print(f"You have picked up {itemToTake.name}")
                     else:
-                        print("You cannot equip this item.")
+                        print("You do not see that item.")
                 else:
-                    print("You are not holding that item.")
-            else:
-                itemToEquip = player.findItembyName(" ".join(cmds[1:]))            
-                if itemToEquip is not None:
-                    if hasattr(itemToEquip,'equippable'):
-                        player.equipItem(itemToEquip)
-                        player.removeItem(itemToEquip)
-                        print(f"You have equipped {itemToEquip.name}")
+                    itemToTake = player.currentRoom.findItembyName(" ".join(cmds[1:]))                    
+                    if itemToTake is not None:
+                        player.addItem(itemToTake)
+                        player.currentRoom.removeItem(itemToTake)
+                        print(f"You have picked up {itemToTake.name}")
                         if len(recent_item) > 0:
                             recent_item.pop()
                         recent_item.append(" ".join(cmds[1:]))
                     else:
-                        print("You cannot equip this item.")
+                        print("You do not see that item.")
+            elif cmds[0] == "drop":
+                if cmds[1] == "it":
+                    itemToDrop = player.findItembyName(recent_item[0])
+                    if itemToDrop is not None:
+                        player.removeItem(itemToDrop)
+                        player.currentRoom.addItem(itemToDrop)
+                        print(f"You have dropped {itemToDrop.name}")
+                    else:
+                        print("You are not holding that item.")
                 else:
-                    print("You are not holding that item.") 
-        elif cmds[0] == "unequip":
-            if cmds[1] == "it":
-                itemToUnequip = player.findItembyName(recent_item[0])
-                if itemToUnequip is not None:
-                    player.unequipItem(itemToUnequip)
-                    player.addItem(itemToUnequip)
-                    print(f"You have unequipped {itemToUnequip.name}")
+                    itemToDrop = player.findItembyName(" ".join(cmds[1:]))
+                    if itemToTake is not None:
+                        player.removeItem(itemToDrop)
+                        player.currentRoom.addItem(itemToDrop)
+                        print(f"You have dropped {itemToDrop.name}")
+                        if len(recent_item) > 0:
+                            recent_item.pop()
+                        recent_item.append(" ".join(cmds[1:]))                    
+                    else:
+                        print("You are not holding that item.")
+            elif cmds[0] == "equip":
+                if cmds[1] == "it":
+                    itemToEquip = player.findItembyName(recent_item[0])
+                    if itemToEquip is not None:
+                        if hasattr(itemToEquip,'equippable'):
+                            player.equipItem(itemToEquip)
+                            player.removeItem(itemToEquip)
+                            print(f"You have equipped {itemToEquip.name}")
+                        else:
+                            print("You cannot equip this item.")
+                    else:
+                        print("You are not holding that item.")
                 else:
-                    print("You are not holding that item.")
+                    itemToEquip = player.findItembyName(" ".join(cmds[1:]))            
+                    if itemToEquip is not None:
+                        if hasattr(itemToEquip,'equippable'):
+                            player.equipItem(itemToEquip)
+                            player.removeItem(itemToEquip)
+                            print(f"You have equipped {itemToEquip.name}")
+                            if len(recent_item) > 0:
+                                recent_item.pop()
+                            recent_item.append(" ".join(cmds[1:]))
+                        else:
+                            print("You cannot equip this item.")
+                    else:
+                        print("You are not holding that item.") 
+            elif cmds[0] == "unequip":
+                if cmds[1] == "it":
+                    itemToUnequip = player.findItembyName(recent_item[0])
+                    if itemToUnequip is not None:
+                        player.unequipItem(itemToUnequip)
+                        player.addItem(itemToUnequip)
+                        print(f"You have unequipped {itemToUnequip.name}")
+                    else:
+                        print("You are not holding that item.")
+                else:
+                    itemToUnequip = player.findItembyName(" ".join(cmds[1:]))
+                    if itemToUnequip is not None:
+                        player.unequipItem(itemToUnequip)
+                        player.addItem(itemToUnequip)
+                        print(f"You have unequipped {itemToUnequip.name}")
+                        if len(recent_item) > 0:
+                            recent_item.pop()
+                        recent_item.append(" ".join(cmds[1:]))
+                    else:
+                        print("You are not holding that item.") 
+            elif cmds[0] == "fight":
+                monsterToFight = player.currentRoom.findMonsterbyName(" ".join(cmds[1:]))
+                if monsterToFight is not None:
+                    while monsterToFight.killed != True and player.killed != True:
+                        player.attack(monsterToFight)
+                        print(f"You delt {player.attack_power}dmg to {monsterToFight.name}!")
+                        if monsterToFight.health <= 0:
+                            monsterToFight.killed = True
+                            print(f"You have slain the {monsterToFight.name}!")
+                        if monsterToFight.killed != True:
+                            monsterToFight.attack(player)
+                            print(f"{monsterToFight.name} delt {monsterToFight.attack_power}dmg to you!")
+                            if player.health <= 0:
+                                player.killed = True
+                                print("You have died!")
+                else:
+                    print("There is nothing here to fight.")    
             else:
-                itemToUnequip = player.findItembyName(" ".join(cmds[1:]))
-                if itemToUnequip is not None:
-                    player.unequipItem(itemToUnequip)
-                    player.addItem(itemToUnequip)
-                    print(f"You have unequipped {itemToUnequip.name}")
-                    if len(recent_item) > 0:
-                        recent_item.pop()
-                    recent_item.append(" ".join(cmds[1:]))
-                else:
-                    print("You are not holding that item.") 
-        elif cmds[0] == "fight":
-            monsterToFight = player.currentRoom.findMonsterbyName(" ".join(cmds[1:]))
-            if monsterToFight is not None:
-                while monsterToFight.killed != True and player.killed != True:
-                    player.attack(monsterToFight)
-                    print(f"You delt {player.attack_power}dmg to {monsterToFight.name}!")
-                    if monsterToFight.health <= 0:
-                        monsterToFight.killed = True
-                        print(f"You have slain the {monsterToFight.name}!")
-                    if monsterToFight.killed != True:
-                        monsterToFight.attack(player)
-                        print(f"{monsterToFight.name} delt {monsterToFight.attack_power}dmg to you!")
-                        if player.health <= 0:
-                            player.killed = True
-                            print("You have died!")
-            else:
-                print("There is nothing here to fight.")    
-        else:
-            print("I did not understand that command.")  
+                print("I did not understand that command.")  
