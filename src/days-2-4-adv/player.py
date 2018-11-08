@@ -16,11 +16,11 @@ class Player:
 
 
         # Try to move in a direction or print error message
-
         d = direction + "_to"
 
+        #check t0 see if we can move in a specified direction
         if not hasattr(self.currentRoom, d):
             print("You can't go that way")
             return self.currentRoom
         else:
-            self.currentRoom = self.currentRoom[]
+            self.currentRoom = self.currentRoom[d]
