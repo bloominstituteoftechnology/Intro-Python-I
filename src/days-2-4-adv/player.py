@@ -10,9 +10,10 @@ class Player:
         self.inventory = []
         self.movement_speed = 10
         self.rage = 10
+        self.score = 0
 
-    def inventory(self):
-        print(f'{" ".join(item.name for item in self.inventory)}')
+    # def inventory(self):
+    #     print(f'{" ".join(item.name for item in self.inventory)}')
         
     def pickup_item(self, item):
         self.inventory.append(item)
@@ -30,5 +31,11 @@ class Player:
             return getattr(self.location, key)
 
     def check_items(self, direction):
-        # if direction == 'check':
         print(f'items include: {self.inventory}')
+
+    def has_item(self, item_name):
+        for my_item in self.inventory:
+            if my_item.name == item_name:
+                return True
+        return False
+            # print(f'{" ".join(item.name for item in self.inventory)}')

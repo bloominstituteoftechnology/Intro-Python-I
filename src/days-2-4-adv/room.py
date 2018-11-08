@@ -3,10 +3,12 @@
 from item import Item
 
 class Room:
-    def __init__(self, name, description, inventory = []):
+    def __init__(self, name, description, is_light, inventory = []):
         self.name = name
         self.description = description
+        self.is_light = is_light
         self.inventory = inventory
+        # self.is_light = is_light
     def __str__(self):
         return(f'name: {self.name}\n')
 
@@ -17,7 +19,10 @@ class Room:
         self.inventory.append(item)
 
     def check_items(self, item):
-        print(f'items include: {room.inventory}')
+        print(f'items include: {self.inventory}')
 
     def inv(self):
         print(f'{" ".join(item.name for item in self.inventory)}')
+
+    
+    
