@@ -14,7 +14,6 @@ class Room:
     def list_items(self):
         # print using an f string and use a join on a comma to delimit the items and a for loop to loop over the item list
         print(f"\n In this room you see the following: {', '.join(item.name for item in self.items)}")
-
     # add_item same implementation as in the player class
     def add_item(self, item):
         self.items.append(item)
