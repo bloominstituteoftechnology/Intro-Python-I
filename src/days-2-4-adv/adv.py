@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 import textwrap
+from item import Item
 
 # import only system from os 
 from os import system, name 
@@ -19,7 +20,7 @@ def clear():
 
 room = {
     'outside':  Room("outside the Cave Entrance",
-                     "North of you, the cave mount beckons", ["sword", "key"]),
+                     "North of you, the cave mount beckons", [Item("sword"), Item("key")]),
 
     'foyer':    Room("in the Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -56,6 +57,11 @@ directions = {"N","S","W","E","n","s","w","e"}
 action_verbs = {"take", "drop"}
 
 # Make a new player object that is currently in the 'outside' room.
+def printList(array):
+	result = []
+	for item in array:
+		result.append(item.name)
+	return result
 
 
 def play_game():
@@ -63,17 +69,17 @@ def play_game():
 	print("Welcome to the game!")
 	name = input("Type your name to begin:")
 	
-	player = Player(name, room["outside"], ["sword", "book"])
+	player = Player(name, room["outside"], [Item("torch"), Item("book")])
 
 	while True:
 		clear()
 		print(f"You are {player.location.name}:")
 		print(" ".join(textwrap.wrap(player.location.description)))
 		
-		print("\nYour items: " + ", ".join(player.inventory))
+		print("\nYour items: " + ", ".join(printList(player.inventory)))
 
 		if len(player.location.items) > 0:
-			print("Items in the room: " + ", ".join(player.location.items))
+			print("Items in the room: " + ", ".join(printList(player.location.items)))
 		
 		user_input = input("\nWill you go N, S, E, or W? ")
 
@@ -84,7 +90,7 @@ def play_game():
 		input_split = user_input.split(" ", 1)
 
 		# User chooses a direction
-		if len(input_split()) == 1:
+		if len(input_split) == 1:
 			try:
 				if not user_input in directions:
 					raise ValueError()
@@ -102,7 +108,7 @@ def play_game():
 				if verb.lower() == "take":
 					player.pickup_item(item)
 				elif verb.lower() == "drop":
-					player.pickup_item(item)
+					player.drop_item(item)
 			else:
 				input("You cannot perform this action. Hit Enter to try again")
 		else:
