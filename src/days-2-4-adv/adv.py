@@ -156,7 +156,7 @@ def start_game():
         if item_name == currRoom.item.name:
             get_item(currRoom.item)
             print(text_divider)
-            print_wrapped_lines(f'Player has picked up {currRoom.item.description}.')
+            print_wrapped_lines(f'You have picked up {currRoom.item.description}.')
             currRoom.item.on_take(p, print_wrapped_lines)
             print('\n')
             setattr(currRoom, 'item', item['nothing'])
@@ -171,7 +171,8 @@ def start_game():
                 del inventory[index]
                 setattr(currRoom, 'item', item)
                 print(text_divider)
-                print_wrapped_lines(f'Player has dropped the {item_name}.')
+                print_wrapped_lines(f'You have dropped the {item_name}.')
+                currRoom.item.on_drop(print_wrapped_lines)
                 print('\n')
                 return view_inventory()
         print(text_divider)
