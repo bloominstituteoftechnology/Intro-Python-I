@@ -165,8 +165,8 @@ def item_exists(item):
 def prompt():
     tprint('\nWhat do you do?\n')
     action = input("> ").split()
-    acceptable_actions = ['quit', 'go', 'move', 'examine', 'pickup', 'drop', 'inventory', 'get',
-                          'look', 'look around', 'examine room', 'equip']
+    acceptable_actions = ['quit', 'character', 'go', 'move', 'examine', 'pickup', 'drop', 'inventory', 'get',
+                          'look', 'look around', 'examine room', 'equip', 'unequip']
     while action[0].lower() not in acceptable_actions:
         tprint('Unknown action, try again\n')
         action = input("> ").split()
@@ -175,7 +175,7 @@ def prompt():
     elif action[0].lower() in ['move', 'go']:
         player.movedir(action[1].lower())
         room_message()
-    elif action[0].lower() == 'pickup':
+    elif action[0].lower() == ['pickup', 'get']:
         if item_exists(action[1].capitalize()):
             player.pickup_item(items[action[1].capitalize()])
         else:
@@ -187,13 +187,18 @@ def prompt():
             print(f'You tried to drop {action[1]}, but it\'s not in your inventory')
     elif action[0].lower() in ['look', 'look around', 'examine room']:
         player.look_around()
-    elif action[0].lower() in ['inventory']:
+    elif action[0].lower() in ['inventory', 'character']:
         player.player_info()
     elif action[0].lower() in ['equip']:
         if item_exists(action[1].capitalize()):
             player.equip_weapon(items[action[1].capitalize()])
         else:
             print(f'You tried to equip {action[1]}, but it\'s not in your inventory')
+    elif action[0].lower() in ['unequip']:
+        if item_exists(action[1].capitalize()):
+            player.unequip_weapon(items[action[1].capitalize()])
+        else:
+            print(f'You tried to un-equip {action[1]}, but it\'s not equipped')
 
 
 # Keep the game going until the player gets a game over

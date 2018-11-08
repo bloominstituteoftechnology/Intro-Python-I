@@ -9,6 +9,7 @@ methods.
 import os
 from colorama import Fore
 from colorama import Style
+from item import Item
 
 
 class Player:
@@ -90,15 +91,22 @@ class Player:
         if bl is False:
             print(f'\n{Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}is not in the inventory{Style.RESET_ALL}')
 
+    # Equip the weapon
     def equip_weapon(self, weapon):
-        print('equip')
         if weapon in self.inventory and weapon.is_weapon:
-            print('equipping')
             self.weapon = weapon
             self.inventory.remove(weapon)
-            print('equipped')
         else:
-            print('Weapon not in inventory')
+            print('Weapon not in inventory or is not a weapon')
+
+    # Un-equip the weapon
+    def unequip_weapon(self, weapon):
+        if weapon == self.weapon and weapon.is_weapon:
+            self.weapon = Item('None', 'None')
+            self.inventory.append(weapon)
+            print(f'un-equipped {weapon.name}')
+        else:
+            print('Weapon not in inventory or is not a weapon')
 
     # Look around the current room
     def look_around(self):
