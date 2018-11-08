@@ -31,4 +31,4 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-room['outside'].inventory = [items['Sword'], items['Book']]
+room['outside'].inventory = [items['Sword'], items['Book'], items['Wooden Sword']]

@@ -94,19 +94,20 @@ class Player:
     # Equip the weapon
     def equip_weapon(self, weapon):
         if weapon in self.inventory and weapon.is_weapon:
+            print(f'\n{Fore.GREEN}{weapon.name}{Style.RESET_ALL} was equipped.')
             self.weapon = weapon
             self.inventory.remove(weapon)
         else:
-            print('Weapon not in inventory or is not a weapon')
+            print(f'{Fore.GREEN}{weapon.name}{Style.RESET_ALL} not in inventory or is not a weapon')
 
     # Un-equip the weapon
     def unequip_weapon(self, weapon):
         if weapon == self.weapon and weapon.is_weapon:
+            print(f'\n{Fore.GREEN}{weapon.name}{Style.RESET_ALL} was un-equipped.')
             self.weapon = Item('None', 'None')
             self.inventory.append(weapon)
-            print(f'un-equipped {weapon.name}')
         else:
-            print('Weapon not in inventory or is not a weapon')
+            print(f'{Fore.GREEN}{weapon.name}{Style.RESET_ALL} not in inventory or is not a weapon')
 
     # Look around the current room
     def look_around(self):
