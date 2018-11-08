@@ -40,6 +40,7 @@ room['treasure'].s_to = room['narrow']
 
 # --> Add items to rooms
 room['outside'].items.append(Item('Torch', 'A useful light source. Don\'t get it wet!'))
+room['outside'].items.append(Item('Sword', 'Great for killing stuff'))
 room['treasure'].items.append(Item('Midas Cup', 'It honestly is just a cup.'))
 
 #
@@ -86,10 +87,10 @@ while not game_finish:
     print(f"{player.room.description} \n")   
     print("===========================")
 
-    direction = input("\nPick a direction: [n],[e],[s],[w]\n").strip().lower().split()
+    direction = input("\nPick a direction: [n],[e],[s],[w]\n").strip().lower().split(" ", 1)
 
     # --> Check improper commands
-    if len(direction) > 2 or len(direction) < 1:
+    if len(direction) > 3 or len(direction) < 1:
         print("\nYour character does not understand that command\n")
         continue
 
@@ -110,6 +111,17 @@ while not game_finish:
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             print("\nYour character does not understand that command\n")
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-    
+
+        # --> Handle item pick up
+        elif len(direction) == 2:
+            if direction[0] == "get" or direction[0] == "take":
+                if len(player.room.items) > 0:
+                    item = player.find_item(direction[1])
+                    if item:
+                        player.inventory.append(item)
+                        player.room.items.remove(item)
+                        print(f"{player.name} has picked up: {player.inventory}")
+                    else:
+                        print("Your character does not see that item in this room")
 
 
