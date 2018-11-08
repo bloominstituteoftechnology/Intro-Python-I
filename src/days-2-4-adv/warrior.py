@@ -10,7 +10,7 @@ class Warrior(Player):
         self.armor = 100
 
     def thrash(self, target):
-        target.health -= (20 + (100 / target.armor * 5))
+        target.health -= (20 + (500 / target.armor))
 
     def eye_for_an_eye(self, target):
         if self.hp > 20:

@@ -7,7 +7,7 @@ class Player:
     def __init__(self):
         self.current_room = room["outside"]
         self.armor = []
-        self.items = []
+        self.weapons = []
 
     def enter(self, current_room):
         self.current_room = current_room
@@ -16,10 +16,10 @@ class Player:
         if item.type == "armor":
             self.armor.append(item)
         elif item.type == "weapon":
-            self.items.append(item)
+            self.weapons.append(item)
 
     def drop_item(self, item):
         if item.type == "armor":
             self.armor.remove(item)
         elif item.type == "weapon":
-            self.items.remove(item)
+            self.weapons.remove(item)
