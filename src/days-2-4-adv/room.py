@@ -9,6 +9,8 @@ class Room:
     self.e_to = None
     self.s_to = None
     self.w_to = None
+    self.items = []
+
 
 def to_new(self, direction):
     if direction == "n" and self.n_to:
@@ -34,6 +36,8 @@ def to_new(self, direction):
 
     def remove_item(self, item):
         self.items.remove(item)
+
+
 
 
 
