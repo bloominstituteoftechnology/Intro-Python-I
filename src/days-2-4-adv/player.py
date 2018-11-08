@@ -34,4 +34,18 @@ class Player:
             self.inventory.append(searched_item[0])
             self.current.items.remove(searched_item[0])
             print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            print(f"\n===You grabbed {item}.")
+            print(f"\n===You got {item}.")
+            print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+    def remove_item(self, item):
+        targeted_item = list(
+            filter(lambda x: x.name.lower() == item.lower(), self.inventory)
+        )
+        if len(targeted_item) == 0:
+            print("Item not found.")
+        else:
+            self.current.items.append(targeted_item[0])
+            self.inventory.remove(targeted_item[0])
+            print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print(f"\n===You dropped {item}.")
+            print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")

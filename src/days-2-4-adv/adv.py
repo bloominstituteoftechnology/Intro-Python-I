@@ -148,6 +148,11 @@ while True:
                 player.add_item(format_choice[1])
             else:
                 print("Enter an item also.")
+        elif format_choice[0] == "drop" and len(format_choice) == 2:
+            if len(format_choice[1]) > 0:
+                player.remove_item(format_choice[1])
+            else:
+                print("Enter an item also.")
         else:
             print(f"\nTry again.")
     else:
