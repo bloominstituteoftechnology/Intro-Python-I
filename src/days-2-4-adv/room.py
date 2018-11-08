@@ -6,6 +6,9 @@ class Room:
         self.description = description
         self.item_list = []
 
+    def __str__(self):
+        return self.name
+        
     def add_items(self, *items):
         for item in items:
             if type(item) == list:

@@ -54,8 +54,6 @@ stop = False
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-print (player.room)
-print (player.room.name)
 
 # Rooms are initiliazed with no items. To add them, use the
 # Room.add_items(*items) method. You may pass in a  list,
@@ -89,8 +87,9 @@ def action(phrase):
             if item.value == noun:
                 player.room.remove_items(item)
                 player.add_items(item)
+                item.on_take()
                 print ('This ran')
-                print (f'Thou hath picked up one {item.name}')
+                print (f'Thou hath picked up one {item}')
             else:
                 print ('The item thou look for is not here')
     elif verb in ['drop', 'leave', 'forget', 'dump', 'discard', 'abandon' ]:
@@ -99,7 +98,7 @@ def action(phrase):
             if item.value == noun:
                 player.remove_items(item)
                 player.room.add_items(item)
-                print (f'Thou hath dropped thy {item.name}')
+                print (f'Thou hath dropped thy {item}')
             else:
                 print ('Thou hath not the item thou speak of')
     else:
@@ -137,7 +136,7 @@ def single(move):
             print ('~ ~ Thy current inventory ~ ~')
             if player.item_list:
                 for item in player.item_list:
-                    print (item.name)
+                    print (item)
             else:
                 print ('Thou hath nothing')
             # print (player.item_list if player.item_list else 'Thou hath nothing')
@@ -152,17 +151,17 @@ def single(move):
         print ('Please enter a cardinal direction or "q" to quit')
 
 print ('before we start')
-print (player.room.name)
+print (player.room)
 print (player.room.item_list)
 print ('NOW WE START')
 while stop == False:
     print (' ')
-    print ('Thy current location:', player.room.name)
+    print ('Thy current location:', player.room)
     print ( textwrap.wrap(player.room.description) )
     print ('~ ~ Items found in this room ~ ~')
     if player.room.item_list:
         for item in player.room.item_list:
-            print (item.name)
+            print (item)
     else:
         print ('  Nothing to see here...  ')
     # print ( print item.name for item in player.room.item_list)
