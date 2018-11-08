@@ -1,51 +1,259 @@
-from room import Room
+import textwrap
+import os
+import sys
+import time
 
-# Declare all the rooms
+from jobs import jobs
+from rooms import room
+from items import items
+from player import Player
+from colorama import Fore
+from colorama import Style
+from item import Lightsource
 
-room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
-
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
-
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
-
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
-}
+# Displays each character of the string in intervals, produces
+# a typewriter effect
+def tprint(string, speed=0.05):
+    for character in string:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(speed)
 
 
-# Link rooms together
+# Display the title screen
+def title_screen():
+    os.system('clear')
+    print(f'{Fore.GREEN}')
+    print(f''.center(75, '#'))
+    print(f'Tale of Tacronora'.center(75, ' '))
+    print(f''.center(75, '#'))
+    print(f'Play'.center(75, ' '))
+    print(f'Help'.center(75, ' '))
+    print(f'Quit'.center(75, ' '))
+    print(f'Copyright Jeremy Boggs MIT 2018'.center(75, ' '))
+    print(f''.center(75, '#'))
+    print(f'{Style.RESET_ALL}')
+    title_screen_selections()
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
+# Display the help screen
+def help_menu():
+    os.system('clear')
+    print(f'{Fore.BLUE}')
+    print(f''.center(75, '#'))
+    print(f'Tale of Tacronora - Help'.center(75, ' '))
+    print(f''.center(75, '#'))
+    print(f'Type go/move <direction> to move direction'.center(75, ' '))
+    print(f'Use "look/examine" to look around the room'.center(75, ' '))
+    print(f'And last of all, have fun!'.center(75, ' '))
+    print(f''.center(75, '#'))
+    print(f'{Style.RESET_ALL}')
+    title_screen_selections()
 
-# Make a new player object that is currently in the 'outside' room.
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+# The menu selections of the title screen
+def title_screen_selections():
+    option = input('> ')
+
+    # Display the menu commands
+    if option.lower() == 'play':
+        set_init_player()
+    elif option.lower() == 'help':
+        help_menu()
+    elif option.lower() == 'quit':
+        tprint('Play again!\n', 0.03)
+        sys.exit()
+    elif option.lower() == 'back':
+        title_screen()
+
+    # Keep the menu going if not a recognized input
+    while option.lower() not in ['play', 'help', 'quit']:
+        tprint("Not a recognized input.\n")
+        title_screen_selections()
+
+player = Player()
+# Setup the Player
+def set_init_player():
+    os.system('clear')
+
+    # Ask the player for the character name
+    question_name = "\n Enter Your Character's Name\n"
+    tprint(question_name)
+    player_name = input("> ")
+
+    if player_name == '':
+        set_init_player()
+
+    # TODO: Refactor the next two questions to be DRY
+
+    # Ask the player's gender
+    question_gender = '\n Are you male or female?\n'
+    os.system('clear')
+    tprint(question_gender)
+
+    player_gender = input("> ")
+    genders = ['male', 'female']
+
+    if player_gender.lower() in genders:
+        player.sex = player_gender.capitalize()
+    while player_gender.lower() not in genders:
+        player_gender = input("> ")
+        if player_gender.lower() in genders:
+            player.sex = player_gender.capitalize()
+
+    # Ask the player for their preferred class
+    question_class = "\n Pick your class:\n" \
+                     " Warrior\n" \
+                     " Mage\n" \
+                     " Thief\n"
+
+    os.system('clear')
+    tprint(question_class, 0.05)
+
+    job = input("> ")
+    all_jobs = ['warrior', 'mage', 'thief']
+
+    if job.lower() in all_jobs:
+        player.job = jobs[job.capitalize()]
+    while job.lower() not in all_jobs:
+        job = input("> ")
+        if job in all_jobs:
+            player.job = jobs[job.capitalize()]
+
+    # Ask the player if the name is correct
+    question_correct = f'\n {Fore.BLUE}{player_name.title()}{Style.RESET_ALL}, {Fore.BLUE}{player.sex}' \
+                       f'{Style.RESET_ALL}, {Fore.BLUE}{player.job.name}{Style.RESET_ALL} is correct? [y] ' \
+                       f'yes or [n] no?\n'
+    os.system('clear')
+    tprint(question_correct, 0.03)
+    result = input("> ")
+
+    # If the name is right, set the player and continue the game,
+    # else, loop this function
+    if result.lower() in ['y', 'yes']:
+        player.name = player_name.title()
+        player.room = room['outside']
+        player.weapon = items['EmptyW']
+        player.armour = items['EmptyA']
+        player.shield = items['EmptyS']
+        player.hand = items['EmptyL']
+        player.gold = 0
+        player.game_over = False
+    else:
+        set_init_player()
+
+    room_message()
+    main_game_loop()
+
+
+# TODO: Simplify/Abstract this
+""" Check if the item exists in the Items dict, and if exists,
+    Use the player pickup method to pickup the item, if not,
+    return a message printing item not found """
+
+
+def item_exists(item):
+    bl = False
+    for itm in items:
+        if itm == item.title():
+            bl = True
+            return True
+
+    if bl is False:
+        return False
+
+
+# Display the room message
+def room_message():
+    os.system('clear')
+    tprint(f'\n {player.room.name}\n', 0.03)
+    if player.room.is_light or isinstance(player.hand, Lightsource):
+        desc = textwrap.wrap(player.room.description, width=70)
+        for element in desc:
+            tprint(f' {element}\n', 0.03)
+
+# TODO: Simplify/Pretty up the actions
+""" Where the action happens
+    Ask's the player what to do next and
+    then handles the command that the player
+    has given it.
+"""
+
+
+def prompt():
+    tprint(f'\n {Fore.CYAN}What do you do?{Style.RESET_ALL}', 0.03)
+
+    # Input for the action to be taken - split into list
+    action = input(" > ").split()
+    combined_action = ' '.join(action[:2])
+
+    # Complete list of all the actions to be done
+    valid_actions = ['quit', 'character', 'char', 'i', 'inventory', 'get', 'take', 'pickup', 'drop', 'go', 'move',
+                     'look around', 'examine room', 'equip', 'unequip', 'score', 'gold']
+
+    # If the action is not a valid action
+    while action[0].lower() not in valid_actions:
+        # Break the loop if combined_action is in it
+        # This makes the parsing of double-texted actions workable
+        if combined_action in valid_actions:
+            break
+
+        tprint('Unknown action, try again\n')
+        action = input(" > ").split()
+        combined_action = ' '.join(action[:2])
+
+    if combined_action.lower() in ['look around', 'examine room']:
+        player.look_around()
+
+    if action[0].lower() == 'quit':
+        tprint('Play again!\n', 0.03)
+        os.system('clear')
+        sys.exit()
+
+    elif action[0].lower() in ['go', 'move']:
+        player.movedir(action[1].lower())
+        # room_message()
+
+    elif action[0].lower() in ['get', 'take', 'pickup']:
+        item = ' '.join(action[1:])
+        if item_exists(item):
+            player.pickup_item(items[item.title()])
+        else:
+            print(f'You looked for a {item}, but did not find anything')
+
+    elif action[0].lower() == 'drop':
+        item = ' '.join(action[1:])
+        if item_exists(item):
+            player.drop_item(items[item.title()])
+        else:
+            print(f'You tried to drop {item}, but it\'s not in your inventory')
+
+    elif action[0].lower() in ['character', 'i', 'inventory']:
+        player.player_info()
+
+    elif action[0].lower() in ['equip']:
+        item = ' '.join(action[1:])
+        if item_exists(item):
+            player.equip_weapon(items[item.title()])
+        else:
+            print(f'You tried to equip {item}, but it\'s not in your inventory')
+
+    elif action[0].lower() in ['unequip']:
+        item = ' '.join(action[1:])
+        if item_exists(item.title()):
+            player.unequip_weapon(items[item.title()])
+        else:
+            print(f'You tried to un-equip {item}, but it\'s not equipped')
+
+    elif action[0].lower() in ['gold', 'score']:
+        tprint(f'You have {player.gold} GOLD', 0.05)
+
+
+# Keep the game going until the player gets a game over
+def main_game_loop():
+    while player.game_over is False:
+        prompt()
+
+
+# Start the game
+title_screen()
