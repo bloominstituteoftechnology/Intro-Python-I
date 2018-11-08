@@ -12,14 +12,23 @@ class Item:
     def on_take(self):
         print('on_take for item class: ', self.name, 'was just picked up')
 
+# class Treasure(Item):
+#     def __init__(self, name, description, value):
+#         Item.__init__(self, name, description)
+#         self.value = value
+#         self.empty = False
+    
+#     def on_take(self):
+#         self.empty = True
+#         print('on_take for treasure class: ', self.name, 'was just picked up')
+
 class Treasure(Item):
     def __init__(self, name, description, value):
         Item.__init__(self, name, description)
         self.value = value
-        self.empty = False
     
     def on_take(self):
-        self.empty = True
+        self.value = 0
         print('on_take for treasure class: ', self.name, 'was just picked up')
 
 

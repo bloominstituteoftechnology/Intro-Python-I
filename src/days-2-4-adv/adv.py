@@ -98,16 +98,29 @@ while True:
         print('GAME OVER')
         break
 
+    # if command[0] == ('get' or 'take'):
+    #     if command[1] in [player1.location.items[i].name for i in range(len(player1.location.items))]:
+    #         player1.location.removeItem(item[command[1]])
+    #         player1.addItem(item[command[1]])
+    #         if hasattr(item[command[1]], 'empty'): 
+    #             if item[command[1]].empty == False:
+    #                 player1.addScore(item[command[1]].value)
+    #                 print(player1.score)
+    #             else:
+    #                 print(item[command[1]].name + ' is empty')
+    #         item[command[1]].on_take()
+    #     else: 
+    #         print('Item not in room.')
+
     if command[0] == ('get' or 'take'):
         if command[1] in [player1.location.items[i].name for i in range(len(player1.location.items))]:
             player1.location.removeItem(item[command[1]])
             player1.addItem(item[command[1]])
-            if hasattr(item[command[1]], 'empty'): 
-                if item[command[1]].empty == False:
-                    player1.addScore(item[command[1]].value)
-                    print(player1.score)
-                else:
-                    print(item[command[1]].name + ' is empty')
+            if hasattr(item[command[1]], 'value'): 
+                player1.addScore(item[command[1]].value)
+                print(player1.score)
+            else:
+                print(item[command[1]].name + ' is empty')
             item[command[1]].on_take()
         else: 
             print('Item not in room.')
