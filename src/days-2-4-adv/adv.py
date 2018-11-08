@@ -52,36 +52,72 @@ room['treasure'].s_to = room['narrow']
 
 room['outside'].inventory = [items['Sword'], items['Book']]
 
-#
-# Main
-#
-
-# Make a new player object that is currently in the 'outside' room.
-
-
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
 
 # Global vars
 player = Player()
 
 
-def tprint(str, speed=0.05):
-    for character in str:
+# Displays each character of the string in intervals, produces
+# a typewriter effect
+def tprint(string, speed=0.05):
+    for character in string:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(speed)
 
 
-# Set the player's name
+# Display the title screen
+def title_screen():
+    os.system('clear')
+    print(f'{Fore.GREEN}')
+    print(f''.center(70, '#'))
+    print(f'Tale of Tacronora'.center(70, ' '))
+    print(f''.center(70, '#'))
+    print(f'Play'.center(70, ' '))
+    print(f'Help'.center(70, ' '))
+    print(f'Quit'.center(70, ' '))
+    print(f'MIT 2018'.center(70, ' '))
+    print(f''.center(70, '#'))
+    print(f'{Style.RESET_ALL}')
+    title_screen_selections()
+
+
+# Display the help screen
+def help_menu():
+    os.system('clear')
+    print(f'{Fore.BLUE}')
+    print(f''.center(70, '#'))
+    print(f'Tale of Tacronora - Help'.center(70, ' '))
+    print(f''.center(70, '#'))
+    print(f'Type go/move <direction> to move direction'.center(70, ' '))
+    print(f'Use "look/examine" to look around the room'.center(70, ' '))
+    print(f'And last of all, have fun!'.center(70, ' '))
+    print(f''.center(70, '#'))
+    print(f'{Style.RESET_ALL}')
+    title_screen_selections()
+
+
+# The menu selections of the title screen
+def title_screen_selections():
+    option = input('> ')
+
+    # Display the menu commands
+    if option.lower() == 'play':
+        set_init_player()
+    elif option.lower() == 'help':
+        help_menu()
+    elif option.lower() == 'quit':
+        sys.exit()
+    elif option.lower() == 'back':
+        title_screen()
+
+    # Keep the menu going if not a recognized input
+    while option.lower() not in ['play', 'help', 'quit']:
+        tprint("Not a recognized input.\n")
+        title_screen_selections()
+
+
+# Setup the Player
 def set_init_player():
     os.system('clear')
     global player
@@ -109,18 +145,12 @@ def set_init_player():
     else:
         set_init_player()
 
-    screen_message()
+    room_message()
     main_game_loop()
 
 
-# Gets the player's input and sets it in the global var user
-# def player_input():
-#     global player_inp
-#     player_inp = input("\nWhat do you do?\n").lower()
-
-
-# Display the screen message
-def screen_message():
+# Display the room message
+def room_message():
     # print(f'\n{player.room.name}')
     tprint(f'\n{player.room.name}\n')
     desc = textwrap.wrap(player.room.description, width=70)
@@ -129,9 +159,11 @@ def screen_message():
 
 
 # TODO: Simplify/Abstract this
-# Check if the item exists in the Items dict, and if exists,
-# Use the player pickup method to pickup the item, if not,
-# return a message printing item not found
+""" Check if the item exists in the Items dict, and if exists,
+    Use the player pickup method to pickup the item, if not,
+    return a message printing item not found """
+
+
 def item_exists(item):
     bl = False
     for itm in items:
@@ -142,11 +174,19 @@ def item_exists(item):
     if bl is False:
         return False
 
+
 # TODO: Simplify/Pretty up the actions
+""" Where the action happens
+    Ask's the player what to do next and
+    then handles the command that the player
+    has given it.
+"""
+
+
 def prompt():
     tprint('\nWhat do you do?\n')
     action = input("> ").split()
-    acceptable_actions = ['quit', 'go', 'move', 'examine', 'pickup', 'drop', 'inventory', 'show inventory', 'get',
+    acceptable_actions = ['quit', 'go', 'move', 'examine', 'pickup', 'drop', 'inventory', 'get',
                           'look', 'look around', 'examine room']
     while action[0].lower() not in acceptable_actions:
         tprint('Unknown action, try again\n')
@@ -155,7 +195,7 @@ def prompt():
         sys.exit
     elif action[0].lower() in ['move', 'go']:
         player.movedir(action[1].lower())
-        screen_message()
+        room_message()
     elif action[0].lower() == 'pickup':
         if item_exists(action[1].capitalize()):
             player.pickup_item(items[action[1].capitalize()])
@@ -172,104 +212,11 @@ def prompt():
         player.show_inventory()
 
 
-def title_screen_selections():
-    option = input('> ')
-    if option.lower() == 'play':
-        set_init_player()
-    elif option.lower() == 'help':
-        help_menu()
-    elif option.lower() == 'quit':
-        sys.exit()
-    while option.lower() not in ['play', 'help', 'quit']:
-        tprint("Not a recognized input.\n")
-        option = input('> ')
-        if option.lower() == 'play':
-            set_init_player()
-        elif option.lower() == 'help':
-            help_menu()
-        elif option.lower() == 'quit':
-            sys.exit()
-
-
-def title_screen():
-    os.system('clear')
-    print(f'{Fore.GREEN}')
-    print(f''.center(70, '#'))
-    print(f'Tale of Tacronora'.center(70, ' '))
-    print(f''.center(70, '#'))
-    print(f'Play'.center(70, ' '))
-    print(f'Help'.center(70, ' '))
-    print(f'Quit'.center(70, ' '))
-    print(f'MIT 2018'.center(70, ' '))
-    print(f''.center(70, '#'))
-    print(f'{Style.RESET_ALL}')
-    title_screen_selections()
-
-
-def help_menu():
-    os.system('clear')
-    print(f'{Fore.BLUE}')
-    print(f''.center(70, '#'))
-    print(f'Tale of Tacronora - Help'.center(70, ' '))
-    print(f''.center(70, '#'))
-    print(f'Type go/move <direction> to move direction'.center(70, ' '))
-    print(f'Use "look/examine" to look around the room'.center(70, ' '))
-    print(f'And last of all, have fun!'.center(70, ' '))
-    print(f''.center(70, '#'))
-    print(f'{Style.RESET_ALL}')
-    title_screen_selections()
-
-
-# START GAME
-# Initialize the character input, display the room message and initialize the player's input
-# These three functions run once then the while loop takes over
-
-
-# set_init_player()
-# screen_message()
-# player_input()
-
-
+# Keep the game going until the player gets a game over
 def main_game_loop():
     while player.game_over is False:
-
         prompt()
 
 
+# Start the game
 title_screen()
-
-
-# TODO: Get rid of this
-# TODO: Simplify the main game logic
-# While the input is not q, keep get game going
-# while not player_inp == 'q':
-#
-#     # TODO: Abstract the command handler
-#     # if player chooses North
-#     if player_inp == 'n':
-#         player.movedir('north')
-#     elif player_inp == 's':
-#         player.movedir('south')
-#     elif player_inp == 'e':
-#         player.movedir('east')
-#     elif player_inp == 'w':
-#         player.movedir('west')
-#     elif player_inp == 'look around':
-#         player.look_around()
-#     elif player_inp[:6] == 'pickup':
-#         if item_exists(player_inp[7:]):
-#             player.pickup_item(items[player_inp[7:].capitalize()])
-#         else:
-#             print(f'You looked for a {player_inp[7:]}, but did not find anything')
-#     elif player_inp[:4] == 'drop':
-#         if item_exists(player_inp[5:]):
-#             player.drop_item(items[player_inp[5:].capitalize()])
-#         else:
-#             print(f"{player_inp[5:]} is not in inventory")
-#     elif player_inp == 'inventory':
-#         player.show_inventory()
-#     else:
-#         print("Invalid selection. Please try again.\n")
-#
-#     screen_message()
-#     player_input()
