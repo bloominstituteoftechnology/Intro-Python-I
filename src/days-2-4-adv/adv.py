@@ -1,4 +1,7 @@
 from room import Room
+from player import Player
+# import item from Item
+import textwrap
 
 # Declare all the rooms
 
@@ -21,6 +24,10 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+player = Player(room['outside'])
+
+done = False
+
 
 # Link rooms together
 
@@ -32,6 +39,11 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+# room['outside'].items.append(Item("Rusty Shield)"))
+# room['treasure'].items.append(Item("The Holy Hand Grenade"))
+
+player = Player(room["outside"])
 
 #
 # Main
@@ -49,3 +61,28 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+wrapper = textwrap.TextWrapper(width=50)
+
+# variable
+done = False
+
+while not done:
+    print(f"You're currently in {player.current_room.name}")
+    print(wrapper.wrap(text=player.current_room.description)[0])
+
+    # Check for user input commands of improper lengths
+    user_input = input("\nCommand> ").strip().lower().split()
+
+    print(user_input)
+
+    if len(user_input) > 2 or len(user_input) < 1:
+        print("I don't understand that.")
+        continue
+
+    if len(user_input) == 1:
+        #Check to see if user wanted to quit
+        if user_input[0] == 'quit' or user_input[0] == 'q':
+            done = True
+        elif user_input[0][0] in ['n', 's', 'e', 'w']:
+            player.current_room = player.try_move(user_input[0][0])
