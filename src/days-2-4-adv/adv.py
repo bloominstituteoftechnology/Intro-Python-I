@@ -36,7 +36,12 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-# Main
+# Created items for certain rooms
+book = Book("a book")
+room['foyer'].contents.append(book)
+
+coin = Coin("a gold coin")
+room['narrow'].contents.append(coin)
 
 
 # Make a new player object that is currently in the 'outside' room.
@@ -55,6 +60,7 @@ while True:
         print(f"{player.name}")
         time.sleep(1)
         break
+
 
 
 # Write a loop that:
@@ -83,6 +89,14 @@ def direction(direction, current):
     time.sleep(1)
 
     return current
+
+def search(name, current):
+    # Search the current room for items.
+    for item in curRoom.contents:
+        if item.name == name:
+            return item
+
+    return None
 
 done = False
 
