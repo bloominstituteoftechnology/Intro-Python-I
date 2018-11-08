@@ -92,6 +92,22 @@ def set_init_player():
     if player_name == '':
         set_init_player()
 
+    # TODO: Refactor the next two questions to be DRY
+
+    # Ask the player's gender
+    question_gender = '\nAre you male or female?\n'
+    tprint(question_gender)
+
+    player_gender = input("> ")
+    genders = ['male', 'female']
+
+    if player_gender.lower() in genders:
+        player.sex = player_gender.capitalize()
+    while player_gender.lower() not in genders:
+        player_gender = input("> ")
+        if player_gender.lower() in genders:
+            player.sex = player_gender.capitalize()
+
     # Ask the player for their preferred class
     question_class = "\nPick your class:\n" \
                      "Warrior\n" \
@@ -99,17 +115,19 @@ def set_init_player():
                      "Thief\n"
 
     tprint(question_class, 0.05)
+
     job = input("> ")
     all_jobs = ['warrior', 'mage', 'thief']
-    if job in all_jobs:
+
+    if job.lower() in all_jobs:
         player.job = jobs[job.capitalize()]
-    while job not in all_jobs:
+    while job.lower() not in all_jobs:
         job = input("> ")
         if job in all_jobs:
             player.job = jobs[job.capitalize()]
 
     # Ask the player if the name is correct
-    question_correct = f'\nAre you sure {Fore.BLUE}{player_name}{Style.RESET_ALL} is the right name? [y] ' \
+    question_correct = f'\n{Fore.BLUE}{player_name}{Style.RESET_ALL}, {player.sex}, {player.job.name} is correct? [y] ' \
                        f'yes or [n] no?\n'
     tprint(question_correct, 0.01)
     result = input("> ")

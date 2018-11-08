@@ -45,6 +45,7 @@ class Player:
         dext = self.weapon.dex + self.shield.dex + self.armour.dex
         inte = self.weapon.int + self.shield.int + self.armour.int
         wisd = self.weapon.wis + self.shield.wis + self.armour.wis
+        atk = self.weapon.attack + self.shield.attack + self.armour.attack
         max_hp = self.hp + self.weapon.hp + self.shield.hp + self.armour.hp
         max_mp = self.mp + self.weapon.mp + self.shield.mp + self.armour.mp
 
@@ -59,7 +60,7 @@ class Player:
                 f'    DEX: [{self.job.intelligence}] + {inte}\n'
                 f'    WIS: [{self.job.wisdom}] + {wisd}\n\n'
                 f'  HP {Fore.GREEN}{self.hp}{Style.RESET_ALL}/{Fore.GREEN}{max_hp}{Style.RESET_ALL}   '
-                f'ATK: {Fore.LIGHTRED_EX}{self.job.attack + self.weapon.attack}{Style.RESET_ALL}   MP: {Fore.CYAN}'
+                f'ATK: {Fore.LIGHTRED_EX}[{self.job.attack}] + {atk}{Style.RESET_ALL}   MP: {Fore.CYAN}'
                 f'{self.mp}{Style.RESET_ALL}/{Fore.CYAN}{max_mp}{Style.RESET_ALL}   EXP: <{Fore.LIGHTRED_EX}'
                 f'{self.exp}{Style.RESET_ALL}/{Fore.LIGHTRED_EX}{self.next_exp}{Style.RESET_ALL}>   GOLD: {Fore.YELLOW}'
                 f'{self.gold}{Style.RESET_ALL}\n'
