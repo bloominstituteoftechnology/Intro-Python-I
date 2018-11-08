@@ -83,4 +83,28 @@ while True:
             # Else move the user to the room specified
             player.change_location(newRoom)
 
+    #if the player enters inventory or i, display players list of items
+    if command == 'inventory' or command == 'i':
+        if player.items:
+            player.inventory()
+
+    if command == 'get':
+        if not player.location.items:
+            print("You have no items to pick up.")
+        elif not player.location.find_item[target]:
+            print("This item is not what you are looking for.")
+        else:
+            new_item = items[target]
+            player.location.remove_item(new_item)
+            player.get(new_item)
+
+    if command == 'drop':
+        if not player.items:
+            print('You are not carrying anything with you.')
+        elif not player.find_item(target):
+            print('This is not one of the items you are carrying')
+        else:
+            dropped_item = items[target]
+            player.drop(dropped_item)
+            player.location.add_item(dropped_item)
 

@@ -42,3 +42,10 @@ class Room:
   # List items in the room
   def list_items(self):
     print(f"\n Here are the items in this room: {', '.join(item.name for item in self.items)}")
+
+  # Find a specific item in  room
+  def find_item(self, name):
+    for item in self.items:
+      if item.name == name:
+        return True
+      return False
