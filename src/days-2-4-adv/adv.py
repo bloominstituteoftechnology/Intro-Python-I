@@ -7,7 +7,7 @@ from item import LightSource
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-"North of you, the cave mounth beckons", [Item('sword', 'looks sharp'), LightSource("lamp", 'good source of light'), Treasure('gold', 'looks like a small bag of gold', 50)]),
+"North of you, the cave mounth beckons", [Item('sword', 'looks sharp'), LightSource("lamp", 'good source of light'), Treasure('goldbag', 'looks like a small bag of gold', 50)]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", []),
@@ -40,16 +40,18 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
 #see if items in room
 def check_area(room, player):
   if len(room.items) == 0:
-    print("you do not notice any items in the room")
+    print(room)
   if len(room.items) == 1:
-    print(f'\nin the area you notice a {room.items[0]}\n')
+    print(f'{room} Also you notice a {room.items[0]}\n')
   if len(room.items) > 1:
-    print('\nin the area you see:\n')
+    string = ''
     for i in room.items:
-      print(i)
+      string += i.name + ' '
+    print(f"\n{room} Also you notice {len(room.items)} items nearby: {string.rstrip('/')}")
 #end of check_area function
 
 #for getting and dropping items in room
@@ -74,7 +76,7 @@ def command(player_input, player, current_room):
     
           player.items.append(i)
           current_room.items.remove(i)
-          print('player has taken ' + i.name)
+          print('\nTaken')
           count1 += 1
 
       #no item inform player
@@ -120,126 +122,223 @@ def check_for_light(room, player):
   #return false if no light and true if there is light
   return boolv
 
+# done
+# task one
+#don't re print room each time I get or pick up an item
+#don't re print room each time I l or have an invalid command
+
+# done
+# task two
+#if I have been inside a room once only print its base name
+#if I type look then show its name and description
+
+# done
+# task three
+#at end of game show the total score for the player
+#also show the rank of the player
+
+
+been_outside = False
+been_foyer = False
+been_overlook = False
+been_narrow = False
+been_treasure = False
+
+# my loop conditionals
+outside_loop = True
+foyer_loop = True
+overlook_loop = True
+narrow_loop = True
+treasure_loop = True
+
+######################--------------######################
+###################### START OF GAME #####################
+######################--------------######################
 
 while not res[0] == 'q':
 
   #while player is outside
   if location == 'outside':
 
-    #base commands #################
-    print(current_room)
-    res = input('\nwhat will you do?\n').split(" ")
-    command(res, player, current_room)
-    #################################
+    #for printing room info
+    #only execute when I enter the room
+    if been_outside == False:
+      print(current_room)
+    else:
+      print('\n' + current_room.name)
+    been_outside = True
 
-    if res[0] == 'get' or res[0] == 'drop':
-      pass
-    elif res[0] == 'l':
-      check_area(current_room, player)
-    elif res[0] == 'n':
-      current_room = current_room.room_direction(res[0])
-      location = 'foyer'
-    elif res[0] == 'i':
-      check_inventory(player)
-    elif not res[0] == 'q':
-      print('incorrect input')
+
+    #### need loop here #
+    while outside_loop == True:
+      res = input('\n').split(" ")
+      command(res, player, current_room)
+
+      if res[0] == 'get' or res[0] == 'drop':
+        pass
+      elif res[0] == 'l':
+        check_area(current_room, player)
+      elif res[0] == 'n':
+        current_room = current_room.room_direction(res[0])
+        location = 'foyer'
+        outside_loop = False
+        foyer_loop = True
+      elif res[0] == 'i':
+        check_inventory(player)
+      elif res[0] == 'q':
+        outside_loop = False
+      elif not res[0] == 'q':
+        print('incorrect input')
+
   
   #while player is at foyer
   if location == 'foyer':
 
-    #base commands #################
-    print(current_room)
-    res = input('\nwhat will you do?\n').split(" ")
-    command(res, player, current_room)
-    #################################
+    #for printing room info
+    #only execute when I enter the room
+    if been_foyer == False:
+      print(current_room)
+    else:
+      print('\n' + current_room.name)
+    been_foyer = True
 
-    if res[0] == 'get' or res[0] == 'drop':
-      pass
-    elif res[0] == 'l':
-      check_area(current_room, player)
-    elif res[0] == 'i':
-      check_inventory(player)
-    elif res[0] == 's':
-      current_room = current_room.room_direction(res[0])
-      location = 'outside'
-    elif res[0] == 'n':
-      current_room = current_room.room_direction(res[0])
-      location = 'overlook'
-    elif res[0] == 'e':
-      current_room = current_room.room_direction(res[0])
-      location = 'narrow'
-    elif not res[0] == 'q':
-      print('incorrect input')
+    while foyer_loop == True:
+      res = input('\n').split(" ")
+      command(res, player, current_room)
+
+      if res[0] == 'get' or res[0] == 'drop':
+        pass
+      elif res[0] == 'l':
+        check_area(current_room, player)
+      elif res[0] == 'i':
+        check_inventory(player)
+      elif res[0] == 's':
+        current_room = current_room.room_direction(res[0])
+        location = 'outside'
+        outside_loop = True
+        foyer_loop = False
+      elif res[0] == 'n':
+        current_room = current_room.room_direction(res[0])
+        location = 'overlook'
+        overlook_loop = True
+        foyer_loop = False
+      elif res[0] == 'e':
+        current_room = current_room.room_direction(res[0])
+        location = 'narrow'
+        narrow_loop = True
+        foyer_loop = False
+      elif res[0] == 'q':
+        foyer_loop = False
+      elif not res[0] == 'q':
+        print('incorrect input')
 
   #while player is at overlook
   if location == 'overlook':
 
-    #base commands #################
-    print(current_room)
-    res = input('\nwhat will you do?\n').split(" ")
-    command(res, player, current_room)
-    #################################
+    #for printing room info
+    #only execute when I enter the room
+    if been_overlook == False:
+      print(current_room)
+    else:
+      print('\n' + current_room.name)
+    been_overlook = True
  
-    if res[0] == 'get' or res[0] == 'drop':
-      pass
-    elif res[0] == 'l':
-      check_area(current_room, player)
-    elif res[0] == 'i':
-      check_inventory(player)
-    elif res[0] == 's':
-      current_room = current_room.room_direction(res[0])
-      location = 'foyer'
-    elif not res[0] == 'q':
-      print('\nincorrect input')
+    while overlook_loop == True:
+      res = input('\n').split(" ")
+      command(res, player, current_room)
+
+      if res[0] == 'get' or res[0] == 'drop':
+        pass
+      elif res[0] == 'l':
+        check_area(current_room, player)
+      elif res[0] == 'i':
+        check_inventory(player)
+      elif res[0] == 's':
+        current_room = current_room.room_direction(res[0])
+        location = 'foyer'
+        overlook_loop = False
+        foyer_loop = True
+      elif res[0] == 'q':
+        overlook_loop = False
+      elif not res[0] == 'q':
+        print('\nincorrect input\n')
   
   #while player is at narrow
   if location == 'narrow':
 
-    #base commands #################
+    #dark rooom!!! #################
     if current_room.is_light == False:
       if check_for_light(current_room, player) == False:
-        print('its dark in here!')
+        print('\nits dark in here!')
       else:
-        print(current_room)
+        if been_narrow == False:
+          print(current_room)
+        else:
+          print('\n' + current_room.name)
+        been_narrow = True
 
-    res = input('\nwhat will you do?\n').split(" ")
-    command(res, player, current_room)
-    #################################
-
-    if res[0] == 'get' or res[0] == 'drop':
-      pass
-    elif res[0] == 'l':
-      check_area(current_room, player)
-    elif res[0] == 'i':
-      check_inventory(player)
-    elif res[0] == 'w':
-      current_room = current_room.room_direction(res[0])
-      location = 'foyer'
-    elif res[0] == 'n':
-      current_room = current_room.room_direction(res[0])
-      location = 'treasure'
-    elif not res[0] == 'q':
-      print('\nincorrect input')
+    while narrow_loop == True:
+      res = input('\n').split(" ")
+      command(res, player, current_room)
+      if res[0] == 'get' or res[0] == 'drop':
+        pass
+      elif res[0] == 'l':
+        if check_for_light(current_room, player) == False:
+          print("\nAll you see is darkness. Sure would be great to have a light source.")
+        else:
+          check_area(current_room, player)
+      elif res[0] == 'i':
+        if check_for_light(current_room, player) == False:
+          print("\ntoo dark to check your inventory")
+        else:
+          check_inventory(player)
+      elif res[0] == 'w':
+        current_room = current_room.room_direction(res[0])
+        location = 'foyer'
+        narrow_loop = False
+        foyer_loop = True
+      elif res[0] == 'n':
+        if check_for_light(current_room, player) == False:
+          print("\nYour too scared to venture further into the darkness")
+        else:
+          current_room = current_room.room_direction(res[0])
+          location = 'treasure'
+          treasure_loop = True
+          narrow_loop = False
+      elif res[0] == 'q':
+        narrow_loop = False
+      elif not res[0] == 'q':
+        print('\nincorrect input\n')
 
   #while player is at treasure
   if location == 'treasure':
 
-    #base commands #################
-    print(current_room)
-    res = input('\nwhat will you do?\n').split(" ")
-    command(res, player, current_room)
-    #################################
+    #for printing room info
+    #only execute when I enter the room
+    if been_treasure == False:
+      print(current_room)
+    else:
+      print('\n' + current_room.name)
+    been_treasure = True
 
-    if res[0] == 'get' or res[0] == 'drop':
-      pass
-    elif res[0] == 'l':
-      check_area(current_room, player)
-    elif res[0] == 'i':
-      check_inventory(player)
-    elif res[0] == 's':
-      current_room = current_room.room_direction(res[0])
-      location = 'narrow'
-    elif not res[0] == 'q':
-      print('\nincorrect input')
+    while treasure_loop == True:
+      res = input('\n').split(" ")
+      command(res, player, current_room)
+      if res[0] == 'get' or res[0] == 'drop':
+        pass
+      elif res[0] == 'l':
+        check_area(current_room, player)
+      elif res[0] == 'i':
+        check_inventory(player)
+      elif res[0] == 's':
+        current_room = current_room.room_direction(res[0])
+        location = 'narrow'
+        treasure_loop = False
+        narrow_loop = True
+      elif res[0] == 'q':
+        treasure_loop = False
+      elif not res[0] == 'q':
+        print('\nincorrect input\n')
 
-print('\nthank you for playing my game')
+print('\nthank you for playing my game.')
+print(f'your ending player score was {player.score}\n')
