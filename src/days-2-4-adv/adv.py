@@ -117,6 +117,7 @@ while True:
     print("Go [n]orth [e]ast [s]outh [w]est\n")
     print("[search] area")
     print("[inventory] check\n")
+    print("[score] check\n")
     print("[get <item>]")
     print("[drop <item>]\n")
     print("[q]uit\n")
@@ -141,6 +142,8 @@ while True:
             player.current.show_items()
         elif choice == "inventory":
             player.show_inventory()
+        elif choice == "score":
+            player.show_score()
         elif (format_choice[0] == "get" or format_choice[0] == "take") and len(
             format_choice
         ) == 2:

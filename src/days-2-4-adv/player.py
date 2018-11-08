@@ -3,10 +3,11 @@
 
 
 class Player:
-    def __init__(self, name, current):
+    def __init__(self, name, current, score=0):
         self.name = name
         self.current = current
         self.inventory = []
+        self.score = score
 
     def move_to(self, room):
         if room:
@@ -49,3 +50,6 @@ class Player:
             print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             print(f"\n===You dropped {item}.")
             print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+    def show_score(self):
+        print(self.score)
