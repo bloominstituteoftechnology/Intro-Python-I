@@ -101,7 +101,7 @@ room['treasure'].s_to   = room['narrow']
 #
 # If the user enters "q", quit the game.
 
-p = Player(room['outside'], [])
+p = Player(room['outside'], [], 0)
 
 def print_wrapped_lines(value = ''):
     wrapper = textwrap.TextWrapper(width = 50)
@@ -116,6 +116,7 @@ def start_game():
     inventory = p.items
     get_item = p.get_item
     view_inventory = p.view_inventory
+    score = p.score
     text_divider = '\n====================\n'
 
     def try_get_item(item_name):
@@ -127,7 +128,7 @@ def start_game():
             setattr(currRoom, 'item', item['nothing'])
         else:
             print(text_divider)
-            print_wrapped_lines(f'This room does not have a {item_name}')
+            print_wrapped_lines(f'This room does not have a(n) {item_name}.')
             print('\n')
 
     def try_drop_item(item_name):
@@ -154,7 +155,7 @@ def start_game():
         print('\n')
 
         print_wrapped_lines('What would you like to do?')
-        next_action = input('(g)et <item> / (d)rop <item> / (i)inventory / (k)eep moving / (q)uit :')
+        next_action = input('(g)et <item> / (d)rop <item> / (i)nventory / (s)core / (k)eep moving / (q)uit :')
         next_action = next_action.lower()
 
         if next_action[:4] == 'get ':
@@ -167,15 +168,23 @@ def start_game():
 
         elif next_action[:5] == 'drop ':
             try_drop_item(next_action[5:])
+            print('\n')
             continue
 
         elif next_action[:2] == 'd ':
             try_drop_item(next_action[2:])
+            print('\n')
             continue
 
         elif next_action == 'inventory' or next_action == 'i':
             print(text_divider)
             view_inventory()
+            print('\n')
+            continue
+        
+        elif next_action == 'score' or next_action == 's':
+            print(text_divider)
+            print(f'You have {score} points.')
             print('\n')
             continue
 
@@ -196,10 +205,10 @@ def start_game():
             else:
                 print(text_divider)
                 continue
-        
+
         else:
             print(text_divider)
-            print(f'Invalid input: {next_action}')
+            print_wrapped_lines(f'Invalid input: {next_action}')
             print('\n')
             continue
 
@@ -235,7 +244,7 @@ def start_game():
                 print(text_divider)
         else:
             print(text_divider)
-            print(f'Invalid direction: {next_move}')
+            print_wrapped_lines(f'Invalid direction: {next_move}')
             print('\n')
 
 if __name__ == '__main__':
