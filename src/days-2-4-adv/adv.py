@@ -63,13 +63,13 @@ stop = False
 # room['outside'].add_items('rocks', ['skull', 'abandoned armor'])
 
 chest = Treasure('Treasure Chest - [chest]' , """An old pirate relic, overflowing with 
-    bullions and gems""", 'chest')
+    bullions and gems""", 'chest',  100)
 ring = Treasure("Princess Fiora's Ring - [ring]", """A ring granting the wearer god-like beauty and charm,
-    but removing the ability to love""", 'ring' )
+    but removing the ability to love""", 'ring', 125 )
 crown = Treasure("King Arthur's Crown - [crown]", """Rumored among mystics and trobadours to grant
-the wearer the ability to read the minds of others""", 'crown')
+the wearer the ability to read the minds of others""", 'crown', 250)
 grail = Treasure('Holy Grail - [grail]', """The enchanted chalice of life. It looks benign 
-    now, but perhaps in the proper hands...""", 'grail')
+    now, but perhaps in the proper hands...""", 'grail', 375)
 
 room['treasure'].add_items(chest, grail)
 room['narrow'].add_items(ring)
@@ -84,23 +84,23 @@ def action(phrase):
     noun = phrase[1]
     if verb in ['get', 'take', 'lift', 'grab', ]:
         for item in player.room.item_list:
-            if item.value == noun:
+            if item.keyword == noun:
                 player.room.remove_items(item)
                 player.add_items(item)
-                item.on_take()
-                print ('This ran')
+                item.on_take(player, item)
                 print (f'Thou hath picked up one {item}')
             else:
                 print ('The item thou look for is not here')
     elif verb in ['drop', 'leave', 'forget', 'dump', 'discard', 'abandon' ]:
-        print ('is this running? yes')
+        had_item = False
         for item in player.item_list:
-            if item.value == noun:
+            if item.keyword == noun:
                 player.remove_items(item)
                 player.room.add_items(item)
+                had_item = True
                 print (f'Thou hath dropped thy {item}')
-            else:
-                print ('Thou hath not the item thou speak of')
+        if not had_item:
+            print ('Thou hath not the item thou speaketh of')
     else:
         print ('I understand not thy command. Please choose another one')
 
