@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Item
+from item import Treasure
 
 # Declare all the rooms
 
@@ -79,6 +80,30 @@ room["narrow"].populate_item(
     Item(
         "Aegis",
         "The guiding light of Ishtak cleanses of pain and fills with renewed resolve.",
+    )
+)
+
+# Add treasures to rooms
+
+room["treasure"].populate_item(
+    Treasure(
+        "*Silver*",
+        "Silver has become highly prized over gold for the ability to craft armaments.",
+        200,
+    )
+)
+room["overlook"].populate_item(
+    Treasure(
+        "*Scepter*",
+        "Ancient folklore spoke of a cloaked figure that traveled the world cleansing disease and mending wounds, never once asking for payment or any other sign of gratitude.",
+        800,
+    )
+)
+room["narrow"].populate_item(
+    Treasure(
+        "*Blademaster*",
+        "A symbol of mastery in the art of wielding two melee weapons at the same time.",
+        650,
     )
 )
 
