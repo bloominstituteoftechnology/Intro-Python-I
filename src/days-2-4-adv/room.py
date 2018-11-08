@@ -1,29 +1,23 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
+from item import Item
 
 class Room:
-    def __init__(self, name, description, adjacent):
+    def __init__(self, name, description, inventory = []):
         self.name = name
         self.description = description
-        self.adjacent = adjacent
+        self.inventory = inventory
     def __str__(self):
         return(f'name: {self.name}\n')
-    # def NextRoom(self, s_to, n_to, e_to, w_to):
-    #     self.s_to = s_to
-    #     self.n_to = n_to
-    #     self.e_to = e_to
-    #     self.w_to = w_to
 
-#     def __repr__(self):
-#         return f"name: {self.name}, description: {self.description}"
+    def item_picked_up(self, item):
+        self.inventory.remove(item)
 
-# r = Room("Outside", "outside")
-# f = Room("Foyer", "Dim light filters in from the south")
-# t = Room("Foyer", "Dim light filters in from the south")
-# # print(isinstance(r, room))
-# # print(isinstance(, room))
+    def item_dropped(self, item):
+        self.inventory.append(item)
 
-# r.n_to = f
-# f.s_to = r
-# r.e_to = t
-# t.w_to = r
+    def check_items(self, item):
+        print(f'items include: {room.inventory}')
+
+    def inv(self):
+        print(f'{" ".join(item.name for item in self.inventory)}')
