@@ -5,17 +5,19 @@ import sys
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside': Room(
+        "Outside Cave Entrance",
+        "North of you, the cave mount beckons",
+        ),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
+    'foyer': Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
+    'narrow': Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
@@ -23,18 +25,7 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-
-# Link rooms together -- I did not use these...
-
-# room['outside'].n_to = room['foyer']
-# room['foyer'].s_to = room['outside']
-# room['foyer'].n_to = room['overlook']
-# room['foyer'].e_to = room['narrow']
-# room['overlook'].s_to = room['foyer']
-# room['narrow'].w_to = room['foyer']
-# room['narrow'].n_to = room['treasure']
-# room['treasure'].s_to = room['narrow']
-
+room['outside'].add_item({None: None})
 
 #
 # Main
@@ -42,11 +33,13 @@ earlier adventurers. The only exit is to the south."""),
 
 # Make a new player object that is currently in the 'outside' room. DONE
 
-# p1 = Player('Brian', room['outside'].room_name, room['outside'].room_description)
+# p2 = Player('John')
+# print(p2)
 
-p_name = input("Player Name: ")
+p_name = "Brian"
 
 p1 = Player(p_name)
+
 
 # Write a loop that:
 #
@@ -56,35 +49,38 @@ p1 = Player(p_name)
 
 
 def set_player_direction(player):
+    print("__PLAYER_ROOM__: " + player.room_name)
+    print("__PLAYER_ROOM DESCRIPTION__: " + player.room_description)
+    print(player.get_items())
 
-    print("___PLAYER_ROOM___: " + player.room_name)
-    print("___PLAYER_ROOM DESCRIPTION___: " + player.room_description)
+# Get input from user to set as direction to be returned.
 
-    setting_direction = [True]
+    direction = input("Enter a direction [n, s, e, w] or q to quit.").strip().lower()
 
-    while setting_direction:
+    if direction == "n":
+        return direction
 
-        # Get input from user to set as direction to be returned.
-        direction = input("Enter a direction [n, s, e, w] or q to quit.").lower()
+    elif direction == "s":
+        return direction
 
-        if direction == "n":
-            return direction
+    elif direction == "e":
+        return direction
 
-        elif direction == "s":
-            return direction
+    elif direction == "w":
+        return direction
 
-        elif direction == "e":
-            return direction
+    elif direction == "r":
+        return direction
 
-        elif direction == "w":
-            return direction
+    elif direction == "q":
+        print("Thanks for playing. I hope you had fun!")
+        sys.exit()
 
-        elif direction == "q":
-            print("Thanks for playing. I hope you had fun!")
-            sys.exit()
-        else:
-            print("Invalid choice. Please choose either [n,s,e,w]")
+    elif direction == "p":
+        return direction
 
+    else:
+        print("Invalid choice. Please choose either [n,s,e,w]")
 
 
 # If the user enters a cardinal direction, attempt to move to the room there. DONE
@@ -94,21 +90,22 @@ def set_player_direction(player):
 
 def play_game():
 
-    playing_game = [True]
-
-    while playing_game:
+    while True:
 
         # Get Direction from set_player_direction function
         direction = set_player_direction(p1)
 
-        if direction == "q":
-            print("Thanks for playing. I hope you had fun!")
-            sys.exit()
+        if direction == "r":
+            p1.get_items()
+
+        if direction == "p":
+            "Your items " + str(p1.pick_up_items_in_room())
 
         # Handle Outside to Foyer
         if p1.room_name == 'Outside Cave Entrance' and direction == 'n':
             p1.room_name = room['foyer'].room_name
             p1.room_description = room['foyer'].room_description
+            p1.items_list = room['foyer'].add_item({'Wand': "Useful for many things..."})
 
         # Handle Foyer back to Outside
         elif p1.room_name == "Foyer" and direction == "s":
@@ -145,6 +142,7 @@ def play_game():
         elif p1.room_name == "Treasure Chamber" and direction == "s":
             p1.room_name = room['foyer'].room_name
             p1.room_description = room['foyer'].room_description
+
 
 
 play_game()
