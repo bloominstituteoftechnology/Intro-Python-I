@@ -1,6 +1,12 @@
 from room import Room
 from player import Player
 from mage import Mage
+from weapon import Weapon
+from armor import Armor
+
+# Declare all Weapons
+
+weapon =
 
 # Declare all the rooms
 
