@@ -1,5 +1,5 @@
 import textwrap
-from item import Item, Treasure
+from item import Item, Treasure, LightSource
 from room import Room
 from player import Player
 
@@ -36,6 +36,11 @@ item = {
                 'sapphire',
                 'a SAPPHIRE pendant',
                 10
+            ),
+
+    'lamp': LightSource(
+                'lamp',
+                'a bright LAMP'
             )
 }
 
@@ -45,43 +50,50 @@ room = {
     'outside':  Room(
                     'Outside Cave Entrance',
                     'North of you, the cave mount beckons.',
-                    item['nothing']
+                    item['lamp'],
+                    True
                 ),
 
     'foyer':    Room(
                     'Foyer',
                     'Dim light filters in from the south. Dusty passages run north and east.',
-                    item['shield']
+                    item['shield'],
+                    False
                 ),
 
     'overlook': Room(
                     'Grand Overlook',
                     'A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.',
-                    item['sword']
+                    item['sword'],
+                    False
                 ),
 
     'narrow':   Room(
                     'Narrow Passage',
                     'The narrow passage bends here from west to north. The smell of gold permeates the air.',
-                    item['ruby']
+                    item['ruby'],
+                    False
                 ),
 
     'treasure': Room(
                     'Treasure Chamber',
                     'You\'ve found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.',
-                    item['gold']
+                    item['gold'],
+                    False
                 ),
 
     'hall': Room(
                     'Dark Hall',
                     'The smell of fire and brimstone emanates from the north.',
-                    item['sapphire']
+                    item['sapphire'],
+                    False
                 ),
 
     'chamber': Room(
                     'Large Chamber',
                     'You\'ve stumbled upon a large chamber. A hideous beast awakens!',
-                    item['nothing']
+                    item['nothing'],
+                    False
                 )
 }
 
@@ -106,16 +118,16 @@ room['chamber'].s_to    = room['hall']
 #                                       Map
 #
 #
-#                 Overlook(2)        Treasure(4)         Chamber(6)
+#                 Overlook(3)        Treasure(5)         Chamber(7)
 #                    |                   |                   |
 #                    |                   |                   |
-#                 Foyer(1) ---------- Narrow(3) ---------- Hall(5)
+#                 Foyer(2) ---------- Narrow(4) ---------- Hall(6)
 #                    |
 #                    |
-#                 Outside
+#                 Outside(1)
 #
 #
-#   (1): Shield   (2): Sword   (3): Ruby   (4): Gold   (5): Sapphire   (6): Beast
+#   (1): Lamp   (2): Shield   (3): Sword   (4): Ruby   (5): Gold   (6): Sapphire   (7): Beast
 #
 
 #
