@@ -133,7 +133,8 @@ while not game_finish:
             if len(player.room.items) > 0:
                 item = player.find_item(direction[1])
                 print(item)
-                if item:
+                if item: 
+                    item.on_take(player)                   
                     player.room.items.remove(item)
                     player.inventory.append(item)                        
                     print(f"{player.name} has picked up: {item.name}")
@@ -142,5 +143,3 @@ while not game_finish:
 
             else:
                 print("Printing no items")
-
-

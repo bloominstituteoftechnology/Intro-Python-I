@@ -11,3 +11,6 @@ class Item:
 
   def pick_up(self, player):
     pass
+
+  def on_take(self, player):
+    pass

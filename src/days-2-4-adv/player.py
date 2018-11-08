@@ -16,7 +16,8 @@ class Player:
       return getattr(self.room, key)
 
   # --> For 'take', and 'get' --> Find the item given in rooms.item array
-  def find_item(self, item_name):    
+  def find_item(self, item_name): 
+    print(self.room.items)   
     for item in self.room.items:
       print(item.name)
       if item.name.lower() == item_name:  
