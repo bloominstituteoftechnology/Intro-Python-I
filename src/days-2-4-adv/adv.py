@@ -4,8 +4,8 @@ from item import Item
 # Declare all the rooms
 
 items = {
-    'potion': Item("potion-name",
-                   "description"
+    'potion': Item("potion",
+                   "this improves health"
     ),
     'sword': Item("excalibur",
                   "desc"
@@ -13,31 +13,31 @@ items = {
 }
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
+    'outside':  Room("outside",
                      "North of you, the cave mount beckons",
                      [items["potion"]]
                      #{'n': 'foyer', 's': None, 'e': None, 'w': None}
     ),
 
-    'foyer':    Room("Foyer",
+    'foyer':    Room("foyer",
                      """Dim light filters in from the south. Dusty passages run north and east.""",
                      {}
                      #{'n': 'overlook', 's': 'outside', 'e': 'narrow', 'w': None}
     ),
 
-    'overlook': Room("Grand Overlook",
+    'overlook': Room("overlook",
                      """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
                      {}
                      #{'n': None, 's': 'foyer', 'e': None, 'w': None}
     ),
 
-    'narrow':   Room("Narrow Passage",
+    'narrow':   Room("narrow",
                      """The narrow passage bends here from west to north. The smell of gold permeates the air.""",
                      {}
                      #{'n': 'treasure', 's': None, 'e': None, 'w': 'foyer'}
     ),
 
-    'treasure': Room("Treasure Chamber",
+    'treasure': Room("treasure",
                      """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.""",
                      {}
                      #{'n': None, 's': 'narrow', 'e': None, 'w': None}
@@ -72,10 +72,11 @@ player = Player(player_name, room["outside"])
 #
 
 while True:
-    print("Move around using north, south, east, & west")
-    room["outside"].inv()
-    direction = input('input your direction: ')
-    secondary = direction.split(" ")
+    #print("Move around using north, south, east, & west")
+    #room["outside"].inv()
+    #room[player.location.name].inv()
+    action = input('input your action: ')
+    secondary = action.split(" ")
     if len(secondary) >= 1 or len(secondary) <= 2:
         command = secondary[0]
         target = secondary[1] if len(secondary) == 2 else None
@@ -88,17 +89,18 @@ while True:
         print(f'your name is {player.name}')
     if command == 'mylocation':
         print(f'your location is {player.location}')
-    if command == 'myroom':
-        print(f'room is {room[outside]}')
+    # if command == 'myroom':
+    #     print(f'room is {room[outside]}')
     if command == 'check':
-        player.inventory = player.check_items(command)
-        print(f'The room includes {player.inventory}')
+        #player.inventory = player.check_items(command)
+        #print('The room includes:{}'.format(room[player.location.name].inv()))
+        print('The room includes: ')
+        print(room[player.location.name].inv())
     if command == f'take':
-
             new_item = items[target]
-            room["outside"].item_picked_up(new_item)
+            room[player.location.name].item_picked_up(new_item)
             player.pickup_item(new_item)
-    if command == f'dropped':
+    if command == f'drop':
          if not player.inventory:
             print('player inventory is empty')
          else:
@@ -106,15 +108,15 @@ while True:
             player.drop_item(new_item)
             room['outside'].item_dropped(new_item)
 
-    try:
-        command = str(command)
-    except ValueError:
-        print('cannot do that')
-        continue
-
-    #print(player.location)
-    #player.location = player.try_move(command)
-    #print(f'You are in the {player.location.name}')
+    # try:
+    #     command = str(command)
+    # except ValueError:
+    #     print('cannot do that')
+    #     continue
+    #if action not 'q' or 'myname' or 'mylocation' or 'inventory':
+    print(player.location)
+    player.location = player.try_move(command)
+    print(f'You are in the {player.location.name}')
 
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.

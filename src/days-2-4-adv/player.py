@@ -21,12 +21,10 @@ class Player:
         self.inventory.remove(item)
 
     def try_move(self, direction):
-
         key = direction + "_to"
-
         # check to see if we can move in the specified direction
         if not hasattr(self.location, key):
-            print("You can't go that way!")
+            #print("You can't go that way!")
             return self.location
         else:
             return getattr(self.location, key)
