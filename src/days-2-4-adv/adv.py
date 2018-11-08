@@ -1,4 +1,7 @@
 from item import Item
+from item import Treasure
+from room import Room
+
 #Declare all the items
 item = {
     'rock': Item('rock', 'rock with the shape and size of an orange'),
@@ -9,10 +12,19 @@ item = {
     'hat': Item('hat', 'a rain hat'),
     'hiking_pole': Item('hiking pole', 'a pole you use as a walking stick while hiking'),
     'treasure_chest': Item('treasure chest', 'a big treasure chest'),
-    'shovel': Item('shovel', 'a big gardening shovel')
+    'shovel': Item('shovel', 'a big gardening shovel'),
+    'treasure1': Treasure('treasure1', 'treasure1 description', 50),
+    'treasure2': Treasure('treasure2', 'treasure2 description', 100),
+    'treasure3': Treasure('treasure3', 'treasure3 description', 200)
 }
 
-from room import Room
+# treasure = {
+#     'treasure1': Treasure('treasure1', 'treasure1 description', 50),
+#     'treasure2': Treasure('treasure2', 'treasure2 description', 100),
+#     'treasure3': Treasure('treasure3', 'treasure3 description', 200)
+# }
+
+
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -23,15 +35,21 @@ passages run north and east.""", [item["lamp"], item["chair"]]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", []),
+the distance, but there is no way across the chasm.""", [item['treasure1']]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", [item["hat"], item["hiking_pole"]]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [item["treasure_chest"], "shovel"]),
+earlier adventurers. The only exit is to the south.""", [item["treasure_chest"], item["shovel"]]),
 }
+
+# print(room['outside'].name)
+# print(Room("Outside Cave Entrance",
+#                      "North of you, the cave mount beckons", [item["rock"], item["log"], item["rope"]]).name)
+# print(type(room))
+# print(type(room['outside']))
 
 # Link rooms together
 room['outside'].n_to = room['foyer']
@@ -84,6 +102,13 @@ while True:
         if command[1] in [player1.location.items[i].name for i in range(len(player1.location.items))]:
             player1.location.removeItem(item[command[1]])
             player1.addItem(item[command[1]])
+            if hasattr(item[command[1]], 'empty'): 
+                if item[command[1]].empty == False:
+                    player1.addScore(item[command[1]].value)
+                    print(player1.score)
+                else:
+                    print(item[command[1]].name + ' is empty')
+            item[command[1]].on_take()
         else: 
             print('Item not in room.')
     
