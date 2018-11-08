@@ -97,6 +97,7 @@ def action(phrase):
             if item.keyword == noun:
                 player.remove_items(item)
                 player.room.add_items(item)
+                item.on_drop(player, item)
                 had_item = True
                 print (f'Thou hath dropped thy {item}')
         if not had_item:
