@@ -1,3 +1,1 @@
-apple
-blueberries
-cherries
+line1line2line3scherrieses

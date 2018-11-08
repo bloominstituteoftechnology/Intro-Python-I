@@ -52,8 +52,11 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+direction = {"N","S","W","E","n","s","w","e"}
+action_verbs = {"take", "drop"}
+
 # Make a new player object that is currently in the 'outside' room.
-def game():
+def play_game():
 	clear()
 	print("Welcome to the game!")
 	name = input("Type your name to begin:")
@@ -66,11 +69,12 @@ def game():
 		print(" ".join(textwrap.wrap(player.location.description)))
 		direction = input("Will you go N, S, E, or W? ")
 
+		#  exits game
 		if direction.lower() == "q":
 			break
 
 		try:
-			if not (direction == "N" or direction == "S" or direction == "E" or direction == "W"):
+			if direction:
 				raise ValueError()
 		except ValueError:
 			clear()
@@ -103,4 +107,5 @@ def game():
 #
 # If the user enters "q", quit the game.
 
-game()
+# play_game()
+print("n" in direction)
