@@ -1,4 +1,5 @@
 import textwrap
+import time
 from room import Room
 from player import Player
 
@@ -40,13 +41,19 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 
 while True:
-  new_player = input("\n\nType in your player's name: ")
-  if len(new_player) == 0:
-    print("Please enter your hero's name.\n")
-  else:
-    player = Player(new_player, room['outside'])
-    print(f"\nWelcome, {player.name}")
-    break
+    time.sleep(1)
+    print("\n\nHello,")
+    time.sleep(1)
+    new_player = input("\nType in player's name: ")
+    if len(new_player) == 0:
+        print("Please enter player's name.\n")
+    else:
+        player = Player(new_player, room['outside'])
+        time.sleep(1)
+        print("\nWelcome,")
+        print(f"{player.name}")
+        time.sleep(1)
+        break
 
 
 # Write a loop that:
@@ -71,7 +78,8 @@ def direction(direction, current):
         # If so, return its value (the next room)
         return getattr(current, attrib)
     # Otherwise print an error and stay in the same room
-    print("You can NOT go that way")
+    print("\nYou can NOT go that way")
+    time.sleep(1)
     return current
 
 done = False
@@ -80,8 +88,11 @@ while not done:
   s = input("\n\nWhich way would you like to go? (N, S, E, W)\n").strip().lower().split()
   if s[0] in ["n", "s", "w", "e"]:
     player.current = direction(s[0], player.current)
+    time.sleep(1)
     print("\nCurrent room: {}".format(player.current.name))
+    time.sleep(1)
     print(player.current.desc)
+    time.sleep(2)
   elif s[0] == "quit" or s[0] == "q":
             done = True
   else:
