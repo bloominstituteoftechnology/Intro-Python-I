@@ -45,7 +45,6 @@ room['bridge'].s_to = room['narrow']
 room['bridge'].n_to = room['treasure']
 room['treasure'].s_to = room['bridge']
 
-
 #see if items in room
 def check_area(room, player):
   if len(room.items) == 0:
@@ -53,7 +52,7 @@ def check_area(room, player):
   if len(room.items) == 1:
     print(f'{room} Also you notice a {room.items[0]}\n')
   if len(room.items) > 1:
-    print(f"\n{room} Also you notice {len(room.items)} items nearby:")
+    print(f"\n{room} Also you notice {len(room.items)} items nearby:\n")
     for i in room.items:
       print(i.name)
 #end of check_area function
@@ -99,6 +98,11 @@ def command(player_input, player, current_room):
 
       if count2 == 0:
         print("you don't have item to drop")
+
+    if player_input[0] == 'in':
+      for i in player.items:
+        if player_input[1] == i.name:
+          print(i.description)
     
 
   attack_bol = False
@@ -214,7 +218,7 @@ while not res[0] == 'q':
       res = input('\n').split(" ")
       command(res, player, current_room)
 
-      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack':
+      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack' or res[0] == 'in':
         pass
       elif res[0] == 'l':
         check_area(current_room, player)
@@ -246,7 +250,7 @@ while not res[0] == 'q':
       res = input('\n').split(" ")
       command(res, player, current_room)
 
-      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack':
+      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack' or res[0] == 'in':
         pass
       elif res[0] == 'l':
         check_area(current_room, player)
@@ -287,7 +291,7 @@ while not res[0] == 'q':
       res = input('\n').split(" ")
       command(res, player, current_room)
 
-      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack':
+      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack' or res[0] == 'in':
         pass
       elif res[0] == 'l':
         check_area(current_room, player)
@@ -320,7 +324,7 @@ while not res[0] == 'q':
     while narrow_loop == True:
       res = input('\n').split(" ")
       command(res, player, current_room)
-      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack':
+      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack' or res[0] == 'in':
         pass
       elif res[0] == 'l':
         if check_for_light(current_room, player) == False:
@@ -379,10 +383,10 @@ while not res[0] == 'q':
           print('\nway to go! You totaly slayed that monster!')
           current_room.monster.pop(0)
           killed_troll = True
-          current_room.description = "Long Bridge, A long bridge above a bottomless pit of darkness stands before you. A dead troll lies at your feet"
+          current_room.description = "Long Bridge, A long bridge above a bottomless pit of darkness stands before you. A dead troll lies at your feet."
           player.score += 10
 
-      if res[0] == 'get' or res[0] == 'drop' or res[0] == 'attack':
+      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack' or res[0] == 'in':
         pass
       elif res[0] == 'l':
         check_area(current_room, player)
@@ -429,7 +433,7 @@ while not res[0] == 'q':
     while treasure_loop == True:
       res = input('\n').split(" ")
       command(res, player, current_room)
-      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack':
+      if res[0] == 'get' or res[0] == 'drop' or  res[0] == 'attack' or res[0] == 'in':
         pass
       elif res[0] == 'l':
         check_area(current_room, player)
