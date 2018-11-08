@@ -1,5 +1,5 @@
 import textwrap
-from item import Item
+from item import Item, Treasure
 from room import Room
 from player import Player
 
@@ -18,6 +18,24 @@ item = {
     'shield': Item(
                 'shield',
                 'an iron SHIELD'
+            ),
+
+    'ruby': Treasure(
+                'ruby',
+                'a large RUBY',
+                5
+            ),
+
+    'gold': Treasure(
+                'gold',
+                'GOLD nuggets',
+                15
+            ),
+
+    'sapphire': Treasure(
+                'sapphire',
+                'a SAPPHIRE pendant',
+                10
             )
 }
 
@@ -45,12 +63,24 @@ room = {
     'narrow':   Room(
                     'Narrow Passage',
                     'The narrow passage bends here from west to north. The smell of gold permeates the air.',
-                    item['nothing']
+                    item['ruby']
                 ),
 
     'treasure': Room(
                     'Treasure Chamber',
                     'You\'ve found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.',
+                    item['gold']
+                ),
+
+    'hall': Room(
+                    'Dark Hall',
+                    'The smell of fire and brimstone emanates from the north.',
+                    item['sapphire']
+                ),
+
+    'chamber': Room(
+                    'Large Chamber',
+                    'You\'ve stumbled upon a large chamber. A hideous beast awakens!',
                     item['nothing']
                 )
 }
@@ -65,23 +95,27 @@ room['foyer'].e_to      = room['narrow']
 room['overlook'].s_to   = room['foyer']
 room['narrow'].w_to     = room['foyer']
 room['narrow'].n_to     = room['treasure']
+room['narrow'].e_to     = room['hall']
 room['treasure'].s_to   = room['narrow']
+room['hall'].w_to       = room['narrow']
+room['hall'].n_to       = room['chamber']
+room['chamber'].s_to    = room['hall']
 
 
 #
-#                   Map
+#                                       Map
 #
 #
-#           Overlook(2)        Treasure
-#              |                  |
-#              |                  |
-#           Foyer(1) ---------- Narrow
-#              |
-#              |
-#           Outside
+#                 Overlook(2)        Treasure(4)         Chamber(6)
+#                    |                   |                   |
+#                    |                   |                   |
+#                 Foyer(1) ---------- Narrow(3) ---------- Hall(5)
+#                    |
+#                    |
+#                 Outside
 #
 #
-#           (1): Shield   (2): Sword
+#   (1): Shield   (2): Sword   (3): Ruby   (4): Gold   (5): Sapphire   (6): Beast
 #
 
 #
@@ -116,7 +150,6 @@ def start_game():
     inventory = p.items
     get_item = p.get_item
     view_inventory = p.view_inventory
-    score = p.score
     text_divider = '\n====================\n'
 
     def try_get_item(item_name):
@@ -124,6 +157,7 @@ def start_game():
             get_item(currRoom.item)
             print(text_divider)
             print_wrapped_lines(f'Player has picked up {currRoom.item.description}.')
+            currRoom.item.on_take(p, print_wrapped_lines)
             print('\n')
             setattr(currRoom, 'item', item['nothing'])
         else:
@@ -150,7 +184,10 @@ def start_game():
         print_wrapped_lines(f'You are currently in the {currRoom.name}.')
         print_wrapped_lines(currRoom.description)
         print('\n')
-        print_wrapped_lines(f'This room has {currRoom.item.description}.')
+        if hasattr(currRoom.item, 'value'):
+            print_wrapped_lines(f'This room has {currRoom.item.description}. Thats quite a treasure.')
+        else:
+            print_wrapped_lines(f'This room has {currRoom.item.description}.')
 
         print('\n')
 
@@ -184,7 +221,7 @@ def start_game():
         
         elif next_action == 'score' or next_action == 's':
             print(text_divider)
-            print(f'You have {score} points.')
+            print(f'You have {p.score} points.')
             print('\n')
             continue
 
