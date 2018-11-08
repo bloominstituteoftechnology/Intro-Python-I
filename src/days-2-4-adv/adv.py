@@ -124,10 +124,16 @@ while True:
     userInput = input(">>: ").split(' ')
 
     # parse the input if more than 1 command
-    if 1 <= len(userInput) <= 2:
+    if 1 <= len(userInput) <= 3:
         command = userInput[0]
-        target = userInput[1] if len(userInput) == 2 else None
+        if len(userInput) == 2:
+            target = userInput[1]
+        elif len(userInput) > 2:
+            target = ' '.join(userInput[1:])
+        else:
+            target = None
 
+            
     if command.upper() == 'QUIT':
         break
 
