@@ -66,9 +66,6 @@ while True:
         player = Player(create_name, room['outside'])
         break
 
-
-
-
 # Write a loop that:
 # * Prints the current room name --> /
 # * Prints the current description (the textwrap module might be useful here). --> /
@@ -87,8 +84,7 @@ while not game_finish:
     print(f"{player.room.description} \n")   
     print("===========================")
 
-    direction = input("\nPick a direction: [n],[e],[s],[w]\n").strip().lower().split(" ", 1)
-
+    direction = input("\nPick a direction: [n],[e],[s],[w]\n").strip().lower().split(" ", 1)    
     # --> Check improper commands
     if len(direction) > 3 or len(direction) < 1:
         print("\nYour character does not understand that command\n")
@@ -107,21 +103,44 @@ while not game_finish:
                 # --> note: Double bracket ==> first one to access letter ==> second one to access first letter only
             player.room = player.try_move(direction[0][0])
         
-        elif direction[0] not in ['n', 'north', 'e', 'east', 's', 'south', 'w', 'west']:
+        elif direction[0] not in ['n', 'north', 'e', 'east', 's', 'south', 'w', 'west', 'i', 'inventory', 'l', 'look']:
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             print("\nYour character does not understand that command\n")
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
-        # --> Handle item pick up
-        elif len(direction) == 2:
-            if direction[0] == "get" or direction[0] == "take":
-                if len(player.room.items) > 0:
-                    item = player.find_item(direction[1])
-                    if item:
-                        player.inventory.append(item)
-                        player.room.items.remove(item)
-                        print(f"{player.name} has picked up: {player.inventory}")
-                    else:
-                        print("Your character does not see that item in this room")
+        elif (direction[0]) == "i" or direction[0] == "inventory":
+            if len(player.inventory) == 0:
+                print(f"{player.name} looks into their bag. 2 pieces of dirt lie in there.")
+            else:
+                for item in player.inventory:
+                    print(f"{item}")
+
+        elif direction[0] == "l" or direction[0] == "look":
+            if len(player.room.items) == 0:
+                print(f"{player.name} looks around, and sees no items of use")
+            else:
+                for item in player.room.items:
+                    print("~~~~~~~~~~~~~~~~~~~~LOOKING.....~~~~~~~~~~~~~~~~~~~~")
+                    print(f"{player.name} looks around, and sees:")
+                    print(f"{item.name}")
+        
+
+    # --> Handle item pick up
+    elif len(direction) == 2:
+        print("direction -->", direction[0], ", ", direction[1])
+        
+        if direction[0] == "get" or direction[0] == "take":
+            if len(player.room.items) > 0:
+                item = player.find_item(direction[1])
+                print(item)
+                if item:
+                    player.room.items.remove(item)
+                    player.inventory.append(item)                        
+                    print(f"{player.name} has picked up: {item.name}")
+                else:
+                    print("Your character does not see that item in this room")
+
+            else:
+                print("Printing no items")
 
 

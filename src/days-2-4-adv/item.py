@@ -10,5 +10,4 @@ class Item:
     self.description: description
 
   def pick_up(self, player):
-    player.inventory.append(self) # --> add item to player's inventory
-    
+    pass
