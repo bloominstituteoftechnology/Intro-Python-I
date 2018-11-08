@@ -25,4 +25,12 @@ class Player:
       else:
         print("in find_item")
         return None
+    
+  def find_in_inventory(self, item_name):
+    for item in self.inventory:
+      if item.name.lower() == item_name:
+        return item
+      else:
+        print("nothing in find_in_inventory")
+        return None
         

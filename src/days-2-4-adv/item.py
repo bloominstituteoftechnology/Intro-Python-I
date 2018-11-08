@@ -14,3 +14,6 @@ class Item:
 
   def on_take(self, player):
     pass
+  
+  def on_drop(self, player):
+    pass

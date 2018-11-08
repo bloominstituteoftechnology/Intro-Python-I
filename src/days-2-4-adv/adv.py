@@ -113,7 +113,7 @@ while not game_finish:
                 print(f"{player.name} looks into their bag. 2 pieces of dirt lie in there.")
             else:
                 for item in player.inventory:
-                    print(f"{item}")
+                    print(f"{item.name}")
 
         elif direction[0] == "l" or direction[0] == "look":
             if len(player.room.items) == 0:
@@ -141,5 +141,12 @@ while not game_finish:
                 else:
                     print("Your character does not see that item in this room")
 
+        elif direction[0] == "drop" or direction[0] == "delete":
+            item = player.find_in_inventory(direction[1])
+            if item:
+                item.on_drop(player)
+                player.inventory.remove(item)
+                player.room.items.append(item)
+                print(f"{player.name} has dropped: {item.name}")
             else:
-                print("Printing no items")
+                print("Your character does not have any items to drop")
