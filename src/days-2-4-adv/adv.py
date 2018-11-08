@@ -1,14 +1,14 @@
+import textwrap
+import os
+import sys
+import time
+
 from player import Player
 from rooms import room
 from rooms import items
 
 from colorama import Fore
 from colorama import Style
-
-import textwrap
-import os
-import sys
-import time
 
 # TODO: Abstract Rooms and Items to separate file
 # Declare all the rooms
@@ -112,7 +112,7 @@ def set_init_player():
 
 # Display the room message
 def room_message():
-    # print(f'\n{player.room.name}')
+    os.system('clear')
     tprint(f'\n{player.room.name}\n')
     desc = textwrap.wrap(player.room.description, width=70)
     for element in desc:
@@ -153,7 +153,7 @@ def prompt():
         tprint('Unknown action, try again\n')
         action = input("> ").split()
     if action[0].lower() == 'quit':
-        sys.exit
+        sys.exit()
     elif action[0].lower() in ['move', 'go']:
         player.movedir(action[1].lower())
         room_message()
@@ -170,7 +170,8 @@ def prompt():
     elif action[0].lower() in ['look', 'look around', 'examine room']:
         player.look_around()
     elif action[0].lower() in ['inventory', 'show inventory']:
-        player.show_inventory()
+        os.system('clear')
+        player.player_info()
 
 
 # Keep the game going until the player gets a game over

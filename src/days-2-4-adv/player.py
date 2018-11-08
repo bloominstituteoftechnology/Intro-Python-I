@@ -13,28 +13,65 @@ from colorama import Style
 class Player:
     # Initialize the properties of the class
     def __init__(self):
-        self.name = None
+        self.game_over = False
         self.room = None
-        self.previous_room = None
+        self.name = None
+        self.job = 'Mage'
+        self.sex = 'Male'
         self.direction = 'north'
         self.inventory = []
-        self.game_over = False
+        self.level = 1
+        self.weapon = {}
+        self.armour = {}
+        self.shield = {}
+        self.hp = 100
+        self.max_hp = 100
+        self.mp = 100
+        self.max_mp = 100
+        self.attack = 30
+        self.vitality = 10
+        self.strength = 10
+        self.intelligence = 10
+        self.dexterity = 10
+        self.wisdom = 10
+        self.gold = 1000
 
     # Return a formatted value of the Player class
     def __str__(self):
         return f"Name: {self.name}, Room: {self.room}"
 
-    def show_inventory(self):
-        if len(self.inventory) < 1:
-            print("\nNo items in inventory")
-            return
+    def player_info(self):
+        info = (f'  NAME: {Fore.GREEN}{self.name}{Style.RESET_ALL} <[{Fore.CYAN}{self.level}{Style.RESET_ALL}]> '
+                f'[{self.job} - {self.sex}]\n'
+                '   WEAP: Sapping Threshmaul\n'
+                '   ARMR: Blessed Breast Plate\n'
+                '   SHLD: Empty Slot\n'
+                f'    VIT: {self.vitality}\n'
+                f'    STR: {self.strength}\n'
+                f'    INT: {self.intelligence}\n'
+                f'    DEX: {self.dexterity}\n'
+                f'    WIS: {self.wisdom}\n\n'
+                f'  HP {Fore.GREEN}{self.hp}{Style.RESET_ALL}/{Fore.GREEN}{self.max_hp}{Style.RESET_ALL}   '
+                f'ATK: {self.attack}   MP: <{Fore.CYAN}{self.mp}{Style.RESET_ALL}/{Fore.CYAN}{self.max_mp}'
+                f'{Style.RESET_ALL} >   GOLD: {Fore.YELLOW}{self.gold}{Style.RESET_ALL}\n')
 
-        print(f'\n {Fore.GREEN} Inventory {Style.RESET_ALL}')
-        print('+----------------------------------------------------------------------+')
+        title = ('  +----------------------------------------------------------------------+\n'
+                 '  | INVENTORY:                                                           |\n'
+                 '  +----------------------------------------------------------------------+')
+
+        print('')
+        print(info)
+        print(title)
+
+        if len(self.inventory) < 1:
+            print("    No items in inventory")
+            print('  +----------------------------------------------------------------------+\n')
+            return
         count = 0
         for item in self.inventory:
             count += 1
-            print(f' [{Fore.GREEN}{count}{Style.RESET_ALL}] {item.name} - {item.description}')
+            print(f'     [{Fore.GREEN}{count}{Style.RESET_ALL}] {item.name} - {item.description}')
+        print('  +----------------------------------------------------------------------+\n')
 
     def pickup_item(self, item):
         if self.room.contains(item):
