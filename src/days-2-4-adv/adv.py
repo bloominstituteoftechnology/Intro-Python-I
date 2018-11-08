@@ -63,12 +63,13 @@ room['outside'].addItem(rock)
 validDirections = {"n": "n", "s": "s", "e": "e", "w": "w", "north": "n", "south": "s", "east": "e", "west": "w"}
 
 
-player = Player(input("What is your name, please?"), room['outside'])
+player = Player(input("What is your name?"), room['outside'])
+print(player.currentRoom)
  
 while True:
     cmds = input("-> ").lower().split(" ")
-    if len (cmds) == 1:
-        if cmds [0] == "q":
+    if len(cmds) == 1:
+        if cmds[0] == "q":
             break
         elif cmds[0] in validDirections:
             player.travel(validDirections[cmds[0]])
@@ -79,7 +80,7 @@ while True:
         else:
             print("I did not understand that command.") 
     else:
-        if cmds [0] == "look":
+        if cmds[0] == "look":
             if cmds[1] in validDirections:
                 player.look(validDirections[cmds[1]])
         elif cmds[0] == "take":
