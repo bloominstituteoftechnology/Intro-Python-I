@@ -1,7 +1,6 @@
 from room import Room
 from player import Player
-from item import Item
-from item import Treasure
+from item import Item, Treasure, LightSource
 
 # Declare all the rooms
 
@@ -112,6 +111,9 @@ room["narrow"].populate_item(
         "**A symbol of mastery in the art of wielding two melee weapons at the same time.",
         650,
     )
+)
+room["outside"].populate_item(
+    LightSource("Lamp", "Let there be light unto the world Lucius said.")
 )
 
 #

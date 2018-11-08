@@ -33,3 +33,14 @@ class Treasure(Item):
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print(f"\n===You dropped {self.name}.")
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+
+class LightSource(Item):
+    def __init__(self, name, desc):
+        self.name = name
+        self.desc = desc
+
+    def on_drop(self):
+        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print(f"\n===It's not wise to drop your source of light!")
+        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
