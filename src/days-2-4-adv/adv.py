@@ -19,13 +19,6 @@ item = {
     'lamp': LightSource('lamp', 'a small oil lamp')
 }
 
-# treasure = {
-#     'treasure1': Treasure('treasure1', 'treasure1 description', 50),
-#     'treasure2': Treasure('treasure2', 'treasure2 description', 100),
-#     'treasure3': Treasure('treasure3', 'treasure3 description', 200)
-# }
-
-
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -46,12 +39,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", [item["treasure_chest"], item["shovel"]]),
 }
 
-# print(room['outside'].name)
-# print(Room("Outside Cave Entrance",
-#                      "North of you, the cave mount beckons", [item["rock"], item["log"], item["rope"]]).name)
-# print(type(room))
-# print(type(room['outside']))
-
 # Link rooms together
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
@@ -61,10 +48,6 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
-
-# print(room['outside'].n_to)
-# print(item['rock'].description)
-
 
 
 ################ Main ################
@@ -110,20 +93,6 @@ while True:
         print('GAME OVER')
         break
 
-    # if command[0] == ('get' or 'take'):
-    #     if command[1] in [player1.location.items[i].name for i in range(len(player1.location.items))]:
-    #         player1.location.removeItem(item[command[1]])
-    #         player1.addItem(item[command[1]])
-    #         if hasattr(item[command[1]], 'empty'): 
-    #             if item[command[1]].empty == False:
-    #                 player1.addScore(item[command[1]].value)
-    #                 print(player1.score)
-    #             else:
-    #                 print(item[command[1]].name + ' is empty')
-    #         item[command[1]].on_take()
-    #     else: 
-    #         print('Item not in room.')
-
     if command[0] == ('get' or 'take'):
         if lightCheck == False:
             print("Good luck finding that in the dark!")
@@ -154,96 +123,3 @@ while True:
     
     if command[0] == 'score':
         print('Player Score: ', player1.score)
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-# ##FIRST ATTEMPT 
-# # Make a new player object that is currently in the 'outside' room.
-# from player import Player
-# player1 = Player('Bob', 'treasure')
-
-# # Write a loop that:
-# #
-# # * Prints the current room name
-# # * Prints the current description (the textwrap module might be useful here).
-# # * Waits for user input and decides what to do.
-
-# for key in player_1.__dict__:
-#     if key == 'location': 
-#         for key in room:
-#             if key == player_1.location:
-#                 print(room[player_1.location].name)
-#                 print(room[player_1.location].description)
-#         nextMove = input("Enter next move: ")
-
-        
-# # If the user enters a cardinal direction, attempt to move to the room there.
-# # Print an error message if the movement isn't allowed.
-# #
-# # If the user enters "q", quit the game.
-
-
-# # if nextMove == 'n':
-# #     if player_1.location == room[player_1.location].n_to.name:
-# #     # player_1.location = room['foyer']
-# #         print(player_1.location)
-# #     else:
-# #         print(player_1.location)
-
-# room['outside'].n_to = room['foyer']
-# room['foyer'].s_to = room['outside']
-# room['foyer'].n_to = room['overlook']
-# room['foyer'].e_to = room['narrow']
-# room['overlook'].s_to = room['foyer']
-# room['narrow'].w_to = room['foyer']
-# room['narrow'].n_to = room['treasure']
-# room['treasure'].s_to = room['narrow']
-
-# if nextMove == 'n':
-#     if player_1.location == 'outside' or player_1.location == 'foyer' or player_1.location == 'narrow':
-#         player_1.location = room[player_1.location].n_to.name
-#         print(player_1.location)
-#     else:
-#         print('Movement not allowed!')
-#         # nextMove = input("Enter next move: ")
-
-
-# if nextMove == 's':
-#     if player_1.location == 'foyer' or player_1.location == 'overlook' or player_1.location == 'treasure':
-#         player_1.location = room[player_1.location].s_to.name
-#         print(player_1.location)
-#     else:
-#         print('Movement not allowed!')
-#         # nextMove = input("Enter next move: ")
-
-# if nextMove == 'e':
-#     if player_1.location == 'foyer':
-#         player_1.location = room[player_1.location].s_to.name
-#         print(player_1.location)
-#     else:
-#         print('Movement not allowed!')
-#         # nextMove = input("Enter next move: ")
-
-# if nextMove == 'w':
-#     if player_1.location == 'narrow':
-#         player_1.location = room[player_1.location].s_to.name
-#         print(player_1.location)
-#     else:
-#         print('Movement not allowed!')
-#         # nextMove = input("Enter next move: ")
-
-# if nextMove == 'g': 
-#     print('GAME OVER')
