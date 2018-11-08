@@ -7,7 +7,7 @@ from item import LightSource
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-"North of you, the cave mounth beckons", [Item('sword', 'looks sharp'), LightSource("lamp", 'good source of light'), Treasure('goldbag', 'looks like a small bag of gold', 50)]),
+"North of you, the cave mounth beckons.", [Item('sword', 'looks sharp'), LightSource("lamp", 'good source of light'), Treasure('goldbag', 'looks like a small bag of gold', 50)]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", []),
@@ -19,8 +19,9 @@ the distance, but there is no way across the chasm.""", [Item('key', 'looks impo
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", [], False),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
+    'bridge':   Room("Long Bridge", """A long bridge above a bottomless pit of darkness stands before you. A Troll blocks your path across.""", []),
+
+    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", [Item('note', 'Sorry I took your gold, but this is a solid IOU which is pretty much as good as gold. Definatly planning to pay the money back. - Sinceraly a lying thief'), Treasure('knife', 'jewel incrusted knife. Probably accidently dropped by the thief', 30)]),
 }
 
@@ -37,8 +38,10 @@ room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
 room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['narrow'].n_to = room['bridge']
+room['bridge'].s_to = room['narrow']
+room['bridge'].n_to = room['treasure']
+room['treasure'].s_to = room['bridge']
 
 
 #see if items in room
@@ -122,25 +125,21 @@ def check_for_light(room, player):
   #return false if no light and true if there is light
   return boolv
 
-# done
-# task one
-#don't re print room each time I get or pick up an item
-#don't re print room each time I l or have an invalid command
+#task one
+#I will add another room that has a troll in it
+#the troll will need to be attacked with the sword
+#will need to do the command attack troll
 
-# done
-# task two
-#if I have been inside a room once only print its base name
-#if I type look then show its name and description
-
-# done
-# task three
-#at end of game show the total score for the player
-#also show the rank of the player
+#first made the new room
+#the new room will be a bridge to the treasure room
+#it will be after the narrow passage
 
 
+#have I been there yet?
 been_outside = False
 been_foyer = False
 been_overlook = False
+been_bridge = False
 been_narrow = False
 been_treasure = False
 
@@ -149,6 +148,7 @@ outside_loop = True
 foyer_loop = True
 overlook_loop = True
 narrow_loop = True
+bridge_loop = True
 treasure_loop = True
 
 ######################--------------######################
@@ -302,13 +302,47 @@ while not res[0] == 'q':
           print("\nYour too scared to venture further into the darkness")
         else:
           current_room = current_room.room_direction(res[0])
-          location = 'treasure'
-          treasure_loop = True
+          location = 'bridge'
+          bridge_loop = True
           narrow_loop = False
       elif res[0] == 'q':
         narrow_loop = False
       elif not res[0] == 'q':
         print('\nincorrect input\n')
+
+  #while player is at bridge
+  if location == 'bridge':
+
+    if been_bridge == False:
+      print(current_room)
+    else:
+      print('\n' + current_room.name)
+    been_bridge = True
+
+    while bridge_loop == True:
+      res = input('\n').split(" ")
+      command(res, player, current_room)
+      if res[0] == 'get' or res[0] == 'drop':
+        pass
+      elif res[0] == 'l':
+        check_area(current_room, player)
+      elif res[0] == 'i':
+        check_inventory(player)
+      elif res[0] == 'n':
+        current_room = current_room.room_direction(res[0])
+        bridge_loop = False
+        treasure_loop = True
+        location = 'treasure'
+      elif res[0] == 's':
+        current_room = current_room.room_direction(res[0])
+        bridge_loop = False
+        narrow_loop = True
+        location = 'narrow'
+      elif res[0] == 'q':
+        bridge_loop = False
+      elif not res[0] == 'q':
+        print('\nincorrect input\n')
+
 
   #while player is at treasure
   if location == 'treasure':
@@ -332,13 +366,13 @@ while not res[0] == 'q':
         check_inventory(player)
       elif res[0] == 's':
         current_room = current_room.room_direction(res[0])
-        location = 'narrow'
+        location = 'bridge'
         treasure_loop = False
-        narrow_loop = True
+        bridge_loop = True
       elif res[0] == 'q':
         treasure_loop = False
       elif not res[0] == 'q':
         print('\nincorrect input\n')
 
 print('\nthank you for playing my game.')
-print(f'your ending player score was {player.score}\n')
+print(f'your ending player score was {player.score}')
