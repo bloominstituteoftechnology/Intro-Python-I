@@ -14,3 +14,18 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+
+def draw_calendar(month, year):
+    cal = calendar.TextCalendar()
+    cal_type = cal.formatmonth(int(year), int(month))
+    print(cal_type)
+
+
+if ((sys.argv) == 2):
+    draw_calendar(sys.argv[1], sys.argv[2])
+else:
+    n = datetime.date.today()
+    draw_calendar(n.month, n.year)
