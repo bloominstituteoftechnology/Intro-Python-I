@@ -7,6 +7,7 @@ class Player:
     self.location = start_location
     self.items = [] 
     # if items is None else items
+    self.score = 0
 
   def change_location(self, new_location):
     self.location = new_location
