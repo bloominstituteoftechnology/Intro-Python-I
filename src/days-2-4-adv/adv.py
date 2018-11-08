@@ -64,16 +64,16 @@ print (player.room.name)
 
 # room['outside'].add_items('rocks', ['skull', 'abandoned armor'])
 
-treasure_chest = Treasure('Treasure Chest', """An old pirate relic, overflowing with 
-    bullions and gems""", 100)
-ring = Treasure("Princess Fiora's Ring", """A ring granting the wearer god-like beauty and charm,
-    but removing the ability to love""", 150 )
-crown = Treasure("King Arthur's Crown", """Rumored among mystics and trobadours to grant
-the wearer the ability to read the minds of others""", 225)
-holy_grail = Treasure('Holy Grail', """The enchanted chalice of life. It looks benign 
-    now, but perhaps in the proper hands...""", 350)
+chest = Treasure('Treasure Chest - [chest]' , """An old pirate relic, overflowing with 
+    bullions and gems""", 'chest')
+ring = Treasure("Princess Fiora's Ring - [ring]", """A ring granting the wearer god-like beauty and charm,
+    but removing the ability to love""", 'ring' )
+crown = Treasure("King Arthur's Crown - [crown]", """Rumored among mystics and trobadours to grant
+the wearer the ability to read the minds of others""", 'crown')
+grail = Treasure('Holy Grail - [grail]', """The enchanted chalice of life. It looks benign 
+    now, but perhaps in the proper hands...""", 'grail')
 
-room['treasure'].add_items(treasure_chest, holy_grail)
+room['treasure'].add_items(chest, grail)
 room['narrow'].add_items(ring)
 room['overlook'].add_items(crown)
 
@@ -85,19 +85,23 @@ def action(phrase):
     verb = phrase[0]
     noun = phrase[1]
     if verb in ['get', 'take', 'lift', 'grab', ]:
-        if noun in player.room.item_list:
-            player.room.remove_items(noun)
-            player.add_items(noun)
-            print (f'Thou hath picked up one {noun}')
-        else:
-            print ('The item thou look for is not here')
+        for item in player.room.item_list:
+            if item.value == noun:
+                player.room.remove_items(item)
+                player.add_items(item)
+                print ('This ran')
+                print (f'Thou hath picked up one {item.name}')
+            else:
+                print ('The item thou look for is not here')
     elif verb in ['drop', 'leave', 'forget', 'dump', 'discard', 'abandon' ]:
-        if noun in player.item_list:
-            player.remove_items
-            player.room.add_items(noun)
-            print (f'Thou hath dropped thy {noun}')
-        else:
-            print ('Thou hath not the item thou speak of')
+        print ('is this running? yes')
+        for item in player.item_list:
+            if item.value == noun:
+                player.remove_items(item)
+                player.room.add_items(item)
+                print (f'Thou hath dropped thy {item.name}')
+            else:
+                print ('Thou hath not the item thou speak of')
     else:
         print ('I understand not thy command. Please choose another one')
 
@@ -131,7 +135,12 @@ def single(move):
                 print('You may not move in that direction. Try again')
         elif move in ['inventory', 'i', 'items']:
             print ('~ ~ Thy current inventory ~ ~')
-            print (player.item_list if player.item_list else 'Thou hath nothing')
+            if player.item_list:
+                for item in player.item_list:
+                    print (item.name)
+            else:
+                print ('Thou hath nothing')
+            # print (player.item_list if player.item_list else 'Thou hath nothing')
         elif move == 'score':
             print ('~ ~ Thy current score ~ ~')
             print (player.score)
