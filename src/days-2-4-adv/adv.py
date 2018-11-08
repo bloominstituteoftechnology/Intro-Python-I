@@ -71,21 +71,14 @@ XXXXXXXXXX           |  |             XXXXX
 # Write a loop that:
 #
 # * Prints the current room name
-while True:
+inp = ""
+while inp != "q":
     print(f"\nYou are now in {player.current_room.name}. {player.current_room.descr}.\nPress 'm' at any point to see current location.")
     inp = input("Where would you like to go?")
-    if inp == "n":
-        player.enter(player.current_room.n_to)
-    elif inp == "e":
-        player.enter(player.current_room.e_to)
-    elif inp == "w":
-        player.enter(player.current_room.w_to)
-    elif inp == "s":
-        player.enter(player.current_room.s_to)
-    elif inp == "m":
+    if(inp == "m"):
         map.game_map(player.current_room.name)
-    elif inp == "q":
-        break
+    else:
+        player.current_room = player.move(inp)
 
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
