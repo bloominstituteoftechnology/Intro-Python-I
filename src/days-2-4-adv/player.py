@@ -11,9 +11,9 @@ from item import Item
 # currently.
 #________________________________________________________________________
 
-#item Dictionary, why 'here'? b/c we are Calling items (making specific items from the 
+# item Dictionary, why 'here'? b/c we are Calling items (making specific items from the 
 # Item Classs blueprint) to Player here. Items belongs to Player. Making new Ninjas lol
-#obj name = {
+# obj name = {
 #   'new key name': Class Name blueprint we are drawing from("name", "descrption, these are the properties from the Class")},
 #    'next key': .......
 items = {
@@ -27,57 +27,59 @@ items = {
 }
 
 class Player:
-    def __init__(self, name, currentRoom):
+    def __init__(self, name, current_room):
         self.name = name
-        self.currentRoom = currentRoom
+        self.current_room = current_room
         self.inventory = []
     
-    def lookAround(self, direction = None):
+    def look_around(self, direction = None):
         if direction is None:
-            print(f'{self.name} you step into the {self.currentRoom}')
+            print(f'{self.name} you step into the {self.current_room}')
         else:
-            nextRoom = self.currentRoom.roomDirection(direction)
-            if nextRoom is not None:
-                print(f'{self.name} you see the {nextRoom}')
+            next_room = self.current_room.room_direction(direction)
+            if next_room is not None:
+                print(f'{self.name} you see the {next_room}')
             else:
                 print(f'{self.name} sorry this room is empty.')
 
 
     def travel(self, direction):
-        nextRoom = self.currentRoom.roomDirection(direction)
-        if nextRoom is not None:
-            self.currentRoom = nextRoom
+        next_room = self.current_room.room_direction(direction)
+        if next_room is not None:
+            self.current_room = next_room
         else:
             print("Your path is blocked, try a different way.")
     
-    def grabItem(self, item):
-        if len(self.currentRoom.inventory) > 0 and item in self.currentRoom.inventory:
+    def grab_item(self, item):
+        if len(self.current_room.inventory) > 0 and item in self.current_room.inventory:
             self.inventory.append(item)
-            self.currentRoom.removeItem(item)
+            self.current_room.remove_item(item)
             print(f'You grabbed the {item}')
         else:
             print('no items found sorry...')
             
-    def dropItem(self, item):
+    def drop_item(self, item):
         if len(self.inventory) > 0 and item in self.inventory:
             self.inventory.remove(item)
-            self.currentRoom.addItem(item)
+            self.current_room.add_item(item)
             print(f'{item} dropped...litter bug.')
         else:
             print('No such item found in bag...maybe you dropped it?')
     
-    def lookInventory(self):
+    def look_inventory(self):
         if len(self.inventory) > 0:
-            print("What's in your wallet?")
+            print("\nWhat's in your wallet?")
             for item in self.inventory:
-                print(f'{items[item].name}: {items[item].description}')
+                print(f"---{items[item].name}: {items[item].description}---")
+                print(f"\n{self.name}, what lovely items you've collected... \nShall we continue on our journey?")
+                print(f'\n{self.current_room}')
         else:
             print("nothing but lint in here, sorry buddy.")
 
 #________Lecture Example________________________
 # class Player:
-#     def __init__(self, currentRoom):
-#         self.currentRoom = currentRoom
+#     def __init__(self, current_room):
+#         self.current_room = current_room
 #         self.health = 100
 #         self.inventory = []
         
@@ -95,11 +97,11 @@ class Player:
 #         # The arguments are an object and a string. The result is True if the string is the name of
 #         # one of the object’s attributes, False if not. (This is implemented by calling getattr(object, name) 
 #         # and seeing whether it raises an exception or not.)
-#         if not hasattr(self.currentRoom, d):
+#         if not hasattr(self.current_room, d):
 #             print("The path is blocked, choose a different door...")
-#             return self.currentRoom
+#             return self.current_room
 #         else:
-#             self.currentRoom = self.currentRoom[d]
-            #
+#             self.current_room = self.current_room[d]
+            
 
 
