@@ -19,15 +19,19 @@ class Player:
 
     def show_inventory(self):
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        print("\n===In your inventory: ")
+        print("\n===Your inventory: ")
         for item in self.inventory:
             print(f"{item.name} - {item.desc}")
+        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
     def add_item(self, item):
         searched_item = list(
             filter(lambda x: x.name.lower() == item.lower(), self.current.items)
         )
-        self.inventory.append(searched_item[0])
-        self.current.items.remove(searched_item[0])
-        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        print(f"\n===You grabbed {item}.")
+        if len(searched_item) == 0:
+            print("Item not found.")
+        else:
+            self.inventory.append(searched_item[0])
+            self.current.items.remove(searched_item[0])
+            print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print(f"\n===You grabbed {item}.")

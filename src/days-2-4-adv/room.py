@@ -29,9 +29,10 @@ class Room:
 
     def show_items(self):
         print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        print(f"\n===In the {self.name}, you find: ")
+        print(f"\n===You find: ")
         for item in self.items:
             print(f"{item.name} - {item.desc}")
+        print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
     def remove_item(self, item):
         self.items.remove(item)

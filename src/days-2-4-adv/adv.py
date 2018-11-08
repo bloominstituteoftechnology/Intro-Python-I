@@ -114,9 +114,12 @@ while True:
 while True:
     print(f"\n\n===You are in {player.current.name.upper()}.")
     print(f"{player.current.desc}.\n")
-    print("Go [n]orth [e]ast [s]outh [w]est")
-    print("[search room] [get item]")
-    print("[open inventory] [drop item] [q]uit\n")
+    print("Go [n]orth [e]ast [s]outh [w]est\n")
+    print("[search] area")
+    print("[inventory] check\n")
+    print("[get <item>]")
+    print("[drop <item>]\n")
+    print("[q]uit\n")
     choice = input("===What to do? ")
     if len(choice) == 1:
         if choice == "q":
@@ -134,15 +137,18 @@ while True:
             print(f"\nPlease make a choice.")
     elif len(choice) > 1:
         format_choice = choice.lower().split(" ")
-        if format_choice[0] == "search" and format_choice[1] == "room":
+        if choice == "search":
             player.current.show_items()
-        elif format_choice[0] == "open" and format_choice[1] == "inventory":
+        elif choice == "inventory":
             player.show_inventory()
-        elif format_choice[0] == "get":
-            if format_choice[1]:
+        elif (format_choice[0] == "get" or format_choice[0] == "take") and len(
+            format_choice
+        ) == 2:
+            if len(format_choice[1]) > 0:
                 player.add_item(format_choice[1])
-                # player.current.remove_item(format_choice[1])
+            else:
+                print("Enter an item also.")
         else:
-            print(f"\nPlease make a choice.")
+            print(f"\nTry again.")
     else:
         print(f"\nAgain, where would you like to go?")
