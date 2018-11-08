@@ -47,10 +47,10 @@ while True:
     else:
         player = Player(new_player, room["outside"])
         player.populate_inventory(
-            Item("Bread", "Some hard, crusty bread that looks good right about now.")
+            Item("Bread that looks moldy.")
         )
         print(f"\n*~*~*~*~*~*\nWelcome to Myst...\n{player.name}\n*~*~*~*~*~*")
-        break"
+        break
 
 # Write a loop that:
 #
@@ -62,3 +62,5 @@ while True:
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+

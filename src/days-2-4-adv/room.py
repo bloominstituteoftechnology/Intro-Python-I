@@ -10,6 +10,17 @@ class Room:
     self.s_to = None
     self.w_to = None
 
+def to_new(self, direction):
+    if direction ==
+        return self.n_to
+    if direction ==
+        return
+    if direction ==
+        return
+    if direction ==
+        return
+
+
 
 
 
