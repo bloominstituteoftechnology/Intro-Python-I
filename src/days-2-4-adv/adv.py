@@ -114,7 +114,7 @@ while not done:
 
   elif s[0] == "search":
     time.sleep(1)
-    print("\nYou also see:\n")
+    print("\nYou found:\n")
     time.sleep(1)
     for item in player.current.contents:
         print("     " + str(item))
