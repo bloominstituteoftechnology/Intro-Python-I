@@ -3,27 +3,36 @@ from player import Player
 from item import Item
 # Declare all the rooms
 
-# Items -
-crate = Item("Wooden Crate", "Hmm... there might be something useful in there. If there were only a way I could open it")
-
+items = {
+    'crate': Item('Wooden Crate', 'Could be something valuable in there. If only there was a way to open it'),
+    'torch': Item('Torch', 'A useful light source. Don\'t get it wet!'),
+    'sword': Item('Iron Sword', 'How do you like your goblin? Medium rare? Or Dead.')
+}
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",
+                     [
+                        items['crate'],
+                        items['torch']
+                     ]),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+    'foyer':    Room("Foyer", 
+                    """Dim light filters in from the south. Dusty passages run north and east.""", 
+                    []),                    
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+    'overlook': Room("Grand Overlook", 
+                    """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
+                    [
+                        items['sword']
+                    ]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", []),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", []),
 }
 
 
@@ -36,6 +45,7 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
 
 #
 # Main
@@ -56,8 +66,8 @@ while True:
 
     if len(create_name) == 0:
         print("\nYour adventurer cannot be name-less!\n")
-    else:
-        user_1 = Player(create_name, room['outside'])
+    else:        
+        user_1 = Player(create_name, room['outside'], [])
         break
 
 
@@ -105,7 +115,7 @@ while True:
             if hasattr(user_1.room, 'e_to'):
                 user_1.room = user_1.room.e_to
 
-            else: # tell user they cannot go that way
+            else:
                 print(f"{user_1.name} looks at the direction you commanded the adventurer with a look of suspicion... {user_1.name} tells you: I cannot move that way sire!")
 
         elif (direction[0]) == "s":
@@ -121,6 +131,16 @@ while True:
 
             else:
                 print(f"{user_1.name} looks at the direction you commanded the adventurer with a look of suspicion... {user_1.name} tells you: I cannot move that way sire!")       
+        
+        elif (direction[0]) == "i":
+            print("Inventory: \n")
+
+            if len(user_1.inventory) == 0:
+                print("Empty.")
+            else:
+                for item in user_1.inventory:
+                    print(f"{item.name}: {item.description}")
+
             
     else:
         print("\n===Please enter: n, e, s, w (north, east, south, west)===\n")
