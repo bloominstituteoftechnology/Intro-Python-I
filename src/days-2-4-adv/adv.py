@@ -2,6 +2,7 @@ import textwrap
 import time
 from room import Room
 from player import Player
+from item import item
 
 # Declare all the rooms
 
@@ -80,6 +81,7 @@ def direction(direction, current):
     # Otherwise print an error and stay in the same room
     print("\nYou can NOT go that way")
     time.sleep(1)
+
     return current
 
 done = False
