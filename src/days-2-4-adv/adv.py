@@ -4,30 +4,43 @@ from item import Item
 
 # Declare all the rooms
 
+items = {
+    "rock": Item("rock", "can be used a a weapon and good for building"),
+    "sword": Item("sword", "is a weapon and can be used for cutting and slicing things"),
+    "coins": Item("coins", "can be used to purchase things"),
+}
+
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",
+                     [items['rock']],),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""",
+[items['sword']],),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""",
+[],),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""",
+[items['coins']],),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""",
+[],),
 }
 
 # Declare all items
 
-rock = Item("Rock", "can be used a a weapon and good for building")
+
+
+'''rock = Item("Rock", "can be used a a weapon and good for building")
 sword = Item("Sword", "is a weapon and can be used for cutting and slicing things")
-coins = Item("Coins", "can be used to purchase things")
+coins = Item("Coins", "can be used to purchase things")'''
 
 # Link rooms together
 
@@ -40,10 +53,10 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-# Items in rooms
-room['outside'].add_item(rock)
-room['narrow'].add_item(coins)
-room['foyer'].add_item(sword)
+'''# Items in rooms
+room['outside'].add_item(Rock)
+room['narrow'].add_item(Coins)
+room['foyer'].add_item(Sword)'''
 
 #
 # Main
@@ -88,12 +101,13 @@ while True:
         if player.items:
             player.inventory()
 
-    if command == 'get':
+    if command == 'get' or 'take':
         if not player.location.items:
             print("You have no items to pick up.")
-        elif not player.location.find_item[target]:
+        elif not player.location.find_item(target):
             print("This item is not what you are looking for.")
         else:
+            # new_item = target
             new_item = items[target]
             player.location.remove_item(new_item)
             player.get(new_item)
@@ -104,6 +118,7 @@ while True:
         elif not player.find_item(target):
             print('This is not one of the items you are carrying')
         else:
+            # dropped_item = target
             dropped_item = items[target]
             player.drop(dropped_item)
             player.location.add_item(dropped_item)

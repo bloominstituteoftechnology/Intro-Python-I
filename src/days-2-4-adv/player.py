@@ -5,7 +5,8 @@ from item import Item
 class Player:
   def __init__(self, start_location):
     self.location = start_location
-    self.items = []
+    self.items = [] 
+    # if items is None else items
 
   def change_location(self, new_location):
     self.location = new_location
@@ -20,13 +21,25 @@ class Player:
     self.items.append(item)
 
   def drop(self, item):
-    if len(self.items) > 0:
+    del self.items[self.items.index(item)]
+    '''if len(self.items) > 0:
       for i in self.items:
         if i.name == item:
           self.items.remove(i)
         else:
-          print('There is no item to remove at this time')
-
+          print('There is no item to remove at this time')'''
+  
   # List items a player has with him
   def inventory(self):
     print(f"\n Here are the items you have with you: {', '.join(item.name for item in self.items)}")
+    # print(f"\n Here are the items you have with you: {', '.join(item for item in self.items)}")
+  
+  # Find a specific item in that the player is carrying
+  def find_item(self, item_name):
+    for item in self.items:
+      if item.name == item_name:
+        return True
+      return False
+
+  '''def __str__(self):
+    return f"\n   {self.location.name}\n  {self.location.description}\n"    '''

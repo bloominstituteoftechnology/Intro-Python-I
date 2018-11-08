@@ -2,10 +2,10 @@
 # description attributes.
 
 class Room:
-  def __init__(self, name, description):
+  def __init__(self, name, description, items):
     self.name = name
     self.description = description
-    self.items = []
+    self.items = [] if items is None else items
     self.n_to = None
     self.s_to = None
     self.e_to = None
@@ -32,20 +32,21 @@ class Room:
 
   # Removes an item from a room
   def remove_item(self, item):
-    if len(self.items) > 0:
+    del self.items[self.items.index(item)]
+    '''if len(self.items) > 0:
       for i in self.items:
         if i.name == item:
           self.items.remove(i)
     else:
-      print('There is no item to remove')
+      print('There is no item to remove')'''
 
   # List items in the room
   def list_items(self):
     print(f"\n Here are the items in this room: {', '.join(item.name for item in self.items)}")
 
   # Find a specific item in  room
-  def find_item(self, name):
+  def find_item(self, item_name):
     for item in self.items:
-      if item.name == name:
+      if item.name == item_name:
         return True
       return False
