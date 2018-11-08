@@ -15,7 +15,7 @@ class Treasure(Item):
 class Weapon(Item):
     def __init__(self, name, description, value):
         super().__init__(name, description)
-        self.attack = value
+        self.attack_power = value
         self.equippable = True
 class Armor(Item):
     def __init__(self, name, description, value):

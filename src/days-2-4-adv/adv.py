@@ -56,7 +56,7 @@ coins = Treasure("Coins", "A small pile of coins.", 50)
 sword = Weapon("Sword", "A standard arming blade.", 10)
 big_rock = Item("Big Rock", "This is a big rock.")
 
-goblin = Monster("Goblin", 10, 5, 0)
+goblin = Monster("Goblin", 15, 5, 0)
 
 room['outside'].addItem(rock)
 room['outside'].addItem(big_rock)
@@ -194,7 +194,7 @@ while True:
                 else:
                     print("You are not holding that item.")
             else:
-                itemToEquip = player.findItembyName(" ".join(cmds[1:]))
+                itemToUnequip = player.findItembyName(" ".join(cmds[1:]))
                 if itemToUnequip is not None:
                     player.unequipItem(itemToUnequip)
                     player.addItem(itemToUnequip)
@@ -204,5 +204,22 @@ while True:
                     recent_item.append(" ".join(cmds[1:]))
                 else:
                     print("You are not holding that item.") 
+        elif cmds[0] == "fight":
+            monsterToFight = player.currentRoom.findMonsterbyName(" ".join(cmds[1:]))
+            if monsterToFight is not None:
+                while monsterToFight.killed != True and player.killed != True:
+                    player.attack(monsterToFight)
+                    print(f"You delt {player.attack_power}dmg to {monsterToFight.name}!")
+                    if monsterToFight.health <= 0:
+                        monsterToFight.killed = True
+                        print(f"You have slain the {monsterToFight.name}!")
+                    if monsterToFight.killed != True:
+                        monsterToFight.attack(player)
+                        print(f"{monsterToFight.name} delt {monsterToFight.attack_power}dmg to you!")
+                        if player.health <= 0:
+                            player.killed = True
+                            print("You have died!")
+            else:
+                print("There is nothing here to fight.")    
         else:
             print("I did not understand that command.")  

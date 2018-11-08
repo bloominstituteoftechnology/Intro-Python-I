@@ -41,7 +41,7 @@ class Room:
         self.monsters.append(monster)
     def findMonsterbyName(self, name):
         for monster in self.monsters:
-            if monster.name.lower() == monster.lower():
+            if monster.name.lower() == name.lower():
                 return monster
         return None
     

@@ -9,14 +9,14 @@ class Player:
         self.equiped_items = []
         self.max_health = 20
         self.health = self.max_health
-        self.attack = 0
+        self.attack_power = 0
         self.defense = 0
         self.killed = False
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
             self.currentRoom = nextRoom
-            light_sources = [item for item in self.items if item.lightsource]
+            light_sources = [item for item in self.items if hasattr(item,'lightsource')]
             light = nextRoom.light or len(light_sources) > 0
             if light:                
                 print(nextRoom)
@@ -51,7 +51,7 @@ class Player:
         for item in self.items:
             print(f"    {item.name}\n")
     def printStats(self):
-        print(f"Name: {self.name}\nHealth: {self.health}\nAttack: {self.attack}\nDefense: {self.defense}")
+        print(f"Name: {self.name}\nHealth: {self.health}\nAttack: {self.attack_power}\nDefense: {self.defense}")
     def addItem(self, item):
         if hasattr(item, 'treasure'):
             self.items.append(item)
@@ -73,15 +73,15 @@ class Player:
         return None
     def equipItem(self, item):        
         self.equiped_items.append(item)
-        if hasattr(item, 'attack'):
-            self.attack = item.attack
+        if hasattr(item, 'attack_power'):
+            self.attack_power = item.attack_power
         if hasattr(item, 'defense'):
             self.defense = item.defense
     def unequipItem(self, item):        
         self.equiped_items.remove(item)
-        if hasattr(item, 'attack'):
-            self.attack = self.attack - item.attack
+        if hasattr(item, 'attack_power'):
+            self.attack_power = self.attack_power - item.attack_power
         if hasattr(item, 'defense'):
             self.defense = self.defense - item.defense
     def attack(self, target):
-        target.health -= self.attack            
+        target.health -= self.attack_power            
