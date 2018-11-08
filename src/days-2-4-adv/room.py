@@ -25,6 +25,7 @@ class Room:
         elif direction == "w":
             return self.w_to
         else:
+            return None
     def addItem(self, item):
         self.items.append(item)
     def removeItem(self, item):

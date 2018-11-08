@@ -5,7 +5,7 @@ class Player:
     def __init__(self, name, currentRoom):
         self.name = name
         self.currentRoom = currentRoom 
-        self.currentRoom = currentRoom
+        self.items = []
     def travel(self, direction):
         nextRoom = self.currentRoom.getRoomInDirection(direction)
         if nextRoom is not None:
@@ -13,8 +13,8 @@ class Player:
             print(nextRoom)
         else:
             print("You cannot move that way.")
-    def look(self, direction):
-        if nextRoom is not None:            
+    def look(self, direction = None):
+        if direction is not None:            
             print(self.currentRoom)
         else:
             nextRoom = self.currentRoom.getRoomInDirection(direction)
