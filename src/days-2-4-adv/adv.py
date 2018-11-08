@@ -32,14 +32,14 @@ def tprint(string, speed=0.05):
 def title_screen():
     os.system('clear')
     print(f'{Fore.GREEN}')
-    print(f''.center(70, '#'))
-    print(f'Tale of Tacronora'.center(70, ' '))
-    print(f''.center(70, '#'))
-    print(f'Play'.center(70, ' '))
-    print(f'Help'.center(70, ' '))
-    print(f'Quit'.center(70, ' '))
-    print(f'MIT 2018'.center(70, ' '))
-    print(f''.center(70, '#'))
+    print(f''.center(75, '#'))
+    print(f'Tale of Tacronora'.center(75, ' '))
+    print(f''.center(75, '#'))
+    print(f'Play'.center(75, ' '))
+    print(f'Help'.center(75, ' '))
+    print(f'Quit'.center(75, ' '))
+    print(f'Copyright Jeremy Boggs MIT 2018'.center(75, ' '))
+    print(f''.center(75, '#'))
     print(f'{Style.RESET_ALL}')
     title_screen_selections()
 
@@ -48,13 +48,13 @@ def title_screen():
 def help_menu():
     os.system('clear')
     print(f'{Fore.BLUE}')
-    print(f''.center(70, '#'))
-    print(f'Tale of Tacronora - Help'.center(70, ' '))
-    print(f''.center(70, '#'))
-    print(f'Type go/move <direction> to move direction'.center(70, ' '))
-    print(f'Use "look/examine" to look around the room'.center(70, ' '))
-    print(f'And last of all, have fun!'.center(70, ' '))
-    print(f''.center(70, '#'))
+    print(f''.center(75, '#'))
+    print(f'Tale of Tacronora - Help'.center(75, ' '))
+    print(f''.center(75, '#'))
+    print(f'Type go/move <direction> to move direction'.center(75, ' '))
+    print(f'Use "look/examine" to look around the room'.center(75, ' '))
+    print(f'And last of all, have fun!'.center(75, ' '))
+    print(f''.center(75, '#'))
     print(f'{Style.RESET_ALL}')
     title_screen_selections()
 
@@ -69,6 +69,7 @@ def title_screen_selections():
     elif option.lower() == 'help':
         help_menu()
     elif option.lower() == 'quit':
+        tprint('Play again!\n', 0.03)
         sys.exit()
     elif option.lower() == 'back':
         title_screen()
@@ -85,7 +86,7 @@ def set_init_player():
     global player
 
     # Ask the player for the character name
-    question_name = "\nEnter Your Character's Name\n"
+    question_name = "\n Enter Your Character's Name\n"
     tprint(question_name)
     player_name = input("> ")
 
@@ -95,7 +96,7 @@ def set_init_player():
     # TODO: Refactor the next two questions to be DRY
 
     # Ask the player's gender
-    question_gender = '\nAre you male or female?\n'
+    question_gender = '\n Are you male or female?\n'
     tprint(question_gender)
 
     player_gender = input("> ")
@@ -109,7 +110,7 @@ def set_init_player():
             player.sex = player_gender.capitalize()
 
     # Ask the player for their preferred class
-    question_class = "\nPick your class:\n" \
+    question_class = "\n Pick your class:\n" \
                      "Warrior\n" \
                      "Mage\n" \
                      "Thief\n"
@@ -127,9 +128,10 @@ def set_init_player():
             player.job = jobs[job.capitalize()]
 
     # Ask the player if the name is correct
-    question_correct = f'\n{Fore.BLUE}{player_name}{Style.RESET_ALL}, {player.sex}, {player.job.name} is correct? [y] ' \
+    question_correct = f'\n {Fore.BLUE}{player_name}{Style.RESET_ALL}, {Fore.BLUE}{player.sex}{Style.RESET_ALL}, ' \
+                       f'{Fore.BLUE}{player.job.name}{Style.RESET_ALL} is correct? [y] ' \
                        f'yes or [n] no?\n'
-    tprint(question_correct, 0.01)
+    tprint(question_correct, 0.03)
     result = input("> ")
 
     # If the name is right, set the player and continue the game,
@@ -151,10 +153,10 @@ def set_init_player():
 # Display the room message
 def room_message():
     os.system('clear')
-    tprint(f'\n{player.room.name}\n', 0.03)
+    tprint(f'\n {player.room.name}\n', 0.03)
     desc = textwrap.wrap(player.room.description, width=70)
     for element in desc:
-        tprint(f'{element}\n', 0.03)
+        tprint(f' {element}\n', 0.03)
 
 
 # TODO: Simplify/Abstract this
@@ -183,40 +185,59 @@ def item_exists(item):
 
 
 def prompt():
-    tprint('\nWhat do you do?\n')
+    tprint('\n What do you do?\n', 0.03)
+
+    # Input for the action to be taken - split into list
     action = input("> ").split()
-    acceptable_actions = ['quit', 'character', 'go', 'move', 'examine', 'pickup', 'drop', 'inventory', 'get',
-                          'look', 'look around', 'examine room', 'equip', 'unequip']
-    while action[0].lower() not in acceptable_actions:
+    combined_action = ' '.join(action[:2])
+
+    # Complete list of all the actions to be done
+    valid_actions = ['quit', 'character', 'char', 'i', 'inventory', 'get', 'take', 'pickup', 'drop', 'go', 'move',
+                     'look around', 'examine room', 'equip', 'unequip']
+
+    while action[0].lower() not in valid_actions:
+        if combined_action in valid_actions:
+            break
+
         tprint('Unknown action, try again\n')
         action = input("> ").split()
+        combined_action = ' '.join(action[:2])
+
+    if combined_action.lower() in ['look around', 'examine room']:
+        player.look_around()
+
     if action[0].lower() == 'quit':
+        tprint('Play again!\n', 0.03)
         sys.exit()
-    elif action[0].lower() in ['move', 'go']:
+
+    elif action[0].lower() in ['go', 'move']:
         player.movedir(action[1].lower())
         room_message()
-    elif action[0].lower() in ['pickup', 'get']:
+
+    elif action[0].lower() in ['get', 'take', 'pickup']:
         item = ' '.join(action[1:])
         if item_exists(item):
             player.pickup_item(items[item.title()])
         else:
             print(f'You looked for a {item}, but did not find anything')
+
     elif action[0].lower() == 'drop':
         item = ' '.join(action[1:])
         if item_exists(item):
             player.drop_item(items[item.title()])
         else:
             print(f'You tried to drop {item}, but it\'s not in your inventory')
-    elif action[0].lower() in ['look', 'look around', 'examine room']:
-        player.look_around()
-    elif action[0].lower() in ['inventory', 'character']:
+
+    elif action[0].lower() in ['character', 'i', 'inventory']:
         player.player_info()
+
     elif action[0].lower() in ['equip']:
         item = ' '.join(action[1:])
         if item_exists(item):
             player.equip_weapon(items[item.title()])
         else:
             print(f'You tried to equip {item}, but it\'s not in your inventory')
+
     elif action[0].lower() in ['unequip']:
         item = ' '.join(action[1:])
         if item_exists(item.title()):

@@ -51,7 +51,7 @@ class Player:
 
         os.system('clear')
         info = (f'  NAME: {Fore.GREEN}{self.name}{Style.RESET_ALL} <[{Fore.CYAN}{self.level}{Style.RESET_ALL}]> '
-                f'[{self.job.name} - {self.sex}]\n'
+                f'[{self.job.name} - {self.sex}] - [{self.room.name}]\n'
                 f'   WEAP: {self.weapon.name} - {self.armour.description}\n'
                 f'   ARMR: {self.armour.name} - {self.armour.description}\n'
                 f'   SHLD: {self.shield.name} - {self.shield.description}\n'
@@ -137,9 +137,12 @@ class Player:
             print("\n You looked around the room, but found no items")
             return
 
+        count = 0
         print(f'\nYou looked around the room and found:')
         for item in self.room.inventory:
-            print(f' [ ] {item.name} - {item.description}')
+            count += 1
+            print(f' [{Fore.GREEN}{count}{Style.RESET_ALL}] {Fore.GREEN}{item.name}{Style.RESET_ALL} - '
+                  f'{item.description}')
 
     # Handles the movement of the Player
     def movedir(self, direction):
