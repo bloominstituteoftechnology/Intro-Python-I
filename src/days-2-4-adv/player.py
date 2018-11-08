@@ -16,24 +16,18 @@ class Player:
         self.game_over = False
         self.room = None
         self.name = None
-        self.job = 'Mage'
+        self.job = None
         self.sex = 'Male'
         self.direction = 'north'
         self.inventory = []
         self.level = 1
-        self.weapon = {}
-        self.armour = {}
-        self.shield = {}
         self.hp = 100
         self.max_hp = 100
         self.mp = 100
         self.max_mp = 100
-        self.attack = 30
-        self.vitality = 10
-        self.strength = 10
-        self.intelligence = 10
-        self.dexterity = 10
-        self.wisdom = 10
+        self.weapon = {}
+        self.armour = {}
+        self.shield = {}
         self.gold = 1000
 
     # Return a formatted value of the Player class
@@ -42,18 +36,17 @@ class Player:
 
     def player_info(self):
         info = (f'  NAME: {Fore.GREEN}{self.name}{Style.RESET_ALL} <[{Fore.CYAN}{self.level}{Style.RESET_ALL}]> '
-                f'[{self.job} - {self.sex}]\n'
+                f'[{self.job.name} - {self.sex}]\n'
                 '   WEAP: Sapping Threshmaul\n'
                 '   ARMR: Blessed Breast Plate\n'
                 '   SHLD: Empty Slot\n'
-                f'    VIT: {self.vitality}\n'
-                f'    STR: {self.strength}\n'
-                f'    INT: {self.intelligence}\n'
-                f'    DEX: {self.dexterity}\n'
-                f'    WIS: {self.wisdom}\n\n'
+                f'    VIT: {self.job.vitality}\n'
+                f'    INT: {self.job.intelligence}\n'
+                f'    DEX: {self.job.dexterity}\n'
+                f'    WIS: {self.job.wisdom}\n\n'
                 f'  HP {Fore.GREEN}{self.hp}{Style.RESET_ALL}/{Fore.GREEN}{self.max_hp}{Style.RESET_ALL}   '
-                f'ATK: {self.attack}   MP: <{Fore.CYAN}{self.mp}{Style.RESET_ALL}/{Fore.CYAN}{self.max_mp}'
-                f'{Style.RESET_ALL} >   GOLD: {Fore.YELLOW}{self.gold}{Style.RESET_ALL}\n')
+                f'ATK: {self.job.attack}   MP: <{Fore.CYAN}{self.mp}{Style.RESET_ALL}/{Fore.CYAN}{self.max_mp}'
+                f'{Style.RESET_ALL}>   GOLD: {Fore.YELLOW}{self.gold}{Style.RESET_ALL}\n')
 
         title = ('  +----------------------------------------------------------------------+\n'
                  '  | INVENTORY:                                                           |\n'

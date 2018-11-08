@@ -6,6 +6,7 @@ import time
 from player import Player
 from rooms import room
 from rooms import items
+from jobs import jobs
 
 from colorama import Fore
 from colorama import Style
@@ -91,6 +92,22 @@ def set_init_player():
     if player_name == '':
         set_init_player()
 
+    # Ask the player for their preferred class
+    question_class = "\nPick your class:\n" \
+                     "Warrior\n" \
+                     "Mage\n" \
+                     "Thief\n"
+
+    tprint(question_class, 0.05)
+    job = input("> ")
+    all_jobs = ['warrior', 'mage', 'thief']
+    if job in all_jobs:
+        player.job = jobs[job.capitalize()]
+    while job not in all_jobs:
+        job = input("> ")
+        if job in all_jobs:
+            player.job = jobs[job.capitalize()]
+
     # Ask the player if the name is correct
     question_correct = f'\nAre you sure {Fore.BLUE}{player_name}{Style.RESET_ALL} is the right name? [y] ' \
                        f'yes or [n] no?\n'
@@ -113,10 +130,10 @@ def set_init_player():
 # Display the room message
 def room_message():
     os.system('clear')
-    tprint(f'\n{player.room.name}\n')
+    tprint(f'\n{player.room.name}\n', 0.03)
     desc = textwrap.wrap(player.room.description, width=70)
     for element in desc:
-        tprint(f'{element}\n')
+        tprint(f'{element}\n', 0.03)
 
 
 # TODO: Simplify/Abstract this
