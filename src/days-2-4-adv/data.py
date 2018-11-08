@@ -1,19 +1,26 @@
 from room import Room 
-from item import Item 
+from item import Item
+from item import Treasure
+from item import LightSource
 
 # Define items
 item = {
     'scroll': Item('Scroll', 'A rolled-up piece of old paper'),
     'dictionary': Item('Dictionary', 'An old dusty book with lots of words in it'),
-    'holy_grail': Item('Holy Grail', 'A golden chalice')
+    'holy_grail': Treasure('Holy Grail', 'A golden chalice',100),
+    'map': Item('Map', 'A map of the building'),
+    'first-aid_kit': Item('First-aid Kit', 'A box of bandages and oitments for patching the wounds.'),
+    'ring': Treasure('Ring', 'A golden ring',10),
+    'diamond': Treasure('Diamond', 'A ridiculously large piece of diamon',50),
+    'lamp': LightSource('lamp', 'An oil lamp')
 }
 
-#Define rooms and their descriptions
+#Define rooms, their descriptions, and initial items found
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons", [item['scroll'], item['dictionary']]),
 
-    'foyer':    Room("Foyer", "Dim light filters in from the south. Dusty passages run north and east.", []),
+    'foyer':    Room("Foyer", "Dim light filters in from the south. Dusty passages run north and east.", [item['ring'], item['lamp']]),
 
     'overlook': Room("Grand Overlook", "A steep cliff appears before you,falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.", []),
 
