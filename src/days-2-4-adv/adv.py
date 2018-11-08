@@ -39,7 +39,6 @@ items = {
 }
 
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -96,7 +95,8 @@ def set_init_player():
         set_init_player()
 
     # Ask the player if the name is correct
-    question_correct = f'\nAre you sure {player_name} is the right name? [y] yes or [n] no?\n'
+    question_correct = f'\nAre you sure {Fore.BLUE}{player_name}{Style.RESET_ALL} is the right name? [y] ' \
+                       f'yes or [n] no?\n'
     tprint(question_correct, 0.01)
     result = input("> ")
 
@@ -193,24 +193,30 @@ def title_screen_selections():
 
 def title_screen():
     os.system('clear')
-    print(f'{Fore.GREEN}######################')
-    print(f'{Fore.GREEN}#  Tale of Tacronora #')
-    print(f'{Fore.GREEN}######################')
-    print(f'{Fore.GREEN}#      - Play -      #')
-    print(f'{Fore.GREEN}#      - Help -      #')
-    print(f'{Fore.GREEN}#      - Quit -      #')
-    print(f'{Fore.GREEN}#      MIT 2018      #{Style.RESET_ALL}')
+    print(f'{Fore.GREEN}')
+    print(f''.center(70, '#'))
+    print(f'Tale of Tacronora'.center(70, ' '))
+    print(f''.center(70, '#'))
+    print(f'Play'.center(70, ' '))
+    print(f'Help'.center(70, ' '))
+    print(f'Quit'.center(70, ' '))
+    print(f'MIT 2018'.center(70, ' '))
+    print(f''.center(70, '#'))
+    print(f'{Style.RESET_ALL}')
     title_screen_selections()
 
 
 def help_menu():
     os.system('clear')
-    print(f'{Fore.GREEN}#############################')
-    print(f'{Fore.GREEN}#  Tale of Tacronora - Help #')
-    print(f'{Fore.GREEN}#############################')
-    print(f'{Fore.GREEN}#-- Type go <direction> to move direction')
-    print(f'{Fore.GREEN}#-- Use "look/examine" to look around the room')
-    print(f'{Fore.GREEN}#-- And last of all, have fun!{Style.RESET_ALL}')
+    print(f'{Fore.BLUE}')
+    print(f''.center(70, '#'))
+    print(f'Tale of Tacronora - Help'.center(70, ' '))
+    print(f''.center(70, '#'))
+    print(f'Type go/move <direction> to move direction'.center(70, ' '))
+    print(f'Use "look/examine" to look around the room'.center(70, ' '))
+    print(f'And last of all, have fun!'.center(70, ' '))
+    print(f''.center(70, '#'))
+    print(f'{Style.RESET_ALL}')
     title_screen_selections()
 
 
