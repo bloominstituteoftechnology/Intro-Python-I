@@ -47,7 +47,6 @@ room['narrow'].contents.append(coin)
 # Make a new player object that is currently in the 'outside' room.
 
 while True:
-    time.sleep(1)
     print("\n\nHello,")
     time.sleep(1)
     new_player = input("\nType in player's name: ")
@@ -114,9 +113,12 @@ while not done:
     time.sleep(2)
 
   elif s[0] == "search":
+    time.sleep(1)
     print("\nYou also see:\n")
+    time.sleep(1)
     for item in player.current.contents:
         print("     " + str(item))
+        time.sleep(1)
     # If the user enters "q", quit the game.
   elif s[0] == "quit" or s[0] == "q":
             done = True
