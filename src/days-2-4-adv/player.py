@@ -9,14 +9,24 @@ class Player:
 	def try_move(self, direction):
 		d = direction + "_to"
 
-		if not hasattr(self.currentRoom, d):
-			print("You can't go that way!")
-			return self.currentRoom
+		next_move = getattr(self.location, d)
+
+		if not next_move:
+			input("You can't go that way! Press Enter to continue")
+			return self.location
 		else:
-			self.currentRoom = getattr(self.currentRoom, d)
+			self.location = next_move
 
 	def pickup_item(self, item):
-		self.inventory.append(item)
+		if item in self.location.items:
+			self.inventory.append(item)
+			self.location.items.remove(item)
+		else:
+			print(f"There is no {item} to take! Press Enter to continue")
 
 	def drop_item(self, item):
-		self.inventory.remove(item)
+		if item in self.inventory:
+			self.inventory.remove(item)
+			self.location.items.append(item)
+		else:
+			input(f"You don't have this item to drop! Press Enter to continue")

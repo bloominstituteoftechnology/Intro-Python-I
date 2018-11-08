@@ -19,14 +19,14 @@ def clear():
 
 room = {
     'outside':  Room("outside the Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", ["sword", "key"]),
 
     'foyer':    Room("in the Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
     'overlook': Room("at the Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""",["dragon's egg"]),
 
     'narrow':   Room("at the Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
@@ -52,50 +52,66 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-direction = {"N","S","W","E","n","s","w","e"}
+directions = {"N","S","W","E","n","s","w","e"}
 action_verbs = {"take", "drop"}
 
 # Make a new player object that is currently in the 'outside' room.
+
+
 def play_game():
 	clear()
 	print("Welcome to the game!")
 	name = input("Type your name to begin:")
 	
-	player = Player(name, room["outside"])
+	player = Player(name, room["outside"], ["sword", "book"])
 
 	while True:
 		clear()
 		print(f"You are {player.location.name}:")
 		print(" ".join(textwrap.wrap(player.location.description)))
-		direction = input("Will you go N, S, E, or W? ")
+		
+		print("\nYour items: " + ", ".join(player.inventory))
+
+		if len(player.location.items) > 0:
+			print("Items in the room: " + ", ".join(player.location.items))
+		
+		user_input = input("\nWill you go N, S, E, or W? ")
 
 		#  exits game
-		if direction.lower() == "q":
+		if user_input.lower() == "q":
 			break
 
-		try:
-			if direction:
-				raise ValueError()
-		except ValueError:
-			clear()
-			input(f"{direction} is not a valid direction. Press enter to try again")
-			continue
+		input_split = user_input.split(" ", 1)
 
-		if direction == "N":
-			next = player.location.n_to
-		elif direction == "S":
-			next = player.location.s_to
-		elif direction == "E":
-			next = player.location.e_to
+		# User chooses a direction
+		if len(input_split()) == 1:
+			try:
+				if not user_input in directions:
+					raise ValueError()
+			except ValueError:
+				clear()
+				input(f"{user_input} is not a valid direction. Press enter to try again")
+				continue
+
+			player.try_move(user_input.lower())
+		elif len(input_split) == 2:
+			# User chooses an action
+			verb = input_split[0].lower()
+			item = input_split[1].lower()
+			if verb in action_verbs:
+				if verb.lower() == "take":
+					player.pickup_item(item)
+				elif verb.lower() == "drop":
+					player.pickup_item(item)
+			else:
+				input("You cannot perform this action. Hit Enter to try again")
 		else:
-			next = player.location.w_to
-		if next:
-			player.location = next
-		else:
-			clear()
-			print("There is nothing in that direction")
-			input("Press enter to try again")
-			continue
+			input("Invalid input. Press enter to try again.")
+
+
+
+
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -107,5 +123,4 @@ def play_game():
 #
 # If the user enters "q", quit the game.
 
-# play_game()
-print("n" in direction)
+play_game()
