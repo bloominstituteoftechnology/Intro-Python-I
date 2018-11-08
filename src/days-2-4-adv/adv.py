@@ -109,6 +109,7 @@ def set_init_player():
     else:
         set_init_player()
 
+    screen_message()
     main_game_loop()
 
 
@@ -154,6 +155,7 @@ def prompt():
         sys.exit
     elif action[0].lower() in ['move', 'go']:
         player.movedir(action[1].lower())
+        screen_message()
     elif action[0].lower() == 'pickup':
         if item_exists(action[1].capitalize()):
             player.pickup_item(items[action[1].capitalize()])
@@ -224,7 +226,7 @@ def help_menu():
 
 def main_game_loop():
     while player.game_over is False:
-        screen_message()
+
         prompt()
 
 
