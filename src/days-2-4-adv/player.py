@@ -1,10 +1,11 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 class Player:
-	def __init__(self, room, items, score):
+	def __init__(self, room, items, score, hp):
 		self.room = room
 		self.items = items
 		self.score = score
+		self.hp = hp
 
 	def get_item(self, item):
 		return self.items.append(item)

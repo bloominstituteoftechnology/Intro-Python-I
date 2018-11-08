@@ -2,6 +2,7 @@ import textwrap
 from item import Item, Treasure, LightSource
 from room import Room
 from player import Player
+from monster import Monster
 
 # Declare all items
 
@@ -91,16 +92,16 @@ room = {
 
     'hall': Room(
                     'Dark Hall',
-                    'The smell of fire and brimstone emanates from the north.',
+                    'The smell of fire and brimstone emanates from the south. Better make sure you are prepared for whatever may await.',
                     item['sapphire'],
                     False
                 ),
 
     'chamber': Room(
                     'Large Chamber',
-                    'You\'ve stumbled upon a large chamber. A hideous beast awakens!',
+                    'You\'ve stumbled upon a large chamber. A hideous beast awakens and swifly blocks your retreat!',
                     item['nothing'],
-                    False
+                    True
                 )
 }
 
@@ -119,27 +120,26 @@ room['narrow'].n_to     = room['treasure']
 room['narrow'].e_to     = room['hall']
 room['treasure'].s_to   = room['narrow']
 room['hall'].w_to       = room['narrow']
-room['hall'].n_to       = room['chamber']
-room['chamber'].s_to    = room['hall']
+room['hall'].s_to       = room['chamber']
 
 
 #
-#                                       Map
+#                                             Map
 #
 #
-#                 Overlook(3)        Treasure(5)         Chamber(7)
-#                    |                   |                   |
-#                    |                   |                   |
-#                 Foyer(2) ---------- Narrow(4) ---------- Hall(6)
-#                    |
-#                    |
-#                 Entrance(1)
-#                    |
-#                    |
-#                 Outside
+#                       Overlook(3)        Treasure(5)
+#                          |                   |
+#                          |                   |
+#                       Foyer(2) ---------- Narrow(4) ---------- Hall(6)
+#                          |                                       |
+#                          |                                       |
+#                       Entrance(1)                            Chamber(7)
+#                          |
+#                          |
+#                       Outside
 #
 #
-#   (1): Lamp   (2): Shield   (3): Sword   (4): Ruby   (5): Gold   (6): Sapphire   (7): Beast
+# (1): Lamp   (2): Shield   (3): Sword   (4): Ruby   (5): Gold   (6): Sapphire   (7): Beast
 #
 
 #
@@ -159,7 +159,8 @@ room['chamber'].s_to    = room['hall']
 #
 # If the user enters "q", quit the game.
 
-p = Player(room['outside'], [], 0)
+p = Player(room['outside'], [], 0, 100)
+m = Monster(100)
 
 def print_wrapped_lines(value = ''):
     wrapper = textwrap.TextWrapper(width = 50)
@@ -206,9 +207,67 @@ def start_game():
     print(text_divider)
 
     while True:
+        if currRoom.name == 'Large Chamber':
+            print_wrapped_lines(currRoom.description)
+            print('\n')
+            inventory_list = [item.name for item in inventory]
+            if 'sword' not in inventory_list:
+                print_wrapped_lines('You are unarmed! The beast easily overpowers you and eats you alive. If only you had found a weapon...')
+                print('\n')
+                return print_wrapped_lines('Game over.')
+            else:
+                while True:
+                    print_wrapped_lines(f'Monster has {m.hp} hp.')
+                    print_wrapped_lines(f'You have {p.hp} hp.')
+                    print('\n')
+                    if 'shield' not in inventory_list:
+                        print_wrapped_lines('You have a sword but no shield. What will you do?')
+                    else:
+                        print_wrapped_lines('You have a sword and a shield. What will you do?')
 
+                    next_action = input('(a)ttack / (r)un / (q)uit :')
+                    next_action = next_action.lower()
 
+                    if next_action[0] == 'a':
+                        if m.hp > 0 and p.hp > 0:
+                            print(text_divider)
+                            print_wrapped_lines('You swing your sword with all your might.')
+                            print_wrapped_lines('Its a hit!')
+                            m.hp = m.hp - 35
+                            if m.hp <= 0:
+                                print('\n')
+                                print_wrapped_lines('You\'ve done it! You slayed the beast! You take your spoils of war and flee, living to fight another day.')
+                                print('\n')
+                                return print_wrapped_lines('Game over. Thanks for playing.')
+                            print_wrapped_lines('The beast takes a swipe with its giant claws.')
+                            print('\n')
+                            if 'shield' in inventory_list:
+                                p.hp = p.hp - 30
+                            else:
+                                p.hp = p.hp - 50
+                            if p.hp <= 0:
+                                print_wrapped_lines('Your wounds are too great. You collapse and the beast eats you alive. If only you had found something to defend yourself with...')
+                                print('\n')
+                                return print_wrapped_lines('Game over.')
+                    elif next_action[0] == 'r':
+                        print(text_divider)
+                        print_wrapped_lines('You foolishly tried to run but could not escape. The beast devoured you. If only you had been braver...')
+                        print('\n')
+                        return print_wrapped_lines('Game over.')
+                    elif next_action[0] == 'q':
+                        print(text_divider)
+                        print_wrapped_lines('Do you really want to quit?')
+                        print('\n')
+                        confirm_exit = input('(y)es / (n)o :')
+                        confirm_exit = confirm_exit.lower()
 
+                        if confirm_exit == 'yes' or confirm_exit == 'y':
+                            print(text_divider)
+                            print_wrapped_lines('See ya!')
+                            return print('/n')
+                        else:
+                            print(text_divider)
+                            continue
         if currRoom.is_light == True or isinstance(currRoom.item, LightSource) or True in [True for item in inventory if isinstance(item, LightSource)]:
             print_wrapped_lines(f'You are currently in the {currRoom.name}.')
             print_wrapped_lines(currRoom.description)
