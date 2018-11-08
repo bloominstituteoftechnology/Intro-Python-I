@@ -6,6 +6,7 @@
 Player holds player name, room and direction information and movement
 methods.
 """
+import os
 from colorama import Fore
 from colorama import Style
 
@@ -34,7 +35,10 @@ class Player:
     def __str__(self):
         return f"Name: {self.name}, Room: {self.room}"
 
+    # Displays the player information onto the screen
     def player_info(self):
+        # Inventory Formatting
+        os.system('clear')
         info = (f'  NAME: {Fore.GREEN}{self.name}{Style.RESET_ALL} <[{Fore.CYAN}{self.level}{Style.RESET_ALL}]> '
                 f'[{self.job.name} - {self.sex}]\n'
                 '   WEAP: Sapping Threshmaul\n'
@@ -46,15 +50,13 @@ class Player:
                 f'    WIS: {self.job.wisdom}\n\n'
                 f'  HP {Fore.GREEN}{self.hp}{Style.RESET_ALL}/{Fore.GREEN}{self.max_hp}{Style.RESET_ALL}   '
                 f'ATK: {self.job.attack}   MP: <{Fore.CYAN}{self.mp}{Style.RESET_ALL}/{Fore.CYAN}{self.max_mp}'
-                f'{Style.RESET_ALL}>   GOLD: {Fore.YELLOW}{self.gold}{Style.RESET_ALL}\n')
-
-        title = ('  +----------------------------------------------------------------------+\n'
-                 '  | INVENTORY:                                                           |\n'
-                 '  +----------------------------------------------------------------------+')
+                f'{Style.RESET_ALL}>   GOLD: {Fore.YELLOW}{self.gold}{Style.RESET_ALL}\n'
+                f'  +----------------------------------------------------------------------+\n'
+                f'  | INVENTORY:                                                           |\n'
+                f'  +----------------------------------------------------------------------+')
 
         print('')
         print(info)
-        print(title)
 
         if len(self.inventory) < 1:
             print("    No items in inventory")
@@ -66,6 +68,7 @@ class Player:
             print(f'     [{Fore.GREEN}{count}{Style.RESET_ALL}] {item.name} - {item.description}')
         print('  +----------------------------------------------------------------------+\n')
 
+    # Add an item to the inventory
     def pickup_item(self, item):
         if self.room.contains(item):
             print(f'\n{Fore.GREEN}{item.name}{Style.RESET_ALL} Picked up.')
@@ -74,6 +77,7 @@ class Player:
         else:
             print(f'\n{item.name} not found.')
 
+    # Drop an item from inventory to the current room
     def drop_item(self, item):
         bl = False
         for itm in self.inventory:
@@ -86,6 +90,12 @@ class Player:
         if bl is False:
             print(f'\n{Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}is not in the inventory{Style.RESET_ALL}')
 
+    def equip_weapon(self, weapon):
+        if weapon in self.inventory and weapon.is_weapon:
+            self.weapon = weapon
+            self.inventory.remove(weapon)
+
+    # Look around the current room
     def look_around(self):
         if len(self.room.inventory) < 1:
             print("\n You looked around the room, but found no items")

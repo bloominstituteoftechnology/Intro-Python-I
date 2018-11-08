@@ -186,9 +186,13 @@ def prompt():
             print(f'You tried to drop {action[1]}, but it\'s not in your inventory')
     elif action[0].lower() in ['look', 'look around', 'examine room']:
         player.look_around()
-    elif action[0].lower() in ['inventory', 'show inventory']:
-        os.system('clear')
+    elif action[0].lower() in ['inventory']:
         player.player_info()
+    elif action[0].lower() in ['equip']:
+        if item_exists(action[1].capitalize()):
+            player.equip_weapon(action[1])
+        else:
+            print(f'You tried to equip {action[1]}, but it\'s not in your inventory')
 
 
 # Keep the game going until the player gets a game over
