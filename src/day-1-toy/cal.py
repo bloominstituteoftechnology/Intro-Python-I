@@ -14,3 +14,21 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+l = len(sys.argv)
+
+if l == 2:
+    month = None
+    year = int(sys.argv[1])
+elif l == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+else:
+    print("Usage: cal.py [month] year")
+    sys.exit(1)
+
+    cal = calendar.TextCalendar()
+
+    if not month:
+        cal.pryear
