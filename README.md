@@ -69,16 +69,35 @@ NOTE: `adv/` is for Day 2, so ignore it for today.
 Suggested order for implementing the toy programs:
 
 * `hello` -- Hello world
+    print("Hello world") //Hello world
 * `bignum` -- Print some big numbers
+    print(134873478956457428745)
 * `datatypes` -- Experiment with type conversion
+    print(int("5")+4) // 9 others like str(4) = string
 * `modules` -- Learn to import from modules
 * `printf` -- Formatted print output
 * `lists` -- Python's version of arrays
+    dogs = ["labs", "shepards", "bulls"]
+    print(dogs) //["labs", "shepards", "bulls"]
+    dogs[1] = "poodles"
+    print(dogs) //["labs", "poodles", "bulls"]
 * `tuples` -- Immutable lists typically for heterogenous data
 * `slice` -- Accessing parts of lists
+    monsters = ['zombie', 'vampire', 'witch', 'mummy']
+    monsters[:] // ['zombie', 'vampire', 'witch', 'mummy']
+    monsters[:-1] // ['zombie', 'vampire', 'witch']
+    monsters[-1] // 'mummy'
+    monsters[-2] // 'witch'
 * `comp` -- List comprehensions
+    numbers = [1,2,3,4,5,6,7,8,9,10]
+    other_numbers = [i for i in numbers]
+    print(other_numbers) // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    even_numbers = [i for i in numbers if i % 2 == 0]
+    print(even_numbers) // [2, 4, 6, 8, 10]
 * `dicts` -- Dictionaries
 * `func` -- Functions
+    sub = lambda x, y: x - y
+    print(sub(10, 35)) //-25
 * `args` -- Arguments and Keyword Arguments
 * `scope` -- Global, Local, and Non-Local scope
 * `fileio` -- Read and write from files

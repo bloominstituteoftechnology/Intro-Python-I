@@ -14,3 +14,27 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+#parse imput from the command line
+l = len(sys.argv)
+#^the args passed to this program = sys.argv = name of the program.argv
+if l == 2:
+    #they passed 2 arguments month and year = 2
+    month = None
+    year = int(sys.argv[1])
+elif l == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+else:
+    print("usage: cal.py [month] year")
+    sys.exit(1)
+
+    #make calendar
+cal = calendar.TextCalendar()
+
+if not month:
+    #just print the year
+    cal.pryear(year)
+else:
+    cal.prmonth(year, montht)
