@@ -88,22 +88,22 @@ class Player:
     # Add an item to the inventory
     def pickup_item(self, item):
         os.system('clear')
-        if self.room.is_light or self.lightsoure != items['EmptyL']:
-            if self.room.contains(item):
-                print(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} picked up.')
-                self.inventory.append(item)
-                self.room.remove_item(item)
-
-                if isinstance(item, Treasure):
-                    print('is treasure')
-                    if item.is_taken() is False:
-                        self.gold += item.gold
-
-                    item.on_take()
-            else:
-                print(f'\n {item.name} not found.')
-        else:
+        if self.room.is_light is False or self.lightsource == items['EmptyL']:
             print('\n Good luck finding that item in the dark!')
+
+        if self.room.contains(item):
+            print(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} picked up.')
+            self.inventory.append(item)
+            self.room.remove_item(item)
+
+            if isinstance(item, Treasure):
+                print('is treasure')
+                if item.is_taken() is False:
+                    self.gold += item.gold
+
+                item.on_take()
+        else:
+            print(f'\n {item.name} not found.')
 
     # Drop an item from inventory to the current room
     def drop_item(self, item):
@@ -112,6 +112,9 @@ class Player:
         for itm in self.inventory:
             if itm == item:
                 bl = True
+                if isinstance(item, Lightsource):
+                    item.on_drop()
+
                 self.inventory.remove(item)
                 self.room.add_item(item)
                 print(f'\n {Fore.GREEN}{item.name}{Style.RESET_ALL} {Fore.RED}has been dropped{Style.RESET_ALL}')
@@ -171,15 +174,15 @@ class Player:
             if len(self.room.inventory) < 1:
                 print("\n You looked around the room, but found no items")
                 return
+
+            print(f'\n You looked around the room and found:')
+            count = 0
+            for item in self.room.inventory:
+                count += 1
+                print(f' [{Fore.GREEN}{count}{Style.RESET_ALL}] {Fore.GREEN}{item.name}{Style.RESET_ALL} - '
+                      f'  {item.description}')
         else:
             print("\n It is pitch black!")
-
-        count = 0
-        print(f'\n You looked around the room and found:')
-        for item in self.room.inventory:
-            count += 1
-            print(f' [{Fore.GREEN}{count}{Style.RESET_ALL}] {Fore.GREEN}{item.name}{Style.RESET_ALL} - '
-                  f'  {item.description}')
 
     # Handles the movement of the Player
     # Side Note: I didn't know about the attr method, this makes the
