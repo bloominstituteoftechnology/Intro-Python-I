@@ -33,3 +33,6 @@ class Room:
         for item in self.items:
             print(f"{item.name} - {item.desc}")
 
+    def remove_item(self, item):
+        self.items.remove(item)
+
