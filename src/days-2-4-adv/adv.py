@@ -102,39 +102,12 @@ while True:
         break
 
     elif command.upper() == 'COMMANDS':
+        # shows the command list
         commands()
 
-    elif command.upper() == 'NORTH':
-        if player.room.n_to:
-            player.room = player.room.n_to
-            print(f"\n You move north into the {player.room.name}. {player.room.description}")
-        else:
-            print("\n There is nowhere to move north.")
-            continue
-
-    elif command.upper() == 'SOUTH':
-        if player.room.s_to:
-            player.room = player.room.s_to
-            print(f"\n You move south into the {player.room.name}. {player.room.description}")
-        else:
-            print('\n There is nowhere to move south.')
-            continue
-
-    elif command.upper() == 'EAST':
-        if player.room.e_to:
-            player.room = player.room.e_to
-            print(f"\n You move ease into the {player.room.name}. {player.room.description}")
-        else:
-            print("\n There is nowhere to move east.")
-            continue
-
-    elif command.upper() == 'WEST':
-        if player.room.w_to:
-            player.room = player.room.w_to
-            print(f"\n You move west into the {player.room.name}. {player.room.description}")
-        else:
-            print("\n There is nowhere to move west.")
-            continue
+    elif command.upper() in ['NORTH', 'SOUTH', 'EAST', 'WEST']:
+        direction = command.upper()
+        player.move(player.room, direction)
 
     elif command.upper() == 'LOOK':
         look(player.room, player)

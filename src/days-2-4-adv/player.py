@@ -10,6 +10,22 @@ class Player:
         self.coin = 0
         self.score = 0
 
+    def move(self, room, direction):
+        if direction == 'NORTH' and room.n_to:
+            self.room = room.n_to
+            print(f'You move north into the {self.room.name}.')
+        elif direction == 'SOUTH' and room.s_to:
+            self.room = room.s_to
+            print(f'You move south into the {self.room.name}.')
+        elif direction == 'EAST' and room.e_to:
+            self.room = room.e_to
+            print(f'You move ease into the {self.room.name}.')
+        elif direction == 'SOUTH' and room.s_to:
+            self.room = room.s_to
+            print(f'You move south into the {self.room.name}.')
+        else:
+            print(f'There is nothing in that direction.')
+
     def pickup(self, item):
         self.inventory.append(item)
 
