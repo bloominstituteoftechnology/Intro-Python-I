@@ -24,7 +24,7 @@ to north. The smell of gold permeates the air.""", [], False),
     'bridge':   Room("Long Bridge", """A long bridge above a bottomless pit of darkness stands before you. A Troll blocks your path across.""", [], True, [Monster('Troll', 35,5,10)]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [Item('note', 'Sorry I took your gold, but this is a solid IOU which is pretty much as good as gold. Definatly planning to pay the money back. - Sinceraly a lying thief'), Treasure('knife', 'jewel incrusted knife. Probably accidently dropped by the thief', 30)]),
+earlier adventurers. The only exit is to the south.""", [Item('note', 'Sorry I took your gold, but this is a solid IOU which is pretty much as good as gold. Definatly planning to pay the money back. - Sinceraly a lying thief'), Treasure('rock', 'beats scissors and loses to paper.', 30)]),
 }
 
 
@@ -174,6 +174,14 @@ def monster_health(current_room):
     alive = False
   return alive
 
+def has_rock(current_room):
+  rock_there = False
+  for i in current_room.items:
+    if i.name == "rock":
+      rock_there = True
+  return rock_there
+    
+
 def help():
   print('\ndirections: n,e,s,w')
   print('attack: attack')
@@ -182,7 +190,6 @@ def help():
   print('look in room: l')
   print('look in inventory: i')
   print('inspect item in inventory: in item-name')
-
 
 #have I been there yet?
 been_outside = False
@@ -204,6 +211,8 @@ treasure_loop = True
 counter = 0
 died_to_troll = False
 killed_troll = False
+
+quest_complete = False
 
 ######################--------------######################
 ###################### START OF GAME #####################
@@ -293,6 +302,8 @@ while not res[0] == 'q':
 
   #while player is at overlook
   if location == 'overlook':
+    if quest_complete == True:
+      break
 
     #for printing room info
     #only execute when I enter the room
@@ -301,8 +312,15 @@ while not res[0] == 'q':
     else:
       print('\n' + current_room.name)
     been_overlook = True
- 
+
     while overlook_loop == True:
+
+      if has_rock(current_room) == True:
+        print('\nThe rock rolls suddenly over the chasm and you notice an invisible bridge. Apparently you could have crossed this whole time! Bracing yourself you step onto the invisible bridge and continue on your adventure\n')
+        overlook_loop = False
+        quest_complete = True
+        break
+
       res = input('\n').split(" ")
       command(res, player, current_room)
 
@@ -473,4 +491,4 @@ while not res[0] == 'q':
         print('\nincorrect input\n')
 
 print('\nthank you for playing my game.')
-print(f'your ending player score was {player.score}')
+print(f'your ending player score was {player.score}\n')
