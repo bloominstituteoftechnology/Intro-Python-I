@@ -1,12 +1,13 @@
 from room import Room
 from player import Player
 from item import Item
+from item import LightSource
 # Declare all the rooms
 
 
 items = {
     'Knife': Item('Knife', 'A small cooking knife.', True),
-    'Torch': Item('Torch', 'An unlit torch', True),
+    'Torch': LightSource('Torch', 'An unlit torch', True),
     'Matches': Item('Matches', 'Used for starting fires or lighting torches.'),
     'Rations': Item('Rations', 'Well-preserved food'),
     'Cigarettes': Item('Cigarettes', 'Adventuring can be stressful.'),
@@ -15,7 +16,7 @@ items = {
     'Rusty Key': Item('Rusty Key', "A key that looks like it's spent a lot of time outdoors."), # key to the shed
     'Shiny Key': Item('Shiny Key', "A key that looks like it opens an important room."), # key to the master bedroom
     'Globe': Item('Globe', "A large globe with hardware meant to mount it on something..."), # globe for garden statue
-    'Book': Item('Book', "A weathered tome that is unusually heavy.")
+    'Book': Item('Book', "A weathered tome that is unusually heavy.") # opens secret passage if used in library
 }
 
 
@@ -133,7 +134,6 @@ while True:
         else:
             target = None
 
-            
     if command.upper() == 'QUIT':
         break
 
@@ -150,7 +150,7 @@ while True:
 
     elif command.upper() in ['GET', 'TAKE']:
         for item in player.room.items:
-            if target == item.name:
+            if target.upper() == item.name.upper():
                 player.pickup(item)
                 player.room.remove_item(item)
                 print(f'You add the {item.name} to your inventory.')
@@ -159,10 +159,13 @@ while True:
 
     elif command.upper() == 'DROP':
         for item in player.inventory:
-            if target == item.name:
-                player.drop(item)
-                player.room.add_item(item)
-                print(f'You drop the {item.name} in the {player.room.name}.')
+            if target.upper() == item.name.upper():
+                if item.on_drop() == 'Y':
+                    player.drop(item)
+                    player.room.add_item(item)
+                    print(f'You drop the {item.name} in the {player.room.name}.')
+                else:
+                    continue
 
     elif command.upper() == 'INVENTORY' or command.upper() == 'I':
         player.check_inventory()
@@ -172,4 +175,4 @@ while True:
 
         
     else:
-        print("\n Unknown command, please try again.")
+        print("\nUnknown command, please try again.")

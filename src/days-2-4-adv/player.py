@@ -42,7 +42,7 @@ class Player:
         self.inventory.append(item)
 
     def drop(self, item):
-        del self.inventory[self.inventory.index(item)]
+            del self.inventory[self.inventory.index(item)]
 
     def check_inventory(self):
         if len(self.inventory) == 0:
