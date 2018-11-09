@@ -1,4 +1,8 @@
 from room import Room
+from player import Player
+from item import Item
+
+import textwrap
 
 # Declare all the rooms
 
@@ -33,6 +37,11 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+room['outside'].items.append(Item("Rusty Shield", "Will probably protect you only once"))
+
+
+player = Player(room['outside'])
+
 #
 # Main
 #
@@ -49,3 +58,58 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+wrapper = textwrap.TextWrapper(width=50)
+done = False
+
+while True:
+    print(f"You're currently in {player.current_room.name}")
+    print(wrapper.wrap(text=player.current_room.description))
+
+    if len(player.current_room.items) > 0:
+        for item in player.current_room.items:
+            print(item.name + ": " + item.description)
+
+    # Get user input
+    user_input = input("\nCommand> ").strip().lower().split(" ", 1)
+
+    print(user_input)
+
+    # Check for user input
+    if len(user_input) > 2 or len(user_input) < 1:
+        print("I don't understand that.")
+        continue
+
+    if len(user_input) == 1:
+        # Check to see if the user whated to quit
+        if user_input == 'quit' or user_input[0] == 'q':
+            done = True
+
+        # check if user input matches the cardinal directions
+        elif user_input[0][0] in ['n', 's', 'e', 'w']:
+            player.current_room = player.try_move(user_input[0][0])
+
+    elif len(user_input) == 2:
+        if user_input[0] == "get" or user_input[0] == "take":
+            item = player.find_item(user_input[1])
+            if item:
+                player.inventory.append(item)
+                player.current_room.items.remove(item)
+                print(player.inventory)
+                print(player.current_room.items)
+            else:
+                print("No such item in this room!")
+
+
+
+
+
+
+
+
+
+
+
+
+
+pass
