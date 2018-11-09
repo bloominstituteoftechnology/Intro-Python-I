@@ -111,7 +111,7 @@ done = False
 while not done:
 # list of items in room
   items = [item for item in player.contents + player.current.contents]
-  s = input("\n\nYou can 'search' or change direction (N, S, E, W)\n").strip().lower().split()
+  s = input("\n\nYou can change direction(N, S, E, W), 'search' or 'quit'\n").strip().lower().split()
 
   if s[0] in ["n", "s", "w", "e"]:
     player.current = direction(s[0], player.current)
