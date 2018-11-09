@@ -130,6 +130,8 @@ while not done:
         time.sleep(1)
     # If the user enters "q", quit the game.
   elif s[0] == "quit" or s[0] == "q":
+            print("\nAdios amigo!\n")
+            time.sleep(1)
             done = True
   else:
     print("Unknown command {}".format(' '.join(s)))
