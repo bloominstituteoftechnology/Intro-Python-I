@@ -43,6 +43,15 @@ room['foyer'].contents.append(book)
 coin = Item("a rare gold coin", "worth a fortune")
 room['narrow'].contents.append(coin)
 
+nothing = Item("nothing", "nothing")
+room['outside'].contents.append(nothing)
+
+nothing = Item("nothing", "nothing")
+room['overlook'].contents.append(nothing)
+
+nothing = Item("nothing", "nothing")
+room['treasure'].contents.append(nothing)
+
 
 # Make a new player object that is currently in the 'outside' room.
 
