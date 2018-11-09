@@ -18,9 +18,9 @@ item = {
 #Define rooms, their descriptions, and initial items found
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [item['scroll'], item['dictionary']]),
+                     "North of you, the cave mount beckons", [item['scroll'], item['dictionary']], True),
 
-    'foyer':    Room("Foyer", "Dim light filters in from the south. Dusty passages run north and east.", [item['ring'], item['lamp']]),
+    'foyer':    Room("Foyer", "Dim light filters in from the south. Dusty passages run north and east.", [item['ring'], item['lamp']], True),
 
     'overlook': Room("Grand Overlook", "A steep cliff appears before you,falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.", []),
 
