@@ -95,6 +95,7 @@ recent_item = []
 validDirections = {"n": "n", "s": "s", "e": "e", "w": "w", "north": "n", "south": "s", "east": "e", "west": "w"}
 
 player = Player(input("What is your name?"), room['outside'])
+print("Enter \"h\" or \"help\" for help.")
 print(player.currentRoom)
 
 while True:
@@ -102,7 +103,9 @@ while True:
     if len(cmds) == 1:
         if cmds[0] == "q":
             break
-        if player.killed:
+        elif cmds[0] == "h" or cmds[0] == "help":
+            print("Hint: Find a weapon to slay the monster.\nCommands: \nq - Quit\n\nPlayer commands:\nn or north, etc. - travels that direction\ni or inventory - checks inventory\nlook - looks in current room\nlook + direction - looks in the room in that direction\np or score - checks your score\ntake/drop [item name] - takes or removes items in inventory\nequip/unequip [item name] - equips/unequips item from your inventory.\nfight [monster name] - starts combat with named target.")
+        elif player.killed:
             print("You are dead.")
         else:
             if cmds[0] in validDirections:
@@ -120,7 +123,8 @@ while True:
             elif cmds[0] == "stats":
                 player.printStats()
             else:
-                print("I did not understand that command.")    
+                if cmds[0] != "h":
+                    print("I did not understand that command.")    
     else:
         if player.killed:
             print("You are dead.")
@@ -162,7 +166,7 @@ while True:
                         print("You are not holding that item.")
                 else:
                     itemToDrop = player.findItembyName(" ".join(cmds[1:]))
-                    if itemToTake is not None:
+                    if itemToDrop is not None:
                         player.removeItem(itemToDrop)
                         player.currentRoom.addItem(itemToDrop)
                         print(f"You have dropped {itemToDrop.name}")
