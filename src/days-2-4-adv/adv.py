@@ -126,8 +126,8 @@ room["outside"].populate_item(
 # Make a new player object that is currently in the 'outside' room.
 
 while True:
-    new_player = "Rathma"
-    # new_player = input("Your hero's name? ")
+    new_player = input("Welcome Hero. ")
+    new_player = input("What is your name? ")
     if len(new_player) == 0:
         print("Please enter your hero's name.\n")
     else:
@@ -138,7 +138,9 @@ while True:
         print(f"\n*~*~*~*~*~*\nWelcome to Myst...\n{player.name}\n*~*~*~*~*~*")
         break
 
-# Light Check
+print(any(isinstance(x, Item) for x in player.inventory))
+
+# Light Check with filter
 def light_check():
     if (
         player.current.is_lit
@@ -148,6 +150,18 @@ def light_check():
         return True
     else:
         return False
+
+
+# Light Check with isinstance
+# def light_check():
+#     if (
+#         player.current.is_lit
+#         or any(isinstance(x, LightSource) for x in player.current.items)
+#         or any(isinstance(x, LightSource) for x in player.inventory)
+#     ):
+#         return True
+#     else:
+#         return False
 
 
 # Write a loop that:
