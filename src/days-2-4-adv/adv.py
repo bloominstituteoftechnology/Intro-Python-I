@@ -88,7 +88,7 @@ while True:
     print(' ')
     print('You are standing in the:', player.room.name)
     print(textwrap.wrap(player.room.description))
-    move = input('Where will you move next?     ')
+    move = input('Where will you move next?')
     print()
     try:
         move = move.lower()
@@ -96,30 +96,44 @@ while True:
         print('Please enter a direction')
         continue
     if move in ['n', 'e', 's', 'w', 'q']:
-        if move == 'n':
-            try:
-                player.room = player.room.n_to
-            except AttributeError:
+        d = f"{move}_to"
+        print(d)
+        print(move)
+        if move != 'q':
+            #  if hasattr(player.room, d)
+            #     print("this is inside hasattr")
+            #     player.room = getattr(player.room, d)
+                # setattr(player.room, room.d) # player.room = player.room.
+             try:
+                player.room = getattr(player.room, d)
+                # print(f"something in here{player.room.d}")
+               
+             except AttributeError:
                 print('You may not move in that direction. Try again')
-                continue
-        elif move == 'e':
-            try:
-                player.room = player.room.e_to
-            except AttributeError:
-                print('You may not move in that direction. Try again')
-                continue
-        elif move == 's':
-            try:
-                player.room = player.room.s_to
-            except AttributeError:
-                print('You may not move in that direction. Try again')
-                continue
-        elif move == 'w':
-            try:
-                player.room = player.room.w_to
-            except AttributeError:
-                print('You may not move in that direction. Try again')
-                continue
+        # if move == 'n':
+        #     try:
+        #         player.room = player.room.n_to
+        #     except AttributeError:
+        #         print('You may not move in that direction. Try again')
+        #         continue
+        # elif move == 'e':
+        #     try:
+        #         player.room = player.room.e_to
+        #     except AttributeError:
+        #         print('You may not move in that direction. Try again')
+        #         continue
+        # elif move == 's':
+        #     try:
+        #         player.room = player.room.s_to
+        #     except AttributeError:
+        #         print('You may not move in that direction. Try again')
+        #         continue
+        # elif move == 'w':
+        #     try:
+        #         player.room = player.room.w_to
+        #     except AttributeError:
+        #         print('You may not move in that direction. Try again')
+        #         continue
         elif move == 'q':
             break
     else:
