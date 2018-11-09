@@ -1,8 +1,6 @@
 class Items:
-    def __init__(self, items_list=None):
-        if items_list is None:
-            items_list = []
-            self.items_list = items_list
+    def __init__(self):
+        self.items_list = []
 
     def __str__(self):
         return f"{self.items_list}"
@@ -10,7 +8,6 @@ class Items:
     def get_items(self):
         # Test for items in room
         return self.items_list
-        print(self.items_list)
 
     def add_item(self, item: dict):
         # Ensure item doesn't exist already
@@ -20,7 +17,6 @@ class Items:
         # Ensure type is a dict and then add item if it is
         elif type(item) == dict:
             self.items_list.append(item)
-            print(self.items_list)
 
         # Print type error if it is not.
         else:
