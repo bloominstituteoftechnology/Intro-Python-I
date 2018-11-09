@@ -6,3 +6,4 @@ class Player:
         self.name = name
         self.room = None
         self.items = []
+        self.score = 0

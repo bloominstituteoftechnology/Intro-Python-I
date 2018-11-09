@@ -1,7 +1,7 @@
 from room import Room
 from player import Player
 import textwrap
-from item import Item
+from item import Item, Treasure, LightSource
 
 # Declare all the rooms
 
@@ -39,6 +39,18 @@ room['treasure'].s_to = room['narrow']
 # Add items to rooms
 
 room['foyer'].items.append(Item('sword','A sword that you can instantly tell is well-made.'))
+room['foyer'].items.append(LightSource('lamp','a source of light that can be refueled'))
+room['narrow'].items.append(Item('vitamin tablet', 'a source of vitamins that stores for a long time'))
+
+# Add treasures to rooms
+room['foyer'].items.append(Treasure('gold brick', 'a shiny brick of gold weighing a kilogram', 500))
+room['overlook'].items.append(Treasure('ruby', 'a beautiful ruby of 100 carats', 300))
+room['treasure'].items.append(Treasure('diamond', 'a glimmering diamond cut to perfection', 800))
+
+# Add light to proper rooms
+room['outside'].is_light = True
+room['foyer'].is_light = True
+room['overlook'].is_light = True
 
 #
 # Main
@@ -56,7 +68,7 @@ def print_items(array):
         return 'nothing'
     str1 = ''
     for addy in array:
-        str1+=addy.name
+        str1+= f'{addy.name}, '
     return str1
 
 def add_item(room, item):
@@ -95,10 +107,13 @@ def take_item(command):
     item_found = False
     for item in player.room.items:
         if item.name==second_word:
-            player.items.append(item)
-            player.room.items.remove(item)
-            print(f'\nPlayer has taken {item.name}.')
-            item_found = True
+            if player.room.is_light:
+                player.items.append(item)
+                player.room.items.remove(item)
+                item.on_take()
+                item_found = True
+            else:
+                print('Good luck finding that in the dark!')
             return
     if not item_found:
         print(f'There is no {second_word} here.')
@@ -107,16 +122,25 @@ def take_item(command):
 
 def drop_item(command):
     second_word = get_second_word(command)
+    item_found = False
     for item in player.items:
         if item.name==second_word:
             player.items.remove(item)
             player.room.items.append(item)
             print(f'Player has dropped {item.name}.')
-    print(f'Player is not carrying {second_word}.')
+            item_found = True
+            return
+    if not item_found:
+        print(f'Player is not carrying {second_word}.')
+    else:
+        print(f'Error occurred when trying to {command}.')
 
 while True:
 # * Prints the current room name
-    print(f'\nYou are now in {player.room.name}. Which contains {print_items(player.room.items)}.')
+    if player.room.is_light:
+        print(f'\nYou are now in {player.room.name}. Which contains {print_items(player.room.items)}.')
+    else:
+        print("It's pitch black!")
 # * Prints the current description (the textwrap module might be useful here).
     wrapper = textwrap.TextWrapper(width=50)
     current_description = wrapper.wrap(text=player.room.description)
@@ -124,7 +148,7 @@ while True:
         print(element)
 # * Waits for user input and decides what to do.
 #
-    movement = input('\nPlease enter a direction (N,E,S,W) or command (get, drop, i):')
+    movement = input('\nPlease enter a direction (N,E,S,W) or command (get, drop, i, score):')
 # If the user enters a cardinal direction, attempt to move to the room there.
     amount_of_words = get_amount_of_words(movement)
     if amount_of_words==1:
@@ -150,6 +174,8 @@ while True:
                 print('\nNo way West.')
         elif movement=='i' or movement=='inventory':
             print(f'\nYou have {print_items(player.items)}.')
+        elif movement=='score':
+            print(f'Your score is {player.score}')
     # If the user enters "q", quit the game.
         elif movement=='q':
             print('quitting...')
