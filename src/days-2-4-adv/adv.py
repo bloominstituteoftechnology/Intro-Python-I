@@ -1,5 +1,6 @@
 from room import Room
-
+from player import Player
+import textwrap
 # Declare all the rooms
 
 room = {
@@ -38,6 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +51,90 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+while True:
+    #     print("You're currently in {player.room.name}")
+    #     print(player.room.description)
+
+    # user_input = input("\nCommand> ").strip().lower().split()
+
+    # if len(user_input) > 2 or len(user_input) < 1:
+    #     print("No Comprende")
+    # continue
+
+    # if len(user_input) == 1:
+    #     if user_input[0] == 'quit' or user_input[0] =='q':
+    #         done = True
+    #     elif user_input[0] [0] in ['n', 's', 'e', 'w']:
+    #         player.room = player.move(user_input[0] [0])
+
+    # def start_game():
+    #     print(new_player)
+
+    #     print(new_player)
+
+    # start_game()
+
+    # room = Room("Outside", "outside")
+    # foyer = Room("Foyer", """Dim light filters in from the south. Dusty
+    # passages run north and east.""")
+    # room.n_to = foyer
+    # foyer.s_to = room
+
+    # p = Player(name="Anthony", room["outside"], description="white male")
+    # print(p.room)
+    # p.room = room.n_to
+    # print(p.room)
+
+    print(' ')
+    print('You are standing in the:', player.room.name)
+    print(textwrap.wrap(player.room.description))
+    move = input('Where will you move next?')
+    print()
+    try:
+        move = move.lower()
+    except AttributeError:
+        print('Please enter a direction')
+        continue
+    if move in ['n', 'e', 's', 'w', 'q']:
+        d = f"{move}_to"
+        print(d)
+        print(move)
+        if move != 'q':
+            #  if hasattr(player.room, d)
+            #     print("this is inside hasattr")
+            #     player.room = getattr(player.room, d)
+                # setattr(player.room, room.d) # player.room = player.room.
+             try:
+                player.room = getattr(player.room, d)
+                # print(f"something in here{player.room.d}")
+               
+             except AttributeError:
+                print('You may not move in that direction. Try again')
+        # if move == 'n':
+        #     try:
+        #         player.room = player.room.n_to
+        #     except AttributeError:
+        #         print('You may not move in that direction. Try again')
+        #         continue
+        # elif move == 'e':
+        #     try:
+        #         player.room = player.room.e_to
+        #     except AttributeError:
+        #         print('You may not move in that direction. Try again')
+        #         continue
+        # elif move == 's':
+        #     try:
+        #         player.room = player.room.s_to
+        #     except AttributeError:
+        #         print('You may not move in that direction. Try again')
+        #         continue
+        # elif move == 'w':
+        #     try:
+        #         player.room = player.room.w_to
+        #     except AttributeError:
+        #         print('You may not move in that direction. Try again')
+        #         continue
+        elif move == 'q':
+            break
+    else:
+        print('Please enter a direction or "q" to quit')
