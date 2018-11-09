@@ -9,3 +9,5 @@ z = "I like turtles!"
 # Use the 'format' string method to print the same thing
 
 # Finally, print the same thing using an f-string
+
+print ('x is %(x)i, y is %(y).2f, z is %(z)s' % {'x': x, 'y':y, 'z':z} )
