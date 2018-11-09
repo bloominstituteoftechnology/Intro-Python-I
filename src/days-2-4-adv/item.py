@@ -3,8 +3,6 @@ class Item:
         self.name = name
         self.description = description
         self.keyword = keyword
-        self.shape = 'square'
-        self.color = 'red'
 
     def __str__(self):
         return self.name
@@ -16,7 +14,7 @@ class Item:
         print ('On Drop Running')
 
 class Treasure(Item):
-    def __init__(self, name, description, keyword, value, other_attributes):
+    def __init__(self, name, description, keyword, value):
         super().__init__(name, description, keyword)
         self.value = value
 
