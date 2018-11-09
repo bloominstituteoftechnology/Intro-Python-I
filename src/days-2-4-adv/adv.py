@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 from game_map import Map
 from item import Item
+from item import Treasure
 
 
 # Declare all the rooms
@@ -41,8 +42,9 @@ room['treasure'].s_to = room['narrow']
 
 # Add items to rooms
 room["outside"].add_item(Item("torch","Should be enough to see..."))
-room["foyer"].add_item(Item("sword","Not the sharpest..."))
-room["overlook"].add_item(Item("ruby","Shines bright..."))
+room["foyer"].add_item(Item("sword","Not the sharpest..."),Treasure("spoon","I think it's worth something.", 10, False))
+room["overlook"].add_item(Treasure("ruby","Shines bright...",20, False))
+room["treasure"].add_item(Treasure("coin","At least it's something.", 15, False))
 # Nothin in narrow and treasure
 
 

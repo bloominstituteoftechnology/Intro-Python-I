@@ -33,6 +33,8 @@ class Player:
                 if action[0] == "take":
                     self.inventory.append(action[1])
                     location.remove_item(i)
+                    if hasattr(i, "picked_up"):
+                        self.score += i.value
                     print(f"You now have a {action[1]}")
             elif action[0] == "drop":
                 self.inventory.remove(action[1])
