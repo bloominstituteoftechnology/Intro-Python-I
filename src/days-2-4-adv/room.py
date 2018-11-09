@@ -3,10 +3,11 @@
 from item import Item
 
 class Room:
-    def __init__(self,name,descr,items):
+    def __init__(self,name,descr,items,is_light):
      self.name = name
      self.descr = descr
      self.items = []
+     self.is_light = is_light
 
     def __str__(self):
         return f'{self.name}:\n{self.descr}:\n{self.items}.'

@@ -3,27 +3,28 @@ from player import Player
 from game_map import Map
 from item import Item
 from item import Treasure
+from item import Lightsource
 
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", items=[]),
+                     "North of you, the cave mount beckons", [], True),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", items=[]),
+passages run north and east.""", [], True),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", items=[]),
+the distance, but there is no way across the chasm.""", [], False),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", items=[]),
+to north. The smell of gold permeates the air.""", [], False),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", items=[]),
+earlier adventurers. The only exit is to the south.""", [], False),
 }
 
 
@@ -41,7 +42,7 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 # Add items to rooms
-room["outside"].add_item(Item("torch","Should be enough to see..."))
+room["outside"].add_item(Lightsource("torch","Should be enough to see..."))
 room["foyer"].add_item(Item("sword","Not the sharpest..."),Treasure("spoon","I think it's worth something.", 10, False))
 room["overlook"].add_item(Treasure("ruby","Shines bright...",20, False))
 room["treasure"].add_item(Treasure("coin","At least it's something.", 15, False))
@@ -103,6 +104,9 @@ while inp != "q":
     # Take/drop items
     elif (len(user_input) == 2):
         player.actions(user_input, player.current_room)
+
+    elif (user_input[0] == "search"):
+        player.search(player.current_room)
     
     # Score
     elif(user_input[0] == "score"):

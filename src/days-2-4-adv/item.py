@@ -9,4 +9,8 @@ class Treasure(Item):
         super().__init__(name,descr)
         self.value = value
         self.picked_up = picked_up
+
+class Lightsource(Item):
+    def __init__(self,name,descr):
+        super().__init__(name,descr)
     

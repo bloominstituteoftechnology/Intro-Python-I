@@ -2,6 +2,7 @@
 # currently.
 from game_map import Map
 from item import Item
+from item import Lightsource
 
 class Player:
     def __init__(self,current_room):
@@ -28,19 +29,27 @@ class Player:
     def actions(self, action, location):
         item = False
         for i in location.items:
-            if (i.name == action[1]):
+            if (action[0] == "take" and i.name == action[1]):
                 item = True
-                if action[0] == "take":
-                    self.inventory.append(action[1])
-                    location.remove_item(i)
-                    if hasattr(i, "picked_up"):
-                        self.score += i.value
-                    print(f"You now have a {action[1]}")
-            elif action[0] == "drop":
+                self.inventory.append(action[1])
+                location.remove_item(i)
+                if hasattr(i, "picked_up"):
+                    self.score += i.value
+                print(f"You now have a {action[1]}")
+        for i in self.inventory:
+            if (action[0] == "drop" and i == action[1]):
+                item = True
                 self.inventory.remove(action[1])
-                location.add_item(Item(action[1], i.name))
-                print(f"You have dropped a {action[1]}")
+                location.add_item(i)
+                if (i == "torch"):
+                    print("Sad to see a lightsource go.")
+                else:
+                    print(f"You have dropped a {action[1]}")
         
         if(item == False):
             print("No item was found")
+
+    def search(self, location):
+        for i in location.items:
+            print(i.name)
         
