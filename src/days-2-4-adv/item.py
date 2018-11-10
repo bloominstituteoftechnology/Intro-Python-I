@@ -3,7 +3,7 @@ class Item:
         self.name = name
         self.description = description
 
-        player.inventory.append(self)
+        # player.inventory.append(self)
 
 class Treasure(Item):
     def __init__(self, name, description, value):
