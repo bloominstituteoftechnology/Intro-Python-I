@@ -31,6 +31,9 @@ for field in waypoints:
 # Add a new waypoint to the list
 waypoints.append({
     'lat': 40,
-    'lon': -120
+    'lon': -120,
     'name': 'a fourth place'
 })
+
+for field in waypoints: 
+    print(field)
