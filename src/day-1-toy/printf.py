@@ -8,7 +8,7 @@ z = "I like turtles!"
 print('x is %d, y is %.2f, z is %s' %(x, y, z))
 
 # Use the 'format' string method to print the same thing
-print('x is {:d}, y is {:2f}, z is {:s}'.format(x, y, z))
+print('x is {:d}, y is {:.2f}, z is {:s}'.format(x, y, z))
 
 # Finally, print the same thing using an f-string
 print(f'x is {x}, y is {round(y, 2)}, z is {z}')
