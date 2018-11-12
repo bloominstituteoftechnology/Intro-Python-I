@@ -32,7 +32,7 @@ for field in waypoints:
 waypoints.append({
     'lat': 40,
     'lon': -120,
-    'name': 'a fourth place'
+    'name': 'a new place'
 })
 
 for field in waypoints: 
