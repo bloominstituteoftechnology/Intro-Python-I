@@ -13,7 +13,9 @@ file.close()
 file = open('bar.txt', 'w')
 
 # Use the write() method to write three lines to the file
-file.write('''Line 1 Line 2 Line3 ''')
+file.write('''Line 1 
+Line 2 
+Line 3 ''')
 
 # Close the file
 file.close()
