@@ -16,6 +16,8 @@
 import sys
 import calendar
 
+print(sys.argv)
+
 # Parse command line
 l = len(sys.argv)
 
@@ -30,11 +32,11 @@ else:
     sys.exit(1)
 
 # Make a new calendar
-c = calendar.TextCalendar()
+cal = calendar.TextCalendar()
 
-if month != None:
-    # If the user specified a month, print that month
-    c.prmonth(year, month)
+if not month:
+    # just print out the year
+    cal.pryear(year)
 else:
-    # Otherwise just print it for the year
-    c.pryear(year)
+    # If the user specified a month, print that month
+    cal.prmonth(year, month)
