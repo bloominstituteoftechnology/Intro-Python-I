@@ -6,7 +6,6 @@ class Player:
         self.current_room = room #starting/current room of the player
         self.health = 100
         self.inventory = []
-
     
     def try_move(self, direction):
         key = direction + "_to"
@@ -15,4 +14,9 @@ class Player:
             return self.current_room
         else:
             return getattr(self.current_room, key)
+    
+    def take_item(self, item):
+        self.inventory.append(item)
+    
+    
         
