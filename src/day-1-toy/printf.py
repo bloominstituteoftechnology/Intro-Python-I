@@ -9,4 +9,5 @@ print('x is %d, y is %f, z is "%s"' % (x, y, z))
 
 # Use the 'format' string method to print the same thing
 
+
 # Finally, print the same thing using an f-string
