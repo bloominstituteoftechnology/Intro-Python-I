@@ -1,4 +1,4 @@
-from setup import room, commandsHelp
+from catacomb_setup import commandsHelp
 from character import Player
 
 # Make a new player object that is currently in the 'outside' room.

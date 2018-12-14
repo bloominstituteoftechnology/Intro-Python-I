@@ -12,7 +12,7 @@ commandsHelp = {
 "u" : "Use",
 "d" : "Drop",
 "a" : "Attack",
-"s" : "Score",
+"score" : "Score",
 "q" : "Quit",
 "h" : "help",
 }
