@@ -39,8 +39,7 @@ best for learning new languages.
    ```
    pipenv shell
    ```
-   This will get you into the virtual environment. At this point, you should be
-   able to run Python 3 by just running `python`:
+   This will get you into the virtual environment. At this point, you should be able to run Python 3 by just running `python`:
    ```
    $ python --version
    Python 3.6.5
@@ -54,7 +53,7 @@ best for learning new languages.
 
 ## Summary
 
-* Implement a number of tiny Python programs that demonstrate Python syntax.
+* Implement a number of tiny Python programs that demonstrate Python syntax and language concepts.
 
 ## Instructions
 
@@ -79,3 +78,7 @@ The suggested order for going through each of the directories is:
 * `calendar` -- Experiment with module imports
 * `classes` -- Classes and objects
 
+## Stretch Goals
+
+* One of Python's main philosophical tenets is its emphasis on readability. To that end, the Python community has standardized around a style guide called [PEP 8](https://www.python.org/dev/peps/pep-0008/). Take a look at it and then go over the code you've written and make sure it adheres to what PEP 8 recommends. Alternatively, PEP 8 linters exist for most code editors (you can find instructions on installing a Python linter for VSCode [here](https://code.visualstudio.com/docs/python/linting)). Try installing one for your editor!
+* Rewrite code challenges you've solved before or projects you've implemented before in a different language in Python. Start getting in as much practice with the language as possible!
