@@ -75,7 +75,7 @@ The suggested order for going through each of the directories is:
 * `args` -- Arguments and Keyword Arguments
 * `scopes` -- Global, Local, and Non-Local scope
 * `file_io` -- Read and write from files
-* `calendar` -- Experiment with module imports
+* `cal` -- Experiment with module imports
 * `classes` -- Classes and objects
 
 ## Stretch Goals
