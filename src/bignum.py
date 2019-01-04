@@ -3,3 +3,6 @@
 
 # YOUR CODE HERE
 import math
+
+power = math.pow(2, 65536)
+print(power)
