@@ -22,3 +22,18 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+x = input('Enter date: MM/DD/YYYY')
+
+print(len(x))
+
+
+def calendarFunction(date):
+    cal = calendar.Calendar()
+    print(cal.itermonthdates(datetime.now().year, datetime.now().month))
+    if len(date) == 0:
+            print(datetime.now().month)
+            return datetime.now().month
+
+
+calendarFunction(x)
