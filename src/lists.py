@@ -8,22 +8,35 @@ y = [8, 9, 10]
 
 # Change x so that it is [1, 2, 3, 4]
 # YOUR CODE HERE 
-print(x)
+print(x.append(4))
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE 
-print(x)
+# print(x.extend([8,9,10]))
+print(x.extend(y))
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE 
-print(x)
+print(x.pop(4))
+# pop removes at the index of element
+# print(x.remove(8))
+# remove removes takes actual value as input to be removed
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE 
-print(x)
+print(x.extend([99,10]))
 
 # Print the length of list x
 # YOUR CODE HERE 
+print(len(x))
 
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
+newlist = []
+for i in x:
+    newlist.append(i*1000)
+print newlist
+
+# x[:] = [item * 1000 for item in x]
+# list comprehension does multiplication in place
+# print(x)
