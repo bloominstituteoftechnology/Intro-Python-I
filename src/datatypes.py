@@ -30,3 +30,6 @@ print (sum)
 x = 5
 y = "7"
 b =  str(x)
+sum = b + y
+print (sum)
+57
