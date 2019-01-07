@@ -21,11 +21,11 @@ print(x)
 def outer():
     y = 120
 
-    def inner(num):
-        num = 999
-        return num
+    def inner():
+        y = 999
+        return y
 
-    y = inner(y)
+    y = inner()
 
     # This prints 120. What do we have to change in inner() to get it to print
     # 999? Google "python nested function scope".
