@@ -16,6 +16,10 @@ print(f1(1, 2))
 def f2(*nums):
     result = 0
     for num in nums:
+        if type(num) == list:
+            for item in num:
+                print(type(item))
+                # result += item
         result += int(num)
     return result
 print(f2(1))                    # Should print 1
