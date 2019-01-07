@@ -8,7 +8,7 @@ lists!).
 The docs can be found here:
 https://docs.python.org/3/tutorial/datastructures.html#dictionaries
 
-For this exercise, you have a list of dictinaries. Each dictionary
+For this exercise, you have a list of dictionaries. Each dictionary
 has the following keys:
  - lat: a signed integer representing a latitude value
  - lon: a signed integer representing a longitude value
