@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e21fea5-56bd-4e92-b400-1eb3c636f6e6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/args.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/args.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scopes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/scopes.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,11 +40,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/args.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="57" selection-start-line="57" selection-end-line="58" selection-end-column="52" />
+            <state relative-caret-position="306">
+              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/scopes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" column="8" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -77,6 +87,7 @@
         <option value="$PROJECT_DIR$/src/dictionaries.py" />
         <option value="$PROJECT_DIR$/src/functions.py" />
         <option value="$PROJECT_DIR$/src/args.py" />
+        <option value="$PROJECT_DIR$/src/scopes.py" />
       </list>
     </option>
   </component>
@@ -122,7 +133,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.args">
+  <component name="RunManager" selected="Python.scopes">
     <configuration name="args" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Intro-Python-I" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -207,7 +218,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="slices" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="scopes" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Intro-Python-I" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -219,7 +230,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/slices.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/scopes.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -230,11 +241,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.scopes" />
         <item itemvalue="Python.args" />
         <item itemvalue="Python.functions" />
         <item itemvalue="Python.dictionaries" />
         <item itemvalue="Python.comprehensions" />
-        <item itemvalue="Python.slices" />
       </list>
     </recent_temporary>
   </component>
@@ -357,8 +368,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/args.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="57" selection-start-line="57" selection-end-line="58" selection-end-column="52" />
+        <state relative-caret-position="306">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scopes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="8" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
         </state>
       </provider>
     </entry>
