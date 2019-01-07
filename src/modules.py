@@ -10,10 +10,15 @@ import sys
 
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
+def whateves(self, parameter_list):
+    print(self)
+    print(parameter_list)
+
+print(whateves(sys.argv[1], sys.argv[2]))
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
-
+print("major: " + str(sys.getwindowsversion().major), "platform: " + str(sys.getwindowsversion().platform))
 # Print out the version of Python you're using:
 # YOUR CODE HERE
 
