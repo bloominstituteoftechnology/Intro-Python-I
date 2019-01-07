@@ -6,6 +6,7 @@ x = 12
 
 def changeX():
     x = 99
+    return x
 
 changeX()
 
