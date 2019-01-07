@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e21fea5-56bd-4e92-b400-1eb3c636f6e6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/printing.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/printing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/lists.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,32 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/datatypes.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modules.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-              <folding>
-                <element signature="e#234#244#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/printing.py">
+        <entry file="file://$PROJECT_DIR$/src/lists.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+            <state relative-caret-position="578">
+              <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -55,6 +34,7 @@
         <option value="$PROJECT_DIR$/src/datatypes.py" />
         <option value="$PROJECT_DIR$/src/modules.py" />
         <option value="$PROJECT_DIR$/src/printing.py" />
+        <option value="$PROJECT_DIR$/src/lists.py" />
       </list>
     </option>
   </component>
@@ -100,7 +80,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.printing">
+  <component name="RunManager" selected="Python.lists">
     <configuration name="bignum" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Intro-Python-I" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -143,7 +123,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="hello" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="lists" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Intro-Python-I" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -155,7 +135,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/hello.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/lists.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -208,11 +188,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.lists" />
         <item itemvalue="Python.printing" />
         <item itemvalue="Python.modules" />
         <item itemvalue="Python.datatypes" />
         <item itemvalue="Python.bignum" />
-        <item itemvalue="Python.hello" />
       </list>
     </recent_temporary>
   </component>
@@ -287,7 +267,14 @@
     <entry file="file://$PROJECT_DIR$/src/printing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lists.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
         </state>
       </provider>
     </entry>
