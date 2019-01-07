@@ -6,6 +6,7 @@ x = 12
 
 def changeX():
     x = 99
+    print(x)
 
 changeX()
 
@@ -20,6 +21,7 @@ def outer():
 
     def inner():
         y = 999
+        print(y)
 
     inner()
 
