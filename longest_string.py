@@ -5,7 +5,7 @@
 # const strings2 = ['short', 'first long string!!', 'medium', 'abcdefghijklmnopqr'];
 #   console.log(longestString(strings2)); // <--- 'first long string!'
 
-def longestString(list):
+def longest_string(list):
     count = 0
     for item in list:
         if (len(item) > count):
@@ -14,7 +14,7 @@ def longestString(list):
     return word
 
 strings1 = ['short', 'really, really long!', 'medium']
-print(longestString(strings1))
+print(longest_string(strings1))
 
 strings2 = ['short', 'first long string!!', 'medium', 'abcdefghijklmnopqr']
-print(longestString(strings2))
+print(longest_string(strings2))
