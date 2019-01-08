@@ -10,11 +10,13 @@ import sys
 
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
-def whateves(self, parameter_list):
-    print(self)
-    print(parameter_list)
+# def whateves(self, parameter_list):
+#     print(self)
+#     print(parameter_list)
 
-print(whateves(sys.argv[1], sys.argv[2]))
+# print(whateves(sys.argv[1], sys.argv[2]))
+for i in range(0, len(sys.argv)):
+    print(sys.argv[i])
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
@@ -45,4 +47,5 @@ def host_name_ip():
         print("Unable to get Hostname and IP")
 
 print(host_name_ip())
+print(os.getlogin())
 # YOUR CODE HERE
