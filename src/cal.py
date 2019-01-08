@@ -23,7 +23,6 @@ import sys
 import calendar
 from datetime import datetime
 
-user_input = input('Enter a month and year')
-
-if user_input == '':
-    print(calendar.Calendar.itermonthdates(datetime.year(), datetime.month()))
+if len(sys.argv) == 1:
+    # print(len(sys.argv))
+    print(calendar.Calendar.monthdatescalendar(2019, 1))
