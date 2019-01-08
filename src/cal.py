@@ -22,3 +22,8 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+user_input = input('Enter a month and year')
+
+if user_input == '':
+    print(calendar.Calendar.itermonthdates(datetime.year(), datetime.month()))
