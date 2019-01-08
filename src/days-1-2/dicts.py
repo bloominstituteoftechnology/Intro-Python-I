@@ -26,4 +26,21 @@ waypoints = [
 
 # Write a loop that prints out all the field values for all the waypoints
 
+def print_waypoints(tuple):
+    for waypoint in tuple:
+        print("LAT : %s" %waypoint["lat"])
+        print("LON : %s" %waypoint["lon"])
+        print("NAM : %s" %waypoint["name"])
+        print("")
+
+print_waypoints(waypoints)
+print("**************")
 # Add a new waypoint to the list
+waypoints.append({
+        "lat": 59,
+        "lon": -33,
+        "name": "a home"
+        })
+
+print_waypoints(waypoints)
+

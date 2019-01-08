@@ -14,3 +14,21 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+import datetime
+
+MONTH = datetime.datetime.now().month
+YEAR = datetime.datetime.now().year
+
+
+def draw_cal(year, month):
+    print(calendar.month(year, month))
+
+
+def take_input():
+    if len(sys.argv) == 1:
+        print(calendar.month(YEAR, MONTH))
+    if len(sys.argv) == 3:
+        draw_cal(int(sys.argv[1]), int(sys.argv[2]))
+
+take_input()

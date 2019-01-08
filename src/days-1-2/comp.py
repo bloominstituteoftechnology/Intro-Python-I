@@ -1,22 +1,21 @@
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
-y = []
+y = [1,2,3,4,5]
 
 print (y)
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
-
-y = []
+y = [x ** 3 for x in range(10)]
 
 print(y)
 
 # Write a list comprehension to produce the uppercase version of all the
 # elements in array a. Hint: "foo".upper() is "FOO".
 
-a = ["foo", "bar", "baz"]
+words = ["foo", "bar", "baz"]
 
-y = []
+y = [word.upper() for word in words]
 
 print(y)
 
@@ -24,9 +23,10 @@ print(y)
 # the user entered into list x.
 
 x = input("Enter comma-separated numbers: ").split(',')
-
+# x = list(map(int, x)) can use this or list comprehension
+x = [int(i) for i in x]
 # What do you need between the square brackets to make it work?
-y = []
+y = [num for num in x if num % 2 == 0]
 
 print(y)
 
