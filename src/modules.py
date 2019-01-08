@@ -28,7 +28,6 @@ import os
 # Print the current process ID
 # YOUR CODE HERE
 print(os.getpid())
-# ^^gave error: AttributeError: module 'os' has no attribute 'getpgid'
 
 # Print the current working directory (cwd):
 # YOUR CODE HERE
