@@ -10,9 +10,29 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # YOUR CODE HERE
 
+foo = open('foo.txt', 'r')
+data = foo.read()
+foo.close()
+
+print('\n')
+print(data)
+print('\n')
+
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
 # then close the file. Open up "bar.txt" and inspect it to make 
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+
+bar = open('bar.txt', 'w')
+bar.write('My name is Daniel Ferrer\nI live in Brooksville, FL\nMy dog is named Lily')
+bar.close()
+
+bar = open('bar.txt', 'r')
+data = bar.read()
+bar.close()
+
+print('\n')
+print(data)
+print('\n')
