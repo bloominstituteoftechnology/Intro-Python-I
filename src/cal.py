@@ -23,5 +23,23 @@ import sys
 import calendar
 from datetime import datetime
 
-def month_calendar():
-  
+calendar = calendar.TextCalendar(firstweekday=0)
+
+def month_calendar(month = datetime.today().month, year = datetime.today().year):
+    print(calendar.formatmonth(year, month, 5))
+
+
+input = len(sys.argv) - 1 # to ignore python cal.py
+
+print(input)
+print(sys.argv[0])
+
+if(input == 0):
+    month_calendar()
+elif(input == 1):
+    month = int(sys.argv[1])
+    month_calendar(month, 2018)
+elif(input == 2):
+    month_calendar(int(sys.argv[1]), int(sys.argv[2]))
+else :
+    print("No input found for calendar display...")
