@@ -22,3 +22,20 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def print_cal(yr):
+  try:
+    if len(yr) == 4:
+      thisMonth = datetime.today().month
+      cal = calendar.TextCalendar(calendar.SUNDAY)
+      print(cal.formatmonth(int(yr), int(thisMonth)))
+    # else:
+      # print('please be sure to write a four digit year format')
+  except ValueError:
+      print('this is an incorrect date or date format')
+  # print(int(yr))
+
+yearInput = input('\n\nPlease enter a four digit year: ')
+
+print_cal(yearInput)
+
