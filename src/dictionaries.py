@@ -2,8 +2,8 @@
 Dictionaries are Python's implementation of associative arrays.
 There's not much different with Python's version compared to what
 you'll find in other languages (though you can also initialize and
-populate dictionaries using comprehensions just like you can with 
-lists!). 
+populate dictionaries using comprehensions just like you can with
+lists!).
 
 The docs can be found here:
 https://docs.python.org/3/tutorial/datastructures.html#dictionaries
@@ -20,12 +20,12 @@ waypoints = [
         "lat": 43,
         "lon": -121,
         "name": "a place"
-    }, 
+    },
     {
         "lat": 41,
         "lon": -123,
         "name": "another place"
-    }, 
+    },
     {
         "lat": 43,
         "lon": -122,

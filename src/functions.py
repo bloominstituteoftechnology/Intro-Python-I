@@ -1,4 +1,5 @@
-# Write a function is_even that will return true if the passed-in number is even.
+# Write a function is_even that will return true if
+# the passed-in number is even.
 
 # YOUR CODE HERE
 
@@ -10,10 +11,11 @@ num = int(num)
 
 # YOUR CODE HERE
 
+
 def is_even(x):
-  if x % 2 == 0:
-    print("Even!")
-  else:
-    print("Odd")
+    if x % 2 == 0:
+        print("Even!")
+    else:
+        print("Odd")
 
 is_even(num)
