@@ -10,6 +10,9 @@ y = [8, 9, 10]
 # YOUR CODE HERE 
 print(x)
 
+x.append(4)
+print ("updated list : ", x)
+
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE 
 print(x)
