@@ -23,13 +23,14 @@ for i in range(len(a) - 2):
     print(value)
 
 # Output the two middle elements in the array: [1, 7]
-print()
+
+print(a[2:4])
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
-print()
+print(a[1:5])
 
 # Output every element except the last one: [2, 4, 1, 7, 9]
-print()
+print(a[0:4])
 
 # For string s...
 
