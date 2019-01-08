@@ -5,13 +5,14 @@
 x = 12
 
 def changeX():
+    global x
     x = 99
 
 changeX()
 
 # This prints 12. What do we have to modify in changeX() to get it to print 99?
 print(x)
-
+# added the "global x" line in changeX() to ensure we print the desired value of x.
 
 # This nested function has a similar problem.
 
@@ -19,6 +20,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()
@@ -28,3 +30,4 @@ def outer():
     print(y)
 
 outer()
+# added "nonlocal y" for the same reason as using "global x" earlier.
