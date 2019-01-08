@@ -22,3 +22,11 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+date = datetime.today()
+
+def cal(month = date.month, year = date.year):
+    cal = calendar.TextCalendar(firstweekday=0)
+    return cal.formatmonth(year, month)
+
+print(cal(int(sys.argv[1]), int(sys.argv[2])))
