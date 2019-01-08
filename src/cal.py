@@ -20,5 +20,16 @@ and does the following:
 """
 
 import sys
-import calendar
-from datetime import datetime
+import calendar as cal
+from datetime import datetime as dt
+
+num_args = len(sys.argv)
+
+if num_args == 1:
+  print(cal.monthcalendar(dt.now().year, dt.now().month))
+elif num_args == 2:
+  print(cal.monthcalendar(dt.now().year, int(sys.argv[1])))
+elif num_args == 3:
+  print(cal.monthcalendar(int(sys.argv[2]), int(sys.argv[1])))
+else:
+  print("If no input: returns current month's calendar, if one arg is input: returns month calendar of current year, if two args input: return month calendar of year")
