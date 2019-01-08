@@ -10,27 +10,36 @@ import sys
 
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
-
-sys.argv
+for item in sys.argv:
+  print(item)
 ['']
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
-sys.platform
+print(sys.platform)
 'darwin'
 
 # Print out the version of Python you're using:
 # YOUR CODE HERE
-sys.version
+print(sys.version)
 '3.7.2 (default, Dec 27 2018, 07:35:52) \n[Clang 10.0.0 (clang-1000.11.45.5)]'
+
+
 import os
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
 # Print the current process ID
 # YOUR CODE HERE
+os.getpid()
+42877
 
 # Print the current working directory (cwd):
 # YOUR CODE HERE
+
+os.getcwd()
+'/Users/josephbradley'
+
+
 
 # Print out your machine's login name
 # YOUR CODE HERE
