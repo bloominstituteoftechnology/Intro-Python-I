@@ -23,7 +23,9 @@ f.close()
 f = open('bar.txt', 'w')
 
 f.write('Movie Quotes \n')
-f.write('\"Frankly, my dear, I don\'t give a damn.\" Gone With the Wind, 1939 \n')
-f.write('\"Toto, I\'ve got a feeling we\'re not in Kansas anymore.\" The Wizard of Oz, 1939 \n')
+f.write('\"Frankly, my dear, I don\'t give a damn.\" \
+        Gone With the Wind, 1939 \n')
+f.write('\"Toto, I\'ve got a feeling we\'re not in Kansas anymore.\" \
+        The Wizard of Oz, 1939 \n')
 
 f.close()
