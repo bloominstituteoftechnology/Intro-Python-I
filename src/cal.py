@@ -41,5 +41,5 @@ elif(input == 1):
     month_calendar(month, 2018)
 elif(input == 2):
     month_calendar(int(sys.argv[1]), int(sys.argv[2]))
-else :
+else:
     print("No input found for calendar display...")
