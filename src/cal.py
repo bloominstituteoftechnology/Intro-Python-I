@@ -35,6 +35,6 @@ def makeCal(month=date.month, year=date.year):
 
 makeCal(*sys.argv[1:])
 if len(sys.argv) < 2:
-    print('Add arguments after file name to see specific year.\n\
-If year is not specified it will be of the current year.\n\
-Example: py cal.py (month) (year)')
+    print('Add arguments after file name to see specific year.\n'
+          'If year is not specified it will be of the current year.\n'
+          'Example: py cal.py (month) (year)')
