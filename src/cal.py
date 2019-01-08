@@ -22,3 +22,25 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+input = input("Please enter a month and year (example: 8 2019):").split(' ')
+now = datetime.now()
+if len(input) == 1 and input[0]== ' ':
+  
+  calendar = calendar.TextCalendar()
+  calendar.prmonth(now.year, now.month)
+
+elif len(input) == 1 and int(input[0]) <= 12 and int(input[0]) > 0:
+  month = int(input[0])
+  print(month)
+  calendar = calendar.TextCalendar()
+  calendar.prmonth(now.year, month)
+
+elif len(input) == 2:
+  month = int(input[0])
+  year = int(input[1])
+  calendar = calendar.TextCalendar()
+  calendar.prmonth(year, month)
+else:
+  print('Please enter a month and year (example: 9 2019)')
+
