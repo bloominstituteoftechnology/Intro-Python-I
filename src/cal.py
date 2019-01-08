@@ -22,3 +22,12 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+if len(sys.argv) < 2:
+  print(calendar.month(2019, 1))
+elif len(sys.argv) == 2:
+  print(calendar.month(2019, int(sys.argv[1])))
+elif len(sys.argv) == 3:
+  print(calendar.month(int(sys.argv[1]), int(sys.argv[2])))
+else: 
+  print("Give a year and month after python cal.py. Example \"python cal.py 2018 11\"")
