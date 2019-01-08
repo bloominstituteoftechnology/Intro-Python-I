@@ -1,3 +1,4 @@
+#<<<<<<< master
 # Make an array of dictionaries. Each dictionary should have keys:
 #
 # lat: the latitude
@@ -5,6 +6,24 @@
 # name: the waypoint name
 #
 # Make up three entries of various values.
+=======
+#"""
+#Dictionaries are Python's implementation of associative arrays.
+#There's not much different with Python's version compared to what
+#you'll find in other languages (though you can also initialize and
+#populate dictionaries using comprehensions just like you can with 
+#lists!). 
+
+#The docs can be found here:
+#https://docs.python.org/3/tutorial/datastructures.html#dictionaries
+
+#For this exercise, you have a list of dictionaries. Each dictionary
+#has the following keys:
+# - lat: a signed integer representing a latitude value
+# - lon: a signed integer representing a longitude value
+# - name: a name string for this location
+"""
+#>>>>>>> master
 
 waypoints = [
     {
