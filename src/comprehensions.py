@@ -31,6 +31,9 @@ print(y)
 a = ["foo", "bar", "baz"]
 
 y = []
+for letter in a:
+  result = letter.upper()
+  y.append(result)
 
 print(y)
 
