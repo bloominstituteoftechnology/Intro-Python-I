@@ -11,6 +11,19 @@ Use Python's slice syntax to achieve the following:
 
 a = [2, 4, 1, 7, 9, 6]
 
+
+#                 +---+---+---+---+---+---+
+#                 | 2 | 4 | 1 | 7 | 9 | 6 |
+#                 +---+---+---+---+---+---+
+# Slice position: 0   1   2   3   4   5   6
+# Index position:   0   1   2   3   4   5
+
+#  +---+---+---+---+---+---+
+#  | 2 | 4 | 1 | 7 | 9 | 6 |
+#  +---+---+---+---+---+---+
+#    0   1   2   3   4   5 
+#   -6  -5  -4  -3  -2  -1
+
 #list[start:end:step]
 # Output the second element: 4:
 print(a[1])
@@ -19,16 +32,16 @@ print(a[1])
 print(a[4])
 
 # Output the last three elements in the array: [7, 9, 6]
-print(a[-3:])
+print(a[-3:]) #:6
 
 # Output the two middle elements in the array: [1, 7]
-print(a[2:4])
+print(a[2:4]) 
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
 print(a[1:6])
 
 # Output every element except the last one: [2, 4, 1, 7, 9]
-print(a[:-1])
+print(a[:-1]) #0:5
 
 # For string s...
 
