@@ -14,3 +14,10 @@
 # docs for the calendar module closely.
 
 import sys
+import calendar
+
+class Calendar(calendar):
+    __init__(self)
+    
+    
+if len(sys.argv) > 2:
