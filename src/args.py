@@ -12,11 +12,14 @@ print('\n')
 # Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
+# dereference operator
+
 def f2(*args):
-  if type(args[0]) == int:
-    return sum(args)
-  else:
-    return sum(args[0])
+  return sum(args)
+  # if type(args[0]) == int:
+  #   return sum(args)
+  # else:
+  #   return sum(args[0])
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -26,17 +29,21 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 a = [7, 6, 5, 4]
 
 # What thing do you have to add to make this work?
-print(f2(a))    # Should print 22
+print(f2(*a))    # Should print 22
 print('\n')
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments. Google "python default arguments" for a hint.
 
-def f3(*args):
-  if len(args) == 2:
-    return sum(args)
-  else:
-    return args[0] + 1
+# NOT BEST PRACTICES
+# def f3(*args):
+#   if len(args) == 2:
+#     return sum(args)
+#   else:
+#     return args[0] + 1
+
+def f3(a, b=1):
+  return a + b
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -50,22 +57,19 @@ print('\n')
 #
 # Google "python keyword arguments".
 
+# def f4(*args, **kwargs):
+  
+#   for dicts in args:
+#     for key, val in dicts.items():
+#       print(f'key: {key}, value: {val}')
+#   for k, v in kwargs.items():
+#     print(f'key: {k}, value: {v}')
+#   print('\n')
+
 def f4(*args, **kwargs):
-  
-  for dicts in args:
-    for key, val in dicts.items():
-      print(f'key: {key}, value: {val}')
-  for k in kwargs:
-    print(f'key: {k}, value: {kwargs[k]}')
+  for k, v in kwargs.items():
+    print(f'key: {k}, value: {v}')
   print('\n')
-  
-
-
-
-# def f5(*args):
-#   a = args[0]
-#   for key, value in a.items():
-#     print("key: " + key + ", value: " + str(value))
 
 # Should print
 # key: a, value: 12
@@ -84,4 +88,4 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+f4(**d)
