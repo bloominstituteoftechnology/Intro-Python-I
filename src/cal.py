@@ -49,7 +49,7 @@ if l == 2:
     else:
         sys.exit(error_msg())
 elif l == 3:
-    if check_year(sys.argv[2]):
+    if check_month(sys.argv[1]) and check_year(sys.argv[2]):
         month = int(sys.argv[1])
         year = int(sys.argv[2])
     else:
