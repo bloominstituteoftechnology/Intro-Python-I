@@ -69,7 +69,7 @@ f4(a=12, b=30)
 # key: founded, value: "March 23, 1868"
 f4(city="Berkeley", population=121240, founded="March 23, 1868")
 
-d = {
+d = {.
     "monster": "goblin",
     "hp": 3
 }

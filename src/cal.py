@@ -19,24 +19,19 @@ and does the following:
    Then exit the program.
 """
 
-# print(calendar.TextCanlendar(calendar.MONDAY).formatmonth(2019, 1))
-# str = calendar.TextCalendar(calendar.MONDAY).formatmonth(int(sys.argv[1], int(sys.argv[2]))
-# print(str)
+print(calendar.TextCanlendar(calendar.SUNDAY).formatmonth(2019, 1))
+str = calendar.TextCalendar(calendar.SUNDAY).formatmonth(int(sys.argv[1], int(sys.argv[2]))
+print(str)
 
 
-# import sys
-# import calendar
-from datetime import datetime
+print(calendar.TextCanlendar(calendar.MONDAY).formatmonth(2019, 1))
+str = calendar.TextCalendar(calendar.MONDAY).formatmonth(int(sys.argv[1], int(sys.argv[2]))
+print(str)
+
+print(calendar.TextCanlendar(calendar.TUESDAY).formatmonth(2019, 1))
+str = calendar.TextCalendar(calendar.TUESDAY).formatmonth(int(sys.argv[1], int(sys.argv[2]))
+print(str)
+
+
 import sys
 import calendar
-
-c = calendar.TextCalendar(calendar.SUNDAY)
-str = c.formatmonth(2025, 1)
-print(str)
-
-x = int(sys.argv[1])
-y = int(sys.argv[2])
-
-d = calendar.TextCalendar(calendar.SUNDAY)
-str = d.formatmonth(x, y)
-print(str)
