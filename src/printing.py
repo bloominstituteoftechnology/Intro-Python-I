@@ -20,3 +20,6 @@ x is 10 , y is 2.24552, z is I like turtles!
 x is 10 , y is 2.24552, z is I like turtles!
 
 # Finally, print the same thing using an f-string
+
+>>> print(f'x is {x}, y is {y}, z is {z}')
+x is 10, y is 2.24552, z is I like turtles!
