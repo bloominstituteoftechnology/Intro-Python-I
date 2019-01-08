@@ -8,10 +8,10 @@ lists!).
 The docs can be found here:
 https://docs.python.org/3/tutorial/datastructures.html#dictionaries
 
-For this exercise, you have a list of dictinaries. Each dictionary
+For this exercise, you have a list of dictionaries. Each dictionary
 has the following keys:
- - lat: a signed integer representing a latitude value
- - lon: a signed integer representing a longitude value
+ - lat: assigned integer representing a latitude value
+ - lon: assigned integer representing a longitude value
  - name: a name string for this location
 """
 
@@ -35,10 +35,27 @@ waypoints = [
 
 # Add a new waypoint to the list
 # YOUR CODE HERE
+waypoints.append({
+    "lat": 66,
+    "lon": -131,
+    "name": "a new place"
+})
+
+print(waypoints)
 
 # Modify the dictionary with name "a place" such that its longitude
 # value is -130 and change its name to "not a real place"
 # YOUR CODE HERE
 
+for waypoint in waypoints:
+    if waypoint["name"]=="a place":
+        waypoint["name"]="not a real place"
+        waypoint["lon"]=-130
+
+print(waypoints)
+
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+
+for waypoint in waypoints:
+    print(waypoint.values())
