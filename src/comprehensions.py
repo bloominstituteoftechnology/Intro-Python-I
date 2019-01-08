@@ -9,15 +9,24 @@ for more info regarding list comprehensions.
 """
 
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
+'''note to self: range([start], stop[, step])
+start: Starting number of the sequence.
+stop: Generate numbers up to, but not including this number.
+step: Difference between each number in the sequence.
+'''
 
-y = []
+y = [i for i in range(1, 6, 1)]
 
 print (y)
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
+'''note to self: 
+range(stop)
+stop: Number of integers (whole numbers) to generate, starting from zero. 
+'''
 
-y = []
+y = [i**3 for i in range(10)]
 
 print(y)
 
@@ -26,7 +35,7 @@ print(y)
 
 a = ["foo", "bar", "baz"]
 
-y = []
+y = [i.upper() for i in a]
 
 print(y)
 
@@ -36,6 +45,6 @@ print(y)
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-y = []
+y = [i for i in x if int(i) % 2 == 0]
 
 print(y)
