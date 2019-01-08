@@ -35,23 +35,28 @@ def check_month(month):
     return 1 <= int(month) <= 12
 
 
+def error_msg():
+    return "Usage: cal.py [month=1..12] [year=1..9999]"
+
+
 l = len(sys.argv)
 now = datetime.now()
 
 if l == 2:
     if check_month(sys.argv[1]):
         month = int(sys.argv[1])
+        year = now.year
     else:
-        print(f"Month must be 1..12")
+        sys.exit(error_msg())
 elif l == 3:
     if check_year(sys.argv[2]):
         month = int(sys.argv[1])
         year = int(sys.argv[2])
     else:
-        print(f"Year must be in 1..9999")
+        sys.exit(error_msg())
 else:
     year = now.year
     month = now.month
 
-tc = calendar.TextCalendar(firstweekday=0)
+tc = calendar.TextCalendar()
 tc.prmonth(year, month)
