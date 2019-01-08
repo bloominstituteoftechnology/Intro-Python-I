@@ -8,17 +8,21 @@ y = [8, 9, 10]
 
 # Change x so that it is [1, 2, 3, 4]
 # YOUR CODE HERE 
-print(x)
+
 
 x.append(4)
 print ("updated list : ", x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE 
-print(x)
+
+
+newList = x + y
+print (newList)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE 
+x.extend((4,9,10))
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
