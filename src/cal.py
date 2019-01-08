@@ -21,4 +21,16 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+import datetime
+
+current = datetime.datetime.now()
+cal = calendar.TextCalendar()
+arg = sys.argv
+
+if (len(arg) == 3):
+  print(cal.formatmonth(int(arg[2]), int(arg[1])))
+else:
+  print(cal.formatmonth(int(current.year), int(current.month)))
+
+# elif (len(arg) == 2): #year
+#   print(cal.pryear(int(arg[1])))
