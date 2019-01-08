@@ -14,11 +14,15 @@ z = "I like turtles!"
 string1 = ('x is %i, y is %f, z is %s' %(x, y, z))
 print(string1)
 # note that %i is for integer, %f is for float, %s is for string
+# ('\"%s\"') was the in class example
+# 'y is %.2f' to get 2 decimal places
 
 # Use the 'format' string method to print the same thing
 string2 = ('x is {}, y is {}, z is {}'.format(x, y, z))
 print(string2)
+# 'y is {:.2f}' to get 2 decimal places with this method
 
 # Finally, print the same thing using an f-string
 string3 = f'x is {x}, y is {y}, z is {z}'
 print(string3)
+# f'y is {y:.2f}' to get 2 decimal places
