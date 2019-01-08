@@ -21,6 +21,26 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import datetime as dt
+import datetime
 
-print(datetime.date.today())
+def calendarSystem():
+  tcalendar = calendar.TextCalendar(firstweekday=0)
+  today = datetime.date.today()
+  if len(sys.argv) == 1:
+    tcalendar.prmonth(today.year, today.month)
+    ##print the calendar for the current month  (NO INPUT)
+  elif len(sys.argv) == 2:
+    month = sys.argv[1]
+    print(today.year)
+    tcalendar.prmonth(int(today.year), int(month))
+    ##assume argument is month, render calendar for that month of the current year (1 INPUT)
+  elif len(sys.argv) == 3:
+    month = sys.argv[1]
+    year = sys.argv[2]
+    tcalendar.prmonth(int(year), int(month))
+    ##Render calendar for that month and year (2 INPUT)
+  else:
+    print('In order to render calendar please execute through the following format: "cal.py month [year]"')
+
+calendarSystem();
