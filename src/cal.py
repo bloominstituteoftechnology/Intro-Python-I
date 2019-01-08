@@ -34,5 +34,5 @@ elif len(sys.argv) == 1:
     month = datetime.today().month
     print(calendar.month(year, month))
 else:
-    print("Please include either a month or year in the terminal.")
+    print("Please include either a month or year in the terminal when running this program.")
     exit()
