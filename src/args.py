@@ -7,21 +7,13 @@
 def f1(x, y):
     return x + y
 
-print(f1(1, 2))
+# print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 def f2(*argv):
-    count = 0
-    if type(argv[0]) is list:
-        for num in argv[0]:
-            count += num
-    else:
-        for arg in argv:
-            if type(arg) is int:
-                count += arg
-    return count
+    return sum(argv)
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -31,17 +23,14 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 a = [7, 6, 5, 4]
 
 # What thing do you have to add to make this work?
-print(f2(a))    # Should print 22
+print(f2(*a))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments. Google "python default arguments" for a hint.
 
-def f3(x, y = 0):
-    if y == 0:
-        return x + 1
-    else:
-        return x + y
+def f3(x, y = 1):
+    return x + y
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -54,10 +43,9 @@ print(f3(8))     # Should print 9
 # key: baz, value: 12
 #
 # Google "python keyword arguments".
-def f4(*argv, **kwargs):
-    if len(argv) == 1:
-        print(argv[0])
-    print(str(kwargs))
+def f4(**kwargs):
+    for key, value in kwargs.items():
+        print(f'key: {key}, value: {value}')
 
 # Should print
 # key: a, value: 12
@@ -76,4 +64,4 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+f4(**d)
