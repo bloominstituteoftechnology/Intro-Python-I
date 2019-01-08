@@ -10,14 +10,18 @@ import sys
 
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
-print(sys.argv[0])
+# print(sys.argv[0])
+# for i in range(1, len(sys.argv)):
+#   print(sys.argv[i])
+for arg in sys.argv:
+  print(arg)
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
-print(sys.platform())
+print(sys.platform)
 # Print out the version of Python you're using:
 # YOUR CODE HERE
-print(sys.version())
+print(sys.version)
 
 
 import os
