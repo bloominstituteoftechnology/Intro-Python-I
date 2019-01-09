@@ -17,3 +17,7 @@ if is_even(num):
     print('Even!')
 else:
     print('Odd')
+
+# lambda n: n % 2 == 0
+
+print('Even!') if is_even(num) else print('Odd')

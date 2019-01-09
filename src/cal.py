@@ -23,20 +23,20 @@ import sys
 import calendar
 from datetime import datetime
 
-cal = calendar.Calendar()
-d = datetime.today()
+cal = calendar.TextCalendar()
+d = datetime.now()
 
 if len(sys.argv) == 1:
-    print(cal.monthdatescalendar(d.year, d.month))
+    print(cal.prmonth(d.year, d.month))
 
 elif len(sys.argv) == 2:
     month = int(sys.argv[1])
-    print(cal.monthdatescalendar(d.year, month))
+    print(cal.prmonth(d.year, month))
 
 elif len(sys.argv) == 3:
     year = int(sys.argv[2])
     month = int(sys.argv[1])
-    print(cal.monthdatescalendar(year, month))
+    print(cal.prmonth(year, month))
 
 else:
     print("Hey there! The first argument should be a number between \
