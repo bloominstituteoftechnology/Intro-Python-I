@@ -25,6 +25,8 @@ def f2(*args):
     else:
         return args[-1] + f2(*args[:-1])
 
+# recursively calls f2 until all args are summed
+
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
