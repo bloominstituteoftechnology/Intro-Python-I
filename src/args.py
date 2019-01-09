@@ -6,12 +6,28 @@
 
 # YOUR CODE HERE
 
+
+def f1(pos1, pos2):
+    return pos1 + pos2
+
+
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+
+
+def f2(*numbers):
+    list_of_numbers = []
+    if isinstance(numbers, list):
+        return
+    else:
+        for number in numbers:
+            list_of_numbers.append(number)
+    return sum(numbers)
+
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
