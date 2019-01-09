@@ -28,3 +28,10 @@ print(arty)
 
 buster = Bulldog('Buster', 9, 2)
 print(buster)
+
+
+Computer picks a random number between 0 and 100
+
+Game prompts user to input a guess
+
+Game decides whether user's

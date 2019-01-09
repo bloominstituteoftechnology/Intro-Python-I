@@ -23,7 +23,9 @@ import sys
 import calendar
 from datetime import datetime
 
-def myCalendar(): 
+
+
+def myCalendar():
   y = input("Input the year : ")
   if y:
     y = int(y)
