@@ -32,4 +32,5 @@ elif num_args == 2:
 elif num_args == 3:
   print(calendar.monthcalendar(int(sys.argv[2]), int(sys.argv[1])))
 else:
-  print('Please specify a month or a year or both. No input will would output the current month')
+  print('usage: calendar.py month [year]')
+  # sys.exit(1)
