@@ -66,7 +66,7 @@ print('\n')
 #     print(f'key: {k}, value: {v}')
 #   print('\n')
 
-def f4(*args, **kwargs):
+def f4(**kwargs):
   for k, v in kwargs.items():
     print(f'key: {k}, value: {v}')
   print('\n')
