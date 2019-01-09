@@ -33,4 +33,4 @@ elif len(sys.argv) == 3:
   calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
 else:
   print(
-      "Invalid number of arguments. Please format your arguments in the form: `calendar.py month [year]`")
+      "Please format your arguments like this: \"alendar.py month [year]\" ")
