@@ -19,6 +19,9 @@ def f2(*args):
     for num in args:
         x += num
     return x
+    
+#def f2(*args):
+#    return sum(args)    
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
