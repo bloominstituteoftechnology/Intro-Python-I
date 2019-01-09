@@ -22,3 +22,29 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+x = input("Enter a month and optionally a year: ").split(' ')
+
+print(f'input: {x}')
+
+if len(x) == 1:
+  if x[0] == '':
+    print('current date')
+  elif int(x[0]) > 0 and int(x[0]) < 13 :
+    print(f'selected month {int(x[0])}')
+  else:
+    print('please enter a month first then optionally a year "02 2018"')
+    
+elif len(x) == 2:
+  if int(x[0]) > 0 and int(x[0]) < 13:
+    selectedMonth = int(x[0])
+  else:
+    print('Month format invalid...')
+  
+  if int(x[1]) > 0 and int(x[1]) <= 9999:
+    selectedYear = int(x[1])
+  else:
+    print('Year format invalid')
+
+if selectedMonth and selectedYear:
+  print(f'Month: {selectedMonth}, Year: {selectedYear}')
