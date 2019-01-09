@@ -21,5 +21,5 @@ f.close()
 
 # YOUR CODE HERE
 file = open('bar.txt', 'w')
-file.write('Cats\n Doggies\n Bunnies') 
+file.write('Cats\nDoggies\nBunnies') 
 file.close()
