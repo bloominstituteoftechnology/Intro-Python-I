@@ -10,3 +10,7 @@ num = int(num)
 
 # YOUR CODE HERE
 
+if num & 1:
+    print('odd')
+else:
+    print('even')
