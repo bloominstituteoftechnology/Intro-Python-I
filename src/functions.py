@@ -16,3 +16,6 @@ def is_even(x):
     print("Odd")
 
 is_even(num) 
+
+# lambda n: n % 2 == 0
+# no return keyword needed

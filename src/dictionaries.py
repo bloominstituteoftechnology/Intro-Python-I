@@ -47,8 +47,16 @@ waypoints.append({
 first_place = waypoints[0]
 first_place["lon"] = -130
 first_place["name"] = "not a real place"
+# Sean's way
+# waypoints[0]['lon'] = -130
+# waypoints[0]['name' = 'not a real place']
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
 for place in waypoints:
     print(place.values()) 
+
+# for w in waypoints:
+#     print(w['name'], w['late'], w['lon'])
+
+# have to pass it in by string

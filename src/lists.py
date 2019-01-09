@@ -20,6 +20,7 @@ print(x)
 # YOUR CODE HERE 
 x.remove(8)
 print(x)
+# x.pop(4) would work as well
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE 
