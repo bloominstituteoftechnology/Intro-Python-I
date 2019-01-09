@@ -8,6 +8,6 @@ def reverse_string(string):
         index -= 1
     return reversed
 
-print(reverse_string("hello world"));
-print(reverse_string("asdf"));
-print(reverse_string("CS rocks!"));
+print(reverse_string("hello world"))
+print(reverse_string("asdf"))
+print(reverse_string("CS rocks!"))

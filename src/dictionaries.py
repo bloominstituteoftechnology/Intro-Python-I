@@ -45,7 +45,7 @@ waypoints.append({
 # value is -130 and change its name to "not a real place"
 # YOUR CODE HERE
 for waypoint in waypoints:
-    if waypoint['name'] == "a place":
+    if (waypoint['name'] == "a place"):
         waypoint['lon'] = -130
         waypoint['name'] = 'not a real place'
 
@@ -56,3 +56,6 @@ for waypoint in waypoints:
     for key, value in waypoint.items():
         print (value)
     print ('------------------')
+#Another way:
+# for waypoint in waypoints:
+#     print (waypoint["name"], waypoint["lat"], waypoint["lon"])
