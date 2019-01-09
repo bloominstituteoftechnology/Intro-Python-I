@@ -26,11 +26,11 @@ from datetime import datetime as dt
 num_args = len(sys.argv)
 
 if num_args == 1:
-    print(cal.monthcalendar(dt.now().year, dt.now().month))
+    cal.TextCalendar().prmonth(dt.now().year, dt.now().month)
 elif num_args == 2:
-    print(cal.monthcalendar(dt.now().year, int(sys.argv[1])))
+    cal.TextCalendar().prmonth(dt.now().year, int(sys.argv[1]))
 elif num_args == 3:
-    print(cal.monthcalendar(int(sys.argv[2]), int(sys.argv[1])))
+    cal.TextCalendar().prmonth(int(sys.argv[2]), int(sys.argv[1]))
 else:
     print((
         "usage: if no input, returns current month's calendar,\n"

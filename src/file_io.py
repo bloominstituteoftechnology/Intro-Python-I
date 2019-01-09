@@ -13,7 +13,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # YOUR CODE HERE
 with open('foo.txt') as f1:
     print(f1.read())
-f1.closed
+# f1.closed - not needed when using the with block
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
@@ -31,7 +31,6 @@ contents = '''
 
 with open('bar.txt', 'w+') as f2:
     f2.write(contents)
-f2.closed
 
 with open('bar.txt') as f3:
     if f3.read() == contents:
