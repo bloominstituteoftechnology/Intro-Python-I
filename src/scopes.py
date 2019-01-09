@@ -7,7 +7,7 @@ x = 12
 
 
 def changeX():
-    # global x
+    global x  # Add this to change x global
     x = 99
 
 
@@ -24,7 +24,7 @@ def outer():
     y = 120
 
     def inner():
-        nonlocal y
+        nonlocal y  # Add this to change the local for outer
         y = 999
 
     inner()
