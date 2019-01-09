@@ -18,20 +18,19 @@ and does the following:
    the format that your program expects arguments to be given.
    Then exit the program.
 """
-
-print(calendar.TextCanlendar(calendar.SUNDAY).formatmonth(2019, 1))
-str = calendar.TextCalendar(calendar.SUNDAY).formatmonth(int(sys.argv[1], int(sys.argv[2]))
-print(str)
-
-
-print(calendar.TextCanlendar(calendar.MONDAY).formatmonth(2019, 1))
-str = calendar.TextCalendar(calendar.MONDAY).formatmonth(int(sys.argv[1], int(sys.argv[2]))
-print(str)
-
-print(calendar.TextCanlendar(calendar.TUESDAY).formatmonth(2019, 1))
-str = calendar.TextCalendar(calendar.TUESDAY).formatmonth(int(sys.argv[1], int(sys.argv[2]))
-print(str)
-
-
 import sys
 import calendar
+from datetime import datetime
+
+if len(sys.argv) == 1:
+  year = datetime.now().year
+  month = datetime.now().month
+
+  calendar.prmonth(year, month)
+elif len(sys.argv) == 2:
+  calendar.prmonth(year, int(sys.argv[1]))
+elif len(sys.argv) == 3:
+  calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+else:
+  print(
+      "Invalid number of arguments. Please format your arguments in the form: `calendar.py month [year]`")
