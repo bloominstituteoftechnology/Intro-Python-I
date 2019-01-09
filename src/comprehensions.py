@@ -10,7 +10,7 @@ for more info regarding list comprehensions.
 
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
-y = [x for x in range(1,5)]
+y = [x for x in range(1,6)]
 print (y)
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
@@ -34,7 +34,7 @@ print(y)
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work? 
-# Not sure -- need to return to this.
-y = [num for num in x if (num % 2 == 0)]
+# Not sure -- need to return to this. num has to be int for if statement to work
+y = [num for num in x if int(num) % 2 == 0]
 
 print(y)
