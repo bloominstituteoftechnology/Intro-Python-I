@@ -355,6 +355,7 @@ What would you like to do, %s? """ % player.name)
     'score' for score
     'take <item>' to take
     'drop <item>' to drop
+    'attack <monster>' to attack
     'q' or 'quit' to quit
     'h' or 'help' for help\n""")
     else:
