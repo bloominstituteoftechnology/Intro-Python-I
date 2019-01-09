@@ -23,19 +23,22 @@ import sys
 import calendar
 from datetime import datetime
 
-def print_cal(yr):
-  try:
-    if len(yr) == 4:
-      thisMonth = datetime.today().month
-      cal = calendar.TextCalendar(calendar.SUNDAY)
-      print(cal.formatmonth(int(yr), int(thisMonth)))
-    # else:
-      # print('please be sure to write a four digit year format')
-  except ValueError:
-      print('this is an incorrect date or date format')
+cal = calendar.TextCalendar(calendar.SUNDAY)
+
+userDate = input('\n\nPlease enter a four digit year: '), input('Please enter a two digit month: ')
+userMonth = userDate[1] or datetime.today().month
+userYear = userDate[0] or datetime.today().year
+print(userYear, userMonth)
+
+try:
+  year = int(userYear)
+  month = int(userMonth)
+  print(cal.formatmonth(year, month))
+except ValueError:
+  print(cal.formatmonth(userYear, userMonth))
+
   # print(int(yr))
 
-yearInput = input('\n\nPlease enter a four digit year: ')
 
-print_cal(yearInput)
+# print_cal(yearInput)
 
