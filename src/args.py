@@ -20,13 +20,14 @@ print(f1(1, 2))
 
 
 def f2(*numbers):
-    list_of_numbers = []
-    if isinstance(numbers, list):
-        return
-    else:
-        for number in numbers:
-            list_of_numbers.append(number)
-    return sum(numbers)
+    x = 0
+    for number in numbers:
+        if type(number) == list:
+            x += sum(number)
+            continue
+        else:
+            x += number
+    return x
 
 
 print(f2(1))                    # Should print 1
