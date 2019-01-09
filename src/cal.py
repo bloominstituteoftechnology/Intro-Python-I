@@ -22,3 +22,15 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+num_args = len(sys.argv)
+
+if num_args == 1:
+  print(calendar.monthcalendar(datetime.now().year, datetime.now().month))
+elif num_args == 2:
+  print(calendar.monthcalendar(datetime.now().year, int(sys.argv[1])))
+elif num_args == 3:
+  print(calendar.monthcalendar(int(sys.argv[2]), int(sys.argv[1])))
+else:
+  print('usage: calendar.py month [year]')
+  # sys.exit(1)
