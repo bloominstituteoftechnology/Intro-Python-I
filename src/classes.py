@@ -47,4 +47,4 @@ print(waypoint)
 # YOUR CODE HERE
 
 # Print it--also make this print more nicely
-print(geocache)
+# print(geocache)
