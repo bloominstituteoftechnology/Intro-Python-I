@@ -23,28 +23,25 @@ import sys
 import calendar
 from datetime import datetime
 
-x = input("Enter a month and optionally a year: ").split(' ')
+l = len(sys.argv)
 
-print(f'input: {x}')
+if l == 1:
+    month = datetime.now().month
+    year = datetime.now().year
 
-if len(x) == 1:
-  if x[0] == '':
-    print('current date')
-  elif int(x[0]) > 0 and int(x[0]) < 13 :
-    print(f'selected month {int(x[0])}')
-  else:
-    print('please enter a month first then optionally a year "02 2018"')
-    
-elif len(x) == 2:
-  if int(x[0]) > 0 and int(x[0]) < 13:
-    selectedMonth = int(x[0])
-  else:
-    print('Month format invalid...')
-  
-  if int(x[1]) > 0 and int(x[1]) <= 9999:
-    selectedYear = int(x[1])
-  else:
-    print('Year format invalid')
+elif l == 2:
+    month = int(sys.argv[1])
+    year = datetime.now().year
 
-if selectedMonth and selectedYear:
-  print(f'Month: {selectedMonth}, Year: {selectedYear}')
+elif l == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+
+else:
+    print("usage: cal.py [month] [year]")
+    sys.exit(1)
+
+cal = calendar.TextCalendar()
+
+cal.prmonth(year, month)
+
