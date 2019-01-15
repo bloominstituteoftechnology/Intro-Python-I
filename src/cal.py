@@ -21,4 +21,16 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+import datetime
+
+year = datetime.date.today().year
+month = datetime.date.today().month
+
+if len(sys.argv) == 1:
+  print(calendar.month(year, month))
+elif len(sys.argv) == 2:
+  print(calendar.month(2019, int(sys.argv[1])))
+elif len(sys.argv) == 3:
+  print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
+else:
+  print("Please use this program like so: python cal.py [month(as a number)] [year]")
