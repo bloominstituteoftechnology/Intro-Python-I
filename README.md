@@ -1,3 +1,4 @@
+Chad Jemmett
 # Intro to Python I
 
 It's time to learn a new language! Python!
