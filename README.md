@@ -65,22 +65,22 @@ Each directory inside the `src/` directory presents exercises revolving around a
 
 The suggested order for going through each of the directories is:
 
-[x] `hello` -- Hello world
-[x] `bignum` -- Print some big numbers
-[x] `datatypes` -- Experiment with type conversion
-[x] `modules` -- Learn to import from modules
-[x] `printing` -- Formatted print output
-[x] `lists` -- Python's version of arrays
-[] `tuples` -- Immutable lists typically for heterogenous data
-[x] `slices` -- Accessing parts of lists
-[] `comprehensions` -- List comprehensions
-[] `dictionaries` -- Dictionaries
-[] `functions` -- Functions
-[] `args` -- Arguments and Keyword Arguments
-[] `scopes` -- Global, Local, and Non-Local scope
-[] `file_io` -- Read and write from files
-[] `cal` -- Experiment with module imports and implement a text-based calendar
-[] `classes` -- Classes and objects
+- [x] `hello` -- Hello world
+- [x] `bignum` -- Print some big numbers
+- [x] `datatypes` -- Experiment with type conversion
+- [x] `modules` -- Learn to import from modules
+- [x] `printing` -- Formatted print output
+- [x] `lists` -- Python's version of arrays
+- [] `tuples` -- Immutable lists typically for heterogenous data
+- [x] `slices` -- Accessing parts of lists
+- [] `comprehensions` -- List comprehensions
+- [] `dictionaries` -- Dictionaries
+- [] `functions` -- Functions
+- [] `args` -- Arguments and Keyword Arguments
+- [] `scopes` -- Global, Local, and Non-Local scope
+- [] `file_io` -- Read and write from files
+- [] `cal` -- Experiment with module imports and implement a text-based calendar
+- [] `classes` -- Classes and objects
 
 ## Stretch Goals
 
