@@ -71,7 +71,7 @@ The suggested order for going through each of the directories is:
 - [x] `modules` -- Learn to import from modules
 - [x] `printing` -- Formatted print output
 - [x] `lists` -- Python's version of arrays
-- [ ] `tuples` -- Immutable lists typically for heterogenous data
+- [x] `tuples` -- Immutable lists typically for heterogenous data
 - [x] `slices` -- Accessing parts of lists
 - [x] `comprehensions` -- List comprehensions
 - [x] `dictionaries` -- Dictionaries
