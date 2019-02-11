@@ -34,9 +34,9 @@ print(len(x))
 # YOUR CODE HERE
 
 
-def butBigger(n):
+def but_bigger(n):
     return n * 1000
 
 
-bigNums = map(butBigger, x)
+bigNums = map(but_bigger, x)
 print(list(bigNums))
