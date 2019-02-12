@@ -21,4 +21,17 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import date
+
+this_month = date.today().month
+this_year = date.today().year
+cal = calendar.TextCalendar(firstweekday=6)
+
+if len(sys.argv) == 1:
+    cal.prmonth(this_year, this_month)
+elif len(sys.argv) == 2:
+    cal.prmonth(this_year, int(sys.argv[1]))
+elif len(sys.argv) == 3:
+    cal.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+else:
+    print("Please enter up to two arguments to your command: a month and a year in that order.")
