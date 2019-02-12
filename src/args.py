@@ -57,9 +57,13 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 # YOUR CODE HERE
-def f4 (**keywords):
-    for keyword in keywords:
-        print(f"key: {keyword}, value: {keywords[keyword]}")
+def f4 (args=None,**keywords):
+    if args==None:
+        for keyword in keywords:
+            print(f"key: {keyword}, value: {keywords[keyword]}")
+    else:
+        for keyword in args:
+            print(f"key: {keyword}, value: {args[keyword]}")    
 # Should print
 # key: a, value: 12
 # key: b, value: 30
@@ -77,4 +81,4 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-#f4(d)
+f4(d)
