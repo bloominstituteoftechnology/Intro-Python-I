@@ -40,7 +40,8 @@ print(os.getcwd())
 # Print out your machine's login name
 # YOUR CODE HERE
 
-# os.getlogin() isn't working on my machine :/
+# os.getlogin() isn't working on my machine. Might be bc I'm using python3.6.2
 # print(os.getlogin())
+# found this referenced in the docs for os.getlogin()
 import pwd
 print(pwd.getpwuid(os.getuid())[0])
