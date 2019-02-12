@@ -5,6 +5,8 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
+def f1(x, y):
+    return x + y
 
 print(f1(1, 2))
 
@@ -12,6 +14,9 @@ print(f1(1, 2))
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+def f2(*nums):
+    for n in nums:
+        print(n)
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -28,13 +33,15 @@ print(f2(a))    # Should print 22
 # arguments. Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
+def f3(num, optionalNum = 1):
+    return num + optionalNum
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
 
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
-# prints ouf the keys and values like so:
+# prints out the keys and values like so:
 #
 # key: foo, value: bar
 # key: baz, value: 12
@@ -42,6 +49,10 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 # YOUR CODE HERE
+def f4(**keywords):
+    print(keywords)
+    for key in keywords:
+        print(f'key: {key}, value: {keywords[key]}')
 
 # Should print
 # key: a, value: 12
@@ -60,4 +71,10 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+# idk what this is doing but it kinda resembles double pointers
+# https://stackoverflow.com/a/21986334
+# ok so *keyword interprets the arguments as tuples (array-like)
+# and **keyword interprets the arguments as dictionarys (object-like)
+
+
+f4(**d)
