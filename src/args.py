@@ -34,7 +34,7 @@ print(f3(8))     # Should print 9
 
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
-# prints ouf the keys and values like so:
+# prints out the keys and values like so:
 #
 # key: foo, value: bar
 # key: baz, value: 12
