@@ -146,7 +146,7 @@ Most commonly used are:
 
 * `__init__()` is the constructor for objects
 * `__str__()` returns a string representation of the object
-* `__repr__()` returns a string representation of the object, for debuggin
+* `__repr__()` returns a string representation of the object, for debugging
 </p></details></p>
 
 <p><details><summary>How do I get a value from a dict?</summary><p>
