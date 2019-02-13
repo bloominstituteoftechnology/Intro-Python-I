@@ -37,7 +37,9 @@ class MyCalendar:
   def __str__(self):
     return calendar.month(self.year, self.month)
 
-myCalendar= MyCalendar(2,1997).__str__()
+month= input('Please provide a month: ')
+year=input('Please provide a year: ')
+myCalendar= MyCalendar(int(month),int(year)).__str__()
 print(myCalendar)
 
 
