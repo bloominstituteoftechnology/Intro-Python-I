@@ -14,6 +14,49 @@
 * [Coding style guidelines](https://github.com/LambdaSchool/CS-Wiki/wiki/CS-Coding-Style-Guidelines)
 </p></details></p>
 
+<p><details><summary><b>Why is there such a debate between OOP and functional programming, and why should we care?</b></summary><p>
+
+There are a lot of [programming
+paradigms](https://en.wikipedia.org/wiki/Programming_paradigm) and they all have
+their strengths and weaknesses when it comes to solving different types of
+problems.
+
+People can be quite opinionated about their favorites, but it's important to
+remember that no one language or paradigm is the right tool for all jobs. And,
+additionally, that virtually all problems can be solved in any of the
+declarative or imperative paradigms. (Some might produce cleaner, more elegant
+code for a particular problem.)
+
+Paradigms are the hardest thing to learn because you often have to take all the
+knowledge you have about solving a problem in another paradigm and throw it out
+the window. You have to learn new patterns and techniques to be effective.
+
+But we encourage this kind of learning because most popular languages are to
+some degree _multi-paradigm_, and the more techniques you know from more
+paradigms, the more effective you are in that multi-paradigm langage.
+
+</p></details></p>
+
+<p><details><summary><b>In regard to the code challenge solution, why is the '+' operator being used to concatenate strings? I thought we were supposed to use the join() method in Python? </b></summary><p>
+
+Using `join()` to join large numbers of strings is definitely faster in Python
+than using the `+` operator to do it. The reason is that every time you `join()`
+or use the `+` operator, a new string is created. So if you only have to
+`join()` once, versus using `+` hundreds of times, you'll run faster.
+
+That said, if you want to use the `join()` approach, you'll have to have all
+your strings in a list, which uses more memory than just having the two or three
+that you need at a time to use `+`. So there's a tradeoff.
+
+Another tradeoff might be in readability. It might be easier to read the `+`
+version. That's worth something.
+
+Finally, if `+` is fast enough for this case, it might not be worth the time to
+bother with making a list of strings to `join()`.
+
+* [Speed comparison with different ways of concatenating strings](https://waymoot.org/home/python_string/)
+</p></details></p>
+
 ## Python
 
 <p><details><summary><b>Are there any helpful VS Code extensions that are recommend for using with Python?</b></summary><p>
@@ -198,6 +241,112 @@ quickly
 Pylint or Flake8. The latter seems to be a bit more popular.
 </p></details></p>
 
+<p><details><summary><b>Can you dynamically add new methods/properties to class through other functions? Or must all properties/methods be declared at once?</b></summary><p>
+
+You can add them dynamically at runtime, but you have to add them to the class itself:
+
+```python
+class Foo():
+    pass
+
+f = Foo()
+
+Foo.x = 12  # Dynamically add property to class
+
+f.x == 12 # True!
+
+def a_method(self):
+    print("Hi")
+
+Foo.hi = a_method  # Dynamically add method to class
+
+f.hi()   # Prints "Hi"
+```
+
+This is not a common thing to see in Python, however.
+</p></details></p>
+
+<p><details><summary><b>Following this flow: 1) class Dog is created with attributes size and weight. 2) New instance called Snoopy of class Dog is created. 3) Class Dog gets the method bark() dynamically added to it. Question: will Snoopy now have access to bark() method?</b></summary><p>
+
+Yes.
+</p></details></p>
+
+<p><details><summary><b>If a subclass inherits from two superclasses with a method of the same name, which method will the subclass use?</b></summary><p>
+
+The answer to this is twofold:
+
+1. Lots of devs and shops frown on multiple inheritance, so maybe just don't do
+   it.
+   ([Discussion](https://softwareengineering.stackexchange.com/questions/218458/is-there-any-real-reason-multiple-inheritance-is-hated))
+
+2. As for the order in which methods of the same name are resolved, check out
+   the [MRO Algorithm](https://en.wikipedia.org/wiki/C3_linearization) which is
+   what Python uses.
+</p></details></p>
+
+
+<p><details><summary><b>How to handle multiple inheritance and why/when to do it in the first place?</b></summary><p>
+
+```python
+class Base1:
+    pass
+
+class Base2:
+    pass
+
+class Derived(Base1, Base2):  # Multiple inheritance
+    pass
+```
+
+Sometimes multiple inheritance can lead to elegant solutions when a subclass
+needs attributes from multiple, otherwise-unrelated parent classes.
+
+However, [a lot of people find it's not worth the
+trouble](https://softwareengineering.stackexchange.com/questions/218458/is-there-any-real-reason-multiple-inheritance-is-hated))
+and opt for other solutions, like composition.
+</p></details></p>
+
+<p><details><summary><b>Why use tuples instead of lists?</b></summary><p>
+
+* Tuples are immutable. There's a school of thought that says bugs can be reduced if you make as many things immutable as you can.
+* Tuples are faster than lists to access.
+* Some tuples (containing primitive types), can be used as `dict` keys.
+</p></details></p>
+
+<p><details><summary><b>What's the difference between __repr__ and __str__?</b></summary><p>
+
+Generally speaking, ```__repr__``` is the string a dev would want to see if they
+dumped an object to the screen. ```__str__``` is the string a user would want to
+see if the object were `print()`ed.
+
+The output of ```__repr__``` should be _valid Python code that can reproduce the
+object_.
+
+```python
+class Goat:
+    def __init__(self, leg_count):
+        self.leg_count = leg_count
+
+    def __repr__(self):
+        return f'Goat(leg_count={self.leg_count})'
+
+    def __str__(self):
+        return f'a goat with {self.leg_count} legs'
+```
+
+In action:
+
+```screen
+>>> g = Goat(4)
+>>> str(g)
+'a goat with 4 legs'
+>>> g
+Goat(leg_count=4)
+>>> Goat(leg_count=4)
+Goat(leg_count=4)
+```
+</p></details></p>
+
 ## Coding
 
 <p><details><summary><b>What are some ways to learn a new language?</b></summary><p>
@@ -231,4 +380,3 @@ Also, it's easier to stay motivated if you spend 10 minutes getting a first
 version going, even if it's missing 99% of its features, and then starting to
 iterate on that.
 </p></details></p>
-
