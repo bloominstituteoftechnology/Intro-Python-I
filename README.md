@@ -105,7 +105,7 @@ The suggested order for going through each of the directories is:
    before in a different language in Python. Start getting in as much practice
    with the language as possible!
 
-3. Write a program to determine if a number, give on the command line, is prime.
+3. Write a program to determine if a number, given on the command line, is prime.
 
    1. How can you optimize this program?
    2. Implement [The Sieve of
