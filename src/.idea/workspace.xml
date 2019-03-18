@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aac7ee28-e5e0-4253-aa0f-2900d4a546b2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/args.py" beforeDir="false" afterPath="$PROJECT_DIR$/args.py" afterDir="false" />
-    </list>
+    <list default="true" id="aac7ee28-e5e0-4253-aa0f-2900d4a546b2" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,10 +18,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/args.py">
+        <entry file="file://$PROJECT_DIR$/scopes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+            <state relative-caret-position="227">
+              <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -48,6 +46,7 @@
         <option value="$PROJECT_DIR$/dictionaries.py" />
         <option value="$PROJECT_DIR$/functions.py" />
         <option value="$PROJECT_DIR$/args.py" />
+        <option value="$PROJECT_DIR$/scopes.py" />
       </list>
     </option>
   </component>
@@ -225,12 +224,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1552932906233</updated>
-      <workItem from="1552932907593" duration="2590000" />
+      <workItem from="1552932907593" duration="2630000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2590000" />
+    <option name="totallyTimeSpent" value="2630000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="371" width="1267" height="675" extended-state="0" />
@@ -342,8 +341,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/args.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+        <state relative-caret-position="870">
+          <caret line="58" column="11" lean-forward="true" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scopes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
         </state>
       </provider>
     </entry>
