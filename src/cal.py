@@ -22,3 +22,40 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+args = len(sys.argv[1:])
+month = datetime.today().month
+year = datetime.today().year
+
+
+def month_check(month):
+    if month > 12 or month == 0:
+        return -1
+    else:
+        return 1
+
+
+def year_check(year):
+    if len(str(year)) == 4:
+        return 1
+    else:
+        return -1
+
+
+if args == 1:
+    month = int(sys.argv[1])
+    if month_check(month) == -1:
+        print("please enter a valid month")
+    else:
+        print(calendar.TextCalendar().formatmonth(year, month))
+elif args == 2:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+    if month_check(month) == -1 or year_check(year) == -1:
+        print("please enter a valid month and year")
+    else:
+        print(calendar.TextCalendar().formatmonth(year, month))
+elif args == 0:
+    print(calendar.TextCalendar().formatmonth(year, month))
+else:
+    print("Please format your arguments like this: cal.py 11 1985")
