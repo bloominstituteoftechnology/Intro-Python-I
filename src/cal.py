@@ -35,8 +35,7 @@ elif len(cmd) == 1 and (int(cmd[0]) <= 12):
     month = int(cmd[0])
     print(calendar.month(date.year, month))
 elif len(cmd) == 2 and (int(cmd[0]) <= 12) and (len(cmd[1]) == 4):
-    month = int(cmd[0])
-    year = int(cmd[1])
+    month, year = (int(x) for x in cmd)
     print(calendar.month(year, month))
 else:
     print('For the first number, please enter the month in a number from 1 - 12 format\
