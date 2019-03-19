@@ -20,5 +20,16 @@ and does the following:
 """
 
 import sys
-import calendar
+from calendar import Calendar
 from datetime import datetime
+
+def cal(*args):
+  now = datetime.now()
+  month = now.month
+  year = now.year
+  if len(args) >= 1:
+    month = args[0]
+  if len(args) == 2:
+    year = args[1]
+  cal_month = Calendar().itermonthdays(year, month)
+  print([day for day in cal_month])
