@@ -26,19 +26,18 @@ from datetime import datetime
 date = datetime.now()
 
 cmd = input("Enter a number between 1-12 then add a space \
-and  enter a year in YYYY format: ")
+  and enter a year in YYYY format: ")
 cmd = cmd.split()
 
 if len(cmd) == 0:
     print(calendar.month(date.year, date.month))
-elif len(cmd) == 1 and cmd[0].isdigit() and (int(cmd[0]) <= 12):
+elif len(cmd) == 1 and (int(cmd[0]) <= 12):
     month = int(cmd[0])
     print(calendar.month(date.year, month))
-elif len(cmd) == 2 and cmd[0].isdigit() and cmd[1].isdigit() \
-        and (int(cmd[0]) <= 12) and (len(cmd[1]) == 4):
+elif len(cmd) == 2 and (int(cmd[0]) <= 12) and (len(cmd[1]) == 4):
     month = int(cmd[0])
     year = int(cmd[1])
     print(calendar.month(year, month))
 else:
-    print('For the first number, please enter the month in a number from 1 - 12 format \
-    and the year in YYYY format as the second number.')
+    print('For the first number, please enter the month in a number from 1 - 12 format\
+      and the year in YYYY format as the second number.')
