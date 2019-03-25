@@ -1,3 +1,4 @@
+import os
 """
 In this exercise, you'll be playing around with the sys module,
 which allows you to access many system specific variables and
@@ -9,7 +10,9 @@ import sys
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
 
 # Print out the command line arguments in sys.argv, one per line:
-# YOUR CODE HERE
+for arg in sys.argv:
+    print(arg)
+
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
@@ -18,7 +21,6 @@ import sys
 # YOUR CODE HERE
 
 
-import os
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
 # Print the current process ID
