@@ -15,11 +15,15 @@ a = [2, 4, 1, 7, 9, 6]
 # x = slice(1, 2)
 # print(a[x])
 
+# print(a[1])
+
 print(a[1:-4])
 
 # Output the second-to-last element: 9
 # x = slice(4, 5)
 # print(a[x])
+
+# print(a[-2])
 
 print(a[4:-1])
 
@@ -27,11 +31,15 @@ print(a[4:-1])
 # x = slice(3, 6)
 # print(a[x])
 
+# print(a[-3])
+
 print(a[3:])
 
 # Output the two middle elements in the array: [1, 7]
 # x = slice(2, 4)
 # print(a[x])
+
+# print(a[2:4])
 
 print(a[2:-2])
 
@@ -52,4 +60,6 @@ print(a[:-1])
 s = "Hello, world!"
 
 # Output just the 8th-12th characters: "world"
+# print(s[7:12])
+
 print(s[7:-1])
