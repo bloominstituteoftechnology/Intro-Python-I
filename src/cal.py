@@ -22,3 +22,12 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+if len(sys.argv) == 1:
+  calendar.TextCalendar().prmonth(datetime.now().year, datetime.now().month)
+elif len(sys.argv) == 2:
+  calendar.TextCalendar().prmonth(datetime.now().year, int(sys.argv[1]))
+elif len(sys.argv) == 3:
+  calendar.TextCalendar().prmonth(int(sys.argv[2]), int(sys.argv[1]))
+else:
+  print("if no args given, it will print current month, one arg for month, 2 args for month and year(month then year) ")
