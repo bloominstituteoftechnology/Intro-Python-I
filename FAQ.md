@@ -37,6 +37,8 @@ paradigms, the more effective you are in that multi-paradigm langage.
 
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>In regard to the code challenge solution, why is the '+' operator being used to concatenate strings? I thought we were supposed to use the join() method in Python? </b></summary><p>
 
 Using `join()` to join large numbers of strings is definitely faster in Python
@@ -59,10 +61,14 @@ bother with making a list of strings to `join()`.
 
 ## Python
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>Are there any helpful VS Code extensions that are recommend for using with Python?</b></summary><p>
 
 * [Official VS Code Python Extension](https://code.visualstudio.com/docs/languages/python)
 </p></details></p>
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>I'm on Windows; what command do I use to run Python?</b></summary><p>
 
@@ -75,6 +81,8 @@ py
 If in bash, use `python` or `python3`.
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>What version of Python do I need?</b></summary><p>
 
 You should have version 3.7 or higher. Test with:
@@ -85,17 +93,23 @@ python --version
 </p></details></p>
 
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>Do I need to use pipenv?</b></summary><p>
 
 You should. Good Python devs know how.
 </p></details></p>
 
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>How do I get out of the Python REPL?</b></summary><p>
 
 Hit `CTRL-D`. This is the way End-Of-File is signified in Unix-likes.
 </p></details></p>
 
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>What does "REPL" mean?</b></summary><p>
 
@@ -104,6 +118,8 @@ _Read, Evaluate, Print Loop_.
 It reads your input, evaluates it, and prints the result. And loops.
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>I'm on a Mac and when I run Python it says I'm on version 2.7. Why?</b></summary><p>
 
 Macs come with version 2.7 by default. You'll need to install version 3.
@@ -111,10 +127,14 @@ Macs come with version 2.7 by default. You'll need to install version 3.
 And preferable use `pipenv` after that.
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>Does Python use tabs or spaces?</b></summary><p>
 
 [PEP 8](https://www.python.org/dev/peps/pep-0008/) says four spaces.
 </p></details></p>
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>How do I convert an iterator into a list?</b></summary><p>
 
@@ -131,12 +151,16 @@ produces:
 ```
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>Does Python have hoisting?</b></summary><p>
 
 No.
 
 [What is hoisting?](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
 </p></details></p>
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>Does scoping work similar to other languages?</b></summary><p>
 
@@ -147,10 +171,14 @@ Since there are no declarations, there's no block-level scope.
 It is similar to `var` in JavaScript.
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>Can you return a reference to a function from another function? Or store it in a variable?</b></summary><p>
 
 Yes. Functions are [first-class citizens](https://en.wikipedia.org/wiki/First-class_citizen).
 </p></details></p>
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>Can you use boolean shortcut assignments?</b></summary><p>
 
@@ -160,6 +188,8 @@ Yes, you can. This is common in Perl and JavaScript, but it's not particularly [
 x = SomethingFalsey or 5
 ```
 </p></details></p>
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>Can you do anonymous functions?</b></summary><p>
 
@@ -174,12 +204,16 @@ do_some_math(4, 5, lambda x, y: y - x)
 ```
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>Is a dict like a JavaScript object?</b></summary><p>
 
 Sort of.
 
 The syntax is different, though. In Python you must use `[]` notation to access elements. And you must use `"` around the key names.
 </p></details></p>
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>What are all those method names with double underscores around them?</b></summary><p>
 
@@ -191,6 +225,8 @@ Most commonly used are:
 * `__str__()` returns a string representation of the object
 * `__repr__()` returns a string representation of the object, for debugging
 </p></details></p>
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>How do I get a value from a dict?</b></summary><p>
 
@@ -206,15 +242,21 @@ print(d["a"])
 You don't use dot notation.
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>When do we run pipenv shell?</b></summary><p>
 
 `pipenv shell` puts you into your work environment. When you're ready to work, or run the code, or install new dependencies, you should be in your pipenv shell.
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>How do I get out of the pipenv shell?</b></summary><p>
 
 Type `exit`.
 </p></details></p>
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>How do I install additional packages from pipenv?</b></summary><p>
 
@@ -223,10 +265,14 @@ pipenv install packagename
 ```
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>Is it possible to use system-wide packages from inside the virtual environment?</b></summary><p>
 
 This is [not recommended](https://pipenv.readthedocs.io/en/latest/diagnose/#no-module-named-module-name).
 </p></details></p>
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>Where are good Python docs?</b></summary><p>
 
@@ -236,10 +282,14 @@ The official docs might be hard to read at first, but you'll get used to them
 quickly
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>Which linter?</b></summary><p>
 
 Pylint or Flake8. The latter seems to be a bit more popular.
 </p></details></p>
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>Can you dynamically add new methods/properties to class through other functions? Or must all properties/methods be declared at once?</b></summary><p>
 
@@ -266,10 +316,14 @@ f.hi()   # Prints "Hi"
 This is not a common thing to see in Python, however.
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>Following this flow: 1) class Dog is created with attributes size and weight. 2) New instance called Snoopy of class Dog is created. 3) Class Dog gets the method bark() dynamically added to it. Question: will Snoopy now have access to bark() method?</b></summary><p>
 
 Yes.
 </p></details></p>
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>If a subclass inherits from two superclasses with a method of the same name, which method will the subclass use?</b></summary><p>
 
@@ -284,6 +338,8 @@ The answer to this is twofold:
    what Python uses.
 </p></details></p>
 
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>How to handle multiple inheritance and why/when to do it in the first place?</b></summary><p>
 
@@ -306,6 +362,8 @@ trouble](https://softwareengineering.stackexchange.com/questions/218458/is-there
 and opt for other solutions, like composition.
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>Why use tuples instead of lists?</b></summary><p>
 
 * Tuples are immutable. There's a school of thought that says bugs can be reduced if you make as many things immutable as you can.
@@ -313,13 +371,15 @@ and opt for other solutions, like composition.
 * Some tuples (containing primitive types), can be used as `dict` keys.
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>What's the difference between __repr__ and __str__?</b></summary><p>
 
-Generally speaking, ```__repr__``` is the string a dev would want to see if they
-dumped an object to the screen. ```__str__``` is the string a user would want to
-see if the object were `print()`ed.
+Generally speaking, `__repr__` is the string a dev would want to see if they
+dumped an object to the screen. `__str__` is the string a user would want to see
+if the object were `print()`ed.
 
-The output of ```__repr__``` should be _valid Python code that can reproduce the
+The output of `__repr__` should be _valid Python code that can reproduce the
 object_.
 
 ```python
@@ -336,18 +396,21 @@ class Goat:
 
 In action:
 
-```screen
+```python
 >>> g = Goat(4)
 >>> str(g)
 'a goat with 4 legs'
 >>> g
 Goat(leg_count=4)
->>> Goat(leg_count=4)
+>>> Goat(leg_count=4)  # output of __repr__ makes a clone of that object!
 Goat(leg_count=4)
 ```
+
 </p></details></p>
 
 ## Coding
+
+<!-- =============================================================================== -->
 
 <p><details><summary><b>What are some ways to learn a new language?</b></summary><p>
 
@@ -371,6 +434,8 @@ Things to look for in the new language:
 
 </p></details></p>
 
+<!-- =============================================================================== -->
+
 <p><details><summary><b>Why test code frequently?</b></summary><p>
 
 It's often better to make progress in small increments than to write a bunch of
@@ -380,3 +445,19 @@ Also, it's easier to stay motivated if you spend 10 minutes getting a first
 version going, even if it's missing 99% of its features, and then starting to
 iterate on that.
 </p></details></p>
+
+<!-- TODO
+How to get out of built-in help?
+sys.argv doesn’t make sense to me. And I can’t find any documentation that explains it well
+how do I concatenate two arrays into a single array? [use extend()]
+
+
+-->
+
+<!-- =============================================================================== -->
+
+<!-- Template:
+<p><details><summary><b></b></summary><p>
+</p></details></p>
+
+-->
