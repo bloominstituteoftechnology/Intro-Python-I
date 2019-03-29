@@ -63,6 +63,17 @@ bother with making a list of strings to `join()`.
 
 <!-- =============================================================================== -->
 
+<p><details><summary><b>How do you get out of the Python built-in <tt>help</tt>?</b></summary><p>
+
+Hit `q` for "quit".
+
+It's a common command in Unix "pagers" (programs that show documents a page at a
+time).
+
+</p></details></p>
+
+<!-- =============================================================================== -->
+
 <p><details><summary><b>Are there any helpful VS Code extensions that are recommend for using with Python?</b></summary><p>
 
 * [Official VS Code Python Extension](https://code.visualstudio.com/docs/languages/python)
@@ -408,6 +419,84 @@ Goat(leg_count=4)
 
 </p></details></p>
 
+<!-- =============================================================================== -->
+
+<p><details><summary><b>How does <tt>sys.argv</tt> work?</b></summary><p>
+
+It's a list that holds _command line arguments_. This is a way for a user to run
+your program and specify different behavior from the command line.
+
+Here's a small program that prints the command line arguments:
+
+```python
+import sys
+
+for i in range(len(sys.argv)):
+    print(f'Argument #{i} is: {sys.argv[i]}')
+```
+
+and here's some output, assuming you named the script `foo.py`:
+
+```screen
+$ python foo.py
+Argument #0 is: foo.py
+```
+
+```screen
+$ python foo.py antelope buffalo
+Argument #0 is: foo.py
+Argument #1 is: antelope
+Argument #2 is: buffalo
+```
+
+Note that the 0th element in the list is the name of the program.
+
+Here's another program that prints up to whatever number the user specifies:
+
+```python
+import sys
+
+for i in range(int(sys.argv[1])):
+    print(i+1)
+```
+
+Example runs:
+
+```screen
+$ python foo.py 2
+1
+2
+```
+
+```screen
+$ python foo.py 4
+1
+2
+3
+4
+```
+
+</p></details></p>
+
+<!-- =============================================================================== -->
+
+<p><details><summary><b>How do I concatenate two arrays into a single array?</b></summary><p>
+
+Use `extend()`.
+
+```python
+a = [1, 2, 3]
+b = [4, 5, 6]
+
+a.extend(b)
+
+print(a)   # [ 1, 2, 3, 4, 5, 6 ]
+```
+
+</p></details></p>
+
+<!-- =============================================================================== -->
+
 ## Coding
 
 <!-- =============================================================================== -->
@@ -447,10 +536,8 @@ iterate on that.
 </p></details></p>
 
 <!-- TODO
-How to get out of built-in help?
-sys.argv doesn’t make sense to me. And I can’t find any documentation that explains it well
-how do I concatenate two arrays into a single array? [use extend()]
-
+positional args vs keyword ards
+What's the difference between inheritance and polymorphism?
 
 -->
 
