@@ -1,8 +1,72 @@
 # FAQ
 
-## General CS
+<!-- TODO
+positional args vs keyword ards
+What's the difference between inheritance and polymorphism?
+-->
 
-<p><details><summary><b>What are some things we can do to prepare for CS?</b></summary><p>
+## Contents
+
+### General CS
+
+* [What are some things we can do to prepare for CS?](#q100)
+* [What are some ways to learn a new language?](#q3600)
+* [Why test code frequently?](#q3700)
+
+### General Python
+
+* [In regard to the code challenge solution, why is the '+' operator being used to concatenate strings? I thought we were supposed to use the join() method in Python?](#q300)
+* [How do you get out of the Python built-in `help`?](#q400)
+* [Are there any helpful VS Code extensions that are recommend for using with Python?](#q500)
+* [I'm on Windows; what command do I use to run Python?](#q600)
+* [What version of Python do I need?](#q700)
+* [How do I get out of the Python REPL?](#q900)
+* [What does "REPL" mean?](#q1000)
+* [I'm on a Mac and when I run Python it says I'm on version 2.7. Why?](#q1100)
+* [Does Python use tabs or spaces?](#q1200)
+* [Can you use boolean shortcut assignments?](#q1700)
+* [Can you do anonymous functions?](#q1800)
+* [What are all those method names with double underscores around them?](#q2000)
+* [Where are good Python docs?](#q2600)
+* [Which linter?](#q2700)
+* [What's the difference between __repr__ and __str__?](#q3300)
+* [How does `sys.argv` work?](#q3400)
+
+### Pipenv
+
+* [Do I need to use pipenv?](#q800)
+* [When do we run pipenv shell?](#q2200)
+* [How do I get out of the pipenv shell?](#q2300)
+* [How do I install additional packages from pipenv?](#q2400)
+* [Is it possible to use system-wide packages from inside the virtual environment?](#q2500)
+
+### Object-Oriented Programming
+
+* [Why is there such a debate between OOP and functional programming, and why should we care?](#q200)
+* [Following this flow: 1) class Dog is created with attributes size and weight. 2) New instance called Snoopy of class Dog is created. 3) Class Dog gets the method bark() dynamically added to it. Question: will Snoopy now have access to bark() method?](#q2900)
+* [Can you dynamically add new methods/properties to class through other functions? Or must all properties/methods be declared at once?](#q2800)
+* [If a subclass inherits from two superclasses with a method of the same name, which method will the subclass use?](#q3000)
+* [How to handle multiple inheritance and why/when to do it in the first place?](#q3100)
+
+### Python Scoping
+
+* [Does Python have hoisting?](#q1400)
+* [Does scoping work similar to other languages?](#q1500)
+* [Can you return a reference to a function from another function? Or store it in a variable?](#q1600)
+* [Can you do anonymous functions?](#q1800)
+
+### Types
+
+* [How do I convert an iterator into a list?](#q1300)
+* [Is a dict like a JavaScript object?](#q1900)
+* [How do I get a value from a dict?](#q2100)
+* [Why use tuples instead of lists?](#q3200)
+* [How do I concatenate two arrays into a single array?](#q3500)
+
+## Questions
+
+<a name="q100"></a>
+### What are some things we can do to prepare for CS?
 
 * [CS Wiki](https://github.com/LambdaSchool/CS-Wiki/wiki)
 * [Polya's Problem Solving Techniques](https://github.com/LambdaSchool/CS-Wiki/wiki/Polya%27s-Problem-Solving-Techniques)
@@ -12,9 +76,11 @@
 * [How to read specs and code](https://github.com/LambdaSchool/CS-Wiki/wiki/How-to-Read-Specifications-and-Code)
 * [Command line primer](https://github.com/LambdaSchool/CS-Wiki/wiki/Command-Line-Primer)
 * [Coding style guidelines](https://github.com/LambdaSchool/CS-Wiki/wiki/CS-Coding-Style-Guidelines)
-</p></details></p>
 
-<p><details><summary><b>Why is there such a debate between OOP and functional programming, and why should we care?</b></summary><p>
+------------------------------------------------------------------------
+
+<a name="q200"></a>
+### Why is there such a debate between OOP and functional programming, and why should we care?
 
 There are a lot of [programming
 paradigms](https://en.wikipedia.org/wiki/Programming_paradigm) and they all have
@@ -35,11 +101,10 @@ But we encourage this kind of learning because most popular languages are to
 some degree _multi-paradigm_, and the more techniques you know from more
 paradigms, the more effective you are in that multi-paradigm langage.
 
-</p></details></p>
+------------------------------------------------------------------------
 
-<!-- =============================================================================== -->
-
-<p><details><summary><b>In regard to the code challenge solution, why is the '+' operator being used to concatenate strings? I thought we were supposed to use the join() method in Python? </b></summary><p>
+<a name="q300"></a>
+### In regard to the code challenge solution, why is the '+' operator being used to concatenate strings? I thought we were supposed to use the join() method in Python? 
 
 Using `join()` to join large numbers of strings is definitely faster in Python
 than using the `+` operator to do it. The reason is that every time you `join()`
@@ -57,31 +122,28 @@ Finally, if `+` is fast enough for this case, it might not be worth the time to
 bother with making a list of strings to `join()`.
 
 * [Speed comparison with different ways of concatenating strings](https://waymoot.org/home/python_string/)
-</p></details></p>
 
-## Python
+------------------------------------------------------------------------
 
-<!-- =============================================================================== -->
-
-<p><details><summary><b>How do you get out of the Python built-in <tt>help</tt>?</b></summary><p>
+<a name="q400"></a>
+### How do you get out of the Python built-in `help`?
 
 Hit `q` for "quit".
 
 It's a common command in Unix "pagers" (programs that show documents a page at a
 time).
 
-</p></details></p>
+------------------------------------------------------------------------
 
-<!-- =============================================================================== -->
-
-<p><details><summary><b>Are there any helpful VS Code extensions that are recommend for using with Python?</b></summary><p>
+<a name="q500"></a>
+### Are there any helpful VS Code extensions that are recommend for using with Python?
 
 * [Official VS Code Python Extension](https://code.visualstudio.com/docs/languages/python)
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>I'm on Windows; what command do I use to run Python?</b></summary><p>
+<a name="q600"></a>
+### I'm on Windows; what command do I use to run Python?
 
 If you're running in PowerShell or cmd, use:
 
@@ -90,64 +152,61 @@ py
 ```
 
 If in bash, use `python` or `python3`.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>What version of Python do I need?</b></summary><p>
+<a name="q700"></a>
+### What version of Python do I need?
 
 You should have version 3.7 or higher. Test with:
 
 ```shell
 python --version
 ```
-</p></details></p>
 
+------------------------------------------------------------------------
 
-<!-- =============================================================================== -->
-
-<p><details><summary><b>Do I need to use pipenv?</b></summary><p>
+<a name="q800"></a>
+### Do I need to use pipenv?
 
 You should. Good Python devs know how.
-</p></details></p>
 
+------------------------------------------------------------------------
 
-<!-- =============================================================================== -->
-
-<p><details><summary><b>How do I get out of the Python REPL?</b></summary><p>
+<a name="q900"></a>
+### How do I get out of the Python REPL?
 
 Hit `CTRL-D`. This is the way End-Of-File is signified in Unix-likes.
-</p></details></p>
 
+------------------------------------------------------------------------
 
-<!-- =============================================================================== -->
-
-<p><details><summary><b>What does "REPL" mean?</b></summary><p>
+<a name="q1000"></a>
+### What does "REPL" mean?
 
 _Read, Evaluate, Print Loop_.
 
 It reads your input, evaluates it, and prints the result. And loops.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>I'm on a Mac and when I run Python it says I'm on version 2.7. Why?</b></summary><p>
+<a name="q1100"></a>
+### I'm on a Mac and when I run Python it says I'm on version 2.7. Why?
 
 Macs come with version 2.7 by default. You'll need to install version 3.
 
 And preferable use `pipenv` after that.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Does Python use tabs or spaces?</b></summary><p>
+<a name="q1200"></a>
+### Does Python use tabs or spaces?
 
 [PEP 8](https://www.python.org/dev/peps/pep-0008/) says four spaces.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>How do I convert an iterator into a list?</b></summary><p>
+<a name="q1300"></a>
+### How do I convert an iterator into a list?
 
 Cast it:
 
@@ -160,49 +219,49 @@ produces:
 ```python
 [0, 1, 2, 3, 4]
 ```
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Does Python have hoisting?</b></summary><p>
+<a name="q1400"></a>
+### Does Python have hoisting?
 
 No.
 
-[What is hoisting?](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
-</p></details></p>
+* [What is hoisting?](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Does scoping work similar to other languages?</b></summary><p>
+<a name="q1500"></a>
+### Does scoping work similar to other languages?
 
 Generally, and also not really. Variables are either global or function-local.
 
 Since there are no declarations, there's no block-level scope.
 
 It is similar to `var` in JavaScript.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Can you return a reference to a function from another function? Or store it in a variable?</b></summary><p>
+<a name="q1600"></a>
+### Can you return a reference to a function from another function? Or store it in a variable?
 
 Yes. Functions are [first-class citizens](https://en.wikipedia.org/wiki/First-class_citizen).
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Can you use boolean shortcut assignments?</b></summary><p>
+<a name="q1700"></a>
+### Can you use boolean shortcut assignments?
 
 Yes, you can. This is common in Perl and JavaScript, but it's not particularly [idiomatic](https://en.wikipedia.org/wiki/Programming_idiom) in Python.
 
 ```python
 x = SomethingFalsey or 5
 ```
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Can you do anonymous functions?</b></summary><p>
+<a name="q1800"></a>
+### Can you do anonymous functions?
 
 You can use `lambda` for simple functions:
 
@@ -213,20 +272,20 @@ adder(4, 5)   # 9
 
 do_some_math(4, 5, lambda x, y: y - x)
 ```
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Is a dict like a JavaScript object?</b></summary><p>
+<a name="q1900"></a>
+### Is a dict like a JavaScript object?
 
 Sort of.
 
 The syntax is different, though. In Python you must use `[]` notation to access elements. And you must use `"` around the key names.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>What are all those method names with double underscores around them?</b></summary><p>
+<a name="q2000"></a>
+### What are all those method names with double underscores around them?
 
 Those are function you typically don't need to use, but can override or call if you wish.
 
@@ -235,11 +294,11 @@ Most commonly used are:
 * `__init__()` is the constructor for objects
 * `__str__()` returns a string representation of the object
 * `__repr__()` returns a string representation of the object, for debugging
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>How do I get a value from a dict?</b></summary><p>
+<a name="q2100"></a>
+### How do I get a value from a dict?
 
 ```python
 d = {
@@ -251,58 +310,58 @@ print(d["a"])
 ```
 
 You don't use dot notation.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>When do we run pipenv shell?</b></summary><p>
+<a name="q2200"></a>
+### When do we run pipenv shell?
 
 `pipenv shell` puts you into your work environment. When you're ready to work, or run the code, or install new dependencies, you should be in your pipenv shell.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>How do I get out of the pipenv shell?</b></summary><p>
+<a name="q2300"></a>
+### How do I get out of the pipenv shell?
 
 Type `exit`.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>How do I install additional packages from pipenv?</b></summary><p>
+<a name="q2400"></a>
+### How do I install additional packages from pipenv?
 
 ```shell
 pipenv install packagename
 ```
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Is it possible to use system-wide packages from inside the virtual environment?</b></summary><p>
+<a name="q2500"></a>
+### Is it possible to use system-wide packages from inside the virtual environment?
 
 This is [not recommended](https://pipenv.readthedocs.io/en/latest/diagnose/#no-module-named-module-name).
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Where are good Python docs?</b></summary><p>
+<a name="q2600"></a>
+### Where are good Python docs?
 
 * [Official documentation](https://docs.python.org/3/) tutorial and library reference.
 
 The official docs might be hard to read at first, but you'll get used to them
 quickly
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Which linter?</b></summary><p>
+<a name="q2700"></a>
+### Which linter?
 
 Pylint or Flake8. The latter seems to be a bit more popular.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Can you dynamically add new methods/properties to class through other functions? Or must all properties/methods be declared at once?</b></summary><p>
+<a name="q2800"></a>
+### Can you dynamically add new methods/properties to class through other functions? Or must all properties/methods be declared at once?
 
 You can add them dynamically at runtime, but you have to add them to the class itself:
 
@@ -325,18 +384,18 @@ f.hi()   # Prints "Hi"
 ```
 
 This is not a common thing to see in Python, however.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Following this flow: 1) class Dog is created with attributes size and weight. 2) New instance called Snoopy of class Dog is created. 3) Class Dog gets the method bark() dynamically added to it. Question: will Snoopy now have access to bark() method?</b></summary><p>
+<a name="q2900"></a>
+### Following this flow: 1) class Dog is created with attributes size and weight. 2) New instance called Snoopy of class Dog is created. 3) Class Dog gets the method bark() dynamically added to it. Question: will Snoopy now have access to bark() method?
 
 Yes.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>If a subclass inherits from two superclasses with a method of the same name, which method will the subclass use?</b></summary><p>
+<a name="q3000"></a>
+### If a subclass inherits from two superclasses with a method of the same name, which method will the subclass use?
 
 The answer to this is twofold:
 
@@ -347,12 +406,12 @@ The answer to this is twofold:
 2. As for the order in which methods of the same name are resolved, check out
    the [MRO Algorithm](https://en.wikipedia.org/wiki/C3_linearization) which is
    what Python uses.
-</p></details></p>
 
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>How to handle multiple inheritance and why/when to do it in the first place?</b></summary><p>
+<a name="q3100"></a>
+### How to handle multiple inheritance and why/when to do it in the first place?
 
 ```python
 class Base1:
@@ -371,20 +430,20 @@ needs attributes from multiple, otherwise-unrelated parent classes.
 However, [a lot of people find it's not worth the
 trouble](https://softwareengineering.stackexchange.com/questions/218458/is-there-any-real-reason-multiple-inheritance-is-hated))
 and opt for other solutions, like composition.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>Why use tuples instead of lists?</b></summary><p>
+<a name="q3200"></a>
+### Why use tuples instead of lists?
 
 * Tuples are immutable. There's a school of thought that says bugs can be reduced if you make as many things immutable as you can.
 * Tuples are faster than lists to access.
 * Some tuples (containing primitive types), can be used as `dict` keys.
-</p></details></p>
 
-<!-- =============================================================================== -->
+------------------------------------------------------------------------
 
-<p><details><summary><b>What's the difference between __repr__ and __str__?</b></summary><p>
+<a name="q3300"></a>
+### What's the difference between __repr__ and __str__?
 
 Generally speaking, `__repr__` is the string a dev would want to see if they
 dumped an object to the screen. `__str__` is the string a user would want to see
@@ -417,11 +476,10 @@ Goat(leg_count=4)
 Goat(leg_count=4)
 ```
 
-</p></details></p>
+------------------------------------------------------------------------
 
-<!-- =============================================================================== -->
-
-<p><details><summary><b>How does <tt>sys.argv</tt> work?</b></summary><p>
+<a name="q3400"></a>
+### How does `sys.argv` work?
 
 It's a list that holds _command line arguments_. This is a way for a user to run
 your program and specify different behavior from the command line.
@@ -476,11 +534,10 @@ $ python foo.py 4
 4
 ```
 
-</p></details></p>
+------------------------------------------------------------------------
 
-<!-- =============================================================================== -->
-
-<p><details><summary><b>How do I concatenate two arrays into a single array?</b></summary><p>
+<a name="q3500"></a>
+### How do I concatenate two arrays into a single array?
 
 Use `extend()`.
 
@@ -493,15 +550,10 @@ a.extend(b)
 print(a)   # [ 1, 2, 3, 4, 5, 6 ]
 ```
 
-</p></details></p>
+------------------------------------------------------------------------
 
-<!-- =============================================================================== -->
-
-## Coding
-
-<!-- =============================================================================== -->
-
-<p><details><summary><b>What are some ways to learn a new language?</b></summary><p>
+<a name="q3600"></a>
+### What are some ways to learn a new language?
 
 * Figure out how variables and functions work.
 * Build small toy programs to test individual features.
@@ -521,11 +573,10 @@ Things to look for in the new language:
 * Functions
 * etc.
 
-</p></details></p>
+------------------------------------------------------------------------
 
-<!-- =============================================================================== -->
-
-<p><details><summary><b>Why test code frequently?</b></summary><p>
+<a name="q3700"></a>
+### Why test code frequently?
 
 It's often better to make progress in small increments than to write a bunch of
 stuff and test it in one go.
@@ -533,18 +584,5 @@ stuff and test it in one go.
 Also, it's easier to stay motivated if you spend 10 minutes getting a first
 version going, even if it's missing 99% of its features, and then starting to
 iterate on that.
-</p></details></p>
 
-<!-- TODO
-positional args vs keyword ards
-What's the difference between inheritance and polymorphism?
-
--->
-
-<!-- =============================================================================== -->
-
-<!-- Template:
-<p><details><summary><b></b></summary><p>
-</p></details></p>
-
--->
+------------------------------------------------------------------------
