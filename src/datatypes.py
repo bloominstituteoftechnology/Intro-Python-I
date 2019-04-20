@@ -14,8 +14,13 @@ y = "7"
 # Write a print statement that combines x + y into the integer value 12
 
 # YOUR CODE HERE
+z = int(y)
 
+print(x + z)
 
 # Write a print statement that combines x + y into the string value 57
 
 # YOUR CODE HERE
+a = str(x)
+
+print(a + y)
