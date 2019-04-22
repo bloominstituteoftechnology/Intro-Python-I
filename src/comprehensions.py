@@ -1,3 +1,4 @@
+import math
 """
 List comprehensions are one cool and unique feature of Python.
 They essentially act as a terse and concise way of initializing
@@ -12,12 +13,19 @@ for more info regarding list comprehensions.
 
 y = []
 
-print (y)
+for x in range(1, 6):
+    y.append(x)
+
+print(y)
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 
 y = []
+
+
+for x in range(10):
+    y.append(x * x * x)
 
 print(y)
 
@@ -27,6 +35,8 @@ print(y)
 a = ["foo", "bar", "baz"]
 
 y = []
+for x in a:
+    y.append(x.upper())
 
 print(y)
 
@@ -37,5 +47,8 @@ x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
 y = []
+for word in x:
+    if len(word) % 2 == 0:
+        y.append(word)
 
 print(y)
