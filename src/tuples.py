@@ -37,8 +37,26 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 # YOUR CODE HERE
 
 t = (1, 2, 5, 7, 99)
-print_tuple(t)  # Prints 1 2 5 7 99, one per line
+
+def print_tuple(t):
+  if type(t) == int:
+    print(t)
+  else:
+    for n in t:
+      print(n) # Prints 1 2 5 7 99, one per line
+
+
+#curious, why doesn't this work?
+#def print_tuple(t):
+#  try:
+#    for n in t:
+#      print(n) # Prints 1 2 5 7 99, one per line
+#  except TypeError:
+#    print(n)
 
 # Declare a tuple of 1 element then print it
 u = (1)  # What needs to be added to make this work?
 print_tuple(u)
+
+#It appears that a tuple of length 1 assumes the variable type of whatever the lone item is,
+#not that of a tuple. This means that a for loop for a tuple length of 1 will error out.
