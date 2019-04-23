@@ -22,3 +22,18 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+month = datetime.today().strftime("%m")
+year  = datetime.today().strftime("%Y")
+
+if len(sys.argv) >= 2:
+    month = sys.argv[1]
+elif len(sys.argv) >= 3:
+    year  = sys.argv[2]
+else:
+    print('cal.py can take two arguments cal.py month year ex: cal.py 5 2019')
+
+print(year, month)
+
+cal = calendar.TextCalendar()
+
+cal.prmonth(int(year), int(month))
