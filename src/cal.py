@@ -22,3 +22,21 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+c = calendar.TextCalendar(calendar.SUNDAY)
+
+str = c.formatmonth(2019, 1)
+
+print(str)
+
+
+x = input('enter a year: ')
+y = input('enter a month: ')
+
+x=int(x)
+y=int(y)
+
+
+d = calendar.TextCalendar(calendar.SUNDAY)
+str = d.formatmonth(x, y)
+print(str)
