@@ -12,15 +12,22 @@ import sys
 # YOUR CODE HERE
 
 print(sys.argv[0])
+# for arg in sys.argv:
+#     print(arg)
+# print('\n'.join(map(str, sys.argv)))
+# lst = sys.argv
+# for x in lst:
+#     print(x + "\n")
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
 
 print(sys.platform)
+# print(sys.getwindowsversion())
 
 # Print out the version of Python you're using:
 # YOUR CODE HERE
-
+print(sys.implementation)
 print(sys.version)
 
 
@@ -42,3 +49,5 @@ print(os.getcwd())
 
 name = os.getenv('COMPUTERNAME', 'defaultValue')
 print(name)
+
+# print(os.getlogin())

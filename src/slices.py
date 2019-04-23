@@ -24,6 +24,8 @@ d = a[-3:]
 print(d)
 
 # Output the two middle elements in the array: [1, 7]
+# mid = len(a) // 2
+# print(a[mid-1 : mid+1])
 e = a[2:4]
 print(e)
 
