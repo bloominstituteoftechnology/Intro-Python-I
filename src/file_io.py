@@ -1,18 +1,19 @@
-"""
-Python makes performing file I/O simple. Take a look
-at how to read and write to files here: 
+# Use open to open file "foo.txt" for reading
+file = open('foo.txt', 'r')
 
-https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
-"""
+# Print all the lines in the file
+print(file.read())
 
-# Open up the "foo.txt" file (which already exists) for reading
-# Print all the contents of the file, then close the file
+# Close the file
+file.close()
 
-# YOUR CODE HERE
+# Use open to open file "bar.txt" for writing
+file2 = open('foo.txt', 'w')
 
-# Open up a file called "bar.txt" (which doesn't exist yet) for
-# writing. Write three lines of arbitrary content to that file,
-# then close the file. Open up "bar.txt" and inspect it to make 
-# sure that it contains what you expect it to contain
+# Use the write() method to write three lines to the file
+file2.write( "Python is a great language.\n")
+file2.write( "Javascript is a great language.\n")
+file2.write( "Java is a great language.\n");
 
-# YOUR CODE HERE
+# Close the file
+file2.close()
