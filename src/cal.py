@@ -18,7 +18,19 @@ and does the following:
    the format that your program expects arguments to be given.
    Then exit the program.
 """
-
 import sys
 import calendar
 from datetime import datetime
+
+if len(sys.argv) == 1:
+  year = datetime.now().year
+  month = datetime.now().month
+
+  calendar.prmonth(year, month)
+elif len(sys.argv) == 2:
+  calendar.prmonth(year, int(sys.argv[1]))
+elif len(sys.argv) == 3:
+  calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+else:
+  print(
+      "Please format your arguments like this: \"alendar.py month [year]\" ")
