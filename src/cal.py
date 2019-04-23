@@ -22,3 +22,22 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+l = len(sys.argv)
+
+if l == 1: 
+    # user didn't pass in any args
+    month = datetime.now().month
+    year = datetime.now().year
+elif l == 2L
+    # assume the user passed in a month
+elif l == 3:
+    # assume the user passed in a month and a year
+    
+else:
+    # user provided faulty input
+    
+    
+# render the calendar
+cal = calendar.TextCalendar()
+cal.prmonth(year, month)
