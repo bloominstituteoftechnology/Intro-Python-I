@@ -22,3 +22,20 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+now = datetime.now()
+
+entry = input('Please follow the following format: `calender.py month year` change the month and year to your choices. ')
+date = entry.split(' ')
+
+if "calender.py" not in entry:
+  print('Please follow the following format: `calender.py month year` change the month and year to your choices. ')
+elif len(date) == 2:
+  if len(date[1]) > 2:
+    print(calendar.month(int(date[1]), now.month))
+  else:
+    print(calendar.month(now.year, int(date[1])))
+elif len(date) == 3:
+  print(calendar.month(int(date[2]), int(date[1])))
+else:
+  print(calendar.month(now.year, now.month))
