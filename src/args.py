@@ -5,6 +5,8 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
+def f1(int1, int2):
+    return int1 + int2
 
 print(f1(1, 2))
 
@@ -12,6 +14,15 @@ print(f1(1, 2))
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+def f2(*args):
+    b = 0
+    for x in args:
+        if type(x) is list:
+            for y in x:
+                b += y
+        else:
+            b += x
+    return b
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -29,6 +40,9 @@ print(f2(a))    # Should print 22
 
 # YOUR CODE HERE
 
+def f3(val1, val2 = 1):
+    return val1 + val2
+
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
 
@@ -42,6 +56,15 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 # YOUR CODE HERE
+def f4(*keywords,**args):
+    # print(keywords, args)
+    if len(args) is not 0:
+        for x, y in args.items():
+            print(f'key: {x}, value: {y}')
+    else:
+        for b, c in keywords[0].items():
+            print(f'key: {b}, value: {c}') 
+
 
 # Should print
 # key: a, value: 12

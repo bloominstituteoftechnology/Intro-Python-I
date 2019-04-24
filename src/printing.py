@@ -15,3 +15,15 @@ z = "I like turtles!"
 # Use the 'format' string method to print the same thing
 
 # Finally, print the same thing using an f-string
+
+print(type(y))
+
+print('x is %i, y is %g, z is "%s"' % (x,round(y, 2),z))
+
+print('x is {}, y is {}, z is "{}"'.format(x,round(y, 2),z))
+# print('x is {}, y is {:.2f}, z is "{}"'.format(x, y, z))
+# print('x is {:2}, y is {:1.3}, z is "{}"\n'.format(x, y, z))
+# print("x is {0},  y is {1:.2f}, z is {2}".format(x, y, z))
+
+print(f'x is {x}, y is {round(y, 2)}, z is "{z}"')
+# print(f'x is {x}, y is {y:.2f}, z is {z}')
