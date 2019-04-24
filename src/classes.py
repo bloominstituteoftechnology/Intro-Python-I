@@ -1,15 +1,15 @@
 # Make a class LatLon that can be passed parameters `lat` and `lon` to the
 # constructor 
 
-      # if hasattr(self, "difficulty"):
+# if hasattr(self, "difficulty") and hasattr(self, "size"):
 
 # YOUR CODE HERE
 class LatLon:
     def __init__(self, lat, lon):
         self.lat = lat
         self.lon = lon
-    def __str__(self):
-        if hasattr(self, "difficulty") and hasattr(self, "size"):
+    def __repr__(self):
+        if "difficulty" in self.__dict__ and "size" in self.__dict__:
             return f"{self.name}, {self.difficulty}, {self.size}, {self.lat}, {self.lon}"
         else:
             return f"{self.name}, {self.lat}, {self.lon}"
