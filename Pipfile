@@ -4,8 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pep8 = "*"
 
 [dev-packages]
+pep8 = "*"
 
 [requires]
 python_version = "3"
