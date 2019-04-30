@@ -32,10 +32,4 @@ print(len(x))
 
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
-def multiplyList(myList) :
-    result = 1000
-    for x in myList:
-        result = result * x
-    return result
-
-print(multiplyList(x))
+print([i*1000 for i in x])
