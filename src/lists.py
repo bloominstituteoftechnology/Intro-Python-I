@@ -13,18 +13,26 @@ print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE 
-for i in y:
-    x.append(i)
+# for i in y:
+#     x.append(i)
+###########
+x += y
 print(x)
+###########
+x.extend(y)
+
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE
 x.remove(8) 
+x.pop(4)
+x.pop(x.index(8))
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE
 x.insert(5, 99) 
+x.insert(-1, 99)
 print(x)
 
 # Print the length of list x
@@ -35,3 +43,4 @@ print(len(x))
 # YOUR CODE HERE
 for i in x:
     print (i * 1000)
+print(i * 1000 for i in x)
