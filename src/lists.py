@@ -17,6 +17,9 @@ for each_num in y:
     x.append(each_num)
 print(x)
 
+# OR
+x.extend(y)
+
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE
 x.remove(8)

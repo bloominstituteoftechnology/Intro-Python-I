@@ -4,3 +4,7 @@
 # YOUR CODE HERE
 
 print(2 ** 65536)
+
+# OR
+
+pow(2, 65536)
