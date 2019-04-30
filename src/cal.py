@@ -23,3 +23,30 @@ import sys
 import calendar
 from datetime import datetime
 
+# ask of month and year
+year = int(input("Please Enter the year Number: "))
+month = int(input("Please Enter the month Number: "))
+
+"""
+if len(sys.argv) == 1:
+    print(calendar.month(year, month))
+  elif len(sys.argv) == 2:
+    print(calendar.month(year, int(sys.argv[1])))
+  elif len(sys.argv) == 3:
+    print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
+else:
+  sys.exit("invalid number")
+"""
+
+
+
+
+# if :
+c = calendar.TextCalendar(calendar.SUNDAY)
+print(c.prmonth(datetime.now().year, datetime.now().month))
+# else:
+print(calendar.month(year, month))
+
+
+
+

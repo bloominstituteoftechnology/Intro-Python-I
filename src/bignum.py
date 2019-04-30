@@ -8,7 +8,7 @@ print([2<<exponent for exponent in range(16)])
 # Python Program to display the powers of 2 using anonymous function
 
 # Change this value for a different result
-terms = 16
+terms = 17
 
 # Uncomment to take number of terms from user
 #terms = int(input("How many terms? "))

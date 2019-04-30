@@ -16,7 +16,8 @@ print(f1(1, 2))
 
 # YOUR CODE HERE
 
-def f2(*args):
+def f2(*args):   
+        # return sum(args)
     sum = 0
     for i in args:
         sum += i
