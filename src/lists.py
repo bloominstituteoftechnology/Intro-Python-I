@@ -17,15 +17,15 @@ print(x)
 for i in y:
     x.append(i)
 print(x)
-x += y
-x.extend(y)
+# x += y
+# x.extend(y)
 
-print(x)
+# print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE 
 x.pop(x.index(8))
-x.remove(8)
+# x.remove(8)
 print(x)
 
 
@@ -37,7 +37,7 @@ print(x)
 
 # Print the length of list x
 # YOUR CODE HERE 
-# print(len(x))`
+print(len(x))
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
 for i in x:

@@ -11,7 +11,8 @@ for more info regarding list comprehensions.
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
 y = []
-
+for x in range(4):
+    y.append(x**2)
 print (y)
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
