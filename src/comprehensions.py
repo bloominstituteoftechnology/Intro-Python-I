@@ -9,7 +9,7 @@ for more info regarding list comprehensions.
 """
 import random
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
-x = [n for n in range(5)]
+x = [n for n in range(1,6)]
 
 print(x)
 
