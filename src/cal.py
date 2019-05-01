@@ -22,3 +22,17 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+print(sys.argv)
+
+cur_year = datetime.now().year
+cur_month = datetime.now().month
+
+if len(sys.argv) < 1:
+  print(calendar.month(cur_year, cur_month))
+elif len(sys.argv) == 2:
+  print(calendar.month(2019, int(sys.argv[1])))
+elif len(sys.argv) == 3:
+  print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
+else:
+  print("Please enter 'python3 cal.y [month] [year]' to provide a month and year.")
