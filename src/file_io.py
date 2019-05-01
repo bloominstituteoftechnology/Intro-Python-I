@@ -10,6 +10,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # YOUR CODE HERE
 with open('foo.txt', 'r') as f:
+    # OR # print(f.read())
     for line in f:
         print(line, end='')
 

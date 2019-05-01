@@ -47,6 +47,14 @@ for each_dict in waypoints:
 
 print(waypoints)
 
+## or
+
+def update_Dict(n):
+    n['name'] = "not a real place"
+    n['lon'] = -130
+
+    return n
+
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
 for each_dict in waypoints:

@@ -6,6 +6,8 @@
 
 # YOUR CODE HERE
 def f1(int_1, int_2):
+    if type(int_1) != int or type(int_2) != int:
+        print("Invalid input")
     return int_1 + int_2
 
 print(f1(1, 2))
@@ -21,6 +23,10 @@ def f2(*args):
     for each_arg in args:
         sum += each_arg
     return sum
+
+# OR
+def f22(*args):
+    return sum(args)
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
