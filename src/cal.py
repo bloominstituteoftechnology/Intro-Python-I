@@ -22,3 +22,24 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+class MyCalendar:
+  def __init__(self, month=None, year=None):
+    self.now= datetime
+    if month!=None and year!=None:
+      self.month= month
+      self.year=year
+    elif month!=None and year==None:
+      self.month=month
+      self.year= self.now.year
+    elif month==None and year==None:
+      self.month=self.now.month
+      self.year= self.now.year
+  def __str__(self):
+    return calendar.month(self.year, self.month)
+
+month= input('Please provide a month: ')
+year=input('Please provide a year: ')
+myCalendar= MyCalendar(int(month),int(year)).__str__()
+print(myCalendar)
+
+

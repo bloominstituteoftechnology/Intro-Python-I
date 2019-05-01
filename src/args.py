@@ -5,14 +5,25 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
-
-print(f1(1, 2))
+#Start code
+def f1 (n1,n2):
+    return n1+n2
+print(f1(1,2))
 
 # Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
-
+def f2(*numbers):
+    sum=0
+    for a in numbers:
+        if type(a)==int:
+            sum+=a
+        else:
+            for b in a:
+                sum+=b
+    return sum
+print(f1(1,2))
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
 print(f2(1, 4, -12))            # Should print -7
@@ -28,7 +39,11 @@ print(f2(a))    # Should print 22
 # arguments. Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
-
+def f3 (number1, number2=None):
+    if(number2!=None):
+        return number1+number2
+    else:
+        return number1+1
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
 
@@ -42,7 +57,13 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 # YOUR CODE HERE
-
+def f4 (args=None,**keywords):
+    if args==None:
+        for keyword in keywords:
+            print(f"key: {keyword}, value: {keywords[keyword]}")
+    else:
+        for keyword in args:
+            print(f"key: {keyword}, value: {args[keyword]}")    
 # Should print
 # key: a, value: 12
 # key: b, value: 30
