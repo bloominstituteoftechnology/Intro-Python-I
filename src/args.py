@@ -63,10 +63,10 @@ print(f3(8))     # Should print 9
 
 # YOUR CODE HERE
 
-def f4(**arg):
-    keys = sorted(arg.keys())
+def f4(**kwarg):
+    keys = sorted(kwarg.keys())
     for kw in keys:
-        print(f'key: {kw}, value: {arg[kw]}')
+        print(f'key: {kw}, value: {kwarg[kw]}')
 
 
 # Should print
