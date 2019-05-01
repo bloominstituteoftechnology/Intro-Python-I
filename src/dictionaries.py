@@ -48,3 +48,7 @@ print (waypoints)
 # YOUR CODE HERE
 for waypoint in waypoints:
     print(waypoint.values())
+[[print(v) for k,v in n.items()] for n in waypoints]
+for i in waypoints:
+   for k,v in i.items():
+       print(v)
