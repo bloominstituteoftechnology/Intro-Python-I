@@ -6,18 +6,16 @@
 
 def f1(i,j):
     """ Sum """
-    sum = i + j
-
-    return sum
+    return i + j
 
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
-def f2(*m):
+def f2(*args):
     """ Sum with arbitrary arguments """
-    return sum(m)
+    return sum(args)
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4

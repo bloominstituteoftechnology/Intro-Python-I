@@ -22,3 +22,19 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+# ask of month and year
+year = int(input("Please Enter the year Number: "))
+month = int(input("Please Enter the month Number: "))
+
+try:
+    if len(sys.argv) == 1:
+        print(calendar.month(cur_year, cur_month))
+    elif len(sys.argv) == 2:
+        print(calendar.month(cur_year, int(sys.argv[1])))
+    elif len(sys.argv) == 3:
+        print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
+except:
+    print("\nPlease enter 'python cal.py [month] [year]'.\
+           \nNote month and year are optional but must be an integer.\
+           \n")

@@ -2,11 +2,7 @@
 
 def is_even(integer):
     """checks if an integer is even, returns true if true, else false"""
-    boolVal = True
-    if integer % 2 != 0:
-        boolVal = False
-
-    return boolVal
+    return integer % 2 == 0
 
 # Read a number from the keyboard
 num = input("Enter a number: ")

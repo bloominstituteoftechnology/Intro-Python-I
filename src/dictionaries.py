@@ -54,7 +54,6 @@ def update_Dict(n):
     return n
 
 [update_Dict(n) for n in waypoints if n['name'] == "a place"]
-print(waypoints)
 
 # Write a loop that prints out all the field values for all the waypoints
 [[print(v) for k,v in n.items()] for n in waypoints]
