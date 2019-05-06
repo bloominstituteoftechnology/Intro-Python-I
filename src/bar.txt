@@ -1,0 +1,3 @@
+The etymology of 'foo' is obscure.
+It's used in connection with 'bar'.
+Not to be confused with the military slang 'FUBAR'.

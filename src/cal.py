@@ -22,3 +22,54 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+# userInput = input(“Input month and year seperated by a comma:“).split(‘,’)
+
+# # ask of month and year
+# year = int(input("Please Enter the year Number: "))
+# month = int(input("Please Enter the month Number: "))
+
+"""
+if len(sys.argv) == 1:
+    print(calendar.month(year, month))
+  elif len(sys.argv) == 2:
+    print(calendar.month(year, int(sys.argv[1])))
+  elif len(sys.argv) == 3:
+    print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
+else:
+  sys.exit("invalid number")
+"""
+
+# cur_year = datetime.now().year
+# cur_month = datetime.now().month
+
+# if len(sys.argv) == 1:
+#     print(calendar.month(cur_year, cur_month))
+
+
+# # if :
+# c = calendar.TextCalendar(calendar.SUNDAY)
+# print(c.prmonth(datetime.now().year, datetime.now().month))
+# # else:
+# print(calendar.month(year, month))
+
+today = datetime.today()
+thisyear = today.year
+thismonth = today.month
+
+if __name__ == "__main__":
+  if len(sys.argv) == 1:
+      print(calendar.month(thisyear, thismonth))
+  
+  if len(sys.argv) == 2:
+    
+    m = int(sys.argv[1])
+    print(calendar.month(thisyear, m))
+  if len(sys.argv) == 3:
+    m = int(sys.argv[1])
+    y = int(sys.argv[2])
+    print(calendar.month(y, m))
+  if len(sys.argv) > 3:
+    print("Run the program from CLI with the format: `python calendar.py month [year]`")
+
+
