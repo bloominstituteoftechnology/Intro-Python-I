@@ -22,3 +22,26 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+def makecalendar(month=1, year=2019):
+    cal = calendar.TextCalendar(calendar.SUNDAY)
+    formatted = cal.formatmonth(year, month)
+    return formatted
+
+
+date = input(f'Input a date in form month year:  ').split()
+print(date)
+if date:
+    if len(date) == 1:
+        print(makecalendar(int(date[0])))
+    else:
+        print(makecalendar(int(date[1]), int(date[0])))
+        #  this is gross i'll find a better way later hopefully
+else:
+    current = datetime.now()
+    print(current.year)
+    print(current.month)
+    print(makecalendar(int(current.month), int(current.year)))
+
+

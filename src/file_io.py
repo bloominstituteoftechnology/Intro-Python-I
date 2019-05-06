@@ -4,6 +4,8 @@ at how to read and write to files here:
 
 https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 """
+o = open('foo.txt', 'r')
+print(o.read())
 
 # Open up the "foo.txt" file (which already exists) for reading
 # Print all the contents of the file, then close the file
@@ -16,3 +18,5 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+b = open('bar.txt', 'r')
+print(b.read())
