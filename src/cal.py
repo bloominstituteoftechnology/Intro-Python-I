@@ -22,3 +22,17 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+if len(sys.argv) == 1:
+  # user didn't pass in any args
+  calendar.prmonth(datetime.now().year, datetime.now().month)
+elif len(sys.argv) == 2:
+  # assume the user paased in a month
+  calendar.prmonth(datetime.now().year, int(sys.argv[1]))
+elif len(sys.argv) == 3:
+  # assume the user passed in a month and a year
+  calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+else:
+  # user provided faulty input
+  print("Invalid number of arguments. Please format your arguments in the form: `calendar.py [month] [year]`") 
+  sys.exit(1)
