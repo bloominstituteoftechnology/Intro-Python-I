@@ -1,3 +1,4 @@
+
 """
 In this exercise, you'll be playing around with the sys module,
 which allows you to access many system specific variables and
@@ -10,22 +11,35 @@ import sys
 
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
+for i in range(0, len(sys.argv)):
+   print(sys.argv[i])
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
+opsys = sys.platform
+print(opsys)
 
 # Print out the version of Python you're using:
 # YOUR CODE HERE
+print(sys.version) 
 
 
-import os
+
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
 # Print the current process ID
 # YOUR CODE HERE
+import os
+print(os.getpid())
 
 # Print the current working directory (cwd):
 # YOUR CODE HERE
+print(os.getcwd())
 
 # Print out your machine's login name
 # YOUR CODE HERE
+print(os.getlogin())
+
+import math 
+
+print('pi is', math.pi)
