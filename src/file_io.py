@@ -10,9 +10,22 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # YOUR CODE HERE
 
+# OLD IMPLEMENTATION
+# foo = open('foo.txt', 'r')
+# print(foo.read())
+# foo.close()
+
+# NEW IMPLEMENTATION (async)
+with open('foo.txt', 'r') as foo:
+  print(foo.read())
+
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
 # then close the file. Open up "bar.txt" and inspect it to make 
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+with open('bar.txt', 'w') as bar:
+  bar.write('''It is a truth universally acknowledged, 
+that a single man in possession of a good fortune, 
+must be in want of a wife.''')
