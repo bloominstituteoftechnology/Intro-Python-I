@@ -22,3 +22,14 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+arg_len = len(sys.argv)
+
+if arg_len == 1:
+    print(datetime.today().strftime("%m"))
+elif arg_len == 2:
+    print(calendar.month(datetime.today().year, int(sys.argv[1])))
+elif arg_len == 3:
+    print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
+else:
+    print("Please provide valid arguments")
