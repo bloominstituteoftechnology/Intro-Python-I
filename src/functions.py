@@ -1,12 +1,12 @@
 # Write a function is_even that will return true if the passed-in number is even.
 
-# YOUR CODE HERE
+# def is_even(n):
+#   return not n % 2
 
-# Read a number from the keyboard
+
+is_even = lambda n: not n % 2
+
 num = input("Enter a number: ")
 num = int(num)
 
-# Print out "Even!" if the number is even. Otherwise print "Odd"
-
-# YOUR CODE HERE
-
+print('{}'.format('Even' if is_even(num) else 'Odd'))
