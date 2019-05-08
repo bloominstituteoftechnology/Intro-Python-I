@@ -41,4 +41,11 @@ waypoints = [
 # YOUR CODE HERE
 
 # Write a loop that prints out all the field values for all the waypoints
-# YOUR CODE HERE
+# for point in waypoints:
+#     print("Lat." + str(point['lat']))
+#     print("Lon. " + str(point['lon']))
+#     print(point['name'])
+    
+for point in waypoints:
+    for key in point:
+        print(point[key])

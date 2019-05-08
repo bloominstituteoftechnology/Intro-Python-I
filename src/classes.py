@@ -1,8 +1,25 @@
 # Make a class LatLon that can be passed parameters `lat` and `lon` to the
 # constructor
+class Animal:
+    def __int__(self, name, species, num_legs):
+        self.name = name
+        self.species = species
+        self.num_legs = num_legs
 
-# YOUR CODE HERE
-        
+
+    def set_num_legs(self, num):
+        self.set_num_legs = num
+
+    def make_sound(self):
+        print(self.sound)
+
+
+animal_a = Animal("ernie", "elephant", "pbbbbbbbt", 4)
+
+# animal_a.make_sound()
+print(animal_a.num_legs)
+animal_a.set_num_legs(3)
+print(animal_a.num_legs)
 # Make a class Waypoint that can be passed parameters `name`, `lat`, and `lon` to the
 # constructor. It should inherit from LatLon. Look up the `super` method.
 
