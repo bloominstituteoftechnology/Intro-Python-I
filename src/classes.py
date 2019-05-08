@@ -25,6 +25,7 @@ print(animal_a.name)
 print(animal_a.num_legs)
 animal_a.set_num_legs(3)
 print(animal_a.num_legs)
+print("test")
 # Make a class Waypoint that can be passed parameters `name`, `lat`, and `lon` to the
 # constructor. It should inherit from LatLon. Look up the `super` method.
 
