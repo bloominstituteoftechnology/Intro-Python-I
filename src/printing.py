@@ -17,7 +17,7 @@ print(
 )
 
 # Use the 'format' string method to print the same thing
-print('x is {:2}, y is {1:3}, z is "{:}"'.format(x, y, z))
+print('x is {:2}, y is {:3.2f}, z is \"{:}\"'.format(x, y, z))
 
 # Finally, print the same thing using an f-string
 print(f'x is {x}, y is {y:.2f}, z is "{z}"')
