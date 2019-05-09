@@ -35,7 +35,11 @@ waypoints = [
 
 # Add a new waypoint to the list
 # YOUR CODE HERE
-
+waypoints.append({ 
+    "lat": 28.6,
+    "lon": 96.6,
+    "name": "Port Lavaca"
+})
 # Modify the dictionary with name "a place" such that its longitude
 # value is -130 and change its name to "not a real place"
 # YOUR CODE HERE
