@@ -26,7 +26,7 @@ from datetime import datetime
 # print(len(sys.argv))
 # print(sys.argv[0])
 
- if len(sys.argv) == 1:
+if len(sys.argv) == 1:
   m = datetime.now().month
   print(m)
   y = datetime.now().year
