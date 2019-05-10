@@ -33,7 +33,7 @@ if len(sys.argv) == 1:
 
  #  print(calendar.month(y, m, w=3, l=3))
 
- elif len(sys.argv) == 2:
+elif len(sys.argv) == 2:
   m = int(sys.argv[1])
   y = datetime.now().year
   print(calendar.month(y, m))
