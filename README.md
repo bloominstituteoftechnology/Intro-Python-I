@@ -78,7 +78,7 @@ The suggested order for going through each of the directories is:
 * -`datatypes` -- Experiment with type conversion
 * -`modules` -- Learn to import from modules
 * -`printing` -- Formatted print output
-* `lists` -- Python's version of arrays
+* -`lists` -- Python's version of arrays
 * `tuples` -- Immutable lists typically for heterogenous data
 * `slices` -- Accessing parts of lists
 * `comprehensions` -- List comprehensions
