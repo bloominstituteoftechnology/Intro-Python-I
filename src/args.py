@@ -31,7 +31,12 @@ print(f2(*a))    # Should print 22
 # arguments. Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
-
+def f3(*x):
+    y = 1
+    if(len(x) == 1):
+       return sum(x, y)
+    else:
+        return sum(x)
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
 
@@ -45,7 +50,14 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 # YOUR CODE HERE
-
+def f4(a, b, c):
+    x1 = a
+    x2 = b
+    x3 = c
+    if(x1, x2):
+        return x1, x2
+    else: return x1, x2, x3
+    
 # Should print
 # key: a, value: 12
 # key: b, value: 30
