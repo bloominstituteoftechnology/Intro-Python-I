@@ -22,3 +22,24 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+if len(sys.argv) == 1:
+  m = datetime.now().month
+  y = datetime.now().year
+
+elif len(sys.argv) == 2:
+  if sys.argv[1].isdigit() and len(sys.argv[1]) == 2:
+    m = int(sys.argv[1])
+    y = datetime.now().year
+  else:
+    print("Enter the month as a 2 digit argument")
+    exit()
+elif len(sys.argv) == 3:
+  if sys.argv[1].isdigit() and sys.argv[2][1:5].isdigit():
+    m = int(sys.argv[1])
+    y = int(sys.argv[2][1:5])
+  else:
+    print("enter date in format MM [YYYY]") 
+    exit() 
+
+print(calendar.month(y, m))
