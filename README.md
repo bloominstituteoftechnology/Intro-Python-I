@@ -81,7 +81,7 @@ The suggested order for going through each of the directories is:
 * -`lists` -- Python's version of arrays
 * -`tuples` -- Immutable lists typically for heterogenous data
 * -`slices` -- Accessing parts of lists
-* `comprehensions` -- List comprehensions
+* -`comprehensions` -- List comprehensions
 * `dictionaries` -- Dictionaries
 * `functions` -- Functions
 * `args` -- Arguments and Keyword Arguments
