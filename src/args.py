@@ -50,24 +50,20 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 # YOUR CODE HERE
-def f4(a, b, c):
-    x1 = a
-    x2 = b
-    x3 = c
-    if(x1, x2):
-        return x1, x2
-    else: return x1, x2, x3
+def f4(**x):
+    return x
     
+
 # Should print
 # key: a, value: 12
 # key: b, value: 30
-f4(a=12, b=30)
+print(f4(a=12, b=30))
 
 # Should print
 # key: city, value: Berkeley
 # key: population, value: 121240
 # key: founded, value: "March 23, 1868"
-f4(city="Berkeley", population=121240, founded="March 23, 1868")
+print(f4(city="Berkeley", population=121240, founded="March 23, 1868"))
 
 d = {
     "monster": "goblin",
@@ -75,4 +71,4 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+print(f4(**d))
