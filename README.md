@@ -55,15 +55,19 @@ best for learning new languages.
 
    You can exit the virtual environment by typing `exit`.
 
-## Day 1
+## Goals
 
-Learn the basics of Python with a pile of toy programs.
+• Learn the basic syntax and structure of Python
 
-Take a look in the `src/` directory.
+## Summary
 
-NOTE: `adv.py` is for Day 2, so ignore it for today.
+• Implement a number of tiny Python programs that demonstrate Python syntax and language concepts.
 
-Suggested order for implementing the toy programs:
+## Instructions
+
+Each directory inside the src/ directory presents exercises revolving around a particular concept in Python. Not all of these concepts are unique to Python (in fact, most probably aren't). This means that you can leverage knowledge you've obtained via exposure to other programming languages towards learning Python.
+
+The suggested order for going through each of the directories is:
 
 * `hello` -- Hello world
 * `bignum` -- Print some big numbers
