@@ -16,8 +16,10 @@ class Waypoint(LatLon):
         self.name = name
 
     def __str__(self):
+                #AUTO FORMATTING NAME OF CLASS EXAMPLE SELF.__CLASS__.NAME
         return '{self.__class__.__name__}({self.name} {self.lat} {self.lon})'.format(self=self)
-    # def __repr__(self):
+        #EXAMPLE OF REPR MAIN DIFFERENCE FROM STR THEY ARE 
+    # def __repr__(self): 
     #     return '{self.__class__.__name__}({self.name}, {self.lat}, {self.lon})'.format(self=self)
         
 
