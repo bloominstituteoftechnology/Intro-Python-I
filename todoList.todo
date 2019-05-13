@@ -4,14 +4,14 @@ Project:
     - cal
     - classes @done
     - comprehensions @done
-    - datatypes
-    - dicrectories
+    - datatypes @done
+    - dicrectories @done
     - file_io
     - functions
     - hello @done
     - list @done
-    - modules
+    - modules @done
     - printing
     - scopes
     - slices @done
-    - truples
+    - truples @done
