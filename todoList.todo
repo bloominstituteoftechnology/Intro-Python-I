@@ -1,0 +1,17 @@
+Project:
+    - args @done
+    - bignum @done
+    - cal
+    - classes @done
+    - comprehensions @done
+    - datatypes @done
+    - dicrectories @done
+    - file_io
+    - functions
+    - hello @done
+    - list @done
+    - modules @done
+    - printing
+    - scopes
+    - slices @done
+    - truples @done
