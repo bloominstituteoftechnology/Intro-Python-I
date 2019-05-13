@@ -6,8 +6,8 @@ Project:
     - comprehensions @done
     - datatypes @done
     - dicrectories @done
-    - file_io
-    - functions
+    - file_io @done
+    - functions @done
     - hello @done
     - list @done
     - modules @done
