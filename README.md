@@ -80,6 +80,7 @@ The suggested order for going through each of the directories is:
 * `comprehensions` -- List comprehensions
 * `dictionaries` -- Dictionaries
 * `functions` -- Functions
+* `args` -- Arguments and Keyword Arguments
 
 * `cal` -- Experiment with module imports
 * `obj` -- Classes and objects
