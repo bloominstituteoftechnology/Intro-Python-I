@@ -12,6 +12,6 @@ Project:
     - list @done
     - modules @done
     - printing
-    - scopes
+    - scopes @done
     - slices @done
     - truples @done
