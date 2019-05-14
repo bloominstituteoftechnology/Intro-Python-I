@@ -73,8 +73,8 @@ The suggested order for going through each of the directories is:
 * `bignum` -- Print some big numbers
 * `datatypes` -- Experiment with type conversion
 * `modules` -- Learn to import from modules
+* `printing` -- Formatted print output
 
-* `printf` -- Formatted print output
 * `lists` -- Python's version of arrays
 * `comp` -- List comprehensions
 * `dicts` -- Dictionaries
