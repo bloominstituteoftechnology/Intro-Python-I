@@ -76,6 +76,7 @@ The suggested order for going through each of the directories is:
 * `printing` -- Formatted print output
 * `lists` -- Python's version of arrays
 * `tuples` -- Immutable lists typically for heterogenous data
+* `slices` -- Accessing parts of lists
 
 * `comp` -- List comprehensions
 * `dicts` -- Dictionaries
