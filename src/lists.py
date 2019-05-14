@@ -12,7 +12,7 @@ x.append(4)
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
-x = x + y
+x.extend(y)
 # [command here]
 print(x)
 
@@ -30,13 +30,8 @@ print(x)
 # [command here]
 print(len(x))
 
-# Using a for loop, print all the element values in x multiplied by 1000
-for a in range(len(x)): 
-    if (a == len(x)-1): 
-        print(x[a] * 1000)
-    else: 
-        print(x[a] * 1000, end=' ')
+# Print all the values in x multiplied by 1000
+# YOUR CODE HERE
 
-# Using a for loop, print all the element values in y multiplied by 1000
-for b in y: 
-    print(b * 1000, end=' ')
+for num in x: 
+  print(num * 1000)
