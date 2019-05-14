@@ -79,8 +79,8 @@ The suggested order for going through each of the directories is:
 * `slices` -- Accessing parts of lists
 * `comprehensions` -- List comprehensions
 * `dictionaries` -- Dictionaries
+* `functions` -- Functions
 
-* `func` -- Functions
 * `cal` -- Experiment with module imports
 * `obj` -- Classes and objects
 
