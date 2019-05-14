@@ -72,6 +72,8 @@ The suggested order for going through each of the directories is:
 * `hello` -- Hello world
 * `bignum` -- Print some big numbers
 * `datatypes` -- Experiment with type conversion
+* `modules` -- Learn to import from modules
+
 * `printf` -- Formatted print output
 * `lists` -- Python's version of arrays
 * `comp` -- List comprehensions
