@@ -15,3 +15,6 @@ z = "I like turtles!"
 # Use the 'format' string method to print the same thing
 
 # Finally, print the same thing using an f-string
+print('%s %s %s old style' % (x, y, z))
+print('{} {} {} format syntax'.format(x, y, z))
+print(f'{x} {y} {z} f syntax')
