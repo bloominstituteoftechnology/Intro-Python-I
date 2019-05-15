@@ -15,7 +15,13 @@ y = "7"
 
 # YOUR CODE HERE
 
+def combine(x, y):
+    print(x+ y)
+
+combine(5, int("7"))
 
 # Write a print statement that combines x + y into the string value 57
 
 # YOUR CODE HERE
+
+combine("5", "7")
