@@ -84,8 +84,7 @@ The suggested order for going through each of the directories is:
 * `scopes` -- Global, Local, and Non-Local scope
 * `file_io` -- Read and write from files
 * `cal` -- Experiment with module imports and implement a text-based calendar
-
-* `obj` -- Classes and objects
+* classes -- Classes and objects
 
 ## Day 2
 
