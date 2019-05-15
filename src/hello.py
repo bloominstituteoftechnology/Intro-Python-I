@@ -1,7 +1,1 @@
-# Write Hello, world
-
-def hello():
-    print("Hello, World!")
-
-hello()
-
+# Print "Hello, world!" to your terminal
