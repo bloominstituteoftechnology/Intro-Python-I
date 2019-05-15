@@ -81,6 +81,7 @@ The suggested order for going through each of the directories is:
 * `dictionaries` -- Dictionaries
 * `functions` -- Functions
 * `args` -- Arguments and Keyword Arguments
+* `scopes` -- Global, Local, and Non-Local scope
 
 * `cal` -- Experiment with module imports
 * `obj` -- Classes and objects
