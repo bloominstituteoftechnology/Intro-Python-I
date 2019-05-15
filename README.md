@@ -82,6 +82,7 @@ The suggested order for going through each of the directories is:
 * `functions` -- Functions
 * `args` -- Arguments and Keyword Arguments
 * `scopes` -- Global, Local, and Non-Local scope
+* `file_io` -- Read and write from files
 
 * `cal` -- Experiment with module imports
 * `obj` -- Classes and objects
