@@ -29,7 +29,7 @@ def outer():
 
     # This prints 120. 
     # What do we have to change in inner() to get it to print
-    # You have to set the x variable to have global scope within the changeX function.
+    # You have to set the y variable to have non-local scope within the inner function.
     # 999? Google "python nested function scope".
     
   print(y)
