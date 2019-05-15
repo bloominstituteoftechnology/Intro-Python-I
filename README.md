@@ -1,6 +1,4 @@
-# Intro to Python
-
-## Goals
+# Intro to Python I
 
 It's time to learn a new language! Python!
 
@@ -57,29 +55,59 @@ best for learning new languages.
 
    You can exit the virtual environment by typing `exit`.
 
-## Day 1
+## Goals
 
-Learn the basics of Python with a pile of toy programs.
+* Learn the basic syntax and structure of Python
 
-Take a look in the `src/` directory.
+## Summary
 
-NOTE: `adv.py` is for Day 2, so ignore it for today.
+* Implement a number of tiny Python programs that demonstrate Python syntax and
+  language concepts.
 
-Suggested order for implementing the toy programs:
+## Instructions
 
-* `hello` -- Hello world X
-* `bignum` -- Print some big numbers X
-* `datatypes` -- Experiment with type conversion X
-* `printf` -- Formatted print output X
-* `lists` -- Python's version of arrays X
-* `comp` -- List comprehensions
-* `dicts` -- Dictionaries
-* `func` -- Functions X
-* `cal` -- Experiment with module imports
-* `obj` -- Classes and objects
+Each directory inside the `src/` directory presents exercises revolving around a
+particular concept in Python. Not all of these concepts are unique to Python (in
+fact, most probably aren't). This means that you can leverage knowledge you've
+obtained via exposure to other programming languages towards learning Python. 
 
-## Day 2
+The suggested order for going through each of the directories is: 
 
-Put it together into a bigger toy program: a simple text adventure!
+* `hello` -- Hello world
+* `bignum` -- Print some big numbers
+* `datatypes` -- Experiment with type conversion
+* `modules` -- Learn to import from modules
+* `printing` -- Formatted print output
+* `lists` -- Python's version of arrays
+* `tuples` -- Immutable lists typically for heterogenous data
+* `slices` -- Accessing parts of lists
+* `comprehensions` -- List comprehensions
+* `dictionaries` -- Dictionaries
+* `functions` -- Functions
+* `args` -- Arguments and Keyword Arguments
+* `scopes` -- Global, Local, and Non-Local scope
+* `file_io` -- Read and write from files
+* `cal` -- Experiment with module imports and implement a text-based calendar
+* `classes` -- Classes and objects
 
-This is in `src/adv.py`. Check it out!
+## Stretch Goals
+
+1. One of Python's main philosophical tenets is its emphasis on readability. To
+   that end, the Python community has standardized around a style guide called
+   [PEP 8](https://www.python.org/dev/peps/pep-0008/). Take a look at it and
+   then go over the code you've written and make sure it adheres to what PEP 8
+   recommends. Alternatively, PEP 8 linters exist for most code editors (you can
+   find instructions on installing a Python linter for VSCode
+   [here](https://code.visualstudio.com/docs/python/linting)). Try installing
+   one for your editor!
+
+2. Rewrite code challenges you've solved before or projects you've implemented
+   before in a different language in Python. Start getting in as much practice
+   with the language as possible!
+
+3. Write a program to determine if a number, given on the command line, is prime.
+
+   1. How can you optimize this program?
+   2. Implement [The Sieve of
+      Erathosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes), one
+      of the oldest algorithms known (ca. 200 BC).

@@ -1,5 +1,3 @@
-introtopython.py
-secretmessage.py
-secretmessage,py
-pysecretmsg/
-.DS_Store
+.vscode
+*.pyc
+__pycache__
