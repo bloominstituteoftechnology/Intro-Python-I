@@ -12,20 +12,11 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
-print('x is %s!' % x)
-print('y is %s!' % y)
-print('z is %s' % z)
+print('x is %i , y is %.2f , z is %s '%(x,y,z))
 
 # Use the 'format' string method to print the same thing
 
-str = "x is {}"
-print (str.format(x)) 
-
-str = "y is {}"
-print (str.format(y)) 
-
-str = "z is {}"
-print (str.format(z)) 
+print ('x is {}, y is {:.2f} , z is {} .' .format(x,y,z)) 
 
 # Finally, print the same thing using an f-string
 
@@ -34,8 +25,4 @@ print (str.format(z))
 # >>> f"Hello, {name}. You are {age}."
 # 'Hello, Eric. You are 74.'
 
-print (f'x is {x}')
-
-print (f'y is {y}')
-
-print (f'z is {z}')
+print (f'x is {x}, y is {y:.2f}, z is {z}.')
