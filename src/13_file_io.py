@@ -1,7 +1,6 @@
 """
 Python makes performing file I/O simple. Take a look
-at how to read and write to files here: 
-
+at how to read and write to files here:
 https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 """
 

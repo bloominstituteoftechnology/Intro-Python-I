@@ -1,6 +1,6 @@
 """
-The Python standard library's 'calendar' module allows you to 
-render a calendar to your terminal.
+The Python standard library's 'calendar' module allows you to render 
+a calendar to your terminal.
 https://docs.python.org/3.6/library/calendar.html
 Write a program that accepts user input of the form
   `calendar.py month [year]`
