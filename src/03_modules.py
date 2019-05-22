@@ -12,7 +12,7 @@ import sys
 # YOUR CODE HERE
 args = sys.argv
 for i in range(0, len(args)):
-    print(args[i]+ '\n')
+    print(args[i] + '\n')
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
