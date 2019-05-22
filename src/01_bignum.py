@@ -2,3 +2,6 @@
 # (try doing the same thing in the JS console and see what it outputs)
 
 # YOUR CODE HERE
+num = 65536
+squared_num = num * num
+print(squared_num)
