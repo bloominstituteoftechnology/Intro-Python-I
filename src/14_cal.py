@@ -22,3 +22,20 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+now = datetime.now()
+current_month = now.month
+current_year = now.year
+print(current_month)
+print(current_year)
+
+input_date = input("Please select a date exp MM/YYYY:").split('/')
+print(input_date)
+
+def show_cal(month = current_month, year = current_year):
+    try:
+      print(calendar.monthcalendar(int(year), int(month)))
+    except:
+      print("Please insert only a month and year")
+
+show_cal(*input_date)
