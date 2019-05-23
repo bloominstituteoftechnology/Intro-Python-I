@@ -12,6 +12,8 @@ What's the difference between inheritance and polymorphism?
 * [What are some things we can do to prepare for CS?](#q100)
 * [What are some ways to learn a new language?](#q3600)
 * [Why test code frequently?](#q3700)
+* [Why isn't official documentation more helpful than Stack Overflow?](#q3800)
+* [During an interview, what do I do if I can't remember the exact syntax?](#q3900)
 
 ### General Python
 
@@ -586,3 +588,31 @@ version going, even if it's missing 99% of its features, and then starting to
 iterate on that.
 
 ------------------------------------------------------------------------
+
+<a name="q3800"></a>
+### Why isn't official documentation more helpful than Stack Overflow?
+
+Often official documentation is more geared toward being a concise reference.
+Stack Overflow is more of an example-based learning environment.
+
+Sometimes you need to know the specific details. In those cases, you can dig
+into the spec, with all it's lawyerly language, and try to decipher what it is
+you have to do.
+
+Other times, you just need a getting-started example, and Stack Overflow is
+great for that.
+
+Both types of documentation have their purpose.
+
+------------------------------------------------------------------------
+
+<a name="q3900"></a>
+### During an interview, what do I do if I can't remember the exact syntax?
+
+Just say so.
+
+"I can't remember how to add an element to the end of the list in Python... is
+it `push()`? In any case, we'll call the function here that does that."
+
+(Turns out it's `append()` in Python, but being honest and describing what it is
+your're trying to do will get you 99% of the way there in an interview.)
