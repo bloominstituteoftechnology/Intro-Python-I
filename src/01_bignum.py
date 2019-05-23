@@ -3,5 +3,5 @@
 
 # YOUR CODE HERE
 num = 65536
-squared_num = num * num
+squared_num = 2**num
 print(squared_num)
