@@ -35,5 +35,8 @@ print("length", len(x))
 
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
+for val in x:
+    print(str(val*1000))
+
 xMultiplied = [x * 100 for x in x]
 print(xMultiplied)
