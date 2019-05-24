@@ -65,9 +65,8 @@ print(f3(8))     # Should print 9
 # YOUR CODE HERE
 
 def f4(**pairs):
-    print(pairs)
     for key, value in pairs.items():
-        return "key: {key}, value: {value}"
+        print(f"key: {key}, value: {value}")
 
 # Should print
 # key: a, value: 12
