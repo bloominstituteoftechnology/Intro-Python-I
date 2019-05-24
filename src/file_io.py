@@ -16,3 +16,13 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+
+foo = open("foo.txt", "r")
+print(foo.read())
+foo.close()
+
+bar = open("bar.txt", "w")
+bar.write("The art is for me to feed pieces to you\n")
+bar.write("and make you believe you took thos pieces\n")
+bar.write("because you're smarter and I'm dumber.\n")
+bar.close()
