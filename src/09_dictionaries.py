@@ -49,7 +49,11 @@ waypoints[0]["name"] = "not a real place"
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+# for way in waypoints:
+#     for key in way:
+#         print( str(key) + ":\t" + str(way[key]) )
+#     print()
 for way in waypoints:
-    for key in way:
-        print( str(key) + ":\t" + str(way[key]) )
+    for key,val in way.items():
+        print(f"{key}:\t{val}")
     print()
