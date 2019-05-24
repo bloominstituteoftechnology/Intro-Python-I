@@ -22,3 +22,35 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def main():
+  # Calling sys.argv[1] directly causes errors if it doesn't exist.
+  args = []
+  for arg in sys.argv[1:]:
+    args.append(arg)
+
+  if len(args) == 0:
+    # If the user doesn't specify any input, your program should print the calendar for the current month.
+    month = datetime.now().month
+    year = datetime.now().year
+  elif len(args) == 1:
+    # If the user specifies one argument, assume they passed in a month and render the calendar for that month 
+    # of the current year.
+    month = int(args[0])
+    year = int(datetime.now().year)
+  elif len(args) == 2:
+    # If the user specifies two arguments, assume they passed in both the month and the year.
+    month = int(args[0])
+    year = int(args[1])
+  else:
+    # Otherwise, print a usage statement to the terminal & exit
+    print( "Usage: calendar.py [month] [year]\n" )
+    quit()
+
+  c = calendar.TextCalendar(calendar.SUNDAY)
+  cal = c.formatmonth(year, month, 0, 0)
+  print(cal)
+  exit()
+
+if __name__ == "__main__":
+  main()
