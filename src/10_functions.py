@@ -10,10 +10,12 @@ num = int(num)
 
 # YOUR CODE HERE
 
+
 def is_even(val):
     if val % 2 == 0:
         print('Even')
     else:
         print('Odd')
+
 
 is_even(num)
