@@ -40,12 +40,12 @@ print(f2(*a))    # Should print 22
 # YOUR CODE HERE
 
 
-def f3(arg1="None", arg2="None"):
-    if arg1 == "None":
+def f3(arg1=None, arg2=None):
+    if arg1 == None:
         return arg2 + 1
-    elif arg2 == "None":
+    elif arg2 == None:
         return arg1 + 1
-    elif arg1 == "None" and arg2 == "None":
+    elif arg1 == None and arg2 == None:
         print("Put in a number or something dingus")
     else:
         return arg1 + arg2
