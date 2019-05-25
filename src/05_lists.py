@@ -30,7 +30,6 @@ print(x + y)
 print(len(x))
 
 # Print all the values in x multiplied by 1000
-# YOUR CODE HERE
+# YOUR CODE HER
 for a in x:
     print(a * 1000)
-
