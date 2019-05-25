@@ -18,9 +18,9 @@ with open("foo.txt") as f:
 
 # YOUR CODE HERE
 with open("bar.txt", "w") as f:
-    f.write("First Line")
-    f.write("\nSecond Line")
-    f.write("\nThird Line")
+    f.write("uno")
+    f.write("\ndos")
+    f.write("\ntres")
 file = open("bar.txt")
 print(file.read())
 file.close()
