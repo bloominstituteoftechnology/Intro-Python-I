@@ -11,16 +11,7 @@ never needs to be mutated, use a tuple instead of a list.
 Additionally, your code will be safer if you opt to "write-protect"
 data that does not need to be changed. Tuples enforce immutability
 automatically. 
-"""
 
-# Example:
-
-import math
-
-def dist(a, b):
-    """Compute the distance between two x,y points."""
-    x0, y0 = a  # Destructuring assignment
-    x1, y1 = b
     
     return math.sqrt((x1 - x0)**2 + (y1 - y0)**2)
 
