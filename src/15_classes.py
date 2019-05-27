@@ -30,7 +30,14 @@ class Geocache(Waypoint):
         self.size = size
 
     def __str__(self):
-        return '\n     ---Geocache---\nCache Name:{self.name}\nLocation:\n lat:{self.lat} lon:{self.lon}\nDifficulty:{self.difficulty}\nSize:{self.size}\n\n Let\'s Go Find It\n'.format(self=self)
+        # \n = newline followed by the \  allows the line to be broken in the ide
+        #  w/out destroying the integrity of the string 
+        return '\n     ---Geocache---\n\
+Cache Name:{self.name}\n\
+Location:\n\
+lat:{self.lat} lon:{self.lon}\n\
+Difficulty:{self.difficulty}\n\
+Size:{self.size}\n\n Let\'s Go Find It\n'.format(self=self)
 
 
 # Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
