@@ -20,20 +20,37 @@ and does the following:
 """
 import sys
 import calendar 
-import datetime
+from datetime import datetime
 
-time = datetime.datetime.now()
+time = datetime.today()
 month = time.month
 year = time.year
-
 args = sys.argv
 
-def getTime(args):
-  if args[1]:
-    month = args[1]
-  elif args[2]:
-    year = args[2]
+def get_calendar(m=month, y=year):
+  c = calendar.TextCalendar(calendar.SUNDAY)
+  full_calendar = c.formatmonth(y,m)
+  print(full_calendar)
 
-getTime(args)      
-print(year)
-print(month)
+if len(args) == 1:
+  get_calendar()
+
+elif len(args) == 2:
+  try:
+    raise ValueError('Please enter your month as a number..text is not allowed')
+    arg_month = int(args[1])
+    get_calendar(arg_month)    
+  except ValueError as err:   
+    print('Oh no you ran into an issue. {}'.format(err))
+elif len(args) == 3:
+  try:
+    raise ValueError('Please enter your month and year as a number..text is not allowed')
+    arg_month = int(args[1])
+    arg_year = int(args[2])
+    get_calendar(arg_month,arg_year)
+  except ValueError as err:
+    print('Oh no..you forgot something. {}'.format(err))  
+else:
+  print('Something went wrong..please enter the value as numbers')    
+
+    
