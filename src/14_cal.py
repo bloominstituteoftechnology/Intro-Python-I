@@ -22,3 +22,23 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+# save the arguments passed to the script
+arguments = sys.argv
+c = calendar.TextCalendar(calendar.SUNDAY)
+if arguments.__len__() == 1:
+  # The user passed no arguments so just show the calendar for this month and year
+  str = c.formatmonth(datetime.now().year, datetime.now().month)
+  print(str)
+elif arguments.__len__() == 2:
+  month = arguments[1]
+  str = c.formatmonth(datetime.now().year, int(month))
+  print(str)
+elif arguments.__len__() == 3:
+  month = arguments[1]
+  year = arguments[2]
+  str = c.formatmonth(int(year), int(month))
+  print(str)
+else:
+  print('The arguments expected for this script are the month and year in numerical format.')
+  print('Using no arguments will display a calendar for the current month and year')
