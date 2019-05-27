@@ -27,7 +27,7 @@ c = calendar.TextCalendar(calendar.SUNDAY)
 
 
 def help():
-    print("cmd: python cal.py [month] [year]")
+    print("\nFormat for arguments incorrect,\n Please review this example => cmd: python cal.py [month] [year]\n")
 
 
 def main(args):
