@@ -23,6 +23,33 @@ import sys
 import calendar
 from datetime import datetime
 
-calender.setfirstweekday(calender.SUNDAY)
+c = calendar.TextCalendar(calendar.SUNDAY)
+
+
+def help():
+    print("cmd: python cal.py [month] [year]")
+
+
+def main(args):
+    if len(args) == 0:
+        t = datetime.now()
+        s = c.formatmonth(t.year, t.month)
+        print(s)
+    elif len(args) == 1:
+        if (args[0] == '-h' or args[0] == '--help'):
+            help()
+        else:
+            t = datetime.now()
+            s = c.formatmonth(t.year, int(args[0]))
+            print(s)
+    elif len(args) == 2:
+        s = c.formatmonth(int(args[1]), int(args[0]))
+        print(s)
+    else:
+        help()
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
 
 
