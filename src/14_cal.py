@@ -18,7 +18,22 @@ and does the following:
    the format that your program expects arguments to be given.
    Then exit the program.
 """
-
 import sys
-import calendar
-from datetime import datetime
+import calendar 
+import datetime
+
+time = datetime.datetime.now()
+month = time.month
+year = time.year
+
+args = sys.argv
+
+def getTime(args):
+  if args[1]:
+    month = args[1]
+  elif args[2]:
+    year = args[2]
+
+getTime(args)      
+print(year)
+print(month)
