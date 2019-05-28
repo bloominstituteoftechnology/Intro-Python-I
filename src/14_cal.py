@@ -22,3 +22,27 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def print_calendar(month, year):
+  if 1 <= month and month <=  12:
+    text_calendar = calendar.TextCalendar()
+    text_calendar.prmonth(theyear = year, themonth = month)
+  else:
+    sys.exit("Invalid month")
+
+args = sys.argv
+
+month = datetime.today().month
+year = datetime.today().year
+
+if len(args) == 1:
+  print_calendar(month, year)
+elif len(args) == 2 :
+  month = int(args[1])
+  print_calendar(month, year)
+elif len(args) == 3:
+  month = int(args[1])
+  year = int(args[2])
+  print_calendar(month, year)
+else:
+  sys.exit("Wrong number of args")
