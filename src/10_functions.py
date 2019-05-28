@@ -10,3 +10,7 @@ num = int(num)
 
 # YOUR CODE HERE
 
+def is_even(x):
+    print('Even!' if x % 2 == 0 else 'Odd')
+
+is_even(num)
