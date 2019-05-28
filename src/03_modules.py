@@ -10,6 +10,13 @@ import sys
 
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
+s = sys
+if len(s.argv)>1:  
+    for i in s.argv:
+        print(i)
+else: print("No Arguments")
+
+
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
