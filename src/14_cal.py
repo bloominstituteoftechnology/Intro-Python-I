@@ -22,3 +22,25 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+def calendarchoice(a=5,b=2019):
+    calendarInit = calendar.TextCalendar(calendar.SUNDAY)
+    calendarPick = calendarInit.formatmonth(b,a)
+    print(calendarPick)
+answer = input("Would you like a calendar? Enter Yes or No ")
+
+if answer.upper() == "YES":
+    defaultAnswer = input("Would you like a to select a Month and maybe a Year? Enter Yes or No ")
+    if defaultAnswer.upper() == "YES":
+        month = input("Enter a 2 digit month Month Number: ")
+        year = input("Enter a 4 digit year number if you choose: ")
+        if len(month) == 2 and len(year) == 4:
+            calendarchoice(int(year),int(month))
+        elif len(month) == 2 and len(year) != 4:
+            calendarchoice(int(month))
+        else:
+            print("Program expects correct arguments to be given. Goodbye")
+    else:
+        calendarchoice()
+else:
+    print("Then why did you come to a calendar store??")
+
