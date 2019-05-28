@@ -10,3 +10,8 @@ num = int(num)
 
 # YOUR CODE HERE
 
+if num % 2 == 0:
+    print("Even!")
+else: 
+    print("Odd")
+
