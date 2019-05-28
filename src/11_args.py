@@ -58,7 +58,8 @@ print(f3(8))     # Should print 9
 #
 # Google "python keyword arguments".
 
-# YOUR CODE HERE
+def f4(**kwargs):
+    print(kwargs)
 
 # Should print
 # key: a, value: 12
@@ -77,4 +78,5 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+# You have to add in the two asterisks at the beginning. I'm guessing that this is telling the program that variable `d` is a key,value pair.
+f4(**d)
