@@ -21,8 +21,8 @@ myFile.close()
 
 # YOUR CODE HERE
 
-myfile = open('bar.txt', 'w')
-myFile.write('Learning how to write scripts')
-myFile.close()
+myFile2 = open('bar.txt', 'w')
+myFile2.write('Learning how to write scripts')
+myFile2.close()
 new_file = open('bar.txt', 'r')
 print(new_file.read())
