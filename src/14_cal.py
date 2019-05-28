@@ -22,3 +22,20 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+def cal(month=None, year=None, *args):
+    if args:
+        return print("Expected: month [year] (i.e. 2 2018)")
+
+    if year is None:
+        year = datetime.now().year
+
+    if month is None:
+        month = datetime.now().month
+
+    return print(calendar.TextCalendar(0).prmonth(int(year), int(month)))
+
+
+if __name__ == '__main__':
+    cal(*sys.argv[1:])
