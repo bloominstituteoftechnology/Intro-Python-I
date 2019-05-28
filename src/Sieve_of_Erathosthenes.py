@@ -6,21 +6,24 @@ def is_prime(n):
     if n % 2 == 0:
         return False
     for i in range(2, n):
-        for i_s in range(i, n, i):
-            if i_s > n - 1:
+        if bm.test(i):
+            continue
+        for i_s in range(i, n + 1, i):
+            if i_s > n:
                 break
-            bm.set(i_s)
-            # print(f'i: {i} i_s: {i_s}')
-        if bm.count() >= n - 2:
-            return True
-        # print(f"count: {bm.count()}")
-    return False
-
+            if not bm.test(i_s):
+                bm.set(i_s)
+                if i_s == n:
+                    return False
+    return True
 
 
 assert is_prime(4) == False, '4 is not prime'
 assert is_prime(5) == True, '5 is prime'
 assert is_prime(6) == False, '6 is not prime'
 assert is_prime(7) == True, '7 is prime'
+assert is_prime(21) == False, '21 is not prime'
 assert is_prime(23) == True, '23 is prime'
 assert is_prime(24) == False, '24 is not prime'
+assert is_prime(25) == False, '25 is not prime'
+

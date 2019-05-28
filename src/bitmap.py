@@ -69,7 +69,8 @@ class BitMap(object):
         """
         Return bit value
         """
-        return (self.bitmap[pos / 8] & self.BITMASK[pos % 8]) != 0
+#         print('pos:', pos, type(pos))
+        return (self.bitmap[pos // 8] & self.BITMASK[pos % 8]) != 0
 
     def any(self):
         """
@@ -87,7 +88,7 @@ class BitMap(object):
         """
         Test if all bits are set
         """
-        return (self.count() + 7) / 8 * 8 == self.size()
+        return (self.count() + 7) // 8 * 8 == self.size()
 
     def nonzero(self):
         """
