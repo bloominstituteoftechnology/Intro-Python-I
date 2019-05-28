@@ -22,3 +22,20 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+def render(month, year):
+    month = calendar.TextCalendar().formatmonth(year, month)
+    print(month)
+
+
+num_args = len(sys.argv)
+if num_args == 1:
+    now = datetime.now()
+    render(now.month, now.year)
+elif num_args == 2:
+    render(int(sys.argv[1]), datetime.now().year)
+elif num_args == 3:
+    render(int(sys.argv[1]), int(sys.argv[2]))
+else:
+    print('Usage:\n\tcalendar.py month [year]')
