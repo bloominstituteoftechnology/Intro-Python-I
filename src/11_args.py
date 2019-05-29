@@ -13,9 +13,24 @@ print(f1(1, 2))
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
-def f2(*args) :
-    temp = args[0]
-    return args, type(args),
+def f2(*args):
+    sumTotal = 0 # variable to hold entire sum for function
+    i = 0 # counter variable
+    for num in args: # interate through the arguments one by one
+        i += 1 # increase the counter by one
+        if type(num) != int:
+            if type(num) == list or tuple:
+                for items in num:
+                    sumTotal += items
+            elif type(num) != int or list or tuple:
+                print('UNACCEPTABLE INPUT!')
+                break
+        elif type(num) == int:
+            sumTotal += num
+        
+    
+    return sumTotal
+
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -23,8 +38,10 @@ print(f2(1, 4, -12))            # Should print -7
 print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 
 a = [7, 6, 5, 4]
-"""
+
 # What thing do you have to add to make this work?
+# AN ASTERISK, AND A LOOP to get a sum
+
 print(f2(a))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
@@ -32,6 +49,14 @@ print(f2(a))    # Should print 22
 # arguments. Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
+def f3(one, two=1):
+    sum = 0
+    if two != 1:
+        sum += one
+        sum += two
+    elif two == 1:
+        sum += (one + two)
+    return sum
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -39,15 +64,16 @@ print(f3(8))     # Should print 9
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
 # prints out the keys and values like so:
-#
+
 # key: foo, value: bar
 # key: baz, value: 12
 #
 # Google "python keyword arguments".
 
 # YOUR CODE HERE
+def f4(**kwargs):
+    print (kwargs)
 
-# Should print
 # key: a, value: 12
 # key: b, value: 30
 f4(a=12, b=30)
@@ -63,6 +89,5 @@ d = {
     "hp": 3 
 }
 
-# What thing do you have to add to make this work?
-f4(d)
-"""
+# What thing do you have to add to make this work?#
+#f4(d)
