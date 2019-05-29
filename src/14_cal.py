@@ -22,3 +22,18 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def calendr(*args):
+    month = datetime.now().month
+    yr = datetime.now().year
+    if len(args) == 0:
+        return (calendar.monthcalendar(yr, month))
+    elif len(args) == 1:
+        return (calendar.monthcalendar(yr, month))
+    elif len(args) == 2:
+        return (calendar.monthcalendar(yr, month))
+    else:
+         return "Provide at least one integer for the month or tow separated by a comma for month and year (MM, YYYY), i.e.: 09, 2018"
+
+print(calendr())
+
