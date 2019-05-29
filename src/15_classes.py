@@ -16,7 +16,7 @@ class LatLon:
 # Make a class Waypoint that can be passed parameters `name`, `lat`, and `lon` to the
 # constructor. It should inherit from LatLon. Look up the `super` method.
 
-# YOUR CODE HERE
+# YOUR CODE HEREg
 class Waypoint(LatLon):
     def __init__(self, name, lat, lon):
         super().__init__(lat, lon)

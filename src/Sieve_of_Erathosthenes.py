@@ -16,6 +16,7 @@ def is_prime(n):
     return True
 
 
+assert is_prime(2) == True, '2 is prime'
 assert is_prime(4) == False, '4 is not prime'
 assert is_prime(5) == True, '5 is prime'
 assert is_prime(6) == False, '6 is not prime'

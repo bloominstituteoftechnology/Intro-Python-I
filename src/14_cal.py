@@ -40,9 +40,27 @@ def calendar(month=None, year=None,  *argv, **keywords):
         assert month != None and year != None, 'program logic error'
         c.prmonth(year, month)
 
+# calendar()
+# calendar(6)
+# calendar(7, 2020)
+# calendar(year=2021)
+# calendar("5")
 
-calendar()
-calendar(6)
-calendar(7, 2020)
-calendar(year=2021)
-calendar("5")
+args = sys.argv
+print('args', args)
+L = len(args)
+print('L', L)
+if L == 1:
+  calendar()
+elif L == 2:
+  print('args[1]',args[1])
+  if args[1].isdigit():
+    calendar(int(args[1]))
+  else:
+    if args[1][:5] == 'year=':
+      if args[1][5:].isdigit():
+        calendar(year=int(args[1][5:]))
+elif L == 3:
+  calendar(int(args[1]),int(args[2]))
+      
+  
