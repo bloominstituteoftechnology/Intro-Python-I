@@ -12,13 +12,13 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
-print("x is: %d, y is: %f, z is: %s" % (x, y, z))
+print("x is: %d, y is: %.2f, z is: \"%s\"" % (x, y, z))
 
 # Use the 'format' string method to print the same thing
 
-new_string = "x is: {}, y is: {}, z is: {}"
+new_string = "x is: {}, y is: {:.2f}, z is: \"{}\""
 print(new_string.format(x, y, z))
 
 # Finally, print the same thing using an f-string
 
-f"x is: {x}, y is: {y} and z is: {z}"
+print(f"x is: {x}, y is: {y:.2f} and z is: \"{z}\"")
