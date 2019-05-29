@@ -39,4 +39,4 @@ if len(sys.argv) == 3:
   if int(month) < 1 or int(month) > 12 or int(year) < MINYEAR or int(year) > MAXYEAR:
     print(f'Month must be between 1-12 & Year must be between {MINYEAR}-{MAXYEAR}')
   else:
-    print(calendar.TextCalendar.prmonth(year, month))
+    calendar.TextCalendar.prmonth(year, month)
