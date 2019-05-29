@@ -2,9 +2,7 @@ from bitmap import BitMap
 
 
 def is_prime(n):
-    bm = BitMap(n)
-    if n % 2 == 0:
-        return False
+    bm = BitMap(n + 1)
     for i in range(2, n):
         if bm.test(i):
             continue
