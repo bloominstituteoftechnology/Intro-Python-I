@@ -40,14 +40,14 @@ if __name__ == "__main__":
     # ___ Assuming 1st value is month and 2nd is year
 
     if len(args) == 0:  
-        print(calendar.monthcalendar(yr, month))
+        print(calendar.TextCalendar().prmonth(yr, month))
 
     elif len(args) == 1:
         if args[0] not in range(1,13):
             print('Invalid month given. Please enter a value from 1 to 12.')
         else:
             month = args[0]
-            print(calendar.monthcalendar(yr, month))
+            print(calendar.TextCalendar().prmonth(yr, month))
 
     elif len(args) == 2:
       if args[0] not in range(1,13):
@@ -57,5 +57,5 @@ if __name__ == "__main__":
       else:
             month = args[0]
             yr = args[1]
-            print(calendar.monthcalendar(yr, month))
+            print(calendar.TextCalendar().prmonth(yr, month))
 
