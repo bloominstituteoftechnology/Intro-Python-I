@@ -22,3 +22,16 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+date = input("Input month and year in the form 'MM, YYYY': ").split(",")
+
+current = datetime.now()
+
+print(int(date[0]))
+
+if len(date) == 1:
+  print(calendar.Calendar().monthdatescalendar(year = current.year, month = int(date[0])))
+elif len(date) == 2:
+  print(calendar.Calendar().monthdatescalendar(year = int(date[1]), month = int(date[0])))
+else:
+  print(calendar.Calendar().monthdatescalendar(year = current.year, month=current.month))
