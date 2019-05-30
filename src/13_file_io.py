@@ -19,7 +19,6 @@ foo.close()
 # then close the file. Open up "bar.txt" and inspect it to make
 # sure that it contains what you expect it to contain
 
-# YOUR CODE HERE
 
 bar = open('bar.txt', 'w')
 bar.write("this is amazing!  I can't believe this works!")
