@@ -22,3 +22,62 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+from datetime import MINYEAR, MAXYEAR
+
+def ck_mon(month):
+    if month >= 1 and month <= 12:
+        return True
+
+    print("err: Month should be between 1 and 12\n")
+    return False
+
+
+def ck_year(year):
+    if year >= MINYEAR and year <= MAXYEAR:
+        return True
+
+    print(f'err: Year should be between {MINYEAR} and '
+          f'{MAXYEAR}\n')
+    return False
+
+
+def print_usage():
+    print("Refer to below usage instructions.\n")
+    print("Print calendar of current month:")
+    print("python 14_cal.py\n")
+    print("Print calendar for month within current year:")
+    print("python 14_cal.py <month>\n")
+    print("Print calendar for month and year:")
+    print("python 14_cal.py <month> <year>")
+    exit(1)
+
+
+current_datetime = datetime.now()
+year = current_datetime.year
+month = current_datetime.month
+
+if len(sys.argv) == 1:
+    print("Printing current month\n")
+
+elif len(sys.argv) == 2:
+    if not ck_mon(int(sys.argv[1])):
+        print_usage()
+
+    month = int(sys.argv[1])
+
+elif len(sys.argv) == 3:
+    if not ck_mon(int(sys.argv[1])):
+        print_usage()
+
+    month = int(sys.argv[1])
+
+    if not ck_year(int(sys.argv[2])):
+        print_usage()
+
+    year = int(sys.argv[2])
+else:
+    print_usage()
+
+
+textCalendar = calendar.TextCalendar(firstweekday=0)
+textCalendar.prmonth(year, month)
