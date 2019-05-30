@@ -1,0 +1,3 @@
+order line 1 in bar.txt
+ order line 2
+ order line 3

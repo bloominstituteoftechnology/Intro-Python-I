@@ -2,3 +2,9 @@
 # (try doing the same thing in the JS console and see what it outputs)
 
 # YOUR CODE HERE
+bignum = 2**65536
+print(bignum)
+
+#alternative
+#import math
+#math.pow(2, 65536)
