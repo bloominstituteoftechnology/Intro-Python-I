@@ -41,13 +41,13 @@ waypoints.append({"lat": 42, "lon": -124, "name": "a fourth place"})
 # value is -130 and change its name to "not a real place"
 # YOUR CODE HERE
 
-for kp in waypoints:
-    if kp["name"] == "a place":
-        kp["name"] = "not a real place"
-        kp["lon"] = -130
+for place in waypoints:
+    if place["name"] == "a place":
+        place["name"] = "not a real place"
+        place["lon"] = -130
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
-for kp in waypoints:
-    for x in kp:
-        print(kp[x])
+for place in waypoints:
+    for x in place:
+        print(place[x])
