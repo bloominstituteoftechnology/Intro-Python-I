@@ -1,7 +1,7 @@
 # Experiment with scopes in Python.
 # Good reading: https://www.programiz.com/python-programming/global-local-nonlocal-variables
 
-# When use a variable in a function, it's local in scope to the
+# When use a variable in a function, it's local in scope to
 x = 12
 
 
