@@ -72,7 +72,8 @@ print(f3(8))     # Should print 9
 
 # YOUR CODE HERE
 def f4(**kwargs):
-    print (kwargs)
+    for key, value in kwargs:
+        print(f'"Key: {key}, Value: {value}"')
 
 # key: a, value: 12
 # key: b, value: 30
@@ -90,4 +91,4 @@ d = {
 }
 
 # What thing do you have to add to make this work?#
-#f4(d)
+f4(**d) #two asterisks to the 'd' variable.
