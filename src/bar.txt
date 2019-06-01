@@ -1,0 +1,3 @@
+I opened a new file
+ This file contains some text
+ Three lines to be exact
