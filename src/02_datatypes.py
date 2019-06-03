@@ -14,8 +14,30 @@ y = "7"
 # Write a print statement that combines x + y into the integer value 12
 
 # YOUR CODE HERE
-
+>>> int("7") + 5
+12
 
 # Write a print statement that combines x + y into the string value 57
 
 # YOUR CODE HERE
+""STRING""
+>>> "5" + str(7)
+'57'
+
+""FLOAT""
+>>> float("2.3")
+2.3
+
+""INT""
+>>> int("2") + 4  
+6
+
+""BOOL""
+>>> x=5
+>>> y=5
+>>> bool(x==y)
+True
+>>> x=6
+>>> y=5
+>>> bool(x==y)
+False
