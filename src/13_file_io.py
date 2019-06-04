@@ -21,6 +21,6 @@ f.close()
 
 # YOUR CODE HERE
 f = open("bar.txt", "w+")
-f.write('\nThis is a new file.\nI finally figured out how to make new line breakss.\nYay this looks so much better.\n')
+f.write('\nThis is a new file.\nI finally figured out how to make new line breaks.\nYay this looks so much better.\n')
 f.close()
 
