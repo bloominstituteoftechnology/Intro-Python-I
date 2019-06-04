@@ -22,3 +22,18 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def findDate(month=None, year=None):
+  if type(month) == int and year is None:
+      return print(calendar.month(2019, month))
+  if type(month) == str or type(year) == str:
+      return print('Entries must be numbers.')
+  if type(month) == bool or type(year) == bool:
+      return print('Entries must be numbers.')
+  if type(month) == int and type(year) == int:
+      return print(calendar.month(month, year))
+  else:
+      return print(calendar.month(2019, datetime.today().month))
+
+
+print(findDate(3, 1999))
