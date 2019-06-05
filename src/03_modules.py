@@ -9,9 +9,12 @@ import sys
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
 
 # Print out the command line arguments in sys.argv, one per line:
-import fileinput
+#import fileinput
 # for line in fileinput.input():
-  #  print(line)
+#   if str(line) == "exit":
+#       break
+#   else:
+#       print(line)
 
 # Print out the OS platform you're using:
 print(sys.platform)
@@ -24,10 +27,10 @@ import os
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
 # Print the current process ID
-# YOUR CODE HERE
+print(os.getpid())
 
 # Print the current working directory (cwd):
-# YOUR CODE HERE
+print(os.getcwd())
 
 # Print out your machine's login name
-# YOUR CODE HERE
+print(os.getlogin()) # this is availabel on Linux and Windows
