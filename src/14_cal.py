@@ -22,3 +22,15 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+x = input("Enter comma-separated month and year: ").split(',')
+print(sys.argv)
+
+if len(sys.argv) < 1:
+  print(calendar.month(2019, 5))
+elif len(sys.argv) == 2:
+  print(calendar.month(2019, int(sys.argv[1])))
+elif len(sys.argv) == 3:
+  print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
+else:
+  print("Program expects arguments to be given. Please provide a month and year.")
