@@ -22,3 +22,29 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+user_month_and_year = input("Enter a month and year separated by a comma: ").replace(" ", "").split(",")
+
+def create_new_calendar(*args):
+
+	rendered_calendar = calendar.TextCalendar()
+
+	month = datetime.today().month
+	year = datetime.today().year
+	day = datetime.today().day
+
+	if len(args) == 1:
+		try:
+			int_month = int(args[0])
+			one_date = datetime(year, int_month, day)
+			print(rendered_calendar.prmonth(one_date.year, one_date.month))
+		except:
+			print(rendered_calendar.prmonth(year, month))
+		
+	elif len(args) == 2:
+		two_date = datetime(int(args[1]), int(args[0]), day)
+		print(rendered_calendar.prmonth(two_date.year, two_date.month))
+	else:
+		print("Please enter two numbers. The first should be between 1 and 12 representing a month. The second should be four digits representing a year.")
+
+create_new_calendar(*user_month_and_year)
