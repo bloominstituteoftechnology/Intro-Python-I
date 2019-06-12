@@ -22,3 +22,14 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+renderedCalendar = calendar.TextCalendar()
+date = input("Enter the year, month: ")
+print(date)
+"""
+if len(sys.argv) == 1:
+elif len(sys.argv) == 2:
+elif len(sys.argv) == 3:
+else:
+print("Invalid command:")
+"""
