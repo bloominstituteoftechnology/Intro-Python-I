@@ -34,9 +34,8 @@ print(len(x))
 # YOUR CODE HERE
 
 # way 1
-for i in range(0, len(x)):
-    print(x[i] * 1000)
+# for i in range(0, len(x)):
+#     print(x[i] * 1000)
 
 # way 2
-z = [num * 1000 for num in x]
-print(z)
+print([num * 1000 for num in x])
