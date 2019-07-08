@@ -11,7 +11,7 @@ z = "I like turtles!"
 # Using the printf operator (%), print the following feeding in the values of x,
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
-print(" printf operator: % 2d, % 5.2f,  % s" %(x, y, z))
+print(" printf operator: % 2d, % 2.2f,  % s" %(x, y, z))
 
 # Use the 'format' string method to print the same thing
 print('format string method: {}, {:.2f}, {}'.format(x, y, z) )
