@@ -16,10 +16,13 @@ num = int(num)
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 
 # YOUR CODE HERE
+# Using if else statement without function
 # if num % 2 == 0:
 #     print('EVEN!')
 # else:
 #     print('Odd')
+
+# Using a function with if else statement inside it
 def even_input(a_num):
     if a_num % 2 == 0:
         print('Even!')
