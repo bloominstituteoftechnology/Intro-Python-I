@@ -22,3 +22,8 @@ with open("./foo.txt") as f:
 with open("./bar.txt", "w") as f:
     write_data = f.write("hello\nworld\n:)")
     f.close()
+
+with open("./bar.txt") as f:
+    read_data = f.read()
+    print(read_data)
+    f.close()

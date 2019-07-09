@@ -22,3 +22,25 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+num_args = len(sys.argv) - 1
+
+if num_args == 0:
+    month = datetime.now().month
+    year = datetime.now().year
+elif num_args == 1:
+    month = int(sys.argv[1])
+    year = datetime.now().year
+elif num_args == 2:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+else:
+    print("Usage: cal [month] year")
+
+cal = calendar.TextCalendar()
+
+if not month:
+    cal.pryear(year)
+else:
+    cal.prmonth(year, month)
