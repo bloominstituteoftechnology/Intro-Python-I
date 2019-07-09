@@ -22,3 +22,18 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+month = datetime.today().month
+year = datetime.today().year
+noOfArg = len(sys.argv)
+if noOfArg ==1:
+    print(calendar.month(year, month))
+elif noOfArg==2:
+    month = int(sys.argv[1])
+    print(calendar.month(year, month))
+elif noOfArg==3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+    print(calendar.month(year, month))
+else:
+    print("input of the form 14_cal.py month [year] is expected")
