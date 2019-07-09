@@ -5,11 +5,13 @@
 x = 12
 
 def changeX():
+    global x
     x = 99
+    return x
 
 changeX()
 
-# This prints 12. What do we have to modify in changeX() to get it to print 99?
+# This prints 12. What do we have to modify in changeX() to get it to print 99? - declare 'global x' before changing x
 print(x)
 
 
@@ -19,6 +21,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()
