@@ -30,15 +30,25 @@ b = (-14, 72)
 # Prints "Distance is 66.94"
 print("Distance is: {:.2f}".format(dist(a, b)))
 
-
-
 # Write a function `print_tuple` that prints all the values in a tuple
-
 # YOUR CODE HERE
+
+def print_tuple(a):
+    if isinstance(a, tuple):
+        for i in range(len(a)):
+            print(a[i])
+    else:
+        print("Item is not a tuple")
+
+#    print(repr(a))
 
 t = (1, 2, 5, 7, 99)
 print_tuple(t)  # Prints 1 2 5 7 99, one per line
 
 # Declare a tuple of 1 element then print it
 u = (1)  # What needs to be added to make this work?
+print_tuple(u)
+
+# Declare a tuple of 1 element then print it
+u = (1,)  # What needs to be added to make this work?
 print_tuple(u)
