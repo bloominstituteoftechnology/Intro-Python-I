@@ -1,4 +1,4 @@
-# Intro to Python I
+# Intro to Python I - Winston
 
 It's time to learn a new language! Python!
 
