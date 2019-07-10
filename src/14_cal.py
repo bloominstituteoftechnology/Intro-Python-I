@@ -40,11 +40,6 @@ import sys
 import calendar
 from datetime import datetime
 
-import sys
-import calendar
-from datetime import datetime
-
-
 if len(sys.argv) == 1 or len(sys.argv) > 3:
   print("Arguments should be given in the format: month [year]")
   exit()
