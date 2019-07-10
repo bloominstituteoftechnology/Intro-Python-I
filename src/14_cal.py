@@ -22,3 +22,59 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+# first attempt, probably overthinking 
+# c = calendar.TextCalendar(firstweekday=6)
+# def help():
+#     print("cmd: python cal.py [month] [year]")
+# def main(args):
+#     if len(args) == 0:
+#         t = datetime.now()
+#         s = c.formatmonth(t.year, t.month)
+#         print(s)  
+#     elif len(args) == 1:
+#         if (args[0] == "-h" or args[0] == "--help"):
+#             help()
+#         else:
+#             t = datetime.now()
+#             s = c.formatmonth(t.year, int(args[0]))
+#             print(s)
+#     elif len(args) == 2:
+#         s = c.formatmonth(int(args[1]), int(args[0]))
+#         print(s)
+#     else:
+#         help()
+# if __name__ == "__main__":
+#     main(sys.argv[1:])
+
+#second attempt, much simpler
+# if(len(sys.argv) == 1):
+#     m = datetime.now().month
+#     y = datetime.now().year
+#     print(calendar.month(y, m))
+# elif len(sys.argv) == 2:
+#     m = int(sys.argv[1])
+#     y = datetime.now().year
+
+#     print(calendar.month(y, m))
+# elif len(sys.argv) == 3:
+#     m = int(sys.argv[1])
+#     y = int(sys.argv[2])
+
+#     print(calendar.month(y, m))
+# else:
+#     print('Please enter month and year like MM YYYY')
+#     sys.exit()
+
+#third attempt, the simplest!
+if len(sys.argv) == 1:
+  print("Input a Year in yyyy format and Month in mm format")
+elif len(sys.argv) == 2:
+  mm = int(sys.argv[1])
+  print(calendar.month(datetime.now().year,mm))
+elif len(sys.argv) == 3:
+  mm = int(sys.argv[1])
+  yy = int(sys.argv[2])
+  print(calendar.month(yy,mm))
+
+sys.exit()
