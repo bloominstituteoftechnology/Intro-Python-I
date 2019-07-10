@@ -42,3 +42,8 @@ waypoints = [
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+
+
+for i in waypoints:
+    for k, v in i.items():
+        print('k: {}, v: {}'.format(k, v))
