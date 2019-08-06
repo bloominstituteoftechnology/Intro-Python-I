@@ -18,7 +18,39 @@ and does the following:
    the format that your program expects arguments to be given.
    Then exit the program.
 """
-
 import sys
-import calendar
+import calendar 
 from datetime import datetime
+
+time = datetime.today()
+month = time.month
+year = time.year
+args = sys.argv
+
+def get_calendar(m=month, y=year):
+  c = calendar.TextCalendar(calendar.SUNDAY)
+  full_calendar = c.formatmonth(y,m)
+  print(full_calendar)
+
+if len(args) == 1:
+  get_calendar()
+
+elif len(args) == 2:
+  try:
+    raise ValueError('Please enter your month as a number..text is not allowed')
+    arg_month = int(args[1])
+    get_calendar(arg_month)    
+  except ValueError as err:   
+    print('Oh no you ran into an issue. {}'.format(err))
+elif len(args) == 3:
+  try:
+    raise ValueError('Please enter your month and year as a number..text is not allowed')
+    arg_month = int(args[1])
+    arg_year = int(args[2])
+    get_calendar(arg_month,arg_year)
+  except ValueError as err:
+    print('Oh no..you forgot something. {}'.format(err))  
+else:
+  print('Something went wrong..please enter the value as numbers')    
+
+    
