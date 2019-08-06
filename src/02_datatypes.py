@@ -15,7 +15,15 @@ y = "7"
 
 # YOUR CODE HERE
 
+""" the gotcha here is y is a string and must be passed by an 
+int() command in the print command to use it as a number"""
+
+print(x + int(y))
 
 # Write a print statement that combines x + y into the string value 57
 
 # YOUR CODE HERE
+""" in this exersize we are to concatenate the two variables 
+    as a string so str(x) must be used to turn x into a string"""
+
+print(str(x) + y)
