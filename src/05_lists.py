@@ -8,22 +8,38 @@ y = [8, 9, 10]
 
 # Change x so that it is [1, 2, 3, 4]
 # YOUR CODE HERE 
+x.append(4)
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE 
+for i in y:
+    x.append(i)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE 
+
+# Several ways to do it
+# This will remove a specified value
+# x.remove(8)
+# print(x)
+
+# or
+
+z = x.pop(4) # This will remove and return a specified index
+print(f'Value popped off: {z}')
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE 
+x.insert(5, 99)
 print(x)
 
 # Print the length of list x
 # YOUR CODE HERE 
-
+print(len(x))
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
+for i in x:
+    print(i * 1000)

@@ -10,23 +10,25 @@ for more info regarding list comprehensions.
 
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
-y = []
-
-print (y)
+a = []
+for x in range(1, 11):
+    y.append(x)
+print (a)
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 
-y = []
-
-print(y)
+b = []
+for x in range(0, 10):
+    b.append(x**3)
+print(b)
 
 # Write a list comprehension to produce the uppercase version of all the
 # elements in array a. Hint: "foo".upper() is "FOO".
 
 a = ["foo", "bar", "baz"]
 
-y = []
+y = [x.upper() for x in a]
 
 print(y)
 
@@ -36,6 +38,8 @@ print(y)
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-y = []
+q = [(a, type(a)) for a in x]
+print(q)
+z = [a for a in x if type(a) == int and a % 2 == 0]
 
-print(y)
+print(z)
