@@ -8,7 +8,7 @@
 
 
 def f1(num1, num2):
-    return num1+num2
+    return num1 + num2
 
 
 print(f1(1, 2))
@@ -44,7 +44,7 @@ print(f2(*a))  # Should print 22
 
 
 def f3(num1, num2=1):
-    return num1+num2
+    return num1 + num2
 
 
 print(f3(1, 2))  # Should print 3
