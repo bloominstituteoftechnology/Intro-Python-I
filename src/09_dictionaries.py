@@ -14,6 +14,15 @@ has the following keys:
  - lon: a signed integer representing a longitude value
  - name: a name string for this location
 """
+# empty dictionary
+d = {}
+
+# dictionary with tow key value pairs
+dic = {'apple': 'is a fruit', 'cucumber': 'is a vegetable'}
+print(dic['apple'])
+
+for key, value in dic.items():
+    print(f'{key}: {value}')
 
 waypoints = [
     {
