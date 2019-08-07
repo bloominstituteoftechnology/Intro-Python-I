@@ -16,3 +16,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+with open("./bar.txt") as f:
+    read_date = f.read()
+    print(read_data)
+    f.close()
