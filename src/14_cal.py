@@ -28,12 +28,12 @@ user_input = input("Enter month then year seperated by a comma: ").split(',')
 
 def make_calendar(*argsv):
     if len(argsv) == 1:
-        if argsv[0] == '':
+        if not argsv[0]:
             return calendar.monthcalendar(datetime.today().year, datetime.today().month)
         else:
             return calendar.monthcalendar(datetime.today().year, int(argsv[0]))
     elif len(argsv) == 2:
-        if argsv[0] == '':
+        if not argsv[0]:
             return redo()
         else:
             return calendar.monthcalendar(int(argsv[1]), int(argsv[0]))
