@@ -1,7 +1,7 @@
 ## Personal notes while learning python
 
 #console.log in js
-name = "Jesse"
+name = "Jesse" # creates a new variable(let, const, var in js terms)
 print("Hello," + name)
 
 
@@ -22,6 +22,9 @@ print(p)
 
 
 # print all values in each list for loop example
-for element in q:
-    print(element)
-print("for loop done")
+for (index, element) in enumerate(q):
+    print(f'{index}: {element}')
+print(enumerate(q))
+
+# if statement in one line
+evens = [num for num in numbers if num % 2 == 0]
