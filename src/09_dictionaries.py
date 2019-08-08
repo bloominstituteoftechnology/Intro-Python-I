@@ -49,11 +49,16 @@ waypoints.append({"lat": 55, "lon": 150, "name": "a new place"})
 # Modify the dictionary with name "a place" such that its longitude
 # value is -130 and change its name to "not a real place"
 # YOUR CODE HERE
+# for place in waypoints:
+#     for key, value in place.items():
+#         if value == "a place":
+#             place["lon"] = -130
+#             place["name"] = "not a real place"
+
 for place in waypoints:
-    for key, value in place.items():
-        if value == "a place":
-            place["lon"] = -130
-            place["name"] = "not a real place"
+    if place["name"] == "a place":
+        place["lon"] = -130
+        place["name"] = "not a real place"
 
 print(waypoints)
 
