@@ -11,7 +11,7 @@ import sys
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
 for arg in sys.argv:
-    print(sys.argv)
+    print(arg)
     
 # Print out the OS platform you're using:
 # YOUR CODE HERE
@@ -34,5 +34,4 @@ print(os.getcwd())
 
 # Print out your machine's login name
 # YOUR CODE HERE
-print(os.getlogin())  			#DOUBLE CHECK THESE 2
-print(os.getpass.getuser())
+print(os.getlogin())
