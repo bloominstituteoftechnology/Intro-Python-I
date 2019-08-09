@@ -10,3 +10,18 @@ num = int(num)
 
 # YOUR CODE HERE
 
+
+##
+def test(a,b=10):
+
+    def test2():
+        print("Inner function")
+
+    print("A and B are",a,b)
+    test2()
+    return 0
+
+
+
+test(20,30)
+
