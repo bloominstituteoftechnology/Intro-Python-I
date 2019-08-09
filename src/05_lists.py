@@ -12,7 +12,8 @@ x.append(4)
 print("Change x so that it is [1, 2, 3, 4]:", x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
-# YOUR CODE HERE
+# x = [1, 2, 3]
+# y = [8, 9, 10]
 x.extend(y)
 print("using y, change x so that it is [1, 2, 3, 4, 8, 9,10]:", x)
 
