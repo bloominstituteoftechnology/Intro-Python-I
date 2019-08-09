@@ -42,7 +42,8 @@ x = input("Enter comma-separated numbers: ").split(',')
 # What do you need between the square brackets to make it work?
 y = []
 
-for index, item in x(item, start=1):
+for index, item in x:
     if index % 2 == 0:
         y.append(i)
+event_items = [i for i in x]
 print(y)
