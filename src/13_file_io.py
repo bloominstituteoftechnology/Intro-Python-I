@@ -20,3 +20,8 @@ files.close()
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+file = open("bar.txt", "w")
+text = ["I got this!", "Look at me learning Python!",
+        "Maybe I'll learn to build Raspberry Pi robots"]
+file.writelines(text)
+file.close()
