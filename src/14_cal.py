@@ -22,3 +22,28 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+today = datetime.now()
+cal = calendar.TextCalendar(firstweekday=6)
+
+# if (len(sys.argv) == 1):
+#   cal.prmonth(today.year, today.month)
+# elif (len(sys.argv) == 2):
+#   cal.prmonth(today.year, int(sys.argv[1]))
+# elif (len(sys.argv) == 3):
+#   cal.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+# else:
+#   print('Please format arguments in the following way: `14_cal.py month [year]`')
+
+def user_input():
+    print("This progam returns the month and year that is passed in. If month and year are left blank it returns the current month and year")
+    month_input = input('What month? ')
+    year_input = input("What year? ")
+    if month_input == "":
+        month_input = today.month
+    if year_input == "":
+        year_input = today.year
+    print(f'{month_input} / {year_input}')
+
+
+user_input()

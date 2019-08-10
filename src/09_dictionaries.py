@@ -14,6 +14,15 @@ has the following keys:
  - lon: a signed integer representing a longitude value
  - name: a name string for this location
 """
+# empty dictionary
+d = {}
+
+# dictionary with tow key value pairs
+dic = {'apple': 'is a fruit', 'cucumber': 'is a vegetable'}
+# print(dic['apple'])
+
+# for key, value in dic.items():
+    # print(f'{key}: {value}')
 
 waypoints = [
     {
@@ -35,10 +44,26 @@ waypoints = [
 
 # Add a new waypoint to the list
 # YOUR CODE HERE
+waypoints.append({"lat": 55, "lon": 150, "name": "a new place"})
 
 # Modify the dictionary with name "a place" such that its longitude
 # value is -130 and change its name to "not a real place"
 # YOUR CODE HERE
+# for place in waypoints:
+#     for key, value in place.items():
+#         if value == "a place":
+#             place["lon"] = -130
+#             place["name"] = "not a real place"
+
+for place in waypoints:
+    if place["name"] == "a place":
+        place["lon"] = -130
+        place["name"] = "not a real place"
+
+print(waypoints)
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+for place in waypoints:
+    for key, value in place.items():
+        print(f'{key}: {value}')
