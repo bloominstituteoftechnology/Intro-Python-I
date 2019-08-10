@@ -10,9 +10,19 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # YOUR CODE HERE
 
+filename = "foo.txt"
+files = open(filename, "r")
+for line in files:
+    print(line)
+files.colse()
+
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
 # then close the file. Open up "bar.txt" and inspect it to make 
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+file = open("bar.txt", "w")
+text = ["Beginning to learn Python", "Feeling like a fish outta water", "It'll get better though"]
+file.writelines(text)
+file.close()
