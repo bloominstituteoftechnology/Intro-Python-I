@@ -1,1 +1,3 @@
-Beginning to learn PythonFeeling like a fish outta waterIt'll get better though
+Beginning to learn Python 
+Feeling like a fish outta water 
+It'll get better though
