@@ -22,3 +22,25 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+args = input("please provide a month and year").split(" ")
+
+try:
+    # month and year given
+    if len(args) == 2:
+        month = int(args[0])
+        year = int(args[1])
+    # month given
+    elif len(args) == 1:
+        month = int(args[0])
+    # nothing given
+    elif len(args) == 0:
+        month = datetime.now().month
+        year = datetime.now().year
+    # wrong arguments given
+    text_calendar = calendar.TextCalendar()
+    text_calendar.prmonth(year, month)
+
+except:
+    print("Error: Please provide data in the proper format.")
