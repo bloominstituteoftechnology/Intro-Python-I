@@ -9,19 +9,12 @@ num = int(num)
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 
 # YOUR CODE HERE
+def even_odd(num):
+    if num%2==0:
+       print("Even!")
+    else:
+        print("Odd")
 
+even_odd(num)
 
-##
-def test(a,b=10):
-
-    def test2():
-        print("Inner function")
-
-    print("A and B are",a,b)
-    test2()
-    return 0
-
-
-
-test(20,30)
 
