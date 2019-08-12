@@ -10,15 +10,17 @@ def changeX():
 changeX()
 
 # This prints 12. What do we have to modify in changeX() to get it to print 99?
+x = 99
 print(x)
 
 
 # This nested function has a similar problem.
-
+# y = 0
 def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()
