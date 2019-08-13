@@ -22,3 +22,11 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+import datetime
+import calendar
+import sys
+
+y = int(input("Input the year : "))
+m = int(input("Input the month : "))
+
+print(calendar.month(2016, 10))
