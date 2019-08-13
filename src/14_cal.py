@@ -29,4 +29,4 @@ import sys
 y = int(input("Input the year : "))
 m = int(input("Input the month : "))
 
-print(calendar.month(2016, 10))
+print(calendar.month(y, m))
