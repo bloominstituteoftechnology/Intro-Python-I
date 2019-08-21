@@ -20,7 +20,7 @@ print(x + [4] + y[-2:])
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE
-print(x + [4, 9, 99, 10])
+print(x + [4, 9, 99] + y[-1:])
 
 # Print the length of list x
 # YOUR CODE HERE
