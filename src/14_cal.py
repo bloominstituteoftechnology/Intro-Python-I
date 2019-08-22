@@ -22,3 +22,16 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+if (len(sys.argv) == 1):
+  print(f'Current month is {datetime.today().strftime("%B")}')
+elif (len(sys.argv) == 2):
+  today = datetime.today()
+  dateM = datetime(today.year, int(sys.argv[1]), today.day)
+  print(f'Input month {dateM}')
+elif (len(sys.argv) == 3):
+  today = datetime.today()
+  dateMY = datetime(int(sys.argv[2]), int(sys.argv[1]), today.day)
+  print(f'Input month and year {dateMY}')
+else :
+  print('cal.py [ month, [year]]')
