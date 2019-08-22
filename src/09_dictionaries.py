@@ -50,6 +50,6 @@ for i in waypoints:
         i['lon'] = -130
         i["name"] = "not a real place"
 
-print(waypoints)
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+print(waypoints)
