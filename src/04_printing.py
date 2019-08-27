@@ -15,7 +15,6 @@ z = "I like turtles!"
 print(x)
 print(y)
 print(z)
-print(f"He said his age is {x}.")
 
 # Use the 'format' string method to print the same thing
 
