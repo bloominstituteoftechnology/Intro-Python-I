@@ -22,3 +22,27 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+userInput = input("Enter month and year. IE: '05,2019'").split(',')
+
+def userCalendar(*argsv):
+    if len(argsv) == 1:
+        if not argsv[0]:
+            return calendar.monthcalendar(datetime.today().year, datetime.today().month)
+        else:
+            return calendar.monthcalendar(datetime.today().year, int(argsv[0]))
+    elif len(argsv) == 2:
+        if not argsv[0]:
+            return redo()
+        else:
+            return calendar.monthcalendar(int(argsv[1]), int(argsv[0]))
+    else:
+        return redo()
+
+
+def redo():
+    print("Enter month and year. IE: '05,2019'")
+    return calendar(*input("Enter month then year seperated by a comma: ").split(','))
+
+
+print(userCalendar(*userInput))
