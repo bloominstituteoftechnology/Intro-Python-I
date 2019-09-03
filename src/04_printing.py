@@ -12,6 +12,13 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
+print("My favorite number is %s, but my second favorite is %s, and also, %s" % (x, y, z))
+
 # Use the 'format' string method to print the same thing
 
+print("My favorite number is " + str(x) + ", but my second favorite is " + str(y) + ", and also, " + z)
+
+
 # Finally, print the same thing using an f-string
+
+print(f"My favorite number is {x}, but my second favorite is {y}, and also, {z}")
