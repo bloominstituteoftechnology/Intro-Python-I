@@ -13,7 +13,8 @@ print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE 
-print(x, y)
+x.extend(y)
+print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE 
@@ -21,10 +22,20 @@ print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE 
+x.append(99)
+x.append(10)
 print(x)
 
 # Print the length of list x
 # YOUR CODE HERE 
 
+print(len(x))
+
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
+
+newList = list()
+for a in x:
+    newList.append(a * 1000)
+
+print(newList)
