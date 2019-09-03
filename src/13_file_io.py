@@ -1,6 +1,6 @@
 """
 Python makes performing file I/O simple. Take a look
-at how to read and write to files here: 
+at how to read and write to files here:
 
 https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 """
@@ -10,9 +10,25 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # YOUR CODE HERE
 
+filename = "/Users/lambda_school_loaner_44/Documents/Lambda Folder/Intro-Python-I/src/foo.txt"
+files = open(filename, "r")
+for line in files:
+    print(line)
+files.close()
+
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
-# then close the file. Open up "bar.txt" and inspect it to make 
+# then close the file. Open up "bar.txt" and inspect it to make
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+
+w = open("bar.txt", "w+")
+w.write("Beginning to learn Python \n")
+w.write("Feeling like a fish outta water \n")
+w.write("It'll get better though")
+w.close()
+
+with open("bar.txt") as w:
+    print(w.read())
+    w.close()
