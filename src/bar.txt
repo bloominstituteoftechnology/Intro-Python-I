@@ -1,0 +1,3 @@
+Write three lines of arbitrary content to that file 1
+Write three lines of arbitrary content to that file 2
+Write three lines of arbitrary content to that file 3

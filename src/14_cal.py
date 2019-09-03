@@ -22,3 +22,33 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+def hasNumbers(inputString):
+    return all(char.isdigit() for char in inputString)
+
+
+def printCalender():
+    nowDate = str(datetime.now()).split(' ')[0].split('-')
+    year = input("Enter a year: ")
+    month = input("Enter a month: ")
+
+    if(hasNumbers(year) == False or hasNumbers(month) == False):
+        return print('sorry, were expecting a year and a month as a number')
+    if month and year:
+        year = int(year)
+        month = int(month)
+        return calendar.TextCalendar().prmonth(year, month)
+    if month:
+
+        year = int(nowDate[0])
+        month = int(month)
+
+        return calendar.TextCalendar().prmonth(year, month)
+
+    year = int(nowDate[0])
+    month = int(nowDate[1])
+    return calendar.TextCalendar().prmonth(year, month)
+
+
+printCalender()
