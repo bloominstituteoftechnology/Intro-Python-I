@@ -18,4 +18,4 @@ print('x is {}, y is {:.2f}, z is {!r}'.format(10, 2.224552, "I like turtles!"))
 
 # Finally, print the same thing using an f-string
 # This print has invalid syntax, figure it out later
-print(f'x is {x}, y is {y}, z is "{z}"')
+print('x is {x}, y is {y}, z is "{z}"')
