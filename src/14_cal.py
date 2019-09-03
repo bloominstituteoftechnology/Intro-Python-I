@@ -22,3 +22,22 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+x = input("Please enter a comma-separated year month date (ex: 2020,12): ").split(',')
+
+def user_input(*dates):
+  if len(dates) == 1 and str(dates[0]) != '': 
+    if int(dates[0]) < 13:
+      return calendar.month(datetime.now().year, int(dates[0]))
+    else:
+      return "Please try again"
+  if len(dates) == 2:
+    if int(dates[1]) < 13:
+      return calendar.month(int(dates[0]), int(dates[1]))
+    else:
+      return "Please try again"
+  else:	
+	  print("the current month and year:")
+	  return(calendar.month(datetime.now().year, datetime.now().month))
+
+print(user_input(*x)) 
