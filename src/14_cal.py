@@ -22,3 +22,7 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+date = input("enter calendar input: ").split(' ')
+
+print(date)
