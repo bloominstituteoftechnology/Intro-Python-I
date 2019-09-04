@@ -9,6 +9,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # Print all the contents of the file, then close the file
 
 # YOUR CODE HERE
+
 with open("foo.txt") as f:
     read_data = f.read()
     print(read_data)
@@ -27,3 +28,8 @@ f.write('Python is a slippery one\n')
 f.write('Watashiwa jagaimo\n')
 
 f.close()
+
+with open("bar.txt") as f:
+    read_data = f.read()
+    print(read_data)
+f.closed
