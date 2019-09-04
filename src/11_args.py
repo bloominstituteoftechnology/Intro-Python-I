@@ -4,14 +4,27 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-# YOUR CODE HERE
+def f1(a, b):
+    return a + b
 
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
-# YOUR CODE HERE
+def f2(*args):
+    sum = 0
+    # If statement added in response to following question
+    if len(args) > 1:
+        for arg in args:
+            sum += arg
+        print(sum)
+    elif type(args[0]) is list:
+        for value in args[0]:
+            sum += value
+        print(sum)
+    else:
+        print(args)
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -27,7 +40,11 @@ print(f2(a))    # Should print 22
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments. Google "python default arguments" for a hint.
 
-# YOUR CODE HERE
+def f3(a, b = None):
+    if b == None:
+        print(a+1)
+    else:
+        print(a + b)
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -41,7 +58,8 @@ print(f3(8))     # Should print 9
 #
 # Google "python keyword arguments".
 
-# YOUR CODE HERE
+def f4(**kwargs):
+    print(kwargs)
 
 # Should print
 # key: a, value: 12
@@ -60,4 +78,5 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+# You have to add in the two asterisks at the beginning. I'm guessing that this is telling the program that variable `d` is a key,value pair.
+f4(**d)
