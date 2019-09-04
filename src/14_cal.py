@@ -22,3 +22,14 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+try:
+  if len(sys.argv) == 2:
+    print(calendar.TextCalendar(6).prmonth(datetime.now().year, int(sys.argv[1])))
+  elif len(sys.argv) == 3:
+    print(calendar.TextCalendar(6).prmonth(int(sys.argv[2]), int(sys.argv[1])))
+  else:
+    print(calendar.TextCalendar(6).prmonth(datetime.now().year, datetime.now().month))
+except:
+  print("Enter a month and year")
+

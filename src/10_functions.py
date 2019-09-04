@@ -9,4 +9,10 @@ num = int(num)
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 
 # YOUR CODE HERE
+result = num % 2
+if result > 0:
+    print("Odd")
+else:
+    print("Even!")
+
 
