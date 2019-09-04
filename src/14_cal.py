@@ -21,4 +21,31 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import date
+
+m = input("Input the month : ")
+y = input("Input the year : ")
+
+if(len(y) == 0 and len(m) == 0):
+  today = date.today()
+  print(calendar.month(today.year, today.month))
+  print("You did not enter any data, so you got todays date")
+elif(int(m) < 0 or int(m) > 12):
+  today = date.today()
+  print(calendar.month(today.year, today.month))
+  print("You entered an invalid month, so you got todays date")
+else:
+  print(calendar.month(int(y), int(m)))
+
+
+
+# else:
+#   print(calendar.month(int(y), int(m)))
+# if month < 0 or month > 12 then default to current calendar
+# elif month len > 2 send an error message
+# if(len(y) == 0 and len(m) == 0):
+
+#   print(calendar(today.year, today.month))
+# else:
+#   print(calendar.month(y, m))
+# print(calendar(today.year, today.month))
