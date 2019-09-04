@@ -19,10 +19,44 @@ and does the following:
    Then exit the program.
 """
 
+
 import sys
 import calendar
 from datetime import datetime
 
-date = input("enter calendar input: ").split(' ')
 
-print(date)
+def main():
+
+
+  # no arguments
+  if len(sys.argv) == 1:
+      this_month = datetime.now().month
+      this_year = datetime.now().year
+      print(calendar.month(this_year, this_month))
+
+  # month argument
+  elif len(sys.argv) == 2:
+    this_month = int(sys.argv[1])
+    if this_month < 1 or this_month > 12:
+      print("Please enter a month between 1 and 12")
+      return
+
+    this_year = datetime.now().year
+    print(calendar.month(this_year, this_month))
+
+  # month and year argument
+  elif len(sys.argv) == 3:
+    month = int(sys.argv[1])
+    if this_month < 1 or this_month > 12:
+      print("Please enter a month between 1 and 12")
+      return
+    year_txt = sys.argv[2]
+    year = int(year_txt[year_txt.find('[')+1:year_txt.find(']')])
+    print(calendar.month(year, month))
+
+  # more than 2 arguments
+  else:
+    print("Program only takes two arguments at the most")
+
+if __name__ == "__main__":
+    main()
