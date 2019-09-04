@@ -5,8 +5,8 @@
 
 import math
 
-pow(2,65536)
+pow(2, 65536)
 
 # or
 
-math.pow(2,65536)
+math.pow(2, 65536)
