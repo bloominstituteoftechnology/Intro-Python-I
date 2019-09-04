@@ -35,9 +35,7 @@ print(y)
 
 x = input("Enter comma-separated numbers: ")
 
-print(x)
-
 # What do you need between the square brackets to make it work?
-y = []
+y = [num for num in x if num % 2 == 0]
 
 print(y)
