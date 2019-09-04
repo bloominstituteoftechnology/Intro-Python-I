@@ -5,7 +5,11 @@ https://docs.python.org/3.6/library/calendar.html
 
 Write a program that accepts user input of the form
   `14_cal.py month [year]`
+look into sys.argv how to make month and year CLI arguments
+define month and year using sys.argv then pass it into the calendar file.
+how can you use index to define arguments for month and year?
 and does the following:
+can append additional arguments in sys.argv
  - If the user doesn't specify any input, your program should
    print the calendar for the current month. The 'datetime'
    module may be helpful for this.
