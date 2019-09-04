@@ -21,4 +21,35 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import date
+import sys
+
+def printMonth(year, month):
+    print (calendar.TextCalendar().prmonth(year,month))
+
+print ("Argv is ", sys.argv)
+arguments = sys.argv[1:]
+print ("Changed Argv is ", arguments)
+
+l = len(arguments)
+if l == 0:
+    #print this month and year cval
+    year = date.today().year
+    month = date.today().month
+    printMonth(year, month)
+
+elif l == 1:
+    month = int(arguments[0])
+    year = date.today().year
+    printMonth(year, month)
+
+    #print month of this year
+elif l == 2:
+    month, year = arguments
+    printMonth(int(year),int(month))
+else:
+    print ("Invalid syntax : Usage 14_cal.py month [year]")
+
+
+x= date(2019, 5, 17)
+print(x)
