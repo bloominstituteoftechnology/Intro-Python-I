@@ -29,7 +29,7 @@ try:
   elif len(sys.argv) == 3:
     print(calendar.TextCalendar(6).prmonth(int(sys.argv[2]), int(sys.argv[1])))
   else:
-    print(calendar.TextCalendar(6).prmonth(datetime.now().year, datetimne.now().month))
+    print(calendar.TextCalendar(6).prmonth(datetime.now().year, datetime.now().month))
 except:
   print("Enter a month and year")
 
