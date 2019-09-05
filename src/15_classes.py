@@ -28,7 +28,7 @@ class Geocache(Waypoint):
         self.difficulty = difficulty
         self.size = size
 
-# ## Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
+# # # Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
 
 # # YOUR CODE HERE
 waypoint = Waypoint("Catacombs", 41.70505, -121.51521)
