@@ -98,6 +98,8 @@ depts = [
     Dept("Department 3", 33),
 ]
 
+
+
 my_store = Store("Beej's Store", depts)   # Create a new Store object
 print(my_store)
 print(repr(my_store))
