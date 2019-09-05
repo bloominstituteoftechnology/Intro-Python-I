@@ -22,3 +22,18 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+user_inp = input("Input?")
+
+inp_array = user_inp.split(" ")
+
+if user_inp == "":
+    print(calendar.month(datetime.today().year, datetime.today().month))
+elif not all(x.isdigit() for x in inp_array) or len(inp_array) > 2 or int(inp_array[0]) > 12:
+    print("Input must be in the format of Month Year. (e.g. 4 2019)\nIf no input is given, current month and year are "
+          "assumed.\nIf one input is given, input month of current year is assumed.")
+elif len(inp_array) == 1:
+    print(calendar.month(datetime.today().year, int(inp_array[0])))
+else:
+    print(calendar.month(int(inp_array[1]), int(inp_array[0])))
