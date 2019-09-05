@@ -20,8 +20,8 @@ def outer():
     y = 120
 
     def inner():
-        
         y = 999
+        print(y)
 
     inner()
 

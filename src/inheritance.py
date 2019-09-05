@@ -1,28 +1,36 @@
-#Inheritance in OOP
+class Animal:   # "Base class"
 
-class Animal: # Base class, Parent class, Top level class
-    def call(self):
-        def __init__(self, name):
-            
-        print("generic animal sound")
+    def __init__(self, name):
+        self.name = name
 
-class Vertebrate(Animal): # vertebrate "is a" animal
     def call(self):
-        print("generic vertebrate sound")
+        print(f"{self.name}: Generic animal sound")
+
+class Vertebrate(Animal):  # Vertebrate is an Animal, "is-a" relationship
+
+    def call(self):   # Override the parent class's call method
+        print(f"{self.name}: Generic vertebrate sound")
+
 class Mammal(Vertebrate):
     pass
-class Cat(Vertebrate):
-    def call(self):
-        print("Meow")
-class Invertebrate(Animal): # Invertebrate "is a" animal
+
+class Cat(Mammal):
+
+    def __init__(self, name, evil):
+        super().__init__(name)
+        self.evil = evil
+
+    def call(self):   # Override the parent class's call method
+        print(f'{self.name} ({"evil" if self.evil else "not evil"}): Meow')
+
+class Invertebrate(Animal):  # Invertebrate is an Animal, "is-a" relationship
     pass
 
-
 animals = [
-    Animal(),
-    Vertebrate(),
-    Invertebrate(),
-    Cat()
+    Animal("animal 1"),
+    Vertebrate("vert 1"),
+    Invertebrate("invert 1"),
+    Cat("cat 1", False),
 ]
 
 for a in animals:
