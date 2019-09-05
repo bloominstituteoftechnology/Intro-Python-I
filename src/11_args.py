@@ -16,8 +16,8 @@ print(f1(1, 2))
 
 def f2(*argv):
   sum = 0
-  for a in argv:
-    sum += a
+  for ag in argv:
+    sum += ag
   return sum
 
 print(f2(1))                    # Should print 1
@@ -28,7 +28,7 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 a = [7, 6, 5, 4]
 
 # What thing do you have to add to make this work?
-#print(f2((a))    # Should print 22
+print(f2(a)    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument, it returns that value plus 1. If two arguments, it returns the sum of the arguments. Google "python default arguments" for a hint.
 
@@ -58,10 +58,10 @@ a = [7, 6, 5, 4]
 # key: founded, value: "March 23, 1868"
 #f4(city="Berkeley", population=121240, founded="March 23, 1868")
 
-d = {
-    "monster": "goblin",
-    "hp": 3
-}
+#d = {
+#    "monster": "goblin",
+#    "hp": 3
+#}
 
 # What thing do you have to add to make this work?
 #f4(d)
