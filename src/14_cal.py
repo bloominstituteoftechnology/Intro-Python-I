@@ -4,7 +4,7 @@ render a calendar to your terminal.
 https://docs.python.org/3.6/library/calendar.html
 
 Write a program that accepts user input of the form
-  `calendar.py month [year]`
+  `14_cal.py month [year]`
 and does the following:
  - If the user doesn't specify any input, your program should
    print the calendar for the current month. The 'datetime'
