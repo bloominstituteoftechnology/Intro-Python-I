@@ -15,14 +15,13 @@ for arg in sys.argv:
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
+print (sys.platform)
 
 
 # Print out the version of Python you're using:
 # YOUR CODE HERE
-print(sys.version_info)
+print(sys.version)
 
-for a in sys.version_info:
-    print(a)
 
 
 import os
