@@ -21,11 +21,12 @@ print(x)
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE 
 ## remove third from last
-x.pop(-3)
+x.pop(-3) #pop removes
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE 
+x.insert(-1,99) #inserts BEFORE index... first value is index, second is value you want to insert
 print(x)
 
 # Print the length of list x

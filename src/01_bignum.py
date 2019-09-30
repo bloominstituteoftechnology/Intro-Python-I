@@ -3,4 +3,5 @@
 
 # YOUR CODE HERE
 
+# ** is used to denote 'to the power of'
 print(2**65536)

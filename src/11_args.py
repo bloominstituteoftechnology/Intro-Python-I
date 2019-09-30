@@ -15,15 +15,15 @@ print(f1(1, 2))
 # # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
-def f2(*args):
+def f2(*args): # *args  <-- takes in any # of args
     sum = 0
-    for num in args:
-        sum += num
+    for num in args:  # for every number in arguments passed
+        sum += num  #take the sum and add it to each argument 
     return sum
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
-print(f2(1, 4, -12))            # Should print -7
+print(f2(1, 4, -12))            # Should print -7   (sum will change to each value passed in... 0+1 = 1, then 1 + 5, then 5 - 12 is -7)
 print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 
 a = [7, 6, 5, 4]
@@ -36,9 +36,11 @@ print(f2(22))    # Should print 22
 # arguments. Google "python default arguments" for a hint.
 
 # # YOUR CODE HERE
-def f3(x, y= ''):
+def f3(x, y= ''): # one argument is empty
     if (y == ''):
-        return x + 1 
+        return x + 1  #return that plus one
+    else:
+        return x + y #else add both together
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -57,7 +59,7 @@ print(f3(8))     # Should print 9
 # YOUR CODE HERE
 def f4(*arg, **kwargs):
     print(arg)
-    for key, value in kwargs.items():
+    for key, value in kwargs.items(): # .items() is a method to accessitems... for every key and value in the items
         print(f"key: {key}\nvalue:{value}")
     
 
