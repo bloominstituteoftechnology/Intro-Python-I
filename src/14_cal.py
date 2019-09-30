@@ -22,3 +22,15 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+userinput = input("Enter month and year:").split(" ")
+
+if len(userinput) == 2:
+    print(calendar.prmonth(int(userinput[1]), int(userinput[0]), 0, 0))
+elif userinput[0] != "":
+    print(calendar.prmonth(datetime.today().year, int(userinput[0]), 0, 0))
+elif userinput[0] == "":
+    print(calendar.prmonth(datetime.today().year,
+                           datetime.today().month, 0, 0))
+else:
+    print("Please enter month and year as an integer")
