@@ -14,7 +14,7 @@ if __name__=='__main__':
         print(arg)
 
     # Print out the OS platform you're using:
-    # ?? is this for the next part?
+    print(sys.platform)
 
     # Print out the version of Python you're using:
     print(sys.version)
