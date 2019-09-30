@@ -2,3 +2,6 @@
 # (try doing the same thing in the JS console and see what it outputs)
 
 # YOUR CODE HERE
+
+# ** is used to denote 'to the power of'
+print(2**65536)

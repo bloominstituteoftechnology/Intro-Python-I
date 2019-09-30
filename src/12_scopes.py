@@ -5,6 +5,7 @@
 x = 12
 
 def changeX():
+    global x # all variables are local unless declared otherwise
     x = 99
 
 changeX()
@@ -19,7 +20,8 @@ def outer():
     y = 120
 
     def inner():
-        y = 999
+        y = 999 #simply just add another y variable inside  because it will be localized
+        print(y)
 
     inner()
 

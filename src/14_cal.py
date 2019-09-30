@@ -20,5 +20,23 @@ and does the following:
 """
 
 import sys
-import calendar
+from calendar import TextCalendar
 from datetime import datetime
+
+current_year = datetime.now().year
+cal_input = input("Please input year and month (XXXX XX): ").strip().split(" ")
+
+if len(cal_input) < 2 and len(cal_input) > 0:
+    TextCalendar().prmonth(current_year, int(cal_input[0]))
+else:
+    TextCalendar().prmonth(int(cal_input[0]), int(cal_input[1]))
+print(current_year)
+print(cal_input)
+
+
+
+
+
+
+
+
