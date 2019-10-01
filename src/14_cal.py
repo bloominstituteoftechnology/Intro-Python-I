@@ -31,7 +31,7 @@ def cal(*args):
   month = datetime.now().month
 
   print(msg)
-  elif len(args) == 1:
+  if len(args) == 1:
     print(calendar.month(year, month))
   elif len(args) == 2:
     print(calendar.month(int(args[0]), int(args[1])))
