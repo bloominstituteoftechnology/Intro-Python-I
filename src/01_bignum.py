@@ -2,3 +2,5 @@
 # (try doing the same thing in the JS console and see what it outputs)
 
 # YOUR CODE HERE
+if __name__=='__main__':
+    print(2**65536)
