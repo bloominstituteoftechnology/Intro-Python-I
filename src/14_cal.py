@@ -21,3 +21,23 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+msg = input("Enter year(YYYY format) and month(MM format): ").split(" ")
+print(msg)
+
+def cal(*args):
+
+  year = datetime.now().year
+  month = datetime.now().month
+
+  print(msg)
+  elif len(args) == 1:
+    print(calendar.month(year, month))
+  elif len(args) == 2:
+    print(calendar.month(int(args[0]), int(args[1])))
+  # elif len(args) == 3:
+  #   print(calendar.month(int(args[0]), int(args[1])))
+  else:
+    print("Error: Input the YEAR(YYYY) format and MONTH(M or MM)")
+
+cal(*msg)
