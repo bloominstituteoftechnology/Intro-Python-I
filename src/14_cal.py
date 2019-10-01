@@ -22,3 +22,22 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+temp_class = calendar.TextCalendar()
+
+print(len(sys.argv))
+print(sys.argv[1])
+for line in sys.argv:
+    print(line)
+
+if len(sys.argv)==1:
+    print(temp_class.formatmonth(datetime.today().year,datetime.today().month))
+elif len(sys.argv)==2:
+    print(temp_class.formatmonth(datetime.today().year,int(sys.argv[1])))
+elif len(sys.argv)==3:
+    print(temp_class.formatmonth(int(sys.argv[2][1:-1]),int(sys.argv[1])))
+else:
+    print("""enter blank to get current month,
+            one argument to get month name in current year
+          two arguments to get specified year and month""")
+exit()
