@@ -22,3 +22,21 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+from argparse import ArgumentParser
+
+
+
+def mk_parser() -> ArgumentParser:
+    """ parse arguments """
+    parser = ArgumentParser(description='calendar.')
+    parser.add_argument('--month', type=int, default=10,
+                        help='a month')
+    parser.add_argument('--year', type=int, default=2019,
+                        help='a year (default 2019)')
+
+    return parser
+
+if __name__=='__main__':
+    args = mk_parser().parse_args()
+
+    calendar.TextCalendar().prmonth(theyear=args.year, themonth=args.month)
