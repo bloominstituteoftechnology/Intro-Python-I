@@ -22,3 +22,14 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+today = datetime.today()
+datem = datetime(today.year, today.month, 1)
+user_input = input("Enter a year and month seperated by a comma: ")
+
+def show_calendar(user_input):
+  calendar.weekheader(3)
+  calendar.firstweekday()
+  print(calendar.month(int(user_input)))
+
+show_calendar(user_input)
