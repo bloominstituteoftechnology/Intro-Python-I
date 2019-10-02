@@ -9,4 +9,11 @@ num = int(num)
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 
 # YOUR CODE HERE
+def num_func(num):
+    if num % 2 == 0:
+        print('Even!')
+    else:
+        print('Odd')
+
+num_func(num)
 
