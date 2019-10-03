@@ -22,10 +22,10 @@ import sys
 import calendar
 from datetime import datetime
 
-if len(sys.argv) == 1:
-  year = datetime.now().year
-  month = datetime.now().month
+year = datetime.now().year
+month = datetime.now().month
 
+if len(sys.argv) == 1:
   calendar.prmonth(year, month)
 elif len(sys.argv) == 2:
   calendar.prmonth(year, int(sys.argv[1]))
