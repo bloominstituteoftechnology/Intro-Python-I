@@ -8,17 +8,17 @@
 def f1(a,b):
     return a+b
 
-print(f1(1, 2))
+print(f1(5,3))
 
 # Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
 def f2(*args):
-    sum=0;
-    print(args)
-    for a in args:
-        sum+=a
+    sum=0
+    for arg in args:
+        sum+=arg
+    
     return sum
 
 print(f2(1))                    # Should print 1
@@ -38,7 +38,10 @@ print(f2(*a))    # Should print 22
 # YOUR CODE HERE
 
 def f3(a,b=1):
-    return a+b
+    return a+b 
+    
+
+
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -53,19 +56,22 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 # YOUR CODE HERE
+
 def f4(**kwargs):
-    for a,b in kwargs.items():
-        print(f"key: {a}, value: {b}")
+    for key, value in kwargs.items():
+        print(f"key: {key}, value: {value}")
+
+
 
 # Should print
 # key: a, value: 12
 # key: b, value: 30
 f4(a=12, b=30)
 
-# Should print
-# key: city, value: Berkeley
-# key: population, value: 121240
-# key: founded, value: "March 23, 1868"
+# # Should print
+# # key: city, value: Berkeley
+# # key: population, value: 121240
+# # key: founded, value: "March 23, 1868"
 f4(city="Berkeley", population=121240, founded="March 23, 1868")
 
 d = {
@@ -73,5 +79,5 @@ d = {
     "hp": 3
 }
 
-# What thing do you have to add to make this work?
+# # What thing do you have to add to make this work?
 f4(**d)
