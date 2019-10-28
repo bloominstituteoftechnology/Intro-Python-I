@@ -5,6 +5,8 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
+def f1(x,y):
+    print(x + y)
 
 print(f1(1, 2))
 
@@ -28,6 +30,7 @@ print(f2(a))    # Should print 22
 # arguments. Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
+
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
