@@ -7,6 +7,6 @@ for n in factors:
         print(f"{num} is not prime")
         break
     else:
-        factors = [x for x in factors if x % n != 0]
+        factors[:] = [x for x in factors if x % n != 0]
 else:
     print(f"{num} is prime")
