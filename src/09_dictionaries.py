@@ -54,4 +54,4 @@ waypoints[0].update({
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
 for d in waypoints:
-    print(d.values())
+    print(*d.values(), sep=", ")
