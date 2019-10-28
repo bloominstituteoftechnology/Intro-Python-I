@@ -1,3 +1,4 @@
+import math
 """
 Python exposes a terse and intuitive syntax for performing 
 slicing on lists and strings. This makes it easy to reference
@@ -21,7 +22,9 @@ print(a[-2])
 print(a[-3:])
 
 # Output the two middle elements in the array: [1, 7]
-print(a[2:4])
+# print(a[2:4]) # Known indices
+mid = math.floor(len(a) / 2) # Unknown indices
+print(a[mid - 1: mid + 1])
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
 print(a[1:])
