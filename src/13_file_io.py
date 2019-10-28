@@ -9,6 +9,13 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # Print all the contents of the file, then close the file
 
 # YOUR CODE HERE
+with open("foo.txt", "r") as f1:
+    print(f1.read())
+
+# Or with manual closing
+# f2 = open("foo.txt", "r")
+# print(f2.read())
+# f2.close()
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
@@ -16,3 +23,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+with open("bar.txt", "w") as b1:
+    b1.write("arbitrary\ncontent\nblahblahblah")
+with open("bar.txt", "r") as b2:
+    print(b2.read())
