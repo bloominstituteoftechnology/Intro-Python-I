@@ -27,3 +27,4 @@ with open("bar.txt", "w") as b1:
     b1.write("arbitrary\ncontent\nblahblahblah")
 with open("bar.txt", "r") as b2:
     print(b2.read())
+    
