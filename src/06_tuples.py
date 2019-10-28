@@ -36,8 +36,7 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 
 # YOUR CODE HERE
 def print_tuple(c):
-    for v in c:
-        print(v)
+    print(*c, sep="\n")
         
 t = (1, 2, 5, 7, 99)
 print_tuple(t)  # Prints 1 2 5 7 99, one per line
