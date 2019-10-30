@@ -2,10 +2,12 @@
 
 # YOUR CODE HERE
 def boolean(i):
-    if i%2==0:
+    if i % 2 == 0:
         return True
     else:
         return False
+
+
 # Read a number from the keyboard
 num = input("Enter a number: ")
 num = int(num)
@@ -14,8 +16,10 @@ num = int(num)
 
 # YOUR CODE HERE
 def f(i):
-    if boolean(i): 
+    if boolean(i):
         print("Even!")
-    else: 
+    else:
         print("Odd")
-f(num)        
+
+
+f(num)

@@ -6,6 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+jupyter = "*"
+black = "*"
 
 [requires]
 python_version = "3.6"
+
+[pipenv]
+allow_prereleases = true
