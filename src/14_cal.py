@@ -22,3 +22,17 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+args = sys.argv
+
+current = datetime.now()
+tc = calendar.TextCalendar()
+
+if len(args) == 2:
+  print(tc.prmonth(current.year, int(args[1])))
+elif len(args) == 3:
+  print(tc.prmonth(int(args[2]), int(args[1])))
+elif len(args) == 1:
+  print(tc.prmonth(current.year, current.month))
+else:
+  print("Error must be in format [month] [year]")
