@@ -2,7 +2,6 @@
 The Python standard library's 'calendar' module allows you to
 render a calendar to your terminal.
 https://docs.python.org/3.6/library/calendar.html
-
 Write a program that accepts user input of the form
   `14_cal.py month [year]`
 and does the following:
@@ -22,3 +21,18 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+cal = calendar.TextCalendar()
+d = datetime.now()
+
+if len(sys.argv) == 1:
+    print(cal.prmonth(d.year, d.month))
+elif len(sys.argv) == 2:
+    month = int(sys.argv[1])
+    print(cal.prmonth(d.year, month))
+elif len(sys.argv) == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+    print(cal.prmonth(year, month))
+else:
+    print("The first argument should be a number 1-12 and the second number should be 4 digit number corresponding to the year.")
