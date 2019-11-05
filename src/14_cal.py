@@ -22,3 +22,26 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def get_calendar():
+    now = datetime.now()
+    current_month = now.month
+    current_year = now.year
+
+    input_date = input("Please select a date, exp MM/YYYY:").split('/')
+
+    def show_cal(month = current_month, year = current_year):
+        try:
+          print(calendar.monthcalendar(int(year), int(month)))
+        except:
+          print("please input a proper month and year in the following format 'MM/YYYY'")
+          get_calendar()
+        
+    if len(input_date) > 2:
+      print("Please input only Month and Year")
+    if (input_date[0]) == '':
+      show_cal()
+    else:
+      show_cal(*input_date)
+
+get_calendar()
