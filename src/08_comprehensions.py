@@ -8,34 +8,43 @@ Take a look at https://docs.python.org/3/tutorial/datastructures.html#list-compr
 for more info regarding list comprehensions.
 """
 
-# Write a list comprehension to produce the array [1, 2, 3, 4, 5]
+## Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
-y = []
+y = [i for i in range(5)]
 
 print (y)
 
-# Write a list comprehension to produce the cubes of the numbers 0-9:
-# [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
+## Write a list comprehension to produce the cubes of the numbers 0-9:
+## [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 
-y = []
+# V1
+# y2 = [x**3 for x in range(10)]
 
-print(y)
+# V2
+y2 = []
+for x in range(10):
+    y2.append(x**3)
 
-# Write a list comprehension to produce the uppercase version of all the
-# elements in array a. Hint: "foo".upper() is "FOO".
+    name for name in names if name[1:] == s
+
+print(y2)
+
+## Write a list comprehension to produce the uppercase version of all the
+## elements in array a. Hint: "foo".upper() is "FOO".
 
 a = ["foo", "bar", "baz"]
 
-y = []
+y3 = [i.upper() for i in a]
 
-print(y)
+print(y3)
 
-# Use a list comprehension to create a list containing only the _even_ elements
-# the user entered into list x.
+# TODO: ??
+## Use a list comprehension to create a list containing only the _even_ elements
+## the user entered into list x.
 
 x = input("Enter comma-separated numbers: ").split(',')
-
+print(x)
 # What do you need between the square brackets to make it work?
-y = []
+y4 = [n for n in x if n % 2 == 0]
 
-print(y)
+print(y4)
