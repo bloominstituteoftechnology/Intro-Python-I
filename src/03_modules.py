@@ -10,13 +10,15 @@ import sys
 
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
+print(sys.argv[0])
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
+print(f'Operating System: Windows {sys.getwindowsversion().major}.{sys.getwindowsversion().minor}')
 
 # Print out the version of Python you're using:
 # YOUR CODE HERE
-
+print(f'Python {sys.version_info[0]}.{sys.version_info[1]}.{sys.version_info[2]}')
 
 import os
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
