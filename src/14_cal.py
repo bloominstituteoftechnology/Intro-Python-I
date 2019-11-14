@@ -21,4 +21,23 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import date
+
+sysArgLen = len(sys.argv)
+
+dt_year, dt_month, _ = str(date.today()).split("-")
+
+def cal(year, month):
+    return calendar.month(int(year), int(month))
+
+if(sysArgLen == 1):
+    print(cal(dt_year, dt_month))
+elif(sysArgLen == 2):
+    month = sys.argv[1]
+    print(cal(dt_year, month))
+elif(sysArgLen == 3):
+    month = sys.argv[1]
+    year = sys.argv[2]
+    print(cal(year, month))
+else:
+    print("Please include 1 or 2 arguments!")
