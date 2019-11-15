@@ -19,6 +19,11 @@ and does the following:
    Then exit the program.
 """
 
+
 import sys
 import calendar
 from datetime import datetime
+
+
+test = input('date:')
+print('type:', test)
