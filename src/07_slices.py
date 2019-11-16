@@ -17,7 +17,10 @@ print(a[1])
 # Output the second-to-last element: 9
 print(a[-2])
 
+
 # Output the last three elements in the array: [7, 9, 6]
+# Start: Stop
+# Start includes the number and Stop does not. It's like a minus 1
 print(a[3:6])
 
 # Output the two middle elements in the array: [1, 7]

@@ -45,6 +45,7 @@ print(y_up)
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-y_even_elements = []
+# Had to put "int" bcuz was getting string error
+y_even_elements = [num for num in x if int(num) % 2 == 0]
 
 print(y_even_elements)

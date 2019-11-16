@@ -50,5 +50,8 @@ waypoints[1] = {"lat": 41, "lon": -130, "name": 'not a real place'}
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
 
-# for key, value in waypoints.items():
-#     print(f'{key}: {value}')
+# Looping through list and then looping through objects???
+# STUDY!!!
+for way in waypoints:
+    for key, value in way.items():
+        print(f'{key}: {value}')
