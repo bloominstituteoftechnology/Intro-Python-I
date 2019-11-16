@@ -26,4 +26,9 @@ from datetime import datetime
 
 
 test = input('date:')
-print('type:', test)
+# if (len(test) == 0):
+#   print(calendar.month(2019, 11))
+# else:  
+#   print(calendar.month(2019,test))
+
+print('type:', int(test))
