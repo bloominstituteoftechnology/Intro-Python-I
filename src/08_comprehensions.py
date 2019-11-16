@@ -45,13 +45,12 @@ print(y)
 
 x = input("Enter comma-separated numbers: ").split(',')
 
-newList = []
-for num in x:
-    if int(num) % 2 == 0:
-        newList.append(num)
-    print(newList)
-
 # What do you need between the square brackets to make it work?
 y = []
+
+for num in x:
+    if int(num) % 2 == 0:
+        y.append(num)
+    print(y)
 
 print(y)
