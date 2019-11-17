@@ -22,3 +22,17 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+try:
+    y = int(input("Input the year : "))
+except:
+    y = datetime.now().year
+
+try:
+    m = int(input("Input the month : "))
+except:
+    m = datetime.now().month
+    
+print(calendar.month(y, m))
+
