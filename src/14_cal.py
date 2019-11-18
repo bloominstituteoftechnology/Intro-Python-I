@@ -22,3 +22,21 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def calc():
+  currentMonth = datetime.now().month
+  currentYear = datetime.now().year
+  
+  month = input("Enter a month: ")
+  year = input("Enter a year: ")
+  
+  if (month != '' and year == ''):
+    print(print(calendar.prmonth(currentYear, int(month))))
+  elif (month != '' and year != ''):
+    print(print(calendar.prmonth(int(year), int(month))))
+  else: 
+    print(calendar.prmonth(currentYear, currentMonth))
+    print('Please enter a month (ex: xx) and year (ex: xxxx)')
+  sys.exit()
+
+calc()
