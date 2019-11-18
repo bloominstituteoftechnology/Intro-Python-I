@@ -5,6 +5,7 @@
 x = 12
 
 def changeX():
+    global x
     x = 99
 
 changeX()
@@ -19,6 +20,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()
@@ -28,3 +30,6 @@ def outer():
     print(y)
 
 outer()
+
+# https://www.w3schools.com/python/python_scope.asp
+# https://www.w3schools.com/python/ref_keyword_nonlocal.asp
