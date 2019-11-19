@@ -10,7 +10,8 @@ import sys
 
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
-print("The CLI Argument is: " + str(sys.argv))
+for arg in sys.argv:
+    print("The CLI Argument is: " + str(sys.argv))
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
@@ -35,5 +36,5 @@ print (cwd)
 
 # Print out your machine's login name
 # YOUR CODE HERE
-mln = os.uname()
+mln = os.getlogin()
 print (mln)
