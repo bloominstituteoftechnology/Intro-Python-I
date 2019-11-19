@@ -22,3 +22,13 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+try:
+  month = int(sys.argv[1])
+except IndexError:
+  month = datetime.now().month
+try: 
+  year = int(sys.argv[2])
+except IndexError:
+  year = datetime.now().year
+print(calendar.TextCalendar().prmonth(2019 , 12)) #birthday month
