@@ -22,3 +22,19 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+def cal(month, year):
+    if month and not year:
+        print(calendar.month(2019, int(month)))
+    if month and year:
+        print(calendar.month(int(year), int(month)))
+    if not month and not year:
+        print(calendar.month((datetime.now().year),
+                             (datetime.now().month)))
+
+
+month = input("Please enter a month: ")
+year = input("Please enter a year: ")
+
+cal(month, year)
