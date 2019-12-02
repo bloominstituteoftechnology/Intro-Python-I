@@ -22,3 +22,10 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+today = datetime.today()
+
+def display_calendar(month=today.month, year=today.year):
+  print(calendar.month(year, month))
+
+display_calendar()
