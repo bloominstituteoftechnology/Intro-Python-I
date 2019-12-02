@@ -15,16 +15,19 @@ y = "7"
 
 # YOUR CODE HERE
 
-x = 5
-y = 7
 
-print("Integer val", x + y)
+b = x + int(y)
+
+print("Integer?", b, type(b))
+
+print(x + int(y))
 
 # Write a print statement that combines x + y into the string value 57
 
 # YOUR CODE HERE
 
-x = "5"
-y = "7"
+a = (str(x) + y)
 
-print("String?", x + y)
+print("String?", a, type(a))
+
+print(str(x) + y)
