@@ -24,8 +24,15 @@ import os
 # Print the current process ID
 # YOUR CODE HERE
 
+# os.getpid()
+# res: 15100
+
 # Print the current working directory (cwd):
 # YOUR CODE HERE
+# os.getcwd()
+# res: 'C:\\Users\\bkp\\PycharmProjects\\Intro-Python-I'
 
 # Print out your machine's login name
 # YOUR CODE HERE
+# os.getlogin()
+# 'bkp'
