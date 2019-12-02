@@ -22,3 +22,11 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+calendar.setfirstweekday(6) # Set the calendar to have the first day as sunday
+try:
+  month = int(input('What is the month?: ') or datetime.now().month) # Get user input or default to current month
+  year = int(input('What is the year?: ') or datetime.now().year) # Get user input or default to current year
+  print(calendar.month(theyear = year, themonth = month)) 
+except:
+  print('Month input: MM\nYear input: YYYY')
