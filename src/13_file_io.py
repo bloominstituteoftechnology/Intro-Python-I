@@ -9,7 +9,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # Print all the contents of the file, then close the file
 
 # YOUR CODE HERE
-foo = open('src/foo.txt', 'r+')
+foo = open('foo.txt')
 print(foo.read())
 foo.close()
 # Open up a file called "bar.txt" (which doesn't exist yet) for
@@ -18,7 +18,7 @@ foo.close()
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
-bar = open('src/bar.txt', 'r+')
-print(bar.read())
-bar.write("Hi I'm new to Python! \nLet's Learn! \nAnother Language!!")
-bar.close()
+f = open('bar.txt')
+print(f.read())
+f.write("Hi I'm new to Python! \nLet's Learn! \nAnother Language!!")
+f.close()
