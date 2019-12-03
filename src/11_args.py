@@ -6,12 +6,40 @@
 
 # YOUR CODE HERE
 
+
+def f1(a, b):
+    return a + b
+
+
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+
+
+# def f2(*args)
+#   total = 0
+#    for x in args:
+#         total += x
+#     return total
+
+
+# def f2(numbers):
+#     total = 0
+#     for x in numbers:
+#         total += x
+#     return total
+
+
+# a = [7, 6, 5, 4]
+
+# print(sum(a))
+
+def f2(*args):
+    return sum(args)
+
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
