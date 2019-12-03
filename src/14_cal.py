@@ -22,3 +22,28 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+def print_cal(year, month):
+    c = calendar.TextCalendar(calendar.SUNDAY)
+    cal = c.formatmonth(year, month)
+    print(cal)
+
+
+if len(sys.argv) == 1:
+    month = datetime.today().month
+    year = datetime.today().year
+    print_cal(year, month)
+    
+elif len(sys.argv) == 2:
+    month = int(sys.argv[1])
+    year = datetime.today().year
+    print_cal(year, month)
+
+elif len(sys.argv) == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+    print_cal(year, month)
+
+else:
+    print("14_cal.py month [year]")
