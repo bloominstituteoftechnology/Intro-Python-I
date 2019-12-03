@@ -22,3 +22,34 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+cur_year = datetime.now().year
+cur_month = datetime.now().month
+
+
+if len(sys.argv) == 3:
+  year = sys.argv[2]
+  month = sys.argv[1]
+  try:
+    print(calendar.TextCalendar().formatmonth(int(year), int(month)))
+  except:
+    sys.exit('invalid input: try numbers 1-12 for month and a numeric year')
+
+elif len(sys.argv) == 2:
+  month = sys.argv[1]
+  try:
+    print(calendar.TextCalendar().formatmonth(cur_year, int(month)))
+  except:
+    sys.exit('invalid input: try numbers 1-12 for month')
+
+
+elif len(sys.argv) == 1:
+  try:
+    print(calendar.TextCalendar().formatmonth(cur_year, cur_month))
+  except:
+    sys.exit("what have you done")
+
+
+else:
+  sys.exit("accepted format- args as numbers: <_file> month [year]")
