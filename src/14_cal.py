@@ -1,3 +1,7 @@
+import sys
+import calendar
+from datetime import datetime
+
 """
 The Python standard library's 'calendar' module allows you to
 render a calendar to your terminal.
@@ -19,6 +23,40 @@ and does the following:
    Then exit the program.
 """
 
-import sys
-import calendar
-from datetime import datetime
+args = sys.argv[1:]
+today = datetime.today()
+
+
+def display_calendar():
+    if (
+      len(args) == 2 and
+      args[0].isdigit() and
+      int(args[0]) > 0 and
+      int(args[0]) <= 12 and
+      args[1].isdigit()
+      ):
+        month = int(args[0])
+        year = int(args[1])
+        print(calendar.month(year, month))
+    elif (
+      len(args) == 1 and
+      args[0].isdigit() and
+      int(args[0]) > 0 and
+      int(args[0]) <= 12
+      ):
+        month = int(args[0])
+        year = today.year
+        print(calendar.month(year, month))
+    elif len(args) == 0:
+        month = today.month
+        year = today.year
+        print(calendar.month(year, month))
+    else:
+        print(
+          "display_calendar() expects no more than two arguments,"
+          "the first an integer between 1 and 12 representing the month,"
+          "the second if given an integer representing the year."
+          )
+
+
+display_calendar()
