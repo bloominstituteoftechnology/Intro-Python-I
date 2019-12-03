@@ -5,6 +5,8 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
+def f1(x, y):
+  return (x + y)
 
 print(f1(1, 2))
 
@@ -12,6 +14,12 @@ print(f1(1, 2))
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+def f2(*nums):
+  if type(nums[0]) == list:
+    for x in nums:
+      return sum(x)
+  else:
+    return sum(nums)
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -20,7 +28,7 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 
 a = [7, 6, 5, 4]
 
-# What thing do you have to add to make this work?
+# What thing do you have to add to make this work? add a check for lists
 print(f2(a))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
@@ -28,6 +36,8 @@ print(f2(a))    # Should print 22
 # arguments. Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
+def f3(x, y=1):
+  return (x + y)
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -42,6 +52,9 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 # YOUR CODE HERE
+def f4(*objs):
+  print(f"Key: {objs}, Value: {vals}")
+
 
 # Should print
 # key: a, value: 12
