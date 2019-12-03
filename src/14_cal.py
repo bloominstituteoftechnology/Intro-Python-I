@@ -22,3 +22,30 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+currentMonth = datetime.now().month
+currentYear = datetime.now().year
+c = calendar.TextCalendar()
+args = sys.argv
+
+if len(sys.argv) == 3:
+    if args[1].isdigit():
+        month = int(args[1])
+        if args[2].isdigit():
+            year = int(args[2])
+        else:
+            year = currentYear
+    else:
+        month = currentMonth
+        year = currentYear
+    cal = c.formatmonth(year, month)
+    print(cal)
+elif len(sys.argv) == 2:
+    if args[1].isdigit():
+        month = int(args[1])
+    else:
+        month = currentMonth
+    cal = c.formatmonth(currentYear, month)
+    print(cal)
+else:
+    print("Program expects one argument of month or two arguments of month then year.")
