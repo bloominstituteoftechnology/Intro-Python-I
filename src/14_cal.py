@@ -22,3 +22,8 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def calCheck(y=2019, m=12):
+  print(calendar.Calendar.itermonthdates(year = y,month = m))
+
+calCheck()
