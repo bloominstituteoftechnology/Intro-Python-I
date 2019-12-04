@@ -5,6 +5,7 @@
 x = 12
 
 def changeX():
+    global x
     x = 99
 
 changeX()
@@ -19,12 +20,14 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
-
+       
     inner()
 
     # This prints 120. What do we have to change in inner() to get it to print
     # 999? Google "python nested function scope".
     print(y)
+    
 
 outer()
