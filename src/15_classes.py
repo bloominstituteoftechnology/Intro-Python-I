@@ -21,7 +21,7 @@ class Waypoint(LatLon):
         self.name = name
           
     def __str__(self):
-        return f'Name: {self.name}, Lat:{self.lat}, Lon:{self.lon}'
+        return f'Ncame: {self.name}, Lat:{self.lat}, Lon:{self.lon}'
 # YOUR CODE HERE
 
 # Make a class Geocache that can be passed parameters `name`, `difficulty`,

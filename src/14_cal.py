@@ -30,26 +30,22 @@ def cal(*args):
     if len(args) == 0:
       current_date = datetime.now()
       print(calendar.prmonth(current_date.year, current_date.month))
-    elif len(args) == 1 :
+    elif len(args) == 1:
+      current_date = datetime.now()  
+      print(calendar.prmonth(current_date.year, int(args[0]))) #conver b/c args is tuple
+    elif len(args) == 2:
       current_date = datetime.now()
-      # user_input[0]==(calendar.prmonth(current_date.year, current_date.month))
-      print(calendar.prmonth([user_input], current_date.year, current_date.month))
+      print(calendar.prmonth(int(args[0]), int(args[1])))
+    else:
+      print('Please enter the m/yyear: ')
+
+     
       
       
       
       
-      
-      
-      
-    # elif (len(args) == 1): #needs to be the calendar that corresponds to that month
-    #     current_date = datetime.now()
-    #     print(calendar.prmonth(current_date.year)
-              
-# else:
-#     print('Please enter the date and month in the following format: ')
-        
-  
+
       
 print('none', cal())
-print('1 arg', cal(1))
-# print('2 args', cal(2019, 3))
+print('1 arg', cal(3))
+print('2 args', cal(3,1))
