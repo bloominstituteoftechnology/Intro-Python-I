@@ -50,3 +50,23 @@ geocache = Geocache(25,-25, "NY", 150, 5)
 
 # Print it--also make this print more nicely
 print(geocache)
+
+
+# more examples with MRO
+class Forcast:
+  def __init__(self, forcast):
+    self.forcast = forcast
+
+class CurrentLocation(LatLon):
+  def __init__(self, lat, lon, time):
+    LatLon.__init__(self, lat, lon)
+    self.time = time
+
+class CurrentForcast(Forcast, CurrentLocation):
+  def __init__(self, forcast, lat, lon, time, planet):
+    Forcast.__init__(self, forcast)
+    CurrentLocation.__init__(self, lat, lon, time)
+    self.planet = planet
+
+currE = CurrentForcast("gloomy", 45, -45, "now", "earth")
+print(currE.planet)
