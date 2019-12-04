@@ -23,7 +23,7 @@ import sys
 import calendar
 from datetime import datetime
 
-def calCheck(y=2019, m=12):
-  print(calendar.Calendar.itermonthdates(year = y,month = m))
+def calCheck(m=12, y=2019):
+  print(calendar.prmonth(y,m))
 
 calCheck()
