@@ -19,6 +19,33 @@ and does the following:
    Then exit the program.
 """
 
+user = input('Enter the month and date:   ')
+user_input = user
+
 import sys
 import calendar
 from datetime import datetime
+
+def cal(*args):
+    if len(args) == 0:
+      current_date = datetime.now()
+      print(calendar.prmonth(current_date.year, current_date.month))
+    elif len(args) == 1:
+      current_date = datetime.now()  
+      print(calendar.prmonth(current_date.year, int(args[0]))) #conver b/c args is tuple
+    elif len(args) == 2:
+      current_date = datetime.now()
+      print(calendar.prmonth(int(args[0]), int(args[1])))
+    else:
+      print('Please enter the m/yyear: ')
+
+     
+      
+      
+      
+      
+
+      
+print('none', cal())
+print('1 arg', cal(3))
+print('2 args', cal(3,1))
