@@ -22,3 +22,58 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def cal():
+  if len(sys.argv) == 1:
+    d = datetime.now()
+    cal = calendar.monthcalendar(d.year, d.month)
+    render_cal(cal)
+
+  if len(sys.argv) == 2:
+    month = sys.argv[1]
+    if not validate(month):
+      err()
+      return
+    d = datetime.now()
+    cal = calendar.monthcalendar(d.year, int(month))
+    render_cal(cal)
+
+  if len(sys.argv) == 3:
+    month = sys.argv[1]
+    year = sys.argv[2]
+    if not validate(month, year):
+      err()
+      return
+    cal = calendar.monthcalendar(int(year), int(month))
+    render_cal(cal)
+
+def validate(month, year = False):
+  v = True
+  if month:
+    if month.isdigit() and 1 <= int(month) <= 12:
+      v = True
+    else:
+      v = False
+
+  if year:
+    if v == False:
+      return v
+    if year.isdigit() and 1970 <= int(year) <= 2100:
+      v = True
+    else:
+      v = False
+  return v
+
+def render_cal(cal):
+  for d in cal:
+    s = ""
+    for w in d:
+      s += str(w) + " "
+    print(s)
+
+def err():
+  print(" ")
+  print("Please specify correct format => \nint:Month = 1(Janurary) - 12(December) \nint:Year = 1970 - 2100 \nEx. \"14_cal.py 12 2019\"")
+  print(" ")
+
+cal()
