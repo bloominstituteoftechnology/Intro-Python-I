@@ -26,7 +26,7 @@ from datetime import date as date
 
 
 def calendar_usage():
-    print('Command line usage: 14_cal.py OPTIONS: [month: int] [year: int]')
+    print('[month: int] [year: int]')
     sys.exit()
 
 args = sys.argv
