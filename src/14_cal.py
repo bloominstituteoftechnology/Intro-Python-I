@@ -19,6 +19,38 @@ and does the following:
    Then exit the program.
 """
 
+user = input('Enter the month and date:   ')
+user_input = user
+
 import sys
 import calendar
 from datetime import datetime
+
+def cal(*args):
+    if len(args) == 0:
+      current_date = datetime.now()
+      print(calendar.prmonth(current_date.year, current_date.month))
+    elif len(args) == 1 :
+      current_date = datetime.now()
+      # user_input[0]==(calendar.prmonth(current_date.year, current_date.month))
+      print(calendar.prmonth([user_input], current_date.year, current_date.month))
+      
+      
+      
+      
+      
+      
+      
+      
+    # elif (len(args) == 1): #needs to be the calendar that corresponds to that month
+    #     current_date = datetime.now()
+    #     print(calendar.prmonth(current_date.year)
+              
+# else:
+#     print('Please enter the date and month in the following format: ')
+        
+  
+      
+print('none', cal())
+print('1 arg', cal(1))
+# print('2 args', cal(2019, 3))
