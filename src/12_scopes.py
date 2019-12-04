@@ -1,12 +1,16 @@
 # Experiment with scopes in Python.
 # Good reading: https://www.programiz.com/python-programming/global-local-nonlocal-variables
 
+
+"""
+In Python, a variable declared outside of the function or in global scope is known as global variable. 
+This means, global variable can be accessed inside or outside of the function.
+"""
 # When you use a variable in a function, it's local in scope to the function.
 x = 12
 
 def changeX():
     x = 99
-
 changeX()
 
 # This prints 12. What do we have to modify in changeX() to get it to print 99?
@@ -17,7 +21,6 @@ print(x)
 
 def outer():
     y = 120
-
     def inner():
         y = 999
 

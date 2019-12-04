@@ -37,7 +37,7 @@ like template literal(?'s)
 It tells the formatter to treat the argument as an integer number and format it as such. 
 Other valid formatters could be x to format it as a hexadecimal number, or b for binary, etc.
 """
-
+#create one single print statement instead of 
 # Use the 'format' string method to print the same thing
 print('FORMAT STRING 1', format(z))
 print('FORMAT STRING 2', '{:d}'.format(x))

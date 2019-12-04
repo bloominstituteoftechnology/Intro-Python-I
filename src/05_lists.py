@@ -30,5 +30,5 @@ print(len(x))
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
 #by index
- multiplied_by_1000 = [i * 1000 for i in c]
- print(multiplied_by_1000)
+multiplied_by_1000 = [i * 1000 for i in x]
+print(multiplied_by_1000)

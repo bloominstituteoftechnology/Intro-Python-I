@@ -36,6 +36,8 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 
 # YOUR CODE HERE
 # seems like x can be anything
+
+#TURN THIS INTO A FN
 t = (1, 2, 5, 7, 99)
 for x in t:
     print_tuple(t)  # Prints 1 2 5 7 99, one per line
