@@ -41,7 +41,6 @@ def cal(*args):
       
       
       
-      
     # elif (len(args) == 1): #needs to be the calendar that corresponds to that month
     #     current_date = datetime.now()
     #     print(calendar.prmonth(current_date.year)
