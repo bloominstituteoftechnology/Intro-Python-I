@@ -6,6 +6,21 @@
 
 # YOUR CODE HERE
 
+
+def f1(num1, num2):
+    return num1 + num2
+
+    print(f1(1, 2))
+
+
+def f2(*args):
+    nums = [num for num in args]
+    if(len(nums) == 1):
+        return nums[0]
+    else:
+        return sum(nums)
+
+
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and prints the
