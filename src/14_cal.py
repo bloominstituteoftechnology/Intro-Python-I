@@ -22,3 +22,16 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+current_month = int(datetime.now().month)
+current_year = int(datetime.now().year)
+
+if len(sys.argv) <= 1:
+    print(calendar.month(current_year, current_month))
+elif len(sys.argv) == 2:
+    print(calendar.month(current_year, int(sys.argv[1])))
+elif len(sys.argv) == 3:
+    print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
+else:
+    print(
+        'If specifying a month, or both a month and year, the format is:\n\n"14_cal.py month [year]"\n\nwhere "month" is a number 1 through 12 representing that month, and "[year]" is optionally provided as a 4 digit number.')
