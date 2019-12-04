@@ -32,9 +32,9 @@ print(y)
 
 # x = input("Enter comma-separated numbers: ").split(',')
 # An easier test with verifiable results
-x = [1, 4, -5, 0, 42, -77, 30, -42]
+x = [1, 4, 5, 0, 42, 77, 30, 42]
 
 # What do you need between the square brackets to make it work?
-y = [i for i in x if i < 0]
+y = [i for i in x if i % 2 == 0]
 
 print(y)
