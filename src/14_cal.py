@@ -33,18 +33,30 @@ cal = calendar.TextCalendar(calendar.SUNDAY)
 d = datetime.today()
 # print("datetime test", d)
 
-
-if len(sys.argv) == 1:
-    print(cal.prmonth(d.year, d.month))
-elif len(sys.argv) == 2:
-    month = int(sys.argv[1])
-    print(cal.prmonth(d.year, month))
-elif len(sys.argv) == 3:
-    month = int(sys.argv[1])
-    year = int(sys.argv[2])
-    print(cal.prmonth(year, month))
-else:
-    print("user needs to enter date in a format of  month and then year")
+print(cal.prmonth(d.year, d.month))
+# if len(sys.argv) == 1:
+#     print(cal.prmonth(d.year, d.month))
+# elif len(sys.argv) == 2:
+#     month = int(sys.argv[1])
+#     print(cal.prmonth(d.year, month))
+# elif len(sys.argv) == 3:
+#     month = int(sys.argv[1])
+#     year = int(sys.argv[2])
+#     print(cal.prmonth(year, month))
+# else:
+#     print("user needs to enter date in a format of  month and then year")
 
 # original = raw_input('Enter a month and year: ')
 # raw_input
+
+# pyg = 'ay'
+
+# original = raw_input('Enter a word:')
+
+# if len(original) > 0 and original.isalpha():
+#   word = original.lower()
+#   first = word[0]
+#   new_word = word + first + pyg
+#   new_word = new_word[1:len(new_word)]
+# else:
+#     print 'empty'
