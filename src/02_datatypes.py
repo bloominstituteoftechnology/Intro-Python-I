@@ -22,4 +22,4 @@ print(str(x) + y)
 
 # YOUR CODE HERE
 
-print(int(y) * y)
+print(int(y) * x)
