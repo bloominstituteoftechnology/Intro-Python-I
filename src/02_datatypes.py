@@ -21,3 +21,5 @@ print(int(y) + x)
 print(str(x) + y)
 
 # YOUR CODE HERE
+
+print(int(y) * y)
