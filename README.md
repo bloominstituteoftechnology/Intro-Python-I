@@ -1,6 +1,6 @@
 # Intro to Python I
 
-It's time to learn a new language! Python!
+It's time to learn a new language! Python! 
 
 Python is a popular, easy-to-use programming language that has significant
 traction in the field.
