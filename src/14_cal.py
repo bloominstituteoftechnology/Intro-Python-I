@@ -22,3 +22,13 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+calendar.setfirstweekday(6)
+
+try:
+    month = int(input('Please enter month (1-12):') or datetime.today().month)
+    year = int(input("Please enter 4 digit year:") or datetime.today().year)
+    print(calendar.month(theyear=year, themonth=month))
+except:
+    print("Invalid inputs. Month must be numerical 1-12 and year must be 4 digits long.")
