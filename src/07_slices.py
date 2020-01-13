@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Python exposes a terse and intuitive syntax for performing 
 slicing on lists and strings. This makes it easy to reference
