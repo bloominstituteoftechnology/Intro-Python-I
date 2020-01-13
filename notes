@@ -1,0 +1,1440 @@
+Learn
+Learn to create a simple Python program that utilizes the basic types and data structures, uses correct syntax throughout, and employs conditionals and loops
+This objective is designed to introduce students to how Python implements concepts and ideas they already know from previous languages.
+
+Overview
+The Point
+Our primary aim for this part of your time at Lambda is to teach you to think like a computer scientist. Thinking like a computer scientist means incorporating some of the best parts of math, engineering, and natural science.
+
+Note: Learning to think like a computer scientist does not require that you be ‘good at math’. No matter what your previous experience is with mathematical thinking and what level of formal mathematical education you’ve received, we are 100% confident that you can learn to think like a computer scientist. However, by learning to think like a computer scientist, you will become better at math (although that’s a secondary benefit and not the point).
+
+Field of Study	Features
+Math	Use formal languages to denote ideas
+Engineering	Design things, build systems, and test tradeoffs among alternatives
+Natural Science	Observe the behavior of complex systems, form hypotheses, and test predictions
+Computer scientists think by using and combining these features.
+
+But, above all, the most significant skill for a computer scientist is the ability to solve complex problems. Problem-solving means:
+
+defining problems
+reasoning about solutions
+expressing a solution
+Everything we will show you about programming we view as an opportunity to practice problem-solving skills. Learning to program is a valuable skill on its own. On another level, by learning to program and understanding the fundamentals of computer science, you are receiving the preeminent “transferable skill”: how to solve any complex problem.
+
+Note: it’s valuable to distinguish between “theoretical” computer science and “experimental” computer science. In a natural science like physics, you can solve an equation to determine the theoretical position of a projectile in a vacuum, or you can conduct an experiment where you launch a projectile and measure where it lands. In computer science, a theoretical approach is writing a Big-O complexity analysis, where an experimental approach would be to run a function with 100,000 inputs and measure how long the operation took.
+
+What Is a Program
+A program is a sequence of instructions that specifies how to perform a computation. Think Python by Allen B. Downey
+
+The computation could be anything. It could require you to get the length of one side of a triangle, to look for every instance of a certain word and to replace it, or to transform a color image into a black-and-white image.
+
+Regardless of the programming language, every language is made up of a few basic instructions.
+
+Input   - Receiving data from a keyboard, a file, the network, or some other device
+Output   - Presenting data on a screen, saving it to a file, sending it over a network
+Arithmetic and Logic   - Adding, subtracting, multiplying, dividing
+Conditional execution   - Running the code given certain conditions
+Repetition   - Executing repeatedly but with a slight modification
+I know that seems like a short list, but most every program you’ve ever used, despite its complicated appearance comprises instructions that fit into these groups.
+
+Why is it important to understand this? Because, regardless of the complexity of the problem you are dealing with, if you can break it down into small parts that fit into these categories, you can write a program to solve the problem.
+
+Running Python
+Refer to the following guide to get set up to run Python on your machine.
+
+Basics
+Let’s now get started with the absolute basics of Python. After going through the following sections, you should know enough Python that you can write simple programs.
+
+Print
+Now, we want to write our obligatory “Hello, World!” program. All that we need to do is to print “Hello, World!”.
+
+To do this in Python, you write:
+
+Copy
+>>> print('Hello World!')
+Hello World!
+>>>
+This is an example of a simple print statement. Notice that the quotation marks denote the beginning and end of the text that you want displayed but they don’t show up in the result. The parentheses let you know that print is a function. We will talk more about functions later.
+
+Arithmetic Operators
+Operators are special symbols that represent computations like addition and multiplication.
+
+operator	computation
++	addition
+-	subtraction
+*	multiplication
+/	division
+//	floor division
+**	exponentiation
+%	modulus
+Here is an example of using all the operators shown above:
+
+Copy
+>>> 30 + 6
+36
+>>> 40 - 4
+36
+>>> 6 * 6
+36
+>>> 72 / 2
+36.0
+>>> 6**2
+36
+>>> 36 % 35
+1
+>>>
+Values and Types
+A value is one of the basic building blocks that a program interacts with. So far, we’ve seen values like 6, 36.0, and 'Hello, World!'.
+
+Values belong to different types. For instance, 6 is an integer, 36.0 is a floating-point number and 'Hello, World!' is a string. If you want to know what type a value has, the Python interpreter can tell you:
+
+Copy
+>>> type(6)
+<class 'int'>
+>>> type(36.0)
+<class 'float'>
+>>> type('Hello, World!')
+<class 'str'>
+>>>
+Notice the word “class” that gets output to the terminal. It uses class here in the sense of a category because a type is a category of values.
+
+Variables, Expressions, and Statements
+The most important feature of a programming language is the ability to manipulate and work with variables. A variable is a name that refers to a value.
+
+Assignment Statements
+An assignment statement creates a new variable and gives it a value. See below for an example.
+
+Copy
+>>> greeting = 'Good afternoon, sir!'
+>>> x = 23
+>>> pi = 3.141592653589793
+>>>
+I made three assignments in this example:
+
+I assigned a string to a new variable named greeting
+I assigned the integer 23 to x
+I assigned the (approximate) value of π to pi
+Variable Names
+A primary reason that Python is a well-loved programming language is its high readability. Programmers often point out that humans read code much more frequently than they write it. This leads us to conclude that how readable a language is crucial when testing the quality of a language.
+
+Python programmers have developed a fairly complete set of Code Style guidelines and idioms to guide you while authoring code. In fact, you can open any Python interpreter and read “The Zen of Python” by Tim Peters by typing import this:
+
+>>> import this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+With all this in mind, you can see why it is important for Python programmers (and all programmers) to choose meaningful variable names. That way, the names of the variables themselves serve as documentation for what it uses the variable for.
+
+There is no limit to the length of a variable name. They can contain letters and numbers, but they cannot start with a number. It is possible to use uppercase letters, but convention dictates to only use lowercase letters for variable names. To separate words within a variable name, it is common to use the underscore character (_). Also, you cannot use Python keywords as variable names (like class, return, def, yield, etc.).
+
+Note: you can overwrite many Python keywords (this is not good).
+
+>>> int
+<class 'int'>
+>>> int = 5
+>>> int
+5
+It is a common mistake for a beginner to write code that accidentally overwrites a Python keyword by doing something like this:
+
+Copy
+def print_list(list):
+for item in list:
+print(item)
+Expressions and Statements
+An expression is a combination of values, variables, and operators.
+
+The following are legal expressions:
+
+Copy
+>>> 36
+36
+>>> x
+23
+>>> x + 36
+59
+>>>
+Script Mode
+So far, all the examples we’ve seen have used Python in interactive mode, meaning that we are interacting directly with Python’s interpreter. Once you want to work with more than a few lines of code, using the interactive mode can be a bit of a hassle.
+
+Instead of interacting directly with the interpreter, you can save code in a file called a script and then run the interpreter in script mode to execute the script. We should save Python scripts with the .py file extension.
+
+One thing to know is that when you run a script, even though the interpreter evaluates your expressions, it doesn’t display the results unless you tell it to.
+
+For example, in interactive mode, I could write:
+
+Copy
+>>> kilometers = 50
+>>> kilometers * 2
+100
+>>>
+But, in script mode, if I wanted to see the result of kilometers * 2, I would have to write:
+
+Copy
+kilometers = 50
+print(kilometers * 2)
+Order of Operations
+For mathematical operators, Python follows the mathematical convention. You might remember the acronym PEMDAS from your earlier school days.
+
+Here is the order of precedence:
+
+Parentheses
+Exponentiation
+Multiplication and Division
+Addition and Subtraction
+In the example below, you can see how without the parentheses, the multiplication (4 * 6) is conducted before the addition (2 +). By placing parentheses around 2 + 4, we force that operation to be conducted before the multiplication.
+
+String Operations
+You cannot perform mathematical operations on strings, even if the strings look like numbers.
+
+This would not work in Python:
+
+Copy
+'8' - '4'
+'hand'/'foot'
+'hundred'*'a million'
+However, there are two exceptions, + and *. We use the + to concatenate strings (linking strings together end-to-end).
+
+For example:
+
+Copy
+>>> first = 'ice'
+>>> second = 'cream'
+>>> first + second
+'icecream'
+>>>
+You can use the * operator to repeat strings. Be aware though that if one value is a string, the other has to be an integer.
+
+For example:
+
+Copy
+>>> 'Alright' * 3
+'AlrightAlrightAlright'
+>>>
+Comments
+Add notes to your programs to help explain what the program is doing.
+
+We call these notes comments. You can put comments on their own line like this:
+
+Copy
+### compute the surface area of a cylinder
+surface_area = (2 * pi * radius) * (height + radius)
+You can also put comments at the end of a line like this:
+
+Copy
+surface_area = (2 * pi * radius) * (height + radius) # compute the surface area of a cylinder
+You can also use multi-line strings as comments like this:
+
+Copy
+'''
+Here is a
+multiline string
+that I am using as a comment
+'''
+"""
+You can also use
+double quotes
+"""
+The most useful comments explain the why of the code and don’t explain what the code does. The reader should be able to figure out what the code does, but why it’s there may be less obvious.
+
+Function Calls
+We’ve already seen at least one function call:
+
+Copy
+>>> type(36)
+<class 'int'>
+>>>
+The name of this function is type. We call the expression inside the parentheses the function argument. For this function, the result is the argument’s type.
+
+When talking about functions, we say that a function “takes” an argument and “returns” a result. We can also refer to the result as the return value.
+
+Composition
+Up to now, we’ve used a few different pieces of a program: variables, expressions, and statements. So far, we’ve used them in isolation. But, when writing an actual program, it doesn’t take long before you need to combine these pieces.
+
+In programming, when we talk about taking small pieces and building larger functionality, we are describing composition.
+
+Almost anywhere you can put a value, you can put an expression (which evaluates to a value). There is only one exception to this: the left side of an assignment expression has to be a variable name.
+
+Like I said, we can put an expression anywhere we can put a value. For example, instead of this:
+
+Copy
+>>> statement = 'Hello, ' + 'World!'
+>>> print(statement)
+Hello, World!
+>>>
+You could write this:
+
+Copy
+>>> print('Hello, ' + 'World!')
+Hello, World!
+>>>
+Creating New Functions
+So far, we’ve just been using functions that are built-in to Python. But we will need to create our own functions. A function definition specifies the name of a new function and the sequence of statements that run when we call the function.
+
+For example:
+
+Copy
+def print_lyrics():
+    print("Oh yeah, I'll tell you something")
+    print("I think you'll understand")
+    print("Then I'll say that something")
+    print("I wanna hold your hand")
+def is a keyword in Python that shows that this is a function definition. The function name is print_lyrics. The rules for naming functions are the same as the rules for naming variables. The empty parentheses after the function name show that this function doesn’t take any arguments.
+
+We call the first line of the function definition the header; we call the rest the body. The header must end with a colon and the body has to be indented. The PEP-8 convention (which we follow at Lambda) is to always indent by four spaces.
+
+Also, notice that we used double quotes in the strings being passed as arguments to the print function. Most people use single quotes unless (like in this case) a single quote (which is also an apostrophe) shows up in the string.
+
+Note: we recommend using a linter when writing your python code. Your specific implementation details will change depending on your chosen IDE. This article shows how you can get linting set up in Visual Studio Code. A simple internet search will return other simple guides to help you get set up for your chosen IDE
+
+Why Functions
+There are several reasons it is good to divide a program into functions instead of just a long series of independent statements. Here are a few of the best reasons:
+
+By creating a function, you can group statements that are part of the same process into a collection of statements. This makes your program much easier to read.
+Functions make your program smaller by eliminating repetition in your code.
+By grouping statements into functions and reusing the function throughout your program, if you need to change one statement, you only need to make that change in one part of your program.
+A well-designed function can often be useful in other programs. Once you write and debug it once, you can reuse it in other programs.
+Simple Repetition
+Anytime we want to repeat the same statement multiple times, we can do concisely by using a for statement.
+
+Copy
+>>> for i in range(4):
+...     print('Hello!')
+...
+Hello!
+Hello!
+Hello!
+Hello!
+>>>
+The syntax of a for statement is similar to a function definition. It has a header that ends with a colon and an indented body. Just like a function, the body can contain many statements.
+
+We also call a for statement a loop because the execution flow runs through the body and then loops back to the top.
+
+Boolean Expressions
+A boolean expression is an expression that is true or false. True and False are special values that are of type bool, they are not strings.
+
+Copy
+>>> 2 == 2
+True
+>>> 4 == 8
+False
+>>> type(True)
+<class 'bool'>
+>>> type(False)
+<class 'bool'>
+>>>
+The == operator is a relational operator (Not to be confused with = which is an assignment operator.). Here are the other relational operators:
+
+Relational Operator	Explanation
+x != y	x is not equal to y
+x > y	x is greater thany
+x < y	x is less thany
+x >= y	x is greater than or equal to y
+x <= y	x is less than or equal to y
+Logical Operators
+Python has three logical operators: and, or, and not.
+
+Copy
+>>> True and True
+True
+>>> True and False
+False
+>>> False and False
+False
+>>> True or False
+True
+>>> True or True
+True
+>>> True or False
+True
+>>> False or False
+False
+>>> not True
+False
+>>> not False
+True
+>>>
+Conditional Execution
+When writing programs, we need the ability to adjust the behavior of the program based on the result of checking a condition.
+
+The simplest and most common way to do that is by using an if statement:
+
+Copy
+if x < 0:
+    print('x is negative')
+We call the boolean expression that comes after if the condition. If that expression evaluates to True, then the indented statement will run. If it evaluates to False, then nothing will happen.
+
+Notice that if statements have the same structure as function definitions: a header followed by an indented body. There is not a limit to the number of statements you can include in the body, but there must be at least one.
+
+Alternative Execution
+Often, in your code, you have two distinct possibilities and you want the condition to determine which behavior occurs. To do that, you would write:
+
+Copy
+if x < 0:
+    print('x is negative')
+else:
+    print('x is positive')
+Chained Conditionals
+What if there are more than two distinct possibilities? One way to deal with this is to use a chained conditional:
+
+Copy
+if x < y:
+    print('x is less than y')
+elif x > y:
+    print('x is greater than y')
+else:
+    print('x and y are equal')
+There is no limit to the number of elif clauses, and the else clause is not required. However, if we include else it must appear at the end of the chain.
+
+Nested Conditionals
+You can always nest conditionals within other conditionals. For example, we could rewrite the previous chained conditional example like so:
+
+Copy
+if x == y:
+    print('x and y are equal')
+else:
+    if x < y:
+        print('x is less than y')
+    else:
+        print('x is greater than y')
+Note: although nested conditional are possible, and the indentation makes the structure clear, they can become difficult to read. It is often recommended to avoid them if you can. Whenever you have nested conditionals, you can often simplify them by using logical operators (and, or, not). That being said, there are those that hold the opposite opinion, so this is not a hard and fast rule, just a general stylistic recommendation.
+
+Short-Circuit Evaluation
+When writing conditionals, it’s useful to understand how the ordering of your statements matters. For instance, let’s say we are checking if a number is five (albeit in a contrived way):
+
+Copy
+def is_five(n):
+    # If n is 0, the `and` will return immediately
+    # avoiding the division by 0 error
+    return n != 0 and 5 / n == 1
+By placing the n != 0 on the left-hand side, we ensure that if n does equal 0 the code will never try to evaluate 5 / n.
+
+Follow Along
+Let’s open the python interpreter and try out some things.
+
+Exercise 1
+First, in a print statement, what happens if we leave out one parenthesis, or both?
+
+Copy
+>>> print"Hello, World!")
+  File "<stdin>", line 1
+    print"Hello, World!")
+         ^
+SyntaxError: invalid syntax
+If we leave the first parenthesis off, we receive a “SyntaxError” error for invalid syntax.
+
+Copy
+>>> print("Hello, World!"
+...
+...
+If we leave the last parenthesis off, the interpreter waits for the closing parenthesis when we hit return and doesn’t evaluate the statement.
+
+Copy
+>>> print"Hello, World!"
+  File "<stdin>", line 1
+    print"Hello, World!"
+         ^
+SyntaxError: invalid syntax
+>>>
+If we leave off both parentheses, we receive an invalid syntax SyntaxError.
+
+Exercise 2
+We know that you can use a minus sign to make a negative number like -4. What will happen if we try to put a plus sign before a number?
+
+Copy
+>>> +2
+2
+>>> +8
+8
+>>>
+It looks as though this is valid syntax. What about 4++4?
+
+Copy
+>>> 4++4
+8
+>>>
+This also works. Does that surprise you? Can you explain why it works?
+
+Exercise 3
+We know that n = 42 is a legal assignment operation. What about 42 = n? What do you think will happen here?
+
+Copy
+>>> 42 = n
+  File "<stdin>", line 1
+SyntaxError: cannot assign to literal
+>>>
+We get a SyntaxError that tells us you cannot assign a value to a literal. Let’s try another case and see if we get the same error.
+
+Copy
+>>> "42" = n
+  File "<stdin>", line 1
+SyntaxError: cannot assign to literal
+>>>
+This is what we would expect since "42" is also a literal value.
+
+Exercise 4
+Let’s write a function together called right_justify that takes a string named s as a parameter and prints the string with enough leading spaces so that the last letter of the string is in column 70 of the display.
+
+We need to define our function and add the functionality.
+
+Copy
+>>> def right_justify(s):
+...     return ((70 - len(s)) * ' ') + s
+...
+>>>
+You can see here that we are using the built-in len function to the get the length of the s parameter. We are taking 70 (the total number of characters we want in one line) and subtracting the length of the string that was passed in. We then use that value and multiplying it by the ' ' string literal. Lastly, we concatenate the string onto the end.
+
+See below to see how our function is working:
+
+Copy
+>>> right_justify('lambda')
+'                                                                lambda'
+>>> right_justify('computer science')
+'                                                      computer science'
+>>>
+Challenge
+Exercise 1
+Start the Python interpreter and use it as a calculator.
+
+How many seconds are there in 21 minutes and 15 seconds?
+How many miles are there in 5 kilometers?
+If you run a 5 kilometer race in 21 minutes and 15 seconds, what is your average pace (time per mile in minutes and seconds)?
+What is your average speed in miles per hour?
+Suppose the cover price of a book is $19.95, but bookstores get a 25% discount. Shipping costs $2.50 for the first copy and $1 for each additional copy. What is the total wholesale cost for 75 copies?
+Exercise 2
+A function object is a value you can assign to a variable or pass as an argument. For example, do_twice is a function that takes a function object as an argument and calls it twice:
+
+Copy
+def do_twice(f):
+    """
+    Takes a function and executes it twice.
+    """
+    f()
+    f()
+Here’s an example that uses do_twice to call a function named print_spam twice:
+
+Copy
+def print_spam():
+    print('spam')
+
+do_twice(print_spam)
+Type this example into a script and test it.
+Change do_twice so it takes two arguments, a function object and a value, and calls the function twice, passing the value as an argument.
+Define a function called print_twice that takes one argument and prints the value of that argument twice.
+Use the changed version of do_twice to call print_twice twice, passing 'spam' as an argument.
+Define a new function called do_four that takes a function object and a value and calls the function four times, passing the value as a parameter. There should be only two statements in the body of this function, not four.
+Exercise 3
+Fermat’s Last Theorem says that there are no positive integers a, b, and c such that
+
+Copy
+a**n + b**n == c**n
+for any values of n greater than 2.
+
+Write a function named check_fermat that takes four parameters—a, b, c and n —and checks to see if Fermat’s theorem holds. If n is greater than 2 and a**n + b**n = c**n the program should print, "Holy smokes, Fermat was wrong!" Otherwise the program should print, "No, that doesn't work."
+Write a function that prompts the user to input values for a, b, c and n, converts them to integers, and uses check_fermat to check whether they violate Fermat’s theorem.
+Learn to compare and contrast the characteristics of Lists, Tuples, Sets, and Dictionaries in Python
+This objective is designed to introduce students to the similarities and differences Python Collections (compared to what they have implemented in previous languages).
+
+Overview
+Lists
+Like a string, a list is a sequence of values. In a string, the values are individual characters; in a list they can be of any type. We call the individual values in a list the elements or sometimes the items.
+
+The simplest way to create a new list is to enclose the elements in square brackets [ and ].
+
+Copy
+[2, 4, 6, 8, 10]
+['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+Here, I’ve made two lists. The first one is a list of numbers. The second one is a list of strings. The elements of a list don’t all have to be of the same type.
+
+Copy
+[2, 'four', 6.0, '8', [5, 5]]
+Here, I’ve include an integer, a string, a float, another string, and a list.
+
+You can assign lists to variables:
+
+Copy
+>>> cheeses = ['Cheddar', 'Edam', 'Gouda']
+>>> numbers = [123, 456]
+>>> empty = []
+>>> print(cheeses, numbers, empty)
+['Cheddar', 'Edam', 'Gouda'] [123, 456] []
+>>>
+To access an element from a list, you use the bracket operator. The expression inside the bracket specifies which index (and the indices start at 0) you want to access. Also, lists are mutable.
+
+Copy
+>>> cheeses[0]
+'Cheddar'
+>>> numbers[1]
+456
+>>> numbers[1] = 789
+>>> numbers
+[123, 789]
+>>>
+Dictionaries
+A dictionary is like a list, but more general. In a list, the indices are required to be integers; in a dictionary they can be (almost) any type.
+
+A dictionary contains a collection of indices, which we call keys, and a collection of values. We associate each key with a single value. We call the association of a key and a value a key-value pair or sometimes an item.
+
+A dictionary represents a one-to-one mapping from keys to values. So, it is often said, that each key “maps to” a value. As an example, we will build a very simple dictionary that maps from an English word to a Spanish word. In our case, the keys and values will all be strings.
+
+The built-in function dict creates a new dictionary with no items. Because dict is the name of the built-in function, never use it as a variable name.
+
+Copy
+>>> eng2sp = dict()
+>>> eng2sp
+{}
+>>>
+The curly braces, {}, represent an empty dictionary. To add items to the dictionary, you can use square brackets like this:
+
+Copy
+>>> eng2sp['one'] = 'uno'
+>>> eng2sp
+{'one': 'uno'}
+>>>
+You can use the format of the output above to create a dictionary also. We could do:
+
+Copy
+>>> eng2sp = {'one': 'uno', 'two': 'dos', 'three': 'tres'}
+>>> eng2sp
+{'one': 'uno', 'three': 'tres', 'two': 'dos'}
+>>>
+Did you notice anything surprising by what it printed out? Notice that the order of the printed value is not the same as the order when we input the dict. The order of items in a dictionary is unpredictable. But, that shouldn’t be a problem because the elements of a dictionary are never indexed with integer indices (for that, you would use a list).
+
+Tuples
+A tuple is a sequence of values. The values can be any type, and they are indexed by integers. They are a lot like lists. The major important difference is that tuples are immutable while lists are mutable.
+
+To create a tuple, you write a comma-separated list of values:
+
+Copy
+>>> my_tuple = 'a', 'b', 'c', 'd', 'e'
+>>> my_tuple
+('a', 'b', 'c', 'd', 'e')
+>>>
+Although it is unnecessary for the interpreter, it is common practice to enclose tuples in parentheses:
+
+Copy
+>>> my_other_tuple = ('f', 'g', 'h', 'i', 'j')
+>>> my_other_tuple
+('f', 'g', 'h', 'i', 'j')
+>>>
+You can also create a tuple with the built-in tuple function:
+
+Copy
+>>> t = tuple('lambda')
+>>> t
+('l', 'a', 'm', 'b', 'd', 'a')
+>>>
+Notice that if the argument is a sequence (a string, list, or tuple), the result is a tuple with all the individual elements of the sequence that we passed in.
+
+Let’s prove that tuples are in fact immutable:
+
+Copy
+>>> t[0] = 'L'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+>>>
+Sets
+Python provides another built-in type, called a set, that behaves like a collection of dictionary keys with no values mapped to those keys. In a set, you cannot change items, you can only add items. Importantly, you also cannot duplicate items.
+
+To create a set, you would write:
+
+Copy
+>>> my_first_set = {'tree', 'building', 'sky'}
+>>> my_first_set
+{'building', 'sky', 'tree'}
+>>>
+Follow Along
+So, in summary we can compare the four most common collection data structures in Python with the following table:
+
+Type	Description	Mutability	Allows Duplicates
+List	A sequence of values.	Mutable	Yes
+Dictionary	A list of key-value pairs where the key can be (almost) any type.	Mutable	Yes
+Tuple	A sequence of values.	Immutable	Yes
+Set	A collection of dictionary keys with no values mapped to those keys	Mutable	No
+When deciding with collection type to use, it’s important to think about your needs for interacting with the data beforehand.
+
+If the order of your data matters, then use a List.
+
+If you want to store an immutable (unchangeable) list of data, then use a Tuple.
+
+If you need to associate values with keys so you can look up data efficiently, then you should use a Dictionary.
+
+If you just need to know if you already have a particular piece of data, order doesn’t matter, and you need not keep duplicates, then use a Set.
+
+Challenge
+As you write Python programs, it is important to know when to use a certain data structure and when to use something else. Write out an explanation of when and why you would use each data structure: a list, a dictionary, a tuple, and a set.
+
+Learn to write Python code that shows the ability to perform operations on each Lists, Dictionaries, Tuples, and Sets
+Overview
+Storing data inside a specific structure that allows you to interact with that data efficiently is important when writing a program. The following is a list of methods for each type of structure we’ve discussed so far. It is crucial that you are comfortable and familiar with these methods. You will use these methods frequently to access and manipulate data in your program.
+
+Before we dive into each of the methods and how they work, it’s also important that you know how to make use of Python’s dir() and help() methods.
+
+dir()
+dir() will print out all available properties and methods on an object. Below is an example where you can see all the available properties and methods on list:
+
+Copy
+>>> dir(list)
+['__add__', '__class__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+>>>
+help()
+help() will print out the man page for whatever function you pass to it. Below, I’ve printed out the man page for the list.append function:
+
+Copy
+>>> help(list.append)
+Help on method_descriptor:
+
+append(self, object, /)
+    Append object to the end of the list.
+(END)
+In order to exit the man page, press q on your keyboard.
+
+Lists
+Below, you will find some methods available on the list data structure.
+
+Methods
+append()
+list.append(element)
+
+We use this method for appending and adding elements to a list. It is used to add elements to the last position of the list.
+
+Example:
+
+Copy
+>>> arr = ['math', 'biology', 1989, 2019]
+>>> arr.append(2021)
+>>> arr
+['math', 'biology', 1989, 2019, 2021]
+>>>
+insert()
+list.insert(position, element)
+
+This method inserts an element at a specified position.
+
+Example:
+
+Copy
+>>> arr = ['math', 'biology', 1989, 2019]
+>>> arr.insert(2, 2021)
+>>> arr
+['math', 'biology', 2021, 1989, 2019]
+>>>
+extend()
+list_one.extend(list_two)
+
+This method adds the contents of one list to the end of another list.
+
+Copy
+>>> arr_one = [1, 2, 3, 4, 5]
+>>> arr_two = [1, 2, 3]
+>>> arr_one.extend(arr_two)
+>>> arr_one
+[1, 2, 3, 4, 5, 1, 2, 3]
+>>>
+sum()
+This method sums all the elements of a list.
+
+Example:
+
+Copy
+>>> arr = [1, 2, 3, 4, 5]
+>>> sum(arr)
+15
+>>>
+Note: sum will only work if all the elements of the list are numbers.
+
+count()
+This method calculates the total number of occurrences of an element of the list.
+
+list.count(element)
+
+Example:
+
+Copy
+>>> arr = [1, 1, 1, 2, 3]
+>>> arr.count(1)
+3
+>>> arr.count(2)
+1
+>>> arr.count(3)
+1
+>>>
+len()
+Note: This method works for any container type: list, dictionary, set, range, tuple, etc.
+
+This method calculates the total length of a list that we pass in as an argument.
+
+len(list)
+
+Example:
+
+Copy
+>>> arr = [1, 2, 3, 4, 5]
+>>> len(arr)
+5
+>>>
+index()
+This method returns the index of the first occurrence of the element passed in as an argument. You can also specify the start and end index where you want to conduct the search.
+
+Example:
+
+Copy
+>>> arr_two = ['a', 'b', 'c', 'd', 'e', 'a', 'b']
+>>> arr_two.index('a', 1)
+5
+>>> arr_two.index('a', 1, 2)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: 'a' is not in list
+>>>
+min()
+Note: this method works on any iterable data structure.
+
+This method calculates the minimum of all the elements of the list.
+
+min(list)
+
+Example:
+
+Copy
+>>> arr = [4, 3, 2.5, 7, 0.7, 9]
+>>> min(arr)
+0.7
+>>>
+max()
+Note: this method works on any iterable data structure.
+
+This method calculates the maximum of all the elements of the list.
+
+max(list)
+
+Example:
+
+Copy
+>>> arr = [4, 3, 2.5, 7, 0.7, 9]
+>>> max(arr)
+9
+>>>
+sort()
+This method sorts the list in ascending order. You can set the reverse flag to True if you want to sort in descending order.
+
+list.sort(reverse_flag)
+
+Example:
+
+Copy
+>>> arr = [8, 4, 3, 9, 2, 1, 7, 6]
+>>> arr.sort()
+>>> arr
+[1, 2, 3, 4, 6, 7, 8, 9]
+>>> arr.sort(reverse=True)
+>>> arr
+[9, 8, 7, 6, 4, 3, 2, 1]
+>>>
+reverse()
+This method reverses the order of elements in the list (without sorting).
+
+list.reverse()
+
+Example:
+
+Copy
+>>> arr = [8, 4, 3, 9, 2, 1, 7, 6]
+>>> arr.reverse()
+>>> arr
+[6, 7, 1, 2, 9, 3, 4, 8]
+>>>
+pop()
+This method removes an element from the list. If we provide no index, it removes the last element. This method returns the removed element (which is different from del() which returns None).
+
+list.pop(index)
+
+Example:
+
+Copy
+>>> arr = [1, 2, 3, 4, 5]
+>>> arr.pop()
+5
+>>> arr
+[1, 2, 3, 4]
+>>> arr.pop(1)
+2
+>>> arr
+[1, 3, 4]
+>>>
+del()
+This method deletes an element from the list at the index we pass in.
+
+del list[index]
+
+Example:
+
+Copy
+>>> arr = [1, 2, 3, 4, 5]
+>>> del arr[1]
+>>> arr
+[1, 3, 4, 5]
+>>>
+remove()
+This method removes the element we pass in from the list.
+
+list.remove(element)
+
+Example:
+
+Copy
+>>> arr = ['a', 'b', 'c', 'd', 'e']
+>>> arr.remove('a')
+>>> arr
+['b', 'c', 'd', 'e']
+>>>
+Dictionaries
+Methods
+clear()
+This method removes all the elements from a dictionary.
+
+dictionary.clear()
+
+Example:
+
+Copy
+>>> car = {
+...     "brand": "Honda",
+...     "model": "CR-V",
+...     "year": 2002
+... }
+>>> car
+{'brand': 'Honda', 'model': 'CR-V', 'year': 2002}
+>>> car.clear()
+>>> car
+{}
+>>>
+copy()
+This method returns a copy of the specified dictionary.
+
+dictionary.copy()
+
+Example:
+
+Copy
+>>> car = {
+...     "brand": "Honda",
+...     "model": "CR-V",
+...     "year": 2002
+... }
+>>> carbon_copy = car.copy()
+>>> carbon_copy
+{'brand': 'Honda', 'model': 'CR-V', 'year': 2002}
+>>> car
+{'brand': 'Honda', 'model': 'CR-V', 'year': 2002}
+>>>
+fromkeys()
+This method returns a dictionary with the specified keys and values. The keys parameter is required, but the value parameter is optional. If we pass no value, the default value will be None.
+
+dict.fromkeys(keys, value)
+
+Example:
+
+Copy
+>>> x = ('key1', 'key2', 'key3')
+>>> y = 1
+>>> new_dict = dict.fromkeys(x, y)
+>>> new_dict
+{'key1': 1, 'key2': 1, 'key3': 1}
+>>> dict_without_values = dict.fromkeys(x)
+>>> dict_without_values
+{'key1': None, 'key2': None, 'key3': None}
+>>>
+get()
+This method returns the value of the item with the specified key.
+
+dictionary.get(keyname, value)
+
+Keyname is required. The value parameter is optional, and this specifies the value to return if the specified key doesn’t exist. The default value to return if the key doesn’t exist is None.
+
+Example:
+
+Copy
+car = {
+...     "brand": "Honda",
+...     "model": "CR-V",
+...     "year": 2002
+... }
+>>> x = car.get("model")
+>>> x
+'CR-V'
+>>>
+items()
+This method returns a view object. The view object contains the key-value pairs of the dictionary, as tuples in a list.
+
+The view object will reflect any future changes done to the dictionary.
+
+dictionary.items()
+
+Example:
+
+Copy
+>>> car = {
+...     "brand": "Honda",
+...     "model": "CR-V",
+...     "year": 2002
+... }
+>>> x = car.items()
+>>> x
+dict_items([('brand', 'Honda'), ('model', 'CR-V'), ('year', 2002)])
+>>>
+keys()
+This method returns a view object. The view object contains the keys of the dictionary, as a list.
+
+The view object will reflect any future changes done to the dictionary.
+
+dictionary.keys
+
+Example:
+
+Copy
+>>> car = {
+...     "brand": "Honda",
+...     "model": "CR-V",
+...     "year": 2002
+... }
+>>> x = car.keys()
+>>> x
+dict_keys(['brand', 'model', 'year'])
+>>>
+pop()
+This method removes the specified item from the dictionary. The value of the removed item is the return value of this method.
+
+dictionary.pop(keyname, defaultvalue)
+
+Keyname is a required parameter and specifies the keyname of the item you want to remove. The second parameter allows you to specify a value to return if the specified key doesn’t exit. If this value isn’t specified and no item with the specified key is found, it raises an error.
+
+Example:
+
+Copy
+>>> car = {
+...     "brand": "Honda",
+...     "model": "CR-V",
+...     "year": 2002
+... }
+>>> x = car.pop("model")
+>>> x
+'CR-V'
+>>>
+popitem()
+This method removes and returns some (key, value) pair as a tuple.
+
+dictionary.popitem(keyname, defaultvalue)
+
+Example:
+
+Copy
+>>> car = {
+...     "brand": "Honda",
+...     "model": "CR-V",
+...     "year": 2002
+... }
+>>> car.popitem()
+('year', 2002)
+>>> car
+{'brand': 'Honda', 'model': 'CR-V'}
+>>> car["price"] = 4000
+>>> car
+{'brand': 'Honda', 'model': 'CR-V', 'price': 4000}
+>>> car.popitem()
+('price', 4000)
+>>> car
+{'brand': 'Honda', 'model': 'CR-V'}
+>>>
+setdefault()
+This method returns the value of the item with the specified key. If the key doesn’t exist, insert the key, with the specified value.
+
+dictionary.setdefault(keyname, value)
+
+The keyname parameter is required and specifies the keyname of the item you want to return the value from. The value parameter is optional. If the key exists, this parameter has no effect. If the key does not exist, this value becomes the key’s value.
+
+Example:
+
+Copy
+>>> car = {
+...     "brand": "Honda",
+...     "model": "CR-V",
+...     "year": 2002
+... }
+>>> x = car.setdefault("model", "Odyssey")
+>>> x
+'CR-V'
+>>> y = car.setdefault("color", "black")
+>>> y
+'black'
+>>> car
+{'brand': 'Honda', 'model': 'CR-V', 'year': 2002, 'color': 'black'}
+>>>
+update()
+This method inserts the specified items to the dictionary. The specified items can be a dictionary, or an iterable object.
+
+dictionary.update(iterable)
+
+Example:
+
+Copy
+>>> car = {
+...     "brand": "Honda",
+...     "model": "CR-V",
+...     "year": 2002
+... }
+>>> car.update({"color": "black"})
+>>> car
+{'brand': 'Honda', 'model': 'CR-V', 'year': 2002, 'color': 'black'}
+>>>
+values()
+This method returns a view object. The view object contains the values of the dictionary, as a list.
+
+The view object will reflect any future changes done to the dictionary.
+
+dictionary.values()
+
+Example:
+
+Copy
+>>> car = {
+...     "brand": "Honda",
+...     "model": "CR-V",
+...     "year": 2002
+... }
+>>> x = car.values()
+>>> x
+dict_values(['Honda', 'CR-V', 2002])
+>>> car["color"] = "black"
+>>> x
+dict_values(['Honda', 'CR-V', 2002, 'black'])
+>>>
+Tuples
+Methods
+count()
+This method returns the number of times a specified value appears in the tuple.
+
+tuple.count(value)
+
+Example:
+
+Copy
+>>> my_tuple = (1, 3, 4, 5, 2, 3, 4, 6, 7, 2)
+>>> x = my_tuple.count(4)
+>>> x
+2
+>>>
+index()
+This method finds the first occurrence of the specified value. It will raise an exception if the value is not found.
+
+tuple.index(value)
+
+Example:
+
+Copy
+>>> my_tuple = (1, 3, 7, 2, 7, 5, 3, 2, 9, 3)
+>>> x = my_tuple.index(7)
+>>> x
+2
+>>>
+Sets
+Methods
+add()
+This method adds an element to the set. If the element already exists in the set, it will not add the element.
+
+set.add(element)
+
+Example:
+
+Copy
+>>> fruits = {"apple", "banana", "cherry"}
+>>> fruits.add("orange")
+>>> fruits
+{'apple', 'orange', 'banana', 'cherry'}
+>>> fruits.add("banana")
+>>> fruits
+{'apple', 'orange', 'banana', 'cherry'}
+>>>
+clear()
+This method removes all elements in a set.
+
+set.clear()
+
+Example:
+
+Copy
+>>> fruits = {"apple", "banana", "cherry"}
+>>> fruits.clear()
+>>> fruits
+set()
+>>>
+copy()
+This method copies the set.
+
+set.copy()
+
+Example:
+
+Copy
+>>> fruits = {"apple", "banana", "cherry"}
+>>> x = fruits.copy()
+>>> x
+{'apple', 'banana', 'cherry'}
+>>>
+difference()
+This method returns a set that contains the difference between two sets. The returned set contains items that exist only in the first set, and not in both sets.
+
+set.difference(set)
+
+Example:
+
+Copy
+>>> x = {"apple", "banana", "cherry"}
+>>> y = {"google", "microsoft", "apple"}
+>>> z = x.difference(y)
+>>> z
+{'banana', 'cherry'}
+>>> a = y.difference(x)
+>>> a
+{'google', 'microsoft'}
+>>>
+difference_update()
+This method removes the items that exist in both sets. It is different from the difference() method because that method returns a new set, without the unwanted items, and this method removes the unwanted items from the original set.
+
+set.difference_update(set)
+
+Example:
+
+Copy
+>>> x = {"apple", "banana", "cherry"}
+>>> y = {"google", "microsoft", "apple"}
+>>> x.difference_update(y)
+>>> x
+{'banana', 'cherry'}
+>>>
+discard()
+This method removes the specified item from the set. It differs from the remove() method, because that method will raise an error if the specified item doesn’t exist, this method will not.
+
+set.discard(value)
+
+Example:
+
+Copy
+>>> fruits = {"apple", "banana", "cherry"}
+>>> fruits.discard("banana")
+>>> fruits
+{'apple', 'cherry'}
+>>> fruits.discard("orange")
+>>> fruits
+{'apple', 'cherry'}
+>>>
+intersection()
+This method returns a set that contains the similarity between two or more sets. The returned set contains only items that exist in both sets, or in all sets if the comparison is done with over two sets.
+
+set.intersection(set1, set2, ...)
+
+Example:
+
+Copy
+>>> x = {"apple", "banana", "cherry"}
+>>> y = {"google", "microsoft", "apple"}
+>>> z = x.intersection(y)
+>>> z
+{'apple'}
+>>>
+>>> x = {"a", "b", "c"}
+>>> y = {"c", "d", "e"}
+>>> z = {"f", "g", "c"}
+>>> result = x.intersection(y, z)
+>>> result
+{'c'}
+>>>
+intersection_update()
+This method removes the items that are not present in both sets (or in all sets if the comparison is done between over two sets).
+
+set.intersection_update(set1, set2, ...)
+
+Example:
+
+Copy
+>>> x = {"a", "b", "c"}
+>>> y = {"c", "d", "e"}
+>>> z = {"f", "g", "c"}
+>>> x.intersection_update(y, z)
+>>> x
+{'c'}
+>>> y
+{'d', 'c', 'e'}
+>>> z
+{'f', 'c', 'g'}
+>>>
+isdisjoint()
+This method returns True if none of the items are present in both sets, otherwise it returns False.
+
+set.isdisjoint(set)
+
+Example:
+
+Copy
+>>> x = {"apple", "banana", "cherry"}
+>>> y = {"google", "microsoft", "facebook"}
+>>> z = x.isdisjoint(y)
+>>> z
+True
+>>>
+>>> x = {"apple", "banana", "cherry"}
+>>> y = {"google", "microsoft", "apple"}
+>>> z = x.isdisjoint(y)
+>>> z
+False
+>>>
+issubset()
+This method returns True if all items in the set exists in the specified set, otherwise it returns False.
+
+set.issubset(set)
+
+Example:
+
+Copy
+>>> x = {"a", "b", "c"}
+>>> y = {"f", "e", "d", "c", "b", "a"}
+>>> z = x.issubset(y)
+>>> z
+True
+>>> 
+>>> x = {"a", "b", "c"}
+>>> y = {"f", "e", "d", "c", "b"}
+>>> z = x.issubset(y)
+>>> z
+False
+>>>
+issuperset()
+This method returns True if all items in the specified set exists in the original set, otherwise it returns False.
+
+set.issuperset(set)
+
+Example:
+
+Copy
+>>> x = {"f", "e", "d", "c", "b", "a"}
+>>> y = {"a", "b", "c"}
+>>> z = x.issuperset(y)
+>>> z
+True
+>>> 
+>>> x = {"f", "e", "d", "c", "b"}
+>>> y = {"a", "b", "c"}
+>>> z = x.issuperset(y)
+>>> z
+False
+>>>
+pop()
+This method removes a random item from the set and returns the removed item.
+
+set.pop()
+
+Example:
+
+Copy
+>>> fruits = {"apple", "banana", "cherry"}
+>>> fruits.pop()
+'apple'
+>>> fruits
+{'banana', 'cherry'}
+>>>
+remove()
+This method removes the specified element from the set. This method is different from the discard() method because remove() will raise an error if the specified item doesn’t exist, and the discard() method will not.
+
+set.remove(item)
+
+Example:
+
+Copy
+>>> fruits = {"apple", "banana", "cherry"}
+>>> fruits.remove("banana")
+>>> fruits
+{'apple', 'cherry'}
+>>>
+symmetric_difference()
+This method returns a set that contains all items from both sets, but not the items present in both sets. The returned set contains a mix of items that are not present in both sets.
+
+set.symmetric_difference(set)
+
+Example:
+
+Copy
+>>> x = {"apple", "banana", "cherry"}
+>>> y = {"google", "microsoft", "apple"}
+>>> z = x.symmetric_difference(y)
+>>> z
+{'banana', 'cherry', 'microsoft', 'google'}
+>>>
+symmetric_difference_update()
+This method updates the original set by removing items that are present in both sets, and inserting the other items.
+
+set.symmetric_difference_update(set)
+
+Example:
+
+Copy
+>>> x = {"apple", "banana", "cherry"}
+>>> y = {"google", "microsoft", "apple"}
+>>> x.symmetric_difference_update(y)
+>>> x
+{'banana', 'cherry', 'microsoft', 'google'}
+>>>
+union()
+This method returns a set that contains all items from the original set, and all items from the specified sets. You can specify as many sets as you want, separated by commas.
+
+set.union(set1, set2, ...)
+
+Example:
+
+Copy
+>>> x = {"apple", "banana", "cherry"}
+>>> y = {"google", "microsoft", "apple"}
+>>> z = x.union(y)
+>>> z
+{'apple', 'microsoft', 'banana', 'cherry', 'google'}
+>>> 
+>>> x = {"a", "b", "c"}
+>>> y = {"f", "d", "a"}
+>>> z = {"c", "d", "e"}
+>>> result = x.union(y, z)
+>>> result
+{'b', 'f', 'd', 'a', 'c', 'e'}
+>>>
+update()
+This method updates the current set, by adding items from another set.
+
+set.update(set)
+
+Example:
+
+Copy
+>>> x = {"apple", "banana", "cherry"}
+>>> y = {"google", "microsoft", "apple"}
+>>> x.update(y)
+>>> x
+{'apple', 'microsoft', 'banana', 'cherry', 'google'}
+>>>
+Follow Along
+We walked through many examples for each method above. If you haven’t already, open the interpreter and try out each method shown above using your own data.
