@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 The Python standard library's 'calendar' module allows you to
 render a calendar to your terminal.
