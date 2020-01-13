@@ -9,7 +9,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # Print all the contents of the file, then close the file
 
 # YOUR CODE HERE
-foo = open('src/foo.txt', 'r+')
+foo = open('src/foo.txt', 'r')
 print(foo.read())
 foo.close()
 
@@ -19,7 +19,13 @@ foo.close()
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
-bar = open('src/bar.txt,' 'r+')
+bar = open('bar.txt', 'w')
+bar.write('Howdy \n')
+bar.write('Howdy? \n')
+bar.write('Howdy!')
+
+bar.close()
+
+bar = open('bar.txt', 'r')
 print(bar.read())
-bar.write('python is cool \n is python cool? \n it is pretty cool')
 bar.close()
