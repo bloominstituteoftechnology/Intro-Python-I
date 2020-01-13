@@ -22,3 +22,27 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def main():
+    print(sys.argv)
+    args = sys.argv[1:]
+    print(args)
+
+    if len(args) == 0:
+        today = datetime.today()
+        print(calendar.month(today.year, today.month))
+    elif len(args) == 1:
+        today = datetime.today()
+        print(calendar.month(today.year, int(args[0])))
+    elif len(args) == 2:
+        y = int(args[1])
+        m = int(args[0])
+        assert 1 <= m <= 12
+        assert y >= 0
+        print(calendar.month(y, m))
+    else:
+        print("Usage: 14_cal.py month [year]")
+        exit()
+
+if __name__ == "__main__":
+    main()
