@@ -11,3 +11,10 @@ num = int(num)
 
 # YOUR CODE HERE
 
+def is_even(value):
+    return value % 2 == 0
+
+if is_even(num):
+    print("Even!")
+else:
+    print("Odd")
