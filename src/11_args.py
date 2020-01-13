@@ -20,7 +20,11 @@ print(f1(1, 2))
 
 
 def f2(*args):
-    return sum(*args)
+    nums = [num for num in args]
+    if(len(nums) == 1):
+        return nums[0]
+    else:
+        return sum(nums)
 
 
 print(f2(1))                    # Should print 1
@@ -40,6 +44,14 @@ print(f2(a))    # Should print 22
 # YOUR CODE HERE
 
 
+def f3(*args):
+    if len(args) == 1:
+        return int(args[0]) + 1
+    else:
+        len(args) == 2
+        return sum(args)
+
+
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
 
@@ -53,6 +65,10 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 # YOUR CODE HERE
+def f4(**kwargs):
+    for key, value in kwargs.items():
+        print(key, "is", value)
+
 
 # Should print
 # key: a, value: 12
@@ -71,4 +87,4 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+print(f4(**d))
