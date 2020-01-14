@@ -30,11 +30,14 @@ b = (-14, 72)
 # Prints "Distance is 66.94"
 print("Distance is: {:.2f}".format(dist(a, b)))
 
-
-
 # Write a function `print_tuple` that prints all the values in a tuple
 
-# YOUR CODE HERE
+def print_tuple(tpl):
+    if isinstance(tpl,int):
+        print(tpl)
+    else: 
+        for elem in tpl:
+            print(elem)
 
 t = (1, 2, 5, 7, 99)
 print_tuple(t)  # Prints 1 2 5 7 99, one per line
