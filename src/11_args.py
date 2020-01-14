@@ -5,13 +5,23 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
-
+def f1(x, y):
+    return x + y
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+def f2(*nums):
+    total = 0
+    for num in nums:
+        if type(num) == list:
+            for n in num:
+                total += n
+        else:        
+            total += num
+    return total
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -28,7 +38,11 @@ print(f2(a))    # Should print 22
 # arguments. Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
-
+def f3(x, y=None):
+    if y:
+        return x+y
+    else:
+        return x+1
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
 
@@ -42,7 +56,13 @@ print(f3(8))     # Should print 9
 # Google "python keyword arguments".
 
 # YOUR CODE HERE
-
+def f4(d=None, **kwargs):
+    if d:
+        for key in d.keys():
+            print(f'Key: {key}, value: {d[key]}')
+    else:
+        for key in kwargs.keys():
+            print(f'Key: {key}, value: {kwargs[key]}')
 # Should print
 # key: a, value: 12
 # key: b, value: 30
@@ -60,4 +80,5 @@ d = {
 }
 
 # What thing do you have to add to make this work?
+## To fix this, I added a keyword 'd' set to None, and assumed it''s always a dict
 f4(d)

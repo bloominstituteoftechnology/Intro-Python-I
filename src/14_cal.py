@@ -22,3 +22,23 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def print_month():
+    
+    input_date = sys.argv[1:]
+    print(input_date)
+    current_date = datetime.now()
+    try:
+      if input_date == []:
+        print(calendar.month(current_date.year, current_date.month))
+
+      elif len(input_date) == 1:
+        print(calendar.month(current_date.year, int(input_date[0])))
+
+      else:
+        print(calendar.month(int(input_date[1]), int(input_date[0])))
+  
+    except:
+      print('Error: input format needs to be MM, YYYY')
+
+print_month()
