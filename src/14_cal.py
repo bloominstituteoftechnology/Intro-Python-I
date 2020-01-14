@@ -22,3 +22,25 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+try:
+  if len(sys.argv) > 3:
+    print('Usage: python 14_cal.py [<month>] [<year>]')
+    print('Please use digits for month and year.')
+  else:
+    month = datetime.today().month
+    year = datetime.today().year
+
+    if len(sys.argv) == 2:
+      month = int(sys.argv[1])
+    if len(sys.argv) == 3:
+      month = int(sys.argv[1])
+      year = int(sys.argv[2])
+
+    print(month, year)
+    cal = calendar.TextCalendar().formatmonth(year, month)
+    print(cal)
+
+except ValueError:
+    print('Usage: python 14_cal.py [<month>] [<year>]')
+    print('Please use digits for month and year.')
