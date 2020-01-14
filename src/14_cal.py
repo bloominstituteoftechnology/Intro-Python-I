@@ -22,3 +22,18 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def calendurr():
+  # print(datetime.today())
+    y = int(input("Input the year : "))
+    while not y:
+        y = int(input(datetime.today()))
+    m = int(input("Input the month : "))
+    while not y:
+        y = int(input(datetime.today()))
+    
+    print(calendar.month(y,m))
+
+calendurr()
+
+exit()
