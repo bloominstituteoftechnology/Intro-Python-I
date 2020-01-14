@@ -32,5 +32,6 @@ elif len(sys.argv) == 2:
     print(calendar.month(datetime.now().year, month))
 else:
     print(calendar.month((datetime.now().year), (datetime.now().month)))
+    print("The program is expecting a YEAR and MONTH")
 
 
