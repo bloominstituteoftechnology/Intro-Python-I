@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Dictionaries are Python's implementation of associative arrays.
 There's not much different with Python's version compared to what
@@ -35,10 +36,23 @@ waypoints = [
 
 # Add a new waypoint to the list
 # YOUR CODE HERE
+myWaypoint = {
+                "lat": 45,
+                "lon": -135,
+                "name": "nowhere"
+}
+waypoints.append(myWaypoint)
 
 # Modify the dictionary with name "a place" such that its longitude
 # value is -130 and change its name to "not a real place"
 # YOUR CODE HERE
+waypoints[0]["lon"] = -130
+waypoints[0]["name"] = "not a real place"
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+
+for waypoint in waypoints:
+    for key in waypoint:
+        print(f"{key}: {waypoint[key]}")
+    print()

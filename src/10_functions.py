@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Write a function is_even that will return true if the passed-in number is even.
 
 # YOUR CODE HERE
@@ -10,3 +11,10 @@ num = int(num)
 
 # YOUR CODE HERE
 
+def is_even(value):
+    return value % 2 == 0
+
+if is_even(num):
+    print("Even!")
+else:
+    print("Odd")
