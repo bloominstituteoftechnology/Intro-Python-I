@@ -1,16 +1,16 @@
 """
 Python tuples are sort of like lists, except they're immutable and
 are usually used to hold heterogenous data, as opposed to lists
-which are typically used to hold homogenous data. Tuples use 
-parens instead of square brackets. 
+which are typically used to hold homogenous data. Tuples use
+parens instead of square brackets.
 
 More specifically, tuples are faster than lists. If you're looking
-to just define a constant set of values and that set of values 
-never needs to be mutated, use a tuple instead of a list. 
+to just define a constant set of values and that set of values
+never needs to be mutated, use a tuple instead of a list.
 
 Additionally, your code will be safer if you opt to "write-protect"
 data that does not need to be changed. Tuples enforce immutability
-automatically. 
+automatically.
 """
 
 # Example:
@@ -21,7 +21,7 @@ def dist(a, b):
     """Compute the distance between two x,y points."""
     x0, y0 = a  # Destructuring assignment
     x1, y1 = b
-    
+
     return math.sqrt((x1 - x0)**2 + (y1 - y0)**2)
 
 a = (2, 7)   # <-- x,y coordinates stored in tuples
