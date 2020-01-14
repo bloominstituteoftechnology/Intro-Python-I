@@ -22,3 +22,24 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+def makeCalendar(month=datetime.now().month, year=datetime.now().year):
+  try:
+    cal = calendar.TextCalendar(calendar.SUNDAY)
+    cals = cal.formatmonth(year, month)
+    print(cals)
+  except:
+    print('Expected integers but you did something non-integer-y.')
+  
+date = sys.argv[1:]
+
+if date == []:
+  makeCalendar()
+elif len(date) == 1:
+  month = int(date[0])
+  makeCalendar(month=month)
+else:
+  month = int(date[0])
+  year = int(date[1])
+  makeCalendar(month=month, year=year)
