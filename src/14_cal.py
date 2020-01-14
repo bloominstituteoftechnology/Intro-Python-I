@@ -22,3 +22,9 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+
+print(calendar.month((datetime.now().year), (datetime.now().month)))
+
+
