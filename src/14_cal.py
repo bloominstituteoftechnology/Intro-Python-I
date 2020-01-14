@@ -23,3 +23,47 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+def die(reason):
+    print(reason)
+    print("Usage: 14_cal.py [monthNoBrackets] [yearNoBrackets]")
+    print('Note that year is optional - if omitted, will simply use the current year')
+    exit()
+
+month = 1
+year = 1
+
+def checkArgs():
+    global month, year
+    if len(sys.argv) > 3:
+        die("Too many arguments")
+    if len(sys.argv) > 1:
+        try:
+            month = int(sys.argv[1])
+        except:
+            die("Month must be an integer")
+    if len(sys.argv) > 2:
+        try:
+            year = int(sys.argv[2])
+        except:
+            die("Year must be an integer")
+
+    if month > 12 or month < 1:
+        die("There are only 12 months!")
+
+
+currentTime = datetime.today()
+month = currentTime.month
+year = currentTime.year
+checkArgs()
+
+if len(sys.argv) > 1:
+    month = int(sys.argv[1])
+
+if len(sys.argv) > 2:
+    year = int(sys.argv[2])
+
+
+mycal = calendar.TextCalendar()
+mycal.firstweekday = 6
+print(mycal.formatmonth(year, month))

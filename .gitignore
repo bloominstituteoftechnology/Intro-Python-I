@@ -2,3 +2,4 @@
 *.pyc
 __pycache__
 bar.txt
+.DS_Store
