@@ -22,3 +22,7 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+cal = calendar.HTMLCalendar()
+
+print(cal.cssclass_month_head)
