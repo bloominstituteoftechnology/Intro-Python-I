@@ -22,3 +22,15 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+print(sys.argv)
+if len(sys.argv) == 1:
+  current_date = datetime.now()
+  print(calendar.prmonth(current_date.year, current_date.month))
+elif len(sys.argv) == 2:
+  current_date = datetime.now()  
+  print(calendar.prmonth(current_date.year, int(sys.argv[1]))) #conver b/c args is tuple
+elif len(sys.argv) == 3:
+  print(calendar.prmonth(int(sys.argv[2]), int(sys.argv[1])))
+else:
+  print('Please enter the src/14_cal.py Month Year')
