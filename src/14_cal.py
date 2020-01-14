@@ -21,8 +21,16 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+# from datetime import datetime
 
-cal = calendar.TextCalendar(calendar.SUNDAY)
-cals = cal.formatmonth(2020, 1)
-print(cals)
+
+def makeCalendar(month=1, year=2020):
+  try:
+    cal = calendar.TextCalendar(calendar.SUNDAY)
+    cals = cal.formatmonth(year, month)
+    print(cals)
+  except:
+    print('Expected month then year')
+  
+
+makeCalendar(5)
