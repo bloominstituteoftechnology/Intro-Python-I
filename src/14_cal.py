@@ -23,6 +23,6 @@ import sys
 import calendar
 from datetime import datetime
 
-cal = calendar.HTMLCalendar()
-
-print(cal.cssclass_month_head)
+cal = calendar.TextCalendar(calendar.SUNDAY)
+cals = cal.formatmonth(2020, 1)
+print(cals)
