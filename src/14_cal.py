@@ -30,7 +30,8 @@ def makeCalendar(month=1, year=2020):
     cals = cal.formatmonth(year, month)
     print(cals)
   except:
-    print('Expected month then year')
+    print('Expected integers but you did something non-integer-y.')
   
-
-makeCalendar(5)
+month = int(input("Choose a month(1-12): "))
+year = int(input("Choose a year: "))
+makeCalendar(month=month, year=year)
