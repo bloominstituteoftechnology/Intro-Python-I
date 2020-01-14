@@ -21,10 +21,10 @@ and does the following:
 
 import sys
 import calendar
-# from datetime import datetime
+from datetime import datetime
 
 
-def makeCalendar(month=1, year=2020):
+def makeCalendar(month=datetime.now().month, year=datetime.now().year):
   try:
     cal = calendar.TextCalendar(calendar.SUNDAY)
     cals = cal.formatmonth(year, month)
@@ -32,6 +32,14 @@ def makeCalendar(month=1, year=2020):
   except:
     print('Expected integers but you did something non-integer-y.')
   
-month = int(input("Choose a month(1-12): "))
-year = int(input("Choose a year: "))
-makeCalendar(month=month, year=year)
+date = sys.argv[1:]
+
+if date == []:
+  makeCalendar()
+elif len(date) == 1:
+  month = int(date[0])
+  makeCalendar(month=month)
+else:
+  month = int(date[0])
+  year = int(date[1])
+  makeCalendar(month=month, year=year)
