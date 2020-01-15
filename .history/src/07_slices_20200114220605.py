@@ -31,9 +31,8 @@ print(a[:-1])
 
 # For string s...
 s = "Hello, world!"
-# for element in s:
-#     print(s[6:12])
+for i in s
 
 
 # Output just the 8th-12th characters: "world"
-print(s[6:12])
+print(s)

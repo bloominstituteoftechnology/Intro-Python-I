@@ -27,13 +27,11 @@ print(a[2:4])
 print(a[1:])
 
 # Output every element except the last one: [2, 4, 1, 7, 9]
-print(a[:-1])
+print(:-1)
 
 # For string s...
-s = "Hello, world!"
-# for element in s:
-#     print(s[6:12])
 
+s = "Hello, world!"
 
 # Output just the 8th-12th characters: "world"
-print(s[6:12])
+print()
