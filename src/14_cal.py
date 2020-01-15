@@ -21,23 +21,29 @@ and does the following:
 
 import calendar
 import sys
-from datetime import date, datetime
+from datetime import datetime
 
-date_input = sys.argv[1:len(sys.argv)]
-todays_date = date.today()
+# Get arguments
+args = sys.argv
 
-if len(date_input) == 0:
-    # Print calendar for current month
-    c = calendar.TextCalendar(calendar.SUNDAY)
-    str = c.formatmonth(todays_date.year, todays_date.month)
-    print(str)
-elif len(date_input) == 1:
-    # Print that month for current year
-    c = calendar.TextCalendar(calendar.SUNDAY)
-    str = c.formatmonth(todays_date.year, int(date_input[0]))
-    print(str)
-elif len(date_input) == 2:
-    # Print the calendar for that month and year specified
-    c = calendar.TextCalendar(calendar.SUNDAY)
-    str = c.formatmonth(int(date_input[1]), int(date_input[0]))
-    print(str)
+today = datetime.now()
+month = today.month
+year = today.year
+
+tc =  calendar.TextCalendar()
+
+# If there are no arguments, print calendar for current month
+if len(args) == 1:
+  tc.prmonth(year, month)
+
+# If there's 1 arg, assume it's month and print out cal for that month
+elif len(args) == 2:
+  month = int(args[1])
+  tc.prmonth(year, month)
+# If there's 2 args, assume  it's month and year and print cal for month/year
+elif len(args) == 3:
+  month = int(args[1])
+  year = int(args[2])
+  tc.prmonth(year, month)
+else:
+  print("input should be in this format `14_cal.py month [year]`")
