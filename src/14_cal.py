@@ -22,3 +22,16 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+userInput=sys.argv[1:]
+
+today = datetime.today()
+
+if userInput==[]:
+  calendar.prmonth(today.year,today.month)
+else:
+  if len(userInput)==1:
+    calendar.prmonth(today.year, int(userInput[0]))
+    
+  else:
+    calendar.prmonth(int(userInput[1]),int(userInput[0]))
