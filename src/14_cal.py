@@ -22,3 +22,16 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+now = datetime.today()
+
+if len(sys.argv) == 1:
+    print(calendar.month(now.year, now.month))
+    print("How to use: 14_cal.py month [year]")
+elif len(sys.argv) == 2:
+    month = int(sys.argv[1])
+    print(calendar.month(now.year, month))
+elif len(sys.argv) == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+    print(calendar.month(year, month))
