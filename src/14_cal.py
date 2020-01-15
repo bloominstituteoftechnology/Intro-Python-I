@@ -37,7 +37,6 @@ try:
       month = int(sys.argv[1])
       year = int(sys.argv[2])
 
-    print(month, year)
     cal = calendar.TextCalendar().formatmonth(year, month)
     print(cal)
 
