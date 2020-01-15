@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 List comprehensions are one cool and unique feature of Python.
 They essentially act as a terse and concise way of initializing
@@ -12,6 +13,9 @@ for more info regarding list comprehensions.
 
 y = []
 
+for x in range(1,6):
+    y.append(x)
+    
 print (y)
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
@@ -19,7 +23,29 @@ print (y)
 
 y = []
 
+for x in range(0, 10):
+    cubed = pow(x, 3)
+    y.append(cubed)
+
 print(y)
+
+# -- or --
+
+z = []
+
+for x in range(0, 10):
+    z.append(pow(x, 3))
+    
+print(z)
+
+# -- or --
+
+x = []
+
+for i in range(0, 10):
+    x.append(i ** 3)
+    
+print(x)
 
 # Write a list comprehension to produce the uppercase version of all the
 # elements in array a. Hint: "foo".upper() is "FOO".
@@ -28,6 +54,8 @@ a = ["foo", "bar", "baz"]
 
 y = []
 
+[y.append(x.upper()) for x in a]
+
 print(y)
 
 # Use a list comprehension to create a list containing only the _even_ elements
@@ -35,7 +63,7 @@ print(y)
 
 x = input("Enter comma-separated numbers: ").split(',')
 
-# What do you need between the square brackets to make it work?
-y = []
+# What do you need between the square brackets to make it work? 
+y = [int(i) for i in x if int(i) % 2 == 0]
 
 print(y)
