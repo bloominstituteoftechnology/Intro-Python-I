@@ -1,0 +1,4 @@
+03_modules.py I think I did it right but not sure.  Is there a more general sys method to get OS from all cpu's?
+04_printing.py not sure if it wanted the quotes in the string on last one, didn't think so but check and how to do that
+06_tuples.py why stringing it works on line 46 but didn't need to on line 42.  Understood what to do from te error I got but don't get the why?
+08_comprehensions did them by creating a list then comprehending based off of that, wasn't sure if that was what it wanted
