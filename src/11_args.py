@@ -6,17 +6,29 @@
 
 # YOUR CODE HERE
 
-print(f1(1, 2))
+
+def f1(x, y):
+    print(x + y)
+
+
+# Output should equal to 3
+print(f1(1, 2))  # output equals 3
 
 # Write a function f2 that takes any number of integer arguments and prints the
 # sum. Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
 
+
+def f2(*argv):
+    return sum(argv)
+
+
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
 print(f2(1, 4, -12))            # Should print -7
 print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
+print(f2(100, 10000000, 20))
 
 a = [7, 6, 5, 4]
 
