@@ -25,7 +25,7 @@ print("===sys version is:", sys.version)
 
 # Print the current process ID
 # YOUR CODE HERE
-print("===current process ID is:", os.getpgid)
+print("===current process ID is:", os.getpgid(0))
 # Print the current working directory (cwd):
 # YOUR CODE HERE
 print("===current working directory is:", os.getcwd())
