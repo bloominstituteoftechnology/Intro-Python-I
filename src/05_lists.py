@@ -40,4 +40,12 @@ print(len(x))
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
 for index in range(len(x)):
-    print(x[index] * 1000)
+     print(x[index] * 1000)
+
+for num in x:
+    print(num*1000)
+
+
+numbers = [1000] #second try not as succesful
+for index in range(len(x)):
+    print(x * numbers)
