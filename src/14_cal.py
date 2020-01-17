@@ -21,4 +21,74 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import datetime as date
+
+# sys.argv
+
+#Default arguments
+#Functions
+#User input
+
+# #Create function with argument for string which then splits the string into
+# # by whitespace and checks to see how many pieces are in the list, then
+# # reads the strings as:
+# # A) Filename, B) Month, and/or C) Year
+# # The function then feeds these into an I/O read, a month input and a year
+# # input if available. If the string does not contain a 3rd 'token' i.e. year,
+# # the year will default to the current year.
+
+def dates(string):
+    x = string.split(' ')
+    print(x)
+    if x[0] == '14_cal.py':
+        print(len(x))
+        if len(x) == 2:
+            month = x[1]
+            if len(month) == 2:
+                month_split = [int(d) for d in str(month)]
+                print(month_split)
+                if month_split[0] == 0:
+                    if len(month_split) == 2:
+                        month = [str(d) for d in month_split]
+                        month = int(month[0] + month[1])
+                        year = date.now().year
+                        print(calendar.prmonth(year, month))
+                    if len(month_split) == 1:
+                        month = month_split[0]
+                        year = date.now().year
+                        print(calendar.prmonth(year, month))
+                else:
+                    month = [str(d) for d in month_split]
+                    month = int(month[0] + month[1])
+                    year = date.now().year
+                    print(calendar.prmonth(year, month))
+        if len(x) == 3:
+            month = x[1]
+            year = int(x[2])
+            if len(month) == 2:
+                month_split = [int(d) for d in str(month)]
+                print(month_split)
+                if month_split[0] == 0:
+                    if len(month_split) == 2:
+                        month = [str(d) for d in month_split]
+                        month = int(month[0] + month[1])
+                        print(calendar.prmonth(year, month))
+                    if len(month_split) == 1:
+                        month = month_split[0]
+                        print(calendar.prmonth(year, month))
+                else:
+                    month = [str(d) for d in month_split]
+                    month = int(month[0] + month[1])
+                    print(calendar.prmonth(year, month))
+    else:
+        print('Please enter the proper format (HINT: ONLY 1 FILE'
+              ' CAN BE SEARCHED AND ITS NAME IS 14_cal.py')
+
+
+#User must enter 14_cal.py, month, and year separated by single spacing
+user_input = input('Enter the filename followed by the month and the year; '
+                   'separate each of the previous 3 items with a single space:')
+
+dates(user_input)
+
+
