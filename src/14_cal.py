@@ -22,3 +22,28 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+
+def display_calendar(*term_args):
+  current_time = datetime.now()
+  clnd = calendar.TextCalendar(calendar.SUNDAY)
+  args = term_args[0]
+  print(args, 'len args: ', len(args))
+
+  if len(args) < 2:
+    year = current_time.year
+    month = current_time.month
+  elif len(args) == 2:
+    month = int(args[1])
+  elif len(args) == 3:
+    month = int(args[1])
+    year = int(args[2])
+
+  print(month, type(month), year, type(year))
+  print(clnd.formatmonth(year, month))
+
+
+
+
+if __name__ == "__main__":
+    display_calendar(sys.argv)
