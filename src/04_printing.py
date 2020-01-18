@@ -8,6 +8,13 @@ x = 10
 y = 2.24552
 z = "I like turtles!"
 
+print('These are my variables: \nx is: % 2d\ny is: %f\nz is: %s' %(x, y, z))
+
+print(f' These are my variables: \nx is: {x}\ny is: {y}\nz is: {z}')
+
+
+
+
 # Using the printf operator (%), print the following feeding in the values of x,
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
