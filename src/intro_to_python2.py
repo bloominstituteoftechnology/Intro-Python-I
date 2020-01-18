@@ -7,23 +7,24 @@
 """
 # RECAP: How do we...
 # create a list of floating point temperatures?
-# TODO
+temps = [54.2, 56.3, 101.3, 99.7]
 
 # in a single line, create a new list containing all of the temperatures from
 # the above list that are greater than 90.0?
-# TODO
+hot_temps = [t for t in temps if t > 90.0]
 
 # create a dictionary students in which their `id` is the key and their name
 # is the `value`?
 students = {}
+
+# add a new student to our dictionary? 
 students[4050]="Josh"
 students[3045]="James"
 print(students)
+
+# modify an existing student entry?
 students[1023]="Tom"
 print(students)
-
-# add a new student to our dictionary? modify an existing student entry?
-# TODO
 
 # When we write functions in different languages, it is important to know if
 # arguments are passed by REFERENCE or VALUE.
@@ -56,7 +57,7 @@ print(nums)
 # - Return # slices per person? (yes + # of leftovers that no one gets) 
 
 # 2. Plan
-def divide_pizza(people, pizzas, slices):
+#def divide_pizza(people, pizzas, slices):
     # Find total num of slices (pizza*slice)
     # Do division
         # Find "floor" (slices per person)
@@ -71,7 +72,10 @@ def divide_pizza(people, pizzas, slices):
     leftovers = total_slices % people
 
     # Return info as string
-    return f'Each person gets {slices_per_person} slices'
+    return f'Each person gets {slices_per_person} slices and there are {leftovers} extra'
+
+print(divide_pizza(4,2,8))
+print(divide_pizza(5,3,8))
 # 4. Reflect
 
 
