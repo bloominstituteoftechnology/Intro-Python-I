@@ -13,7 +13,7 @@ y = "7"
 
 # Write a print statement that combines x + y into the integer value 12
 
-statement = '5 + 7'
+statement = x + int(y)
 print(statement)
 
 
