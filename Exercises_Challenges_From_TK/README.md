@@ -60,7 +60,7 @@ def final_cost():
     return store_cost(75) + shipping(75)
 def wholesale():
     print("The total cost for the 75 books, with a 25% discount comes to", final_cost())
-    print("Book Price:", (19.95*.25), "Shipping cost:", 74+2.50, "Store Price: ", ((19.95*.25) * 75), "Total Price:", (((19.95*.25) * 75) + 74+2.50) )
+    print("Book Price:", (19.95*.25), "Shipping cost:", 74+2.50, "Store Price: ", ((19.95*.25) * 75), "Total Price:", round((((19.95*.75) * 75) + 74+2.50), 2 ))
 ```
 
 ### Exercise 2
@@ -82,11 +82,42 @@ def wholesale():
 > do_twice(print_spam)
 > Type this example into a script and test it.
 > Change do_twice so it takes two arguments, a function object and a value, and calls the function twice, passing the value as an argument.
+```python
+def do_twice(f, location):
+    name = input("What is your name? ")
+    f(location, name)
+    f(location, name)
+    
+def remind_me_because_im_old(location, name):
+    print(f"Silly you, your name is {name}, and you are at {location}")
+```
+
 > Define a function called print_twice that takes one argument and prints the value of that argument twice.
+```python
+def print_twice(user_input):
+    print("Earth to Major Tom - This just in: ", user_input, "I repeat", user_input)
+```
+
 > Use the changed version of do_twice to call print_twice twice, passing 'spam' as an argument.
+```python
+def do_twice(f, arg):
+    f(arg)
+    f(arg)
+
+def print_twice(argwed):
+    print("Earth to Major Tom - This just in: ", argwed, "I repeat", argwed)
+```
+
+
 > Define a new function called do_four that takes a function object and a value and calls the function four times, passing the value as 
 >a parameter. There should be only two statements in the body of this function, not four.
+```python
+def do_four(f, arg):
+    for x in range (0,4):
+        f(arg)
+```
 
+    
 ### Exercise 3
 
 > Fermat’s Last Theorem says that there are no positive integers a, b, and c such that
