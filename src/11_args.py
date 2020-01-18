@@ -77,4 +77,4 @@ d = {
 }
 
 # What thing do you have to add to make this work?
-f4(d)
+f4(monster="goblin", hp=3)
