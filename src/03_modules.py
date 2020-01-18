@@ -37,7 +37,7 @@ print(f' The current process id is (os.getpid())')
 
 # Print the current working directory (cwd):
 os.chdir('C:/Users/Owner/Desktop/Lambda School Projects/Intro-Python-I/src')
-
+print(f'The current directory is (os.getcwdb())')
 
 # Print out your machine's login name
-# YOUR CODE HERE
+print('The current user is', os.getlogin())
