@@ -21,4 +21,47 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import datetime, date, time
+
+# def todays_date():
+#   print(datetime.date(month, year))
+
+month = input("enter month:")
+
+month = int(month)
+year = input("enter year: ")
+year = int(year)
+day = input("enter day: ")
+day = int(day)
+
+date = datetime.date.now()
+# today = date.today()
+#empty = input("")
+#empty = int(empty)
+
+# def validate_date(d):
+#     try:
+#         if len(d) == 10: 
+#             datetime.strptime(d, '%m/%d/%Y')
+#             return True
+#         else: return False
+
+#     except ValueError:
+#         return False
+
+# print(validate_date('2/26/1000'))
+
+
+
+
+
+
+if input == month or year:
+  print(datetime.date(year, month, day))
+elif input == month and year:
+  print(f"the month is: {month} and the year is: {year}")
+elif input == "":
+  print(date)
+else:
+  print("please enter a month or year")
+
