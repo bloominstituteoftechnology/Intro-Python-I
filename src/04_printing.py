@@ -12,6 +12,7 @@ print('These are my variables: \nx is: % 2d\ny is: %f\nz is: %s' %(x, y, z))
 
 print(f' These are my variables: \nx is: {x}\ny is: {y}\nz is: {z}')
 
+print('These are my variables: \nx is: {0}\ny is: {1}\nz is {2}'.format(x, y, z))
 
 
 
@@ -19,6 +20,11 @@ print(f' These are my variables: \nx is: {x}\ny is: {y}\nz is: {z}')
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
+print('These are my variables: \nx is: % 2d\ny is: %.2f\nz is: %s' %(x, y, z))
+
 # Use the 'format' string method to print the same thing
 
+print('These are my variables: \nx is: {0\ny is: {1}\nz is: {2}'.format(x, y, z))
+
 # Finally, print the same thing using an f-string
+print(f'These are my variables:\nx is: {x}\ny is: {y}\nz is: {z}') #Using f-strings
