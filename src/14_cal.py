@@ -23,11 +23,11 @@ import sys
 import calendar
 from datetime import datetime
 
-month_entry = input('Enter the month, enter one or two digits, depending on the month ')
-year_entry = input('Enter the year, four digits for the year ')
+month_entry = input('Enter the month, enter one or two digits, depending on the month: ')
+year_entry = input('Enter the year, four digits for the year: ')
 
 today = datetime.today()
-
+print(today)
 if month_entry == "" and year_entry == "":                       # When user does not provide any information 
     print(calendar.month(today.year, today.month))
 elif month_entry == "" and year_entry != "":                     # When user provide the year only
