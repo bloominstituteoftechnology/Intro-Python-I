@@ -6,6 +6,7 @@ x = 12
 
 def change_x():
     x = 99
+    print("local x:", x)
 
 change_x()
 
@@ -21,6 +22,7 @@ def outer():
     def inner():
         y = 999
 
+    print(y)
     inner()
 
     # This prints 120. What do we have to change in inner() to get it to print
