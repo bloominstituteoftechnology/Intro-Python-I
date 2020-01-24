@@ -20,12 +20,18 @@ import sys
 
 import os
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
+import sys
+print("sys.argv = ", sys.argv)
+print("Number of Total Arguments: ", len(sys.argv))
 
 # Print the current process ID
 # YOUR CODE HERE
+print("Current Process ID: ", os.getpid())
 
 # Print the current working directory (cwd):
 # YOUR CODE HERE
+print("Current Working Directory: ", os.getcwd())
 
 # Print out your machine's login name
 # YOUR CODE HERE
+print("My Local Machine's Login Name: ", os.getlogin())
