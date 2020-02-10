@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="771a1fea-f65e-4ac1-b795-b0056a1e35b6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/00_hello.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/00_hello.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/01_bignum.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/01_bignum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/03_modules.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/03_modules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/04_printing.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/04_printing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/05_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/05_lists.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
