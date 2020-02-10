@@ -3,7 +3,7 @@
 # YOUR CODE HERE
 def is_even(num):
   if num%2==0:
-    print("true")
+    print(True)
 is_even(10)
 # Read a number from the keyboard
 num = input("Enter a number: ")
