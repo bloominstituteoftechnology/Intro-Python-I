@@ -35,14 +35,14 @@ best for learning new languages.
 
 ## Getting started
 
-1. Make sure you have Python 3 and pipenv installed.
+1. [x] Make sure you have Python 3 and pipenv installed.
 
-2. Go to the directory with the `Pipfile` and run
+2. [x] Go to the directory with the `Pipfile` and run
    ```
    pipenv install
    ```
 
-3. After the install completes, run
+3. [x] After the install completes, run
    ```
    pipenv shell
    ```
