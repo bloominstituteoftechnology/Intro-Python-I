@@ -38,11 +38,11 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 # YOUR CODE HERE
 
 
-def print_tuple(t):
-    if type(t) == int:
-        print(t)
+def print_tuple(m):
+    if type(m) == int:
+        print(m)
     else:
-        for num in t:
+        for num in m:
             print(num)
 
 
