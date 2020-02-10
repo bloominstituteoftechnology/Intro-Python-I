@@ -10,3 +10,7 @@ num = int(num)
 
 # YOUR CODE HERE
 
+def print_even_odd(num):
+    return print("Even") if num % 2 == 0 else print("Odd")
+
+print_even_odd(num)
