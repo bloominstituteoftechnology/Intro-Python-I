@@ -30,3 +30,9 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+
+""" no input = print current month """
+""" one argument (mont) = print that month """
+""" two arguments (month, year) = print that month in that year """
+""" otherwise - print usage statement saying format """ 
