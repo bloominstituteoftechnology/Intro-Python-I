@@ -33,4 +33,5 @@ print(os.getcwd())
 
 # Print out your machine's login name
 # YOUR CODE HERE
-print(os.getenv('USER'))
+#note: I tried os.getlogin() but it doesn't work on my Linux distro
+print(os.getenv('USER')) 
