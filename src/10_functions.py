@@ -11,7 +11,7 @@ def is_even():
 print is_even()
 
 # YOUR CODE HERE
-
+# type some code
 # Read a number from the keyboard
 #num = input("Enter a number: ")
 num = int(num)

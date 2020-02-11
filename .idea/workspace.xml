@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="771a1fea-f65e-4ac1-b795-b0056a1e35b6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Intro-Python-I.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Intro-Python-I.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,9 +43,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="739" y="274" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581370275046" />
-    <state x="461" y="162" key="SettingsEditor" timestamp="1581379969381">
+    <state x="352" y="140" key="SettingsEditor" timestamp="1581381503529">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581379969381" />
+    <state x="352" y="140" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581381503529" />
   </component>
 </project>
