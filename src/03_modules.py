@@ -35,3 +35,4 @@ print(f"current working directory {os.getcwd()}")
 # YOUR CODE HERE
 print(os.path.expanduser("~"))
 print(os.environ["HOME"])
+print(os.getlogin())
