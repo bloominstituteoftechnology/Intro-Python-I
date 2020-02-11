@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="771a1fea-f65e-4ac1-b795-b0056a1e35b6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/05_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/05_lists.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/02_datatypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/02_datatypes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/06_tuples.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/06_tuples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/07_slices.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/07_slices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/08_comprehensions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/08_comprehensions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/09_dictionaries.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/09_dictionaries.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/10_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/10_functions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
