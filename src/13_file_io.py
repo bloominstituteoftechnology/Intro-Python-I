@@ -20,5 +20,7 @@ with open('./foo.txt', 'r') as f:
 
 # YOUR CODE HERE
 
-with open('./bar.txt', 'r') as f:
-    print(f.read())
+with open('./bar.txt', 'w') as f:
+    f.write("My boy steve is chill")
+    f.write("My boy muamer is chill")
+    f.write("im is chill")
