@@ -17,3 +17,13 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+with open('foo.txt') as f:
+    lines = f.readlines()
+    for l in lines:
+        print(l)
+
+with open('bar.txt', 'x') as f:
+    f.writelines('''line 1
+line 2
+line 3
+''')
