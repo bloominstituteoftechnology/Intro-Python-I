@@ -31,7 +31,8 @@ class Waypoint(LatLon):
 
 """
 Make a class Geocache that can be passed parameters `name`, `difficulty`,
-`size`, `lat`, and `lon` to the constructor. What should it inherit from?
+`size`, `lat`, and `lon` to the constructor.
+What should it inherit from?
 """
 
 # YOUR CODE HERE
