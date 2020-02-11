@@ -33,10 +33,6 @@ from datetime import datetime
 thisMonth = datetime.today().month
 thisYear = datetime.today().year
 # Get user's input for year and month:
-x = input("Enter comma-separated [Year], Month: ").split(',')
-print('type[x]: ', type(x[0]))
-print('len(x): ', len(x))
-print('len(x[0])', len(x[0]))
 
 
 def cal(*args):
@@ -57,4 +53,6 @@ def cal(*args):
     print(thisMonth)
 
 
-cal(*x)
+while True:
+    x = input("Enter comma-separated [Year], Month: ").split(',')
+    cal(*x)

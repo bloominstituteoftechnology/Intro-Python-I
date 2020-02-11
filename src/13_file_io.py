@@ -21,7 +21,7 @@ f.close()
 
 # YOUR CODE HERE
 b = open('bar.txt', 'w')
-b.write('this is test 1')
-b.write('this is test 2')
-b.write('this is test 3')
+b.write('this is test 1 \n')
+b.write('this is test 2 \n')
+b.write('this is test 3 \n')
 b.close()
