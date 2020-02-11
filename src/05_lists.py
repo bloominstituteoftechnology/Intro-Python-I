@@ -4,6 +4,7 @@
 x = [1, 2, 3]
 y = [8, 9, 10]
 
+
 # For the following, DO NOT USE AN ASSIGNMENT (=).
 
 # Change x so that it is [1, 2, 3, 4]
@@ -18,12 +19,12 @@ print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE
-x.extend(y[1:])
+x.remove(8)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE
-x.insert(99, len(x) - 1)
+x.insert(len(x) - 1, 99)
 print(x)
 
 # Print the length of list x
