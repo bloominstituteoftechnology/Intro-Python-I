@@ -36,6 +36,6 @@ print(y)
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-y = []
+y = [int(i) for i in x if i!='' and int(i)%2==0]
 
 print(y)
