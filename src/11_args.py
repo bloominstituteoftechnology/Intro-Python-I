@@ -41,7 +41,7 @@ print(f2(*a))
 def f3(arg1, arg2=None):
     if arg2 is None:
         return arg1 + 1
-    return arg1 + arg2)
+    return arg1 + arg2
 
 
 print(f3(1, 2))  # Should print 3
