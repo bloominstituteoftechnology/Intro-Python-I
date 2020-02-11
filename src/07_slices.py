@@ -11,22 +11,29 @@ Use Python's slice syntax to achieve the following:
 
 a = [2, 4, 1, 7, 9, 6]
 
+"""the location in lists start from zero"""
 # Output the second element: 4:
 print(a[1])
 
 # Output the second-to-last element: 9
+"""(-)minus make reference to show values from last in reverse
+then the last number is -1 and the penultimate number is -2
+"""
 print(a[-2])
 
 # Output the last three elements in the array: [7, 9, 6]
+"""slice(from, until but not include it)"""
 print(a[3:6])
 
 # Output the two middle elements in the array: [1, 7]
 print(a[2:4])
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
+"""slice(from 1 to until the end(leave empty after :))"""
 print(a[1:])
 
 # Output every element except the last one: [2, 4, 1, 7, 9]
+"""slice(everything except the last element) """
 print(a[:-1])
 
 # For string s...

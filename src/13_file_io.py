@@ -11,6 +11,11 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # open "foo.txt"
 
 # YOUR CODE HERE
+"""
+Open the txt file
+print the text inside sing 'read()'
+and close the txt file
+"""
 print('----FOO.txt -----')
 foo = open('foo.txt', 'r')
 print(foo.read())
@@ -22,11 +27,21 @@ print(foo.read())
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+"""Create a txt file"""
 bar = open("bar.txt", "w+")
+
+"""Write 3 lines of code using a range"""
 for n in range(3):
     bar.write("blah blah blah %d\r\n" % (n+1))
+
+"""Close the txt to save the changes"""
 bar.close()
 
+"""
+Open the txt file
+print the text inside sing 'read()'
+and close the txt file
+"""
 bar = open('bar.txt', 'r')
 print('----BAR.txt -----')
 print(bar.read())

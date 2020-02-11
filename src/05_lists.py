@@ -5,7 +5,7 @@ x = [1, 2, 3]
 y = [8, 9, 10]
 
 # For the following, DO NOT USE AN ASSIGNMENT (=).
-
+#source : https://docs.python.org/3/tutorial/datastructures.html#more-on-lists
 # Change x so that it is [1, 2, 3, 4]
 # YOUR CODE HERE
 x.append(4)
@@ -32,5 +32,9 @@ len(x)
 
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
+"""
+Loop in one line:
+save (element * 1000) for each element that is in list x
+"""
 x = [element * 1000 for element in x]
 print(x)

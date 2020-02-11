@@ -10,10 +10,17 @@ def change_x():
     x = 99
     return x
 
-x = change_x()
 
 # This prints 12. What do we have to modify in change_x()
 # to get it to print 99?
+"""
+Change_x() is creating a copy of x and then applying a operation
+for that reason we cannot see the change in the global variable x
+If we want to reflect the chnage in x we have to pass the result
+of the function into the variable
+"""
+x = change_x()
+
 print('First problem:')
 print(x)
 
@@ -30,6 +37,13 @@ def outer():
     # This prints 120. What do we have to change in inner() to get it to print
     # 999?
     # Note: Google "python nested function scope".
+    """
+    inner() is creating a copy of y and then applying a operation
+    for that reason we cannot see the change in the variable 'y'
+    If we want to reflect the change in 'y' we have to pass the result
+    of the function into the variable
+    y = inner()
+    """
     print(y)
 
 print('Second problem:')

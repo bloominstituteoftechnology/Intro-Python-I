@@ -33,20 +33,38 @@ import sys
 import calendar
 from datetime import datetime
 
-if len(sys.argv) == 1:
-    print("You don't specify any input \n")
-    print(calendar.month(datetime.now().year, datetime.now().month))
-elif len(sys.argv) == 2:
-    try:
-        print(calendar.month(datetime.now().year, int(sys.argv[1])))
-    except:
-        print("\n Not a valid month")
-elif len(sys.argv) == 3:
-    try:
-        print('\n__Calendar__\n', calendar.month(
-                                                 int(sys.argv[2]),
-                                                 int(sys.argv[1])))
-    except:
-        print("\nNot a valid month or year \n")
-else:
-    print("Too many inputs, enter date: [month] [year]")
+inputU = input('Enter date: [MM] [YYYY]')
+
+
+def cal(inputU):
+    """split input"""
+    a = inputU.split(' ')
+
+    if len(inputU) == 0 or inputU.isspace():
+        """Case 1: user don't give any information"""
+        print("You don't specify any input \n")
+        """Show today calendar"""
+        print(calendar.month(datetime.now().year, datetime.now().month))
+    elif len(a) is 1:
+        """Case 2: user enter one parameter"""
+        try:
+            """Show calendar for the month given and current year"""
+            print(calendar.month(datetime.now().year, int(inputU)))
+        except:
+            """The information given by the user is not valid"""
+            print("\n Not a valid month")
+    elif len(a) == 2:
+        """Case 3: user enter two parameters"""
+        try:
+            """Show calendar for the month and year entered"""
+            print('\n__Calendar__\n', calendar.month(
+                                                     int(a[1]),
+                                                     int(a[0])))
+        except:
+            """The information given by the user is not valid"""
+            print("\nNot a valid month or year \n")
+    else:
+        """Case 4: user enter more information"""
+        print("Input not valid \nTry again enter date: [month] [year]")
+
+cal(inputU)
