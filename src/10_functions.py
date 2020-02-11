@@ -11,17 +11,17 @@ def is_even(num):
 
 # YOUR CODE HERE
 
-# def is_even ( num ):
-#     if (num % 2 == 0):
-#         print('Even!')
+def is_even2 ( num ):
+    if (num % 2 == 0):
+        print('Even!')
         
-#     else:
-#         print('Odd')
+    else:
+        print('Odd')
 
 
 num = input("Enter a number: ")
 num = int(num)
-# is_even(num)
+is_even2(num)
 print(is_even(num))
 
 
