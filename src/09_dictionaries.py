@@ -47,8 +47,8 @@ print('\nNew waypoint added:')
 # YOUR CODE HERE
 for n in waypoints:
     if 'a place' in n.values():
-        n['lon']= -130
-        n['name']= 'not a real place'
+        n['lon'] = -130
+        n['name'] = 'not a real place'
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE

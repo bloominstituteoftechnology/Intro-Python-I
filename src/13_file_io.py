@@ -7,7 +7,8 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # Open up the "foo.txt" file (which already exists) for reading
 # Print all the contents of the file, then close the file
-# Note: pay close attention to your current directory when trying to open "foo.txt"
+# Note: pay close attention to your current directory when trying to
+# open "foo.txt"
 
 # YOUR CODE HERE
 print('----FOO.txt -----')
@@ -23,7 +24,7 @@ print(foo.read())
 # YOUR CODE HERE
 bar = open("bar.txt", "w+")
 for n in range(3):
-     bar.write("blah blah blah %d\r\n" % (n+1))
+    bar.write("blah blah blah %d\r\n" % (n+1))
 bar.close()
 
 bar = open('bar.txt', 'r')

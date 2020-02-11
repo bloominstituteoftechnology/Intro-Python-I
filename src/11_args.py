@@ -5,8 +5,10 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
-def f1(a,b):
-    return(a+b)
+
+
+def f1(a, b):
+    return(a + b)
 print('f1 Sum two integers:')
 print(f1(1, 2))
 
@@ -15,6 +17,8 @@ print(f1(1, 2))
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+
+
 def f2(*args):
     return sum(args)
 print('\nf2 Python arbitrary arguments:')
@@ -27,17 +31,19 @@ a = [7, 6, 5, 4]
 
 # How do you have to modify the f2 call below to make this work?
 # Unpack the list using *
-print('\nf2 modified funtion(*var):')
+print('\n f2 modified funtion(*var) : ')
 print(f2(*a))    # Should print 22
 
-# Write a function f3 that accepts either one or two arguments. If one argument,
-# it returns that value plus 1. If two arguments, it returns the sum of the
-# arguments.
+# Write a function f3 that accepts either one or two arguments.
+# If one argument, it returns that value plus 1. If two arguments,
+# it returns the sum of the arguments.
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
+
+
 def f3(a, b=None):
-    return(a + 1 if b == None else a +b)
+    return(a + 1 if b is None else a + b)
 print('\nf3 Python default arguments:')
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -53,6 +59,8 @@ print(f3(8))     # Should print 9
 
 # YOUR CODE HERE
 print('\nf4 Python keyword arguments:')
+
+
 def f4(**kwargs):
     [print(f'key: {key}, value: {value}') for key, value in kwargs.items()]
 
