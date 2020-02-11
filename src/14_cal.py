@@ -31,8 +31,48 @@ import sys
 import calendar
 from datetime import datetime
 
+""" Attempt two - global scope """
+if(len(sys.argv) == 3):
+  month = sys.argv[1]
+  year = sys.argv[2]
 
-""" no input = print current month """
-""" one argument (mont) = print that month """
-""" two arguments (month, year) = print that month in that year """
-""" otherwise - print usage statement saying format """ 
+if(len(sys.argv) == 2):
+  month = sys.argv[1]
+  year = datetime.now().year
+
+if(len(sys.argv) == 1):
+  month = datetime.now().month
+  year = datetime.now().year
+
+else:
+  print("Format should be: python3 14_cal.py month year")
+
+
+""" DATES ARE GIVEN IN STRINGS!! """ 
+print(calendar.month(int(year), int(month)))
+# print(calendar.prmonth(int(year),int(month)))
+
+
+
+
+
+
+
+
+""" Attempt one - creating a function """
+# x = datetime.now()
+# def calendar_generator(month=x.month, year=x.year):
+#   return calendar.month(year, month)
+
+# print(calendar_generator())
+# print(calendar_generator(1))
+# print(calendar_generator(2,2020))
+# print(calendar_generator(2,2021))
+
+
+
+
+
+
+
+
