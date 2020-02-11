@@ -5,6 +5,7 @@
 
 
 def is_even(x):
+    """function that cheks is a number is even or not"""
     if (num % 2) == 0:
         return True
     else:

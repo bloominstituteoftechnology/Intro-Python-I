@@ -25,9 +25,7 @@ class Waypoint(LatLon):
         super().__init__(lat, lon)
 
     def __str__(self):
-        return ('{}, {}, {} '.format(self.name,
-                                     self.lat,
-                                     self.lon))
+        return(f'name: {self.name}, lon: {self.lat}, lon: {self.lon}')
     pass
 
 
@@ -54,10 +52,9 @@ class Geocache(Waypoint):
     pass
 
 # Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
-print(Waypoint(41.70505, -121.51521, 'Catacombs'))
 
 # YOUR CODE HERE
-waypoint = Waypoint(80, 120, 'Name')
+waypoint = Waypoint(41.70505, -121.51521, 'Catacombs')
 # Without changing the following line, how can you make it print into something
 # more human-readable? Hint: Look up the `object.__str__` method
 """
@@ -70,4 +67,7 @@ print(waypoint)
 # YOUR CODE HERE
 geocache = Geocache(44.052137, -121.41556, 'Newberry Views', 1.5, 2)
 # Print it--also make this print more nicely
+"""
+Included into he function def __str__(self)
+"""
 print(geocache)

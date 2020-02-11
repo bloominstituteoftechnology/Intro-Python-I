@@ -16,6 +16,9 @@ the command-line arguments passed to the script.
 # YOUR CODE HERE
 print('__SYS__')
 print("sys.argv:\n")
+"""
+function that print all the elements of sys.argv
+"""
 for x in sys.argv:
     print(x)
 
