@@ -23,3 +23,5 @@ with open('./foo.txt' , 'r') as f:
 
 with open('./bar.txt' , 'w') as f:
     f.write("big cheese")
+    f.write("big cheezits")
+    f.write("big cheese curds")
