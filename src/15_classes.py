@@ -1,5 +1,7 @@
-# Make a class LatLon that can be passed parameters `lat` and `lon` to the
-# constructor
+"""
+Make a class LatLon that can be passed parameters
+`lat` and `lon` to theconstructor
+"""
 # YOUR CODE HERE
 
 
@@ -29,10 +31,14 @@ class Waypoint(LatLon):
     pass
 
 
-# Make a class Geocache that can be passed parameters `name`, `difficulty`,
-# `size`, `lat`, and `lon` to the constructor. What should it inherit from?
+"""
+Make a class Geocache that can be passed parameters `name`, `difficulty`,
+`size`, `lat`, and `lon` to the constructor. What should it inherit from?
+"""
 
 # YOUR CODE HERE
+
+
 class Geocache(Waypoint):
     def __init__(self, lat, lon, name, difficulty, size):
         self.difficulty = difficulty
