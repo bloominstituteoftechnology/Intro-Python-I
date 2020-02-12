@@ -46,10 +46,10 @@ print(waypoints)
 # value is -130 and change its name to "not a real place"
 # Note: It's okay to access the dictionary using bracket notation on the
 # waypoints list.
-print(waypoints[0]["lon"])
+# print(waypoints[0]["lon"])
 
 waypoints[0]["lon"] = -130
-waypoints[0]["name"] = "a place"
+waypoints[0]["name"] = "not a real place"
 
 print (waypoints[0].values())
 # YOUR CODE HERE
