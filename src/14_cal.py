@@ -30,3 +30,25 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+user_input = input("Enter month and year separated by a comma: ")
+
+
+def fetch_cal(t):
+    if t == "":
+        today = datetime.today()
+        ty = today.year
+        tm = today.month
+        print(calendar.month(ty, tm))
+    elif "," in t:
+        result = [x.strip() for x in t.split(',')]
+        m = int(result[0])
+        y = int(result[1])
+        print(calendar.month(y, m))
+    else:
+        mo = int(t)
+        yr = 2020
+        print(calendar.month(yr, mo))
+
+
+fetch_cal(user_input)
