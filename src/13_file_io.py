@@ -15,7 +15,7 @@ with open('src/foo.txt', 'r') as f:
     read_data = f.read()
 print(read_data)
 
-f.closed
+f.close()
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
@@ -26,9 +26,9 @@ f.closed
 
 with open('bar.txt', 'w') as f:
   f.write('This is the first test\nIs Dammy a fine girl? \nDammy is a fine girl')
-f.closed
+f.close()
 
 with open('bar.txt') as f:
   read_data = f.read()
   print(read_data)
-f.closed
+f.close()
