@@ -31,8 +31,23 @@ import sys
 import calendar
 from datetime import datetime
 
+
+print("please input a month without a zero, then press enter, then \
+  a 4-digit year")
+
+inp = int(input())
+inp2 = int(input())
+
 def cal(month=0, year=0):
   if month == 0 and year == 0:
-    print(datetime.now())
+    today = datetime.today()
+    print(datetime(today. year, today.month, 1))
+  elif month != 0 and year== 0:
+    print(calendar.month(datetime.now().year, month))
+  elif month != 0 and year != 0:
+    print(calendar.month(year, month))
+  else:
+    print("please input a month without a zero, then press enter, then \
+  a 4-digit year")
 
-cal()
+cal(inp, inp2)
