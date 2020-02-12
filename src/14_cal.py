@@ -23,3 +23,36 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+# Get arguments
+args = sys.argv
+
+today = datetime.now()
+current_month = today.month
+current_year = today.year
+time = today.time()
+
+tc = calendar.TextCalendar(calendar.SUNDAY)
+# text_cal_str = tc.formatmonth(current_year, current_month) # Fix this to take user input
+
+# Ask for user input for the month and year
+# Check if user input is empty -> If it is, default to current month and year
+    # print(current_month)
+# If only 1 argument is given, assume it's the month
+    # Print calendar for the month given by the user and the current year
+# If both arguments are given, print calendar for month and year given by the user
+
+if len(args) == 1:
+    # Print current month and year calendar
+    tc.prmonth(current_year, current_month)
+elif len(args) == 2:
+    # Assume user entered month
+    month_input = int(args[1])
+    tc.prmonth(current_year, month_input)
+elif len(args) == 3:
+    # Print calendar to match user input
+    month_input = int(args[1])
+    year_input = int(args[2])
+    tc.prmonth(year_input, month_input)
+else:
+    print("That format isn't recognized. Exmaple: '14__cal.py month year'")
