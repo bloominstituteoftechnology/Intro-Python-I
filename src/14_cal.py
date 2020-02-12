@@ -16,7 +16,7 @@ and does the following:
    month and year.
  - Otherwise, print a usage statement to the terminal indicating
    the format that your program expects arguments to be given.
-   Then exit the program.
+   Then exit the program. 
 
 Note: the user should provide argument input (in the initial call to run the file) and not 
 prompted input. Also, the brackets around year are to denote that the argument is
@@ -28,23 +28,25 @@ it should use today’s date to get the month and year.
 """
 
 import sys
-print(sys.argv)
 import calendar
 from datetime import datetime
-
 def time(*news):
-  print(news)
-    if len(news) == 1:
-        print(datetime.now)
-    elif news[0] and news[1]:
-          print(datetime.month(news[0]))
-          print(datetime.year(news[1]))          
+    if len(news[0]) == 1:
+        now = datetime.today()
+        print(calendar.month(now.year, now.month))
+    elif len(news[0]) == 2:
+          now = datetime.today()
+          c = int(news[0][1])
+          print(calendar.month(now.year, c ))
+    elif len(news[0]) == 3:
 
+        a = int(news[0][1])
+        b = int(news[0][2])
+        print(calendar.month(b, a))
+    
 
+time(sys.argv)
 
-
-
-time(sys.argv[1], sys.argv[2])
 
       
     
