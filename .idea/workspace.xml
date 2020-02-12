@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="771a1fea-f65e-4ac1-b795-b0056a1e35b6" name="Default Changelist" comment="files finished">
+    <list default="true" id="771a1fea-f65e-4ac1-b795-b0056a1e35b6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/08_comprehensions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/08_comprehensions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/11_args.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/11_args.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/12_scopes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/12_scopes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/13_file_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/13_file_io.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/14_cal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/14_cal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/15_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/15_classes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bar.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/bar.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +21,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SvnConfiguration">
@@ -76,7 +70,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581386710043</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="All 15 finished">
+      <created>1581459109889</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1581459109889</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -85,28 +86,29 @@
     <MESSAGE value="args finished" />
     <MESSAGE value="scopes finished" />
     <MESSAGE value="files finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="files finished" />
+    <MESSAGE value="All 15 finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="All 15 finished" />
   </component>
   <component name="WindowStateProjectService">
     <state x="725" y="323" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581386515574">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="725" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581386515574" />
-    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1581453716722">
+    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1581459108830">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581453716722" />
-    <state x="739" y="274" key="FileChooserDialogImpl" timestamp="1581370275046">
+    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581459108830" />
+    <state x="739" y="274" key="FileChooserDialogImpl" timestamp="1581474284278">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="739" y="274" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581370275046" />
+    <state x="739" y="274" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581474284278" />
     <state x="458" y="165" key="SettingsEditor" timestamp="1581453821163">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="458" y="165" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581453821163" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1581386714373">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1581459118782">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581386714373" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581459118782" />
   </component>
 </project>

@@ -54,6 +54,8 @@ print(waypoint.__str__)
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 
 # YOUR CODE HERE
+geocache = Geocache("Newberry Views", 1.5, 2, 44.052137, -121.41556)
+print(f"{geocache.name}, diff {geocache.difficulty}, size {geocache.size}, {geocache.lon} {geocache.lat}")
 
 # Print it--also make this print more nicely
-#print(geocache)
+print(geocache.__str__())
