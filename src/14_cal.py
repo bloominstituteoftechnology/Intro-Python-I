@@ -37,7 +37,7 @@ currentYear = datetime.now().year
 
 def cal(*args):
     print(args)
-    if args == ('f:/Software/Lambda/Projects/CSEU3/week1/Intro-Python-I/src/14_cal.py',):
+    if len(args) == 1:
         calsun = calendar.TextCalendar(calendar.SUNDAY)
         calsun_str = calsun.formatmonth(currentYear, currentMonth)
         print(calsun_str)
