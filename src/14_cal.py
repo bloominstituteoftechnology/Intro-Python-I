@@ -28,5 +28,23 @@ it should use today’s date to get the month and year.
 """
 
 import sys
+print(sys.argv)
 import calendar
 from datetime import datetime
+
+def time(*news):
+  print(news)
+    if len(news) == 1:
+        print(datetime.now)
+    elif news[0] and news[1]:
+          print(datetime.month(news[0]))
+          print(datetime.year(news[1]))          
+
+
+
+
+
+time(sys.argv[1], sys.argv[2])
+
+      
+    
