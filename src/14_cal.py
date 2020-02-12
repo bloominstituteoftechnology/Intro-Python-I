@@ -32,10 +32,8 @@ import calendar
 from datetime import datetime
 
 def make_calendar(month=datetime.now().month, year=datetime.now().year):
-    c = calendar.Calendar(firstweekday=6)
-    weeks = c.monthdayscalendar(year=year, month=month)
-    for week in weeks:
-        print(str(week) + '\n')
+    calendar.setfirstweekday(calendar.SUNDAY)
+    calendar.prmonth(theyear=year, themonth=month)
 
 if len(sys.argv) > 3:
     raise ValueError("Pass up to two numerical arguments. The first\
@@ -44,8 +42,8 @@ Missing arguments will default to the current date.")
 args = sys.argv[1:3]
 if args:
     args = [int(arg) for arg in args]
-if args[0] < 1 or args[0] > 12:
-    raise ValueError("Pass up to two numerical arguments. The first\
+    if args[0] < 1 or args[0] > 12:
+        raise ValueError("Pass up to two numerical arguments. The first\
 will be interpreted as the month and must be within 1 and 12.\
 Missing arguments will default to the current date.")
 make_calendar(*args)
