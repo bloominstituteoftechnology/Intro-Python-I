@@ -56,4 +56,4 @@ print(waypoints)
 
 
 for v in waypoints:
-    print(v.values())
+    print(v)
