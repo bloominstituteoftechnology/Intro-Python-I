@@ -2,3 +2,10 @@
 # (try doing the same thing in the JS console and see what it outputs)
 
 # YOUR CODE HERE
+
+def bignum():
+    print(2**65536)
+
+bignum()
+
+

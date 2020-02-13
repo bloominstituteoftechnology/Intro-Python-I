@@ -10,9 +10,17 @@ import sys
 
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
+program_name = sys.argv[0]
+arguments = sys.argv[1:]
+count = len(arguments)
+
+for x in sys.argv:
+    print("Argument: ", x)
+
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
+
 
 # Print out the version of Python you're using:
 # YOUR CODE HERE
