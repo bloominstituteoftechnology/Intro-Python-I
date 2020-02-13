@@ -35,7 +35,11 @@ waypoints = [
 
 # Add a new waypoint to the list
 # YOUR CODE HERE
-waypoints.append([{"lat": 57, "lon": -105, "name": "Lambda"}])
+waypoints.append({
+    "lat": 57, 
+    "lon": -105, 
+    "name": "Lambda"
+})
 print(waypoints)
 
 
@@ -53,7 +57,6 @@ print(waypoints)
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
-
 
 for v in waypoints:
     print(v)
