@@ -1,10 +1,11 @@
 # Experiment with scopes in Python.
-# Good reading: https://www.programiz.com/python-programming/global-local-nonlocal-variables
+# Good reading: https://www.programiz.com/pyth  on-programming/global-local-nonlocal-variables
 
 # When you use a variable in a function, it's local in scope to the function.
 x = 12
 
 def change_x():
+    global x
     x = 99
 
 change_x()
@@ -19,7 +20,9 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
+       
 
     inner()
 
