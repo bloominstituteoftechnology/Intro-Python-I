@@ -10,7 +10,8 @@ def f1(n1,n2):
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and prints the
-# sum. Google for "python arbitrary arguments" and look for "*args"
+# sum.
+# Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
 def f2 (*args):
@@ -26,12 +27,14 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 
 a = [7, 6, 5, 4]
 
+
 # What thing do you have to add to make this work?
 print(f2(*a))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
-# arguments. Google "python default arguments" for a hint.
+# arguments.
+# Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
 def f3 (*arg):
@@ -50,7 +53,7 @@ print(f3(8))     # Should print 9
 # key: foo, value: bar
 # key: baz, value: 12
 #
-# Google "python keyword arguments".
+# Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
 def f4 (**kwargs):#
@@ -73,5 +76,10 @@ d = {
     "hp": 3
 }
 
+
 # # What thing do you have to add to make this work?
 f4(**d)
+
+# How do you have to modify the f4 call below to make this work?
+f4(d)
+
