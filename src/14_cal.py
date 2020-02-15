@@ -24,6 +24,7 @@ import calendar
 from datetime import datetime
 
 userInput = input("Enter a date in 'month [year]' format: ").split(" ")
+
 if userInput[0] == "":
   today = datetime.today()
   print(today.month)
