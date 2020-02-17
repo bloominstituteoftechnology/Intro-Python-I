@@ -18,8 +18,7 @@ print (y)
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 
 y = []
-for x in range(10):
-    y.append(x**3)
+y = [x**3 for x in range(10)]
 print(y)
 
 # Write a list comprehension to produce the uppercase version of all the
