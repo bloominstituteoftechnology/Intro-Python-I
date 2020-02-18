@@ -5,11 +5,11 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
-# def f1(x, y):
-#     return x + y
+def f1(x, y):
+    return x + y
 
 
-# print(f1(1, 2))
+print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and prints the
 # sum.
@@ -38,6 +38,9 @@ print(f2(*a))   # Should print 22
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
+def f3(x, num = 1):
+    return x + num
+
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -53,6 +56,14 @@ print(f3(8))     # Should print 9
 
 # YOUR CODE HERE
 
+def f4(**attributes):
+    """Return a string of comma-separated key-value pairs."""
+    return ", ".join(
+        f"key:{param} value:{value}"
+        for param, value in attributes.items()
+    )
+    
+
 # Should print
 # key: a, value: 12
 # key: b, value: 30
@@ -64,10 +75,10 @@ f4(a=12, b=30)
 # key: founded, value: "March 23, 1868"
 f4(city="Berkeley", population=121240, founded="March 23, 1868")
 
-d = {
-    "monster": "goblin",
-    "hp": 3
-}
+# d = {
+#     "monster": "goblin",
+#     "hp": 3
+# }
 
 # How do you have to modify the f4 call below to make this work?
-f4(d)
+# f4(d)

@@ -29,4 +29,69 @@ it should use today’s date to get the month and year.
 
 import sys
 import calendar
-from datetime import datetime
+import datetime
+
+# Pseudocode
+# 1. get user input
+user_input = sys.argv
+
+c = calendar.TextCalendar(calendar.SUNDAY)
+
+current_month = datetime.datetime.now().strftime("%m")
+current_year = datetime.datetime.now().strftime("%Y")
+
+mm = int(current_month)
+yy = int(current_year)
+
+format_current = c.prmonth(yy, mm)
+
+
+arg_month = user_input[1]
+m = int(arg_month)
+arg_year = user_input[2]
+y = int(arg_year)
+arg_length = len(user_input)
+
+length_2 = c.prmonth(y, m)
+length_1 = c.prmonth(yy, m)
+error = "Please enter arguments for month and year (ex: python3 14_cal.py 4 2015)"
+
+# 3. Else If user enters one argument, assume it is a month , print the calendar for that month of the current year. ([month] 2020)
+if arg_length == 2:
+    c = calendar.TextCalendar(calendar.SUNDAY)
+    print(length_1)
+# 4. Else If user enters two arguments, assume they gave the month and year. Print the calendar for given month and year.
+elif arg_length == 3:
+    c = calendar.TextCalendar(calendar.SUNDAY)
+    print(length_2)
+
+# 2. If user doesn't enter any input, print the calendar for the current month ('datetime' module)
+elif arg_length == 1:
+    print(format_current)
+# 5. Else, print statement to the terminal indicating proper format that your program expects arguments to be given.
+else:
+    print(error)
+# 6. Then exit the program.
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def print_calendar(user_input):
+  
+#     user_month = user_input[0]
+#     user_year = user_input[1]
+
+#     if not user_input:
+
+    
+
+
