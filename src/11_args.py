@@ -11,6 +11,8 @@
 # a = (1, 2, 3, 4, 5)
 # x = sum(a)
 
+# argv represents all the items that come along via the command line input
+
 
 def f2(*argv):
     return sum(argv)
@@ -79,6 +81,8 @@ print(f3(8))     # Should print 9
 
 # # YOUR CODE HERE
 
+
+# Takes key-value arguments
 def f4(**kwargs):
     for key, val in kwargs.items():
         print(f"key: {key}, value: {val}")
@@ -89,6 +93,7 @@ def f4(**kwargs):
 # # key: b, value: 30
 f4(test='this is a test')
 f4(a=12, b=30)
+
 
 # # Should print
 # # key: city, value: Berkeley

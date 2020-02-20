@@ -53,4 +53,4 @@ def call_calendar(*args):
         print(visual(firstweekday=6).formatmonth(int(args[1]), int(args[0])))
 
 
-call_calendar()
+call_calendar(12, 2012)

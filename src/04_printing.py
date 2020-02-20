@@ -12,6 +12,19 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
+# %s is strings
+# %d Ints
+# %f Floating point numbers
+# % Floating Floating point numbers with a fixed amount of digits to the right of the dot.
+
+print("A list: %s" % (x))
+print("A list: %s" % (y))
+print("A list: %s" % (z))
+
+print("x is %d, y is %f, z is %s" % (x, y, z))
+
 # Use the 'format' string method to print the same thing
+print('x is {}, y is {}, z is {}'.format(x, y, z))
 
 # Finally, print the same thing using an f-string
+print(f'x is {x}, y is {y}, z is {z}')
