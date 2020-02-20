@@ -5,7 +5,7 @@ https://docs.python.org/3.6/library/calendar.html
 
 Write a program that accepts user input of the form
   `14_cal.py [month] [year]`
-and does the following:
+and does the following: 
  - If the user doesn't specify any input, your program should
    print the calendar for the current month. The 'datetime'
    module may be helpful for this.
@@ -30,3 +30,27 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+today = datetime.today()
+
+# Can use HTMLCalendar to display on a webpage
+# Using datetime module to invoke today function which returns current local date
+# Calling calendar module
+# Using TextCalendar class and subclass like format month
+# TextCalendar takes optional firstweekday so we can change from sunday->monday
+# formatmonth Takes an input of year/month expects as example (12/2012)
+
+
+def call_calendar(*args):
+    visual = calendar.TextCalendar
+    if len(args) == 0:
+        print(visual(firstweekday=6).formatmonth(
+            today.year, today.month))
+    elif len(args) == 1:
+        print(visual(firstweekday=6).formatmonth(
+            today.year, int(args[0])))
+    elif len(args) == 2:
+        print(visual(firstweekday=6).formatmonth(int(args[1]), int(args[0])))
+
+
+call_calendar(12, 2012)
