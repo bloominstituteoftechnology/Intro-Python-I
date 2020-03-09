@@ -1,3 +1,4 @@
+Jean Fraga DS8 CS27
 # Intro to Python I
 
 It's time to learn a new language! Python!
