@@ -4,8 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pycodestyle = "*"
+mypy = "*"
+pylint = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3"
+python_version = "3.8"
