@@ -32,8 +32,8 @@ print(y)
 # Use a list comprehension to create a list containing only the _even_ elements
 # the user entered into list x.
 
-getlist = input("Enter comma-separated numbers: ")
+getlist = input("Enter comma-separated numbers: ").split(",")
 
-z = [x for x in getlist if x % 2 == 0]
+z = [x for x in getlist if int(x) % 2 == 0]
 
 print(z)
