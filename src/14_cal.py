@@ -49,4 +49,4 @@ calendar = calendar.TextCalendar()
 if month != None:
   calendar.prmonth(year, month)
 else:
-  calendar.pryear(0)
+  calendar.pryear(year)
