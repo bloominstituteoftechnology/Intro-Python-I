@@ -30,3 +30,39 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+def current_month():
+  year = datetime.today().year
+  month = datetime.today().month
+  calendar.TextCalendar().prmonth(year,month)
+
+
+
+def passed_month(month):
+  year = datetime.today().year
+  calendar.TextCalendar().prmonth(year,month)
+
+
+
+def full_input(month,year):
+  calendar.TextCalendar().prmonth(year,month)
+
+documentation = """
+Pass in [month] [year] for a display of that month in time.
+If no year is passed the module will print out the month provided for the current year.
+If no imput is provided the current month will be displayed.
+If invalid input is provided, this prompt is printed.
+"""
+
+if len(sys.argv) == 1: current_month()
+elif len(sys.argv) == 2: 
+  try:
+    passed_month(int(sys.argv[1]))
+  except:
+    print(documentation)
+elif len(sys.argv) == 3: 
+  try:
+    full_input(int(sys.argv[1]), int(sys.argv[2]))
+  except: 
+    print(documentation)
+else: print(documentation)
