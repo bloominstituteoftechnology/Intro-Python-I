@@ -5,7 +5,9 @@
 x = 12
 
 def change_x():
+    global x
     x = 99
+ 
 
 change_x()
 
@@ -19,6 +21,10 @@ def outer():
     y = 120
 
     def inner():
+        # adding nonlocal y is the equivalent of moving up 'one level' 
+        # to grab a nonglobal variable for use in the current leve
+        # it's a lot like the global identifier used above
+        nonlocal y 
         y = 999
 
     inner()
