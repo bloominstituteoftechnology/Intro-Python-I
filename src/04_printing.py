@@ -17,3 +17,4 @@ print('x is% 2d, y is% 2.2f, z is "% s"'%(x,y,z))
 print('x is {0}, y is {1:2.2f}, z is "{2}"'.format(x,y,z))
 
 # Finally, print the same thing using an f-string
+print(f'x is {x}, y is {round(y, 2)}, z is "{z}"')
