@@ -16,12 +16,10 @@ for i in range(len(sys.argv)):
 # Print out the OS platform you're using:
 # YOUR CODE HERE
 print(sys.platform)
-    #win32
 
 # Print out the version of Python you're using:
 # YOUR CODE HERE
 print(sys.version)
-    # version 3.8.2
 
 import os
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
