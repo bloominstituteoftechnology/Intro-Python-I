@@ -29,4 +29,21 @@ it should use today’s date to get the month and year.
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import date
+
+
+calendar.setfirstweekday(calendar.SUNDAY)
+cal = (calendar.month(theyear=date.today().year, 
+                     themonth=date.today().month)
+                    )
+
+try:
+    theyear = sys.argv[1]
+    themonth = sys.arv[2]
+    print(cal)
+except:
+    try: 
+      themonth = sys.argv[1]
+      print(cal)
+    except:
+      print(cal)
