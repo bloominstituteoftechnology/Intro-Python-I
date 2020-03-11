@@ -35,13 +35,46 @@ waypoints = [
 
 # Add a new waypoint to the list
 # YOUR CODE HERE
+# 9
+# https://github.com/LambdaSchool/Intro-Python-I/blob/master/src/09_dictionaries.py
+
+# 
+
+waypoints = [
+    {
+        "lat": 43,
+        "lon": -121,
+        "name": "a place"
+    },
+    {
+        "lat": 41,
+        "lon": -123,
+        "name": "another place"
+    },
+    {
+        "lat": 43,
+        "lon": -122,
+        "name": "a third place"
+    }
+]
+
+# Add a new waypoint to the list
+mask1 = {
+        "lat": 42,
+        "lon": -912,
+        "name": "a forth place"
+        }
+waypoints.append(mask1)
+print(waypoints)
 
 # Modify the dictionary with name "a place" such that its longitude
 # value is -130 and change its name to "not a real place"
 # Note: It's okay to access the dictionary using bracket notation on the
 # waypoints list.
 
-# YOUR CODE HERE
+waypoints[0]["lon"] = -130
+print(waypoints[0]["lon"])
 
 # Write a loop that prints out all the field values for all the waypoints
-# YOUR CODE HERE
+for i in range (0,len(waypoints)):
+    print(waypoints[i].values())
