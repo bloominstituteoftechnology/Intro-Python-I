@@ -3,7 +3,7 @@
 # YOUR CODE HERE
 
 def check_even(num):
-    if num % 2 == 0:
+    if num % 2 == 0: # <- this is the defenition of even
         return f"Number: {num} is even!"
     else:
         return f"Number: {num} is odd!"

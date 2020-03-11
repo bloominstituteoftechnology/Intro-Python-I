@@ -35,12 +35,12 @@ from datetime import datetime
 lenght = len(sys.argv)
 if lenght == 2:
   month = None
-  year = int(sys.argv[1])
+  year = int(sys.argv[1]) # replace the word in the argument, at position in this case month
 elif lenght == 3:
   month = int(sys.argv[1])
-  year = int(sys.argv[2])
+  year = int(sys.argv[2]) # replace the word in the argument, at position in this case year
 else:
-  print("usage: cal.py [month] year")
+  print("usage: cal.py [month][year]")
   sys.exit(1)
 
 #making new calendar:
