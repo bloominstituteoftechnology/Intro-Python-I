@@ -30,3 +30,66 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+# From lecture:
+
+# Read out arguments
+
+args = sys.argv
+print(f"args: {args}")
+
+# If no args supploed...
+# Print a text calednar for current month and year
+# If 1 arg is supploed...
+# Check if it's an int 1-12, print oout cal for that month, current year
+# If 2 args are supplied...
+# Check if 1 is int 1-12, check if 2 is an int
+# Print out calendar for that month and year
+# Otherwise, print an error with usage hint
+
+date = datetime.today()
+mm = date.month
+yy = date.year
+
+if len(args) == 1:
+    # month = datetime.today().month
+    # year = datetime.today().year
+    # calendar.prmonth(year, month)
+    pass
+elif len(args) == 2:
+    mm = int(args[1])
+    # year = datetime.today().year
+    # calendar.prmonth(year, month)
+elif len(args) == 3:
+    mm = int(args[1])
+    yy = int(args[2])
+    # calendar.prmonth(year, month)
+else:
+    print("something has gone terribly wrong. try again!")
+    exit()
+
+calendar.prmonth(yy, mm)
+
+
+# My incorrect way:
+
+# date = datetime.today()
+
+
+# def cal(mm, yy):
+#     if mm == "":
+#         mm = date.month
+#     else:
+#         mm = int(mm)
+#     if yy == "":
+#         yy = date.month
+#     else:
+#         yy = int(yy)
+
+#     print(calendar.month(yy, mm))
+
+
+# mm = input("Enter Month (1 - 12): ")
+# yy = input("Enter year (yyyy): ")
+
+# cal(mm, yy)
