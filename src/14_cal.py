@@ -31,6 +31,12 @@ import sys
 import calendar
 from datetime import datetime
 
+
+TGREEN =  '\033[32m' # Green Text
+
+# variables
+curMonth = datetime.now().month
+curYr = datetime.now().year
 # parse the command line:
 lenght = len(sys.argv)
 if lenght == 2:
@@ -40,13 +46,16 @@ elif lenght == 3:
   month = int(sys.argv[1])
   year = int(sys.argv[2]) # replace the word in the argument, at position in this case year
 else:
-  print("usage: cal.py [month][year]")
+  print(f"{TGREEN}, usage: cal.py [{curMonth}][{curYr}]" )
   sys.exit(1)
 
 #making new calendar:
 calendar = calendar.TextCalendar()
+
 #if there is a month and year
+print(TGREEN)
 if month != None:
-  calendar.prmonth(year, month)
+ print(f"{calendar.prmonth(year, month)}")
+ 
 else:
-  calendar.pryear(year)
+  print(f"{calendar.pryear(year)} ")
