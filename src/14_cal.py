@@ -35,23 +35,16 @@ arg = sys.argv
 mon = datetime.today().month
 yr = datetime.today().year
 
-if(len(arg) == 1):
-  pass
-  
-elif(len(arg) == 2 ):
-  mon = int(arg[1])
-  
-
+if(len(arg) == 2 ):
+  mon = int(arg[1])  
 elif(len(arg) == 3 ):
   mon = int(arg[1])
   yr = int(arg[2])
-  
-else:
-  print("14_cal.py [month] [year]")
 
-if(mon < 1 or mon > 12):
-  print("Enter a valid month")
+if(len(arg) > 3):
+  print("Enter Valid arguments  ----  14_cal.py [month] [year]")
+elif(mon < 1 or mon > 12):
+  print("Enter a valid month 1 - 12")
 else:
   print(calendar.month(yr,mon))
-# for arg in sys.argv:
-#   print(arg)
+
