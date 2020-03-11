@@ -16,6 +16,7 @@ print(f1(1, 2))
 
 # YOUR CODE HERE
 
+
 def f2(*args):
     if len(args) == 1:
         return args[0]
