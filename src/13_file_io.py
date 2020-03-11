@@ -30,7 +30,7 @@ Python is great.
 # bar_file.write(stuff_to_write)
 # # Close file
 # bar_file.close()
-# 
+
 # # Check what we wrote
 # bar_file = open('bar.txt', 'r')
 # for i in bar_file:
