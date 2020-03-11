@@ -11,7 +11,7 @@ class LatLon:
 # constructor. It should inherit from LatLon. Look up the `super` method.
 
 # YOUR CODE HERE
-
+# inheriting LatLon below in ()
 class Waypoint(LatLon):
     def __init__(self, name, lat, lon):
         super().__init__(lat, lon)

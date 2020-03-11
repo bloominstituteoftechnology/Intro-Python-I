@@ -39,6 +39,8 @@ curMonth = datetime.now().month
 curYr = datetime.now().year
 # parse the command line:
 lenght = len(sys.argv)
+
+#set up the month 
 if lenght == 2:
   month = None
   year = int(sys.argv[1]) # replace the word in the argument, at position in this case month
