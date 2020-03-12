@@ -45,12 +45,10 @@ print(f3(8))     # Should print 9
 #
 # Google "python keyword arguments".
 
-def f4(**kvps):
-    key = ""
-    value = 0
-    for kvp in kvps:
-        key = kvp
-        value = kvps[kvp]
+def f4(**kwargs):
+    for key in kwargs:
+        key = key
+        value = kwargs[key]
         print(f"Key: {key}, value: {value}")
 
 # Should print

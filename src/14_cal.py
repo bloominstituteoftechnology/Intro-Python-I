@@ -52,6 +52,8 @@ elif len(args) == 2:
 elif len(args) == 3:
     # Print calendar to match user input
     month_input = int(args[1])
+    # if month_input == range(1...12):
+        
     year_input = int(args[2])
     tc.prmonth(year_input, month_input)
 else:
