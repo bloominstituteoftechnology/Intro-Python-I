@@ -5,6 +5,7 @@
 x = 12
 
 def change_x():
+    global x #making python use x in the global scope
     x = 99
 
 change_x()
@@ -19,6 +20,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y # indicate python to use y from containing scope
         y = 999
 
     inner()

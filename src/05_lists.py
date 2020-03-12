@@ -20,10 +20,12 @@ print(x.remove(8))
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE
-print(x)
+print(x.insert(5, 99))
 
 # Print the length of list x
 # YOUR CODE HERE
-
+print(len(x))
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
+multiplied = [i * 10000 for i in x]
+print(multiplied)
