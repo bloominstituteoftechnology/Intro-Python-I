@@ -5,7 +5,8 @@
 
 # NOTES:
 # - I still would like to know if I can have access to the index inline without having to make an index property
-# - I think there's still a space at the end which I should get rid of
+# - I think there's still a space at the end which I should get rid of ...*FIXED*
+# - Could be cleaned up - Find out if there is something similar to a ternary operator in Swift!
 
 
 def reverse_every_other_word_in(given_text):
@@ -16,9 +17,15 @@ def reverse_every_other_word_in(given_text):
     for word in list_text:
         if wordIndex % 2 != 0:
             reversed = word[::-1]
-            mixed_string += reversed + " "
+            if wordIndex < len(list_text) - 1:
+                mixed_string += reversed + " "
+            else:
+                mixed_string += reversed
         else:
-            mixed_string += word + " "
+            if wordIndex < len(list_text) - 1:
+                mixed_string += word + " "
+            else:
+                mixed_string += word
             
         wordIndex = wordIndex + 1
             
