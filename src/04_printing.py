@@ -16,4 +16,4 @@ z = "I like turtles!"
 print("x is %d, y is %.2f, z is \"%s\"" % (x, y, z))
 
 # Finally, print the same thing using an f-string
-f'x is {x}, y is {y:.2f}, z is {z}'
+print(f'x is {x}, y is {y:.2f}, z is {z}')
