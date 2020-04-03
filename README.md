@@ -110,9 +110,9 @@ The suggested order for going through each of the directories is:
 
    - [x] Try installing one for your editor! Done.
 
-2. Rewrite code challenges you've solved before or projects you've implemented
-   before in a different language in Python. Start getting in as much practice
-   with the language as possible!
+2. - [x] Rewrite code challenges you've solved before or projects you've implemented
+         before in a different language in Python. Start getting in as much practice
+         with the language as possible!
 
 3. Write a program to determine if a number, given on the command line, is prime.
 
