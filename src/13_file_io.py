@@ -15,8 +15,9 @@ f = open('./foo.txt', 'r')
 for line in f:
     print(line)
 '''
-
-with open('./foo.txt', 'r') as f:
+import os
+import sys
+with open(os.path.join(sys.path[0], 'foo.txt'), 'r') as f:
     print(f.read())
 print(f.closed)
 

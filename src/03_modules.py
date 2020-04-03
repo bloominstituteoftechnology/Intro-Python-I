@@ -54,3 +54,5 @@ print("cwd: ", os.getcwd())
 # YOUR CODE HERE
 
 print("machine's login name: ", os.getlogin())
+
+print("cwd: ", os.getcwd())
