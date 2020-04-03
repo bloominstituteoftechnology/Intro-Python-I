@@ -124,6 +124,6 @@ The suggested order for going through each of the directories is:
 
    - I could optimize my program further by using an 'or' to combine my first two checks (for <2 and not an integer), but I kept them separate to have different statements printed about why n isn't prime. I also wonder if the order of those 2 checks would have an effect on optimization??
 
-   2. Implement [The Sieve of
-      Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes), one
-      of the oldest algorithms known (ca. 200 BC).
+   2. - [x] Implement [The Sieve of
+            Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes), one
+            of the oldest algorithms known (ca. 200 BC).
