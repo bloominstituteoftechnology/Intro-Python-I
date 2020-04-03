@@ -114,9 +114,16 @@ The suggested order for going through each of the directories is:
          before in a different language in Python. Start getting in as much practice
          with the language as possible!
 
-3. Write a program to determine if a number, given on the command line, is prime.
+3. - [x] Write a program to determine if a number, given on the command line, is prime.
 
    1. How can you optimize this program?
+
+   - I optimized my for loop by only looping through n/2.
+
+   - I also optimized it by adding a break if n % i == 0
+
+   - I could optimize my program further by using an 'or' to combine my first two checks (for <2 and not an integer), but I kept them separate to have different statements printed about why n isn't prime. I also wonder if the order of those 2 checks would have an effect on optimization??
+
    2. Implement [The Sieve of
       Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes), one
       of the oldest algorithms known (ca. 200 BC).
