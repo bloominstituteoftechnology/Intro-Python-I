@@ -28,5 +28,40 @@ it should use today’s date to get the month and year.
 """
 
 import sys
-import calendar
-from datetime import datetime
+from calendar import Calendar, TextCalendar
+from datetime import datetime, date
+
+month = int(sys.argv[1]) if len(sys.argv) > 1 else date.today().month
+year = int(sys.argv[2]) if len(sys.argv) > 2 else date.today().year
+
+# Uneccessary, but a good exercise
+def construct_calendar_string(year, month):
+  weeks = Calendar().monthdatescalendar(year, month)
+  
+  weekdays = ["Mon ", "Tues", "Wed ", "Thur", "Fri ", "Sat ", "Sun "]
+  months = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November",
+            "December"]
+
+  weekday_header = "│ " + " │ ".join(weekdays) + " │"
+  width = len(weekday_header)
+  title = str(months[month-1]) + " " + str(year)
+  box_top = "┌" + "┬".join(["──────"] * len(weekdays)) + "┐"
+  box_layer = "├" + "┼".join(["──────"] * len(weekdays)) + "┤"
+  box_bottom = "└" + "┴".join(["──────"] * len(weekdays)) + "┘"
+
+  calendar_string = "".join([" "] * ((width - len(title)) // 2)) + title + "\n"
+  calendar_string = calendar_string + box_top + "\n"
+  calendar_string = calendar_string + weekday_header + "\n"
+  for w in weeks:
+    calendar_string = calendar_string + box_layer + "\n"
+    calendar_string = calendar_string + "│ " + " │ ".join([ str(d.day).ljust(4) for d in w ]) + " │" + "\n"
+  calendar_string = calendar_string + box_bottom
+
+  return(calendar_string)
+
+if __name__ == "__main__":
+  print(construct_calendar_string(year, month))
+  #print(TextCalendar().formatmonth(year, month))
+
+
