@@ -26,12 +26,14 @@ def get_user_choice():
     while choice.isalpha() or int(choice) not in choice_options.keys():
         print('Invalid selection. Try again.')
         choice = input(
-            "Choose one: [1] rock, [2] paper, [3] scissors, [9] quit\n")
+            f'Choose one: [1] rock, [2] paper, [3] scissors, [9] quit\n')
 
     return choice_options[int(choice)]
 
 
 def quit_game(wins, ties, losses):
+    print('Okay, see you later.')
+    show_historical_data_message()
     text_file = open("history.txt", "w")
     text_file.write(str(wins) + "," + str(ties) + "," + str(losses))
     text_file.close()
@@ -104,6 +106,8 @@ while user_choice != "quit":
     display_result_message_and_update_score(result)
     show_historical_data_message()
     print('\n')
+    print(
+        f'Previously: You: {choice_emojis[user_choice]},  Computer: {choice_emojis[computer_choice]}.')
     user_choice = get_user_choice()
 
 # Quit game if user exits game loop
