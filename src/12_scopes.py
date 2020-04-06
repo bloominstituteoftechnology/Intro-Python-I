@@ -19,11 +19,10 @@ print(x)
 # This nested function has a similar problem.
 
 def outer():
-    global y
     y = 120
 
     def inner():
-        global y
+        nonlocal y
         y = 999
 
     inner()

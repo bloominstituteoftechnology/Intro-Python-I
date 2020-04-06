@@ -22,7 +22,4 @@ f.close()
 # YOUR CODE HERE
 b = open('bar.txt', 'w+')
 b.write("Line 1 \nLine 2 \nLine 3")
-b.flush()
-b.seek(0)
-print(b.read())
 b.close()
