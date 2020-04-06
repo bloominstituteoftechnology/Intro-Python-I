@@ -28,4 +28,4 @@ print("Current process ID: ", (os.getpid()))
 print("Current Working Directory: ", (os.getcwd()))
 
 # Print out your machine's login name
-print("Login Name: ", (os.getlogin()))
+print("Machine Login Name: ", (os.getlogin())) # NOTE: This is not printing the username correctly
