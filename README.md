@@ -65,7 +65,7 @@ Each directory inside the `src/` directory presents exercises revolving around a
 
 The suggested order for going through each of the directories is:
 
-1.  [ ] `hello` -- Hello world
+1.  [x] `hello` -- Hello world
 1.  [ ] `bignum` -- Print some big numbers
 1.  [ ] `datatypes` -- Experiment with type conversion
 1.  [ ] `modules` -- Learn to import from modules
