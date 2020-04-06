@@ -23,6 +23,7 @@ print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE
+x.insert(-1, 99)
 print(x)
 
 # Print the length of list x
