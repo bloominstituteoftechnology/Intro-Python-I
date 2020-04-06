@@ -13,7 +13,8 @@ import platform
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
 print("=== sys.argv ===")
-print(sys.argv[0])
+for a in sys.argv:
+    print(a)
 print('================\n')
 
 # Print out the OS platform you're using:
