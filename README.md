@@ -69,7 +69,7 @@ The suggested order for going through each of the directories is:
 1.  [x] `bignum` -- Print some big numbers
 1.  [x] `datatypes` -- Experiment with type conversion
 1.  [x] `modules` -- Learn to import from modules
-1.  [ ] `printing` -- Formatted print output
+1.  [x] `printing` -- Formatted print output
 1.  [ ] `lists` -- Python's version of arrays
 1.  [ ] `tuples` -- Immutable lists typically for heterogenous data
 1.  [ ] `slices` -- Accessing parts of lists
