@@ -76,4 +76,4 @@ d = {
 # How do you have to modify the f4 call below to make this work?
 #f4(d)
 # Modified f4 call to make it work
-f4(d=None)
+f4(**d)
