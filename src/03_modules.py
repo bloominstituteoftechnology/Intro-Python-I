@@ -19,6 +19,7 @@ print(sys.platform)
 
 # Print out the version of Python you're using:
 # YOUR CODE HERE
+print(sys.version)
 
 
 import os
