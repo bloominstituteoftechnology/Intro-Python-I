@@ -26,4 +26,4 @@ print(x)
 print(len(x))
 
 # Print all the values in x multiplied by 1000
-print([ n * 1000 for n in x ])
+print([n * 1000 for n in x])
