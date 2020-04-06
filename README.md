@@ -21,6 +21,8 @@ and what doesn't as you go through the process of exploring Python.
   briefly for now--the idea isn't to memorize everything but to file away
   generally what functionality is available.
 
+* ^^^ This is something that I can pick up along the way when I need to accomplish a specific task
+
 * Write a more substantial toy program that uses a variety of the features.
 
 Again, keep track of what works for you. Try different things to see what works
