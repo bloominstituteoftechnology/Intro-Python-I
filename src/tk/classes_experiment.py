@@ -51,3 +51,72 @@ class Customer:
 
 me = Customer('Heather', 'vegetarian', 'a', 'medium')
 print(me)
+
+"""Define a class that makes use of a “private” getter 
+and setter for a “private” attribute.
+
+Use the property decorator to “wire up” the getter and setter methods 
+for accessing the property on an instance.
+
+Instantiate the class and store the instance in a variable.
+
+Test that the getter and setter methods are working when getting 
+the attribute’s value and setting the attribute’s value.
+"""
+
+
+class Restaurant:
+    def __init__(self, name, city, state):
+        self._name = name
+        self.city = city
+        self.state = state
+
+    def _set_name(self, name):
+        if not name:
+            raise Exception("Invalid Name")
+        self._name = name
+
+    def _get_name(self):
+        return self._name
+
+    name = property(_get_name, _set_name)
+
+
+pizza_hut = Restaurant('Pizza Hut', 'Orem', 'UT')
+print(pizza_hut.name)
+pizza_hut.name = 'Little Caesars'
+print(pizza_hut.name)
+# pizza_hut.name = ''
+print(pizza_hut.name)
+pizza_hut.city = ''
+print("Now city is: ", pizza_hut.city)
+
+"""
+Define a class that has a class method that references a class attribute when called.
+Do this once using the @classmethod decorator and a second time without using the decorator.
+Reflect on which method you prefer and why.
+"""
+
+
+class DeliveryDriver:
+    count = 0
+
+    def __init__(self, name, restaurant):
+        self.name = name
+        self.restaurant = restaurant
+        DeliveryDriver.motto = "30 minutes or less, or it's free!"
+        DeliveryDriver.count += 1
+
+    @classmethod
+    def say_motto(cls):
+        print(cls.motto)
+
+    def get_num_drivers():
+        print(
+            f'We currently have {DeliveryDriver.count} pizza delivery drivers!')
+
+
+otto = DeliveryDriver('Otto Snowbottom', 'Pizza Hut')
+hildegard = DeliveryDriver('Hildegard Kelly', 'Pizza Factory')
+DeliveryDriver.say_motto()
+DeliveryDriver.get_num_drivers()
