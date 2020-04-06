@@ -65,30 +65,30 @@ Each directory inside the `src/` directory presents exercises revolving around a
 
 The suggested order for going through each of the directories is:
 
-1.  `hello` -- Hello world
-1.  `bignum` -- Print some big numbers
-1.  `datatypes` -- Experiment with type conversion
-1.  `modules` -- Learn to import from modules
-1.  `printing` -- Formatted print output
-1.  `lists` -- Python's version of arrays
-1.  `tuples` -- Immutable lists typically for heterogenous data
-1.  `slices` -- Accessing parts of lists
-1.  `comprehensions` -- List comprehensions
-1.  `dictionaries` -- Dictionaries
-1.  `functions` -- Functions
-1.  `args` -- Arguments and Keyword Arguments
-1.  `scopes` -- Global, Local, and Non-Local scope
-1.  `file_io` -- Read and write from files
-1.  `cal` -- Experiment with module imports and implement a text-based calendar
-1.  `classes` -- Classes and objects
+1.  [ ] `hello` -- Hello world
+1.  [ ] `bignum` -- Print some big numbers
+1.  [ ] `datatypes` -- Experiment with type conversion
+1.  [ ] `modules` -- Learn to import from modules
+1.  [ ] `printing` -- Formatted print output
+1.  [ ] `lists` -- Python's version of arrays
+1.  [ ] `tuples` -- Immutable lists typically for heterogenous data
+1.  [ ] `slices` -- Accessing parts of lists
+1.  [ ] `comprehensions` -- List comprehensions
+1.  [ ] `dictionaries` -- Dictionaries
+1.  [ ] `functions` -- Functions
+1.  [ ] `args` -- Arguments and Keyword Arguments
+1.  [ ] `scopes` -- Global, Local, and Non-Local scope
+1.  [ ] `file_io` -- Read and write from files
+1.  [ ] `cal` -- Experiment with module imports and implement a text-based calendar
+1.  [ ] `classes` -- Classes and objects
 
 ## Stretch Goals
 
-1.  One of Python's main philosophical tenets is its emphasis on readability. To that end, the Python community has standardized around a style guide called [PEP 8](https://www.python.org/dev/peps/pep-0008/). Take a look at it and then go over the code you've written and make sure it adheres to what PEP 8 recommends. Alternatively, PEP 8 linters exist for most code editors (you can find instructions on installing a Python linter for VSCode [here](https://code.visualstudio.com/docs/python/linting)). Try installing one for your editor!
+1.  [ ] One of Python's main philosophical tenets is its emphasis on readability. To that end, the Python community has standardized around a style guide called [PEP 8](https://www.python.org/dev/peps/pep-0008/). Take a look at it and then go over the code you've written and make sure it adheres to what PEP 8 recommends. Alternatively, PEP 8 linters exist for most code editors (you can find instructions on installing a Python linter for VSCode [here](https://code.visualstudio.com/docs/python/linting)). Try installing one for your editor!
 
-1.  Rewrite code challenges you've solved before or projects you've implemented before in a different language in Python. Start getting in as much practice with the language as possible!
+1.  [ ] Rewrite code challenges you've solved before or projects you've implemented before in a different language in Python. Start getting in as much practice with the language as possible!
 
-1.  Write a program to determine if a number, given on the command line, is prime.
+1.  [ ] Write a program to determine if a number, given on the command line, is prime.
 
-    1.  How can you optimize this program?
-    1.  Implement [The Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes), one of the oldest algorithms known (ca. 200 BC).
+    1.  [ ] How can you optimize this program?
+    1.  [ ] Implement [The Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes), one of the oldest algorithms known (ca. 200 BC).
