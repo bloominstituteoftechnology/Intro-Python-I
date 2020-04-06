@@ -113,7 +113,7 @@ class DeliveryDriver:
 
     def get_num_drivers():
         print(
-            f'We currently have {DeliveryDriver.count} pizza delivery drivers!')
+            f'We currently have {DeliveryDriver.count} pizza delivery drivers! 🍕 🚗')
 
 
 otto = DeliveryDriver('Otto Snowbottom', 'Pizza Hut')
