@@ -109,17 +109,21 @@ print(x)
 # Print the length of list x
 print(len(x))
 
+
 # Print all the values in x multiplied by 1000
+
 def times1000(n):
     return n * 1000
+
+
 result = map(times1000, x)
 print(result)
 
 bigXlist = list(result)
 print(bigXlist)
 
-#List Comprehension is better (less code)
+# List Comprehension is better (less code)
 x1000 = [n * 1000 for n in x]
-        #^^^^^^^^^ ^^^^^ ^^^^
-        #output    input   filter
+# ^^^^^^^^^ ^^^^^ ^^^^
+# output    input   filter
 print(x1000)
