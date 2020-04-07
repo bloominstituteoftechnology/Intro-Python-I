@@ -15,6 +15,11 @@ has the following keys:
  - name: a name string for this location
 """
 
+import pprint
+import json
+
+pp = pprint.PrettyPrinter(indent=4)
+
 waypoints = [
     {
         "lat": 43,
@@ -34,14 +39,26 @@ waypoints = [
 ]
 
 # Add a new waypoint to the list
-# YOUR CODE HERE
+waypoints.append({
+    "lat": 53,
+    "lon": -222,
+    "name": "a new place"
+})
+pp.pprint(waypoints)
+
 
 # Modify the dictionary with name "a place" such that its longitude
 # value is -130 and change its name to "not a real place"
 # Note: It's okay to access the dictionary using bracket notation on the
 # waypoints list.
-
-# YOUR CODE HERE
+for a_dictionary, x in enumerate(waypoints):
+    for key, val in x.items():
+        if val == 'a place':
+            waypoints[a_dictionary]['name'] = 'not a real place'
+            waypoints[a_dictionary]['lon'] = -130
+pp.pprint(waypoints)
 
 # Write a loop that prints out all the field values for all the waypoints
-# YOUR CODE HERE
+for i, x in enumerate(waypoints):
+    for key, val in x.items():
+        print(val)
