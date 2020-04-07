@@ -48,5 +48,5 @@ print(waypoints)
 
 # YOUR CODE HERE
 
-for waypoint in enumerate(waypoints): ## Enumerate adds the index but it is read only!
+for waypoint in enumerate(waypoints): ## Enumerate adds the index but it is read only !
     print(waypoint)
