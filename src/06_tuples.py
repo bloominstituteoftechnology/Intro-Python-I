@@ -44,3 +44,5 @@ print_tuple(t)  # prints 1 2 5 7 99, one per line
 
 u = (1, 2)  # what needs to be added to make this work?
 print_tuple(u)
+
+# is this the correct way to do it? what's going on on line 32
