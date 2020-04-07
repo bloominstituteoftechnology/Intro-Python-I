@@ -35,9 +35,12 @@ print(f2(*a))    # Should print 22
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
+def f3(num1, num2 = 1):
+    return num1 + num2
 
-# print(f3(1, 2))  # Should print 3
-# print(f3(8))     # Should print 9
+
+print(f3(1, 2))  # Should print 3
+print(f3(8))     # Should print 9
 
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
