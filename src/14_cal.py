@@ -30,3 +30,22 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+# Get length of command line arguments
+arg_length = len(sys.argv)
+
+# if length is more than 3, block execution and warn user
+if arg_length > 3:
+  print("Exessive number of arguments passed in, \n expected 2 arguments representing the desired day and year as numeric values")
+  sys.exit()
+# if inputed arguments are equal to 3 we assume those are numbers and pass them to the
+# calendar module and get the month and year based on the arguments
+elif arg_length == 3:
+  print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
+# if inputed arguments are equal to 2, that means no year has been specified, therefore
+# we show the month specified by the user of the current year
+elif arg_length == 2:
+  print(calendar.month(datetime.now().year, int(sys.argv[1])))
+# if no arguments have been provided, then we showcase the current month and year
+else:
+  print(calendar.month(datetime.now().year, datetime.now().month))
