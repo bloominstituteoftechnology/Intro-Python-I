@@ -29,7 +29,7 @@ print(y)
 # use a list comprehension to create a list containing only the even elements the user entered into list x
 # what do you need between the square brackets to make it work?
 
-x = input('Enter comma-separated numbers: ').split(',')
+x = input('enter comma-separated numbers: ').split(',')
 print(x)
 y = [int(item) for item in x if int(item) % 2 == 0]
 print(y)
