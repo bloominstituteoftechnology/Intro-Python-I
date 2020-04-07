@@ -5,6 +5,8 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
+def f1(num1, num2):
+    return num1 + num2
 
 print(f1(1, 2))
 
