@@ -111,18 +111,22 @@ print(len(x))
 
 
 # Print all the values in x multiplied by 1000
+for num in x:
+    print(num * 1000)  # This is the preferred method for something this simple
 
-def times1000(n):
+
+def times1000(n):  # A few other ways to do the above
     return n * 1000
 
 
+# This could work...weird little output saying <map @ some weird #>
 result = map(times1000, x)
 print(result)
 
 bigXlist = list(result)
 print(bigXlist)
 
-# List Comprehension is better (less code)
+# List Comprehension is better (less code) for things that are more complicated
 x1000 = [n * 1000 for n in x]
 # ^^^^^^^^^ ^^^^^ ^^^^
 # output    input   filter

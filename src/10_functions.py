@@ -12,11 +12,11 @@ num = int(num)
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 
 
-def print_reults(num):
+def print_results(num):
     if is_even(num):
         print(f"{num} is Even!")
     else:
         print(f"{num} is Odd!")
 
 
-print_reults(num)
+print_results(num)
