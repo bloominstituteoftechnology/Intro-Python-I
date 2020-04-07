@@ -15,6 +15,12 @@ print(f1(1, 2))
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+def f2(*nums):
+    if nums.len() > 1:
+        sum(nums)
+    else:
+        return nums[0]
+
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
