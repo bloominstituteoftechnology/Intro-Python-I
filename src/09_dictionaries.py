@@ -50,6 +50,11 @@ print(waypoints)
 # value is -130 and change its name to "not a real place"
 # Note: It's okay to access the dictionary using bracket notation on the
 # waypoints list.
+for waypoint in waypoints:
+    if waypoint["name"] == "a place":
+        waypoint["name"] = "not a real place"
+
+print(waypoints)
 
 # YOUR CODE HERE
 
