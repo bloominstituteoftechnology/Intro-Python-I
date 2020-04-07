@@ -35,13 +35,20 @@ waypoints = [
 
 # Add a new waypoint to the list
 # YOUR CODE HERE
-new_waypoint = {
+# new_waypoint = {
+#     "lat": 35,
+#     "lon": -100,
+#     "name": "a brand new place"
+# }
+
+# waypoints.append(new_waypoint)
+
+#OR SIMPLIFIED VERSION
+waypoints.append({
     "lat": 35,
     "lon": -100,
-    "name": "a brand new place"
-}
-
-waypoints.append(new_waypoint)
+    "name": "a brand new place" 
+})
 
 print(waypoints)
 
@@ -60,3 +67,5 @@ print(waypoints)
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+for waypoint in waypoints:
+    print(waypoint.values())
