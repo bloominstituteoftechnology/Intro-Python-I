@@ -16,3 +16,4 @@ print(("x is %i," % x), ("y is %.2f," % y), ("z is %s" %z))
 print("x is {:.0f} ".format(x), "y is {:.2f} ".format(y), "z is {} ".format(z))
 # Finally, print the same thing using an f-string
 print(f"x is {x}, y is {y:.2f}, z is {z} ")
+
