@@ -23,10 +23,8 @@ def sieve_coalg(l):
     if l == []:
         return None
     else:
-        head = l[0]
-        tail = l[0:]
-        filtered_tail = list(filter(lambda x: x % head != 0, l))
-        return (head, filtered_tail)
+        filtered_tail = list(filter(lambda x: x % l[0] != 0, l))
+        return (l[0], filtered_tail)
 
 # the sieve itself as an anamorphism of the above coalgebra
 def sieve(l):
