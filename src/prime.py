@@ -66,6 +66,7 @@ def sieve_coalg(l: List[int]) -> ListF[int, List[int]]:
 def sieve(l: List[int]) -> List[int]:
     return ana(listF_map, list_in, sieve_coalg, l)
 
+# I/O
 if __name__ == "__main__":
     inp = int(input("Please, give me a prime!: "))
 
