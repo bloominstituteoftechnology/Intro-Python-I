@@ -75,7 +75,7 @@ if __name__ == "__main__":
     else:
       primes = sieve(range(2, inp+1))
 
-      if inp in primes:
+      if inp == primes[-1]:
         print(f"{inp} is a prime! Thank you!")
       else:
         print(f"{inp} is not a prime! Dang you!")
