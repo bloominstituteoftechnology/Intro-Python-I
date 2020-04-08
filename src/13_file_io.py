@@ -1,7 +1,6 @@
 """
 Python makes performing file I/O simple. Take a look
 at how to read and write to files here:
-
 https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 """
 
@@ -10,6 +9,8 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # Note: pay close attention to your current directory when trying to open "foo.txt"
 
 # YOUR CODE HERE
+with open("foo.txt") as file:
+    print(file.read())
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
@@ -17,3 +18,10 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+myPoem = """
+She's my other half, my sidekick on the side.
+She makes me, me, we are partners in crime
+Where she is, I am not far behind.
+"""
+with open("bar.txt", "w") as file:
+    file.write(myPoem)
