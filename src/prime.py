@@ -1,43 +1,17 @@
-from typing import TypeVar, Generic, List, Callable
-
-A = TypeVar('A')
-L = TypeVar('L')
-X = TypeVar('X')
-Y = TypeVar('Y')
-
-# Endofunctor of a list
-class ListF(Generic[A, L]):
-    pass
-
-class ConsF(ListF[A, L]):
-    def __init__(self, head: A, tail: L) -> None:
-        self.head = head
-        self.tail = tail
-        
-    def __str__(self):
-        return "ConsF(" + str(self.head) + ", " + str(self.tail) + ")"
-
-class NilF(ListF[A, L]):
-    def __init__(self) -> None:
-        pass
-        
-    def __str__(self):
-        return "NilF()"
-
 # List endofunctor fmap
-def listF_map(f: Callable[[X], Y], lF: ListF[A, X]) -> ListF[A, Y]:
-    if isinstance(lF, ConsF):
-        return ConsF(lF.head, f(lF.tail))
-    elif isinstance(lF, NilF):
-        return NilF()
+def listF_map(f, lF):
+    if isinstance(lF, tuple):
+        return (lF[0], f(lF[1]))
+    elif lF is None:
+        return None
 
 # List endofunctor in
-def list_in(lF : ListF[A, List[A]]) -> List[A]:
-    if isinstance(lF, ConsF):
-        r = lF.tail.copy()
-        r.insert(0, lF.head)
+def list_in(lF):
+    if isinstance(lF, tuple):
+        r = lF[1].copy()
+        r.insert(0, lF[0])
         return r
-    elif isinstance(lF, NilF):
+    elif lF is None:
         return []
 
 # definition of an anamorphism over a coalgebra
@@ -45,17 +19,17 @@ def ana(mapF, inF, coalg, a):
     return inF(mapF(lambda x: ana(mapF, inF, coalg, x), coalg(a)))
 
 # coalgebra determining one step of the sieve of ero-something-or-other
-def sieve_coalg(l: List[int]) -> ListF[int, List[int]]:
+def sieve_coalg(l):
     if l == []:
-        return NilF()
+        return None
     else:
         head = l[0]
         tail = l[0:]
         filtered_tail = list(filter(lambda x: x % head != 0, l))
-        return ConsF(head, filtered_tail)
+        return (head, filtered_tail)
 
 # the sieve itself as an anamorphism of the above coalgebra
-def sieve(l: List[int]) -> List[int]:
+def sieve(l):
     return ana(listF_map, list_in, sieve_coalg, l)
 
 # I/O
