@@ -30,3 +30,7 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+def mk_calendar(*cal_date) :
+
+  
