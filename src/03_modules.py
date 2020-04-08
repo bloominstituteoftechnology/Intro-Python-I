@@ -9,7 +9,9 @@ import sys
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
 
 # Print out the command line arguments in sys.argv, one per line:
-
+import fileinput
+for line in sys.argv[0:]:
+    print(line)
 
 # Print out the OS platform you're using:
 print(sys.platform)
