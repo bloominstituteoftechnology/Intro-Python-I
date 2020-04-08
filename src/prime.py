@@ -31,7 +31,7 @@ def listF_map(f: Callable[[X], Y], lF: ListF[A, X]) -> ListF[A, Y]:
     elif isinstance(lF, NilF):
         return NilF()
 
-# List endofunctor in/out
+# List endofunctor in
 def list_in(lF : ListF[A, List[A]]) -> List[A]:
     if isinstance(lF, ConsF):
         r = lF.tail.copy()
@@ -39,14 +39,6 @@ def list_in(lF : ListF[A, List[A]]) -> List[A]:
         return r
     elif isinstance(lF, NilF):
         return []
-
-def list_out(l : List[A]) -> ListF[A, List[A]]:
-    if l == []:
-        return NilF()
-    else:
-        l2 = l.copy()
-        r = l2.pop(0)
-        return ConsF(r, l2)
 
 # definition of an anamorphism over a coalgebra
 def ana(mapF, inF, coalg, a):
