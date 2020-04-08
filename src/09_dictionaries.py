@@ -41,10 +41,6 @@ waypoints.append({"lat": 0, "lon": 0, "name": "null island"})
 # Note: It's okay to access the dictionary using bracket notation on the
 # waypoints list.
 
-# Note: This requires python 3.8.
-#[ (w["name"] := "not a real place", w["lon"] := -130) if w["name"] == "a place" for w in waypoints ]
-
-# If 3.8 isn't installed, this works, but isn't as space efficient;
 waypoints = [ {"lat": w["lat"], "lon" : -130, "name" : "not a real place"} if w["name"] == "a place" else w for w in waypoints ]
 
 # Write a loop that prints out all the field values for all the waypoints
