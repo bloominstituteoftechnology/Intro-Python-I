@@ -31,3 +31,26 @@ import sys
 import calendar
 from datetime import datetime
 
+def user_input():
+  return len(sys.argv[1:])
+
+now = datetime.now()
+month = now.month
+year = now.year
+    
+if user_input() == 0:
+  print(calendar.month(year, month))
+
+elif user_input() == 1:
+  print(calendar.month(year, int(sys.argv[1])))
+  
+elif user_input() == 2:
+  print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
+
+else: print("please add year and month to 14_cal.py [month] [year]")
+exit
+
+
+
+
+   

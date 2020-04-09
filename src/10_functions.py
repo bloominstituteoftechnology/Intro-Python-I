@@ -13,5 +13,5 @@ num = int(num)
 # YOUR CODE HERE
 if is_even(num) == True:
     print("Even!")
-if is_even(num) == False:
+else:
     print("Odd")
