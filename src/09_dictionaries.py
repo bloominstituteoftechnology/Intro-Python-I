@@ -1,3 +1,5 @@
+import pprint
+from pprint import pprint
 """
 Dictionaries are Python's implementation of associative arrays.
 There's not much different with Python's version compared to what
@@ -35,6 +37,12 @@ waypoints = [
 
 # Add a new waypoint to the list
 # YOUR CODE HERE
+waypoints.append({
+    "lat": 40,
+    "lon": -120,
+    "name": "a fourth place"
+})
+# print(waypoints)
 
 # Modify the dictionary with name "a place" such that its longitude
 # value is -130 and change its name to "not a real place"
@@ -42,6 +50,13 @@ waypoints = [
 # waypoints list.
 
 # YOUR CODE HERE
+waypoints[0]['lon'] = -130
+waypoints[0]['name'] = 'not a real place'
+pprint(waypoints)
+
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+for waypoint in waypoints:
+    for value in waypoint.values():
+        print(value)
