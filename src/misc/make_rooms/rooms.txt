@@ -1,0 +1,32 @@
+storage
+pantry
+kitchen
+supply closet
+display counter
+mini bar
+lounge
+eating area
+mini restaurant
+shelves
+dungeon
+basement
+tower
+elevator
+secret room
+chamber
+hall
+dining room
+preparation room
+gymnasium
+puppet theater
+bunker
+laboratory
+closet
+walk-in refrigerator
+walk-in freezer
+storeroom
+river
+inventing room
+testing room
+tunnel
+studio
