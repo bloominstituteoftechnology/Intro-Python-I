@@ -6,6 +6,10 @@
 
 # YOUR CODE HERE
 
+def f1(x, y):
+    z = x+y
+    return z
+
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and returns the
@@ -13,6 +17,15 @@ print(f1(1, 2))
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+
+def f2(*args):
+    answer = 0
+    if len(args) > 1:
+        for i in args:
+            answer = answer + i
+    else:
+        answer = args[0]
+    return answer
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -22,6 +35,12 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 a = [7, 6, 5, 4]
 
 # How do you have to modify the f2 call below to make this work?
+
+def f2(x):
+    answer = 0
+    for i in x:
+        answer = answer + i
+    return answer
 print(f2(a))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
