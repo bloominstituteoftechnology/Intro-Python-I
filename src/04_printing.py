@@ -4,9 +4,6 @@ how to print using the printf operator, the `format` string
 method, and by using f-strings.
 """
 
-x = 10
-y = 2.24552
-z = "I like turtles!"
 
 # Using the printf operator (%), print the following feeding in the values of x,
 # y, and z:
