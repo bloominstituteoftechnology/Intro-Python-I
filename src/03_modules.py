@@ -20,7 +20,7 @@ print('\n')
 # Print out the OS platform you're using:
 print('+--------------------------+')
 # YOUR CODE HERE
-print('OS Platform:\n', sys.platform, '\n')
+print('My OS Platform is:\n', sys.platform, '\n')
 
 # Print out the version of Python you're using:
 print('+--------------------------+')
@@ -32,12 +32,12 @@ print('Python Version:\n', sys.version, '\n')
 # Print the current process ID
 print('+--------------------------+')
 # YOUR CODE HERE
-print('Current Process ID:\n', os.getpid(), '\n')
+print('My Current Process ID:\n', os.getpid(), '\n')
 
 # Print the current working directory (cwd):
 print('+--------------------------+')
 # YOUR CODE HERE
-print('Current Working Directory:\n', os.getcwd(), '\n')
+print('My current Working Directory:\n', os.getcwd(), '\n')
 # Print out your machine's login name
 print('+--------------------------+')
 # YOUR CODE HERE
