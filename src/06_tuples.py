@@ -16,8 +16,10 @@ automatically.
 # Example:
 
 import math
+# using type annotations which will be industry standard soon(TM)
+from typing import Tuple
 
-def dist(a, b):
+def dist(a: Tuple, b: Tuple):
     """Compute the distance between two x,y points."""
     x0, y0 = a  # Destructuring assignment
     x1, y1 = b
@@ -35,10 +37,15 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 # Write a function `print_tuple` that prints all the values in a tuple
 
 # YOUR CODE HERE
+def print_tuple(inputs: Tuple):
+	inputs = tuple(inputs)
+	for item in inputs:
+		print(item)
+
 
 t = (1, 2, 5, 7, 99)
 print_tuple(t)  # Prints 1 2 5 7 99, one per line
 
-# Declare a tuple of 1 element then print it
-u = (1)  # What needs to be added to make this work?
+# # Declare a tuple of 1 element then print it
+u = (1,)  # What needs to be added to make this work? A comma after the first element
 print_tuple(u)
