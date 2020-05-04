@@ -17,4 +17,4 @@ num = int(num)
 if is_even(num):
     print('Even!')
 else:
-    print('Odd')
+    print('Odd!')
