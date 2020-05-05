@@ -5,10 +5,13 @@
 x = 12
 
 def change_x():
+    global x 
     x = 99
 
 change_x()
-
+# Global just goes to the outer most x
+# but non-local just goes one out until it finds the 'closest' x which honestly seems a lot 
+# more versatile than global which is complete nonsense since you want minimal global vars anyway
 # This prints 12. What do we have to modify in change_x() to get it to print 99?
 print(x)
 
@@ -19,6 +22,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y 
         y = 999
 
     inner()
