@@ -1,3 +1,5 @@
+#!/home/gt/anaconda3/bin/python
+
 """
 The Python standard library's 'calendar' module allows you to
 render a calendar to your terminal.
@@ -51,18 +53,3 @@ if arg_count == 3:
 #print(f'Year {year} selected.')
 
 print(calendar.month(year, month))
-
-    #def print_cal(*args):
-#    print(args)
-    
-    # determine number of args
-    # if more than two
-      # - explain expected format
-    # else
-      # check that all received are numeric
-        # if not,
-            # explain that they need to be numeric
-        # if so, check that the first is between 1 and 12 inclusive
-            # if not, explain that it needs to be so
-    
-    
