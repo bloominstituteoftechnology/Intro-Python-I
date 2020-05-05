@@ -31,26 +31,31 @@ import sys
 import calendar
 from datetime import datetime
 
+# Read the argument values
 args = sys.argv
-if(len(args) == 1):
-    cal = calendar.TextCalendar()
-    month = datetime.now().month
-    year = datetime.now().year
-    print(cal.prmonth(year, month))
-
-elif(len(args) == 2):
-    cal = calendar.TextCalendar()
-    month = int(args[1])
-    year = datetime.now().year
-    print(cal.prmonth(year, month))
-
-elif(len(args) == 3):
-    cal = calendar.TextCalendar()
-    month = int(args[1])
-    year = int(args[2])
-    print(cal.prmonth(year, month))
-
+# Check if they are valid
+# default to current month and year
+now = datetime.now()
+month = now.month
+year = now.year
+# 1 arg should be month
+if len(args) == 1:
+      pass
+elif len(args) == 2:
+      month = int(args[1])
+# 2 args should be month and year
+elif len(args) == 3:
+      month = int(args[1])
+      year = int(args[2])
+# otherwise print error and usage message
 else:
-    print("Incorrect formatting")
-    print("Expecting in format: \n> py 14_cal.py (month number) (year)")
+      print("ERROR: Should be in format\nMonth(1-12) Year(YYYY)")
+      exit(0)
+# print calendar for given month and year
+if month < 1 or month > 12:
+  print("ERROR; Invalid month")
+  exit(0)
+  
+tc = calendar.TextCalendar()
+tc.prmonth(year, month)
 
