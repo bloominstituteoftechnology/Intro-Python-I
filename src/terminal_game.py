@@ -111,7 +111,10 @@ user_choice = get_user_choice()
 while user_choice != "quit":
     computer_choice = choice_options[random.randint(1, 3)]
     result = compare_choices_and_get_result(user_choice, computer_choice)
+    print('The computer chose ' + computer_choice + '!')
     display_result_message_and_update_score(result)
+    show_historical_data_message()
+    print('Last Game: user chose ' + user_choice + ', machine ' + computer_choice)
     user_choice = get_user_choice()
 
 ### Quit game if user exits game loop
