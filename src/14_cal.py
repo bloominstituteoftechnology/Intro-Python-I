@@ -30,3 +30,39 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+args = sys.argv
+arg_count = len(args)
+if arg_count > 3:
+    raise ValueError('Please provide 0, 1 (month), or 2 (month year) arguments.')
+
+month = datetime.now().month
+year = datetime.now().year
+
+#print(f'Script Name is {sys.argv[0]}')
+
+if arg_count > 1:
+    month = int(args[1])
+
+if arg_count == 3:
+    year = int(args[2])
+
+#print(f'Month {month} selected.')
+#print(f'Year {year} selected.')
+
+print(calendar.month(year, month))
+
+    #def print_cal(*args):
+#    print(args)
+    
+    # determine number of args
+    # if more than two
+      # - explain expected format
+    # else
+      # check that all received are numeric
+        # if not,
+            # explain that they need to be numeric
+        # if so, check that the first is between 1 and 12 inclusive
+            # if not, explain that it needs to be so
+    
+    
