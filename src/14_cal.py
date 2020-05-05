@@ -40,7 +40,7 @@ month = now.month
 year = now.year
 # 1 arg should be month
 if len(args) == 1:
-      pass
+     pass
 elif len(args) == 2:
       month = int(args[1])
 # 2 args should be month and year
@@ -50,12 +50,12 @@ elif len(args) == 3:
 # otherwise print error and usage message
 else:
       print("ERROR: Should be in format\nMonth(1-12) Year(YYYY)")
-      exit(0)
+    
 # print calendar for given month and year
 if month < 1 or month > 12:
-  print("ERROR; Invalid month")
-  exit(0)
-  
+      print("ERROR; Invalid month")
+
+
 tc = calendar.TextCalendar()
 tc.prmonth(year, month)
 

@@ -1,4 +1,7 @@
-# Make a class LatLon that can be passed parameters `lat` and `lon` to the
+# Make a 
+# class LatLon 
+# that can be passed 
+# parameters `lat` and `lon` to the
 # constructor
 
 # YOUR CODE HERE
@@ -15,7 +18,7 @@ class Waypoint(LatLon):
         super().__init__(lat, lon)
         self.name = name
 
-        7
+        
     def __str__(self):
         return f"{self.name}, lat: {self.lat}, long: {self.lon}"
 
@@ -41,7 +44,6 @@ print(waypoint)
 
 # Without changing the following line, how can you make it print into something
 # more human-readable? Hint: Look up the `object.__str__` method
-print(waypoint)
 
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 
