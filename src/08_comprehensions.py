@@ -27,8 +27,7 @@ print(y)
 # elements in array a. Hint: "foo".upper() is "FOO".
 
 a = ["foo", "bar", "baz"]
-y = []
-[x.upper() for x in a]
+y = [a.upper() for a in a]
 print(y)
 
 # Use a list comprehension to create a list containing only the _even_ elements

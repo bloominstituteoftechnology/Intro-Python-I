@@ -28,9 +28,9 @@ print(x)
 
 # Print the length of list x
 # YOUR CODE HERE
-len(x)
+print(len(x))
 
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
-for num in range(len(x)): #for every number within the length of x
-    x[num] *= 1000 #multiply the index's value by 1000
+for num in x: #for every number within the length of x
+    print(num * 1000) #multiply the index's value by 1000
