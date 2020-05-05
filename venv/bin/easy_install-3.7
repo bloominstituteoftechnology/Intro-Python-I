@@ -1,0 +1,12 @@
+#!/bin/sh
+'''exec' "/Volumes/LambdaDrive/Lambda School/Computer Science/Unit 1/Intro to Python & OOP/Introduction to Python I/Starter Projects/Intro-Python-I/venv/bin/python" "$0" "$@"
+' '''
+# -*- coding: utf-8 -*-
+import re
+import sys
+
+from setuptools.command.easy_install import main
+
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
