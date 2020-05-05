@@ -31,9 +31,16 @@ import sys
 import calendar
 from datetime import datetime
 
-d = ["14_cal.py", input('Month:'), input('Year:')]
-if d[1] == '' and d[2] == '':
-    print(datetime.month())
-elif d[1] == '' or d[2] == '':
-    d[1] = str(datetime.now())[5:7]
-    print(d)
+today = datetime.today()
+yy, mm = today.year, today.month
+
+if len(sys.argv) == 1:
+  print(calendar.month(yy, mm))
+elif len(sys.argv) == 2:
+  yy, mm = yy, int(sys.argv[1])
+  print(calendar.month(yy, mm))
+elif len(sys.argv) == 3:
+  yy, mm = int(sys.argv[2]), int(sys.argv[1])
+  print(calendar.month(yy, mm))
+else:
+  print('Please give command in format "python3 14_cal.py [month] [year]"')
