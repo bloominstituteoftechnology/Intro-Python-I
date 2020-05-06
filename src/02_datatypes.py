@@ -21,3 +21,5 @@ print(statement)
 
 # statement = '5' + '7'
 # print(statement)
+
+print(str(x) + y)
