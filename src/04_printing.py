@@ -8,11 +8,7 @@ x = 10
 y = 2.24552
 z = "I like turtles!"
 
-print('These are my variables: \nx is: % 2d\ny is: %f\nz is: %s' %(x, y, z))
 
-print(f' These are my variables: \nx is: {x}\ny is: {y}\nz is: {z}')
-
-print('These are my variables: \nx is: {0}\ny is: {1}\nz is {2}'.format(x, y, z))
 
 
 
