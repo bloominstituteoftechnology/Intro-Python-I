@@ -4,24 +4,24 @@
 
 # print('hello world!')
 
-# def sum67(nums):
-#     summed_numbers = 0
-#     seven_found = False
-#     six_found = False
-#     for number in nums:
+def sum67(nums):
+    summed_numbers = 0
+    seven_found = False
+    six_found = False
+    for number in nums:
         
-#         if number == 6:
-#             summed_numbers+=0
-#             six_found = True
-#         elif number == 7:
-#             summed_numbers+=0
-#             seven_found = True
-#         else:
-#             if seven_found == True and six_found == True or seven_found == False and six_found == False:
-#                 summed_numbers+=0
-#             else:
-#                 summed_numbers+=0
-#         return summed_numbers
+        if number == 6:
+            summed_numbers+=0
+            six_found = True
+        elif number == 7:
+            summed_numbers+=0
+            seven_found = True
+        else:
+            if seven_found == True and six_found == True or seven_found == False and six_found == False:
+                summed_numbers+=0
+            else:
+                summed_numbers+=0
+        return summed_numbers
     
 #    
 # 
