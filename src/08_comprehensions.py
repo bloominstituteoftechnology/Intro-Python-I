@@ -23,6 +23,11 @@ for x in range(10):
      y.append(x**3)
 print(y)
 
+#OR
+
+y = [x**3 for x in range(0,10)]
+print(y)
+
 # Write a list comprehension to produce the uppercase version of all the
 # elements in array a. Hint: "foo".upper() is "FOO".
 
@@ -43,6 +48,3 @@ for i in x:
          y.append(i)
 print(z) 
 
-# What do you need between the square brackets to make it work?
-y = []
-print(y)

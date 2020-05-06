@@ -64,6 +64,8 @@ def get_user_input():
         month = user_input[0]
         year= user_input[1]
         print('month is ' + str(month) + ' year is ' + str(year))
+    else:
+      print('NOPE')
 
         
 
@@ -75,10 +77,17 @@ def calendar_program():
       print('current month')
       print(current_cal)
     elif len(user_input) == 1:
-      curr_cal(2020, [user_input[0]])
-      print(calendar.month(2020, 4))
+      month = (user_input[0])
+      print(calendar.month(2020, month))
     elif len(user_input) == 2:
-      print('2 args')
+      month = (user_input[0])
+      year = (user_input[1])
+      print(calendar.month(year, month))
+    else:
+      print('the format that your program expects arguments to be given')
+
+        
+        
 
 
 calendar_program()
