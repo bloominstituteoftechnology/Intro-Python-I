@@ -1,0 +1,3 @@
+bar.txt created 
+ second line? 
+ a third
