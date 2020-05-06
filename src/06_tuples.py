@@ -35,7 +35,10 @@ print('\n')
 
 
 # Write a function `print_tuple` that prints all the values in a tuple
-
+"""
+Tuples - group of items we reference by index.
+duplicate items
+"""
 # YOUR CODE HERE
 
 t = (1, 2, 5, 7, 99)
