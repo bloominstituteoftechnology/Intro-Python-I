@@ -9,6 +9,9 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # Print all the contents of the file, then close the file
 # Note: pay close attention to your current directory when trying to open "foo.txt"
 
+f = open('src/foo.txt', 'r')
+print(f.read())
+f.close()
 # YOUR CODE HERE
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
@@ -16,4 +19,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # then close the file. Open up "bar.txt" and inspect it to make
 # sure that it contains what you expect it to contain
 
+f2 = open('src/bar.txt', 'w')
+f2.write("You think darkness is your ally?\n I was born in it, \n raise by it. It wasn't until I was a man when I saw the light and it was blinding!")
+f2.close()
 # YOUR CODE HERE
