@@ -17,14 +17,14 @@ print (y)
 # Write a list comprehension to produce the cubes of the numbers 0-9:
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 
-cubes = [i**3 for i in range(10)]
+cubes = []
 
 print(cubes)
 
 # Write a list comprehension that utilizes slicing syntax to product 
 # a list with the elements from the first half of the `cubes` list
 
-first_half_of_cubes = [i for i in cubes[:5]]
+first_half_of_cubes = []
 
 print(first_half_of_cubes)
 
