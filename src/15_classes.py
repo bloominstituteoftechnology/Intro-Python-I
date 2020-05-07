@@ -3,7 +3,7 @@
 
 # YOUR CODE HERE
 class LatLon:
-   def__init__(self, lat, lon):
+   def __init__(self, lat, lon):
       self.lat = lat
       self.lon = lon
 
@@ -12,11 +12,11 @@ class LatLon:
 
 # YOUR CODE HERE
 class Waypoint(LatLon):
-   def__init__(self, name, lat, lon):
-      super(Waypoint, self).__init__(lat, lon)
+   def __init__(self, name, lat, lon):
+      super(Waypoint, self). __init__(lat, lon)
       self.name = name 
       
-   def__str__(self):
+   def __str__(self):
       return f'name: {self.name}, lat: {self.lat}, lon: {self.lon}'   
 
 # Make a class Geocache that can be passed parameters `name`, `difficulty`,
@@ -24,12 +24,12 @@ class Waypoint(LatLon):
 
 # YOUR CODE HERE
 class Geocache(Waypoint):
-   def__init__(self.name, difficulty, size, lat, lon):
-      super(Geocache, self).__init__(name, lat, lon)
+   def __init__(self.name, difficulty, size, lat, lon):
+      super(Geocache, self). __init__(name, lat, lon)
       self.difficulty = difficulty
       self.size = size
       
-   def__str__(self):
+   def __str__(self):
       return f'name: {self.name}, difficulty: {self.difficulty}, size: {self.size}, lat: {self.lat}, lon: {self.lon}'   
 
 # Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
