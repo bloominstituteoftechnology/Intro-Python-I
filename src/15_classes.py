@@ -40,7 +40,9 @@ class Geocache(Waypoint):
 
 # YOUR CODE HERE
 
-waypoint = Waypoint("Catacombs", 41.70505, -121.51521) 
+waypoint = Waypoint("Catacombs", 41.70505, -121.51521)
+print(waypoint)
+
 
 
 # Without changing the following line, how can you make it print into something
