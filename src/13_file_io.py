@@ -19,6 +19,13 @@ with open("src/foo.txt", "r") as f:
     print(data)
     f.close()
 
+"""
+with open("foo.txt") as f:
+    for line in f:
+        print(line)
+
+"""
+
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
 # then close the file. Open up "bar.txt" and inspect it to make
