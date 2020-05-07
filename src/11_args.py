@@ -4,15 +4,22 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
+
 # YOUR CODE HERE
+def f1(num1, num2):
+    """Returns the sum of two numbers"""
+    return num1 + num2
 
 print(f1(1, 2))
 
-# Write a function f2 that takes any number of integer arguments and returns the
-# sum.
+# Write a function f2 that takes any number of integer arguments
+# and returns the sum.
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
+
 # YOUR CODE HERE
+def f2(*numbers):
+    return(numbers)
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -24,12 +31,15 @@ a = [7, 6, 5, 4]
 # How do you have to modify the f2 call below to make this work?
 print(f2(a))    # Should print 22
 
-# Write a function f3 that accepts either one or two arguments. If one argument,
-# it returns that value plus 1. If two arguments, it returns the sum of the
-# arguments.
+# Write a function f3 that accepts either one or two arguments.
+# If one argument, it returns that value plus 1. If two arguments,
+# it returns the sum of the arguments.
 # Note: Google "python default arguments" for a hint.
 
+
 # YOUR CODE HERE
+def f3(*numbers):
+    pass
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -44,6 +54,14 @@ print(f3(8))     # Should print 9
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
+def f4(*args, **kwargs):
+    if len(kwargs) > 0:
+        for key, value in kwargs.items():
+            print(f"key: {key}, value: {value}")
+    if len(args) > 0:
+        for arg in args:
+            for key in arg:
+                print(f"key: {key}, value: {arg[key]}")
 
 # Should print
 # key: a, value: 12
