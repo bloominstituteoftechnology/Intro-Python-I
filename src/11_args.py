@@ -11,6 +11,7 @@ def f1(a,b):
 
 print(f1(1, 2))
 
+
 # Write a function f2 that takes any number of integer arguments and returns the
 # sum.
 # Note: Google for "python arbitrary arguments" and look for "*args"
