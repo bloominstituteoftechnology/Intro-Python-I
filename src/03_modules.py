@@ -5,6 +5,7 @@ methods, and the os module, which gives you access to lower-
 level operating system functionality.
 """
 
+import pwd
 import os
 import sys
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
@@ -23,9 +24,10 @@ print('Python Version', sys.version)
 
 # Print the current process ID
 # YOUR CODE HERE
-
+print('PID', os.getpid())
 # Print the current working directory (cwd):
 # YOUR CODE HERE
-
+print('CWD', os.getcwd())
 # Print out your machine's login name
 # YOUR CODE HERE
+print(pwd.getpwuid(os.getuid()).pw_name)
