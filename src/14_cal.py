@@ -35,16 +35,6 @@ from datetime import datetime
 
 now = datetime.now()
 
-# def print_calendar(year = now.year, month = now.month):
-
-#   y = int(input("Input the year: "))
-
-#   m = int(input("Input the month: "))
-
-#   print(calendar.month(y, m))
-
-# print_calendar()
-
 parser = argparse.ArgumentParser()
 # need to use NARGS in order to turn into optional argument 
 parser.add_argument("month", nargs="?", help="Expecting space seperate integers for month and year, defaults to current time if none given", default=now.month, type=int)
