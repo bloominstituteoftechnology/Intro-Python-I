@@ -54,9 +54,9 @@ print(f3(8))     # Should print 9
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
-def f4(a, b):
-    print("key: a, value: " + str(a))
-    print("key: b, value: " + str(b))
+def f4(**kw):
+    for x in kw:
+        print({"key": x, "value": kw[x]})
 
 # Should print
 # key: a, value: 12
