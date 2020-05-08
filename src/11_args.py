@@ -5,8 +5,11 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
+
+
 def f1(num1, num2):
     return num1 + num2
+
 
 print(f1(1, 2))
 
@@ -29,11 +32,14 @@ print(f1(1, 2))
 a = [7, 6, 5, 4]
 
 # How do you have to modify the f2 call below to make this work?
+
+
 def f2(num_list):
     res = 0
     for num in num_list:
         res += num
     return res
+
 
 print(f2(a))    # Should print 22
 
@@ -43,8 +49,11 @@ print(f2(a))    # Should print 22
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
-def f3(num1, num2 = 1):
+
+
+def f3(num1, num2=1):
     return num1 + num2
+
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -60,15 +69,16 @@ print(f3(8))     # Should print 9
 
 # YOUR CODE HERE
 
-# def f4(a, b):
-#     print(f"key: a, value: {int(a)}")
-#     print(f"key: b, value: {int(b)}")
+def f4(**args):
+    for key, value in args.items():
+        print(f"key: {key}, value: {value}")
 
 # Should print
 # key: a, value: 12
 # key: b, value: 30
 
-# f4(a=12, b=30)
+
+f4(a=12, b=30)
 
 # Should print
 # key: city, value: Berkeley
@@ -82,6 +92,7 @@ print(f3(8))     # Should print 9
 
 # f4(city="Berkeley", population=121240, founded="March 23, 1868")
 
+
 d = {
     "monster": "goblin",
     "hp": 3
@@ -90,9 +101,10 @@ d = {
 # How do you have to modify the f4 call below to make this work?
 # # key: founded, value: "March 23, 1868"
 
+
 def f4(this_dict):
     for field in this_dict.keys():
         print(f"Key: {field}, value: {this_dict[field]}")
 
 
-f4(d)
+f4(**d)
