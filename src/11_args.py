@@ -72,3 +72,11 @@ d = {
 
 # How do you have to modify the f4 call below to make this work?<---Need to add '**'
 f4(**d)
+
+def f5(a, b, *args, **kwargs): #The order here MATTERS!!!
+    print(a, b)
+    print(args)
+    print(kwargs)
+
+f5(1, 2, 3, 4, 5, x=6, y=7)
+#  is it possible to change the argument order in some way?
