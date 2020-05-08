@@ -22,4 +22,4 @@ with open('src/foo.txt') as f:
 with open('src/bar.txt', 'w') as f:
     f.write("Line 1")
     f.write("Enter line 2")
-    f.write("Now line 3")
+    f.write("\nNow line 3")
