@@ -30,3 +30,23 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+# Time related Variables
+newdate = datetime.today()
+cal = calendar.TextCalendar(firstweekday=6);
+
+# Formatted input
+x = [d.strip() for d in input("Enter comma-separated month and year in number format (ex., 5, 2020)... ").split(',')]
+x = None if x == [''] else x
+
+def print_cal(x=None):
+      if x == None:
+          print(cal.formatmonth(newdate.year, newdate.month))
+      elif len(x) == 1:
+          print(cal.formatmonth(newdate.year, int(x[0])))
+      elif len(x) == 2:
+          print(cal.formatmonth(int(x[1]), int(x[0]) ))
+      else:
+          print("PLEASE RE-ENTER the comma-separated month and year in number format (ex., 5, 2020)")
+   
+print_cal()
