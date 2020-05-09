@@ -32,35 +32,29 @@ import calendar
 from datetime import datetime
 
 def usage_statement():
-  sys.exit(f'{sys.argv[0]} [month] [year]')
-
+  sys.exit(f'Enter arguments as: {sys.argv[0]} [month] [year]')
+#
 def get_date():
-  if int(sys.argv[1]) < 1 or int(sys.argv[1]) > 12:
+
+    if len(sys.argv) == 3:
+      month = int(sys.argv[1])
+      year = int(sys.argv[2])
+
+      print(calendar.month(year, month))
+
+
+    elif len(sys.argv) == 2:
+      month = int(sys.argv[1])
+      year = datetime.now().year
+
+      print(calendar.month(year, month))
       print(usage_statement())
-      sys.exit('Please enter a vaild month')
 
-  if len(sys.argv) == 3:
-    month = int(sys.argv[1])
-    year = int(sys.argv[2])
+    elif len(sys.argv) == 1:
+      month = datetime.now().month
+      year = datetime.now().year
 
-    print(calendar.month(year, month))
-
-
-  elif len(sys.argv) == 2:
-    month = int(sys.argv[1])
-    year = datetime.now().year
-
-    print(calendar.month(year, month))
-    print(usage_statement())
-
-  elif len(sys.argv) == 1:
-    month = datetime.now().month
-    year = datetime.now().year
-
-    print(calendar.month(year, month))
-    print(usage_statement())
-
-  else:
-    print(usage_statement())
+      print(calendar.month(year, month))
+      print(usage_statement())
 
 get_date()
