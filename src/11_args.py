@@ -102,9 +102,9 @@ d = {
 # # key: founded, value: "March 23, 1868"
 
 
-def f4(this_dict):
-    for field in this_dict.keys():
-        print(f"Key: {field}, value: {this_dict[field]}")
+# def f4(this_dict):
+#     for field in this_dict.keys():
+#         print(f"Key: {field}, value: {this_dict[field]}")
 
 
 f4(**d)
