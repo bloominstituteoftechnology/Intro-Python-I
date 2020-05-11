@@ -37,7 +37,7 @@ month = now.month
 returned_cal = []
 
 if len(sys.argv) > 3:
-    print("Please enter month and date arguments only")
+    sys.exit("Please enter month and date arguments only")
 if len(sys.argv) == 3:
     month = int(sys.argv[1])
     year = int(sys.argv[2])
@@ -48,5 +48,8 @@ cal_values = calendar.monthcalendar(year, month)
 display_month = calendar.month_name[month]
 
 print(f"{display_month} {year}")
+
 for week in cal_values:
     print(week)
+
+sys.exit()
