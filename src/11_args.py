@@ -38,7 +38,7 @@ a = [7, 6, 5, 4]
 # How do you have to modify the f2 call below to make this work?
 print(f2(*a))    # Should print 22
 # print(a)
-# print(*a) #unpacks a's list // kind of like a spread operator
+#print(*a) #unpacks a's list // kind of like a spread operator
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
@@ -114,3 +114,14 @@ def f5(a, b, *args, **kwargs): #(a, b, **kwargs, *args) error due to position
     print(kwargs) # dict {'x': 6, 'y': 7}
 
 f5(1, 2, 3, 4, 5, x=6, y=7)
+
+def f6(**kwds):
+    print(kwds)
+
+f6(a=1, b=2)
+
+def f7(a, **kwds):
+    print(a)
+    print(kwds)
+
+f7(a=1,b=2)

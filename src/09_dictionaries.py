@@ -54,3 +54,28 @@ waypoints[0].update({"name": "not a real place"})
 for values in waypoints:
     print(values)
 
+my_dict = {
+        "lat": 43,
+        "lon": -122,
+        "name": "a third place"
+    }
+
+print([my_dict[key] for key in my_dict])
+my_list = []
+for key in my_dict:
+    my_list.append(my_dict[key])
+
+
+for waypoint in waypoints:
+    for key in waypoint:
+        print(waypoint[key])
+
+# comprehensions list
+# [print(waypoint[key]) for waypoint in waypoints for key in waypoint]
+
+# for inner_list in waypoints:
+#     for waypoint in inner_list:
+#         for key in waypoint:
+#             waypoint[key]
+
+# print([waypoint[key] for inner_list in waypoints for waypoint in inner_list for key in waypoint])
