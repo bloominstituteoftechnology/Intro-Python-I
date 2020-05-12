@@ -5,8 +5,8 @@ import unittest
 import sieve
 
 class TestSieve(unittest.TestCase):
-    def test_first_100(self):
-        for i in range(101):
+    def test_first_1000(self):
+        for i in range(1001):
             self.assertEqual(sieve.is_prime(i), sympy.isprime(i))
             
     def test_10_random(self):

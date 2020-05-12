@@ -9,7 +9,7 @@ def is_prime(n):
         if sieve[i] == True:
             if n % (i + 2) == 0:
                 return False
-            for j in range(2, (n // 2) // (i + 2)):
+            for j in range(i + 2, (n // 2) // (i + 2)):
                 sieve[(i + 2)*j - 2] = False
     return True
 
