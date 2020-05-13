@@ -31,21 +31,25 @@ import calendar
 import sys
 from datetime import datetime
 
-today = datetime.today()
+# today = datetime.today()
 
-month, year = today.month, today.year
+# month, year = today.month, today.year
 
-cal = calendar.TextCalendar(firstweekday=6)
+date_info = input("enter input in the following format: '14_cal.py [month] [year]': ")
+
+date_info_list = date_info.split(' ')
+
+# cal = calendar.TextCalendar(firstweekday=6)
 # print(calendar.month(today.year, today.month))
 
-if len(sys.argv) == 1:
-    calendar.prmonth(today.year, today.month)
+if len(date_info_list) == 0:
+    print(calendar.month(datetime.now().year, datetime.now().month))
 
-elif len(sys.argv) == 2:
-    calendar.prmonth(today.year, int(sys.argv[1]))
+elif len(date_info_list) == 1:
+    print(calendar.month(2020, int(date_info_list[0])))
 
-elif len(sys.argv) == 3:
-    calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+elif len(date_info_list) == 2:
+    print(calendar.month(int(date_info_list[1]), int(date_info_list[0])))
 
 else:
     print("usage: filename month year")
