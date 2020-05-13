@@ -7,14 +7,14 @@ y = [8, 9, 10]
 # For the following, DO NOT USE AN ASSIGNMENT (=).
 
 # Change x so that it is [1, 2, 3, 4]
-# YOUR CODE HERE
+# YOUR CODE HERE\
 x.append(4)
 print(x)
 
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE
-x.extend(y)
+x.extend(y) #Extend is how you will continue on the list
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]

@@ -30,3 +30,19 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+
+today = datetime.today()
+
+print(today)
+
+datetime.today()
+
+month, year  = datetime.today().month, datetime.today().year
+
+#Capture command line inputs in a variable
+#Print the calendar
+# Handle different numbers of command line arguments
+
+cal = calendar.TextCalendar(firstweekday=6) # Starts the calendar on Sunday
+print(calendar.month(today.year, today.month))
