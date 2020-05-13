@@ -6,6 +6,7 @@ level operating system functionality.
 """
 
 import sys
+
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
 
 # Print out the command line arguments in sys.argv, one per line:
@@ -16,17 +17,17 @@ for claw in sys.argv:
 print(sys.platform)
 
 # Print out the version of Python you're using:
-print(sys.version)
+print(sys.version, "this is the version")
 
 import os
+
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
 # Print the current process ID
-print(os.getppid())
-
+print(os.getppid(), "this is current process id")
 
 # Print the current working directory (cwd):
-print(os.getcwd())
+print(os.getcwd(), "this is current process id")
 
 # Print out your machine's login name
-print(os.getlogin())
+print(os.getlogin(), "this is machine login name")
