@@ -36,7 +36,7 @@ print(y)
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-y = [evens for evens in x if evens % 2 == 0]
+y = [evens for evens  x if evens % 2 == 0]
 
 print(y)
 # TODO:COME BACK recieving typeerror: not all arguments converted during the string formatting
