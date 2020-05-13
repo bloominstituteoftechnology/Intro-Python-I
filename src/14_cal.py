@@ -35,11 +35,8 @@ def usage_statement():
   sys.exit(f'Enter arguments as: {sys.argv[0]} [month] [year]')
 #
 def get_date():
-<<<<<<< HEAD
     if int(sys.argv[1]) < 1 or sys.argv[1] > 12:
         sys.exit("Enter a vaild month")
-=======
->>>>>>> d8a5f2983a7d019f13e5229ca73d7d229160c759
 
     if len(sys.argv) == 3:
       month = int(sys.argv[1])
