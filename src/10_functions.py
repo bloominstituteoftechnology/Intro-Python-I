@@ -6,6 +6,10 @@ def is_even(num):
 # Read a number from the keyboard
 num = input("Enter a number: ")
 
-# Print out "Even!" if the number is even. Otherwise print "Odd"
 
-print("Even!") if is_even(num) else print("Odd")
+# Print out "Even!" if the number is even. Otherwise print "Odd"
+def is_even():
+    return 'Even!' if int(num) % 2 == 0 else 'Odd'
+
+
+print(is_even())
