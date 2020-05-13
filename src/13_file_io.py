@@ -20,6 +20,6 @@ with open('foo.txt') as f:
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
-with open('bar.txt', 'r') as b:
-    read_bar = b.read()
-    print(read_bar)
+with open('bar.txt', 'w') as b:
+    b.write('This is a test for file writing \nI love python \nPython loves me')
+    b.close()
