@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
 The Python standard library's 'calendar' module allows you to
 render a calendar to your terminal.
@@ -30,13 +32,27 @@ import sys
 import calendar
 from datetime import datetime
 
-def jennsCalendar():
-      month = int(input("Pleast enter numeric month: "))
-      year = int(input("Please enter year: "))
-      
-      if month == '' and year == '':
-            return datetime.date.today()
+# get month and year in a useable form
+today = datetime.today()
+month = today.month
+year = today.year
 
+# capture command line inputs in a variable
+# print the calendar
+# handle different numbers of command line arguements
+
+cal = calendar.TextCalendar(firstweekday=6)
+
+# cal.prmonth(2020, 5)
+
+print(sys.argv)
+if len(sys.argv) == 1:
+  calendar.prmonth(today.year, today.month)
+elif len(sys.argv) == 2:
+  calendar.prmonth(today.year, int(sys.argv[1]))
+elif len(sys.argv) == 3:
+  calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
   
-  
-jennsCalendar()
+else:
+  print("useage: filename month year")
+  sys.exit(1)
