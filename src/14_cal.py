@@ -2,6 +2,8 @@
 The Python standard library's 'calendar' module allows you to
 render a calendar to your terminal.
 https://docs.python.org/3.6/library/calendar.html
+OR:
+https://www.w3resource.com/python/module/calendar/ 
 
 Write a program that accepts user input of the form
   `14_cal.py [month] [year]`
