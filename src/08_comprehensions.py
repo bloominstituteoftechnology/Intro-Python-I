@@ -44,8 +44,30 @@ print(y)
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-# y = [el for el in x if int(el) % 2 == 0]
-y = [num for num in x if int(num) % 2 == 0]
+y = [i for i in x if int(i) % 2 == 0]
+
+# y = [num for num in x if int(num) % 2 == 0]
 # y = [int(num) for num in x if int(num) % 2 == 0]
 
 print(y)
+
+a_list = [1, 2, 3, 4, 5, 6]
+
+list_copy = [x for x in a_list]
+
+for x in a_list: 
+    x
+
+odds = [x for x in a_list if x % 2 == 1]
+for x in a_list:
+    if x % 2 == 1: 
+        x
+
+list_of_strings = ["hello", "world", 1, 2]
+
+f'my string and my list comprehension: {[x for x in list_of_strings if type(x) == str]}'
+
+just_strings = [x for x in list_of_strings if type(x) == str] 
+for x in list_of_strings:
+    if type(x) == str:
+        x
