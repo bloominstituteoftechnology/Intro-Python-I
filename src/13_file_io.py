@@ -22,5 +22,5 @@ f.close()
 # YOUR CODE HERE
 b = open('bar.txt', 'w')
 b.close()
-new_b = b.read()
+new_b = open('bar.txt', 'r')
 print(new_b)
