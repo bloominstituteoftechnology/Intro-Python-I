@@ -22,7 +22,7 @@ def anagrams_in_string(s):
         sorted_dict[sub] = sorted(sub)
     for i in range(len(subs)):
         for j in range(i + 1, len(subs)):
-            elif sorted_dict[subs[i]] == sorted_dict[subs[j]]:
+            if sorted_dict[subs[i]] == sorted_dict[subs[j]]:
                 total += 1
     print(total)
     return total
