@@ -21,11 +21,13 @@ class Solution:
         node_from_l1 = l1
         node_from_l2 = l2
 
+        # To take care of edge cases where either ListNode is empty
         if not node_from_l1:
             return l2
         if not node_from_l2:
             return l1
 
+        # Set the head of the new ll
         if node_from_l1.val <= node_from_l2.val:
             new_node = ListNode(node_from_l1.val, None)
             node_from_l1 = node_from_l1.next
@@ -35,6 +37,7 @@ class Solution:
 
         head = new_node
 
+        # Go through the ll's to determine what should be linked next
         while node_from_l2 and node_from_l1:
             if node_from_l1.val <= node_from_l2.val:
                 newest_node = ListNode(node_from_l1.val, None)
@@ -45,6 +48,7 @@ class Solution:
             new_node.next = newest_node
             new_node = newest_node
 
+        # Now that only 1 ll is left to go through, go ahead and add all of its nodes
         while node_from_l1:
             newest_node = ListNode(node_from_l1.val, None)
             new_node.next = newest_node
