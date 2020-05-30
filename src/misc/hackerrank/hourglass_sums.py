@@ -18,10 +18,11 @@ Calculate each hourglass sum
 Return the max value of those.
 
 '''
-# First, find the hourglasses
-#   Move through arr x[0] - x[3], y[0] - y[3] to get upper left of each hourglass
 # Make a hourglass_sums array
-# Add each sum to it
+# Then find the hourglasses
+#   Move through arr x[0] - x[3], y[0] - y[3] to get upper left of each hourglass
+#   Find the sum of the hourglass values.
+# Add that sum to hourglass_sums array
 # Return the max value
 
 import math
@@ -32,16 +33,17 @@ import sys
 
 
 def hourglassSum(arr):
-    # hourglass_count = 0
+    # hourglass_count = 0 # If you want to make sure you are getting all of the hourglasses
     hourglass_sums = []
 
     hourglass_sum = arr[0][0]
     '''
+    # Just to print out the first hourglass to see that I'm using the indices correctly
     print(
         f'{arr[0][0]} {arr[0][1]} {arr[0][2]} \n  {arr[1][1]}\n{arr[2][0]} {arr[2][1]} {arr[2][2]}')
     '''
     for i in range(0, 4):
-        for j in range(0, 4):  # i<- y, j <-x
+        for j in range(0, 4):  # i <- y, j <-x
             # Top row
             hourglass_sum = arr[i][j]
             hourglass_sum += arr[i][j+1]
