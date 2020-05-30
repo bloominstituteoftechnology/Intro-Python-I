@@ -86,3 +86,15 @@ s.decodeString("2[abc]3[cd]ef")  # "abcabccdcdcdef"
 # s.decodeString("100[leetcode]")
 # "zzzyypqjkjkefjkjkefjkjkefjkjkefyypqjkjkefjkjkefjkjkefjkjkefef"
 s.decodeString("3[z]2[2[y]pq4[2[jk]e1[f]]]ef")
+# 3[z] +
+# 2 [2[y]pq4[2[jk]e1[f]]] + ef
+#  broken down 2[y] + pq + 4[[2[jk]e1[f]]]
+#                            2[jk] + e + 1[f]
+
+# "zzz
+#   yypq jkjk ef jkjk ef jkjk ef jkjkef
+#   yypq jkjk ef jkjk ef jkjk ef jkjkef    ef"
+
+# test = 3 * ('z') + 2 * ((2 * 'y') + 'pq' +
+#                        4*(2*('jk') + 'e' + 1*('f'))) + 'ef'
+# print(test)
