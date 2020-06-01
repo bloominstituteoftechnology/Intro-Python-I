@@ -30,7 +30,6 @@ print(a[1:])
 print(a[:len(a)-1])
 
 # For string s...
-
 s = "Hello, world!"
 
 # Output just the 8th-12th characters: "world"
