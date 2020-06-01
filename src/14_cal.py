@@ -30,3 +30,18 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+args = sys.argv[1:]
+count = len(sys.argv[1:])
+
+# Figuring out how to write this logic in python took a little longer than I'd like to admit lol
+if count > 2 or not sys.argv[1].isdigit() or not sys.argv[2].isdigit():
+    print("py 14_cal.py [month] [year] ###USE NUMBERS")
+    sys.exit()
+
+# I'll assume user is playing fair past this point (aka,
+# no 3 digit month or year shorter/longer than 4 digits)
+thisMonth = int(sys.argv[1]) if count <= 2 else datetime.now().month
+thisYear = int(sys.argv[2]) if count == 2 else datetime.now().year
+
+print(calendar.month(thisYear, thisMonth))
