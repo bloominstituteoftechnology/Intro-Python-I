@@ -2,3 +2,8 @@
 # (try doing the same thing in the JS console and see what it outputs)
 
 # YOUR CODE HERE
+
+two=2
+power=65536
+twopower=two**power
+print(twopower)
