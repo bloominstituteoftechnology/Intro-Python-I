@@ -12,11 +12,18 @@ x = 5
 y = "7"
 
 # Write a print statement that combines x + y into the integer value 12
-
 # YOUR CODE HERE
+<<<<<<< HEAD
+=======
+
+>>>>>>> 445160f5a5274fb7fb007873da70e0c8dbed8d2b
 print(x + int(y))
 
 # Write a print statement that combines x + y into the string value 57
-
 # YOUR CODE HERE
+
+<<<<<<< HEAD
+# YOUR CODE HERE
+=======
+>>>>>>> 445160f5a5274fb7fb007873da70e0c8dbed8d2b
 print(str(x) + y)

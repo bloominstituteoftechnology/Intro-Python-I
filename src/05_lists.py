@@ -13,12 +13,20 @@ print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE
+<<<<<<< HEAD
+=======
+y = [8, 9, 10]
+>>>>>>> 445160f5a5274fb7fb007873da70e0c8dbed8d2b
 x.extend(y)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE
+<<<<<<< HEAD
 x.pop(-3)
+=======
+x.remove(8)
+>>>>>>> 445160f5a5274fb7fb007873da70e0c8dbed8d2b
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]

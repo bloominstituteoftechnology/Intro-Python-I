@@ -31,6 +31,7 @@ import sys
 import calendar
 from datetime import datetime
 
+<<<<<<< HEAD
 m, y = input('Input the month and year, seperated by a comma: ').split(',')
 
 m, y = int(m), int(y)
@@ -42,6 +43,15 @@ try:
   y = int(y)
 except:
   y, m = (today.year, today.month)
+=======
+#m, y = input('Input the month and year, seperated by a comma: ').split(',')
+
+#m, y = int(m), int(y)
+
+m, y = input('Input the month and year, seperated by a comma: ').split(',')
+m, y = int(m), int(y)
+today = datetime.today()
+>>>>>>> 445160f5a5274fb7fb007873da70e0c8dbed8d2b
 if m & y == 0:
   y, m = (today.year, today.month)
 if y == 0:

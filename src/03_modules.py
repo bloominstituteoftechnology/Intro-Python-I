@@ -7,18 +7,26 @@ level operating system functionality.
 
 import sys
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
-
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
 print(sys.argv)
+
+print('Command line args:', sys.argv[0])
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
 print(sys.platform)
 
+print('Operating system:', sys.platform)
+
 # Print out the version of Python you're using:
 # YOUR CODE HERE
+<<<<<<< HEAD
 print(sys.version)
+=======
+
+print('Python version:', sys.version)
+>>>>>>> 445160f5a5274fb7fb007873da70e0c8dbed8d2b
 
 import os
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
@@ -26,14 +34,26 @@ import os
 # Print the current process ID
 # YOUR CODE HERE
 
+<<<<<<< HEAD
 print(os.getpid())
+=======
+print('Process ID:', os.getpid())
+>>>>>>> 445160f5a5274fb7fb007873da70e0c8dbed8d2b
 
 # Print the current working directory (cwd):
 # YOUR CODE HERE
 
+<<<<<<< HEAD
 print(os.getcwd())
+=======
+print('Current Wording Directory:', os.getcwd())
+>>>>>>> 445160f5a5274fb7fb007873da70e0c8dbed8d2b
 
 # Print out your machine's login name
 # YOUR CODE HERE
 
+<<<<<<< HEAD
 print(os.getlogin())
+=======
+print('Login Name:', os.getlogin())
+>>>>>>> 445160f5a5274fb7fb007873da70e0c8dbed8d2b

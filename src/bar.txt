@@ -1,3 +1,8 @@
 Quoting Shakespeare is a little dated, don't you think? 
+<<<<<<< HEAD
 Let's pick out some modern snark. 
 'I've worked too hard to have a clue who you are / Set the bar so far above par, we can parlay all day' - What's The Use, Mac Miller 
+=======
+Let's pick out some modern snark to laugh at. 
+'She say that I glow below the waist and a stroke is just so PGA' - Small Worlds, Mac Miller 
+>>>>>>> 445160f5a5274fb7fb007873da70e0c8dbed8d2b
