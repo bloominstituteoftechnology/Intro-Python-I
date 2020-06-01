@@ -8,15 +8,16 @@ y = [8, 9, 10]
 
 # Change x so that it is [1, 2, 3, 4]
 # YOUR CODE HERE
-print(x)
+print(x.append(4))
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE
-print(x)
+print(x.extend(y))
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE
-print(x)
+add = [9, 10]
+print(x.append(add))
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE
@@ -24,6 +25,10 @@ print(x)
 
 # Print the length of list x
 # YOUR CODE HERE
+print(x.count("number"))
 
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
+
+multiplied = [element * 100 for element in x]
+print(multiplied)
