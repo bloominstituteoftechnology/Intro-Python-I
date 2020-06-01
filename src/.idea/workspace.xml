@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43586ee5-007b-4b38-9b89-e000444edc55" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/03_modules.py" beforeDir="false" afterPath="$PROJECT_DIR$/03_modules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/04_printing.py" beforeDir="false" afterPath="$PROJECT_DIR$/04_printing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/05_lists.py" beforeDir="false" afterPath="$PROJECT_DIR$/05_lists.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,8 +60,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/05_lists.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="32" column="15" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
+            <state relative-caret-position="455">
+              <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -241,8 +239,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/05_lists.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="32" column="15" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
+        <state relative-caret-position="455">
+          <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
         </state>
       </provider>
     </entry>
