@@ -90,6 +90,7 @@ The suggested order for going through each of the directories is:
 * `cal` -- Experiment with module imports and implement a text-based calendar
 * `classes` -- Classes and objects
 
+
 ## Stretch Goals
 
 1. One of Python's main philosophical tenets is its emphasis on readability. To
