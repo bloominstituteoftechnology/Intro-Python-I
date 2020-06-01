@@ -5,6 +5,8 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
+def f1(p1, p2):
+    return (p1+p2)
 
 print(f1(1, 2))
 
@@ -13,6 +15,11 @@ print(f1(1, 2))
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+def f2(*argv):
+    sum = 0
+    for arg in argv:
+        sum += arg
+    return sum
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
