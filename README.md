@@ -37,6 +37,8 @@ best for learning new languages.
 
 1. Make sure you have Python 3 and pipenv installed.
 
+C:\Users\Jesus\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\Jesus\AppData\Local\Programs\Python\Python38-32\;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Users\Jesus\AppData\Local\atom\bin;C:\Users\Jesus\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Jesus\AppData\Local\GitHubDesktop\bin;C:\Users\Jesus\AppData\Roaming\npm;C:\Users\Jesus\AppData\Local\Yarn\bin
+
 2. Go to the directory with the `Pipfile` and run
    ```
    pipenv install
