@@ -28,17 +28,20 @@ a = (2, 7)   # <-- x,y coordinates stored in tuples
 b = (-14, 72)
 
 # Prints "Distance is 66.94"
-print("Distance is: {:.2f}".format(dist(a, b)))
+# print("Distance is: {:.2f}".format(dist(a, b)))
+print("Distance is: {:.2f}".format(dist(a,b)))
 
 
 
 # Write a function `print_tuple` that prints all the values in a tuple
 
 # YOUR CODE HERE
-
+def print_tuple(t):
+    for vals in t:
+        print(vals)
 t = (1, 2, 5, 7, 99)
 print_tuple(t)  # Prints 1 2 5 7 99, one per line
 
 # Declare a tuple of 1 element then print it
-u = (1)  # What needs to be added to make this work?
+u = (1,)  # What needs to be added to make this work? Parenthesis doesn't make it a tupple hence you need to add a comma to indicate to python that it should be a tupple
 print_tuple(u)
