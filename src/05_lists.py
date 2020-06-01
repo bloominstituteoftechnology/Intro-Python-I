@@ -57,3 +57,8 @@ for y in z:
 # Print all of the elements that lie on the left-to-right
 # diagonal of matrix z
 # YOUR CODE HERE
+
+count = 0
+for y in z:
+    print(y[count])
+    count += 1
