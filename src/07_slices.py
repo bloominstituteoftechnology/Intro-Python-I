@@ -15,13 +15,13 @@ a = [2, 4, 1, 7, 9, 6]
 print(a[1])
 
 # Output the second-to-last element: 9
-print(a[-1])
+print(a[-2])
 
 # Output the last three elements in the array: [7, 9, 6]
-print(a[0:-3])
+print(a[3:6])
 
 # Output the two middle elements in the array: [1, 7]
-print(a[3,4])
+print(a[2:4])
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
 print(a[0:-1])
