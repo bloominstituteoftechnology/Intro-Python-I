@@ -38,19 +38,13 @@ print(y)
 
 # Use a list comprehension to create a list containing only the _even_ elements
 # the user entered into list x.
-a = []
+
 
 x = input("Enter comma-separated numbers: ").split(',')
-for i in range(10):
-    input.append(i % 2 == true)
+
 
 
 # What do you need between the square brackets to make it work?
 
-# y = []
-#for i in x:
-  #  if(int(i) % 2) == 0:
- #   y.append(i)
-
-#print(y)
+o
 
