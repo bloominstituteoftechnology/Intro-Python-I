@@ -34,5 +34,6 @@ print(a[:-1])
 s = "Hello, world!"
 
 # Output just the 8th-12th characters: "world"
-print(s[7:12])
+# print(s[7:12])
+print (s[0])
 # print(s[slice(7,12)]) # slice() starts at 7 stops at 12
