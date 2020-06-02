@@ -34,11 +34,19 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 
 # Write a function `print_tuple` that prints all the values in a tuple
 
-# YOUR CODE HERE
+def print_tuple(our_tuple):
+    """Prints all values in tuple, or if single value, prints only it."""
+    print('Numbers in tuple:')
+    if type(our_tuple) is tuple:
+        for number in our_tuple:
+            print(str(number).split()[0])
+    else:
+        print(our_tuple)  # Complete!
+
 
 t = (1, 2, 5, 7, 99)
-print_tuple(t)  # Prints 1 2 5 7 99, one per line
+print_tuple(t)  # Prints 1 2 5 7 99, one per line.
 
 # Declare a tuple of 1 element then print it
-u = (1)  # What needs to be added to make this work?
+u = (1)  # What needs to be added to make this work?  - If statement to determine dtype
 print_tuple(u)
