@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43586ee5-007b-4b38-9b89-e000444edc55" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/06_tuples.py" beforeDir="false" afterPath="$PROJECT_DIR$/06_tuples.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/11_args.py" beforeDir="false" afterPath="$PROJECT_DIR$/11_args.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/09_dictionaries.py" beforeDir="false" afterPath="$PROJECT_DIR$/09_dictionaries.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/12_scopes.py" beforeDir="false" afterPath="$PROJECT_DIR$/12_scopes.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/12_scopes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="365">
+              <caret line="28" column="10" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -53,12 +53,12 @@
         <entry file="file://$PROJECT_DIR$/09_dictionaries.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="455">
-              <caret line="57" column="12" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
+              <caret line="57" column="21" lean-forward="true" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/11_args.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="440">
@@ -73,8 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/08_comprehensions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+            <state relative-caret-position="455">
+              <caret line="47" column="8" lean-forward="true" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -125,12 +125,13 @@
         <option value="$PROJECT_DIR$/05_lists.py" />
         <option value="$PROJECT_DIR$/07_slices.py" />
         <option value="$PROJECT_DIR$/08_comprehensions.py" />
-        <option value="$PROJECT_DIR$/09_dictionaries.py" />
         <option value="$PROJECT_DIR$/10_functions.py" />
         <option value="$PROJECT_DIR$/03_modules.py" />
         <option value="$PROJECT_DIR$/04_printing.py" />
         <option value="$PROJECT_DIR$/06_tuples.py" />
         <option value="$PROJECT_DIR$/11_args.py" />
+        <option value="$PROJECT_DIR$/09_dictionaries.py" />
+        <option value="$PROJECT_DIR$/12_scopes.py" />
       </list>
     </option>
   </component>
@@ -312,27 +313,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/09_dictionaries.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="57" column="12" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/08_comprehensions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/12_scopes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/06_tuples.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="403">
@@ -347,6 +327,27 @@
           <folding>
             <marker date="1591129514794" expanded="true" signature="1185:1212" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/09_dictionaries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="57" column="21" lean-forward="true" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/08_comprehensions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="47" column="8" lean-forward="true" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/12_scopes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="28" column="10" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
         </state>
       </provider>
     </entry>
