@@ -34,7 +34,7 @@ from datetime import datetime
 inputs = len(sys.argv)
 
 def show_calendar(inputs):
-    if inputs <= 1:
+    if inputs == 1:
         print("Calendar for the current month:")
         calendar.prmonth(datetime.today().year, datetime.today().month)
     elif inputs == 2:
