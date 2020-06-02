@@ -30,3 +30,51 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+
+# FUNCTIONS
+def usage_statement():
+    return f"usage: {sys.argv[0]} [month] [year]"
+
+
+def month_is_valid(m):
+    if m <= 12 and m >= 1:
+        return True
+    else:
+        return False
+
+
+# PROGRAM FLOW
+arg_len = len(sys.argv)
+
+if arg_len == 3:
+    # If the user specifies two arguments, assume they passed in both the month and the year. Render the calendar for that month and year.
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+
+    if month_is_valid(month):
+        print(calendar.month(year, month, 3, 1))
+
+    else:
+        print(usage_statement())
+
+elif arg_len == 2:
+    # If the user specifies one argument, assume they passed in a month and render the calendar for that month of the current year.
+    month = int(sys.argv[1])
+    year = datetime.today().year
+
+    if month_is_valid(month):
+        print(calendar.month(year, month, 3, 1))
+    else:
+        print(usage_statement())
+
+elif arg_len == 1:
+    # If the user doesn't specify any input, the program should print the calendar for the current month.
+    month = datetime.today().month
+    year = datetime.today().year
+
+    print(calendar.month(year, month, 3, 1))
+
+else:
+    # Otherwise, print a usage statement to the terminal indicating the format that your program expects arguments to be given.
+    print(usage_statement())
