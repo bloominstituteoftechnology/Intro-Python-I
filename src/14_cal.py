@@ -30,3 +30,19 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+
+today = datetime.now() 
+# no error catching yet 
+calendar.setfirstweekday(calendar.SUNDAY)
+# sys.argv automatically has 1 argument for the name of the call
+if len(sys.argv) == 1:
+    print("Add a month as the first argument,\nAdd a second argument as a 4 digit year.\nIf you only one number this program will make that the month and use the current year.")
+    calendar.prmonth(today.year, today.month)
+elif len(sys.argv) == 2: 
+    print("Add a second argument as a 4 digit year.\nIf you only one number this program will make that the month and use the current year.")
+    calendar.prmonth(today.year, int(sys.argv[1]))
+elif len(sys.argv) == 3:
+    calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+# else: #catches errors
+#     print("Something went wrong\nAdd a month as the first argument,\nAdd a year number (four digits) as the second.\nIf you only one number this program will make that the month and use the current year.")
