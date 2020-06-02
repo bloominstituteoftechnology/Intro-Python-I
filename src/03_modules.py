@@ -31,6 +31,8 @@ print(len(python_path))  # lists # of characters in my file path
 
 print("I am using python version: %s" % python_path[len(python_path)-5])
 
+print(sys.version_info)
+
 
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
