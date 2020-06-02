@@ -45,6 +45,8 @@ print(f3(8))     # Should print 9
 
 # YOUR CODE HERE
 
+Yes defenitily maybe 
+
 # Should print
 # key: a, value: 12
 # key: b, value: 30
@@ -63,3 +65,5 @@ d = {
 
 # How do you have to modify the f4 call below to make this work?
 f4(d)
+
+by doing something

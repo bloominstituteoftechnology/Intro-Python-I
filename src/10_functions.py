@@ -8,5 +8,12 @@ num = int(num)
 
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 
+
+
 # YOUR CODE HERE
 
+num_data = []
+for data in range(len(names)):
+  person_data.append(heights[data]) 
+  person_data.append(weights[data])
+  person_data.append(names[data])
