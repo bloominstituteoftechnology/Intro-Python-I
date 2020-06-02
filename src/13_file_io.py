@@ -20,3 +20,10 @@ for line in foo:
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+with open(".bar.txt", "w") as f:
+    f.write("Hello World!")
+    f.write("\nHello World 2")
+    f.write("\nHello World 3")
+file = open("bar.txt")
+print(file.read())
+file.close()
