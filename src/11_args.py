@@ -50,12 +50,17 @@ print(f3(8))     # Should print 9
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
-def f4(x=v1, y=v2):
-    print('key: ' + x + 'value: ' + v1)
+def f4(**pair):
+    for x in pair:
+        y = pair[x]
+        # print(x,y)
+        print('key: ' + x + ', ' 'value: ' + str(y))
+        
+        
 # Should print
 # key: a, value: 12
 # key: b, value: 30
-# f4(a=12, b=30)
+f4(a=12, b=30)
 
 # Should print
 # key: city, value: Berkeley
@@ -67,6 +72,7 @@ d = {
     "monster": "goblin",
     "hp": 3
 }
-
+print(d.keys())
+print(d.get('monster'))
 # How do you have to modify the f4 call below to make this work?
-f4(d)
+f4(d.keys())
