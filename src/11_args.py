@@ -19,6 +19,13 @@ def f2(n, *args):
         total = total + i
     return total
 
+def sum_list(items):
+    sum_numbers = 0
+    for x in items:
+        sum_numbers += x
+    return sum_numbers
+
+
 print('---------------')
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -30,14 +37,16 @@ print('---------------')
 a = [7, 6, 5, 4]
 
 # How do you have to modify the f2 call below to make this work?
-print(f2(a))    # Should print 22
 
+print(sum_list(a))    # Should print 22
+print('---------------')
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments.
 # Note: Google "python default arguments" for a hint.
 
-# YOUR CODE HERE
+def f3(x=0, y=0):
+    return x + y +1
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
