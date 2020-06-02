@@ -57,9 +57,9 @@ print(f3(8))     # Should print 9
 
 # YOUR CODE HERE
 # define a function def
-def f4(**keysAndValues):
-    for e in keysAndValues:
-        print(f"key: {e}, value: {keysAndValues[e]}")
+def f4(**kwargs):
+    for e in kwargs:
+        print(f"key: {e}, value: {kwargs[e]}")
 # Should print
 # key: a, value: 12
 # key: b, value: 30
