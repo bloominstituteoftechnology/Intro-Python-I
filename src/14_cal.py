@@ -34,23 +34,23 @@ from datetime import datetime
 from datetime import date
 
 now = datetime.now()
-print(now.year, now.month)
+# print(now.year, now.month)
 
 from sys import argv
 n = sys.argv
-print(n)
+# print(len(n))
 
-c = calendar.TextCalendar(calendar.MONDAY)
-str = c.formatmonth(now.year, now.month)
-print(str)
-
-c = calendar.TextCalendar(calendar.MONDAY)
-str = c.formatmonth(now.year, int(n[1]))
-print(str)
-
-c = calendar.TextCalendar(calendar.MONDAY)
-str = c.formatmonth(int(n[2]), int(n[1]))
-print(str)
-
-# print(calendar.TextCalendar().formatmonth(int(n[2]), int(n[1])))
-# print(calendar.TextCalendar().formatmonth(int(n[2]), int(n[1])))
+if len(n) == 1:
+    c = calendar.TextCalendar(calendar.MONDAY)
+    str = c.formatmonth(now.year, now.month)
+    print(str)
+elif len(n) == 2:
+    c = calendar.TextCalendar(calendar.MONDAY)
+    str = c.formatmonth(now.year, int(n[1]))
+    print(str)
+elif len(n) == 3:
+    c = calendar.TextCalendar(calendar.MONDAY)
+    str = c.formatmonth(int(n[2]), int(n[1]))
+    print(str)
+else:
+    print('Please input month and year')
