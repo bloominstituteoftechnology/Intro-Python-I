@@ -16,7 +16,7 @@ automatically.
 import math
 
 def dist(a, b):
-    """Compute the distance between two x,y points."""
+    """Computpe the distance between two x,y points."""
     x0, y0 = a  # Destructuring assignment
     x1, y1 = b
 
@@ -37,7 +37,8 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 def print_tuple(tuple):
     print(tuple)
 t = (1, 2, 5, 7, 99)  
-print_tuple(t)  # Prints 1 2 5 7 99, one per line
+print_tuple(t)  
+# Prints 1 2 5 7 99, one per line
 
 # t = (1, 2, 5, 7, 99)
 # for u in t:
