@@ -14,10 +14,6 @@ print(f1(1, 2))  # Complete!
 # sum.
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
-def f2(*args):
-    """Takes any number of arguments, and returns their sums."""
-    for arg in args:
-        arg
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
