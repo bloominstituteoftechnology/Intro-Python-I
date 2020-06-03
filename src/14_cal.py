@@ -32,11 +32,20 @@ import calendar
 from datetime import date
 
 # get month and year from sys args
-month = int(sys.argv[1])
-year = int(sys.argv[2])
+month = None
+year = None
+try:
+  month = int(sys.argv[1])
+except:
+  month = date.today().month
+
+try:
+  year = int(sys.argv[2])
+except:
+  year = date.today().year
 
 # set up the text calendar
-cal = calendar.TextCalendar(0)
+cal = calendar.TextCalendar(6)
 
 # print the results
 cal.prmonth(year, month)
