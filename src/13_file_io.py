@@ -11,7 +11,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # YOUR CODE HERE
 f = open('foo.txt', 'r')
-f.read()
+print(f.read())
 f.close()
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
@@ -23,7 +23,3 @@ f.close()
 b = open('bar.txt', 'w')
 b.write('What time does this bar close?\nTwo a.m. you say\nSeems I got here right on time.')
 b.close()
-
-
-bar = open('bar.txt', 'r')
-bar.read() 
