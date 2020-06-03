@@ -29,4 +29,36 @@ it should use today’s date to get the month and year.
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import datetime 
+
+def display():
+  args = sys.argv
+  try:
+    if(len(args) == 1):
+        cal = calendar.TextCalendar()
+        month = datetime.now().month
+        year = datetime.now().year
+        return(cal.prmonth(year, month))
+
+    elif(len(args) == 2):
+        cal = calendar.TextCalendar()
+        month = int(args[1])
+        year = datetime.now().year
+        return(cal.prmonth(year, month))
+
+    elif(len(args) == 3):
+        cal = calendar.TextCalendar()
+        month = int(args[1])
+        year = int(args[2])
+        return(cal.prmonth(year, month))
+    
+    else:
+      print ("\nYour input should be in the following format: \n \
+> python 14_cal.py [month number] [year]")
+
+  except:
+      print("\nYour input should be in the following format: \n \
+> python 14_cal.py [month number] [year]")
+
+if __name__ == "__main__":
+    display()
