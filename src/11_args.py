@@ -60,7 +60,7 @@ print(f3(8))     # Should print 9
 
 # YOUR CODE HERE
 def f4(**kwargs):
-    print(str(kwargs))
+    return print(kwargs)
 # Should print
 # key: a, value: 12
 # key: b, value: 30

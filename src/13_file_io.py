@@ -24,7 +24,10 @@ print(reading_text)
 # YOUR CODE HERE
 # new_text = open("bar.txt", "w")
 
-text_file2 = open('bar.txt','r')
-reading_text2 = text_file2.read()
-text_file2.close()
-print(reading_text2)
+with open('bar.txt', "w") as b:
+    b.write("I can code\nyou can code\nwe can code")
+
+read_this = open("bar.txt", "r")
+read_this_yes = read_this.read()
+read_this.close()
+print(read_this_yes)
