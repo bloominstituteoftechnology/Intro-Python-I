@@ -20,3 +20,14 @@ with open('foo.txt') as fp:
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+
+content = ['content stuff', 'some other content', 'is this 3 lines?']
+f = open("bar.txt", "w")
+for line in content:
+  f.write(line)
+  f.write("\n")
+f.close()
+
+with open('bar.txt') as fp:
+  for line in fp:
+    print(line)
