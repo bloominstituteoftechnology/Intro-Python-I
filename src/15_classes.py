@@ -2,6 +2,18 @@
 # constructor
 
 # YOUR CODE HERE
+#how do i create a class
+#how do i create a class that can be passed parameters - i think with _init_ function
+class LatLon:
+    def __init__(self, lat, lon):
+        self.lat = lat
+        self.lon = lon
+
+example = LatLon(22, 22)
+print(example.lat)
+
+
+
 
 # Make a class Waypoint that can be passed parameters `name`, `lat`, and `lon` to the
 # constructor. It should inherit from LatLon. Look up the `super` method.
