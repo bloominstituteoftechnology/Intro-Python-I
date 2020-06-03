@@ -34,6 +34,5 @@ print(os.getcwd())
 
 # Print out your machine's login name
 # YOUR CODE HERE
-import socket 
-hostname = socket.gethostname()
-print(hostname)
+
+print(os.getlogin())

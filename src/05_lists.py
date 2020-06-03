@@ -16,16 +16,17 @@ print(x.extend(y))
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE
-add = [9, 10]
-print(x.append(add))
+print(x.pop(4))
+# INCORRECT
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE
-print(x)
+print(x.insert(5, 99))
 
 # Print the length of list x
 # YOUR CODE HERE
 print(x.count("number"))
+print(len(x))
 
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
