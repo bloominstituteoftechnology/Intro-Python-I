@@ -5,6 +5,7 @@
 x = 12
 
 def change_x():
+    nonlocal x
     x = 99
 
 change_x()
