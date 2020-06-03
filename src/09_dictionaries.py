@@ -48,7 +48,7 @@ print(waypoints)
 # waypoints list.
 
 # YOUR CODE HERE
-waypoints.update({
+waypoints[0].update({
     "lat": 43,
     "lon": -130,
     "name": "not a real place"
