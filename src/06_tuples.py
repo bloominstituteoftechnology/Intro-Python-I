@@ -26,7 +26,7 @@ a = (2, 7)   # <-- x,y coordinates stored in tuples
 b = (-14, 72)
 
 # Prints "Distance is 66.94"
-print("Distance is: {:.2f}".format(dist(a, b)))
+print("Distance is: ".format(dist(a, b)))
 
 
 

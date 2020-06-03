@@ -14,8 +14,8 @@ print(sys.argv)
 # Print out the OS platform you're using:
 # YOUR CODE HERE
 
-#I got this from the docs...
-print(os.fsencode(arg) for arg in sys.argv[0])
+
+print(sys.platform)
 
 
 #Learned this from the w3...
