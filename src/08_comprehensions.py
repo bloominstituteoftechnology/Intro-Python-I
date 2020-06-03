@@ -35,7 +35,7 @@ print(y)  # Complete!
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-y = [num for num in x]
+y = [num for num in x if int(num) % 2 == 0]  # Complete!
 
 # Because we're printing y, we need x within the square brackets. The user
 # input has been stored as x, with the values split by comma.
