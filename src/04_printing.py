@@ -16,3 +16,12 @@ print("x is %2d, y is%5.2f, z is %3s" %(10,2.25, "I like turtles!"))
 print("x is {}, y is {}, z is {}".format(10,2.25, "I like turtles!"))
 # Finally, print the same thing using an f-string
 print(f"x is {x}, y is {y}, z is {z}")
+
+
+# def stupid_addition(a,b) :
+#     if type(a) == str and type(b) == str:
+#         return (int(a) + int(b))
+#      if type(a) == int and type(b) == int:
+#          return (str(a) + str(b))
+
+# stupid_addition("1","2")

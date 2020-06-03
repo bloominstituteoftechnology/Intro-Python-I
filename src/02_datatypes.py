@@ -20,5 +20,5 @@ print(value)
 # Write a print statement that combines x + y into the string value 57
 
 # YOUR CODE HERE
-supervalue=x*10+y
+supervalue=str(x)+str(y)
 print(supervalue)
