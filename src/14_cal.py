@@ -31,5 +31,5 @@ import sys
 import calendar
 from datetime import datetime
 
-user_input = sys.argv
-print(user_input)
+# user_input = sys.argv
+# print(user_input[])
