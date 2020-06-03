@@ -44,7 +44,7 @@ def date(*nums):
     mm = int(nums[0])
     print(calendar.month(default_year, mm))
   else: 
-    print(calendar.month(default_yeara, default_month))
+    print(calendar.month(default_year, default_month))
 
 if len(sys.argv) == 3:
   date(sys.argv[1], sys.argv[2])
