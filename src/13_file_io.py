@@ -24,7 +24,7 @@ with open("src/foo.txt", "r") as foofoo:
 with open("src/bar.txt", "w") as foobar:
   foobar.write("Hello there\nCome along\nGo away")
 
-  # you can also open and read files this wat too
+  # you can also open and read fileds this wat too
 
   foobar = open("src/bar.txt", "r")
   text = foobar.read()

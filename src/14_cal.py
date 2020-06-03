@@ -34,7 +34,7 @@ from datetime import datetime
 
 # FUNCTIONS
 def usage_statement():
-    return f"usage: {sys.argv[0]} [month] [year]"
+    return "usage: {sys.argv[0]} [month] [year]"
 
 
 def month_is_valid(m):
