@@ -30,3 +30,31 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+default_month = datetime.today().month
+default_year = datetime.today().year
+def date(*nums):
+  if len(nums) == 2:
+    mm = int(nums[0])
+    yy = int(nums[1])
+    print(calendar.month(yy, mm))
+  elif len(nums) == 1:
+    mm = int(nums[0])
+    print(calendar.month(default_year, mm))
+  else: 
+    print(calendar.month(default_year, default_month))
+if len(sys.argv) == 3:
+  date(sys.argv[1], sys.argv[2])
+elif len(sys.argv) == 2:
+  date(sys.argv[1])
+else:
+  date()
+
+
+  
+
+
+
+
+
+
