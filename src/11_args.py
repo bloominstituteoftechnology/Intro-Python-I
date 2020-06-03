@@ -72,7 +72,10 @@ d = {
     "monster": "goblin",
     "hp": 3
 }
-print(d.keys())
-print(d.get('monster'))
+a = d["monster"]
+# print(a)
+b = d["hp"]
+# print(b)
+
 # How do you have to modify the f4 call below to make this work?
-f4(d.keys())
+f4(a="goblin", b=3)
