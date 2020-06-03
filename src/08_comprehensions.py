@@ -11,6 +11,8 @@ for more info regarding list comprehensions.
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
 y = []
+for num in range(6):
+    y.append(num)
 
 print (y)
 
@@ -18,7 +20,8 @@ print (y)
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 
 y = []
-
+for num in range(10):
+    y.append(num**3)
 print(y)
 
 # Write a list comprehension to produce the uppercase version of all the
@@ -28,14 +31,23 @@ a = ["foo", "bar", "baz"]
 
 y = []
 
+for elem in a:
+    y.append(elem.upper())
+
 print(y)
 
 # Use a list comprehension to create a list containing only the _even_ elements
 # the user entered into list x.
 
 x = input("Enter comma-separated numbers: ").split(',')
+def split(x):
+    for i in x:
+        if(i % int(2)) == int(0):
+            f.append(i)
+        else: 
+            f.append(i)
 
+split(x)
 # What do you need between the square brackets to make it work?
 y = []
-
 print(y)
