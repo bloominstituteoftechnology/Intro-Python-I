@@ -45,12 +45,12 @@ print(f3(8))     # Should print 9
 
 # YOUR CODE HERE
 
-Yes defenitily maybe 
+def f4():
 
 # Should print
 # key: a, value: 12
 # key: b, value: 30
-f4(a=12, b=30)
+f4(a=12,, b=30)
 
 # Should print
 # key: city, value: Berkeley
@@ -66,4 +66,3 @@ d = {
 # How do you have to modify the f4 call below to make this work?
 f4(d)
 
-by doing something
