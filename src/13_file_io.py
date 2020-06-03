@@ -29,18 +29,8 @@ my_f = open('bar.txt', 'w+')
 
 my_f.write("Quoting Shakespeare is a little dated, don't you think? \n")
 
-<<<<<<< HEAD
 my_f.write("Let's pick out some modern snark. \n")
 
 my_f.write("'I've worked too hard to have a clue who you are / Set the bar so far above par, we can parlay all day' - What's The Use, Mac Miller \n")
 
 my_f.close()
-=======
-my_f.write("Let's pick out some modern snark to laugh at. \n")
-
-my_f.write("'She say that I glow below the waist and a stroke is just so PGA' - Small Worlds, Mac Miller \n")
-
-my_f.close()
-
-# YOUR CODE HERE
->>>>>>> 445160f5a5274fb7fb007873da70e0c8dbed8d2b
