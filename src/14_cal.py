@@ -35,8 +35,6 @@ today = datetime.today()
 year = today.year
 month = today.month
 
-print(sys.argv)
-
 if len(sys.argv) > 1:
     try:
         month = int(sys.argv[1])
@@ -56,5 +54,4 @@ if len(sys.argv) > 2:
             print(error.args)
         exit()
 
-cal = calendar.Calendar()
-calendar.prmonth(year,month)
+calendar.prmonth(year, month)
