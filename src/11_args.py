@@ -5,6 +5,9 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
+def f1(x, y):
+    return(x + y)
+
 
 print(f1(1, 2))
 
@@ -14,7 +17,16 @@ print(f1(1, 2))
 
 # YOUR CODE HERE
 
-print(f2(1))                    # Should print 1
+
+def f2(*num):
+    sum = 0
+    for n in num:
+        sum = sum + n
+        print("sum", sum)
+        # return sum
+
+
+print("1", f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
 print(f2(1, 4, -12))            # Should print -7
 print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
