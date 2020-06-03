@@ -11,6 +11,13 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # YOUR CODE HERE
 
+# Open a file
+fo = open("foo.txt", "wb")
+print("Name of the file: ", fo.name)
+print("Closed or not : ", fo.closed)
+print("Opening mode : ", fo.mode)
+fo.close()
+
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
 # then close the file. Open up "bar.txt" and inspect it to make
@@ -18,5 +25,12 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # YOUR CODE HERE
 
-bar.txt will exist soon 
+# Open a file
+bo = open("bar.txt", "w")
+bo.write("writing. Write three lines of arbitrary content to that file,\n"
+        "then close the file. Open up "bar.txt" and inspect it to make\n"
+        "sure that it contains what you expect it to contain\n")
+
+# Close opend file
+bo.close()
 
