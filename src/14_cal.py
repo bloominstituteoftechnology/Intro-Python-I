@@ -36,3 +36,15 @@ month = user_input[1]
 year = user_input[2]
 print(month, year)
 
+# if user_input == none:
+#   month = datetime.now().month
+#   year = datetime.now().year
+#if user_input == sys.argv
+  month = int(sys.argv[1])
+  year = datetime.now().year
+#if user_input == 2 arg
+  month = int(sys.argv[1])
+  year = int(sys.argv[2])
+else:
+  print("must input: [month] [year]")
+  sys.exit(1)
