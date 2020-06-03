@@ -1,3 +1,5 @@
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/LambdaSchool/Intro-Python-I) 
+
 # Intro to Python I
 
 It's time to learn a new language! Python!
@@ -89,6 +91,7 @@ The suggested order for going through each of the directories is:
 * `file_io` -- Read and write from files
 * `cal` -- Experiment with module imports and implement a text-based calendar
 * `classes` -- Classes and objects
+
 
 ## Stretch Goals
 
