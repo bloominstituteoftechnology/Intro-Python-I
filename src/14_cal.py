@@ -46,6 +46,26 @@ elif l == 1:
 else:
     print("Invalid Input: Please enter only a month and year in numerical format.")
 
-cal = calendar.TextCalendar(10)
+cal = calendar.TextCalendar(6)
 
 cal.prmonth(int(year), int(month))
+
+# import sys
+# import calendar
+# from datetime import datetime
+
+# l = len(sys.argv)
+# if l == 1:
+#     month = datetime.now().month
+#     year = datetime.now().year
+# if l == 2:
+#     month = int(sys.argv[1])
+#     year = datetime.now().year
+# if l == 3:
+#     month = int(sys.argv[1])
+#     year = int(sys.argv[2])
+# else:
+#     print("usage: calendar.py [month] [year]")
+#     sys.exit(1)
+# cal = calendar.TextCalendar(1)
+# cal.prmonth(year, month)
