@@ -15,6 +15,7 @@ class Latlon:
 
 class Waypoint(Latlon):
     def __init__(self, name, lat, lon):
+        # use the super method to acess methods on the parent class
         super().__init__(lat, lon)
         self.name = name
 
@@ -33,7 +34,7 @@ class Geocache(Waypoint):
         self.size = size
 
     def __str__(self):
-        return(f"Name: {self.name}, Difficulty: {self.name}. Size: {self.size}, Latitude: {self.lat}, Longitude: {self.lon}")
+        return(f"Name: {self.name}, Difficulty: {self.difficulty}. Size: {self.size}, Latitude: {self.lat}, Longitude: {self.lon}")
 
 # Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
 
