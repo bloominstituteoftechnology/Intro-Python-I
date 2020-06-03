@@ -42,7 +42,7 @@ def get_calender(*args):
 
 
 print(get_calender(*sys.argv))
-
+print(sys.argv)
 
 # Test based on calendar April 2015
 assert get_calender(
