@@ -19,11 +19,27 @@
 
 # Without changing the following line, how can you make it print into something
 # more human-readable? Hint: Look up the `object.__str__` method
-print(waypoint)
+# print(waypoint)
 
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 
 # YOUR CODE HERE
 
 # Print it--also make this print more nicely
-print(geocache)
+# print(geocache)
+
+class Student:
+    def __init__(self, first, last=""):
+        self.first = first
+        self.last = last
+
+    def __str__(self):
+        return f"Students name is {self.first}, {self.last}"
+
+    def __repr__(self):
+        return f"Student first={self.first} last={self.last}"
+
+
+me = Student("Edvin")
+print(me)
+me
