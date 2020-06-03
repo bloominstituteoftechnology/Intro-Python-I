@@ -21,8 +21,16 @@ str = '{} is 10, {} is 2.25, {} is "I like turtles!"'
 print(str.format(x, y, z))
 
 # Finally, print the same thing using an f-string
-print(f"x is", x)
-print(f"y is {y}")
-print(f"z is {z!r}")
+# print(f"x is", x)
+# print(f"y is {y}")
+# print(f"z is {z!r}")
+
+print(f'x is {x}, y is {y}, z is "{z}"')
+
+def fString(x, y, z):
+    print(f"x is {x}, y is {y}, z is {z}")
+
+fString(10, 2.25, "I like turtles!")
 
 # f-strings not working even though my python version should be good enough.
+
