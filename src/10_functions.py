@@ -18,8 +18,8 @@ num = int(num)
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 
 # YOUR CODE HERE
-def even_or_odd(number):
-    if is_even(number) == False:
+def even_or_odd(num):
+    if is_even(num) == False:
         print("Odd")
     else:
         print("Even!")

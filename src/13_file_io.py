@@ -26,9 +26,6 @@ line1 = "This is some arbitrary stuff\n"
 line2 = "We like to party, we like... we like to party\n"
 line3 = "Merp Merp\n"
 writeList = [line1, line2, line3]
-# bar.write(line1)
-# bar.write(line2)
-# bar.write(line3)
 for line in writeList:
     bar.write(line)
 bar.close()
