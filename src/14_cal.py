@@ -31,39 +31,23 @@ import sys
 import calendar
 from datetime import datetime
 
-# print()
-# print(sys.argv)
-# print()
+print()
+print(sys.argv)
+print()
 
-# current_month = datetime.today().month
+current_month = datetime.today().month
 
-# current_year = datetime.today().year
+current_year = datetime.today().year
 
-# cal = calendar.Calendar()
-
-
-# def print_date(month=current_month, year=current_year):
-#     if len(sys.argv) == 2:
-#         month = int(sys.argv[1])
-#     if len(sys.argv) == 3:
-#         year = int(sys.argv[2])
-#     print(cal.monthdatescalendar(year, month))
+cal = calendar.Calendar()
 
 
-# print_date()
-
-##################
-
-def render_calendar():
-    try:
-        month = sys.argv[1] if len(sys.argv) > 1 else datetime.today().month
-        year = sys.argv[2] if len(sys.argv) > 2 else datetime.today().year
-
-        print("\n" + calendar.month(int(year), int(month)) + "\n")
-    except:
-        print("Script to print a calendar for a given month.")
-        print("If no options are specified, prints the current month")
-        print("usage: app_name <month> <optional-year>")
+def print_date(month=current_month, year=current_year):
+    if len(sys.argv) == 2:
+        month = int(sys.argv[1])
+    if len(sys.argv) == 3:
+        year = int(sys.argv[2])
+    print(cal.monthdatescalendar(year, month))
 
 
-render_calendar()
+print_date()
