@@ -40,16 +40,27 @@ a = [7, 6, 5, 4]
 
 print(sum_list(a))    # Should print 22
 print('---------------')
+
+
+
+
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments.
 # Note: Google "python default arguments" for a hint.
 
+
+
 def f3(x=0, y=0):
-    return x + y +1
+    if y == 0:
+        return x + 1
+    if y != 0:
+        return x + y
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
+
+print('---------------')
 
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
@@ -60,7 +71,9 @@ print(f3(8))     # Should print 9
 #
 # Note: Google "python keyword arguments".
 
-# YOUR CODE HERE
+def f4(**kwargs):  
+    for key, value in kwargs.items(): 
+        print ("%s == %s" %(key, value)) 
 
 # Should print
 # key: a, value: 12
@@ -79,4 +92,9 @@ d = {
 }
 
 # How do you have to modify the f4 call below to make this work?
-f4(d)
+
+def f5(s, **kwargs):
+  print (s)
+
+f5(d)
+ 
