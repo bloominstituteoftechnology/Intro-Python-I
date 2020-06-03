@@ -18,13 +18,13 @@ print(a[1:2])
 print(a[-2:-1])
 
 # Output the last three elements in the array: [7, 9, 6]
-print(a[-3::]) # returns from -3 index all the way till the end
+print(a[-3:]) # returns from -3 index all the way till the end
 
 # Output the two middle elements in the array: [1, 7]
 print(a[2:4])
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
-print(a[1::]) #another colon does all of them
+print(a[1:]) #another colon does all of them
 
 # Output every element except the last one: [2, 4, 1, 7, 9]
 print(a[0:-1]) #stops before the last one
