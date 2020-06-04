@@ -304,8 +304,8 @@ Most commonly used are:
 
 ```python
 d = {
-    "a": 2,
-    "b": 3
+	"a": 2,
+	"b": 3
 }
 
 print(d["a"])
@@ -369,7 +369,7 @@ You can add them dynamically at runtime, but you have to add them to the class i
 
 ```python
 class Foo():
-    pass
+	pass
 
 f = Foo()
 
@@ -378,7 +378,7 @@ Foo.x = 12  # Dynamically add property to class
 f.x == 12 # True!
 
 def a_method(self):
-    print("Hi")
+	print("Hi")
 
 Foo.hi = a_method  # Dynamically add method to class
 
@@ -417,13 +417,13 @@ The answer to this is twofold:
 
 ```python
 class Base1:
-    pass
+	pass
 
 class Base2:
-    pass
+	pass
 
 class Derived(Base1, Base2):  # Multiple inheritance
-    pass
+	pass
 ```
 
 Sometimes multiple inheritance can lead to elegant solutions when a subclass
@@ -456,14 +456,14 @@ object_.
 
 ```python
 class Goat:
-    def __init__(self, leg_count):
-        self.leg_count = leg_count
+	def __init__(self, leg_count):
+		self.leg_count = leg_count
 
-    def __repr__(self):
-        return f'Goat(leg_count={self.leg_count})'
+	def __repr__(self):
+		return f'Goat(leg_count={self.leg_count})'
 
-    def __str__(self):
-        return f'a goat with {self.leg_count} legs'
+	def __str__(self):
+		return f'a goat with {self.leg_count} legs'
 ```
 
 In action:
@@ -492,7 +492,7 @@ Here's a small program that prints the command line arguments:
 import sys
 
 for i in range(len(sys.argv)):
-    print(f'Argument #{i} is: {sys.argv[i]}')
+	print(f'Argument #{i} is: {sys.argv[i]}')
 ```
 
 and here's some output, assuming you named the script `foo.py`:
@@ -517,7 +517,7 @@ Here's another program that prints up to whatever number the user specifies:
 import sys
 
 for i in range(int(sys.argv[1])):
-    print(i+1)
+	print(i+1)
 ```
 
 Example runs:
