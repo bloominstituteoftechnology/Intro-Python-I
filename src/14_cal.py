@@ -46,3 +46,4 @@ def my_cal(year=None, month=None):
   
 
 print(my_cal(1999, 9))
+# or instead input = sys.argv[]
