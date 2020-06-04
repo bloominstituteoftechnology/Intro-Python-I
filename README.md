@@ -1,3 +1,4 @@
+=======
 # Intro to Python I
 
 _Note: This project spans two modules (modules 1 and 2). You should roughly try to finish the first half of the problems during module 1 and the second half of the problems during module 2._
@@ -115,3 +116,4 @@ The suggested order for going through each of the directories is:
    2. Implement [The Sieve of
       Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes), one
       of the oldest algorithms known (ca. 200 BC).
+
