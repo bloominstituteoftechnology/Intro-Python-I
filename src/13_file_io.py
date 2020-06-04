@@ -4,7 +4,10 @@ at how to read and write to files here:
 
 https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 """
-
+with open("./foo.txt") as foo:
+    read_data = foo.read() 
+for line in foo:
+    print(line, end='')
 # Open up the "foo.txt" file (which already exists) for reading
 # Print all the contents of the file, then close the file
 # Note: pay close attention to your current directory when trying to open "foo.txt"
@@ -17,3 +20,10 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+with open(".bar.txt", "w") as f:
+    f.write("Hello World!")
+    f.write("\nHello World 2")
+    f.write("\nHello World 3")
+file = open("bar.txt")
+print(file.read())
+file.close()
