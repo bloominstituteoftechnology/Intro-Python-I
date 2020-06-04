@@ -1,4 +1,7 @@
+=======
 # Intro to Python I
+
+_Note: This project spans two modules (modules 1 and 2). You should roughly try to finish the first half of the problems during module 1 and the second half of the problems during module 2._
 
 It's time to learn a new language! Python!
 
@@ -66,6 +69,8 @@ best for learning new languages.
 
 ## Instructions
 
+_Note: This project spans two modules (modules 1 and 2). You should roughly try to finish the first half of the problems during module 1 and the second half of the problems during module 2._
+
 Each directory inside the `src/` directory presents exercises revolving around a
 particular concept in Python. Not all of these concepts are unique to Python (in
 fact, most probably aren't). This means that you can leverage knowledge you've
@@ -111,3 +116,4 @@ The suggested order for going through each of the directories is:
    2. Implement [The Sieve of
       Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes), one
       of the oldest algorithms known (ca. 200 BC).
+
