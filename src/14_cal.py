@@ -29,4 +29,23 @@ it should use today’s date to get the month and year.
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import date as date
+
+def calendar_usage():
+    print('Command line usage: 14_cal.py OPTIONS: [month: int] [year: int]')
+    sys.exit()
+
+args = sys.argv
+today = date.today()
+
+try:
+    if len(args) == 1:
+        print(calendar.month(today.year, today.month))
+    elif len(args) == 2:
+        print(calendar.month(today.year, int(args[1])))
+    elif len(args) == 3:
+        print(args)
+        print(calendar.month(int(args[2]), int(args[1])))
+        
+except:
+    calendar_usage()
