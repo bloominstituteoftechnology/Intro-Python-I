@@ -45,10 +45,14 @@ waypoints.append({
 # value is -130 and change its name to "not a real place"
 # Note: It's okay to access the dictionary using bracket notation on the
 # waypoints list.
-waypoints[0]
-
+the_dict = waypoints[0]
+the_dict['name'] = 'not a real place'
+the_dict['lon'] = -130
+print(waypoints[0])
 # YOUR CODE HERE
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
-waypoints
+for items in waypoints:
+    for value in items.values():
+        print(value)
