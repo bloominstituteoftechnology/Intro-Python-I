@@ -1,7 +1,7 @@
 """
 The Python standard library's 'calendar' module allows you to
 render a calendar to your terminal.
-https://docs.python.org/3.6/library/calendar.html
+https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 Write a program that accepts user input of the form
   `14_cal.py [month] [year]`
@@ -30,3 +30,10 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+date = datetime.now()
+x = input('Month and Year? Seperated with comma!  ').split(',')
+if len(x[0]) == 0:
+  print(date.strftime("%B"))
+elif len(x) == 1:
+  print(calendar.monthcalendar(date.strftime("%Y"), date.strftime("%m")))
