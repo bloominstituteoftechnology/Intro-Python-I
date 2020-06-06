@@ -24,4 +24,4 @@ print('x is %2d, y is %4.2f, z is %2s' % (x, y, z))
 print('x is {0:2d}, y is {1:4.2f}, z is {2:2s}'.format(x, y, z))
 
 # Finally, print the same thing using an f-string
-print(f'x is {x}, y is {y}, z is {z}')
+print(f'x is {x}, y is {y:4.2f}, z is {z}')
