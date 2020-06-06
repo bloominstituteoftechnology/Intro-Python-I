@@ -39,17 +39,14 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 t = (1, 2, 5, 7, 99)
 
 def print_tuple(tup):
-    elementCount = 0
-    for ele in tup:
-        if(ele >= 1 and len(tup)>= 1):
-           elementCount = elementCount+1
-           print(ele)
-        elif(ele >= 1 and len(tup) == 0):
-          print("The list is empty") 
-    
+    if(len(tup) >= 1):
+        for ele in tup:
+            print(ele)
+    else:
+        print("There is an error with your list!")
 
 print_tuple(t)  # Prints 1 2 5 7 99, one per line
 
 # Declare a tuple of 1 element then print it
-u = (1)  # What needs to be added to make this work?
+u = (1,)  # What needs to be added to make this work?
 print_tuple(u)
