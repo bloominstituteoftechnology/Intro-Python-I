@@ -28,6 +28,7 @@ print(a[1:])
 
 # Output every element except the last one: [2, 4, 1, 7, 9]
 print(a[:len(a)-1])
+print(a[:-1])
 
 # For string s...
 
