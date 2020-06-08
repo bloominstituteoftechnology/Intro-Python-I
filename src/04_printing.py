@@ -19,6 +19,6 @@ print(f'{x}')
 print(f'{y}, {z}')
 print(f'x is {x}, y is {y}, z is {z}')
 # Finally, print the same thing using an f-string
-f"{x}"
-f'{y}, {z}'
-f'x is {x}, y is {y}, z is {z}'
+print(f"{x}")
+print(f'{y}, {z}')
+print(f'x is {x}, y is {y}, z is {z}')
