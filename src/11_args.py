@@ -6,6 +6,11 @@
 
 # YOUR CODE HERE
 
+
+def f1(num1, num2):
+    return num1 + num2
+
+
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and returns the
