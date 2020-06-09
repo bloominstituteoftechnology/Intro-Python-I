@@ -38,7 +38,7 @@ x = slice(1, 6)
 
 # Output every element except the last one: [2, 4, 1, 7, 9]
 
-x = slice(0, 5)
+x = slice(a[-1])
 # print(a[x])
 
 # For string s...
