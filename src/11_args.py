@@ -17,11 +17,10 @@ print(f1(1, 2))
 
 # YOUR CODE HERE
 
-def f2(*argv):
+def f2(*args):
     total = 0
-
-    for n in argv:
-        total = total+int(n)
+    for n in args:
+        total += n
     
     return total
 print(f2(1))                    # Should print 1
