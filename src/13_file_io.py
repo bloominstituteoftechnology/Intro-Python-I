@@ -11,7 +11,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # YOUR CODE HERE
 with open('foo.txt') as f:
-...     print(f.read())
+    print(f.read())
 f.close()
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
@@ -23,5 +23,5 @@ f.close()
 with open('bar.txt') as f:
     f.write('This is the first line\n This is the second\n Third\n')
 with open('foo.txt') as f:
-...     print(f.read())
+    print(f.read())
 f.close()
