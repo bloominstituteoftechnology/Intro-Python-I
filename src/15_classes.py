@@ -4,8 +4,6 @@
 # YOUR CODE HERE
 
 class LatLon:
-    latitute = 0
-    longitute = 0
 
     def __init__(self, lat, lon):
         self.latitute = lat
@@ -15,11 +13,10 @@ class LatLon:
 # constructor. It should inherit from LatLon. Look up the `super` method.
 
 class Waypoint(LatLon):
-    name = ''
 
-    def __init__(self, n):
-       self.name = n
+    def __init__(self, name, lat, lon):
        super().__init__(lat, lon)
+       self.name = name
 
     def __str__(self):
         return f"{self.name}, {self.latitute}, {self.longitute}"
@@ -31,13 +28,11 @@ class Waypoint(LatLon):
 # `size`, `lat`, and `lon` to the constructor. What should it inherit from?
 
 class Geocache(Waypoint):
-    difficulty = ''
-    size = ''
 
-    def __init(self, d, s):
-       self.difficulty = d
-       self.size = s
-       super().__init__(lat, lon)
+    def __init(self, name, lat, lon, size, difficulty):
+       super().__init__(name, lat, lon)
+       self.difficulty = difficulty
+       self.size = size
        
     def __str__(self):
         return f"{self.name}, {self.latitute}, {self.longitute}, {self.difficulty} , {self.size}"

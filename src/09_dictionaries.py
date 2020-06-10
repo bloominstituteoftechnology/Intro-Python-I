@@ -35,11 +35,17 @@ waypoints = [
 
 # Add a new waypoint to the list
 # YOUR CODE HERE
-# waypoints['lat']=[42]
-# waypoints['lon'] = [-123
+# waypoints['lat']= 42
+# waypoints['lon'] = -123
 # waypoints['name'] = "a fourth place"
 
-waypoints.append("lat", 42)
+dist = {
+    "lat": 42,
+    "lon": -122,
+    "name": "a fourth place"
+}
+
+waypoints.append(dist)
 
 
 print(waypoints)
