@@ -24,7 +24,7 @@ assert(foo.closed)
 # YOUR CODE HERE
 
 with open('bar.txt', 'w') as bar:
-    bar.write("Hello.\How are you? I am Ok.\nWhat is your first name? Mine is Michael.")
+    bar.write("Hello.How are you? I am Ok.\nWhat is your first name? Mine is Michael.")
 
 assert(bar.closed)
 
