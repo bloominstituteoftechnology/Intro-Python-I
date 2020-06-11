@@ -70,9 +70,10 @@ print(f3(8))     # Should print 9
 # key: a, value: 12
 # key: b, value: 30
 
-def f4(*args):
+def f4(**args):
     for arg in args:
-        print("/n key:a, value:", arg)
+        for argValue in args.values():
+            print("key:", arg, "value:", argValue)
 
 
 f4(a=12, b=30)
@@ -89,4 +90,4 @@ d = {
 }
 
 # How do you have to modify the f4 call below to make this work?
-f4(d.monster, d.hp)
+f4(d["monster"], d["hp"])

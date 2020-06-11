@@ -51,9 +51,9 @@ print(Waypoint)
 
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 
-Geocache("Newberry Views", 1.5, 2, 44.052137, -121.41556)
+# Geocache("Newberry Views", 1.5, 2, 44.052137, -121.41556)
 
 # YOUR CODE HERE
 
 # Print it--also make this print more nicely
-print(Geocache)
+#  print(Geocache)
