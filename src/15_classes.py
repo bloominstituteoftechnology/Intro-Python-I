@@ -9,6 +9,8 @@ class LatLon:
         self.latitute = lat
         self.longitute = lon
 
+
+
 # Make a class Waypoint that can be passed parameters `name`, `lat`, and `lon` to the
 # constructor. It should inherit from LatLon. Look up the `super` method.
 
@@ -19,7 +21,7 @@ class Waypoint(LatLon):
        self.name = name
 
     def __str__(self):
-        return f"{self.name}, {self.latitute}, {self.longitute}"
+        return f"{self.name}, {self.lat}, {self.lon}"
 
 
 # YOUR CODE HERE
@@ -57,3 +59,4 @@ print(Waypoint)
 
 # Print it--also make this print more nicely
 #  print(Geocache)
+
