@@ -3,9 +3,9 @@
 # YOUR CODE HERE
 def is_even(number):
     if number % 2 == 0:
-     return True
+        return True
     else:
-      return False
+        return False
 
 # Read a number from the keyboard
 num = input("Enter a number: ")

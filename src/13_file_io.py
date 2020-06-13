@@ -11,7 +11,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # YOUR CODE HERE
 
-file = open('src\\foo.txt')
+file = open('foo.txt')
 file_text = file.read()
 file.close()
 print(file_text)
