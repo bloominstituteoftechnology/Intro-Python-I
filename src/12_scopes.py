@@ -5,7 +5,9 @@
 x = 12
 
 def change_x():
+    global x
     x = 99
+   
 
 change_x()
 
@@ -19,7 +21,11 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y # The nonlocal keyword is used in a nested function to make the y variable 
+                   # ignore the global variable since they have the same name
         y = 999
+        # print(y)
+        # return y
 
     inner()
 
