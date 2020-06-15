@@ -33,7 +33,7 @@ print(f2(*a))    # Should print 22
 # arguments.
 # Note: Google "python default arguments" for a hint.
 
-def f3(num3, num4 = 1):
+def f3(num3, num4 = 1): # The second argument is a default argument
     return num3 + num4
 
 print(f3(1, 2))  # Should print 3
@@ -72,10 +72,10 @@ def f4(**kwargs): # ** means that a dictionary can have a variable number of arg
 # key: b, value: 30
 f4(a=12, b=30) 
 
-# Should print
-# key: city, value: Berkeley
-# key: population, value: 121240
-# key: founded, value: "March 23, 1868"
+Should print
+key: city, value: Berkeley
+key: population, value: 121240
+key: founded, value: "March 23, 1868"
 f4(city="Berkeley", population=121240, founded="March 23, 1868") 
 
 d = {
