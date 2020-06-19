@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 
 [dev-packages]
+pylint = "*"
+pytest = "*"
+autopep8 = "*"
 
 [requires]
 python_version = "3"
