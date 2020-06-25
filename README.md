@@ -1,5 +1,7 @@
 # Intro to Python I
 
+_Note: This project spans two modules (modules 1 and 2). You should roughly try to finish the first half of the problems during module 1 and the second half of the problems during module 2._
+
 It's time to learn a new language! Python!
 
 Python is a popular, easy-to-use programming language that has significant
@@ -65,6 +67,8 @@ best for learning new languages.
   language concepts.
 
 ## Instructions
+
+_Note: This project spans two modules (modules 1 and 2). You should roughly try to finish the first half of the problems during module 1 and the second half of the problems during module 2._
 
 Each directory inside the `src/` directory presents exercises revolving around a
 particular concept in Python. Not all of these concepts are unique to Python (in
