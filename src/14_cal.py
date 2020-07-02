@@ -28,5 +28,16 @@ it should use today’s date to get the month and year.
 """
 
 import sys
-import calendar
+import calendar 
 from datetime import datetime
+c=calendar.TextCalendar(calendar.SUNDAY)
+
+month=int(sys.argv[2]) if len(sys.argv) >= 2 else datetime.now().month
+year=int(sys.argv[1]) if len(sys.argv) >= 2 else datetime.now().year
+
+print(len(sys.argv))
+print(c.formatmonth(year,month))
+
+
+
+
