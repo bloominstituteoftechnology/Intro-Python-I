@@ -29,7 +29,7 @@ class Waypoint(LatLon):
 l2 = Waypoint(1, 2, 'place')
 print(l2.name)
 
-# Make a class Geocache that can be passed parameters `name`, `difficulty`,
+# Make a class Geocache that can be passed parameters: `name`, `difficulty`,
 # `size`, `lat`, and `lon` to the constructor. What should it inherit from?
 
 # YOUR CODE HERE
