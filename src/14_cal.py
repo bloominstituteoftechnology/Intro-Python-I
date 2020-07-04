@@ -30,3 +30,28 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+# print(calendar.weekheader(3))
+# print(calendar.firstweekday())
+# print()
+
+# print(calendar.month(2020, 7))
+
+# print(calendar.monthcalendar(2020, 7))
+# print(calendar.calendar(2020))
+
+# day_of_the_week = calendar.weekday(2020, 7, 3)
+# print(day_of_the_week)
+
+# is_leap = calendar.isleap(1492)
+# print(is_leap)
+months = {v: k for k, v in enumerate(calendar.month_name)}
+print(months)
+now = datetime.now()
+# print(now)
+def calendar_page(year= now.year, month= now.month):
+    print(calendar.month(year, month))
+
+
+calendar_page()
+calendar_page(1776, months["July"])
