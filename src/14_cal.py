@@ -18,15 +18,55 @@ and does the following:
    the format that your program expects arguments to be given.
    Then exit the program.
 
-Note: the user should provide argument input (in the initial call to run the file) and not 
-prompted input. Also, the brackets around year are to denote that the argument is
+Note: the user should provide argument input
+(in the initial call to run the file) and not
+prompted input. Also, the brackets around
+year are to denote that the argument is
 optional, as this is a common convention in documentation.
 
-This would mean that from the command line you would call `python3 14_cal.py 4 2015` to 
-print out a calendar for April in 2015, but if you omit either the year or both values, 
+This would mean that from the command line you
+would call `python3 14_cal.py 4 2015` to
+print out a calendar for April in 2015, but if
+you omit either the year or both values,
 it should use today’s date to get the month and year.
 """
 
 import sys
 import calendar
 from datetime import datetime
+
+
+def get_year():
+    year = datetime.today().year
+    return year
+
+
+def get_month():
+    month = datetime.today().month
+    return month
+
+
+def get_cal(month=None, year=None):
+    cal = calendar.TextCalendar(calendar.SUNDAY)
+    try:
+        if month and year:
+            cal = cal.formatmonth(year, month)
+            print(cal)
+        elif month:
+            cal = cal.formatmonth(get_year(), month)
+            print(cal)
+        else:
+            cal = cal.formatmonth(get_year(), get_month())
+            print(cal)
+    except IndexError:
+        sys.exit('Please provide your input as integers '
+                 'in the format [month] [year]')
+    except TypeError:
+        sys.exit('Please provide your input as integers '
+                 'in the format [month] [year]')
+
+
+if __name__ == "__main__":
+    in_month, in_year = int(sys.argv[1]), int(sys.argv[2])
+    get_cal(month=in_month, year=in_year)
+    sys.exit()
