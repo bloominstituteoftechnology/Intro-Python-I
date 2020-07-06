@@ -19,13 +19,14 @@ if len(args) != 1:
     print("Expected one, and only one, argument.", file=sys.stderr)
     print("Usage:", file=sys.stderr)
     print(f"  {sys.argv[0]} <integer>", file=sys.stderr)
-    exit(1)
+    print("Returns 0 if the number is prime, 1 if it is not", file=sys.stderr)
+    exit(64)
 
 number = int(args[0])
 
 if number <= 0:
     print("Number must be greater than 0 !", file=sys.stderr)
-    exit(2)
+    exit(64)
 
 primes_up_to_number = sieve_of_eratosthenes(number)
 
