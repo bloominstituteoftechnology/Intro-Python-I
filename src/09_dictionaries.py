@@ -45,8 +45,11 @@ print(waypoints)
 
 # YOUR CODE HERE
 
-
+waypoints[0] = {"lat": 43, "lon": -130, "name": "not a real place"}
 print(waypoints)
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+for wayDicts in waypoints:
+    for key, values in wayDicts.items():
+        print("Key:", key, "Value:", values)
