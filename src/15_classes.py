@@ -2,11 +2,22 @@
 # constructor
 
 # YOUR CODE HERE
+class LatLon:
+    def func(self, lat, lon):
+        self.lat = lat
+        self.lon = lon
+
 
 # Make a class Waypoint that can be passed parameters `name`, `lat`, and `lon` to the
 # constructor. It should inherit from LatLon. Look up the `super` method.
 
 # YOUR CODE HERE
+class Waypoint(LatLon):
+    def func2(self, lat, lon, name):
+        super().__init__(lat, lon)
+        self.name = name
+    
+    def
 
 # Make a class Geocache that can be passed parameters `name`, `difficulty`,
 # `size`, `lat`, and `lon` to the constructor. What should it inherit from?
