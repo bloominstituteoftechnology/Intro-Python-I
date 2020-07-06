@@ -1,17 +1,15 @@
 # Write a function is_even that will return true if the passed-in number is even.
 
 # YOUR CODE HERE
-def is_even(num):
-    if num % 2 == 0:
-        return num
+def evenorodds(num):
+
+    even = num % 2
+
+    if even > 0:
+        print('The number you enter is ODD')
     else:
-        return num % 3 == 0
-# Read a number from the keyboard
-num = input("Enter a number: ")
-num = int(num)
+        print('The number you enter is EVEN')
 
-# Print out "Even!" if the number is even. Otherwise print "Odd"
 
-# YOUR CODE HERE
-print(num)
-
+numb = int(input('Enter a number: '))
+print(evenorodds(numb))
