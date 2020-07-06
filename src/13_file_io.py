@@ -20,7 +20,7 @@ print(" Content in the file : ", f.read())
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
-with open('bar.txt', 'w', encoding= 'utf-8') as f:
+with open('bar.txt', 'w', encoding='utf-8') as f:
     f.write('Python is so fun\n')
     f.write('i cant wait to do more\n')
     f.write('Yeah baby\n')
