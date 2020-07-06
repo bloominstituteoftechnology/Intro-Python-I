@@ -7,7 +7,7 @@ def is_even(x):
     if x % 2 == 0:
         print("Even!")
     else:
-        print("Odd")
+        print("Odd!")
 
 
 # Read a number from the keyboard
