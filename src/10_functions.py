@@ -10,6 +10,5 @@ def is_even(num):
 num = input("Enter a number: ")
 num = int(num)
 # Print out "Even!" if the number is even. Otherwise print "Odd"
-is_even(num)
 # YOUR CODE HERE
-
+is_even(num)
