@@ -30,4 +30,8 @@ if number <= 0:
 
 primes_up_to_number = sieve_of_eratosthenes(number)
 
-print(str(number in primes_up_to_number))
+is_prime = number in primes_up_to_number
+print(str(is_prime))
+
+if !is_prime:
+    exit(1)
