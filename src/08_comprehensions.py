@@ -11,6 +11,8 @@ for more info regarding list comprehensions.
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
 y = []
+for x in range(5):
+    y.append(x)
 
 print (y)
 
@@ -18,6 +20,9 @@ print (y)
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 
 y = []
+
+for x in range(9):
+    y.append(x**3)
 
 print(y)
 
@@ -27,6 +32,9 @@ print(y)
 a = ["foo", "bar", "baz"]
 
 y = []
+
+for i in a:
+    y.append(i.upper())
 
 print(y)
 
@@ -39,3 +47,26 @@ x = input("Enter comma-separated numbers: ").split(',')
 y = []
 
 print(y)
+
+
+# creates a new list based on another list,
+# in a single, readable line
+
+# 1.
+# WITHOUT LIST COMPREHENSIONS
+sentence = "the quick brown fox jumps over the lazy dog"
+words = sentence.split()
+word_lengths = []
+for word in words:
+      if word != "the":
+          word_lengths.append(len(word))
+print(words)
+print(word_lengths)
+
+# WITH LIST COMPREHENSIONS
+sentence = "the quick brown fox jumps over the lazy dog"
+words = sentence.split()
+word_lengths = [len(word) for word in words if word != "the"]
+print(words)
+print(word_lengths)
+
