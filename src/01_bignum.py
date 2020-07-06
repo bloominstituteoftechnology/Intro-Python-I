@@ -2,3 +2,6 @@
 # (try doing the same thing in the JS console and see what it outputs)
 
 # YOUR CODE HERE
+print(str(2 ** 65536))
+
+# In JS it resolves to INFINITY
