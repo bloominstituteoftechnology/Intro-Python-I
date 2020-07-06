@@ -22,8 +22,8 @@ def f2(*num):
     sum = 0
     for n in num:
         sum = sum + n
-        print(sum)
-        # return sum
+    print(sum)
+    return sum
 
 
 print(f2(1))                    # Should print 1

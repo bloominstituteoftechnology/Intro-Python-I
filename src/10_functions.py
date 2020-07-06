@@ -8,12 +8,12 @@ def is_even(num):
         print(False)
 
 
-print(is_even(3))
+# print(is_even(num))
 
 # # Read a number from the keyboard
 num = input("Enter a number: ")
 num = int(num)
-print(num)
+
 
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 
@@ -27,4 +27,6 @@ def says_even(num):
         print("Odd")
 
 
-print(says_even(2))
+print(is_even(num))
+
+# print(says_even(num))

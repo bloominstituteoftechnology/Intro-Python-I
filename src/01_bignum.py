@@ -2,4 +2,5 @@
 # (try doing the same thing in the JS console and see what it outputs)
 
 # YOUR CODE HERE
-print(pow(2, 65536))
+# print(pow(2, 65536))
+print(2 ** 65536)
