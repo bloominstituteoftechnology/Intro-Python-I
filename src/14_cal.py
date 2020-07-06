@@ -30,3 +30,28 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+day = datetime.today()
+month = day.month
+year = day.year
+
+if len(sys.argv) > 1:
+    try:
+        month = int(sys.argv[1])
+        if month < 1 or month > 12:
+            raise ValueError("invalid month")
+    except ValueError as error:
+        print("invalid format")
+        for arg in error.args:
+            print(error.args)
+        exit()
+if len(sys.argv) > 2:
+    try:
+        year = int(sys.argv[2])
+    except ValueError as error:
+        print("invalid format")
+        for arg in error.args:
+            print(error.args)
+        exit()
+
+calendar.prmonth(year, month)
