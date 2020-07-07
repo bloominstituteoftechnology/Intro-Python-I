@@ -44,29 +44,8 @@ print(y)
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-y = []
+y = [int(num) for num in x if int(num) % 2 == 0]
 
 print(y)
 
-
-# creates a new list based on another list,
-# in a single, readable line
-
-# 1.
-# WITHOUT LIST COMPREHENSIONS
-sentence = "the quick brown fox jumps over the lazy dog"
-words = sentence.split()
-word_lengths = []
-for word in words:
-      if word != "the":
-          word_lengths.append(len(word))
-print(words)
-print(word_lengths)
-
-# WITH LIST COMPREHENSIONS
-sentence = "the quick brown fox jumps over the lazy dog"
-words = sentence.split()
-word_lengths = [len(word) for word in words if word != "the"]
-print(words)
-print(word_lengths)
 

@@ -17,7 +17,7 @@ for line in fileinput.input(sys.argv):
 # Print out the OS platform you're using:
 # YOUR CODE HERE
 import platform
-print(platform.platform())
+print("OS Platform: ", platform.platform())
 # Print out the version of Python you're using:
 # YOUR CODE HERE
 print("Python version: ", sys.version)
@@ -37,4 +37,6 @@ print("Current working directory: ", os.getcwd())
 # Print out your machine's login name
 # YOUR CODE HERE
 import socket
-print(socket.gethostname())
+host_name = socket.gethostname() 
+print("Hostname: ", host_name) 
+

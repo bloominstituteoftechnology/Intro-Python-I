@@ -11,6 +11,7 @@ z = "I like turtles!"
 # Using the printf operator (%), print the following feeding in the values of x,
 # y, and z:
 print("%d, and %s" % (y, z))
+
 # x is 10, y is 2.25, z is "I like turtles!"
 print("x is %d, y is %d, z is %s" % (x, y, z))
 
