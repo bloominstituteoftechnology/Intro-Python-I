@@ -1,0 +1,23 @@
+{
+  "name": "intro-python-i",
+  "version": "1.0.0",
+  "description": "_Note: This project spans two modules (modules 1 and 2). You should roughly try to finish the first half of the problems during module 1 and the second half of the problems during module 2._",
+  "main": "index.js",
+  "dependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewwbolton/Intro-Python-I.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthewwbolton/Intro-Python-I/issues"
+  },
+  "homepage": "https://github.com/matthewwbolton/Intro-Python-I#readme"
+}
