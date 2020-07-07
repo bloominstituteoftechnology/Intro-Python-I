@@ -4,8 +4,11 @@ how to print using the printf operator, the `format` string
 method, and by using f-strings.
 """
 import sys
-def printf(format,*args):
+
+
+def printf(format, *args):
     sys.stdout.write(format % args)
+
 
 x = 10
 y = 2.24552
@@ -16,19 +19,14 @@ z = "I like turtles!"
 # x is 10, y is 2.25, z is "I like turtles!"
 printf("x is %d, ", x)
 printf("y is %.2f, ", y)
-printf('z is "%s"',z)
+printf('z is "%s"', z)
 # Use the 'format' string method to print the same thing
 
-print ("\nx is {},".format(x),end= " ")
-print("y is {:.2f},".format(y),end= " ")
+print("\nx is {},".format(x), end=" ")
+print("y is {:.2f},".format(y), end=" ")
 print('z is "{}"'.format(z))
 
 # Finally, print the same thing using an f-string
 f"x is {x}."
 f'y is {y:{4}.{3}}'
 f'z is "{z}"'
-
-
-
-
-

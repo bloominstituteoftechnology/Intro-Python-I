@@ -4,10 +4,12 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-def f1(first,second):
+def f1(first, second):
     return first + second
 
+
 print(f1(1, 2))
+
 
 # Write a function f2 that takes any number of integer arguments and returns the
 # sum.
@@ -18,10 +20,12 @@ def f2(*args):
         result += x
     return result
 
-print(f2(1))                    # Should print 1
-print(f2(1, 3))                 # Should print 4
-print(f2(1, 4, -12))            # Should print -7
+
+print(f2(1))  # Should print 1
+print(f2(1, 3))  # Should print 4
+print(f2(1, 4, -12))  # Should print -7
 print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
+
 
 # a = [7, 6, 5, 4]
 #
@@ -38,11 +42,13 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 # arguments.
 # Note: Google "python default arguments" for a hint.
 
-def f3(first = 1,second = 1):
+def f3(first=1, second=1):
     result = first + second
     return result
+
+
 print(f3(1, 2))  # Should print 3
-print(f3(8))     # Should print 9
+print(f3(8))  # Should print 9
 
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
@@ -55,8 +61,9 @@ print(f3(8))     # Should print 9
 
 
 def f4(**kwargs):
-    for i,k in kwargs.items():
-        print(("key: %s,"%i),"value:",k)
+    for i, k in kwargs.items():
+        print(("key: %s," % i), "value:", k)
+
 
 # Should print
 # key: a, value: 12
@@ -75,10 +82,13 @@ d = {
     "monster": "goblin",
     "hp": 3
 }
+
+
 #
 # # How do you have to modify the f4 call below to make this work?
 def f4(dictionary):
     for key in dictionary:
-        print(("key: %s,"%key),("value: %s,"%dictionary[key]))
+        print(("key: %s," % key), ("value: %s," % dictionary[key]))
+
 
 f4(d)

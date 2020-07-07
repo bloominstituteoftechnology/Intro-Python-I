@@ -9,6 +9,7 @@ import sys
 import os
 import getpass
 import platform
+
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
 
 # Print out the command line arguments in sys.argv, one per line:
@@ -25,8 +26,6 @@ else:
     print("unknown OS")
 # Print out the version of Python you're using:
 print(sys.version)
-
-
 
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 

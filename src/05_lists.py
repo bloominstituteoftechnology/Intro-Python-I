@@ -22,7 +22,7 @@ x.remove(8)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
-x.insert(5,99)
+x.insert(5, 99)
 
 print(x)
 
@@ -33,4 +33,4 @@ print(len(x))
 # Print all the values in x multiplied by 1000
 
 for number in x:
-    print(number*1000)
+    print(number * 1000)

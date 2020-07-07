@@ -54,8 +54,11 @@ elif len(array) == 2 and [x for x in array if x.isdigit()]:
 
         month = int(array[0])
         year = int(array[1])
-        if month in range(1, 13): print(calendar.prmonth(year, month, w=0, l=0))
-        else:print("month is from 1 to 12")
+        if month in range(1, 13):
+            print(calendar.prmonth(year, month, w=0, l=0))
+        else:
+            print("month is from 1 to 12")
 
-else:print("Input is not in correct format, can't see the calendar.")
+else:
+    print("Input is not in correct format, can't see the calendar.")
 quit()

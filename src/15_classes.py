@@ -25,7 +25,7 @@ class Waypoint(LatLon):
         self.name = name
 
     def __str__(self):
-        return '' + self.name + ',' + str(self.lat) + ',' + str(self.lon) + ''
+        return self.name + ',' + str(self.lat) + ',' + str(self.lon)
 
 
 waypoint = Waypoint("Nick", 232, 42)
@@ -47,14 +47,14 @@ class Geocache(Waypoint):
         self.size = size
 
     def __str__(self):
-        return '' + self.name + ',' + str(self.difficulty) + ',' + str(self.size) + ',' +  str(self.lat) + ',' + str(self.lon) + ''
+        return '' + self.name + ',' + str(self.difficulty) + ',' + str(self.size) + ',' + str(self.lat) + ',' + str(
+            self.lon) + ''
 
 
 geocache = Geocache("Nick", "super", 234, 123213, 123)
 print(geocache.difficulty)
 # # Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
 newWaypoint = Waypoint("Catacombs", 41.70505, -121.51521)
-
 
 #
 # # Without changing the following line, how can you make it print into something
@@ -64,4 +64,3 @@ print(newWaypoint)
 # # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 newGeocache = Geocache("Newberry", "diff 1.5", "size 2", 44.052137, -121.41556)
 print(newGeocache)
-
