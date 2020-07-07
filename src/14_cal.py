@@ -30,3 +30,33 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+def calendars(month=None, year=None):
+  
+  try:
+
+    if month and year:
+      month = int(month)
+      year = int(year)
+      print(calendar.month(year, month))
+
+    elif month:
+      month = int(month)
+      year = datetime.now().year
+      print(calendar.month(year, month))
+
+    else:
+      year = datetime.now().year
+      month = datetime.now().month
+      print(calendar.month(year, month))
+
+  except:
+
+    print("Your input must be in (4-digit-year, 2-digit-month) format. Please try again.")
+    print(month)
+    print(year)
+    exit
+
+if __name__ == "__main__":
+  # print(*sys.argv[1:])
+  calendars(*sys.argv[1:])
