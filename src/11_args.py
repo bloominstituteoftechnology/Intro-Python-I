@@ -4,7 +4,11 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-# YOUR CODE HERE
+def f1(num1, num2):
+    '''
+    Returns the sum of a tuple pair
+    '''
+    return num1 + num2
 
 print(f1(1, 2))
 
@@ -12,7 +16,20 @@ print(f1(1, 2))
 # sum.
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
-# YOUR CODE HERE
+def f2(*nums):
+    '''
+    Returns the sum of any number of arguments
+    '''
+    num = 0
+    for num in nums:
+        if type(num) is list:
+            for i in num:
+                if i <= len(num)-1:
+                    num += num[i]
+                else:
+                    return sum(nums[0])
+        else:
+            return sum(nums)
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -23,6 +40,9 @@ a = [7, 6, 5, 4]
 
 # How do you have to modify the f2 call below to make this work?
 print(f2(a))    # Should print 22
+
+#-----------------------------------------------------------------------------------------------------------------
+# TODO after 1:1
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
