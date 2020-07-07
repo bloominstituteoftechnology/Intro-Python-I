@@ -30,3 +30,65 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+from colorama import Fore
+from colorama import Style
+
+
+def print_calendar():
+
+    today = datetime.today()
+    args = sys.argv
+
+    my_calendar = calendar.TextCalendar()
+
+    month = today.month
+    year = today.year
+
+    if len(args) == 2:
+        if type(args[1]) != int or type(int(args[1])) != int:
+            print(
+                f"{Fore.RED}To view specific month's calendar, run the file with [month] and [year] parameters.{Style.RESET_ALL}")
+            return
+    elif len(args) > 2:
+        if type(args[1]) != int or type(int(args[1])) != int or type(args[2]) != int or type(int(args[2])) != int:
+            print(
+                f"{Fore.RED}To view specific month's calendar, run the file with [month] and [year] parameters.{Style.RESET_ALL}")
+            return
+
+    if len(args) == 2:
+        month = int(args[1])
+        year = today.year
+    elif len(args) == 3:
+        month = int(args[1])
+        year = int(args[2])
+
+    print(my_calendar.formatmonth(year, month))
+
+
+print_calendar()
+
+# def print_calendar(year=today.year, month=today.month):
+
+#     day = today.day
+
+#     my_calendar = calendar.TextCalendar()
+
+#     my_cal = ''
+#     for item in my_calendar.itermonthdays4(year, month):
+#         # item = (YYYY, M, DD, Day of week 0-6)
+
+#         my_day = ' ' + str(item[2])
+#         if item[1] != month:
+#             my_day = f'{Fore.BLACK}{my_day}{Style.RESET_ALL}'
+#         if len(str(item[2])) == 1:
+#             my_day = '  ' + str(item[2])
+#         if item[2] == day:
+#             my_day = f'{Fore.GREEN}{my_day}{Style.RESET_ALL}'
+#         my_cal = my_cal + my_day
+#         if item[3] == 6:
+#             my_cal = my_cal + '\n'
+
+#     print(my_cal)
+
+
+# print_calendar()
