@@ -1,3 +1,6 @@
+# br = breakpoint()
+from ipdb import set_trace as st
+
 """
 Dictionaries are Python's implementation of associative arrays.
 There's not much different with Python's version compared to what
@@ -35,6 +38,13 @@ waypoints = [
 
 # Add a new waypoint to the list
 # YOUR CODE HERE
+waypoints.append(
+    {
+        "lat": 1,
+        "lon": -2,
+        "name": "my place"
+    }
+)
 
 # Modify the dictionary with name "a place" such that its longitude
 # value is -130 and change its name to "not a real place"
@@ -42,6 +52,15 @@ waypoints = [
 # waypoints list.
 
 # YOUR CODE HERE
+for item_dict in waypoints:
+    if item_dict["name"] == "a place":
+        item_dict["lon"] = -130
+        item_dict["name"] = "not a real place"
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+for index, item_dict in enumerate(waypoints):
+    print(f"item {index}")
+    # st()
+    for key, val in item_dict.items():
+        print(f"\t\"{key}\":\t\"{val}\"")
