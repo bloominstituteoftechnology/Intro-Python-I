@@ -12,13 +12,11 @@ import platform
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
 
 # Print out the command line arguments in sys.argv, one per line:
-# YOUR CODE HERE
-
 for x in sys.argv:
     print(str(sys.argv))
 
 # Print out the OS platform you're using:
-# YOUR CODE HERE
+
 print(os.uname())
 
 if os.name == "posix":
@@ -27,7 +25,7 @@ else:
     print("unknown OS")
 # Print out the version of Python you're using:
 print(sys.version)
-# YOUR CODE HERE
+
 
 
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html

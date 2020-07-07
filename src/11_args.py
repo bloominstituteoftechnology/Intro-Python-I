@@ -38,7 +38,6 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 # arguments.
 # Note: Google "python default arguments" for a hint.
 
-# YOUR CODE HERE
 def f3(first = 1,second = 1):
     result = first + second
     return result
@@ -54,7 +53,6 @@ print(f3(8))     # Should print 9
 #
 # Note: Google "python keyword arguments".
 
-# YOUR CODE HERE
 
 def f4(**kwargs):
     for i,k in kwargs.items():

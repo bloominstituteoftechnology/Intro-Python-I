@@ -14,7 +14,6 @@ automatically.
 """
 
 # Example:
-
 import math
 
 def dist(a, b):
@@ -36,7 +35,7 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 def print_tuple(input):
     for number in input:
         print(number)
-# YOUR CODE HERE
+
 
 t = (1, 2, 5, 7, 99)
 print_tuple(t)  # Prints 1 2 5 7 99, one per line
