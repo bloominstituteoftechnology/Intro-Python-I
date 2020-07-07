@@ -20,7 +20,7 @@ with open('src/foo.txt', 'r') as f:
 # sure that it contains what you expect it to contain
 
 with open('src/bar.txt', 'w') as f:
-    value = ('Cats go meow', 'Dogs go woof', 'Chickens go BAWKK')
+    value = ("Cats go meow\nDogs go woof\nChickens go BAWK")
     s = str(value)
     f.write(s)
     f.close()

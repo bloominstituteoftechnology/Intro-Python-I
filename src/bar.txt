@@ -1,1 +1,3 @@
-('Cats go meow', 'Dogs go woof', 'Chickens go BAWKK')
+Cats go meow
+Dogs go woof
+Chickens go BAWK
