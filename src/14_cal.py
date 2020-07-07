@@ -30,3 +30,34 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+# Current date
+today = datetime.today()
+month = today.month
+year = today.year
+
+# CLI arguments are kept in sys.argv (list). 
+# Need everything but the first arg because the first arg is the filename.
+cli_args = sys.argv
+
+if len(cli_args) <= 3:
+  try:
+    if int(cli_args[1]) > 0 and int(cli_args[1]) <= 12 and int(cli_args[2]) > 1900 and int(cli_args[2]) <= 2020:
+      # If no cli args
+      if len(cli_args) == 1:
+        print(calendar.month(year, month))
+
+      # If one cli arg
+      if len(cli_args) == 2:
+        print(calendar.month(year, int(cli_args[1])))
+
+      # If two cli args
+      if len(cli_args) == 3:
+        print(calendar.month(int(cli_args[2]), int(cli_args[1])))
+    else:
+      print("ERROR: The CLI arguments must be in a numeric format. Month 1-12. Year 1900-2020.")
+  except:
+    print("ERROR: The CLI arguments must be in a numeric format. Month 1-12. Year 1900-2020.")
+
+else:
+  print("ERROR: When running this program in the CLI, include either 0, 1, or 2 arguments. If 1 it assumes the month(numeric format). If 2, the month and then the year (both in numeric format)")

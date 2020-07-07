@@ -29,6 +29,7 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 a = [7, 6, 5, 4]
 
 # How do you have to modify the f2 call below to make this work?
+# Function isn't designed to take a list. Could use a for loop or something explicit like below.
 print(f2(a[0], a[1], a[2], a[3]))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
@@ -63,8 +64,15 @@ print(f3(8))     # Should print 9
 
 # YOUR CODE HERE
 def f4(**kwargs):
-    for pair in kwargs:
-        print("key: {a}, value: {b}".format(a = pair, b = pair[0]))
+    names = []
+    values = []
+    for name in kwargs:
+        names.append(name)
+    for value in kwargs.values():
+        values.append(value)
+
+    for i in range(len(values)):
+        print("key: {a}, value: {b}".format(a = names[i], b = values[i]))
 
 # Should print
 # key: a, value: 12
@@ -83,4 +91,6 @@ d = {
 }
 
 # How do you have to modify the f4 call below to make this work?
-f4(d)
+# Agian, Explicit as function isn't designed to take an object but specific args.
+f4(monster=d["monster"], hp=d["hp"])
+
