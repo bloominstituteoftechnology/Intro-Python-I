@@ -30,3 +30,25 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+from pdb import set_trace as st
+
+
+def get_arg(i):
+    try:
+        return int(sys.argv[i])
+    except IndexError:
+        return ''
+
+
+def main(month, year):
+    text_cal = calendar.TextCalendar()
+    print(
+        text_cal.formatmonth(year, month)
+    )
+
+
+if __name__ == "__main__":
+    today_date = datetime.today()
+    today_month = today_date.month
+    today_year = today_date.year
+    main(get_arg(1) or today_month, get_arg(2) or today_year)

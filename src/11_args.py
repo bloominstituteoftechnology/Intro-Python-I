@@ -35,11 +35,9 @@ a = [7, 6, 5, 4]
 # How do you have to modify the f2 call below to make this work?
 
 
-def f2(*args) -> int:
-    return sum(map(sum, args))
-
-
-print(f2(a))    # Should print 22
+# def f2(*args) -> int:
+#     return sum(map(sum, args))
+print(f2(*a))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
@@ -89,4 +87,4 @@ d = {
 }
 
 # How do you have to modify the f4 call below to make this work?
-f4(d)
+f4(**d)
