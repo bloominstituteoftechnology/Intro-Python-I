@@ -28,6 +28,3 @@ print(f.closed)
 
 f = open('bar.txt', 'r')
 print(f.read())
-
-
-# YOUR CODE HERE
