@@ -56,8 +56,9 @@ waypoints[0]["lon"] = -130
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
-for place in waypoints:
-    for attribute in place.items():
-        print(attribute)
 
-print(waypoints)
+# make the attributes List using a comprehension
+attributeValuesList = [value for dict in waypoints for value in dict.values()]
+
+# print the list with a newLine separator between attributes
+print(*attributeValuesList, sep='\n')
