@@ -1,5 +1,7 @@
 # Intro to Python I
 
+_Note: This project spans two modules (modules 1 and 2). You should roughly try to finish the first half of the problems during module 1 and the second half of the problems during module 2._
+
 It's time to learn a new language! Python!
 
 Python is a popular, easy-to-use programming language that has significant
@@ -28,32 +30,14 @@ best for learning new languages.
 
 ## Resources
 
-* [Installing Python and pipenv](https://github.com/LambdaSchool/CS-Wiki/wiki/Installing-Python-3-and-pipenv)
+* [Installing Python 3](https://github.com/LambdaSchool/CS-Wiki/wiki/Installing-Python-3)
 * [JavaScript<->Python cheatsheet](https://github.com/LambdaSchool/CS-Wiki/wiki/Javascript-Python-cheatsheet)
 * [How to read Specs and Code](https://github.com/LambdaSchool/CS-Wiki/wiki/How-to-Read-Specifications-and-Code)
 * [Python 3 standard library](https://docs.python.org/3.6/library/)
 
 ## Getting started
 
-1. Make sure you have Python 3 and pipenv installed.
-
-2. Go to the directory with the `Pipfile` and run
-   ```
-   pipenv install
-   ```
-
-3. After the install completes, run
-   ```
-   pipenv shell
-   ```
-   This will get you into the virtual environment. At this point, you should be
-   able to run Python 3 by just running `python`:
-   ```
-   $ python --version
-   Python 3.6.5
-   ```
-
-   You can exit the virtual environment by typing `exit`.
+Make sure you have Python 3 installed. You can check this by running `python3 --version` in your terminal and ensuring that it returns a version string that is at least 3.6.5. 
 
 ## Goals
 
@@ -65,6 +49,8 @@ best for learning new languages.
   language concepts.
 
 ## Instructions
+
+_Note: This project spans two modules (modules 1 and 2). You should roughly try to finish the first half of the problems during module 1 and the second half of the problems during module 2._
 
 Each directory inside the `src/` directory presents exercises revolving around a
 particular concept in Python. Not all of these concepts are unique to Python (in
