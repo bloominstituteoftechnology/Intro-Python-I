@@ -11,9 +11,24 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # YOUR CODE HERE
 
+with open('foo.txt') as f:
+    read_foo = f.read()
+    print(read_foo)
+
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
 # then close the file. Open up "bar.txt" and inspect it to make
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+
+file_content = """\n Hello, this is Travis. I am working to be a Data Scientist.\n
+Join me on this journey as I try to learn each and every day.\n
+I truly look forward to learning new code and new functions!\n"""
+
+with open('bar.txt', "w") as f:
+    write_data = f.write(file_content)
+
+with open('bar.txt') as f:
+    read_data = f.read()
+    print(read_data)
