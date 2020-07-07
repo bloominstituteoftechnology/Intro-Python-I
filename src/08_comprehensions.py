@@ -26,8 +26,8 @@ print(y)
 # elements in array a. Hint: "foo".upper() is "FOO".
 
 a = ["foo", "bar", "baz"]
-[a.upper() for a in ["foo", "bar", "baz"]]
-y = []
+
+y = [x.upper() for x in a]
 
 print(y)
 
