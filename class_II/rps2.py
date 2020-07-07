@@ -1,4 +1,4 @@
-### Things that could be improved:
+# Things that could be improved:
 
 # Make way the computer pick a choice smarter so that it
 # wins more consistently
@@ -24,12 +24,14 @@ wins = 0
 losses = 0
 ties = 0
 
-choices = ["rock","paper","scissors"]
+choices = ["rock", "paper", "scissors"]
 
 # Takes input both the player's and computer's choices
 # decides the outcome
 # have it return 0 to indicate tie, 1 to indicate user won, and
 # -1 to indicate computer won
+
+
 def compare_choices(player_choice, computer_choice):
     if player_choice == computer_choice:
         return 0
@@ -41,6 +43,7 @@ def compare_choices(player_choice, computer_choice):
     # player loses
     else:
         return -1
+
 
 # Keep all this in loop until user quits
 while True:
@@ -63,7 +66,7 @@ while True:
     prog_choice = random.choice(choices)
     print("Program Choice:", prog_choice)
 
-     # Let's refactor this to make it more easily readable
+    # Refactored to make it more easily readable
     result = compare_choices(users_choice, prog_choice)
     if result == 0:
         print("A tie!")
@@ -77,4 +80,3 @@ while True:
 
     print(f"Wins: {wins}, ties: {ties}, losses: {losses}")
     print("-----" * 5)
-
