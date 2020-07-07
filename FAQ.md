@@ -1,4 +1,4 @@
-# FAQ
+@# FAQ
 
 <!-- TODO
 positional args vs keyword ards
@@ -11,7 +11,7 @@ What's the difference between inheritance and polymorphism?
 
 * [What are some things we can do to prepare for CS?](#q100)
 * [What are some ways to learn a new language?](#q3600)
-* [Why test code frequently?](#q3700)
+* [Why test code frequently?](#q3700)@
 * [Why isn't official documentation more helpful than Stack Overflow?](#q3800)
 * [During an interview, what do I do if I can't remember the exact syntax?](#q3900)
 
