@@ -30,3 +30,26 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+year = int(sys.argv[1]) if len(sys.argv) >= 2 else None
+month = int(sys.argv[2]) if len(sys.argv) > 2 else None
+cDate = datetime.now()
+cYear = cDate.year
+cMonth = cDate.month
+
+print(year, month)
+
+def get_calendar(year=cYear, month=cMonth):
+  if year < 1 and month < 1:
+    print('Stop playing, bro, and put in an actual year and month.')
+  else:
+    print(calendar.month(year, month))
+
+if year is not None and month is not None:
+  get_calendar(year, month)
+elif year is None and month is None:
+  get_calendar()
+elif month is None and year < 13:
+  get_calendar(cYear, year)
+else: 
+  print(f'enter arguments in this format:\n{sys.argv[0]} year month')

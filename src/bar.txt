@@ -1,0 +1,4 @@
+
+when i open this file, 
+bar.txt, 
+this better work
