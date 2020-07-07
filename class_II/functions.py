@@ -11,6 +11,8 @@ def mult2_list(l):
     return l
 
 print(mult2_list(l))
+print("-----" * 5)
+
 # passing by ref vs passing by value
 # PBR: we have a ref to a list l, we passed into a function
 # the function changed the contents of the list
@@ -28,3 +30,15 @@ print(mult2_list(l))
 
 # Do we just pass a ref to the data structure or copy the 
 # whole thing? - passing by reference is cheaper
+
+
+### Using with a comprehension
+doubled = [mult2(n) for n in range(20)]
+print(doubled)
+print("-----" * 5)
+
+
+### Anonymous function in Python, which are called lambdas/
+### lambda functions
+add = lambda x, y: x + y
+print(add(2,5))
