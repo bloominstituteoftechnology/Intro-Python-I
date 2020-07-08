@@ -14,9 +14,12 @@ class LatLon:
 # YOUR CODE HERE
 
 class Waypoint(LatLon):
-    def __init__(self, lat, lon, name)
-    super().__init__(lat, lon)
-    self.name = name
+    def __init__(self, lat, lon, name):
+        self.name = name
+        super().__init__(lat, lon)
+
+    def __str__(self):
+        return f""""name": {self.name}, "lat": {self.lat}, "lon": {self.lon}"""
 
 
 # Make a class Geocache that can be passed parameters `name`, `difficulty`,
@@ -24,9 +27,20 @@ class Waypoint(LatLon):
 
 # YOUR CODE HERE
 
+class Geocache(Waypoint, LatLon):
+    def __init__(self, diff, name, lat, lon):
+        self.diff = diff
+        self.size = size
+        super().__init__(name, lat, lon)
+
+    def __str__(self):
+        return f""""name": {self.name}, "diff": {self.diff}, "size": {self.size}, "lat": {self.lat}, "lon": {self.lon}"""
+
 # Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
 
 # YOUR CODE HERE
+
+waypoint = Waypoint(41.70505, -121.51521, "catacombs")
 
 # Without changing the following line, how can you make it print into something
 # more human-readable? Hint: Look up the `object.__str__` method
@@ -37,4 +51,4 @@ print(waypoint)
 # YOUR CODE HERE
 
 # Print it--also make this print more nicely
-print(geocache)
+# print(geocache)
