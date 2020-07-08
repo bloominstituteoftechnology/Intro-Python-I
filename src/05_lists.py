@@ -32,3 +32,19 @@ print(len(x))
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
 print([i * 1000 for i in x])
+
+"""
+List Comprehensions
+"""
+
+odds = [1, 3, 5, 7, 9]
+
+# Like map
+print([x + 1 for x in odds])
+
+# Like filter
+print([x for x in odds if 25 % x == 0])
+​
+# General form
+# [<map expression> for <name> in <sequence expression> if <filter expression>]
+​

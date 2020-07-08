@@ -58,3 +58,8 @@ for i in waypoints:
     print (i["lat"],
            i["lon"],
            i["name"])
+
+"""
+Dictionary Comprehensions
+"""
+print({x: x*x for x in range(3, 6)})
