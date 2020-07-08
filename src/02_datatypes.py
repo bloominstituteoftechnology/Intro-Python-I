@@ -13,9 +13,13 @@ y = "7"
 
 # Write a print statement that combines x + y into the integer value 12
 
-# YOUR CODE HERE
+y_int = int(y)
+# showing that x is of the int
+print(type(y_int))
+# combinig the x_int and the y together
+# and then printing out the number 12 as an int
+print(y_int + x)
 
 
 # Write a print statement that combines x + y into the string value 57
-
-# YOUR CODE HERE
+print(str(5)+y)
