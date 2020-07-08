@@ -35,6 +35,7 @@ date = datetime.today()
 currentMonth = date.month
 currentYear = date.year
 
+# https://stackoverflow.com/questions/2574636/getting-a-default-value-on-index-out-of-range-in-python
 try:
   m = int(sys.argv[1])
 except IndexError:
@@ -47,4 +48,3 @@ except IndexError:
 
 
 print(calendar.month(y, m))
-
