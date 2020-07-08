@@ -62,8 +62,8 @@ print(f3(1, 2, 3))
 # Note: Google "python keyword arguments".
 # YOUR CODE HERE
 def f4(**kwargs):
-    for i in kwargs.keys():
-        print(f"key: {i}, value: {kwargs[i]}")
+    for key, value in kwargs.items():
+        print(f"key: {key}, value: {value}")
     
 # Should print
 # key: a, value: 12
