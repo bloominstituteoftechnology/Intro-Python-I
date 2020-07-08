@@ -37,7 +37,7 @@ class Geocache(Waypoint):
         super().__init__(name, lat, lon)
 
     def __str__(self):
-        return f"""\n\nName: {self.name}\nDifficulty: {self.difficulty}\nSize: {self.size}\nLongitude: {self.lon}\nLatitude: {self.lat}"""
+        return f"""\n\nName: {self.name}\nDifficulty: {self.difficulty}\nSize: {self.size}\nLatitude: {self.lat}\nLongitude: {self.lon}"""
 
 
 # Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
@@ -53,9 +53,7 @@ print(waypoint)
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 
 # YOUR CODE HERE
-
-# Prints out of order for some reason
-geocache = Geocache("Newberry Views", 1.5, 2, 44.052137, -121.41556)
+geocache = Geocache(44.052137, 1.5, 2, -121.41556, "Newberry Views")
 
 # Print it--also make this print more nicely
 print(geocache)
