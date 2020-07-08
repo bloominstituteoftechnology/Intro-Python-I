@@ -8,6 +8,12 @@ Take a look at https://docs.python.org/3/tutorial/datastructures.html#list-compr
 for more info regarding list comprehensions.
 """
 
+# dictionary comprehensions (work the same) have to give (key, value)
+
+y = {x: None for x in range(1, 10)}
+
+print (y)
+
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
 y = [x for x in range(1, 6)]

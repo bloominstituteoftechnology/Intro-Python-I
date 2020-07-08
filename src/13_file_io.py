@@ -22,4 +22,6 @@ x.close()
 
 # YOUR CODE HERE
 with open("src/bar.txt", "w") as bar:
+    bar.write("arbitrary content \n")
+    bar.write("arbitrary content \n")
     bar.write("arbitrary content")
