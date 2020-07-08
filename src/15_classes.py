@@ -21,7 +21,7 @@ class Waypoint(LatLon):
                 name,
                 lat,
                 lon):
-        super().__init__(lat=lat, lon=lon)
+        super().__init__(lat, lon)
         self.name = name
     def __str__(self):
         return"{}: \n\tcoords = {}, {}\n".format(self.name,
@@ -44,7 +44,7 @@ class Geocache(Waypoint):
         self.difficulty = difficulty
         self.size = size    
     def __str__(self):
-        return"{}:\n\tdifficulty = {}\n\tsize = {}\n\tcoords = {}{}\n".format(self.name,
+        return"{}:\n\tdifficulty = {}\n\tsize = {}\n\tcoords = {}, {}\n".format(self.name,
                                                                 self.difficulty,
                                                                 self.size,
                                                                 self.lat,

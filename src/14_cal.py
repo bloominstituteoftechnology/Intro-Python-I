@@ -40,11 +40,17 @@ try:
   m = int(sys.argv[1])
 except IndexError:
   m = currentMonth
+except ValueError:
+  print("Please enter a number for the month.\n\tex: `14_cal.py 2 2020` to get the calendar for February 2020")
+  exit(1)
 
 try:
   y = int(sys.argv[2])
 except IndexError:
   y = currentYear
+except ValueError:
+  print("Please enter a number for the year.\n\tex: `14_cal.py 2 2020` to get the calendar for February 2020")
+  exit(1)
 
 
 print(calendar.month(y, m))
