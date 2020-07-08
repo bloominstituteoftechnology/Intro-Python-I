@@ -31,19 +31,29 @@ import sys
 import calendar
 from datetime import datetime
 
-now = datetime.now()
+num_args = len(sys.argv)
 
-if len(sys.argv) == 3:
-    month = sys.argv[1]
-    year = sys.argv[2]
-elif len(sys.argv) == 2:
-    month = sys.argv[1]
-    year = now.year
-elif len(sys.argv) == 1:
-    month = now.month
-    year = now.year
+if num_args == 1:
+  month = datetime.now().month
+  year = datetime.now().year
+  cal = calendar.TextCalendar()
+  cal.prmonth(year, month)
+
+elif num_args ==2:
+  year = datetime.now().year
+  month = int(sys.argv[1])
+  cal = calendar.TextCalendar()
+  cal.prmonth(year, month)
+
+elif num_args ==3:
+  month = int(sys.argv[1])
+  year = int(sys.argv[2])
+  cal = calendar.TextCalendar()
+  cal.prmonth(year, month)
+
 else:
-    print("please provide args in the format [month] [year] and try again")
-    print("exiting...")
-    exit()
-c = calendar.month(int(year), int(month))
+  print("usege needs: 14_cal.py [month] [year]")
+  sys.exit(1)
+
+
+
