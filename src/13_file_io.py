@@ -7,14 +7,15 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # Open up the "foo.txt" file (which already exists) for reading
 # Print all the contents of the file, then close the file
-# Note: pay close attention to your current directory when trying to open "foo.txt"
+# Note: pay close attention to your current directory when trying to open
+# "foo.txt"
 
 # YOUR CODE HERE
-print("-----" * 2 +"BEGIN"+ "-----" *2)
+print("-----" * 2 + "BEGIN" + "-----" * 2)
 f = open('src/foo.txt')
 print("Opening file ...".upper())
 print("Reading file:\n".upper(), f.read())
-print("Closing file ...".upper()) 
+print("Closing file ...".upper())
 f.close()
 print("-----" * 5)
 
@@ -27,8 +28,8 @@ print("-----" * 5)
 
 b = open('src/bar.txt', 'w')
 b.write(
-    """This is a line of text. \n 
-    This is a new line.\n 
+    """This is a line of text. \n
+    This is a new line.\n
     This is the last line."""
 )
 b.close()
@@ -36,6 +37,6 @@ b.close()
 print("Opening file ...".upper())
 b = open("src/bar.txt")
 print("Reading file:\n".upper(), b.read())
-print("Closing file ...".upper()) 
+print("Closing file ...".upper())
 b.close()
-print("-----" * 2 +"DONE"+ "-----" *2)
+print("-----" * 2 + "DONE" + "-----" * 2)

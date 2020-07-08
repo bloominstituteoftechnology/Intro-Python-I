@@ -15,6 +15,7 @@ has the following keys:
  - name: a name string for this location
 """
 
+import pprint
 waypoints = [
     {
         "lat": 43,
@@ -32,7 +33,6 @@ waypoints = [
         "name": "a third place"
     }
 ]
-import pprint
 print("-----" * 5)
 pprint.pprint(waypoints)
 print("-----" * 5)
