@@ -31,3 +31,10 @@ import sys
 import calendar
 from datetime import datetime
 
+# Needs to accept month and year when running the program (14_cal.py [month] [year])
+
+currentDate = datetime.now()
+month = int(input("Enter month:") or currentDate.strftime("%m"))
+year = int(input("Enter year:") or currentDate.strftime("%Y"))
+
+print(calendar.TextCalendar().prmonth(year, month))

@@ -22,7 +22,7 @@ print(a[-3:])
 
 # Output the two middle elements in the array: [1, 7]
 middle = int(len(a)/2)
-print(a[middle-1], a[middle])
+print([a[middle-1], a[middle]])
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
 print(a[1:])
