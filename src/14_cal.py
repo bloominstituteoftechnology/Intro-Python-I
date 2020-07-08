@@ -2,7 +2,7 @@
 The Python standard library's 'calendar' module allows you to
 render a calendar to your terminal.
 https://docs.python.org/3.6/library/calendar.html
- 
+
 Write a program that accepts user input of the form
   `14_cal.py [month] [year]`
 and does the following:
@@ -31,79 +31,34 @@ import sys
 import calendar
 from datetime import datetime
 
+# fetch command line arguments for this program
+num_args = len(sys.argv)
 
-# datetime expects an int
-# .Calendar(firstweekday=0)
+# didn't pass args
+if num_args == 1:
+  # get the current month and year
+  month = datetime.now().month
+  year = datetime.now().year
 
-# note: check argv, and others
-lenargv = len(sys.argv)
+# passed one arg
+elif num_args == 2:
+  # assume the arg is the specified month
+  year = datetime.now().year
+  month = int(sys.argv[1])
 
-# - if no input
-#     default to today's date. print method datetime.now().month and another with year
-# - elif one input,
-#     it's going to be the month and we're going to use the current year
-# - elif two inputs,
-#     the first will be the month, 2nd will be the year. will use those for the calendar.
-# - else more than two inputs,
-#     send error msg
-
-def check_month(month):
-    if month >= 1 and month <= 12:
-        return True
-
-    print("ERROR: Month out of bound. Should be between 1 and 12\n")
-    return False
+# user passed in two
+elif num_args == 3:
+  # render cal for the specified month and specified year
+  month = int(sys.argv[1])
+  year = int(sys.argv[2])
 
 
-def check_year(year):
-    if year >= MINYEAR and year <= MAXYEAR:
-        return True
-
-    print(f'ERROR: Year out of bound. Should be between {MINYEAR} and '
-          f'{MAXYEAR}\n')
-    return False
-
-
-def print_usage():
-    print("Refer to below usage instructions.\n")
-    print("To print calendar of current month")
-    print("python 14_cal.py\n")
-    print("To print calendar for specified month within current year")
-    print("python 14_cal.py <month>\n")
-    print("To print calendar for specified month and year")
-    print("python 14_cal.py <month> <year>")
-    exit(1)
-
-
-current_datetime = datetime.now()
-year = current_datetime.year
-month = current_datetime.month
-
-if len(sys.argv) == 1:
-    print("Printing Calendar for current month\n")
-
-elif len(sys.argv) == 2:
-    # Check if month is within the range
-    if not check_month(int(sys.argv[1])):
-        print_usage()
-
-    month = int(sys.argv[1])
-
-elif len(sys.argv) == 3:
-    # Check if month is within the range
-    if not check_month(int(sys.argv[1])):
-        print_usage()
-
-    month = int(sys.argv[1])
-
-    # Check if year is within the range
-    if not check_year(int(sys.argv[2])):
-        print_usage()
-
-    year = int(sys.argv[2])
+# user passed in
 else:
-    print_usage()
+  # print
+  print('usage: 14_cal.py [month] [year]')
+  # exit the prog
+  sys.exit(1) # more conventionally 1 indicates some kind of error
 
-
-textCalendar = calendar.TextCalendar(firstweekday=0)
-textCalendar.prmonth(year, month)
+cal = calendar.TextCalendar()
+cal.prmonth(year, month)
