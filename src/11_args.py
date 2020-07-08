@@ -33,15 +33,15 @@ print(f2(*a))    # Should print 22
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
-def f3(a,b):
-    if a and b:
-        sum= a+b
-        return sum 
-    else:
-        sum = a+1
-        return sum
+# TODO # def f3(a,*args):
+#     if a and args:
+#         sum = a+args
+#         return sum 
+#     else:
+#         sum = a+1
+#         return sum
     
-print(f3(1, 2))  # Should print 3
+# print(f3(1, 2))  # Should print 3
 # TODO print(f3(8))     # Should print 9
 
 
@@ -54,27 +54,24 @@ print(f3(1, 2))  # Should print 3
 # Note: Google "python keyword arguments".
 
 # # YOUR CODE HERE
-def arg():
-    if foo: 
-        return bar
-    elif baz: 
-        return 12
-print(arg(foo))
+def f4(**kwargs):
+    for key, value in kwargs.items():
+        print("key:" , key , "value:", value) 
 # Should print
 # key: a, value: 12
 # key: b, value: 30
-# f4(a=12, b=30)
+f4(a=12, b=30)
 
-# # Should print
-# # key: city, value: Berkeley
-# # key: population, value: 121240
-# # key: founded, value: "March 23, 1868"
-# f4(city="Berkeley", population=121240, founded="March 23, 1868")
+# Should print
+# key: city, value: Berkeley
+# key: population, value: 121240
+# key: founded, value: "March 23, 1868"
+f4(city="Berkeley", population=121240, founded="March 23, 1868")
 
-# d = {
-#     "monster": "goblin",
-#     "hp": 3
-# }
+d = {
+    "monster": "goblin",
+    "hp": 3
+}
 
-# # How do you have to modify the f4 call below to make this work?
-# f4(d)
+# How do you have to modify the f4 call below to make this work?
+f4(**d)
