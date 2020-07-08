@@ -17,11 +17,8 @@ print(f1(1, 2))
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
-def f2(*allNums):
-    sum = 0
-    for num in allNums:
-        sum += num
-    return sum
+def f2(*args):
+    return sum(args)
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -57,8 +54,8 @@ print(f3(8))     # Should print 9
 
 # YOUR CODE HERE
 
-def f4(**args):
-    for i in args.items():
+def f4(**kwargs):
+    for i in kwargs.items():
         print(f'key: {i[0]}, value:{i[1]}')
 
 # Should print
