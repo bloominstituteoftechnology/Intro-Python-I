@@ -37,11 +37,14 @@ y = 0
 if len(sys.argv) == 3:
   m = int(sys.argv[1])
   y = int(sys.argv[2])
+  # user imput correctly - will output specified month and year.
 elif len(sys.argv) == 2:
   m = int(sys.argv[1])
   y = datetime.now().year
+  # user did not input the year - will output current year and specified month
 else:
   m = datetime.now().month
   y = datetime.now().year
+  # user did not input either the year or the month - will output current month and year
 print(calendar.month(y, m))
 
