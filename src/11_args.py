@@ -33,16 +33,16 @@ print(f2(*a))    # Should print 22
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
-# TODO # def f3(a,*args):
-#     if a and args:
-#         sum = a+args
-#         return sum 
-#     else:
-#         sum = a+1
-#         return sum
+def f3(a, b=1):
+    if a and b:
+        sum = a+b
+        return sum 
+    else:
+        sum = a+1
+        return sum
     
-# print(f3(1, 2))  # Should print 3
-# TODO print(f3(8))     # Should print 9
+print(f3(1, 2))  # Should print 3
+print(f3(8))     # Should print 9
 
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
