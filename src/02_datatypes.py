@@ -10,6 +10,8 @@ on a string and an integer.
 
 x = 5
 y = "7"
+y_int = int(y) 
+print(x + y_int)
 
 # Write a print statement that combines x + y into the integer value 12
 
@@ -17,5 +19,5 @@ y = "7"
 
 
 # Write a print statement that combines x + y into the string value 57
-
+print(f"{x}{y}")
 # YOUR CODE HERE
