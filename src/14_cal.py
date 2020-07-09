@@ -35,7 +35,7 @@ def create_calendar(month=date.today().month, year=date.today().year):
     """ Creates a calendar based on year and month arguments"""
     print(calendar.month(year, month))
 
-# With pecified dates
+# With specified dates
 if len(sys.argv) == 3:    
     create_calendar(int(sys.argv[1]), int(sys.argv[2]))
 
