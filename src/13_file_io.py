@@ -22,4 +22,4 @@ f.close()
 
 # YOUR CODE HERE
 newf=open('src/bar.txt','w')
-newf.write('I love Bentonville and Walmart and I would like to have a career to be fully emerge in the society of the world')
+newf.write('I love Bentonville and Walmart ')
