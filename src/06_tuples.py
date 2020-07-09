@@ -33,8 +33,15 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 
 
 # Write a function `print_tuple` that prints all the values in a tuple
+from collections.abc import Iterable
 
 # YOUR CODE HERE
+def print_tuple(t):
+    if not isinstance(t, Iterable):
+        print(t)
+    else:   
+        for elem in t:
+            print(elem)
 
 t = (1, 2, 5, 7, 99)
 print_tuple(t)  # Prints 1 2 5 7 99, one per line
