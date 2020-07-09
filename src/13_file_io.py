@@ -11,12 +11,11 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # YOUR CODE HERE
 def readFile(f):
-    for line in f:
-        print(line)
+    with open (f, "r") as fp:
+        for line in fp:
+            print(line)
 
-fooFile = open("foo.txt", "r")
-readFile(fooFile)
-fooFile.close()
+readFile("foo.txt")
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
@@ -34,6 +33,4 @@ barFile.writelines([line, line, line])
 barFile.close()
 
 # Read:
-readBarFile = open("bar.txt", "r")
-readFile(readBarFile)
-readBarFile.close()
+readFile("bar.txt")
