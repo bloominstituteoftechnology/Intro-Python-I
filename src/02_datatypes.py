@@ -18,4 +18,4 @@ print(f"x = {x} \ny = {y}")
 print(f"x + y = {x + int(y)}")
 
 # Write a print statement that combines x + y into the string value 57
-print(f"10x + y = {10 * x + int(y)}")
+print(f"As string: {str(x) + y}")
