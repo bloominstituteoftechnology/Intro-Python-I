@@ -31,12 +31,20 @@ import sys
 import calendar
 from datetime import datetime
 
-print(datetime.today())
+today = datetime.today()
+month = today.month
+year = today.year
+input = sys.argv
 
-# if len(sys.argv) >= 1:
-#   print(sys.argv)
-# else:
-#   exit()
-  
+
+if len(input) == 1:
+  print(calendar.month(year, month))
+elif len(input) == 2:
+  print(calendar.month(year, int(input[1])))
+elif len(input) == 3:
+  print(calendar.month(int(input[2]), int(input[1])))
+else: 
+  print("Please format arguments '14_cal.py [month] [year]'")
+
 
 
