@@ -26,4 +26,12 @@ f.close()
 # then close the file. Open up "bar.txt" and inspect it to make
 # sure that it contains what you expect it to contain
 
-# YOUR CODE HERE
+# making the path for the bar file
+barPath = os.path.join(os.path.dirname(__file__), "bar.txt")
+
+# opening the path
+theFile = open(barPath, "w")
+theFile.write("Hey this is the first line in the bar file.\n")
+theFile.write("This is the second line of the file, yeah!\n")
+theFile.write("This is now the third line of the file!\n")
+theFile.close()
