@@ -14,8 +14,12 @@ y = "7"
 # Write a print statement that combines x + y into the integer value 12
 
 # YOUR CODE HERE
-
+twelve = int(y)+x
+print(twelve, type(twelve))
 
 # Write a print statement that combines x + y into the string value 57
+fiftyseven= str(x)+y
+fiftyseven is int
+print( f-string('{fiftyseven} is a  {type(fiftyseven)}'))
 
 # YOUR CODE HERE

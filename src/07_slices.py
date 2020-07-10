@@ -12,13 +12,18 @@ Use Python's slice syntax to achieve the following:
 a = [2, 4, 1, 7, 9, 6]
 
 # Output the second element: 4:
-print()
-
+secondelement=a[slice(1,2)]
+print(secondelement)
+# print(a[1])
 # Output the second-to-last element: 9
-print()
+print(a[-1])
+secondToLast=a[slice(4,5)]
+print(secondToLast)
 
 # Output the last three elements in the array: [7, 9, 6]
-print()
+#slice(start,stop,step)
+lastThree= a[slice(3,6,1)]
+print(lastThree)
 
 # Output the two middle elements in the array: [1, 7]
 print()

@@ -10,7 +10,7 @@ for more info regarding list comprehensions.
 
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
-y = []
+y = [1,9]
 
 print (y)
 
@@ -28,8 +28,9 @@ a = ["foo", "bar", "baz"]
 
 y = []
 
-print(y)
-
+print(len(a))
+print( f'a[-1] returns as : {a[0-1 and -1]}')
+print(True or True or True)
 # Use a list comprehension to create a list containing only the _even_ elements
 # the user entered into list x.
 
@@ -39,3 +40,7 @@ x = input("Enter comma-separated numbers: ").split(',')
 y = []
 
 print(y)
+print()
+
+
+sys.
