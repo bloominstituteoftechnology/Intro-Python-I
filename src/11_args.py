@@ -4,7 +4,11 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-# YOUR CODE HERE
+def f1(int1, int2):
+
+    '''Returns the sum of 2 numbers'''
+
+    return int1 + int2
 
 print(f1(1, 2))
 
@@ -12,7 +16,18 @@ print(f1(1, 2))
 # sum.
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
-# YOUR CODE HERE
+def f2(*argv):
+
+    '''Returns the sum of a list of numbers'''
+
+    # if type(list_of_integers) != int:
+    #     return "TypeError: Expected integer as input"
+    #
+    # else:
+    total = 0 
+    for item in argv:
+
+        total = total + argv[item]
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4

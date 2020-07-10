@@ -37,7 +37,7 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 def print_tuple(tup):
 
     '''Prints all values in a tuple'''
-    
+
     for i in tup:
         print(str(i))
 
