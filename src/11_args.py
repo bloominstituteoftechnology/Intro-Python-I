@@ -24,8 +24,8 @@ def f2(*argv):
     #     return "TypeError: Expected integer as input"
     #
     # else:
-    total = 0 
-    for item in argv:
+    total = 0
+    for item in range(0, len(argv):
 
         total = total + argv[item]
 

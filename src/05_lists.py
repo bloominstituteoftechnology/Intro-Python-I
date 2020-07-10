@@ -8,25 +8,25 @@ y = [8, 9, 10]
 
 # Change x so that it is [1, 2, 3, 4]
 
-x = [1, 2, 3, 4]
+x.append(4)
 
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 
-y = [1, 2, 3, 4, 8, 9, 10]
+[x.append(i) for i in y]
 
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 
-x = [1, 2, 3, 4, 9, 10]
+x.remove(8)
 
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 
-x = [1, 2, 3, 4, 9, 99, 10]
+x.insert(5, 99)
 
 print(x)
 
