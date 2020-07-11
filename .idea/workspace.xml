@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5e14a5fd-cc91-420a-8144-252529ad172a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/09_dictionaries.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/09_dictionaries.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/10_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/10_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/11_args.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/11_args.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/12_scopes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/12_scopes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/13_file_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/13_file_io.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/14_cal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/14_cal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/15_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/15_classes.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1eRIt6N8XkaVpGL9yWNoNIGAQd6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5e14a5fd-cc91-420a-8144-252529ad172a" name="Default Changelist" comment="" />
+      <created>1594278189492</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594278189492</updated>
+    </task>
+    <servers />
+  </component>
+</project>
