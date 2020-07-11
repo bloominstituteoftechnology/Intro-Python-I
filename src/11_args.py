@@ -6,6 +6,9 @@
 
 # YOUR CODE HERE
 
+def f1(e1, e2):
+    return e1 + e2
+
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and returns the
@@ -13,6 +16,12 @@ print(f1(1, 2))
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+
+def f2(*args):
+    if (type(args) == tuple) & (type(args[0]) != list):
+        return sum(args)
+    else:
+        return sum(args[0])
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -31,6 +40,12 @@ print(f2(a))    # Should print 22
 
 # YOUR CODE HERE
 
+def f3(first, second=0):
+    if second != 0:
+        return first + second
+    else:
+        return first + 1
+
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
 
@@ -44,6 +59,17 @@ print(f3(8))     # Should print 9
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
+def f4(*args,**kwargs):
+    if len(kwargs) == 0:
+        pass
+    else:
+        for x in kwargs:
+            print(f"key:{x}, value:{kwargs[x]}")
+    if len(args) == 0:
+        pass
+    else:
+        for x in args[0]:
+            print(f"key:{x}, value:{args[0][x]}")
 
 # Should print
 # key: a, value: 12
