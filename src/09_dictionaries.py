@@ -55,4 +55,4 @@ print(waypoints)
 # YOUR CODE HERE
 
 for i in waypoints:
-    print(i)
+    print(f"{i['name']}, {i['lat']} , {i['lon']}")
