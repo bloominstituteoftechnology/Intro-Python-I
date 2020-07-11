@@ -1,3 +1,5 @@
+import sys
+
 # Experiment with positional arguments, arbitrary arguments, and keyword
 # arguments.
 
@@ -20,14 +22,7 @@ def f2(*argv):
 
     '''Returns the sum of a list of numbers'''
 
-    # if type(list_of_integers) != int:
-    #     return "TypeError: Expected integer as input"
-    #
-    # else:
-    total = 0
-    for item in range(0, len(argv):
-
-        total = total + argv[item]
+    print(len(sys.argv))
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
