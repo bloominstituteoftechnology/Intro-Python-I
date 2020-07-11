@@ -34,5 +34,10 @@ print(len(x))
 
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
+z = []
 for elem in x:
-    print(elem * 1000)
+    new = elem * 1000
+    z.append(new)
+
+print(z)
+    
