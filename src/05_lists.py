@@ -30,5 +30,3 @@ len(x)
 # Print all the values in x multiplied by 1000
 new_x = [i * 1000 for i in x]
 print(new_x)
-
-[i * 2 for i in l]
