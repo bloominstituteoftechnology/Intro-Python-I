@@ -35,7 +35,7 @@ waypoints = [
 
 # Add a new waypoint to the list
 # YOUR CODE HERE
-waypoints.append({"lat": 40, "lon": -120, "name": "a fourth place" })
+waypoints.append({"lat": 40, "lon": -120, "name": "a fourth place"})
 print(waypoints)
 
 # Modify the dictionary with name "a place" such that its longitude

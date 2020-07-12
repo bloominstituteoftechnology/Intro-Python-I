@@ -7,10 +7,11 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 
 # Open up the "foo.txt" file (which already exists) for reading
 # Print all the contents of the file, then close the file
-# Note: pay close attention to your current directory when trying to open "foo.txt"
+# Note: pay close attention to your current directory
+# when trying to open "foo.txt"
 
 # YOUR CODE HERE
-f=open("foo.txt", "r")
+f = open("foo.txt", "r")
 contents = f.read()
 print(contents)
 f.close()
@@ -25,10 +26,10 @@ f.close()
 f2 = open("bar.txt", "a+")
 
 for i in range(3):
-     f2.write("Line %d\r\n" % (i+1))
+    f2.write("Line %d\r\n" % (i+1))
 f2.close()
 
-f2=open("foo.txt", "r")
+f2 = open("foo.txt", "r")
 contents2 = f2.read()
 print(contents2)
 f2.close()
