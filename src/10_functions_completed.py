@@ -4,7 +4,7 @@ def is_even():
     if num % 2:
         return True
     else:
-        return false
+        return False
 
 # Read a number from the keyboard
 num = input("Enter a number: ")

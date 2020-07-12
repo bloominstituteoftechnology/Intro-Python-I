@@ -28,5 +28,6 @@ print(x)
 print ("Number of items in the list = ", len(x))
 
 # Print all the values in x multiplied by 1000
-x = [n * 1000 for n in x]
-print(x)
+# I know we weren't supposed to use = but this was the only way I could make it work.
+# x = [n * 1000 for n in x]
+print("", [n * 1000 for n in x])
