@@ -30,3 +30,36 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+def date_program():
+    cal = calendar.TextCalendar()
+    month = 0
+    year = 0
+
+    input_date = input('Enter the numeric values of the month and year separated by commas: ').split(', ')
+
+    if len(input_date) == 2:
+        if input_date[0].isdigit() and input_date[1].isdigit():
+            print(cal.formatmonth(int(input_date[1]), int(input_date[0])))
+            return
+        else:
+            invalid_input()
+    elif len(input_date) == 1:
+        if input_date[0].isdigit():
+            now = datetime.now()
+            print(cal.formatmonth(now.year, int(input_date[0])))
+            return
+        else:
+            invalid_input()
+    elif len(input_date) == 0:
+        now = datetime.now()
+        print(cal.formatmonth(now.year, now.month))
+        return
+    else:
+        invalid_input()
+
+def invalid_input():
+    print('This is not the correct format, please type in month and year like so: 8, 2019')
+    date_program()
+
+date_program()
