@@ -43,23 +43,26 @@ def date_program():
             print(cal.formatmonth(int(input_date[1]), int(input_date[0])))
             return
         else:
-            invalid_input()
+            invalid_input(46)
     elif len(input_date) == 1:
-        if input_date[0].isdigit():
-            now = datetime.now()
-            print(cal.formatmonth(now.year, int(input_date[0])))
+        now = datetime.now()
+        if input_date != ['']:
+            if input_date[0].isdigit():
+                print(cal.formatmonth(now.year, int(input_date[0])))
+                return
+            else:
+                invalid_input()
+        elif input_date == ['']:
+            print(cal.formatmonth(now.year, now.month))
             return
         else:
-            invalid_input()
-    elif len(input_date) == 0:
-        now = datetime.now()
-        print(cal.formatmonth(now.year, now.month))
-        return
+            print(f'input date is {input_date}')
+            invalid_input(53)
     else:
-        invalid_input()
+        invalid_input(59)
 
-def invalid_input():
-    print('This is not the correct format, please type in month and year like so: 8, 2019')
+def invalid_input(line):
+    print(f'This is not the correct format, please type in month and year like so: 8, 2019 (on line {line})')
     date_program()
 
 date_program()
