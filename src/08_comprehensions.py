@@ -36,13 +36,14 @@ print(a)
 # the user entered into list x.
 
 x = input("Enter comma-separated numbers: ").split(',')
-for number in x:
-    if number % 2 == 0:
-        even_numbers = []
-        even_numbers.extend(number)
+for num in range(len(x)):
+    even_numbers = []
+    if num % 2 == 0:
+        even_numbers.extend(str(num))
         print(even_numbers)
 
 # # What do you need between the square brackets to make it work?
+#* I don't understand this part? Maybe I accidently deleted the question?
 # y = []
 
 # print(y)

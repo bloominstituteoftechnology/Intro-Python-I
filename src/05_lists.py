@@ -23,7 +23,8 @@ x.insert(5, 99)
 print(x)
 
 # Print the length of list x
-print(len(x))
+print(f'The length of x is: {len(x)}')
 
 # Print all the values in x multiplied by 1000
-print()
+multiplied_list = [num * 1000 for num in x]
+print(multiplied_list)
