@@ -16,3 +16,8 @@ if num % 2 == 0:
 else:
     print('Odd')
 
+# if is_even(num):
+#     print(f"{num} is Even")
+# else:
+#     print(f"{num} is Odd")
+
