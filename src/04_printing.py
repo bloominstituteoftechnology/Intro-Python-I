@@ -15,4 +15,4 @@ print('x is %d' %x , 'y is %f' %y , 'z is %s' %z)
 # Use the 'format' string method to print the same thing
 print("x is {}, y is {}, z is '{}'".format(x, y, z))
 # Finally, print the same thing using an f-string
-# print(f'x is {x}, y is {y}, z is {z}')
+# print(f"x is {x}, y is {y}, z is {z}")
