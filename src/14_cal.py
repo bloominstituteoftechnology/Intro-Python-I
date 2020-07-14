@@ -36,8 +36,14 @@ def create_calendar(month=date.today().month, year=date.today().year):
     print(calendar.month(year, month))
 
 # With specified dates
+
+# Month and year specified
 if len(sys.argv) == 3:    
     create_calendar(int(sys.argv[1]), int(sys.argv[2]))
+
+# Only month specified
+elif len(sys.argv) == 2:
+    create_calendar(int(sys.argv[1]))
 
 # Default to today's date if no input
 else:
