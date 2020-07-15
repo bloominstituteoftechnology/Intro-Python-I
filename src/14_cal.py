@@ -31,11 +31,12 @@ import sys
 import calendar
 import datetime
 
-year = datetime.datetime.today().year
-month = datetime.datetime.today().month
+today = datetime.datetime.today()
 
+month, year = today.month, today.year
 
-def calendar(month=datetime.datetime.today().month, year=datetime.datetime.today().year):
-    print("14_cal.py [month] [year]")
-    month_input = ('Enter month: ')
-    year_input = ('Enter year: ')
+def calendar(month, year):
+    print(f"14_cal.py [month] [year]")
+    month_input = input('Enter month number: ')
+    year_input = input('Enter year 4-digits: ')
+    if

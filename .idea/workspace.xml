@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="5e14a5fd-cc91-420a-8144-252529ad172a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/09_dictionaries.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/09_dictionaries.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/10_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/10_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/11_args.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/11_args.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/12_scopes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/12_scopes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/13_file_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/13_file_io.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/14_cal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/14_cal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/15_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/15_classes.py" afterDir="false" />
     </list>
@@ -28,6 +42,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -41,5 +56,27 @@
       <updated>1594278189492</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-700" y="278" key="FileChooserDialogImpl" timestamp="1594690999044">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-700" y="278" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1594690999044" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1594442338262">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1594442338262" />
   </component>
 </project>
