@@ -30,38 +30,21 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
-import argparse
-"""
-arg = ["-a", "-b", "-f", "-k"]
-error = "Argument not recognized"
 
 today = datetime.today()
 currentYear = today.year
 currentMonth = today.month
 
-# parser = argparse.ArgumentParser()
-# parser.add_argument('month', metavar='m', type=int)
-# parser.add_argument('year', metavar='y', type=int)
+if len(sys.argv) == 2:
+    print(calendar.month(currentYear, int(sys.argv[1])))
+elif len(sys.argv) == 3:
+    print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
+elif len(sys.argv) == 1:
+    print(calendar.month(currentYear, currentMonth))
+else:
+    print("Please enter your request in the following format: m yyyy")
 
-userMonth = sys.argv[1]
-userYear = sys.argv[2]
-
-argsLength = len(sys.argv)
-
-def printCalendar(m=currentMonth, y=currentYear):
-    if 1 <= len(str(m)) <= 2 and len(str(y)) == 4:
-        print(calendar.month(y, m))
-    elif 1 <= len(str(m)) <= 2:
-        print(calendar.month(y, m))
-    elif len(str(m)) < 1 and len(str(y)) < 1:
-        print(calendar.month(currentYear, currentMonth))
-    else:
-        print("Please enter your request in the following format: m yyyy")
-
-
-printCalendar(userMonth, userYear)
-"""
-print("This is the name of the program: ", sys.argv[0])
-print("Number of args including the name: ", len(sys.argv))
-print("Number of args not including the name: ", len(sys.argv)-1)
-print("Argument list: ", str(sys.argv))
+# print("This is the name of the program: ", sys.argv[0])
+# print("Number of args including the name: ", len(sys.argv))
+# print("Number of args not including the name: ", len(sys.argv)-1)
+# print("Argument list: ", str(sys.argv))
