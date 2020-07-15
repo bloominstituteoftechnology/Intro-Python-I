@@ -47,7 +47,6 @@ elif args == 1:
     month = currentDate.month
     year = currentDate.year
 else:
-    print("usage: 14_cal.py [month] [year]")
     sys.exit()
 
 cal.prmonth(year, month)
