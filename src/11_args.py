@@ -45,7 +45,7 @@ print(f2(a))    # Should print 22
 # YOUR CODE HERE
 def f3(first, second=None):
     if second == None:
-        second = 0
+        second = 1
 
     return first + second
 
