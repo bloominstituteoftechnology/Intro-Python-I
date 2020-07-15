@@ -46,6 +46,7 @@ print(waypoints)
 for d in waypoints:
     if d["name"] == "a place":
         d["name"] = "not a real place"
+        d["lon"] = 130
         break
 print(waypoints)
 
