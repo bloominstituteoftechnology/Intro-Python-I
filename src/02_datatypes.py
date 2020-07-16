@@ -14,10 +14,10 @@ y = "7"
 # Write a print statement that combines x + y into the integer value 12
 
 # YOUR CODE HERE
-print(int(x) + int(y))
+print('Expected: 12 - Result: ',int(x) + int(y))
 
 
 # Write a print statement that combines x + y into the string value 57
 
 # YOUR CODE HERE
-print(str(x) + str(y))
+print('Expected: 12 - Result: ',str(x) + str(y))

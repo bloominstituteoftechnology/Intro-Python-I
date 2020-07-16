@@ -10,14 +10,14 @@ import platform
 import os
 import getpass
 
-print('Argument Len', len(sys.argv))
+print('Argument Len                     ',len(sys.argv))
 
-print('OS Platfrom I am using:', platform.platform())
+print('OS Platfrom I am using:          ', platform.platform())
 
-print('version of Python I am using:',sys.version)
+print('version of Python I am using:    ',sys.version)
 
-print('Get current PID:',os.getpgid(1))
+print('Get current PID:                 ',os.getpgid(1))
 
-print('Get current working directory:', os.getcwd())
+print('Get current working directory:   ', os.getcwd())
 
-print('Machine Login name:', getpass.getuser())
+print('Machine Login name:              ', getpass.getuser())
