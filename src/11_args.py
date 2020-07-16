@@ -26,10 +26,16 @@ a = [7, 6, 5, 4]
 sum(a)
 # How do you have to modify the f2 call below to make this work?
 def f2(*args):
+    def convert(list):
+        return (*list, )
     for arg in args:
-        return sum(tuple(args))
-    print(sum((args)))
+        convert(args)
+        return sum((args))
 
+
+print(sum((args)))
+
+ 
 print(f2(a))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
