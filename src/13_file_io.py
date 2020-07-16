@@ -10,9 +10,9 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # Note: pay close attention to your current directory when trying to open "foo.txt"
 
 # YOUR CODE HERE
-f = open('src/foo.txt')
-try:
-  
+with open("src/foo.txt") as f:
+  print(f.read())
+
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
@@ -20,4 +20,6 @@ try:
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
-#b = open('bar.txt', 'w')
+with open('src/bar.txt', 'w') as b:
+  for hole in reversed(dive):
+    writer.write(hole) 
