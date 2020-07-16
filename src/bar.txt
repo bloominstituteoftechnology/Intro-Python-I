@@ -1,0 +1,4 @@
+
+    I am adding a couple of lines of text to this file
+    I am really enjoying the intense coding of CS
+    This is really cool
