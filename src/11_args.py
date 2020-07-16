@@ -15,16 +15,16 @@ print(f1(1, 2))
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
-#def f2(*a):
-  #result = 0
-  #for x in a:
-    #result += x
-  #return result
+def f2(*a):
+  result = 0
+  for x in a:
+    result += x
+  return result
 
-#print(f2(1))                    # Should print 1
-#print(f2(1, 3))                 # Should print 4
-#print(f2(1, 4, -12))            # Should print -7
-#print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
+print(f2(1))                    # Should print 1
+print(f2(1, 3))                 # Should print 4
+print(f2(1, 4, -12))            # Should print -7
+print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 
 a = [7, 6, 5, 4]
 
@@ -37,14 +37,14 @@ a = [7, 6, 5, 4]
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
-#def f3(a, b):
-  #if a and b:
-    #return a + b
-  #elif a:
-    #return a + 1
+def f3(a, b=0):
+  if a and b:
+    return a + b
+  elif a:
+    return a + 1
 
-#print(f3(1, 2))  # Should print 3
-#print(f3(8))     # Should print 9
+print(f3(1, 2))  # Should print 3
+print(f3(8))     # Should print 9
 
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
@@ -56,8 +56,10 @@ a = [7, 6, 5, 4]
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
-def f4(*, a, b):
-  print("key: " + int(a), "value: " + int(b))
+def f4(**kwargs):
+  for key, value in kwargs.items():
+    print(key)
+    print(value)
 
 # Should print
 # key: a, value: 12
@@ -76,4 +78,4 @@ d = {
 }
 
 # How do you have to modify the f4 call below to make this work?
-f4(d)
+f4(**d)

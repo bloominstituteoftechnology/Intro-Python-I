@@ -17,4 +17,4 @@ print(f"{x} is 10, {y} is 2.25, {z}")
 print("{0} is 10, {1} is 2.25, {2}".format(x, y, z))
 
 # Finally, print the same thing using an f-string
-print(f"{x} is 10, {y} is 2.25, {z}")
+print (f"{x} is 10, {y} is 2.25, {z}")
