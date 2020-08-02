@@ -41,6 +41,7 @@ waypoints = [
 # Note: It's okay to access the dictionary using bracket notation on the
 # waypoints list.
 waypoints.append({"lat": 0, "lon": -130, "name": "a place"})
+waypoints.append({"lat:": 15, "lon": 10, "name": "idk"})
 print(waypoints)
 # YOUR CODE HERE
 
