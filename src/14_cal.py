@@ -29,4 +29,42 @@ it should use today’s date to get the month and year.
 
 import sys
 import calendar
+import argparse
 from datetime import datetime
+
+usage = '''
+------------------------------------------------
+Hey!  You screwed up!  Let's fix that, shall we?
+------------------------------------------------
+
+cal.py takes 0, 1, or 2 arguments:
+
+0 - this month's calendar is displayed
+(e.g. cal.py)
+
+1 - specified month of this year is displayed
+(e.g. cal.py 11)
+
+2 - specified month and year is displayed
+(e.g. cal.py 11 1989)
+
+So..... Try again.  Try harder.
+'''
+
+try:
+    month_in = int(sys.argv[1])
+except IndexError:
+    month_in = datetime.now().month
+except ValueError:
+    print(usage)
+    exit()
+
+try:
+    year_in = int(sys.argv[2])
+except IndexError:
+    year_in = datetime.now().year
+except ValueError:
+    print(usage)
+    exit()
+
+calendar.prmonth(year_in, month_in)
