@@ -1,7 +1,6 @@
 # Print "Hello, world!" to your terminal
 print("Hello world")
 
-
 name = "Nonye"
  
 # String interpolation in Python
