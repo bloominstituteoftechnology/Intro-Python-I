@@ -10,7 +10,7 @@ for more info regarding list comprehensions.
 
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
-y = []
+y = [i+1 for i in range(5)]
 
 print (y)
 
@@ -19,6 +19,8 @@ print (y)
 
 y = []
 
+y = [i**3 for i in range(10)]
+
 print(y)
 
 # Write a list comprehension to produce the uppercase version of all the
@@ -26,7 +28,7 @@ print(y)
 
 a = ["foo", "bar", "baz"]
 
-y = []
+y = [i.upper() for i in a]
 
 print(y)
 
@@ -36,6 +38,8 @@ print(y)
 x = input("Enter comma-separated numbers: ").split(',')
 
 # What do you need between the square brackets to make it work?
-y = []
+def det_even(e):
+    return int(e) % 2
+y = [i for i in x if det_even(i) == 0]
 
 print(y)
