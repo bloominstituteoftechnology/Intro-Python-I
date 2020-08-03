@@ -12,7 +12,7 @@ x = 5
 y = "7"
 
 # Write a print statement that combines x + y into the integer value 12
-
+print(5 + int("7"))
 # YOUR CODE HERE
 
 
