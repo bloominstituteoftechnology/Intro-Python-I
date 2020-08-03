@@ -12,6 +12,20 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
+print('x is %d' % x)
+print('y is %f' % y)
+print('z is \"%s\"' % z)
+
+
 # Use the 'format' string method to print the same thing
+# print('x is', x.format())
+
+print('x is {x}'.format(x=x))
+print('y is {y}'.format(y=y))
+print('z is \"{z}\"'.format(z=z))
 
 # Finally, print the same thing using an f-string
+
+print(f'x is {x}')
+print(f'y is {y}')
+print(f'z is \"{z}\"')
