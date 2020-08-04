@@ -1,3 +1,24 @@
+#say we  want to store all of the even numbers in the range 
+#0-100 in a list
+#what are some ways we can do this?
+
+evens = []
+
+# loop through the range
+for i in range(101):
+    #check if the current number is even
+    if i % 2
+    #if it is, add it to the `evens` list 
+    evens.append(i)
+
+print(evens)
+
+#comprehensions allow us to write the above logic in a much
+#more terse fasion
+
+evens = [i for i in range(101) if 1 % 2 == 0 ]
+
+
 """
 List comprehensions are one cool and unique feature of Python.
 They essentially act as a terse and concise way of initializing

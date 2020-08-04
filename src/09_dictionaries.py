@@ -1,3 +1,13 @@
+#iterate through dict keys pairs
+for key in e:
+    print(key, e[key])
+
+#iterate through key-value pairs
+for key, val in e.
+
+
+
+
 """
 Dictionaries are Python's implementation of associative arrays.
 There's not much different with Python's version compared to what
