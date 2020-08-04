@@ -4,7 +4,7 @@
 #empty = []
 
 #create a list with some numbers
-nums = [10, 60, 20, 5]
+#nums = [10, 60, 20, 5]
 
 #print out our list of numbers
 #print(nums)
@@ -28,12 +28,12 @@ nums = [10, 60, 20, 5]
     #print(i)
 
 
-for i in range(len(nums)):
-    print(i, nums[i])
+#for i in range(len(nums)):
+    #print(i, nums[i])
 #another way to print out elements from a list with their 
 #assocciated index
-for i, v in enumerate(nums):
-    print(i,v)
+#for i, v in enumerate(nums):
+    #print(i,v)
 
 
 
@@ -47,22 +47,32 @@ y = [8, 9, 10]
 
 # Change x so that it is [1, 2, 3, 4]
 # YOUR CODE HERE
+x.append(4)
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE
+
+x.extend(y)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE
+x.remove(8)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE
+x.insert(-1, 99)
 print(x)
 
 # Print the length of list x
 # YOUR CODE HERE
 
+len(x)
+
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
+
+print([i*1000 for i in x])
+
