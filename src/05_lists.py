@@ -8,22 +8,29 @@ y = [8, 9, 10]
 
 # Change x so that it is [1, 2, 3, 4]
 # YOUR CODE HERE
-print(x)
+x.append(4)
+print(f'Change x so that it is [1, 2, 3, 4] ==> {x}')
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE
-print(x)
+for num in y:
+    x.append(num)
+print(f'Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10] ==> {x}')
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE
-print(x)
+x.remove(8)
+print(f'Change x so that it is [1, 2, 3, 4, 9, 10] ==> {x}')
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE
-print(x)
+x.insert(4, 99)
+print(f'Change x so that it is [1, 2, 3, 4, 9, 99, 10] ==> {x}')
 
 # Print the length of list x
 # YOUR CODE HERE
-
+print(f'Print the length of list x ==> {len(x)}')
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
+
+print(f'Print all the values in x multiplied by 1000 ==> {list(map(lambda n: n*1000, x))}')

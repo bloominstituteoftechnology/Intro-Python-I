@@ -5,24 +5,35 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
-
-print(f1(1, 2))
+def f1(x,y):
+    return x+y
+print('Should be 3:', f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and returns the
 # sum.
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
-
-print(f2(1))                    # Should print 1
-print(f2(1, 3))                 # Should print 4
-print(f2(1, 4, -12))            # Should print -7
-print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
+def f2(*args):
+    sum = 0
+    for i in args:
+        if type(i) is int:
+            sum += i
+        elif type(i) is list:
+            for ii in i:
+                sum += ii
+        else:
+            print(f'Unsupported type {i}')
+    return sum
+print('Should be 1:',f2(1))                    # Should print 1
+print('Should be 4:',f2(1, 3))                 # Should print 4
+print('Should be -7:',f2(1, 4, -12))            # Should print -7
+print('Should be 33:',f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 
 a = [7, 6, 5, 4]
 
 # How do you have to modify the f2 call below to make this work?
-print(f2(a))    # Should print 22
+print('Should be 22:',f2(a))    # Should print 22
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
@@ -30,9 +41,10 @@ print(f2(a))    # Should print 22
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
-
-print(f3(1, 2))  # Should print 3
-print(f3(8))     # Should print 9
+def f3(x, y=1):
+    return x + y
+print('Should be 3:',f3(1, 2))  # Should print 3
+print('Should be 9:',f3(8))     # Should print 9
 
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
@@ -44,7 +56,16 @@ print(f3(8))     # Should print 9
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
-
+def f4(*args, **kargs):
+    try:
+        for i in kargs:
+            print(f'key: {i}, value: {kargs[i]}')
+        for i in args:
+            if type(i) is dict:
+                for ii in i:
+                    print(f'Nested: key: {ii}, value: {i[ii]}')
+    except:
+        print(kargs)
 # Should print
 # key: a, value: 12
 # key: b, value: 30
