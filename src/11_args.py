@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 
 # Experiment with positional arguments, arbitrary arguments, and keyword
 # arguments.
@@ -55,19 +55,11 @@ print(f3(8))     # Should print 9
 # Note: Google "python keyword arguments".
 
 # accepts an arbitraty number of keyword arguments
-def validate(date_text):
-    try:
-        if date_text != datetime.strptime(date_text, '%m %d, %Y').strftime('%m %d, %Y'):
-            raise ValueError
-        return True
-    except ValueError:
-        return False
-
 def f4(**kwargs):
     #need to loop through args, pull out keys and values
     for key, value in kwargs.items():
     #print the keys and values
-        if validate(str(value)):
+        if isinstance(value, datetime.datetime):
             print(f'key: {key}, value: \"{value}\"')
         else:
             print(f'key: {key}, value: {value}')
