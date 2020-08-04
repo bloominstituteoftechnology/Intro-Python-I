@@ -12,6 +12,13 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
+print("x is %s y is 2.25 z is 'I like turtles!'" % x )
+
 # Use the 'format' string method to print the same thing
 
+txt = "x is {value} y is 2.25 z is 'I like turtles!'"
+print(txt.format(value = 10))
+
 # Finally, print the same thing using an f-string
+
+print(f"x is {x} y is 2.25 z is 'I like turtles!'")

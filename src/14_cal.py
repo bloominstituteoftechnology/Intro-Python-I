@@ -30,3 +30,10 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+def myCal():
+  print(calendar.weekheader(3))
+  print(calendar.firstweekday())
+  print(calendar.month(2019, 8))
+
+myCal()
