@@ -31,14 +31,9 @@ import sys
 import calendar
 from datetime import datetime
 
-date = sys.argv
-
-month=datetime.now().month
-year=datetime.now().year
-
-
-# print("Current year:", today.year)
-# print("Current month:", today.month)
-# print("Current day:", today.day)
-
-print(datetime.now().day)
+if len(sys.argv) == 3 : 
+  calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+elif len(sys.argv) == 2: 
+  calendar.prmonth(datetime.now().year, int(sys.argv[1]))
+else: 
+  calendar.prmonth(datetime.now().year,datetime.now().month)
