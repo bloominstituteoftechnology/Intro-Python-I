@@ -53,3 +53,19 @@ print(waypoints)
 
 for num in range(len(waypoints)) :
     print(waypoints[num])
+
+
+# One primary use-case is to associate keys with values
+# Dicts provide efficient fetching of keys
+# e = {"foo": 11, 10: "bar"}
+# print(e)
+# iterate through dict key-value pairs
+
+# for key in e:
+#     print(e[key])
+
+
+# for key, val in e.items():
+#     print(key, val)
+
+# the `items` method on dicts is similar to the enumerate function
