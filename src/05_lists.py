@@ -13,7 +13,8 @@ print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE
-print(x + y)
+x = x + y
+print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE
@@ -43,8 +44,6 @@ odds = [1, 3, 5, 7, 9]
 print([x + 1 for x in odds])
 
 # Like filter
+
+
 print([x for x in odds if 25 % x == 0])
-​
-# General form
-# [<map expression> for <name> in <sequence expression> if <filter expression>]
-​
