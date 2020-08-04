@@ -32,6 +32,19 @@ import calendar
 from datetime import datetime
 user_input = sys.argv 
 
-month = user_input[1]
-year = user_input[2]
-print(month, year)
+#month = user_input[1]
+#year = user_input[2]
+#print(month, year)
+
+
+def calender2(year=datetime.datetime.now().year, month=datetime.datetime.now().month):
+    x = datetime.datetime.now()
+    x_year = x.year
+    x_month = x.month
+    
+    year = int(input("year: "))
+    month = int(input("month: "))
+    
+    # display the calendar  
+    print(calendar.month(year, month)) 
+    
