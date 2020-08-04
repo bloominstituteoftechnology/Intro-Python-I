@@ -32,4 +32,14 @@ print(len(x))
 
 # Print all the values in x multiplied by 1000
 
-print([element * 1000 for element in x])
+'''
+def mult1000(x):
+    new_x = []
+    for i in range(len(x)):
+        new_x.append(x[i] * 1000)
+    return new_x 
+
+print(mult1000(x))
+'''
+
+print([i*1000 for i in x])
