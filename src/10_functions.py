@@ -1,6 +1,4 @@
-# Write a function is_even that will return true if the passed-in number is even.
 
-# YOUR CODE HERE
 
 #how do we define a function in pytin
 def mult2(n):
@@ -43,6 +41,11 @@ print(mult2_new_list([3, 5, 34, 10, 15]))
 # Read a number from the keyboard
 num = input("Enter a number: ")
 num = int(num)
+
+
+# Write a function is_even that will return true if the passed-in number is even.
+
+# YOUR CODE HERE
 
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 
