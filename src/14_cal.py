@@ -30,3 +30,29 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+
+# get arguments passed with sys.argv
+# need to specify assumed params based on number
+args = sys.argv
+args.pop(0)
+
+if len(args)==0:
+  today = datetime.today()
+  year = today.year
+  month = today.month
+  calendar.prmonth(year,month)
+elif len(args)==1:
+  today = datetime.today()
+  year = today.year
+  calendar.prmonth(year, int(args[0]))
+elif len(args)==2:
+  year = int(args[1])
+  month = int(args[0])
+  calendar.prmonth(year, month)
+else:
+  print('Script must be called with:')
+  print('  - no arguments')
+  print('  - the desired month (integer)')
+  print('  - the desired month and year (integers)')
+  print('If either is inferred, the current month/day will be used')
