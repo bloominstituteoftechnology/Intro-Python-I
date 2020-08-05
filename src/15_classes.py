@@ -33,6 +33,8 @@ class Geocache(Waypoint):
         self.difficulty = difficulty
         self.size = size
         super().__init__(name, lat, lon)
+    def __str__(self):
+        return f"Geocache: {self.name}, {self.difficulty}, {self.size}, {self.lat}, {self.lon}"
 
 # Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
 
