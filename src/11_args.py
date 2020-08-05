@@ -51,6 +51,10 @@ print(f3(8))     # Should print 9
 # Note: Google "python keyword arguments".
 
 def f4(**kwargs):
+    #for keys in kwargs:
+        # rint (f'key: {key}, value: {kwargs[key]}')
+    #for a, b in kwargs:
+        #print(f'key: {a}, value: {b}')
     for a, b in kwargs.items():
         print("key:", a, ",", "value: ", b)
 
