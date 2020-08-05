@@ -40,11 +40,11 @@ print(f2(*a))    # Should print 22
 
 # YOUR CODE HERE
 
-def f3(*x):
-        if *x == 1:
-            print(x + 1)
-        if *x == 2:
-            print(sum(x))
+def f3(*args):
+        if len(args) < 2:
+            return args[0] + 1
+        if len(args) == 2:
+            return sum(args)
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -59,6 +59,10 @@ print(f3(8))     # Should print 9
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
+
+def f4(**kwargs):
+    for key, value in kwargs.items():
+        print("key: {0}, value: {1}".format(key, value))
 
 # Should print
 # key: a, value: 12
@@ -77,4 +81,4 @@ d = {
 }
 
 # How do you have to modify the f4 call below to make this work?
-f4(d)
+f4(**d)
