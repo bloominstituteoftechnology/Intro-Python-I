@@ -41,7 +41,33 @@ waypoints = [
 # Note: It's okay to access the dictionary using bracket notation on the
 # waypoints list.
 
+
+
 # YOUR CODE HERE
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+
+# ------------------ CLASS WORK
+
+# init an empty dict 
+d = {}
+
+# One primary use case is to associate keys with values
+# Dicts provide very effcient fetching of keys
+# Dicts provide de-duplication functionality since they never store duplicates of any keys
+
+# Create a dict with two key-calue pairs
+e = {"foo": 12, 111: "bar"}
+
+# Print out the value 12 from the dict
+print(e["foo"])
+print(e[11])
+
+# Iterate through dict ket pairs
+for key in e:
+    print(key, e[key])
+
+# Iterate through  key valye pairs
+for key, val in e.items():
+    

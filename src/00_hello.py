@@ -1,7 +1,8 @@
 # Print "Hello, world!" to your terminal
 print("Hello world")
 
-name = "Nonye"
+
+ name = "Nonye"
  
 # String interpolation in Python
 print("Hello " + name)
@@ -12,6 +13,6 @@ print(f"Hello {name}")
 # if statments
 # in Python, whitespace is important
 if name != "Nonye":
-    print("Hey, you aren't me!")
+    print("Hey, you aren't me")
 else:
-    print(f"Hello, {name}")
+    print(f"Hello {name}")

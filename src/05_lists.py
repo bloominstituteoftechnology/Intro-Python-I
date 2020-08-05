@@ -38,8 +38,6 @@ for i in x:
 
     print(multipleArray)
 
-
-
 # -------------------------- class work -----------------
 
 # create an empty list

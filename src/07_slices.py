@@ -26,9 +26,11 @@ print(a[2:4])
 
 # Output every element except the first one: [4, 1, 7, 9, 6]
 print(a[1:6])
+# or print(a[1]) <- means everything after the first one
 
 # Output every element except the last one: [2, 4, 1, 7, 9]
 print(a[0:5])
+# or print(a[-1]) <-  this means give everything up to the last element but not including it 
 
 # For string s...
 

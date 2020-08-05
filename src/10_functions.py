@@ -2,15 +2,18 @@
 
 # YOUR CODE HERE
 
+def is_even(n):
+    return 
+
 # Read a number from the keyboard
-#num = input("Enter a number: ")
-#num = int(num)
+num = input("Enter a number: ")
+num = int(num)
 
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 
 # YOUR CODE HERE
 
-# ----------------
+# ---------------------------------------
 
 # How do we define a function in Python?
 def mult2(n):
