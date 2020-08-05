@@ -3,7 +3,7 @@ import calendar
 from datetime import datetime
 
 """
-Classrom work
+Class work
 """
 
 l = len(sys.argv)

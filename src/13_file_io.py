@@ -1,3 +1,5 @@
+# python3 src/13_file_io.py
+
 """
 Python makes performing file I/O simple. Take a look
 at how to read and write to files here:
@@ -12,6 +14,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # YOUR CODE HERE
 f = open("src/foo.txt", "r")
 file_contents = f.read()
+print('\n')
 print(file_contents)
 f.close()
 
@@ -27,5 +30,7 @@ f.close()
 
 f = open("src/bar.txt", "r")
 file_contents = f.read()
+print('\n')
 print(file_contents)
+print('\n')
 f.close()
