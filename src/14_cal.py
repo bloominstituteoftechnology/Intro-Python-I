@@ -31,6 +31,16 @@ import sys
 import calendar
 from datetime import datetime
 
+# how  do we figure out the number of arguments that are passed in to the program?
+# sys.argv - name of the file is always 1st
+
+# if len(sys,argv) == 1
+# then no arguments were passed in
+# if len(sys.argv) == 2
+# then 1 argument was passed in
+# if len(sys.argv) == 3
+# then 2 arguments were passed in
+
 month = datetime.today().month
 year = datetime.today().year
 
@@ -38,5 +48,7 @@ if len(sys.argv) > 1:
     month = int(sys.argv[1])
 if len(sys.argv) > 2:
     year = int(sys.argv[2])
+else:
+    print("Usage: cal.py [month] [year] ")
 
 print(calendar.month(year, month))
