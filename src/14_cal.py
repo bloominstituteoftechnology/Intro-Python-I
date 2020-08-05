@@ -40,13 +40,33 @@ from datetime import datetime
 # then 1 argument was passed in
 # if len(sys.argv) == 3
 # then 2 arguments were passed in
+l = len(sys.argv)
 
-month = datetime.today().month
-year = datetime.today().year
+if l == 1:
+    month = datetime.now().month
+    year = datetime.now().year
 
-if len(sys.argv) > 1:
+elif l == 2:
     month = int(sys.argv[1])
-if len(sys.argv) > 2:
+    year = datetime.now().year
+elif l == 3:
+    month = int(sys.argv[1])
     year = int(sys.argv[2])
+else:
+    print("Usage: cal.py [month] [year] ")
+    # exit the program
+    sys.exit(1)
 
-print(calendar.month(year, month))
+cal = calendar.TextCalendar()
+cal.prmonth(year, month)
+
+
+#month = datetime.today().month
+#year = datetime.today().year
+#
+#if len(sys.argv) > 1:
+#    month = int(sys.argv[1])
+#elif len(sys.argv) > 2:
+#     year = int(sys.argv[2])
+
+
