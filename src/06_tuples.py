@@ -35,10 +35,32 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 # Write a function `print_tuple` that prints all the values in a tuple
 
 # YOUR CODE HERE
+def tuple_test(n):
+    '''
+    Writing a simple function to determine if a certain input
+    is a tuple or not.
+    '''
+
+    if type(n) is tuple:
+        print("tuple_test: t is a tuple")
+    else:
+        print("tuple_test: t is not a tuple")
+
+def print_tuple(n):
+    if type(n) is tuple:
+        print(n[0:])
+    else:
+        print("cannot print, the input is not a tuple.")
 
 t = (1, 2, 5, 7, 99)
+tuple_test(t)
 print_tuple(t)  # Prints 1 2 5 7 99, one per line
 
 # Declare a tuple of 1 element then print it
 u = (1)  # What needs to be added to make this work?
+tuple_test(u)
 print_tuple(u)
+
+v = (1,)
+tuple_test(v)
+print_tuple(v)
