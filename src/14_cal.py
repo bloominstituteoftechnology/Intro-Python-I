@@ -30,10 +30,26 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+# breakpoint()
+# if len(sys.argv) == 3 and type(int(sys.argv[2])) == int and type(int(sys.argv[1])) == int: 
+#   calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+# elif len(sys.argv) == 2 and type(int(sys.argv[1])) == int: 
+#   calendar.prmonth(datetime.now().year, int(sys.argv[1]))
+# else: 
+#   calendar.prmonth(datetime.now().year,datetime.now().month)  
 
-if len(sys.argv) == 3 : 
-  calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
-elif len(sys.argv) == 2: 
-  calendar.prmonth(datetime.now().year, int(sys.argv[1]))
-else: 
-  calendar.prmonth(datetime.now().year,datetime.now().month)
+try:
+  if not (0 < int(sys.argv[1]) < 13):
+    raise Exception("MONTH MUST BE BETWEEN 1 & 12!!!! RUDE!!!")
+  if len(sys.argv[1]) != 4:
+    raise Exception("YEAR MUST BE 4 DIGITS UNLESS YOU'RE A NEANDERTHAL!!!!")
+  if len(sys.argv) == 3 and type(int(sys.argv[2])) == int and type(int(sys.argv[1])) == int: 
+    calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+  elif len(sys.argv) == 2 and type(int(sys.argv[1])) == int: 
+    calendar.prmonth(datetime.now().year, int(sys.argv[1]))
+  else: 
+    calendar.prmonth(datetime.now().year,datetime.now().month)  
+except IndexError: 
+  print("DUDE, ORDER THE NUMBERS CORRECTLY")
+except ValueError:
+  print("DUDE, NUMBERS ONLY")
