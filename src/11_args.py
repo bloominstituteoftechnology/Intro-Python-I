@@ -36,11 +36,11 @@ print(f2(*a))    # Should print 22
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
-def f3(arg1=None, arg2=None):
-    if arg1 is None or arg2 is None:
-        return (arg1 +1)
-    else:
-        return (arg1 + arg2)
+def f3(arg1=None, arg2=1):
+    # if arg1 is None:
+    #     return (arg1 +1)
+    # else:
+    return (arg1 + arg2)
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
