@@ -6,8 +6,11 @@
 
 # YOUR CODE HERE
 
-def f1(x: int, y: int):
-    return x + y
+#def f1(x: int, y: int):
+#    return x + y
+
+def f1(a, b):
+    return a + b
 
 print(f1(1, 2))
 
@@ -18,6 +21,14 @@ print(f1(1, 2))
 # YOUR CODE HERE
 def f2(*args):
     return sum(args)
+
+def f2a(*a):
+    total = 0
+
+    for i in a:
+        total += i
+
+    return total
 
 
 print(f2(1))                    # Should print 1
@@ -46,6 +57,9 @@ def f3(*args):
         if len(args) == 2:
             return sum(args)
 
+def f3a(a, b=1):
+    return a + b
+
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
 
@@ -63,6 +77,7 @@ print(f3(8))     # Should print 9
 def f4(**kwargs):
     for key, value in kwargs.items():
         print("key: {0}, value: {1}".format(key, value))
+
 
 # Should print
 # key: a, value: 12

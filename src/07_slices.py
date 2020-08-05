@@ -17,8 +17,12 @@ print(a[1])
 # Output the second-to-last element: 9
 print(a[4])
 
+print(a[-2]) # This is the way to always get the second to last element
+
 # Output the last three elements in the array: [7, 9, 6]
 print(a[3:6])
+
+print(a[-3:]) # This will work as well
 
 # Output the two middle elements in the array: [1, 7]
 print(a[2:4])
@@ -28,6 +32,7 @@ print(a[1:])
 
 # Output every element except the last one: [2, 4, 1, 7, 9]
 print(a[:-1])
+
 
 # For string s...
 

@@ -30,3 +30,37 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+# how do we figure out the number of arguments that are passed in to the program?
+# sys.argv is a field exposed from the sys module
+# this is used for grabbing any arguments any arguments that are passed in when we run a file
+# whatever gets specified after the name of the file gets 'captured' ? 
+# this always contains the name of the file as the first thing in the list
+
+l = len(sys.argv)
+print(datetime.now().month)
+print(datetime.now().year)
+
+# if len(sys.argv) == 1 that means no arguments were passed in
+# it will always at least be 1 bc the name 
+# if it were 3 for example, 2 arguments were passed in and so on
+
+if l == 1:
+  # print out the calendar 
+  month = datetime.now().month
+  year = datetime.now().year
+
+elif l == 2:
+  month = int(sys.argv[1])
+  year = datetime.now().year
+
+elif l == 3:
+  month = int(sys.argv[1])
+  year = int(sys.argv[2])
+else: 
+    print("Usage: 14_cal.py [month] [year]")
+    # exit the program
+    sys.exit(1)
+cal = calendar.TextCalendar()
+cal.prmonth(year, month)
+  
