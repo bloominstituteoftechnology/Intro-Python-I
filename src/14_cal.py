@@ -31,18 +31,7 @@ import sys
 import calendar
 from datetime import datetime
 
-# today = datetime.today()
-# print("today's date is:  ", today)
 
 
 
 
-cale = input("Enter a date in the format mm,yyyy : ")
-my_month = datetime.month()
-my_year = datetime.year()
-
-
-      
-
-def dat(a= my_month, b= my_year):
-  if 
