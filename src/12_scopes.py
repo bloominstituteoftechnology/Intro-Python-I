@@ -5,8 +5,9 @@
 x = 12
 
 def change_x():
+    global x # this brings the variable x to be accessible inside the function
     x = 99
-    print(x)
+    
 
 change_x()
 
@@ -20,8 +21,9 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y # this is to grab the variable outside the inner function
         y = 999
-        print(y)
+        
     inner()
 
     # This prints 120. What do we have to change in inner() to get it to print

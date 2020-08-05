@@ -33,14 +33,17 @@ print(sum(a))    # Should print 22
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
-def f3(*args):
-    if len(args) == 1:
-        return sum(args) + 1
-    elif len(args) == 2:
-        return sum(args)
-    else:
-        pass
-
+#one way to do this 
+# def f3(*args):
+#     if len(args) == 1:
+#         return sum(args) + 1
+#     elif len(args) == 2:
+#         return sum(args)
+#     else:
+#         pass
+#another way to do it is by assigning two elements
+def f3(a, b=1):
+    return a+b
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -76,4 +79,4 @@ d = {
 }
 
  # How do you have to modify the f4 call below to make this work?
-f4(monster = 'Goblin', hp="3")
+f4(**d)
