@@ -2,3 +2,5 @@
 # (try doing the same thing in the JS console and see what it outputs)
 
 # YOUR CODE HERE
+print(f"2^65536 = {2**65536}")
+# This is beyond the scope of JS, so it reports the result as 'Infinity'
