@@ -18,21 +18,17 @@ print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE
-del x[4]
+
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE
-x[5:1] = [99]
 print(x)
 
 # Print the length of list x
 # YOUR CODE HERE
-print(len(x))
+
 
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
-mutiplied_list = []
-for i in x:
-    mutiplied_list.append(i*1000)
-print(mutiplied_list)
+

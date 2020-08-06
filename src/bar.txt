@@ -1,3 +1,0 @@
-First line of arbitrary text.
-Secont line of arbitrary text.
-Third line of arbitarry text. 
