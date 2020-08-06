@@ -53,8 +53,8 @@ print(f3(8))     # Should print 9
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
-def f4(**kwords):
-    for k, v in kwords.items():
+def f4(**kw):
+    for k, v in kw.items():
         print(f'key: {k}, value: {v}')    
 
 # Should print

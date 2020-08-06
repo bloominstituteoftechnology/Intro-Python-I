@@ -44,4 +44,4 @@ elif len(sys.argv) == 3:
   year = int(sys.argv[2])
   print(cal.prmonth(year, month))
 else:
-    print("format should be [month][year]") 
+  print("format should be [month][year]") 
