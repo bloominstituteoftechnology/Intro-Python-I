@@ -56,4 +56,8 @@ waypoints[0]["name"] = "not a real place"
 # YOUR CODE HERE
 for place in waypoints:
     for key,value in place.items():
-        print(value)
+        print(key,value)
+
+#or
+
+[[print(key,value) for key,value in place.items()] for place in waypoints]
