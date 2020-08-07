@@ -10,14 +10,12 @@ on a string and an integer.
 
 x = 5
 y = "7"
-import math
 # Write a print statement that combines x + y into the integer value 12
 
 # YOUR CODE HERE
-
-sum = x+int(y)
-print(sum)
+print(x+int(y))
 
 # Write a print statement that combines x + y into the string value 57
-print(f"Your number is {x}{y}")
+
 # YOUR CODE HERE
+print(f"Your number is {x}{y}")
