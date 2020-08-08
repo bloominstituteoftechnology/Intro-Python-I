@@ -10,7 +10,7 @@ for more info regarding list comprehensions.
 
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
-y = [1, 2, 3, 4, 5]
+y = [i for i in range(1, 6)]
 
 print (y)
 
@@ -26,9 +26,8 @@ print(y)
 
 a = ["foo", "bar", "baz"]
 
-y = []
-for y in a:
-  y.append(a.upper())
+y = [s.upper() for s in a]
+
 print(y)
 
 # Use a list comprehension to create a list containing only the _even_ elements
@@ -36,9 +35,8 @@ print(y)
 
 x = input("Enter comma-separated numbers: ").split(',')
 
+print(x)
 # What do you need between the square brackets to make it work?
-y = [for i in x:
-    if i % 2 == 0: 
-      y.append(i)]
+y = [i for i in x if int(i) % 2 == 0]
 
 print(y)
