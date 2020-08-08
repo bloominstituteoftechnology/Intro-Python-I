@@ -34,6 +34,7 @@ from datetime import datetime
 cal = calendar.TextCalendar(calendar.SUNDAY)
 d = datetime.today()
 
+
 if len(sys.argv) == 1:
   print(cal.prmonth(d.year, d.month))
 elif len(sys.argv) == 2:

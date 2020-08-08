@@ -15,10 +15,10 @@ print(f1(1, 2))
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
-def f2(*args):
+def f2(*nums):
     sum = 0
-    for arg in args:
-        sum += arg
+    for i in nums:
+        sum += i
     return sum
 
 print(f2(1))                    # Should print 1
