@@ -45,6 +45,9 @@ print(waypoints)
 # waypoints list.
 
 # YOUR CODE HERE
+waypoints[0].update({'lon': -130, 'name': 'not a real place'})
+print(waypoints)
+
 
 waypoints[0].update({'lon': -130, 'name': 'not a real place'})
 print(waypoints)
