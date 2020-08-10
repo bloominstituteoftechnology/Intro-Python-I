@@ -1,6 +1,7 @@
 import sys
 
 def prime_number(input):
+    input = int(sys.argv[1])
     is_number_prime = False
     flag_changed = False
     counter1=1
