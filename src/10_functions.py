@@ -4,7 +4,14 @@
 
 # Read a number from the keyboard
 num = input("Enter a number: ")
-num = int(num)
+def is_even(x):
+    y = int(x)
+    if y % 2 == 0:
+        print('true')
+    else: 
+        print('NOT EVEN')
+is_even(num)
+
 
 # Print out "Even!" if the number is even. Otherwise print "Odd"
 
