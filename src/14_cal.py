@@ -32,18 +32,20 @@ import sys
 import calendar
 from datetime import datetime
 
-currentyear=2020
-currentmonth=6
+# currentyear=2020
+# currentmonth=7
 
 if len(sys.argv) == 2:
-    datemonth_object = datetime(currentyear, int(sys.argv[1]), 1)
-    print(datemonth_object)
+    month = int(sys.argv[1])
+    year = datetime.now().year
 elif len(sys.argv) == 3:
-    datemonthyear_object = datetime(currentyear, int(sys.argv[1]), int(sys.argv[2]))
-    print(datemonthyear_object)
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
 elif len(sys.argv) == 1:
-    calendar_object = calendar.monthcalendar(currentyear, currentmonth)
-    print(calendar_object)
+    month = datetime.now().month
+    year = datetime.now().year
 else:
     print("The output needs to be written in this format: 14_cal.py, month(where month is a number), and year(where year is a number)")
     exit 
+cal = calendar.TextCalendar()
+cal.prmonth(year, month)
