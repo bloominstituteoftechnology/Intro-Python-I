@@ -20,8 +20,8 @@ with open("src/foo.txt") as x:
 
 # YOUR CODE HERE
 y = open("src/bar.txt", "w")
-y.write("this is first line.")
-y.write("this is second line.")
+y.write("this is first line.\n")
+y.write("this is second line.\n")
 y.write("this is third line.")
 y.close()
 with open("src/bar.txt") as y:
