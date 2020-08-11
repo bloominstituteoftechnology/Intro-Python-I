@@ -22,6 +22,15 @@ with open("foo.txt") as f:
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
-with open('bar.txt') as bar:
-    print(bar.read())
-    bar.close()
+# with open('bar.txt') as bar:
+#     print(bar.read())
+#     bar.close()
+
+y = open('bar.txt', 'w')
+y.write('first line. \n')
+y.close()
+print(y.closed)
+with open('bar.txt') as y:
+    print('\n' + y.read())
+
+print(y.closed)
