@@ -12,4 +12,15 @@ num = int(num)
 
 
 # YOUR CODE HERE
+def is_even(x):
+    if x % 2 == 0:
+        return True
+    else:
+        return False
+
+if is_even(num):
+    print(f"Even!")
+else:
+    print(f'Odd!')
+    
 
