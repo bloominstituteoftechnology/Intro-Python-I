@@ -7,7 +7,7 @@ y = [8, 9, 10]
 # For the following, DO NOT USE AN ASSIGNMENT (=).
 
 # Change x so that it is [1, 2, 3, 4]
-x.insert(4,4)
+x.insert(3,4)
 print('Expected: [1, 2, 3, 4]                           - Result:',x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
