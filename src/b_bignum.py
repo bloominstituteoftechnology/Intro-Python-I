@@ -2,3 +2,7 @@
 # (try doing the same thing in the JS console and see what it outputs)
 
 # YOUR CODE HERE
+
+def bignum():
+    product = 2 ** 65536
+    print(product)
