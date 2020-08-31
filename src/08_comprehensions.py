@@ -39,3 +39,8 @@ x = input("Enter comma-separated numbers: ").split(',')
 y = []
 
 print(y)
+
+
+'''
+python src/08_comprehensions.py
+'''
