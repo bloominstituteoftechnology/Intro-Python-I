@@ -8,7 +8,7 @@ def is_even(num):
 num = input("Enter a number: ")
 num = int(num)
 
-# Print out "Even!" if the number is even. Otherwise print "Odd"
+# Print out "Even!" if the number is even. Otherwise print "Odd".
 
 # YOUR CODE HERE
 if is_even(num):
