@@ -12,8 +12,12 @@ import sys
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
 
+for arg in sys.argv:
+    print(f'Length of Command Line Arguments: {arg}')
 
-print(f'Length of Command Line Arguments: {len(sys.argv)}')
+
+
+#print(f'Length of Command Line Arguments: {len(sys.argv)}')
 print(f'Command Line Argument: {sys.argv}')
 
 
