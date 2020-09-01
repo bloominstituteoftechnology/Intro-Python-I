@@ -1,0 +1,3 @@
+I am Nirmal Thapa
+I am a student learning Data Science at Lambda School.
+Currently I am in CS35 learning computer science.
