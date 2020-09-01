@@ -19,6 +19,6 @@ print("\n .format:")
 message = "{x} is 10, {y:.2f} is 2.25, {z} is 'I like turtles!'"
 print(message.format(x=x, y=y, z=z))
 
-# Finally, print the same thing using an f-string
+# Finally, print the same thing using an  f-string
 print("\n f String: ")
 print(f"{x} is 10, {y:.2f} is 2.25, {z} is 'I like turtles!'")
