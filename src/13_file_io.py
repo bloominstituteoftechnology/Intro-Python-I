@@ -20,5 +20,7 @@ with open('src/foo.txt') as foo:
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
-with open('src/bar.txt', rw+) as bar:
-    bar.write()
+with open('src/bar.txt', 'w') as bar:
+    bar.write('First line\nSecond line\nThird line')
+    bar.close()
+    
