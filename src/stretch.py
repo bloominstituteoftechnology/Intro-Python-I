@@ -7,9 +7,9 @@ def soe(n):
     is_prime = [True for i in range(n + 1)]
     p = 2
     while (p * p <= n):
-              # If prime[p] is not changed, then it is a prime 
+        # If prime[p] is not changed, then it is a prime 
         if(is_prime[p] == True):
-              # Update all multiples of p 
+            # Update all multiples of p 
             for i in range(p * 2, n + 1, p):
                 is_prime[i] = False
         p += 1
