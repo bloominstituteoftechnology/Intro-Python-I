@@ -4,4 +4,3 @@
 # YOUR CODE HERE
 n = 25536
 print(2**n)
-
