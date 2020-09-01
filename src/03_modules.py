@@ -11,8 +11,6 @@ import sys
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
 
-
-
 for item in sys.argv:
     print(item)
 
