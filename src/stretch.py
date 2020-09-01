@@ -15,5 +15,5 @@ def soe(n):
         if is_prime[p]:
             print(p)
 
-print(soe(29))
+print(soe(120))
 
