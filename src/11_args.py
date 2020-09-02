@@ -5,6 +5,8 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
+def f1(n1, n2):
+    return n1 + n2
 
 print(f1(1, 2))
 
@@ -12,7 +14,17 @@ print(f1(1, 2))
 # sum.
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
-# YOUR CODE HERE
+def f2(*args):
+    out = 0
+    for arg in args:
+        # List support
+        if type(arg) == list:
+            for item in arg:
+                out += item
+        else:
+            out += arg
+    return out
+
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -29,7 +41,10 @@ print(f2(a))    # Should print 22
 # arguments.
 # Note: Google "python default arguments" for a hint.
 
-# YOUR CODE HERE
+def f3(first, second = None):
+    if second:
+        return first + second
+    return first + 1
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -43,7 +58,14 @@ print(f3(8))     # Should print 9
 #
 # Note: Google "python keyword arguments".
 
-# YOUR CODE HERE
+
+# NOTE: A positional argument is any argument that's not supplied as a key=value pair.
+def f4(arg = None, **kwargs):
+    args = kwargs.items()
+    if arg:
+        args = arg.items()
+    for key, value in args:
+        print(f"key: {key}, value: {value}")
 
 # Should print
 # key: a, value: 12
