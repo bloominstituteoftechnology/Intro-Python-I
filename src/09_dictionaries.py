@@ -1,4 +1,6 @@
 """
+WE WENT OVER THIS IN DAY 1 LECTURE 9/1/2020 REFER BACK
+
 Dictionaries are Python's implementation of associative arrays.
 There's not much different with Python's version compared to what
 you'll find in other languages (though you can also initialize and
