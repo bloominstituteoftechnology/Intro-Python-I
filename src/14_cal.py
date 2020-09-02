@@ -30,3 +30,12 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+calendar.setfirstweekday(calendar.SUNDAY)
+
+
+def month_year_calendar(month = 9, year = 2020):
+	return calendar.month(year,month)
+
+print(month_year_calendar(month = 2, year = 1987))
+print(month_year_calendar(month = 2))
