@@ -48,5 +48,5 @@ print(a[s6])
 s = "Hello, world!"
 
 # Output just the 8th-12th characters: "world"
-s_hello = slice(8, 13, 1)
+s_hello = slice(7, 13, 1)
 print(s[s_hello])
