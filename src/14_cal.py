@@ -30,3 +30,48 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+calendar.setfirstweekday(6)
+
+m = datetime.now().month
+y = datetime.now().year
+inputexample = f'Input should be a numerical month and year, example: {m} {y}'
+
+
+
+#sets default value current date
+calInput = {"month": m, "year": y}
+
+# checks sys.argv for argv amount to change calInput accordingly
+if len(sys.argv)>2:
+  calInput = {"month": sys.argv[1], "year": sys.argv[2]}
+else:
+  if len(sys.argv)>1:
+    calInput = {"month": sys.argv[1], "year": y}
+
+# checks for both year and month input
+if calInput["month"] != '' and calInput["year"] != '':
+    #checks if month in a number
+    try:
+        int(calInput["month"])
+    except ValueError:
+        print(inputexample)
+        sys.exit()
+    #checks if month in a real month
+    if int(calInput["month"]) not in range(1, 13):
+        print(inputexample)
+        sys.exit()
+    else:
+        m = int(calInput["month"])
+    #checks for year
+    if len(calInput) > 1:
+        #checks if year is a number
+        try:
+            int(calInput["year"])
+        except ValueError:
+            print(inputexample)
+            sys.exit()
+        #sets year to input year
+        y = int(calInput["year"])
+
+print( calendar.month(y, m))

@@ -47,11 +47,10 @@ for i in range(0, len(waypoints)):
     if waypoints[i].get("name") == "a place":
         waypoints[i]["name"] = "not a real place"
         waypoints[i]["lon"] = -130
-print(waypoints)
+print(waypoints[1])
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
 for i in range(0, len(waypoints)):
-    for i in range(0, len(waypoints[i])):
-        print(waypoints[i]['lat'])
-        print(waypoints[i]['lon'])
-        print(waypoints[i]['name'])
+    print(waypoints[i]['lat'])
+    print(waypoints[i]['lon'])
+    print(waypoints[i]['name'])
