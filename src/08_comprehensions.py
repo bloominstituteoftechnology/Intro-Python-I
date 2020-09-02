@@ -11,13 +11,14 @@ for more info regarding list comprehensions.
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 x = [1, 2, 3, 4, 5]
 y = [i for i in x]
-
+y = [b for b in range(1,6)]
 print (y)
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 z = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 y = [num ** 3 for num in z]
+y = [num ** 3 for num in range(10)]
 
 print(y)
 
@@ -38,6 +39,10 @@ x = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 # What do you need between the square brackets to make it work?
 
 y = [num for num in x if num % 2 == 0]
+# y = [num for num in x if int(num) % 2 == 0]
+# for num in x:
+#     if num % 2 == 0:
+#         evens.append(num)
 
 
 print(y)

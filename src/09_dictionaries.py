@@ -40,6 +40,7 @@ waypoints = [
 # myCar.model = 'Mustang';
 # myCar.year = 1969;
 my_place = {}
+# my_place2 = dict()
 my_place['lat'] = 55,
 my_place['lon'] = 125,
 my_place['name'] = 'my place'

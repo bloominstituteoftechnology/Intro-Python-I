@@ -10,8 +10,11 @@ y = [8, 9, 10]
 # YOUR CODE HERE
 x.append(4)
 print(x)
-
 # x.insert(3, 4)
+
+# x.enumerate()
+y = (num for num in x.reverse())
+
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE
@@ -22,12 +25,13 @@ print(x)
 # YOUR CODE HERE
 del x[4]
 print(x)
-
+# x.pop(x.index(8))
 # x.remove(8)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE
 x.insert(5, 99)
+# x.insert(-2, 99)
 print(x)
 
 # Print the length of list x
