@@ -28,5 +28,25 @@ it should use today’s date to get the month and year.
 """
 
 import sys
-import calendar
-from datetime import datetime
+import calendar as c
+import datetime as dt
+
+args =  sys.argv   # a list of command line arguments startin w. filename 
+instructions = f""" Usage: python 14_cal.py [month] | [year]
+                month : int
+                year : int 
+"""
+cal = c.TextCalendar()
+thisyear = dt.datetime.now().year
+if len(sys.argv) == 1 :  # user didnt specify print the calendar for current month
+  thismonth = dt.datetime.now().month
+  cal.prmonth(thisyear, thismonth)
+elif len(sys.argv) == 2 :  # month passed., print calendar for the month pased
+  month = int(sys.argv[1])
+  cal.prmonth(thisyear, month)
+elif len(sys.argv) == 3: # month and year passed print calendar 
+  month, year = int(sys.argv[1]), int(sys.argv[2]) 
+  cal.prmonth(year,month)
+else:
+      print(instructions)
+
