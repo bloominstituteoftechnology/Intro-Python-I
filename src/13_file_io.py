@@ -18,6 +18,7 @@ with open('foo.txt', 'r') as f:
 # sure that it contains what you expect it to contain
 print()
 
+
 with open('bar.txt', 'b') as f:
     b.writelines([
         "This is some text\n",
