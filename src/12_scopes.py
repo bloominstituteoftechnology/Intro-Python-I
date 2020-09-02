@@ -22,6 +22,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()
@@ -30,6 +31,6 @@ def outer():
     # 999?
     # Note: Google "python nested function scope".
 
-
+    print (y)
 outer()
-print: y)
+

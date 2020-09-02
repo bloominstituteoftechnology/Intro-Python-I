@@ -32,16 +32,15 @@ import calendar as cal
 from datetime import datetime as dt
 
 args =  sys.argv   # a list of command line arguments startin w. filename 
-text = 
-f"""
+text = f"""
                 uses: python 14_cal.py [month] | [year]
                 month : int
                 year : int 
 """
-cal = cal.Text.Calendar()
-thisyear = dt.datetime.now().year
+cal = cal.TextCalendar()
+thisyear = dt.now().year
 if len(sys.argv) == 1 :  
-  thismonth = dt.datetime.now().month
+  thismonth = dt.now().month
   cal.prmonth(thisyear, thismonth)
 
 elif len(sys.argv) == 2 : 
