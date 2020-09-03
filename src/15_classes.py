@@ -1,3 +1,6 @@
+import os
+os.system("cls")
+
 # Make a class LatLon that can be passed parameters `lat` and `lon` to the
 # constructor
 

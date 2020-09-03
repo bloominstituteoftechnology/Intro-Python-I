@@ -1,3 +1,6 @@
+import os
+os.system("cls")
+
 """
 List comprehensions are one cool and unique feature of Python.
 They essentially act as a terse and concise way of initializing

@@ -1,3 +1,6 @@
+import os
+os.system("cls")
+
 # Experiment with positional arguments, arbitrary arguments, and keyword
 # arguments.
 

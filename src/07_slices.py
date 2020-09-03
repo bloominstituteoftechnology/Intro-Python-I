@@ -1,3 +1,6 @@
+import os
+os.system("cls")
+
 """
 Python exposes a terse and intuitive syntax for performing 
 slicing on lists and strings. This makes it easy to reference

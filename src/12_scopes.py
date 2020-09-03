@@ -1,3 +1,6 @@
+import os
+os.system("cls")
+
 # Experiment with scopes in Python.
 # Good reading: https://www.programiz.com/python-programming/global-local-nonlocal-variables
 

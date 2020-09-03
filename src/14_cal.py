@@ -1,3 +1,6 @@
+import os
+os.system("cls")
+
 """
 The Python standard library's 'calendar' module allows you to
 render a calendar to your terminal.
