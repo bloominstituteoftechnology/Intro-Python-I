@@ -9,23 +9,35 @@ import sys
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
 
 # Print out the command line arguments in sys.argv, one per line:
-# YOUR CODE HERE
+for argument in sys.argv:
+    print(argument)
+
+# or this if you don't want the script name:
+for i in range(1, len(sys.argv)):
+    print(sys.argv[i])
 
 # Print out the OS platform you're using:
-# YOUR CODE HERE
+print(sys.platform)
 
 # Print out the version of Python you're using:
-# YOUR CODE HERE
+print(sys.version) # version plus extra info
 
+# this is the version you'd want to check against:
+version = sys.version_info
+print(f"{version.major}.{version.minor}.{version.micro}")
 
 import os
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
 # Print the current process ID
-# YOUR CODE HERE
+print(os.getpid())
 
 # Print the current working directory (cwd):
-# YOUR CODE HERE
+print(os.getcwd())
 
 # Print out your machine's login name
-# YOUR CODE HERE
+print(os.getlogin())
+
+# documentation says this is more reliable:
+import getpass
+print(getpass.getuser())
