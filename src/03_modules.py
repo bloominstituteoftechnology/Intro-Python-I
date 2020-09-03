@@ -10,7 +10,11 @@ import sys
 
 # Print out the command line arguments in sys.argv, one per line:
 # YOUR CODE HERE
+<<<<<<< HEAD
 print(str(sys.argv))
+=======
+print(sys.argv)
+>>>>>>> 32ce47e229be817cd10ac238ffaf4e24c29a1f9f
 
 # Print out the OS platform you're using:
 # YOUR CODE HERE
@@ -19,6 +23,10 @@ print(sys.platform)
 # Print out the version of Python you're using:
 # YOUR CODE HERE
 print(sys.version)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 32ce47e229be817cd10ac238ffaf4e24c29a1f9f
 
 import os
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
@@ -35,4 +43,8 @@ print(os.getcwd())
 # YOUR CODE HERE
 import getpass
 
+<<<<<<< HEAD
 print(getpass.getuser())
+=======
+print(getpass.getuser())
+>>>>>>> 32ce47e229be817cd10ac238ffaf4e24c29a1f9f
