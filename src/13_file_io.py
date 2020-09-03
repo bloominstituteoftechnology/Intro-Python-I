@@ -1,3 +1,6 @@
+import os
+os.system("clear")
+
 """
 Python makes performing file I/O simple. Take a look
 at how to read and write to files here:
