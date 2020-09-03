@@ -12,6 +12,16 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
+print("x: %2d, y: %2.5f, z: I like turtles!" %(10, 2.24552))
+
+print("==========================================")
+
 # Use the 'format' string method to print the same thing
 
+print('x = {} \ny = {} \nz = {}'.format(10, 2.24552, 'I like turtles!'))
+
+print("==========================================")
+
 # Finally, print the same thing using an f-string
+
+print(f"x = {x}, \ny = {y}, \nz = {z}")
