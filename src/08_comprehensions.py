@@ -38,11 +38,11 @@ print(y)
 # Use a list comprehension to create a list containing only the _even_ elements
 # the user entered into list x.
 
-# x = input("Enter comma-separated numbers: ").split(',')
+x = input("Enter comma-separated numbers: ").split(',')
 #  #  get TypeError: not all arguments converted during string formatting
 # used a regular list -----VVV
 
-x = [3, 4, 5, 2, 22, 32, 44, 54, 33]
+# x = [3, 4, 5, 2, 22, 32, 44, 54, 33]
 
 # For method
 # y =[]
@@ -52,6 +52,6 @@ x = [3, 4, 5, 2, 22, 32, 44, 54, 33]
 
 # What do you need between the square brackets to make it work?
 
-y = [z for z in x if z % 2 == 0]
+y = [int(z) for z in x if int(z) % 2 == 0]
 
 print(y)
