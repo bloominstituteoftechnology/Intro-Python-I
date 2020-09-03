@@ -12,7 +12,7 @@ x = 5
 y = "7"
 
 # Write a print statement that combines x + y into the integer value 12
-print('Expected: 12 - Result: ',int(x) + int(y))
+print('Expected: 12 - Result: ', x + int(y))
 
 # Write a print statement that combines x + y into the string value 57
 print('Expected: 12 - Result: ',str(x) + str(y))
