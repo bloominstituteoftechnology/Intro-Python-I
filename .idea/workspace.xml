@@ -19,11 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e14a5fd-cc91-420a-8144-252529ad172a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/14_cal.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/14_cal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/15_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/15_classes.py" afterDir="false" />
-    </list>
+    <list default="true" id="5e14a5fd-cc91-420a-8144-252529ad172a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,6 +40,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -70,10 +67,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-700" y="278" key="FileChooserDialogImpl" timestamp="1594690999044">
+    <state x="-700" y="278" key="FileChooserDialogImpl" timestamp="1599101525790">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-700" y="278" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@-1920.0.1920.1040" timestamp="1594690999044" />
+    <state x="-700" y="278" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1599101525790" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1594442338262">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
