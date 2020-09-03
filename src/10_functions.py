@@ -2,6 +2,14 @@
 
 # YOUR CODE HERE
 
+def boolFunc(num):
+    if num % 2 == 0:
+        print("Even!")
+        return True
+    elif num %2 != 0:
+        print("Odd")
+        return False
+
 # Read a number from the keyboard
 num = input("Enter a number: ")
 num = int(num)
@@ -10,3 +18,4 @@ num = int(num)
 
 # YOUR CODE HERE
 
+print(boolFunc(num))
