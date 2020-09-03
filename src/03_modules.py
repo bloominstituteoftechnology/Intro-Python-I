@@ -9,6 +9,7 @@ import sys
 import argparse
 import platform
 import os
+import getpass
 # See docs for the sys module: https://docs.python.org/3.7/library/sys.html
 
 # Print out the command line arguments in sys.argv, one per line:
@@ -51,8 +52,19 @@ import os
 # Print the current process ID
 # YOUR CODE HERE
 
+print("This is my Process ID:", os.getpid())
+
 # Print the current working directory (cwd):
 # YOUR CODE HERE
 
+print("My Current working directory:", os.getcwd())
+
+
 # Print out your machine's login name
 # YOUR CODE HERE
+
+username = os.getuid()
+username2 = getpass.getuser()
+
+print("My Computer Username2 is:", username2)
+print("My Computer Username is:", username)
