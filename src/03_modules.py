@@ -1,3 +1,6 @@
+import os
+os.system("cls")
+
 """
 In this exercise, you'll be playing around with the sys module,
 which allows you to access many system specific variables and

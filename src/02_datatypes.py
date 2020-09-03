@@ -1,3 +1,6 @@
+import os
+os.system("cls")
+
 """
 Python is a strongly-typed language under the hood, which means
 that the types of values matter, especially when we're trying
