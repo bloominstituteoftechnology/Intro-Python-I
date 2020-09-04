@@ -18,7 +18,7 @@ a = [2, 4, 1, 7, 9, 6]
 print(a[1])
 
 # Output the second-to-last element: 9
-print(a[4])
+print(a[-2])
 
 # Output the last three elements in the array: [7, 9, 6]
 print(a[3:6])
