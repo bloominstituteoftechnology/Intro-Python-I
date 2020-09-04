@@ -30,3 +30,29 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+# accepts input, what is in input need to use sys.argv
+docs = sys.argv
+# print(docs)
+num_of_args = len(docs)
+# print("number of arguments", num_of_args)
+time = datetime.today()
+thisMonth = time.month
+thisYear = time.year
+# if no input, print current month
+if num_of_args == 1:
+    currCalendar = calendar.month(thisYear, thisMonth)
+    print(currCalendar)
+# if one arg, default month and render calendar
+elif num_of_args == 2:
+    oneArg = calendar.month(thisYear, int(sys.argv[1]))
+    print(oneArg)
+# if two args, put in month and year
+elif num_of_args == 3:
+    twoArg = calendar.month(int(sys.argv[2]), int(sys.argv[1]), )
+    print(twoArg)
+# else print usage statement
+else:
+    print(
+        "This program expects two arguments. Follow this model  `14_cal.py [month] [year]`")
+    exit()
+# This all works, but it is a mess. I imagine there is an easier way.
