@@ -32,8 +32,6 @@ default_month = datetime.today().month
 default_year = datetime.today().year
 number_of_args = len(sys.argv)
 
-print(default_month, default_year, number_of_args)
-
 def get_calendar():
   if number_of_args == 1:
     print(calendar.prmonth(default_year, default_month))
