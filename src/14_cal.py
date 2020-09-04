@@ -28,13 +28,20 @@ import sys
 import calendar
 from datetime import datetime
 
-selectedDate = input('[month] [year]: ')
+default_month = datetime.today().month
+default_year = datetime.today().year
+number_of_args = len(sys.argv)
 
-def printDate(month, year = datetime.today()):
-  print(calendar.prmonth(year.year, int(month)))
+print(default_month, default_year, number_of_args)
 
-if not selectedDate:
-  today = datetime.today()
-  print(calendar.prmonth(today.year, today.month))
-else:
-  printDate(selectedDate)
+def get_calendar():
+  if number_of_args == 1:
+    print(calendar.prmonth(default_year, default_month))
+  elif number_of_args == 2:
+    print(calendar.prmonth(default_year, int(sys.argv[1])))
+  elif number_of_args == 3:
+    print(calendar.prmonth(int(sys.argv[1]), int(sys.argv[2])))
+  else:
+    print("Expected input calendar format: [# of month] [# of year]")
+
+get_calendar()
