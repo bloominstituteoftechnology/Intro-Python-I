@@ -57,4 +57,4 @@ username = os.getlogin()
 username2 = getpass.getuser
 
 print("My computers username is:", username)
-print("MY compuers username2 is", username2)
+print("MY computers username2 is", username2)
