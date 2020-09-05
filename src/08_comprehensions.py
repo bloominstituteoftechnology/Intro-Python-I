@@ -12,7 +12,7 @@ for more info regarding list comprehensions.
 
 y = []
 
-for x in range(5):
+for x in range(1, 6):
     y.append(x)
 
 print (y)
@@ -53,6 +53,6 @@ for num in x:
 print(y)
 
 # What do you need between the square brackets to make it work?
-y = []
+# y = []
 
-print(y)
+# print(y)
