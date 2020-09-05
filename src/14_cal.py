@@ -27,27 +27,36 @@ print out a calendar for April in 2015, but if you omit either the year or both 
 it should use today’s date to get the month and year.
 """
 
-import sys
+import sys # Sistem-Specific parameters and functions
 import calendar
 from datetime import datetime
 
+
 num_args = len(sys.argv)
+# print(num_args)
+# print(sys.argv)
 
-if num_args == 1:
-  month = datetime.now().month
-  year =datetime.now().year
+try:
+  if num_args == 1:
+    month = datetime.now().month
+    year =datetime.now().year
+    # 10+'10'  # check for the except message
 
-elif num_args == 2:
-  month = int(sys.argv[1])
-  year =datetime.now().year
+  elif num_args == 2:
+    month = int(sys.argv[1])
+    year =datetime.now().year
 
-elif num_args == 3:
-  month = int(sys.argv[1])
-  year = int(sys.argv[2])
-
-else :
-  print('Please imput the values in the following format: "14_cal.py [month] [year]"!')
+  elif num_args == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+except:
+  print('Something went wrong, please try again!')
   sys.exit(1)
+  
 
 cal = calendar.TextCalendar()
 cal.prmonth(year, month)
+print('\n Please imput the values in the following format: "14_cal.py [month] [year]"!\n')
+
+
+# to run with different date make sure you are in the src directory and type : python3 14_cal.py 4 2015 
