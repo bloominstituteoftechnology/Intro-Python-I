@@ -48,6 +48,9 @@ waypoints.append({"lat": 99, "lon": 99, "name": "a fourth place"})
 
 waypoints[0].update(lon = -130, name = "not a real place")
 
+""" alternatively, we could say:
+waypoints[0]["lon"] = -130 """
+
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
 
