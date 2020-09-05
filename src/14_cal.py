@@ -27,6 +27,39 @@ print out a calendar for April in 2015, but if you omit either the year or both 
 it should use today’s date to get the month and year.
 """
 
+'''
+Calendar App
+
+Takes two integer inputs from the user and assumes the first is a month and
+the second is a year, and displays the calendar for that month/year combo.
+
+If no inputs are given, assume current month/year.
+
+If wrong inputs given, return statement that lets user know what inputs
+the program expects.
+
+'''
+
+# Note: This currently has no exception handling for alphabet characters,
+# it just returns the default because it doesn't understand, but there's no
+# error message.
+
 import sys
 import calendar
-from datetime import datetime
+from datetime import datetime as dt
+
+
+# Current month and year as default
+
+month = dt.today().month
+year = dt.today().year
+
+def calendar_app(month, year):
+    yy = year
+    mm = month
+    try:
+        return(calendar.month(yy, mm))
+    except:
+        return("Error: Calendar takes input in the form of 'python 14_cal.py 4 2015' for April 2015")
+
+print(calendar_app(month, year))
