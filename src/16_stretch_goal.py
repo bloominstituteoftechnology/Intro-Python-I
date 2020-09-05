@@ -4,14 +4,37 @@
 #                                                          --- 1
 
 
-num = int(input("Enter a natural number: "))
+# num = int(input("Enter a natural number: "))
 
-for i in range(2, num):
-    if num % i == 0:
-        print('Not a prime number')
-        break
-else:
-    print('Prime number')
+# for i in range(2, num):
+#     if num % i == 0:
+#         print('Not a prime number')
+#         break
+# else:
+#     print('Prime number')
+
+
+print('-------Version that is more time efficient ---------')
+import math
+
+def is_prime(n):
+    if n == 1:
+        return False
+    
+    # if the number is even and not equal to 2 then it is not a prime number
+    if n == 2:
+        return True
+    if n>2 and n%2==0:
+        return False
+
+    max_divisor = math.floor(math.sqrt(n))
+    for d in range(3, 1 + max_divisor, 2): # the range starts at 3, ends at 1+ max_divisor and increments by 2 (ex (4, 10, 2)----> 4,6,8)
+         if n % d == 0:
+             return False
+    return True
+
+for n in range(1, 21):
+    print(n, is_prime(n))
 
 
 print('\n----------- Using  The Sieve of Eratosthenes --------')
