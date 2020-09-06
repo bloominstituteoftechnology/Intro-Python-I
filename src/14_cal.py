@@ -3,12 +3,7 @@ The Python standard library's 'calendar' module allows you to
 render a calendar to your terminal.
 https://docs.python.org/3.6/library/calendar.html
 
-Write a program that accepts user input of the form
-  `14_cal.py [month] [year]`
-and does the following:
- - If the user doesn't specify any input, your program should
-   print the calendar for the current month. The 'datetime'
-   module may be helpful for this.
+14_cal.py [month] [year]
  - If the user specifies one argument, assume they passed in a
    month and render the calendar for that month of the current year.
  - If the user specifies two arguments, assume they passed in
@@ -30,3 +25,12 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+y = int(input("Input the year : ") or datetime.now().year)
+m = int(input("Input the month : ") or datetime.now().month)
+
+
+calendar.setfirstweekday(6)
+
+
+print(calendar.month(theyear=y, themonth=m))
