@@ -55,6 +55,7 @@ print("This is 9 =", f3(8))   # Should print 9
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
+print("This is to pass a variable a number of values by not stating exactly how many numbers we're going to get as an input.. **kwargs means unknown")
 def f4(**kwargs):
     for key, value in kwargs.items():
         print(f"key: {key}, value: {value}")
