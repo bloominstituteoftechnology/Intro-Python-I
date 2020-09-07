@@ -34,6 +34,7 @@ waypoints = [
 ]
 
 # Add a new waypoint to the list
+# Append! Append!
 
 waypoints.append({"lat": 44, "lon": -133, "name": "my place"})
 
