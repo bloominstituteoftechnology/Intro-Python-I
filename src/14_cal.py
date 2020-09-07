@@ -29,4 +29,17 @@ it should use today’s date to get the month and year.
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import datetime as dt
+import datetime
+
+if len(sys.argv) == 1:
+    print(calendar.TextCalendar().formatmonth(dt.today().year, dt.today().month))
+elif len(sys.argv) == 2:
+  int(sys.argv[1])
+  calmonth = int(sys.argv[1])
+  print(calendar.TextCalendar().formatmonth(dt.today().year, calmonth))
+elif len(sys.argv) == 3:
+  int(sys.argv[1]) and int(sys.argv[2])
+  calmonth = int(sys.argv[1])
+  calyear = int(sys.argv[2])
+  print(calendar.TextCalendar().formatmonth(calmonth, calyear))
