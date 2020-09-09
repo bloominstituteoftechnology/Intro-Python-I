@@ -42,6 +42,6 @@ if len(args) == 0:
 elif (len(args) == 1) and (len(args[0]) <= 2):
     print(calendar.month(year, int(args[0])))
 elif len(args[1]) != 4:
-    print("Error: Arguements must be in form of 'python 14_cal.py (<mm>) (<yyyy>)'")
+    print("Error: Arguments must be in form of 'python 14_cal.py (<mm>) (<yyyy>)'")
 else:
     print(calendar.month(int(args[1]), int(args[0])))
