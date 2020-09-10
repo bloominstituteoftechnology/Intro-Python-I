@@ -1,5 +1,5 @@
 class Store:
-    def _init_(self, name, departments):
+    def __init__(self, name, departments):
         self.name = name
         self.departments = departments
 
@@ -42,4 +42,4 @@ while True:
 
     chosen_department = store.departments[int(selection) - 1]
 
-    print("You picked the {chosen_department.name} department.")
+    print("You picked the {chosen_department.name} department.\n")

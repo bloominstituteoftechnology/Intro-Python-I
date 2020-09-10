@@ -55,8 +55,6 @@ if num_args == 1:
   month = datetime.now().month
   year = datetime.now().year
   # Render the cal for that
-  cal = calendar.TextCalendar()
-  cal.prmonth(year, month)
 
   # User passed in one argument:
 elif num_args == 2:
@@ -64,16 +62,12 @@ elif num_args == 2:
     # Render the cal for that month of the current year
     year = datetime.now().year
     month = int(sys.argv[1])  #index 0 is always the name of the program. NOt what we want right now.
-    cal = calendar.TextCalendar()
-    cal.prmonth(year, month)
 
 # User passed in 2 arguments
 elif num_args == 3:
   # Render the cal for the specified month and specified year.
   month = int(sys.argv[1])
   year = int(sys.argv[2])
-  cal = calendar.TextCalendar()
-  cal.prmonth(year, month)
 
 # User passed in some other number of arguments:
 else:
@@ -82,3 +76,10 @@ else:
 
   # exit the program
   sys.exit(1)  # 1 means that something incorrect happened in the program.
+
+cal = calendar.TextCalendar()
+cal.prmonth(year, month)
+
+  # In order to try this we I have to enter this: /usr/local/bin/python3 "/Users/christianlorenzo/Library/Mobile Documents/com~apple~CloudDocs/Python Development/Intro-Python-I/src/14_cal.py"
+  # And then leave a space and then enter the number for the month that I'm interested in printing out, or the number for the month and the year
+
