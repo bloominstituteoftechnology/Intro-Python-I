@@ -22,6 +22,11 @@ print(x)
 # YOUR CODE HERE
 print(x)
 
+# Change x so that it is [1, 2, "Hello", "World", 4.5, "a"]
+# YOUR CODE HERE
+print(x)
+
+
 # Print the length of list x
 # YOUR CODE HERE
 
