@@ -6,6 +6,8 @@ to perform operations on them.
 Note that if you try running the following code without making any
 changes, you'll get a TypeError saying you can't perform an operation
 on a string and an integer.
+
+In python every input is considered as a string, by default. So, one has nto specify that the datatype of input value.
 """
 
 x = 5
