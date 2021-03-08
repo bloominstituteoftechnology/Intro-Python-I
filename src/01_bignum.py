@@ -2,3 +2,6 @@
 # (try doing the same thing in the JS console and see what it outputs)
 
 # YOUR CODE HERE
+bignum = 65536
+power2 = 2
+print(bignum * power2)
