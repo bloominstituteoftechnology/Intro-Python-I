@@ -15,7 +15,12 @@ y = "7"
 
 # YOUR CODE HERE
 
+sum = x + int(y)
+print(sum)
 
 # Write a print statement that combines x + y into the string value 57
+
+sum = str(x) + y
+print(sum)
 
 # YOUR CODE HERE
