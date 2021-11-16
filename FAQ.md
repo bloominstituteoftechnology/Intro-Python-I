@@ -70,14 +70,14 @@ What's the difference between inheritance and polymorphism?
 <a name="q100"></a>
 ### What are some things we can do to prepare for CS?
 
-* [CS Wiki](https://github.com/LambdaSchool/CS-Wiki/wiki)
-* [Polya's Problem Solving Techniques](https://github.com/LambdaSchool/CS-Wiki/wiki/Polya%27s-Problem-Solving-Techniques)
-* [Solving Programming Problems](https://github.com/LambdaSchool/CS-Wiki/wiki/Solving-Programming-Problems)
-* [CS Reading List](https://github.com/LambdaSchool/CS-Wiki/wiki/Computer-Science-Reading-List)
-* [How to Google effectively](https://github.com/LambdaSchool/CS-Wiki/wiki/How-to-Google-Effectively)
-* [How to read specs and code](https://github.com/LambdaSchool/CS-Wiki/wiki/How-to-Read-Specifications-and-Code)
-* [Command line primer](https://github.com/LambdaSchool/CS-Wiki/wiki/Command-Line-Primer)
-* [Coding style guidelines](https://github.com/LambdaSchool/CS-Wiki/wiki/CS-Coding-Style-Guidelines)
+* [CS Wiki](https://github.com/BloomInstituteOfTechnology/CS-Wiki/wiki)
+* [Polya's Problem Solving Techniques](https://github.com/BloomInstituteOfTechnology/CS-Wiki/wiki/Polya%27s-Problem-Solving-Techniques)
+* [Solving Programming Problems](https://github.com/BloomInstituteOfTechnology/CS-Wiki/wiki/Solving-Programming-Problems)
+* [CS Reading List](https://github.com/BloomInstituteOfTechnology/CS-Wiki/wiki/Computer-Science-Reading-List)
+* [How to Google effectively](https://github.com/BloomInstituteOfTechnology/CS-Wiki/wiki/How-to-Google-Effectively)
+* [How to read specs and code](https://github.com/BloomInstituteOfTechnology/CS-Wiki/wiki/How-to-Read-Specifications-and-Code)
+* [Command line primer](https://github.com/BloomInstituteOfTechnology/CS-Wiki/wiki/Command-Line-Primer)
+* [Coding style guidelines](https://github.com/BloomInstituteOfTechnology/CS-Wiki/wiki/CS-Coding-Style-Guidelines)
 
 ------------------------------------------------------------------------
 
