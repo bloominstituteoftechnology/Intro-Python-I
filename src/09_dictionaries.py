@@ -15,6 +15,8 @@ has the following keys:
  - name: a name string for this location
 """
 
+import json
+
 waypoints = [
     {
         "lat": 43,
@@ -36,12 +38,43 @@ waypoints = [
 # Add a new waypoint to the list
 # YOUR CODE HERE
 
+
+print("\n\n=========================================")
+print("\n\nThis is how a json list is printed out on Python")
+waypoints.append(   {
+
+        "lat": 120,
+        "lon": -11,
+        "name": "A place"
+})
+
+print("\nThis is my waypoint:", waypoints)
+
+json_data = '[{"ID":10,"Name":"Pankaj","Role":"CEO"},' \
+            '{"ID":20,"Name":"David Lee","Role":"Editor"}]'
+json_object = json.loads(json_data)
+json_formatted_str = json.dumps(json_object, indent=2)
+print(json_formatted_str)
+
+print("\n\nAnother way to add waypoint to the list: ====================")
+anotherPlace = { "lat": 42, "lon": -120, "name": "a fourth place"}
+waypoints.append(anotherPlace)
+print(waypoints)
+
+
 # Modify the dictionary with name "a place" such that its longitude
 # value is -130 and change its name to "not a real place"
 # Note: It's okay to access the dictionary using bracket notation on the
 # waypoints list.
 
 # YOUR CODE HERE
+waypoints[0]["lon"] = -130
+waypoints[0]["name"] = "not a real place"
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+
+for i, waypoint in enumerate(waypoints):
+    print(f"Waypoint #{i + 1}")
+    for key, value in waypoint.items():
+        print(f" { key }: {value}")
