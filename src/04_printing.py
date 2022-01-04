@@ -12,6 +12,13 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
+print("x: %2d, y: %2.2f, z: \"%s\"" % (x, y, z))
+
+print("=================================")
+
+
 # Use the 'format' string method to print the same thing
 
-# Finally, print the same thing using an f-string
+# Finally, print the same thing using an f-
+
+print(f"x = {x}, \ny = {y:.2f}, \nz = \"{z}\"")
