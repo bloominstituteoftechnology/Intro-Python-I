@@ -27,6 +27,8 @@ print out a calendar for April in 2015, but if you omit either the year or both 
 it should use today’s date to get the month and year.
 """
 
+## I know this is not what was requested but I couldn't figure out another way to do it.
+
 import sys
 import calendar
 from datetime import datetime

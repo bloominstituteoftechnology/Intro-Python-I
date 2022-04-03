@@ -34,19 +34,20 @@ print(y)
 
 # Use a list comprehension to create a list containing only the _even_ elements
 # the user entered into list x.
-listonums = [1, 0, 4, 8, 12, 16, 9, 7]
+#listonums = [1, 0, 4, 8, 12, 16, 9, 7]
 
 x = input("Enter comma-separated numbers: ").split(',')
 
-# What do you need between the square brackets to make it work?
-y = []
+# What do you need between the square brackets to make it work? 
+# I got it to do something but not within the brackets and not what I expected.
+y = [n for n in x if int(n) % 2 == 0]
 
-# iterating each number in list 
-for num in listonums: 
+# # iterating each number in list 
+# for num in x: 
       
-    # checking condition 
-    if num % 2 == 0: 
-       print(num, end = " ")
+#     # checking condition 
+#     if num % 2 == 0: 
+#        print(num, end = " ")
 
 
 

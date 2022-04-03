@@ -40,9 +40,9 @@ def print_tuple(x):
     for x in t:
         print(x)
 
-
+print("", print_tuple(t))
 # Declare a tuple of 1 element then print it
-#  Iam not sure why this is returning none
+#  I am not sure why this is returning none
 
-u = (1, )  # What needs to be added to make this work?
-print(print_tuple(u))
+u = (1,)  # What needs to be added to make this work?
+print("", u)
