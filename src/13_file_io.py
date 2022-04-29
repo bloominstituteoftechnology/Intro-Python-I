@@ -17,3 +17,17 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+
+with open('foo.txt') as foo:
+    for line in foo:
+        print(line)
+
+bar = open("bar.txt", "w")
+bar.write("Hello there\n")
+bar.write("General Kenobi\n")
+bar.write("I have the high ground\n")
+bar.close
+
+with open('bar.txt') as bar:
+    for line in bar:
+        print(line)
