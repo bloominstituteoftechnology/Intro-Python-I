@@ -5,7 +5,8 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
-
+def f1(x,y):
+    return int(x) + int(y)
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and returns the
@@ -13,6 +14,11 @@ print(f1(1, 2))
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+def f2(*numbers):
+    if type(numbers[0]) == list:
+        return sum(numbers[0])
+    else: 
+        return sum(numbers)
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -28,6 +34,12 @@ print(f2(a))    # Should print 22
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments.
 # Note: Google "python default arguments" for a hint.
+
+def f3(*numbers):
+    if len(numbers)== 1:
+        return (numbers[0]) + 1
+    elif len(numbers)==2:
+        return numbers[0] + numbers[1]
 
 # YOUR CODE HERE
 
@@ -48,18 +60,18 @@ print(f3(8))     # Should print 9
 # Should print
 # key: a, value: 12
 # key: b, value: 30
-f4(a=12, b=30)
+# f4(a=12, b=30)
 
 # Should print
 # key: city, value: Berkeley
 # key: population, value: 121240
 # key: founded, value: "March 23, 1868"
-f4(city="Berkeley", population=121240, founded="March 23, 1868")
+# f4(city="Berkeley", population=121240, founded="March 23, 1868")
 
-d = {
-    "monster": "goblin",
-    "hp": 3
-}
+# d = {
+#     "monster": "goblin",
+#     "hp": 3
+# }
 
-# How do you have to modify the f4 call below to make this work?
-f4(d)
+# # How do you have to modify the f4 call below to make this work?
+# f4(d)

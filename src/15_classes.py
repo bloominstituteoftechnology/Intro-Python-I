@@ -2,10 +2,24 @@
 # constructor
 
 # YOUR CODE HERE
+class LatLon:
+    """LatLon: (passes lat and lon parameters) """
+    pass
+
+def __init__(lat, lon):
+    self.lat = lat 
+    self.lon = lon
+
+def passLatLon(x,y):
+    return x,y
 
 # Make a class Waypoint that can be passed parameters `name`, `lat`, and `lon` to the
 # constructor. It should inherit from LatLon. Look up the `super` method.
+class Waypoint:
+    pass
 
+def __init('name', 'lat', 'lon'):
+    
 # YOUR CODE HERE
 
 # Make a class Geocache that can be passed parameters `name`, `difficulty`,
