@@ -8,26 +8,31 @@ Take a look at https://docs.python.org/3/tutorial/datastructures.html#list-compr
 for more info regarding list comprehensions.
 """
 
+# 8
+# https://github.com/LambdaSchool/Intro-Python-I/blob/master/src/08_comprehensions.py
+
+# Take a look at https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
+
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
 
 y = []
-
+y = list(map(lambda x: x+1, range(5)))
+#or
+y = [x+1 for x in range(5)]
 print (y)
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 
 y = []
-
+y = [x**3 for x in range(10)]
 print(y)
 
 # Write a list comprehension to produce the uppercase version of all the
 # elements in array a. Hint: "foo".upper() is "FOO".
 
 a = ["foo", "bar", "baz"]
-
-y = []
-
+y = [x.upper() for x in a]
 print(y)
 
 # Use a list comprehension to create a list containing only the _even_ elements
@@ -35,7 +40,15 @@ print(y)
 
 x = input("Enter comma-separated numbers: ").split(',')
 
+x = list(x)
+
+print(x)
+print(type(x))
+#x = [4,5,6]
+
+#x = int(i)
+
 # What do you need between the square brackets to make it work?
-y = []
+y = [int(i) for i in x if int(i)%2 == 0]
 
 print(y)

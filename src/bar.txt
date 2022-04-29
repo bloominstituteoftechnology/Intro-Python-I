@@ -1,0 +1,3 @@
+This file 
+is not 
+a pipe, nor a promise.||
