@@ -1,4 +1,4 @@
-# Intro to Python I
+# Intro to Python I 🐍
 
 _Note: This project spans two modules (modules 1 and 2). You should roughly try to finish the first half of the problems during module 1 and the second half of the problems during module 2._
 
