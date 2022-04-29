@@ -30,3 +30,39 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+def printMonth(month = datetime.now().month, year = datetime.now().year):
+    print(calendar.month(year, month))
+
+def isNumber(number):
+    try:
+        value = int(number)
+        return True
+    except ValueError:
+        return False
+
+def checkNums():
+    for arg in sys.argv[1:]:
+        if not isNumber(arg):
+            print("Please enter numbers", arg)
+
+
+
+if len(sys.argv) == 3:
+    checkNums()
+    if int(sys.argv[1]) > 0 and int(sys.argv[1]) < 13:
+        month = int(sys.argv[1])
+        year = int(sys.argv[2])
+        printMonth(month, year)
+    else:
+        print(f"{sys.argv[1]} is not a month")
+elif len(sys.argv) == 2:
+    checkNums()
+    if int(sys.argv[1]) > 0 and int(sys.argv[1]) < 13:
+        month = int(sys.argv[1])
+        year = datetime.now().year
+        printMonth(month)
+    else:
+        print(f"{sys.argv[1]} is not a month")
+else:
+    printMonth()
