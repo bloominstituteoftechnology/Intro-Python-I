@@ -27,3 +27,13 @@ print(x)
 
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
+
+# Method to declare a list 
+# Suppose name of list is "l_list"
+# So we will declare it as follow:
+# l_list = list(input().split())
+
+
+# If you want to print that list you can make of use args
+# print(*l_list)
+# here * allows you to print that list in a single line
