@@ -5,6 +5,7 @@
 x = 12
 
 def change_x():
+    global x
     x = 99
 
 change_x()
@@ -19,6 +20,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()
@@ -30,3 +32,7 @@ def outer():
 
 
 outer()
+
+
+# Accessing variable declared in outer func from an inner func -> use nonlocal keyword
+# Accessing variable declared top level from a func -> use global
