@@ -9,6 +9,12 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # Print all the contents of the file, then close the file
 # Note: pay close attention to your current directory when trying to open "foo.txt"
 
+with open("foo.txt", "r") as f:
+    read_data = f.read()
+    print(read_data)
+    f.close()
+
+
 # YOUR CODE HERE
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
@@ -17,3 +23,13 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+
+with open("bar.txt", "w") as f:
+    for x in range(1, 6):
+        f.write(f"This is test number {x}\n")
+    f.close()
+
+with open("bar.txt", "r") as f:
+    read_data = f.read()
+    print(read_data)
+    f.close()
