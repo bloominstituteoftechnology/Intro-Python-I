@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="771a1fea-f65e-4ac1-b795-b0056a1e35b6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1XdHhEKvbkn4L3yWU54ELoOiAz7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="771a1fea-f65e-4ac1-b795-b0056a1e35b6" name="Default Changelist" comment="" />
+      <created>1581369168814</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581369168814</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Testing an issue">
+      <created>1581381696044</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581381696044</updated>
+    </task>
+    <task id="LOCAL-00002" summary="functions finished">
+      <created>1581382743223</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1581382743223</updated>
+    </task>
+    <task id="LOCAL-00003" summary="args finished">
+      <created>1581385007576</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1581385007576</updated>
+    </task>
+    <task id="LOCAL-00004" summary="scopes finished">
+      <created>1581386190412</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1581386190412</updated>
+    </task>
+    <task id="LOCAL-00005" summary="files finished">
+      <created>1581386710043</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1581386710043</updated>
+    </task>
+    <task id="LOCAL-00006" summary="All 15 finished">
+      <created>1581459109889</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1581459109889</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Testing an issue" />
+    <MESSAGE value="functions finished" />
+    <MESSAGE value="args finished" />
+    <MESSAGE value="scopes finished" />
+    <MESSAGE value="files finished" />
+    <MESSAGE value="All 15 finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="All 15 finished" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="725" y="323" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581386515574">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="725" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581386515574" />
+    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1581459108830">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581459108830" />
+    <state x="739" y="274" key="FileChooserDialogImpl" timestamp="1581474284278">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="739" y="274" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581474284278" />
+    <state x="458" y="165" key="SettingsEditor" timestamp="1581453821163">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="458" y="165" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581453821163" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1581459118782">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1581459118782" />
+  </component>
+</project>
