@@ -7,23 +7,32 @@ y = [8, 9, 10]
 # For the following, DO NOT USE AN ASSIGNMENT (=).
 
 # Change x so that it is [1, 2, 3, 4]
-# YOUR CODE HERE
+x.append(4)
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
-# YOUR CODE HERE
+# x.append(y) array inside an array not rght 
+x.extend(y) #correct
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
-# YOUR CODE HERE
+x.remove(8)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
-# YOUR CODE HERE
+x.insert(5,99)
 print(x)
 
 # Print the length of list x
-# YOUR CODE HERE
+print(len(x))
 
 # Print all the values in x multiplied by 1000
-# YOUR CODE HERE
+
+# a_list = [1, 2, 3]
+# multiplied_list = [element * 2 for element in a_list]
+# print(multiplied_list)
+
+multiplied_list = [element * 1000 for element in x]
+print(multiplied_list)
+
+
