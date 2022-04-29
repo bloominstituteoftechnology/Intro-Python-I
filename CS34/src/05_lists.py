@@ -9,24 +9,43 @@ y = [8, 9, 10]
 # Change x so that it is [1, 2, 3, 4]
 # YOUR CODE HERE
 x.append(4)
+print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
 # YOUR CODE HERE
 x.extend(y)
+print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
 # YOUR CODE HERE
 x.remove(8)
+print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
 # YOUR CODE HERE
-x.insert(4, 9)
-x.append(5, 99)
+#z = x
+#x.pop()
+#x.append(99)
+#x.pop()
+
+x.insert(5, 99)
+#print(z)
+print(x)
 
 # Print the length of list x
-# YOUR CODE HERE
 print(len(x))
+
+# YOUR CODE HERE
 
 # Print all the values in x multiplied by 1000
 # YOUR CODE HERE
-print([i * 1000 for i in x])
+#print(x*1000)
+new_list = []
+    
+iterable = iter(x)
+for item in iterable:
+    thousand = item*1000
+    #print(thousand)
+    #new_list = []
+    new_list.append(thousand)
+print(new_list)

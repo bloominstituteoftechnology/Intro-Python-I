@@ -10,13 +10,13 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # Note: pay close attention to your current directory when trying to open "foo.txt"
 
 # YOUR CODE HERE
+text = "foo.txt"
 
-# Open a file
-fo = open("foo.txt", "wb")
-print("Name of the file: ", fo.name)
-print("Closed or not : ", fo.closed)
-print("Opening mode : ", fo.mode)
-fo.close()
+with open('foo.txt', 'r') as text:
+        text_list = [str(line) for line in text]
+        print(text_list)
+
+text.close()
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
 # writing. Write three lines of arbitrary content to that file,
@@ -24,13 +24,13 @@ fo.close()
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+bar_text = "bar.txt"
 
-# Open a file
-bo = open("bar.txt", "w")
-bo.write("writing. Write three lines of arbitrary content to that file,\n"
-        "then close the file. Open up "bar.txt" and inspect it to make\n"
-        "sure that it contains what you expect it to contain\n")
+with open('bar.txt', 'w') as bar_text:
+        bar_text.write("hello")
+        bar_text.write("this is some text")
+        bar_text.write("for this file here ")
+        bar_text.write("because we can")
 
-# Close opend file
-bo.close()
+bar_text.close()
 

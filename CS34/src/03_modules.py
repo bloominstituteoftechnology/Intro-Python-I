@@ -12,33 +12,31 @@ import sys
 # YOUR CODE HERE
 print(sys.argv)
 
+
 # Print out the OS platform you're using:
 # YOUR CODE HERE
-print(sys.platform)
-
+import platform
+print(platform.version())
+import os 
+print(os.name)
 
 # Print out the version of Python you're using:
 # YOUR CODE HERE
-
-import platform
-print(platform.python_version())
-
+print(sys.version)
+print(sys.version_info)
 import os
-print(os.name)
 # See the docs for the OS module: https://docs.python.org/3.7/library/os.html
 
 # Print the current process ID
 # YOUR CODE HERE
-print(os.getpid())
 
-
+result1 = os.ctermid
+print(result1)
 # Print the current working directory (cwd):
 # YOUR CODE HERE
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
-print(dir_path)
-
-
+result2 = os.getcwd
+print(result2)
 # Print out your machine's login name
 # YOUR CODE HERE
-print(platform.node())
+result3 = os.getlogin
+print(result3)

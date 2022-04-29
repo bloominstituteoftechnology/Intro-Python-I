@@ -10,15 +10,15 @@ on a string and an integer.
 
 x = 5
 y = "7"
+z_int = x + int(y)
 
 # Write a print statement that combines x + y into the integer value 12
 
 # YOUR CODE HERE
-z = x + int(y)
-print(z)
- 
+print(z_int) 
+
 # Write a print statement that combines x + y into the string value 57
+z_str = str(x) + y
 
 # YOUR CODE HERE
-z = str(x) + (y)
-print(z)
+print(z_str)

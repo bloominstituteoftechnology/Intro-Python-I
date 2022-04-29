@@ -33,10 +33,14 @@ waypoints = [
     }
 ]
 
+'''
+new_waypoint = {
+        "lat": 43,
+        "lon": -130,
+        "name": "not a real place "}
+'''
 # Add a new waypoint to the list
-# YOUR CODE HERE
-
-waypoints.append(new_waypoint)
+#waypoints.append(new_waypoint)
 
 # Modify the dictionary with name "a place" such that its longitude
 # value is -130 and change its name to "not a real place"
@@ -44,10 +48,19 @@ waypoints.append(new_waypoint)
 # waypoints list.
 
 # YOUR CODE HERE
-waypoint = "a place"
-  not_waypoint    =      "not a place"
+#waypoints.append(new_waypoint)
+#waypoint = "a place"
+#not_waypoint = "not a place"
+
+waypoints[0]['lon'] = -130
+waypoints[0]['name'] = 'not a real place'
+print(waypoints[0])
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+for key in waypoints:
+    #print(key)
+    for x in key.values():
+        print(x)
 
-blah blah blah
+
