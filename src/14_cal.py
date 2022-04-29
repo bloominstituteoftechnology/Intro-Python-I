@@ -30,3 +30,50 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+currentMonth = datetime.now().month
+currentYear = datetime.now().year
+
+try:
+  mm = int(sys.argv[1])
+  yy = int(sys.argv[2])
+
+except IndexError:
+  if len(sys.argv) == 2 and mm > 0 and mm < 13:
+    print(calendar.month(currentYear, mm))
+    sys.exit()
+  elif len(sys.argv) == 1:
+    print(calendar.month(currentYear, currentMonth))
+    sys.exit()
+
+if len(sys.argv) == 3 and mm > 0 and mm < 13:
+    print(calendar.month(yy, mm))
+    sys.exit()
+
+raise SystemExit(f"Program expects a positive integer between 1-12 for month and year (ex. 2015).")      
+
+
+
+
+
+
+# input letters will be a list of single characters
+# lowercase strings (a-z)
+# dictionary with key-valyues
+# key is the lowercase letter from the input
+# value is the coorelating uppercase letter
+
+# def mapping(letters):
+#   #create dictionary
+#   result = {}
+#   #loop through the input
+#   for letter in letters:
+#   #add to the dictionary
+#     #make the letter uppercase for the value
+#     #leave lowercase for the key
+#     result[letter] = letter.upper()
+#   #return value
+#   return result
+
+# print(mapping(["a", "b"]))
+  
