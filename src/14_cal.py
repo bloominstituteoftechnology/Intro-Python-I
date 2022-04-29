@@ -30,3 +30,65 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+# default_month = datetime.today().month
+# default_year = datetime.today().year
+# def date(*nums):
+#   if len(nums) == 2:
+#     mm = int(nums[0])
+#     yy = int(nums[1])
+#     print(calendar.month(yy, mm))
+#   elif len(nums) == 1:
+#     mm = int(nums[0])
+#     print(calendar.month(default_year, mm))
+#   else: 
+#     print(calendar.month(default_year, default_month))
+# if len(sys.argv) == 3:
+#   date(sys.argv[1], sys.argv[2])
+# elif len(sys.argv) == 2:
+#   date(sys.argv[1])
+# else:
+#   date()
+
+
+
+
+#receive user input as agrument input(not using the input function)
+num_args = len(sys.argv)
+
+#init instance of the text calendar class
+cal = calendar.TextCalendar()
+
+month = datetime.now().month
+year = datetime.now().year
+  # if user specified no args: print current month and year
+if num_args == 1:
+  # month = datetime.now().month
+  # year = datetime.now().year
+ # cal.prmonth(year, month)
+  pass
+  # if user specified one arg: assume that arg is the month, print that month of the current year
+elif num_args == 2:
+  month = int(sys.argv[1])
+  # year = datetime.now().year
+  #cal.prmonth(year, month)
+  # if user specified two args: print that month and year
+elif num_args == 3:
+  month = int(sys.argv[1])
+  year = int(sys.argv[2])
+  
+ 
+  #otherwise print a usage in args
+else:
+  print('usage: cal.py [month] [year]')
+  sys.exit(1)
+
+cal.prmonth(year, month)
+
+  
+
+
+
+
+
+
