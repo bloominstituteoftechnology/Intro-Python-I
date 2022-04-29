@@ -1,0 +1,3 @@
+Hello! 
+ This is a new file 
+ with only three lines
