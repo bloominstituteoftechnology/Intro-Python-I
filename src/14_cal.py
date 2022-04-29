@@ -27,6 +27,46 @@ print out a calendar for April in 2015, but if you omit either the year or both 
 it should use today’s date to get the month and year.
 """
 
-import sys
+
+# Import libraries and modules:
 import calendar
-from datetime import datetime
+import datetime
+import sys
+
+
+# Get arguments the user inputted when running this file (14_cal.py):
+arguments = sys.argv
+
+# Get the current month and year:
+today = datetime.date.today()
+
+# String to print if user enters the wrong type of argument when calling this file:
+error_string = """If you enter any arguments, please enter as "filename.py [month] [year]", 
+where both month and year are integers."""
+
+if len(arguments) == 1:
+    date = today
+    cal = calendar.month(theyear=date.year, themonth=date.month)
+    print("\n", cal)
+
+elif len(arguments) == 2:
+    try:
+        input_month = int(arguments[-1])
+    except ValueError as value_error:
+        sys.exit(f"\nError: {str(value_error).split()[-1]} \nReason: {exit_string}\n")
+    date = datetime.date(year=today.year, month=input_month, day=today.day)
+    cal = calendar.month(theyear=date.year, themonth=date.month)
+    print("\n", cal)
+
+elif len(arguments) == 3:
+    try:
+        input_month = int(arguments[-2])
+        input_year = int(arguments[-1])
+    except ValueError as value_error:
+        sys.exit(f"\nError: {str(value_error).split()[-1]} \nReason: {exit_string}\n")
+    date = datetime.date(year=input_year, month=input_month, day=today.day)
+    cal = calendar.month(theyear=date.year, themonth=date.month)
+    print("\n", cal)
+
+else:
+    print(f"Error: {exit_string}")

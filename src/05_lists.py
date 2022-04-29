@@ -7,23 +7,31 @@ y = [8, 9, 10]
 # For the following, DO NOT USE AN ASSIGNMENT (=).
 
 # Change x so that it is [1, 2, 3, 4]
-# YOUR CODE HERE
+x.append(4)
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
-# YOUR CODE HERE
+x = x + y
+# # Alternative syntax;
+# for item in y:
+#     x.append(item)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
-# YOUR CODE HERE
+x.remove(8)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
-# YOUR CODE HERE
+x.insert(-1, 99)
 print(x)
 
 # Print the length of list x
-# YOUR CODE HERE
+print(f"Length of list x: {len(x)}")
 
 # Print all the values in x multiplied by 1000
-# YOUR CODE HERE
+print("\nList x with all values multiplied by 1000:")
+print(f"List comprehensions version: {[item * 1000 for item in x]}")
+
+import numpy as np
+x = np.array(x)
+print(f"Numpy array version: {x * 1000}")
