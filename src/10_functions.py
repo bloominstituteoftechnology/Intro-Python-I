@@ -7,6 +7,11 @@ num = input("Enter a number: ")
 num = int(num)
 
 # Print out "Even!" if the number is even. Otherwise print "Odd"
+# Divisible by 2 = even
 
-# YOUR CODE HERE
+def is_even(n):
+    answer = 'It is even!' if n % 2 == 0 else 'It is odd :('
+    print(answer)
+
+is_even(4)
 
