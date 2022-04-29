@@ -22,11 +22,43 @@ Note: the user should provide argument input (in the initial call to run the fil
 prompted input. Also, the brackets around year are to denote that the argument is
 optional, as this is a common convention in documentation.
 
-This would mean that from the command line you would call `python3 14_cal.py 4 2015` to 
-print out a calendar for April in 2015, but if you omit either the year or both values, 
+This would mean that from the command line you would call `python3 14_cal.py 4 2015` to
+print out a calendar for April in 2015, but if you omit either the year or both values,
 it should use today’s date to get the month and year.
 """
 
-import sys
 import calendar
 from datetime import datetime
+
+currentMonth = datetime.now().month
+currentYear = datetime.now().year
+
+array = []
+# array.append(input("Enter year and month:"))
+x = input("Enter comma-separated month and year: ").split(',')
+x = [(i) for i in x]
+
+array.extend(filter(None, x))
+
+if not array:
+    print(calendar.prmonth(currentYear, currentMonth, w=0, l=0))
+elif len(array) == 1 and [x for x in array if x.isdigit() and int(x) in range(1, 13)]:
+    print(calendar.prmonth(currentYear, int(array[0]), w=0, l=0))
+
+elif len(array) == 2 and [x for x in array if x.isdigit()]:
+
+    if not array[0].isdigit() or not array[1].isdigit():
+        print("Wrong input format!!!")
+
+    else:
+
+        month = int(array[0])
+        year = int(array[1])
+        if month in range(1, 13):
+            print(calendar.prmonth(year, month, w=0, l=0))
+        else:
+            print("month is from 1 to 12")
+
+else:
+    print("Input is not in correct format, can't see the calendar.")
+quit()
