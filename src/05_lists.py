@@ -7,23 +7,31 @@ y = [8, 9, 10]
 # For the following, DO NOT USE AN ASSIGNMENT (=).
 
 # Change x so that it is [1, 2, 3, 4]
-# YOUR CODE HERE
+
+# Will be appending to the list 
+x.append(4)
 print(x)
 
 # Using y, change x so that it is [1, 2, 3, 4, 8, 9, 10]
-# YOUR CODE HERE
+x.extend(y)
+
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 10]
-# YOUR CODE HERE
+# Will be removing the 8 out of the list
+x.remove(8)
 print(x)
 
 # Change x so that it is [1, 2, 3, 4, 9, 99, 10]
-# YOUR CODE HERE
+# adding the number 99 at the next to the last element
+x.insert(len(x)-1, 99)
 print(x)
 
 # Print the length of list x
-# YOUR CODE HERE
+print(f"The length of x is: {len(x)}")
 
 # Print all the values in x multiplied by 1000
-# YOUR CODE HERE
+# doing a loop to print all the values of x times 1000
+print("These are all the values of x times 1000:")
+for val in x:
+    print(val * 1000)
