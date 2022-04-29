@@ -30,3 +30,22 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+inputs = len(sys.argv)
+
+def show_calendar(inputs):
+    if inputs == 1:
+        print("Calendar for the current month:")
+        calendar.prmonth(datetime.today().year, datetime.today().month)
+    elif inputs == 2:
+        print(f"Calendar for month {int(sys.argv[1])} in year {datetime.today().year}:")
+        calendar.prmonth(datetime.today().year, int(sys.argv[1]))
+    elif inputs == 3:
+        print(f"Calendar for month {int(sys.argv[1])} in year {int(sys.argv[2])}:")
+        calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+    else:
+        print("""Error: Run the .py script without any input for the current month's calendar 
+        OR run the .py script followed by a valid month or a valid month followed by the year 
+        you wish to retrieve a calendar for.""")
+
+show_calendar(inputs)
