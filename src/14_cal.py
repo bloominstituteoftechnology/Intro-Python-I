@@ -30,3 +30,18 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+user_input=sys.argv[1:]
+
+today = datetime.today()
+
+# If user inputs nothing, we display the current month/year
+if user_input==[]:
+  calendar.prmonth(today.year,today.month)
+else:
+  # If user inputs only 1 number, we assume it's the month and display that
+  if len(user_input)==1:
+    calendar.prmonth(today.year, int(user_input[0]))
+    # We assume that if the previous cases did not render, user has input 2 numbers. Those will be the month and year
+  else:
+    calendar.prmonth(int(user_input[1]),int(user_input[0]))
