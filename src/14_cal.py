@@ -29,4 +29,22 @@ it should use today’s date to get the month and year.
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import datetime, date
+
+def create_calendar(month=date.today().month, year=date.today().year):
+    """ Creates a calendar based on year and month arguments"""
+    print(calendar.month(year, month))
+
+# With specified dates
+
+# Month and year specified
+if len(sys.argv) == 3:    
+    create_calendar(int(sys.argv[1]), int(sys.argv[2]))
+
+# Only month specified
+elif len(sys.argv) == 2:
+    create_calendar(int(sys.argv[1]))
+
+# Default to today's date if no input
+else:
+    create_calendar()
