@@ -6,6 +6,9 @@
 
 # YOUR CODE HERE
 
+def f1(x, y):
+    return x + y
+
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and returns the
@@ -13,6 +16,12 @@ print(f1(1, 2))
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+
+def f2(*numbers):
+    sum = 0
+    for number in numbers:
+        sum += number
+    return sum
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -22,7 +31,8 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 a = [7, 6, 5, 4]
 
 # How do you have to modify the f2 call below to make this work?
-print(f2(a))    # Should print 22
+#  An asterix indicates an arbitrary number of arguments
+print(f2(*a))    # Should print 22 
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
@@ -30,6 +40,8 @@ print(f2(a))    # Should print 22
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
+def f3(x, y=1):
+    return x + y
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -44,6 +56,9 @@ print(f3(8))     # Should print 9
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
+def f4(**keywords):
+    for key, value in keywords.items():
+        print(f"key: {key}, value: {value}")
 
 # Should print
 # key: a, value: 12
@@ -61,5 +76,6 @@ d = {
     "hp": 3
 }
 
-# How do you have to modify the f4 call below to make this work?
-f4(d)
+# How do you have to modify the f4 call below to make this work? 
+#  ** operator indicates we are passing in an arbitrary number of keyword arguments
+f4(**d)
