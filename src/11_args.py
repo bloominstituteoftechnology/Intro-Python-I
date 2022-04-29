@@ -3,14 +3,27 @@
 
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
-
 # YOUR CODE HERE
+def f1(int1, int2):
+    return int1 + int2
 
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and returns the
 # sum.
 # Note: Google for "python arbitrary arguments" and look for "*args"
+def f2 (*argv):
+    print(type(argv[0]))
+    # if isinstance(argv[0], list):
+    #     argv = tuple(argv[0])
+    total = 0
+    print(argv)
+    if len(argv) > 1:
+        for arg in argv:
+            total = total + arg
+    else:
+        return argv[0]
+    return total
 
 # YOUR CODE HERE
 
@@ -30,7 +43,11 @@ print(f2(a))    # Should print 22
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
-
+def f3(int1, int2=0):
+    if int2 != 0:
+        return int1 + int2
+    else:
+        return int1 + 1
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
 
@@ -44,7 +61,9 @@ print(f3(8))     # Should print 9
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
-
+def f4(**kwargs):
+    for key in kwargs:
+        print(key + ":", kwargs[key])
 # Should print
 # key: a, value: 12
 # key: b, value: 30
@@ -62,4 +81,4 @@ d = {
 }
 
 # How do you have to modify the f4 call below to make this work?
-f4(d)
+f4(monster = d["monster"], hp = d["hp"])
