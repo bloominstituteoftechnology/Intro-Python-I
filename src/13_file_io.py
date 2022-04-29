@@ -8,6 +8,10 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # Open up the "foo.txt" file (which already exists) for reading
 # Print all the contents of the file, then close the file
 # Note: pay close attention to your current directory when trying to open "foo.txt"
+open_foo = open('foo.txt', 'r')
+if open_foo.mode == 'r':
+    contents = open_foo.read()
+    print(contents)
 
 # YOUR CODE HERE
 
@@ -17,3 +21,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+make_and_open_bar = open('bar.txt', 'w+')
+for i in range(3):
+    make_and_open_bar.write("Hello there \r\n")
+make_and_open_bar.close()
