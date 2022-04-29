@@ -42,6 +42,11 @@ waypoints = [
 # waypoints list.
 
 # YOUR CODE HERE
-
+waypoints[0]={"lat": 41, "lon": -130, "name": "not a real place"}
+print(waypoints)
 # Write a loop that prints out all the field values for all the waypoints
+
 # YOUR CODE HERE
+
+for waypoint in enumerate(waypoints): ## Enumerate adds the index but it is read only !
+    print(waypoint)
