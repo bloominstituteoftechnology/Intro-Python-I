@@ -1,5 +1,5 @@
 """
-The Python standard library's 'calendar' module allows you to
+The Python standard library's 'calendar' module allows you to DONE
 render a calendar to your terminal.
 https://docs.python.org/3.6/library/calendar.html
 
@@ -30,3 +30,16 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+def call_calendar(*args):
+    visual = calendar.TextCalendar
+    if len(args) == 0:
+        print(visual(firstweekday=6).formatmonth(
+            today.year, today.month))
+    elif len(args) == 1:
+        print(visual(firstweekday=6).formatmonth(
+            today.year, int(args[0])))
+    elif len(args) == 2:
+        print(visual(firstweekday=6).formatmonth(int(args[1]), int(args[0])))
+
+call_calendar(2, 2020)
