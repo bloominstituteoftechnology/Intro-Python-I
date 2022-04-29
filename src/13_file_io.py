@@ -9,6 +9,10 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # Print all the contents of the file, then close the file
 # Note: pay close attention to your current directory when trying to open "foo.txt"
 
+f = open('/Users/Dahna/lambda-cs/Intro-Python-I/src/foo.txt', 'r')
+
+print(f.read())
+f.close()
 # YOUR CODE HERE
 
 # Open up a file called "bar.txt" (which doesn't exist yet) for
@@ -17,3 +21,7 @@ https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files
 # sure that it contains what you expect it to contain
 
 # YOUR CODE HERE
+
+bar_file = open('bar.txt', 'w')
+bar_file.write("I see now the circumstances of one's birth are irrelevant.\n It is what you do with the gift of life that determiens who you are. \n - Mewtwo")
+bar_file.close()
