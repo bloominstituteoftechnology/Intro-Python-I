@@ -1,21 +1,71 @@
 # Make a class LatLon that can be passed parameters `lat` and `lon` to the
 # constructor
 
-# YOUR CODE HERE
 
-# Make a class Waypoint that can be passed parameters `name`, `lat`, and `lon` to the
-# constructor. It should inherit from LatLon. Look up the `super` method.
+class LatLon:
 
-# YOUR CODE HERE
+    def __init__(self, lat, lon):
+        self.lat = lat
+        self.lon = lon
+
+    def show_lat(self):
+        return self.lat
+
+    def show_lon(self):
+        return self.lon
+
+    def __str__(self):
+        message = f"Lat: {self.show_lat()} Lon: {self.show_lon()}"
+        return message
+
+
+# Make a class Waypoint that can be passed parameters name, lat, and lon
+# to the constructor. It should inherit from LatLon. Look up the `super` method
+
+
+class Waypoint(LatLon):
+
+    def __init__(self, lat, lon, name):
+        super().__init__(lat, lon)
+        self.name = name
+
+    def show_name(self):
+        return self.name
+
+    def __str__(self):
+        message = super().__str__()
+        waypoint_msg = message + f" Name: {self.show_name()}"
+        return waypoint_msg
+
 
 # Make a class Geocache that can be passed parameters `name`, `difficulty`,
 # `size`, `lat`, and `lon` to the constructor. What should it inherit from?
 
-# YOUR CODE HERE
+
+class Geocache(Waypoint):
+
+    def __init__(self, lat, lon, name, difficulty, size):
+        super().__init__(lat, lon, name)
+        self.difficulty = difficulty
+        self.size = size
+
+    def show_diff(self):
+        return self.difficulty
+
+    def show_size(self):
+        return self.size
+
+    def __str__(self):
+        message = super().__str__()
+        geocache = f" Diff: {self.show_diff()} Size: {self.show_size()}"
+        geocache_msg = message + geocache
+        return geocache_msg
 
 # Make a new waypoint and print it out: "Catacombs", 41.70505, -121.51521
 
-# YOUR CODE HERE
+
+waypoint = Waypoint(41.70505, -121.51521, "Catacombs")
+
 
 # Without changing the following line, how can you make it print into something
 # more human-readable? Hint: Look up the `object.__str__` method
@@ -23,7 +73,7 @@ print(waypoint)
 
 # Make a new geocache "Newberry Views", diff 1.5, size 2, 44.052137, -121.41556
 
-# YOUR CODE HERE
+geocache = Geocache(44.052137, -121.41556, "Newberry Views", 1.5, 2)
 
 # Print it--also make this print more nicely
 print(geocache)
