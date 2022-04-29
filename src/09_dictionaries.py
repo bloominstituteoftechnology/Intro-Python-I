@@ -1,4 +1,6 @@
 """
+WE WENT OVER THIS IN DAY 1 LECTURE 9/1/2020 REFER BACK
+
 Dictionaries are Python's implementation of associative arrays.
 There's not much different with Python's version compared to what
 you'll find in other languages (though you can also initialize and
@@ -42,6 +44,9 @@ waypoints = [
 # waypoints list.
 
 # YOUR CODE HERE
-
+waypoints[0]["name"] = "not a real place"
+waypoints[0]["lon"] = "-130"
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+for i in waypoints:
+    print(f'Latitude: {i.get("lat")}, Longitude: {i.get("lon")}, Place: {i.get("name")}')
