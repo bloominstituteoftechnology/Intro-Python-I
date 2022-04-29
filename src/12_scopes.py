@@ -5,8 +5,8 @@
 x = 12
 
 def change_x():
+    global x  # Done - Makes global variable within function - changes 12 to 99.
     x = 99
-
 change_x()
 
 # This prints 12. What do we have to modify in change_x() to get it to print 99?
@@ -19,6 +19,7 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y  # Declares variable is nonlocal. Prints 999 - Complete.
         y = 999
 
     inner()
