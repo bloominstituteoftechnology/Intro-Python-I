@@ -21,6 +21,7 @@ def dist(a, b):
     """Compute the distance between two x,y points."""
     x0, y0 = a  # Destructuring assignment
     x1, y1 = b
+    
 
     return math.sqrt((x1 - x0)**2 + (y1 - y0)**2)
 
@@ -33,8 +34,9 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 
 
 # Write a function `print_tuple` that prints all the values in a tuple
-
-# YOUR CODE HERE
+def print_tuple(a):
+    pass
+print_tuple(a)
 
 t = (1, 2, 5, 7, 99)
 print_tuple(t)  # Prints 1 2 5 7 99, one per line

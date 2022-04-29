@@ -30,3 +30,16 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+user_input = input("Enter Month ").split(" ")
+length = len(user_input)
+today = datetime.now()
+
+if user_input[0] == "":
+  print(calendar.month(today.year, today.month))
+elif length == 1:
+  print(calendar.month(today.year, int(user_input[0])))
+elif length == 2:
+  print(calendar.month(int(user_input[1]), int(user_input[0])))
+else:
+  print("Enter month in M format and year as YYYY")
