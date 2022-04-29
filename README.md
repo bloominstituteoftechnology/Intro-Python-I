@@ -1,3 +1,5 @@
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/LambdaSchool/Intro-Python-I) 
+
 # Intro to Python I
 
 _Note: This project spans two modules (modules 1 and 2). You should roughly try to finish the first half of the problems during module 1 and the second half of the problems during module 2._
@@ -75,6 +77,7 @@ The suggested order for going through each of the directories is:
 * `file_io` -- Read and write from files
 * `cal` -- Experiment with module imports and implement a text-based calendar
 * `classes` -- Classes and objects
+
 
 ## Stretch Goals
 
