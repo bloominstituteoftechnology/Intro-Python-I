@@ -13,12 +13,19 @@ change_x()
 print(x)
 
 
+def change_x():
+    global x
+    x = 99
+change_x()
+print(x)
+
 # This nested function has a similar problem.
 
 def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()
