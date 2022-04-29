@@ -35,10 +35,44 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 # Write a function `print_tuple` that prints all the values in a tuple
 
 # YOUR CODE HERE
+def print_tuple(tt):
+    if type(tt) is tuple:
+        for i in range (0, len(tt)):
+            print(tt[i])
+        return
+    else:
+        print("input was not a Tuple, but rather of type: " + str(type(tt)) + "\nand had a value of: "+ str(tt))
+        return
+
+#extra solution 1
+    # for item in tt:
+    #     print(item)
+#extra solution 2
+    # if iter(tt):
+    #     for i in range (0, len(tt)):
+    #         print(tt[i])
+    #     return
+    # else:
+    #     print(tt)
+    #     return
+#extra solution 3
+    # try:
+    #     for i in range (0, len(tt)):
+    #             print(tt[i])
+    #         # return
+    # except TypeError:
+    #     print("not a tuple, but it's: " + str(tt))
 
 t = (1, 2, 5, 7, 99)
 print_tuple(t)  # Prints 1 2 5 7 99, one per line
 
 # Declare a tuple of 1 element then print it
 u = (1)  # What needs to be added to make this work?
+#I'm not 100% sure what is being asked here, but I added some solutions and left my favorite uncommented out.
+#some of the commented out solutions may not be 100% working
 print_tuple(u)
+
+
+print_tuple("lmao")
+
+print_tuple([1,2,3])
