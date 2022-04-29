@@ -18,15 +18,72 @@ and does the following:
    the format that your program expects arguments to be given.
    Then exit the program.
 
-Note: the user should provide argument input (in the initial call to run the file) and not 
+Note: the user should provide argument input (in the initial call to run the file) and not
 prompted input. Also, the brackets around year are to denote that the argument is
 optional, as this is a common convention in documentation.
 
-This would mean that from the command line you would call `python3 14_cal.py 4 2015` to 
-print out a calendar for April in 2015, but if you omit either the year or both values, 
+This would mean that from the command line you would call `python3 14_cal.py 4 2015` to
+print out a calendar for April in 2015, but if you omit either the year or both values,
 it should use today’s date to get the month and year.
 """
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import date
+
+# get todays date
+today = date.today()
+# Parse args from cl
+input_len = len(sys.argv)
+# Create calendar
+cal = calendar.TextCalendar()
+
+# No args, just 14_cal.py
+# if input_len == 1:
+#     cal.prmonth(today.year, today.month)
+
+# # One arg, assume it is month
+# elif input_len == 2:
+#     cal.prmonth(today.year, int(sys.argv[1]))
+
+# # Two args
+# elif input_len == 3:
+#     cal.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+
+# # Usage statement
+# else:
+#     print('Program expects format: ptyhon 14_cal.py month year')
+
+
+### MY FUN VERSION ###
+
+if input_len > 3:
+    print('Requires 1 month or 1 month and 1 year')
+elif input_len == 1:
+    cal.prmonth(today.year, today.month)
+elif input_len == 2:
+    month = sys.argv[1]
+    if (len(month) == 1 or len(month) == 2) and (0 < int(month) <= 12):
+        cal.prmonth(today.year, int(month))
+    elif len(month) > 2:
+        print('Cannot print full year. Format: ptyhon 14_cal.py month year')
+    else:
+        print('Must be a valid month "1-12"!')
+elif input_len == 3:
+    month_or_year = sys.argv[1:3]
+    for i in month_or_year:
+        if (len(i) == 2) or (len(i) == 1):
+            if (0 < int(i) <= 12):
+                month = int(i)
+            else:
+                print('Month must be 1-12')
+                exit()
+        elif len(i) > 2:
+            if (1000 <= int(i) <= 9999):
+                year = int(i)
+            else:
+                print('No calendars for that year :(')
+                exit()
+        else:
+            print('Year must be 4 digits (ex: 1995)')
+    cal.prmonth(year, month)
