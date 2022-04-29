@@ -30,3 +30,33 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+
+class Calendar
+  def__init__(self, month, year):
+      self.month = month
+      self.year = year
+  def__str__(self):
+      output = f"Please type in the {self.month} and {self.year}"
+      return output
+  def__repr__(self)
+      return f"datetime.now()"
+
+while True: 
+    choice = input("Please input a month and year (#): ")
+    
+    def month_year(**args):
+        for month, year in args.items():
+            print("%s = %s" %(month, year)) 
+
+    try:
+        if (choice == 'q'): 
+            break
+        choice = int(choice)
+        print(month_year(choice))
+        elif 
+        print(repr(Calendar))
+        else 
+        print("the number is out of range")
+    except ValueError:
+        print("PLease enter a valid number")
