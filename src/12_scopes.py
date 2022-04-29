@@ -4,13 +4,25 @@
 # When you use a variable in a function, it's local in scope to the function.
 x = 12
 
-def change_x():
+def changeX():
     x = 99
 
-change_x()
+changeX()
 
-# This prints 12. What do we have to modify in change_x() to get it to print 99?
+# This prints 12. What do we have to modify below in changeY() to get it to print 99?
 print(x)
+
+
+y = 12
+
+def changeY():
+    global y # <== add this 'global' keyword
+    y = 99
+
+changeY()
+
+# This should print 99.
+print(y)
 
 
 # This nested function has a similar problem.
@@ -19,14 +31,13 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y # <== add this 'nonlocal' keyword
         y = 999
 
     inner()
 
     # This prints 120. What do we have to change in inner() to get it to print
-    # 999?
-    # Note: Google "python nested function scope".
+    # 999? Google "python nested function scope".
     print(y)
-
 
 outer()
