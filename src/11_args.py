@@ -4,7 +4,8 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-# YOUR CODE HERE
+def f1(num1, num2):
+    return num1 + num2
 
 print(f1(1, 2))
 
@@ -12,7 +13,9 @@ print(f1(1, 2))
 # sum.
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
-# YOUR CODE HERE
+def f2(*args): # * means that there is a variable number of arguments in a list
+    total = sum(args)
+    return total
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -22,14 +25,16 @@ print(f2(7, 9, 1, 3, 4, 9, 0))  # Should print 33
 a = [7, 6, 5, 4]
 
 # How do you have to modify the f2 call below to make this work?
-print(f2(a))    # Should print 22
+print(f2(*a))    # Should print 22 
+# The * is called a splat operator #
 
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments.
 # Note: Google "python default arguments" for a hint.
 
-# YOUR CODE HERE
+def f3(num3, num4 = 1): # The second argument is a default argument
+    return num3 + num4
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -43,23 +48,40 @@ print(f3(8))     # Should print 9
 #
 # Note: Google "python keyword arguments".
 
-# YOUR CODE HERE
+def f4(**kwargs): # ** means that a dictionary can have a variable number of arguments
+    for key, value in kwargs.items():
+        print(f'key: {key} value: {value}') 
+    # key_results = ""
+    # for arg in kwargs:
+    #     key_results += arg
+    # #print(key_results)
+    # #return key_results
+
+    # value_results = ""
+    # for arg in kwargs:
+    #     value_results += arg
+    # #print(value_results)
+    # return value_results
+
+    # print(key_results)
+    # print(value_results)
+    # print('key: ' , key_results, 'value: ', value_results)
 
 # Should print
 # key: a, value: 12
 # key: b, value: 30
-f4(a=12, b=30)
+f4(a=12, b=30) 
 
-# Should print
-# key: city, value: Berkeley
-# key: population, value: 121240
-# key: founded, value: "March 23, 1868"
-f4(city="Berkeley", population=121240, founded="March 23, 1868")
+Should print
+key: city, value: Berkeley
+key: population, value: 121240
+key: founded, value: "March 23, 1868"
+f4(city="Berkeley", population=121240, founded="March 23, 1868") 
 
 d = {
     "monster": "goblin",
     "hp": 3
-}
+    }
 
 # How do you have to modify the f4 call below to make this work?
-f4(d)
+f4(**d) 
