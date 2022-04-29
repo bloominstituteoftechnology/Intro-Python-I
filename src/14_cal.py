@@ -28,5 +28,56 @@ it should use today’s date to get the month and year.
 """
 
 import sys
-import calendar
+import calendar # import the classes
 from datetime import datetime
+
+# cal = calendar.TextCalendar(calendar.SUNDAY) tells the interpreter to create a text calendar starts from Sunday.
+
+# a = this.Month
+# b = this.Year
+
+# thisMonth = datetime.today().month
+# thisYear = datetime.today().year
+
+# cal = calendar.TextCalendar(calendar.SUNDAY)
+
+# def newCal(a,b):
+  # return cal.formatmonth(b,a)
+
+
+# script name
+# args = sys.argv
+# length of the script name
+# len(sys.argv)
+
+# if len(args) == 1:
+    # print(newCal(thisMonth, thisYear))
+# elif len(args) == 2:
+    # # print(newCal(thisYear, int(args)))
+# elif len(args) == 3:
+    #print(newCal(int(args[2]), int(args)))
+# else:
+    # print("Please provide the format (cal.py mm yyyy) to run the code")
+
+# second attempt
+args = sys.argv
+if (len(args) == 1):
+    m = datetime.now().month
+    y = datetime.now().year
+    print(calendar.month(y, m))
+elif len(args) == 2:
+    m = int(args[1])
+    y = datetime.now().year
+    print(calendar.month(y, m))
+elif len(args) == 3:
+    m = int(args[1])
+    y = int(args[2])
+    print(calendar.month(y, m))
+else:
+    print("Please enter month and year like mm yyyy")
+    sys.exit()
+    
+
+
+
+
