@@ -1,6 +1,6 @@
 """
 Python provides a number of ways to perform printing. Research
-how to print using the printf operator, the `format` string 
+how to print using the printf operator, the `format` string
 method, and by using f-strings.
 """
 
@@ -13,5 +13,7 @@ z = "I like turtles!"
 # x is 10, y is 2.25, z is "I like turtles!"
 
 # Use the 'format' string method to print the same thing
-
+print('x is {}, y is {}, z is {}'.format(x,y,z))
 # Finally, print the same thing using an f-string
+print(f'x is {x}, y is {y}, z is {z}')
+print(f'x times y iquals to { x * y }')
