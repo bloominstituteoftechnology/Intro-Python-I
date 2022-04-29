@@ -1,0 +1,3 @@
+Hello from inside the bar.txt document. 
+You have made it. 
+Hello out there!
