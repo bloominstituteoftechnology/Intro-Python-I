@@ -29,4 +29,15 @@ it should use today’s date to get the month and year.
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import date
+
+x = datetime()
+
+def current_time(m, y):
+  if m and y:
+      return 
+
+# User interface
+user = input("Enter month than year: ")
+
+print(calendar.month(2020, 7))
