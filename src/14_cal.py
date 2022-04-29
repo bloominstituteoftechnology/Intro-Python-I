@@ -30,3 +30,44 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+print(int(10))
+
+#how do you write a function that accepts user input? ---use input() function, user passes string in terminal:
+#  x = input("Enter comma-separated numbers: ").split(',')
+#if user gives no inputs then print calendar for current month
+#if user gives 1 input assume its the month. print the calendar for that month of current year
+#two args = month, year - calendar for that month and year
+#if user gives any other inputs, print a statement for what arguments should be given and exit program (exit())
+# print(calendar.month(2020, 6))
+
+
+#default arguments should be current month and current year
+#set conditions for if the month is a string anything other than 1-12 for a prompt explaining how to use it
+#set conditions for if the year is a string anything other than a number for a prompt explaining how to use it
+#how to specify if a string does not equal '1' -'12'
+def userCalendar(month = 6, year = 2020):
+  month = input("enter month you would like a calendar for: ")
+  year = input("enter year you would like a calendar for: ")
+  if month == '':
+    month = 6
+  elif month.isnumeric != True and int(month) > 12 or int(month) < 1:
+    print('must enter a number from 1 to 12 for month value')
+    return None
+  if year == '':
+    year = 2020
+  elif year.isnumeric() != True:
+    print('must enter a number for the year value')
+    return None
+  month = int(month)
+  year = int(year)
+  print(calendar.month(year, month))
+  #set variable month to take the month of user's choice
+  
+  #set variable year to take the year of users choice
+  
+  #if user gives no inputs print calendar for current month
+  
+  #if user gives one input print calendar for that month of current year 
+
+  #if two args then treat them as month and year
+userCalendar()
