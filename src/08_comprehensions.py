@@ -2,40 +2,50 @@
 List comprehensions are one cool and unique feature of Python.
 They essentially act as a terse and concise way of initializing
 and populating a list given some expression that specifies how
-the list should be populated. 
+the list should be populated.
 
-Take a look at https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
+Take a look at
+https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
 for more info regarding list comprehensions.
 """
 
 # Write a list comprehension to produce the array [1, 2, 3, 4, 5]
-
-y = []
-
-print (y)
+"""
+In a range of number (0-9)
+save just the numbers that are bigger tha zero
+and smaller than 5
+"""
+y = [n for n in range(10) if n < 6 and n > 0]
+print(y)
 
 # Write a list comprehension to produce the cubes of the numbers 0-9:
 # [0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
-
-y = []
-
+y = [n**3 for n in range(10)]
+"""
+In a range of number (0-9)
+save the cube of those numbers
+"""
 print(y)
 
 # Write a list comprehension to produce the uppercase version of all the
 # elements in array a. Hint: "foo".upper() is "FOO".
-
 a = ["foo", "bar", "baz"]
-
-y = []
-
+"""
+Go trough the elements of 'a' and save in 'y' the uppercase
+"""
+y = [n.upper() for n in a]
 print(y)
 
 # Use a list comprehension to create a list containing only the _even_ elements
 # the user entered into list x.
-
-x = input("Enter comma-separated numbers: ").split(',')
-
+x = input("\nEnter comma-separated numbers: ").split(',')
 # What do you need between the square brackets to make it work?
-y = []
-
+"""
+Save in 'y' just the even numbers of x
+"""
+try:
+    y = [int(n) for n in x if (int(n) % 2 == 0)]
+except:
+    print("\nThe program accept just numbers separated by commas")
+    y=""
 print(y)
