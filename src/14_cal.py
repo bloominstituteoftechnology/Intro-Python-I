@@ -30,3 +30,22 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+if len(sys.argv) > 3:
+    print("\nPlease enter the month of the calendar you want to print, optionally followed by the year.")
+    print(f"$ python3 {sys.argv[0]} month [year]\n")
+    print(f"Ex: $ python3 {sys.argv[0]} 7 2020\n\n")
+    sys.exit()
+
+if len(sys.argv) >= 2:
+    month = int(sys.argv[1])
+else:
+    month = datetime.today().month
+
+if len(sys.argv) >= 3:
+    year = int(sys.argv[2])
+else:
+    year = datetime.today().year
+
+c = calendar.TextCalendar(6)
+c.prmonth(year, month)
