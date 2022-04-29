@@ -1,0 +1,3 @@
+Hello my name is Robert Elias, 
+I really enjoy learning about, 
+Python Programming
