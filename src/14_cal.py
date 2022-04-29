@@ -18,15 +18,32 @@ and does the following:
    the format that your program expects arguments to be given.
    Then exit the program.
 
-Note: the user should provide argument input (in the initial call to run the file) and not 
+Note: the user should provide argument input (in the initial call to run the file) and not
 prompted input. Also, the brackets around year are to denote that the argument is
 optional, as this is a common convention in documentation.
 
-This would mean that from the command line you would call `python3 14_cal.py 4 2015` to 
-print out a calendar for April in 2015, but if you omit either the year or both values, 
+This would mean that from the command line you would call `python3 14_cal.py 4 2015` to
+print out a calendar for April in 2015, but if you omit either the year or both values,
 it should use today’s date to get the month and year.
 """
 
 import sys
 import calendar
 from datetime import datetime
+
+def make_calendar(month=datetime.now().month, year=datetime.now().year):
+    calendar.setfirstweekday(calendar.SUNDAY)
+    calendar.prmonth(theyear=year, themonth=month)
+
+if len(sys.argv) > 3:
+    raise ValueError("Pass up to two numerical arguments. The first\
+will be interpreted as the month and must be within 1 and 12.\
+Missing arguments will default to the current date.")
+args = sys.argv[1:3]
+if args:
+    args = [int(arg) for arg in args]
+    if args[0] < 1 or args[0] > 12:
+        raise ValueError("Pass up to two numerical arguments. The first\
+will be interpreted as the month and must be within 1 and 12.\
+Missing arguments will default to the current date.")
+make_calendar(*args)
