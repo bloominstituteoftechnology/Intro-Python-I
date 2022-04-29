@@ -12,6 +12,21 @@ z = "I like turtles!"
 # y, and z:
 # x is 10, y is 2.25, z is "I like turtles!"
 
+print('x is %i, y is %.2f, z is %s' %(x, y, z))
+
 # Use the 'format' string method to print the same thing
 
+print('x is {0}, y is {1:.2f}, z is {2}'.format(x, y, z))
+
 # Finally, print the same thing using an f-string
+print(f'x is {x}, y is {y:.2f}, z is {z}')
+
+class Animal:
+    def __init( self, name, hunger, diet ):
+        self.name = name
+        self.hunger = hunger
+        self.diet = diet
+
+    def eat(self, food, hunger):
+        if food > 0 and hunger < 25:
+            hunger += food
