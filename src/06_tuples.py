@@ -17,6 +17,7 @@ automatically.
 
 import math
 
+
 def dist(a, b):
     """Compute the distance between two x,y points."""
     x0, y0 = a  # Destructuring assignment
@@ -24,21 +25,35 @@ def dist(a, b):
 
     return math.sqrt((x1 - x0)**2 + (y1 - y0)**2)
 
+
 a = (2, 7)   # <-- x,y coordinates stored in tuples
 b = (-14, 72)
 
 # Prints "Distance is 66.94"
 print("Distance is: {:.2f}".format(dist(a, b)))
-
+print('\n')
 
 
 # Write a function `print_tuple` that prints all the values in a tuple
-
+"""
+Tuples - group of items we reference by index.
+duplicate items
+"""
 # YOUR CODE HERE
 
 t = (1, 2, 5, 7, 99)
-print_tuple(t)  # Prints 1 2 5 7 99, one per line
+
+
+def print_tuple(t):
+    """Print each value in tuple, one per line."""
+    for i in t:
+        print(i)
+
+
+print_tuple(t)
+print('\n')
+
 
 # Declare a tuple of 1 element then print it
-u = (1)  # What needs to be added to make this work?
+u = (1, )  # What needs to be added to make this work?
 print_tuple(u)
