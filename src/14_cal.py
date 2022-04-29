@@ -30,3 +30,24 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+# Have if statements on length of sys.rv
+# Have inside of function. Play around with default arguments.
+  # Call function sys.rv... default or not.
+
+sys_length = len(sys.argv)
+
+if sys_length == 1:
+  month = datetime.now().month
+  year = datetime.now().year
+
+if sys_length == 2:
+  month = int(sys.argv[1])
+  year = datetime.now().year
+
+if sys_length == 3:
+  month = int(sys.argv[1])
+  year = int(sys.argv[2])
+
+my_Calendar = calendar.TextCalendar()
+my_Calendar.prmonth(year, month)
