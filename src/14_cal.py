@@ -30,3 +30,53 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+# breakpoint()
+# if len(sys.argv) == 3 and type(int(sys.argv[2])) == int and type(int(sys.argv[1])) == int: 
+#   calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+# elif len(sys.argv) == 2 and type(int(sys.argv[1])) == int: 
+#   calendar.prmonth(datetime.now().year, int(sys.argv[1]))
+# else: 
+#   calendar.prmonth(datetime.now().year,datetime.now().month)  
+
+# my way
+# try:
+#   if not (0 < int(sys.argv[1]) < 13):
+#     raise Exception("MONTH MUST BE BETWEEN 1 & 12!!!! RUDE!!!")
+#   if len(sys.argv[1]) != 4:
+#     raise Exception("YEAR MUST BE 4 DIGITS UNLESS YOU'RE A NEANDERTHAL!!!!")
+#   if len(sys.argv) == 3 and type(int(sys.argv[2])) == int and type(int(sys.argv[1])) == int: 
+#     calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+#     sys.exit(0)
+#   elif len(sys.argv) == 2 and type(int(sys.argv[1])) == int: 
+#     calendar.prmonth(datetime.now().year, int(sys.argv[1]))
+#     sys.exit(0)
+#   else:
+#     calendar.prmonth(datetime.now().year,datetime.now().month)
+#     sys.exit(0)
+# except IndexError:
+#   print("DUDE, ORDER THE NUMBERS CORRECTLY")
+# except ValueError:
+#   print("DUDE, NUMBERS ONLY")
+
+# highway
+l = len(sys.argv)
+
+if l == 1:
+    month = datetime.now().month
+    year = datetime.now().year
+
+elif l == 2:
+    month = int(sys.argv[1])
+    year = datetime.now().year
+
+elif l == 3:
+    month = int(sys.argv[1])
+    year = int(sys.argv[2])
+
+else: 
+    print("Usage: 14_cal.py [month] [year]")
+    sys.exit(1)
+
+
+cal = calendar.TextCalendar()
+cal.prmonth(year, month)
