@@ -30,3 +30,36 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+m = input("Enter the month: ")
+y = input("Enter the year: ")
+
+
+def missing_inputs():
+    print(calendar.month(2020, 1))
+
+
+def missing_one_inputs(month, year=2020):
+    try:
+        print(calendar.month(year, month))
+    except IndexError:
+        new_input = input('Please enter a valid month: ')
+        missing_one_inputs(int(new_input))
+
+
+def get_calendar(mon, yr):
+    print(calendar.month(yr, mon))
+
+
+try:
+    get_calendar(m, y)
+
+except TypeError:
+    if m:
+        cal_value = int(m)
+        missing_one_inputs(cal_value)
+    elif y:
+        cal_value = int(y)
+        missing_one_inputs(cal_value)
+    else:
+        missing_inputs()
