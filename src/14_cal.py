@@ -30,3 +30,21 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+def make_calendar(month=datetime.now().month, year=datetime.now().year):
+    calendar.setfirstweekday(calendar.SUNDAY)
+    calendar.prmonth(theyear=year, themonth=month)
+
+if len(sys.argv) > 3:
+    raise ValueError("Enter up to two inputs (must be numbers). The first\
+will be the month, the second will be the year.")
+
+args = sys.argv[1:3]
+if args:
+    args = [int(arg) for arg in args]
+    if args[0] < 1 or args[0] > 12:
+        raise ValueError("Enter up to two inputs (must be numbers). The first\
+will be the month, the second will be the year.\
+Missing arguments will default to the current date.")
+
+make_calendar(*args)
