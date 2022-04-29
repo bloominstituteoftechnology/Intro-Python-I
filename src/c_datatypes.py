@@ -14,8 +14,20 @@ y = "7"
 # Write a print statement that combines x + y into the integer value 12
 
 # YOUR CODE HERE
+def value_12():
+    x = 5
+    y = "7"
+    y = int(y)
+    sum = x + y
+    print(sum)
 
 
 # Write a print statement that combines x + y into the string value 57
 
 # YOUR CODE HERE
+def string_57():
+    x = 5
+    y = "7"
+    x = str(x)
+    print(x + y)
+    
