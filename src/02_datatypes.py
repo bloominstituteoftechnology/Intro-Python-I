@@ -14,8 +14,15 @@ y = "7"
 # Write a print statement that combines x + y into the integer value 12
 
 # YOUR CODE HERE
+x_list = int(x)
+y_list = int(y) 
 
+combined = x_list + y_list
+print(combined)
 
 # Write a print statement that combines x + y into the string value 57
 
 # YOUR CODE HERE
+print(f'{x}{y}')
+# or
+print(str(x) + y)
