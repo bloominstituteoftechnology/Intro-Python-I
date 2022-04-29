@@ -5,6 +5,9 @@
 x = 12
 
 def change_x():
+    # Its going to bring the x into the global scope as x in the function. 
+    # It will now have access to x = 12 and we can change the value of x
+    global x
     x = 99
 
 change_x()
@@ -14,11 +17,13 @@ print(x)
 
 
 # This nested function has a similar problem.
-
+#  Both func need their own scope thats custom to their own function
 def outer():
     y = 120
 
     def inner():
+        # we use nonlocal to reach out into the parent scope and grab the variable we specify (y) if it finds it
+        nonlocal y
         y = 999
 
     inner()
@@ -27,6 +32,5 @@ def outer():
     # 999?
     # Note: Google "python nested function scope".
     print(y)
-
 
 outer()
