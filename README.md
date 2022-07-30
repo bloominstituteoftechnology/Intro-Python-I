@@ -23,7 +23,8 @@ and what doesn't as you go through the process of exploring Python.
   briefly for now--the idea isn't to memorize everything but to file away
   generally what functionality is available.
 
-* Write a more substantial toy program that uses a variety of the features.
+* Write a more substantial toy program that uses a variety of the features
+  in a meaningful way. Try to imagine solving a real world problem. 
 
 Again, keep track of what works for you. Try different things to see what works
 best for learning new languages.
