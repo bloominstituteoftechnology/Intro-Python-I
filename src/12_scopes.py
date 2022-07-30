@@ -1,3 +1,5 @@
+# python3 src/12_scopes.py
+
 # Experiment with scopes in Python.
 # Good reading: https://www.programiz.com/python-programming/global-local-nonlocal-variables
 
@@ -5,7 +7,9 @@
 x = 12
 
 def change_x():
+    global x
     x = 99
+    # print(x)  # added print statement
 
 change_x()
 
@@ -19,7 +23,9 @@ def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
+        # print (y)  # added print statement
 
     inner()
 
