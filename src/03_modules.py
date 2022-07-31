@@ -28,4 +28,4 @@ print(os.getpid())
 print(os.getcwd())
 
 # Print out your machine's login name
-# YOUR CODE HERE
+print(os.getlogin())
