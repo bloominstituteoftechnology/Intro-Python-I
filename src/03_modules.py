@@ -15,7 +15,7 @@ print(sys.argv)
 print(sys.platform)
 
 # Print out the version of Python you're using:
-#print(sys.
+print(sys.version)
 
 
 import os
