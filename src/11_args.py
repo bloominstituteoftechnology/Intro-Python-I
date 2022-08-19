@@ -4,7 +4,8 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-# YOUR CODE HERE
+def f1(a,b):
+    return a + b
 
 print(f1(1, 2))
 
