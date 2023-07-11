@@ -5,7 +5,10 @@
 # the sum. This is what you'd consider to be a regular, normal function.
 
 # YOUR CODE HERE
+def f1(x, y):
+    return x + y
 
+print("f1")
 print(f1(1, 2))
 
 # Write a function f2 that takes any number of integer arguments and returns the
@@ -13,6 +16,21 @@ print(f1(1, 2))
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
 # YOUR CODE HERE
+print("____")
+print("f2")
+def f2(*nums):
+	total = 0
+	if type(nums[0]) == list:
+		for number in nums[0]:
+			total += number
+		return total
+	else:
+		if type(nums[0]) == int:
+			for number in nums:
+				total += number
+			return total
+		else:
+			return "failed"
 
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
@@ -30,6 +48,12 @@ print(f2(a))    # Should print 22
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
+print("____")
+print("f3")
+
+def f3(num1, num2 = 1):
+    return num1 + num2
+
 
 print(f3(1, 2))  # Should print 3
 print(f3(8))     # Should print 9
@@ -44,6 +68,16 @@ print(f3(8))     # Should print 9
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
+print("____")
+print("f4")
+
+def f4(*positionals, **pairs):
+	for key, value in pairs.items():
+		print(f"key: {key}, value: {value}")
+	for item in positionals:
+		for key, value in item.items():
+			print(f"key: {key}, value: {value}")
+
 
 # Should print
 # key: a, value: 12
