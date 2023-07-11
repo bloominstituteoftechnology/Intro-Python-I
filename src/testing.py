@@ -1,21 +1,8 @@
-def f4(*positionals, **pairs):
-	for key, value in pairs.items():
-		print(f"key: {key}, value: {value}")
+x = 25
+def change_x():
+	global x
+	x = 10
 
-	for item in positionals:
-		print(item)
-		for key, value in item.items():
-			print(f"key: {key}, value: {value}")
-
-
-
-# Should print
-# key: a, value: 12
-# key: b, value: 30
-f4(a=12, b=30)
-
-d = {
-    "monster": "goblin",
-    "hp": 3
-}
-f4(d)
+print(x)
+change_x()
+print(x)
